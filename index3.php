@@ -460,7 +460,7 @@ if (@$_SESSION['logged_in'] != true) {
 
            
   <li style="float:right"></li>
-   <li style="float:right"><span id="hora" >Produccion esperada: 12</span></li>
+   <li style="float:right"><span id="hora" ></span></li>
     <li style="float:right ;display:none;"><span><?php
     $fecha = strftime("%Y-%m-%d", time());
     echo $fecha;
