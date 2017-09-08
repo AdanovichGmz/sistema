@@ -490,7 +490,8 @@ if (@$_SESSION['logged_in'] != true) {
         $element_query = "SELECT nombre_elemento FROM elementos WHERE id_elemento=$prodact";
         $get_elem      = mysqli_fetch_assoc($mysqli->query($element_query));
         $actelement    = $get_elem['nombre_elemento'];
-        echo $row->numodt . " <span style='color:#2FE3BF'>" . $actelement . "</span>";
+        $size=(strlen($actelement)>17)?'font-size: 17px;':'';
+        echo $row->numodt . " <span style='color:#2FE3BF; ".$size."'>" . $actelement . "</span>";
     } else {
         echo "--";
     }
@@ -514,7 +515,8 @@ if (@$_SESSION['logged_in'] != true) {
         $sigelement_query = "SELECT nombre_elemento FROM elementos WHERE id_elemento=$prodsig";
         $get_sigelem      = mysqli_fetch_assoc($mysqli->query($sigelement_query));
         $sigelement       = $get_sigelem['nombre_elemento'];
-        echo $row2->numodt . " <span style='color:#2FE3BF'>" . $sigelement . "</span>";
+        $size=(strlen($sigelement)>17)?'font-size: 17px;':'';
+        echo $row2->numodt . " <span style='color:#2FE3BF;".$size."'>" . $sigelement . "</span>";
     } else {
         echo "--";
     }
@@ -537,7 +539,8 @@ if (@$_SESSION['logged_in'] != true) {
         $prepelement_query = "SELECT nombre_elemento FROM elementos WHERE id_elemento=$prodprep";
         $get_prepelem      = mysqli_fetch_assoc($mysqli->query($prepelement_query));
         $prepelement       = $get_prepelem['nombre_elemento'];
-        echo $row3->numodt . " <span style='color:#2FE3BF'>" . $prepelement . "</span>";
+        $size=(strlen($prepelement)>17)?'font-size: 17px;':'';
+        echo $row3->numodt . " <span style='color:#2FE3BF; ".$size."'>" . $prepelement . "</span>";
     } else {
         echo "--";
     }
