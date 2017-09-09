@@ -1,6 +1,5 @@
 <?php
 require('../saves/conexion.php');
-//print_r($_POST);
 
 
 $orders=$_POST['orders'];
@@ -16,9 +15,10 @@ $clean_query="DELETE FROM orden_estatus WHERE proceso_actual='$proces_name'";
 foreach ($orders as $order) {
   
   
-  
+   $idprocess=(isset($process[$order]))? $process[$order] :'none';
+   if ($idprocess!='none') {
     $id_orden=$orderids[$order];
-    $idprocess=$process[$order];
+   
     $status=$sorts[$order];
 
      $upd_query="INSERT INTO orden_estatus(id_orden_status,id_orden,proceso_actual,id_proceso,status,orden_display)VALUES(null,$id_orden,'$proces_name',$idprocess,'$status',$i)";
@@ -27,6 +27,10 @@ foreach ($orders as $order) {
        printf($mysqli->error);
        echo $upd_query;
      }
+   }else{
+    continue;
+   }
+    
      
      $i++;
   
