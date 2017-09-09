@@ -213,7 +213,7 @@ timer.addEventListener('started', function (e) {
                              data:{id_orden:idord,proceso:proceso,action:'exit'},  
                                
                              success:function(data){
-                   //location.href = 'logout.php';
+                   location.href = 'logout.php';
                    console.log(data);
                              }  
                         });

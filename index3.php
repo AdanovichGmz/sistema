@@ -16,7 +16,7 @@ if (!session_id()) {
 if (@$_SESSION['logged_in'] != true) {
     echo '
     <script>
-        alert("tu no estas autorizado para entrar a esta pagina");
+        alert("No has iniciado sesion");
         self.location.replace("index.php");
     </script>';
 } else {

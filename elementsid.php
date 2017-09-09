@@ -30,12 +30,11 @@ foreach ($lines as $key => $value)
     if ($id==null) {
         $faltantes[]=$value;
     }
-    $csv[] = $id;
+    $csv[$key]['id'] =($id==null)? 143 : $id;
+    $csv[$key]['nombre'] = $value;
 }
 
-echo '<pre>';
-print_r(array_unique($faltantes));
-echo '</pre>';
+
 $falt=array_unique($faltantes);
 /*
 echo '<pre>';
@@ -52,8 +51,9 @@ fclose($fp);
 */
 $fp = fopen('output.csv', 'w');
 foreach ( $csv as $line ) {
-    $val = explode(",", $line);
-    fputcsv($fp, $val);
+    
+    fputcsv($fp, $line);
+
 }
 fclose($fp);
 $fp2 = fopen('faltantes.csv', 'w');

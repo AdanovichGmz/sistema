@@ -109,43 +109,26 @@ if ( $p==1) {
                     <div class="modal-content" style="">
                         <div class="modal-header">
                             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                            <div class="text-center" style="font-size:18pt; text-transform: uppercase;">AJUSTE <?php echo (isset($machineName))? $machineName : $mrecovered ; ?></div>
-                            <?php if (!isset($getActODT)) {?>
-                            <div class="text-center2" id="currentOrder" style="font-size:18pt; color:#E9573E;">NO HAS SELECCIONADO UNA ORDEN</div>
-                            <?php } else{ ?>
-                              <div class="text-center2" id="currentOrder" style="font-size:18pt;">ORDEN ACTUAL: <?php echo (isset($getActODT))? implode(",", $getActODT)  : $stoppedOrder ; ?></div>
-                           <?php } ?>
+                            <div class="text-center" style="font-size:18pt; text-transform: uppercase;">AREA: <?php echo (isset($machineName))? $machineName : $mrecovered ; ?></div>
+                            <div class="text-center2" id="currentOrder" style="font-size:18pt; color: #96989A;">ELIJE UNA ACTIVIDAD</div>
                    
                     <p id="success-msj" style="display: none;">Datos guardados correctamente</p>
                         </div>
                         <div class="modal-body">
                         <div class="button-panel" >
-                        <a href="logout.php" > <img src=""  href="logout.php" class="img-responsive" onClick="return confirm('estas segur@ de cerrar SESION?')" />
-                        <div class="square-button red">
-                          <img src="images/exit-door.png">
+                       <a href="index2.php" >
+                        <div class="square-button yellow">
+                          <img src="images/ajuste.png">
                         </div></a>
-                        <div class="square-button green stop eatpanel goeat">
-                          <img src="images/dinner2.png">
+                        <div class="square-button purple  eatpanel goeat">
+                          <img src="images/clean.png">
                         </div>
-                        <div id="stop" class="square-button blue " onclick="saveAjuste()" >
-                          <img src="images/saving.png">
-                        </div>
-                        <div class="square-button yellow derecha goalert">
-                          <img src="images/warning.png">
-                        </div>
-                        <div class="square-button purple abajo">
-                          <img src="images/checklist.png">
+                        <div class="square-button green  derecha goalert">
+                          <img src="images/other.png">
                         </div>
                         </div>
                         </div>
-                        <div class="timer-container">
-                                    <div id="chronoExample">
-                                    <div id="timer"><span class="values">00:00:00</span></div>
-                                    
-                                    <input type="hidden" id="timee" name="tiempo">
-                                    
-                                </div>
-                                </div>
+                        
                         
                           <?php
                           $valorQuePasa3 = (isset($mac))? $mac : $recoverMac; // variable que viene de otra pagina por el metodo get
@@ -165,7 +148,7 @@ if ( $p==1) {
                           <input type="hidden" name="pausetime">
                         </form>
                             <div class="row ">
-                                 <div class="pause"><div class="pauseicon"><img src="images/pause.png"></div><div class="pausetext">PAUSAR ORDEN</div></div>
+                                 <div class="pause" style="display: none;"><div class="pauseicon"><img src="images/pause.png"></div><div class="pausetext">PAUSAR ORDEN</div></div>
                             </div>
                         </div>
                     </div>
@@ -255,79 +238,17 @@ if ( $p==1) {
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php echo date("d-m-Y"); ?>" />
                 <input  hidden name="maquina" id="maquina" value="<?php echo $valorQuePasa4; ?>"  />
                  <!-- Form Name -->
-                <legend style="font-size:18pt; font-family: 'monse-bold';">ALERTA AJUSTE</legend>
+                <legend style="font-size:18pt; font-family: 'monse-bold';">OTRA ACTIVIDAD</legend>
                <div class="form-group" style="width:80% ;margin:0 auto;">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
-                <?php if ($_SESSION['machineName']=='Serigrafia') { ?>
+                
+                 
                
-
-                <div class="two-columns">
-                  <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-0" value="Preparar Tinta">
-                    Preparar Tinta
-                    </div>
-                <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-1" value="Impresion Mesa">
-                    Impresion Mesa
-                    </div>
-                </div>
-                <div class="two-columns">
-                <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-2" value="Marco mal revelado">
-                    Marco mal revelado
-                    </div>
-                <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-3" value="Marco con poro">
-                    Marco con poro
-                    </div>
-                <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-4" value="ODT confusa">
-                    ODT confusa
-                    </div>
-                    <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-5" value="Tirar basura">
-                    Tirar basura
-                    </div>
-                    <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-6" value="Otro">
-                    Otro
-                    </div>
-                </div>
-                <?php }else{ ?>
-                 <div class="two-columns">
-                  <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-0" value="ODT Confusa">
-                    ODT Confusa
-                    </div>
-                <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-1" value="ODT Faltante">
-                    ODT Faltante
-                    </div>
-                     <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-6" value="Otro">
-                    Otro
-                    </div>
-                </div>
-                <div class="two-columns">
-                <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-2" value="Cambio de Cuchilla">
-                    Cambio de Cuchilla
-                    </div>
-                <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-3" value="Pieza de Plancha">
-                    Pieza de Plancha
-                    </div>
-                <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-4" value="Exceso de Dimensiones">
-                    Exceso de Dimensiones
-                    </div>
-
-                </div>
-                <?php } ?>
+                
                 </div>
                 <!-- Textarea -->
                 <div class="form-group" style="text-align: center; color:black;">
-                    <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones"></textarea>
+                    <textarea placeholder="Especifica la actividad.." class="comments" id="observaciones" name="observaciones"></textarea>
                 
                 </div>
                 <!-- Button (Double) -->
@@ -366,7 +287,7 @@ if ( $p==1) {
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php echo date("d-m-Y"); ?>" />
                 <input hidden name="maquina" id="maquina" value="<?php echo $valorQuePasa5; ?>"  />
                   <!-- Form Name -->
-                 <legend style="font-size:18pt; font-family: 'monse-bold';">Comida</legend>
+                 <legend style="font-size:18pt; font-family: 'monse-bold';">LIMPIEZA</legend>
                 
                    <input type="hidden" id="timeeat" name="breaktime">
                    <!-- Multiple Radios (inline) -->
@@ -375,11 +296,8 @@ if ( $p==1) {
                 <input type="hidden" id="s-radios" name="radios">
               <div class="radio-menu face eatpanel" onclick="submitEat('Comida');showLoad();">
                 <input type="radio" class=""  id="radios-0"  >
-                    COMIDA</div>
-               <div class="radio-menu face eatpanel" onclick="submitEat('Sanitario');showLoad();">
-               <input type="radio"  id="radios-1" >
-                   SANITARIO
-                    </div>
+                    GUARDAR</div>
+               
                 </div>
                    </br>
                    </br>

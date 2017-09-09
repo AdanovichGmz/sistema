@@ -287,7 +287,7 @@ timer.addEventListener('started', function (e) {
                        
                           //$('#update-form')[0].reset();  
                           //$('.close').click(); 
-                          window.location.replace("index2.php?mac="+mac);
+                          window.location.replace("index1.php");
                           console.log(data);
                      }  
                 });

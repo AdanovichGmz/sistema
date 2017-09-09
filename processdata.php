@@ -32,7 +32,7 @@ foreach ($arr as $key=> $value) {
     $nproc=($value['nombre_proceso']=='Hot Stamping')? 'HotStamping' : $value['nombre_proceso'];
     $getidelemquery="SELECT id_elemento FROM elementos WHERE nombre_elemento='$elem'";
     $getidelem=mysqli_fetch_assoc($mysqli->query($getidelemquery));
-    $idelem=($getidelem['id_elemento']!=null)? $getidelem['id_elemento'] : 'null';
+    $idelem=($getidelem['id_elemento']!=null)? $getidelem['id_elemento'] : 143;
 
     $getidquery="SELECT idorden FROM ordenes WHERE numodt='$odt' AND producto=$idelem ";
     $getid=mysqli_fetch_assoc($mysqli->query($getidquery));
