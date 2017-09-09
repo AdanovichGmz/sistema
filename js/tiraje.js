@@ -8,8 +8,12 @@
                             }else{
                               defectos =0;
                             }
-                            mermaent=((parseInt(buenos)-parseInt(pedido))-parseInt(ajuste))-parseInt(defectos);
+                            mermaent=((parseInt(cantidad)-parseInt(buenos))-parseInt(ajuste))-parseInt(defectos);
+                             if (mermaent<0) {
+                              mermaent =0;
+                            }
                             entregados=(parseInt(ajuste)+parseInt(mermaent))+parseInt(buenos);
+                           
                             document.getElementById("defectos").value = defectos;
                             document.getElementById("merma-entregada").value = mermaent;
                             document.getElementById("entregados").value = entregados;
@@ -209,7 +213,8 @@ timer.addEventListener('started', function (e) {
                              data:{id_orden:idord,proceso:proceso,action:'exit'},  
                                
                              success:function(data){
-                   location.href = 'logout.php';
+                   //location.href = 'logout.php';
+                   console.log(data);
                              }  
                         });
    

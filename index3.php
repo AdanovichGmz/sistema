@@ -699,7 +699,7 @@ foreach ($orderID as $odt) {
                 $merm = ($row->merma_recibida != null) ? $cantrecib - $cpedido : $cantrecib - $cpedido;
             }
 ?>
-    <td class=""><input id="cantidad" class="darkinput" name="cantidad" value="<?= $cantrecib ?>"  readonly></td>
+    <td class=""><input type="number" id="cantidad" class="" name="cantidad" value="<?= $cantrecib ?>"  ></td>
    
    
    <td class=""><input id="buenos"  name="buenos" type="number"  name="" style="margin-right: 10px;" required="required"></td>
@@ -776,7 +776,7 @@ foreach ($orderID as $odt) {
         }
 ?>
 <?php
-    
+   
     while ($row = mysqli_fetch_object($resultado02)) {
         
 ?>
@@ -784,7 +784,7 @@ foreach ($orderID as $odt) {
                             <input hidden id="producto" name="producto" class=" diseños" value="<?= $row->producto ?>"/>
                              <input hidden id="numodt" name="numodt" class="diseños" value="<?= implode(',', $orderID) ?>"/>
                              <input hidden id="odt" name="odt" class=" diseños" value="<?= $row->numodt ?>"/>
-                      <input hidden id="numproceso"  class=" diseños" value="<?= $row->proceso ?>"/>
+                      <input hidden id="numproceso"  class=" diseños" value="<?= $row->id_proceso ?>"/>
                              <?php
         
     }

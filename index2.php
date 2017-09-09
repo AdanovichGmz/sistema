@@ -284,6 +284,10 @@ if ( $p==1) {
                     <input type="radio" name="radios" id="radios-5" value="Tirar basura">
                     Tirar basura
                     </div>
+                    <div class=" radio-menu face">
+                    <input type="radio" name="radios" id="radios-6" value="Otro">
+                    Otro
+                    </div>
                 </div>
                 <?php }else{ ?>
                  <div class="two-columns">
@@ -294,6 +298,10 @@ if ( $p==1) {
                 <div class=" radio-menu face">
                     <input type="radio" name="radios" id="radios-1" value="ODT Faltante">
                     ODT Faltante
+                    </div>
+                     <div class=" radio-menu face">
+                    <input type="radio" name="radios" id="radios-6" value="Otro">
+                    Otro
                     </div>
                 </div>
                 <div class="two-columns">
@@ -309,6 +317,7 @@ if ( $p==1) {
                     <input type="radio" name="radios" id="radios-4" value="Exceso de Dimensiones">
                     Exceso de Dimensiones
                     </div>
+
                 </div>
                 <?php } ?>
                 </div>
