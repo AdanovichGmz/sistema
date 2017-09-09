@@ -106,8 +106,13 @@ require('classes/functions.class.php');
             $estandar       = $getstandar['piezas_por_hora'];
             //calculando desempeño para pieza actual
             $tiraje_estandar=($seconds*$estandar)/3600;
+            if ($tiraje_estandar>0) {
+             $tiraje_desemp=($entregados*100)/$tiraje_estandar;
+            }else{
+              $tiraje_desemp=0;
+            }
             
-            $tiraje_desemp=($entregados*100)/$tiraje_estandar;
+            echo $tiraje_estandar;
             echo $standar_query2;
             $_query="select MAX(idtiraje) as last FROM tiraje";
             $hora=$_POST['hour'];
