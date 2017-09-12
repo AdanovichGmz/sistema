@@ -112,7 +112,7 @@ require('../saves/conexion.php');
     $real       = mysqli_fetch_assoc($mysqli->query($etequery5));
 
 
-    //echo "<p>dispon ".$dispon." calidad ".$Quality." desempeño ".$desempenio." prod esperada ".$getEfec['esper']." real ".$real['desempenio']." calidad ".$Quality." tiempo hasta ahora: ".$seconds."</p>";
+       // echo "<p>dispon ".$dispon." calidad ".$Quality." desempeño ".$desempenio." prod esperada ".$getEfec['esper']." real ".$real['desempenio']." calidad ".$Quality." tiempo hasta ahora: ".gmdate("H:i:s", $totalTime)."</p>";
     
     $getEte     = (($dispon / 100) * ($Quality / 100) * ($desempenio / 100)) * 100;
 
@@ -121,7 +121,7 @@ require('../saves/conexion.php');
           
 
     
-    $credencial='<div class="ete-photo"><div class="person-photo" style=background:url("../images/'.$photo.'.png")></div>
+    $credencial='<div class="ete-photo"><div class="person-photo" style=background:url("../images/'.$photo.'.jpg")></div>
     <div class="ete-num">'.round($getEte).'%</div>
     </div>
     <div class="ete-stat">
@@ -321,7 +321,7 @@ require('../saves/conexion.php');
     <?=personalData(2,'Suaje','5'); ?>
   </div>
   <div class="personal">
-    <?=personalData(10,'Serigrafia','6'); ?>
+    <?=personalData(10,'Serigrafia','12'); ?>
   </div>
   <div class="personal">
     <?=personalData(4,'Original','7'); ?>

@@ -15,9 +15,9 @@ foreach ($datos as $dato) {
  $times=count($datos);
 
 
-$sql="SELECT o.idorden,o.orden,p.id_proceso FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$maqID'  order by idorden asc";
+$sql="SELECT o.idorden,o.numodt,o.orden,p.id_proceso FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$maqID'  order by idorden asc";
 
-$sql2="SELECT o.idorden,o.orden,p.id_proceso,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$maqID' HAVING status IS NOT NULL order by idorden asc";
+$sql2="SELECT o.idorden,o.numodt,o.orden,p.id_proceso,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso),(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS display FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$maqID' HAVING status IS NOT NULL order by display asc";
 
 $initquery="SELECT COUNT(*) AS conteo FROM orden_estatus WHERE proceso_actual='$maqID'";
                       $initial = mysqli_fetch_assoc($mysqli->query($initquery));
@@ -52,11 +52,11 @@ $mysqli->query($queryclean);
 
 $i2=1;
 foreach ($results as $row) {
-
+$numodt=$row['numodt'];
   $id=$row['idorden'];
  $ord=($row['orden']!=null)?$row['orden'] : $i2;
  $idpr=$row['id_proceso'];
-$queryst="INSERT INTO orden_estatus(id_orden_status,id_orden,proceso_actual,id_proceso,status,orden_display) VALUES(null,$id,'$maqID',$idpr,'programado',$ord)";
+$queryst="INSERT INTO orden_estatus(id_orden_status,id_orden,numodt,proceso_actual,id_proceso,status,orden_display) VALUES(null,$id,'$numodt','$maqID',$idpr,'programado',$ord)";
 
 if (!$mysqli->query($queryst)) {
   printf($mysqli->error);

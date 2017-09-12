@@ -60,7 +60,11 @@ if (@$_SESSION['logged_in'] != true) {
             $horaAjuste     = $retakingTiro['horadeldia_ajuste'];
         }else{
 
-            $orderID = explode(",", $_GET['order']);
+             $getid="SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual'";
+              $id=mysqli_fetch_assoc($mysqli->query($getid));
+            
+
+            $orderID = (isset($_GET['order']))? explode(",", $_GET['order'] ) : explode(",", $id['idorden']);
            
             $singleID=$orderID[0];
             $userID      = $_SESSION['id'];
@@ -593,8 +597,8 @@ if (@$_SESSION['logged_in'] != true) {
     if (count($orderID)== 1) {
 ?>
           <div id="cantpedido">
-            <div> CANTIDAD DE PEDIDO</div>
-            <input id="pedido" class="darkinput" name="pedido" value="<?= $cpedido ?>" readonly  style="margin-right: 10px;">
+            
+            
           </div>
           <?php } ?>
           <div class="button-panel" id="leftbuttons">
@@ -688,7 +692,7 @@ foreach ($orderID as $odt) {
      <table id="former">
   <input  type="hidden" id="qty" name="qty" value="single" />
   <tr>
-    <td class="title-form">CANTIDAD RECIBIDA</td>
+    <td class="title-form">CANTIDAD DE PEDIDO</td>
     <td class="title-form">BUENOS</td>
   </tr>
   <tr>
@@ -699,28 +703,29 @@ foreach ($orderID as $odt) {
                 $merm = ($row->merma_recibida != null) ? $cantrecib - $cpedido : $cantrecib - $cpedido;
             }
 ?>
-    <td class=""><input type="number" id="cantidad" class="" name="cantidad" value="<?= $cantrecib ?>"  ></td>
+    <td class=""><input id="pedido" class="darkinput" name="pedido" value="<?= $cpedido ?>" readonly  ></td>
    
    
-   <td class=""><input id="buenos"  name="buenos" type="number"  name="" style="margin-right: 10px;" required="required"></td>
+   <td class=""><input id="buenos"  name="buenos" type="number"  name="" onkeyup="opera();" style="margin-right: 10px;" required="required"></td>
     
     
   </tr>
   <tr>
-    <td class="title-form">MERMA &nbsp&nbsp&nbsp&nbsp&nbsp DEFECTOS</td>
+    <td class="title-form">CANTIDAD RECIBIDA</td>
     <td class="title-form">PIEZAS DE AJUSTE</td>
   </tr>
   <tr>
-    <td class=""><input id="merma" class="darkinput" name="merma" type="number"  readonly value="<?= $merm ?>"  style="width: 75px;margin-right: 10px;" required="required"><input id="defectos" class="darkinput" name="defectos" type="number" value="0"  readonly  style="width: 75px;"></td>
-    <td class=""><input  id="piezas-ajuste" name="piezas-ajuste" type="number"    style="margin-right: 10px;" onkeyup="opera();" > </td>
+    <td class=""> <input type="number" id="cantidad" class="" name="cantidad" value="<?= $cantrecib ?>"  >
+    <!-- <input id="merma" class="" name="merma" type="number"   value="<?= $merm ?>"  style="width: 75px;margin-right: 10px;" required="required"> --> </td>
+    <td class=""><input  id="piezas-ajuste" name="piezas-ajuste" type="number"    style="margin-right: 10px;"  > </td>
   </tr>
   <tr>
-    <td class="title-form">MERMA ENTREGADA</td>
-    <td class="title-form">ENTREGADOS</td>
+    <td class="title-form">MERMA</td>
+    <td class="title-form">DEFECTOS</td>
   </tr>
   <tr>
-    <td class=""><input class="darkinput" value="0" id="merma-entregada" name="merma-entregada" type="number" readonly   style="margin-right: 10px;" ></td>
-      <td class=""><input id="entregados" name="entregados" type="number" value="0" required="true" readonly style="background: #4C89DC; border:1px solid rgba(255,255,255,.5); color: #fff;"></td>
+    <td class=""><input class="" value="" id="merma-entregada" name="merma-entregada" type="number"    style="margin-right: 10px;"></td>
+      <td class=""><input id="defectos" class="" name="defectos" type="number" value=""    ><!--<input id="entregados" name="entregados" type="number" value="" required="true"  style="">--></td>
   </tr>
 </table>
 
@@ -764,7 +769,7 @@ foreach ($orderID as $odt) {
     <td class=""><input class="darkinput" id="avance" name="avance" type="number"  readonly  style="margin-right: 10px;"  value="<?= $buen ?>"> </td>
   </tr>
   <tr>
-    <td class="title-form">MERMA ENTREGADA</td>
+    <td  class="title-form">MERMA ENTREGADA</td>
     <td class="title-form">ENTREGADOS</td>
   </tr>
   <tr>

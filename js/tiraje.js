@@ -1,4 +1,26 @@
  function opera(){ 
+     var cantidad = document.all.cantidad.value; 
+                           var buenos = document.all.buenos.value;  
+                            var ajuste = document.getElementById('piezas-ajuste').value;
+                            var pedido= document.getElementById('pedido').value;
+                            if (ajuste>2) {
+                              defectos =(parseInt(ajuste)-2);
+                            }else{
+                              defectos =0;
+                            }
+                            mermaent=parseInt(buenos)-parseInt(cantidad);
+                             if (mermaent<0) {
+                              mermaent =0;
+                            }
+                            entregados=(parseInt(ajuste)+parseInt(mermaent))+parseInt(buenos);
+                           
+                            document.getElementById("defectos").value = defectos;
+                            document.getElementById("merma-entregada").value = mermaent;
+                            
+                           
+                           }
+
+ /*function opera(){ 
                            var cantidad = document.all.cantidad.value; 
                            var buenos = document.all.buenos.value;  
                             var ajuste = document.getElementById('piezas-ajuste').value;
@@ -17,7 +39,7 @@
                             document.getElementById("defectos").value = defectos;
                             document.getElementById("merma-entregada").value = mermaent;
                             document.getElementById("entregados").value = entregados;
-                           } 
+                           } */
                             function operaPaused(){ 
                            var cantidad = document.getElementById('cantidad').value; 
                            var buen = document.getElementById('buenos').value;  

@@ -51,8 +51,9 @@ if($f=mysqli_fetch_assoc($sql)){
         $ip=getenv("REMOTE_ADDR"); 
         $cmd = "arp  $ip | grep $ip | awk '{ print $3 }'"; 
         $recoverSession=(!empty($_POST))? 'false' : 'true' ;
-        $mac=system($cmd);
-        //$mac='5c:f5:da:2f:33:5e';
+        //$mac=system($cmd);
+       // $mac='5c:f5:da:2f:33:5e';
+        $mac=$_POST['mac'];
         $machine = mysqli_fetch_assoc($mysqli->query("SELECT * FROM maquina WHERE mac='$mac'"));
         $_SESSION['mac']=$mac;
         $_SESSION['machineID']=$machine['idmaquina'];

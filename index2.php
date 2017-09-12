@@ -120,21 +120,21 @@ if ( $p==1) {
                         </div>
                         <div class="modal-body">
                         <div class="button-panel" >
-                        <a href="logout.php" > <img src=""  href="logout.php" class="img-responsive" onClick="return confirm('estas segur@ de cerrar SESION?')" />
-                        <div class="square-button red">
-                          <img src="images/exit-door.png">
+                        <a href="index1.php" > <img src=""  class="img-responsive"  />
+                        <div class="square-button" style="background: #447D9B">
+                          <img src="images/home.png">
                         </div></a>
                         <div class="square-button green stop eatpanel goeat">
                           <img src="images/dinner2.png">
                         </div>
                         <div id="stop" class="square-button blue " onclick="saveAjuste()" >
-                          <img src="images/saving.png">
+                          <img src="images/guard.png">
                         </div>
                         <div class="square-button yellow derecha goalert">
-                          <img src="images/warning.png">
+                          <img src="images/alerts.png">
                         </div>
                         <div class="square-button purple abajo">
-                          <img src="images/checklist.png">
+                          <img src="images/tareas.png">
                         </div>
                         </div>
                         </div>
@@ -164,8 +164,8 @@ if ( $p==1) {
                           <input type="hidden" name="pausetime" id="pausetime">
                           <input type="hidden" name="pausetime">
                         </form>
-                            <div class="row ">
-                                 <div class="pause"><div class="pauseicon"><img src="images/pause.png"></div><div class="pausetext">PAUSAR ORDEN</div></div>
+                            <div class="row "> <a href="logout.php" > 
+                                 <div class="pause red"><div class="pauseicon"><img src="images/exit-door.png"></div><div class="pausetext">SALIR</div></div></a>
                             </div>
                         </div>
                     </div>
@@ -199,7 +199,7 @@ if ( $p==1) {
                   <!-- <input type="hidden" name="ordId" value="<?=$getAct['idorden']; ?>"> -->
                   <?php
                       $query = "  SELECT o.*,p.id_proceso,p.avance,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status IS NOT NULL order by orden_display asc LIMIT 12";
-                      $query2 = "  SELECT o.*,p.id_proceso,p.avance,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' AND avance NOT IN('completado') order by orden asc LIMIT 12";
+                      $query2 = "  SELECT o.*,p.id_proceso,p.avance,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
                       $initquery="SELECT COUNT(*) AS conteo FROM orden_estatus WHERE proceso_actual='$machineName'";
                       $initial = mysqli_fetch_assoc($mysqli->query($initquery));
                       $init=$initial['conteo'];
@@ -280,7 +280,11 @@ if ( $p==1) {
                     <input type="radio" name="radios" id="radios-3" value="Marco con poro">
                     Marco con poro
                     </div>
-                <div class=" radio-menu face">
+                
+                    
+                </div>
+                <div class="two-columns">
+                  <div class=" radio-menu face">
                     <input type="radio" name="radios" id="radios-4" value="ODT confusa">
                     ODT confusa
                     </div>
@@ -288,7 +292,9 @@ if ( $p==1) {
                     <input type="radio" name="radios" id="radios-5" value="Tirar basura">
                     Tirar basura
                     </div>
-                    <div class=" radio-menu face">
+                </div>
+                <div class="two-columns">
+                  <div class=" radio-menu face">
                     <input type="radio" name="radios" id="radios-6" value="Otro">
                     Otro
                     </div>

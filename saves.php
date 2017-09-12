@@ -81,9 +81,9 @@ require('classes/functions.class.php');
             $cantidad=(isset($_POST['cantidad'])) ?$_POST['cantidad'] : '';
             $buenos=(isset($_POST['buenos'])) ?$_POST['buenos'] : '';
             $defectos=(isset($_POST['defectos'])) ?$_POST['defectos'] : '';
-            $merma=($_POST['merma']!=null)? $_POST['merma'] : 0;
+            $merma=(isset($_POST['merma']))? $_POST['merma'] : 0;
             $ajuste=$_POST['piezas-ajuste'];
-            $entregados=$_POST['entregados'];
+            $entregados=(isset($_POST['entregados']))? $_POST['entregados'] : $_POST['buenos'];
             $tiempoTiraje=$_POST['tiempoTiraje'];
             $fechadeldia=$_POST['fechadeldia'];
             $horadeldia=$_POST['hour'];
@@ -108,10 +108,14 @@ require('classes/functions.class.php');
             $tiraje_estandar=($seconds*$estandar)/3600;
             if ($tiraje_estandar>0) {
              $tiraje_desemp=($entregados*100)/$tiraje_estandar;
+             $log->lwrite('si vale algo','desemp');
             }else{
               $tiraje_desemp=0;
+              $log->lwrite('no vale nada','desemp');
             }
-            
+            $log->lwrite('$tiraje_estandar '.$tiraje_estandar,'desemp');
+              $log->lwrite($standar_query2,'desemp');
+              $log->lclose();
             echo $tiraje_estandar;
             echo $standar_query2;
             $_query="select MAX(idtiraje) as last FROM tiraje";

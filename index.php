@@ -59,15 +59,15 @@ if(@$_SESSION['logged_in'] == true){
         <div class="login-logo">
              <img src="images/logo-blanco.png" >
         </div>
-        <!--
-        <select name="maquina" required="true">
+        
+        <select name="mac" required="true" class="login-input" style="text-align: center!important;">
         <option   disabled="true" selected="true" value="">Selecciona el area</option>
-            <option value="5c:f5:da:2f:33:5e">CORTE</option>
-            <option value="90:b9:31:ed:0f:6b">SUAJE</option>
-            <option value="34:e2:fd:dd:d0:7b">SERIGRAFIA</option>
-            <option value="b0:34:95:01:ec:2b">ACABADO</option>
+            
+            <option value="b0:34:95:01:ec:2b">SUAJE</option>
+            <option value="f0:db:f8:11:97:bc">SERIGRAFIA</option>
            
-        </select> -->
+           
+        </select> 
             <input id="usuario" name="usuario" type="text" placeholder="USUARIO" class="login-input" required="" />
             <input id="password" name="pass" type="password" placeholder="CONTRASEÑA" class="login-input" required="" />
             <button id="singlebutton" value="login" name="singlebutton" class="login-button">ENTRAR</button>
