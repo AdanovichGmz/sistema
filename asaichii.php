@@ -92,11 +92,7 @@
 
 <script >
     
-    if(history.length>0) {
-    //alert('Please use navigational links (Inbox, Cancel) instead of the browser back button.');
-    history.go(+1)
     
-}
 </script>
 
 <!--<script language="javascript" src="jquery-1.3.min.js"></script>-->
@@ -134,7 +130,22 @@ $(document).ready(function() {
 }
 </script>
 
-
+<style>
+    #timer2 {
+    width: 470px;
+    background: #22242A;
+    height: 140px;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: solid 2px #868686;
+}
+#timer2 span {
+    line-height: 140px;
+    font-size: 110px;
+    font-weight: bold;
+    color: #fff;
+}
+</style>
 
 
 
@@ -149,7 +160,7 @@ $(document).ready(function() {
    
 
   
-
+<div id="formulario" style="background: red;"></div>
 
 
 
@@ -190,7 +201,16 @@ $(document).ready(function() {
                                     
                                 </div>
                                 </div>
+
                                 
+                                    <div id="chronoExample2">
+                                    <div id="timer2"><span class="values">00:00:00</span></div>
+                                   
+                                    <input type="hidden" id="timee2" name="tiempo">
+                                   <input type="button" class="startButton" style="display: none;">
+                                    
+                       
+                                </div>
                             </div>
 
                           
@@ -242,6 +262,7 @@ $(document).ready(function() {
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
 
@@ -251,10 +272,11 @@ $(document).ready(function() {
 
 <script type="text/javascript">
  var timer = new Timer();
+ var timer2 = new Timer();
 $(document).ready(function(){
-timer.start();
+timer.start({countdown: true, startValues: {seconds: 900}});
 });
-       
+$('#chronoExample2').hide();       
 
 $('#nuevo_registro').submit(function () {
     timer.pause();
@@ -265,14 +287,42 @@ $('#nuevo_registro').submit(function () {
     timer.stop();
 
 });*/
+
+timer.addEventListener('targetAchieved', function (e) {
+    timer.stop();
+
+    alerttime();
+    $('#chronoExample').hide();
+    $('#chronoExample2').show(); 
+    $('#chronoExample2 .startButton').click();
+    
+    
+});     
+ function alerttime(){
+  animacion = function(){
+  
+  document.getElementById('formulario').classList.toggle('fade');
+}
+setInterval(animacion, 550);
+
+} 
 timer.addEventListener('secondsUpdated', function (e) {
     $('#chronoExample .values').html(timer.getTimeValues().toString());
 });
 timer.addEventListener('started', function (e) {
     $('#chronoExample .values').html(timer.getTimeValues().toString());
 });
-     
-     
+timer2.addEventListener('secondsUpdated', function (e) {
+    $('#chronoExample2 .values').html(timer2.getTimeValues().toString());
+});
+timer2.addEventListener('started', function (e) {
+    $('#chronoExample2 .values').html(timer2.getTimeValues().toString());
+});    
+
+$('#chronoExample2 .startButton').click(function () {
+    timer2.start();
+    console.log('le picaron');
+});
     function saveAsaichi(){
         timer.pause();
     $('#tiempo').val(timer.getTimeValues().toString());

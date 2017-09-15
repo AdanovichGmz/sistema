@@ -60,15 +60,16 @@ if (@$_SESSION['logged_in'] != true) {
             $horaAjuste     = $retakingTiro['horadeldia_ajuste'];
         }else{
 
-             $getid="SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual'";
+             $getid="SELECT * FROM personal_process WHERE status='actual' AND proceso_actual='$machineName'";
               $id=mysqli_fetch_assoc($mysqli->query($getid));
             
 
-            $orderID = (isset($_GET['order']))? explode(",", $_GET['order'] ) : explode(",", $id['idorden']);
+            $orderID = (isset($_GET['order']))? explode(",", $_GET['order'] ) : explode(",", $id['id_orden']);
            
             $singleID=$orderID[0];
             $userID      = $_SESSION['id'];
             $getAjuste    = "SELECT horadeldia_ajuste FROM tiraje WHERE id_orden=$singleID AND id_maquina=$machineID";
+
             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
             $horaAjuste     = $Ajuste['horadeldia_ajuste'];
             foreach ($orderID as $order) {
@@ -77,6 +78,7 @@ if (@$_SESSION['logged_in'] != true) {
             $odetesArr[]=$odt['numodt'];
             }
             $odetes=implode(",", $odetesArr);
+            
 
         }
 
@@ -84,31 +86,31 @@ if (@$_SESSION['logged_in'] != true) {
     
     
     $_GET['mivariable'] = $machineName;
-    $query0             = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual'";
+    $query0             = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual' ";
     
     $resultado0 = $mysqli->query($query0);
     
-    $query01 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual'";
+    $query01 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual' ";
     
     $resultado01 = $mysqli->query($query01);
     
     
-    $query02 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual' ";
+    $query02 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual' ";
     
     $resultado02   = $mysqli->query($query02);
     $resultado02_5 = $mysqli->query($query02);
     
     
-    $query1 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual'";
+    $query1 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' AND o.idorden=$singleID";
     
     $resultado1 = $mysqli->query($query1);
     
     
-    $query2 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='siguiente' ";
+    $query2 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='siguiente' ";
     
     $resultado2 = $mysqli->query($query2);
     
-    $query3 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='preparacion'";
+    $query3 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='preparacion'";
     
     $resultado3 = $mysqli->query($query3);
 ?>
@@ -522,7 +524,13 @@ if (@$_SESSION['logged_in'] != true) {
         $size=(strlen($sigelement)>17)?'font-size: 17px;':'';
         echo $row2->numodt . " <span style='color:#2FE3BF;".$size."'>" . $sigelement . "</span>";
     } else {
-        echo "--";
+        $sigquery=$mysqli->query("SELECT * FROM odt_flujo WHERE status='siguiente' AND proceso='$machineName'");
+        if ($rowsig = mysqli_fetch_object($sigquery)) {
+            echo $rowsig->numodt;
+        }else{
+          echo "--";  
+        }
+        
     }
 ?>
    </td>
@@ -546,7 +554,13 @@ if (@$_SESSION['logged_in'] != true) {
         $size=(strlen($prepelement)>17)?'font-size: 17px;':'';
         echo $row3->numodt . " <span style='color:#2FE3BF; ".$size."'>" . $prepelement . "</span>";
     } else {
-        echo "--";
+        $prepquery=$mysqli->query("SELECT * FROM odt_flujo WHERE status='preparacion' AND proceso='$machineName'");
+        if ($rowprep = mysqli_fetch_object($prepquery)) {
+            echo $rowprep->numodt;
+        }else{
+          echo "--";  
+        }
+        
     }
 ?>
       

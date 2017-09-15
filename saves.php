@@ -43,7 +43,7 @@ require('classes/functions.class.php');
         $machineID=$_SESSION['machineID'];
         $machineName=$_SESSION['machineName'];
         //$odetes= explode(',',$_POST['orderodts']);
-        $actuals_query="SELECT  os.status, o.idorden,o.numodt, os.proceso_actual FROM orden_estatus os INNER JOIN ordenes o on os.id_orden=o.idorden WHERE status='actual' AND proceso_actual='$machineName'";
+        $actuals_query="SELECT  os.status, o.idorden,o.numodt, os.proceso_actual FROM personal_process os INNER JOIN ordenes o on os.id_orden=o.idorden WHERE status='actual' AND proceso_actual='$machineName'";
         $resultodt=$mysqli->query($actuals_query);
         //$numodt      = (isset($_POST['numodt'])) ? explode(',', substr($_POST['numodt'], 0, -1)) : '';
         while($arr=mysqli_fetch_assoc($resultodt)){
@@ -130,31 +130,59 @@ require('classes/functions.class.php');
             $querymerma="UPDATE ordenes SET merma_entregada=$merma_entregada, merma_recibida=$passmerma WHERE idorden=$numodt";
             $mysqli->query($querymerma);
             if ( $resultado) {
-
+            $mysqli->query("UPDATE ordenes SET proceso_completado='true' WHERE idorden=$numodt");  
             $_GET['mivariable'] = $nombremaquina;
 
             //include("encuesta.php");
-
-            $cleanquery="DELETE FROM orden_estatus WHERE proceso_actual='$machineName' AND status='actual'";
+            //guardando personal******************************************************
+            $cleanqueryp="DELETE FROM personal_process WHERE proceso_actual='$machineName' AND status='actual'";
+            $cleanp=$mysqli->query($cleanqueryp);
+            if ($cleanp) {
+             $sqlp="SELECT * FROM personal_process WHERE proceso_actual='$machineName' order by orden_display asc";
+            $ordsp=$mysqli->query($sqlp);
+            }
+            //checamos si hay aun partes pendientes a completar para esta ODT
+            if ($ordsp->num_rows>0) {
+              
+            $ip=1;
+            while($arrp=mysqli_fetch_array($ordsp)) {
+              $resultsp[$ip] = $arrp;
+              $ip++;
+            }
+            $i3p=1;
+            foreach ($resultsp as $row2p) {
+              $idp=$row2p['id_orden'];
+              $old_statusp=$row2p['status'];
+              $idprsp=$row2p['id_proceso'];
+                if ($old_statusp=='siguiente') {
+                 $statusp='actual';
+                }
+                 elseif ($old_statusp=='preparacion') {
+                  $statusp='siguiente';
+                }
+                elseif ($old_statusp=='programado1') {
+                  $statusp='preparacion';
+                }
+                else{ 
+                  $progNump=$i3p-3;
+                  $statusp='programado'.$progNump;
+                }
+             $update3p ="UPDATE personal_process SET orden_display = $i3p , status='$statusp' WHERE id_orden= $idp AND id_proceso=$idprsp";
+            $updp= $mysqli->query($update3p);
+            if ($updp) {
+              $cleanquery="DELETE FROM orden_estatus WHERE proceso_actual='$machineName' AND status='actual'";
             $clean=$mysqli->query($cleanquery);
             if ($clean) {
              $sql="SELECT * FROM orden_estatus WHERE proceso_actual='$machineName' order by orden_display asc";
             $ords=$mysqli->query($sql);
             }
-
             $i=1;
-
-
             while($arr=mysqli_fetch_array($ords)) {
-              
               $results[$i] = $arr;
               $i++;
             }
-
             $i3=1;
-
             foreach ($results as $row2) {
-             
               $id=$row2['id_orden'];
               $old_status=$row2['status'];
               $idprs=$row2['id_proceso'];
@@ -174,7 +202,6 @@ require('classes/functions.class.php');
              $update3 = "UPDATE orden_estatus SET orden_display = $i3 , status='$status' WHERE id_orden= $id AND id_proceso=$idprs";
             $upd= $mysqli->query($update3);
             if ($upd) {
-             echo "todo bien";
             }else{
               prinf($mysqli->error);
               $log->lwrite('tiraje','multi-error');
@@ -183,10 +210,68 @@ require('classes/functions.class.php');
               $log->lwrite(printf($mysqli->error),'multi-error');
               $log->lwrite($update3,'multi-error');
               $log->lclose();
-
             }
             $i3++;
             }
+            }else{
+              prinf($mysqli->error);
+              $log->lwrite('tiraje','multi-error');
+             $log->lwrite('error al establecer estatus','multi-error');
+             $log->lwrite('orden'.$idp,'multi-error');
+              $log->lwrite(printf($mysqli->error),'multi-error');
+              $log->lwrite($update3p,'multi-error');
+              $log->lclose();
+
+            }
+            $i3p++;
+            }
+          }else{ //si no hay mas partes pendientes para esta orden, la marcamos como completada
+            $completed=$mysqli->query("UPDATE ordenes SET entregado='true' WHERE numodt='$odt'"); 
+             $log->lwrite('no se pudo actualizar orden'.$odt,'ENTREGADO');
+             $log->lwrite(printf($mysqli->error),'ENTREGADO');
+              $log->lclose();
+              //ahora actualizamos el flujo
+              $quitFlow=$mysqli->query("DELETE FROM odt_flujo WHERE proceso='$machineName' AND status='actual' ");
+              if ($quitFlow) {
+                 $sqlpf="SELECT * FROM odt_flujo WHERE proceso='$machineName' order by orden_display asc";
+            $ordspf=$mysqli->query($sqlpf);
+            $ipf=1;
+            while($arrpf=mysqli_fetch_array($ordspf)) {
+              $resultspf[$ipf] = $arrpf;
+              $ipf++;
+            }
+            $i3pf=1;
+            foreach ($resultspf as $row2pf) {
+              $idpf=$row2pf['id_flujo'];
+              $old_statuspf=$row2pf['status'];
+              
+                if ($old_statuspf=='siguiente') {
+                 $statuspf='actual';
+                }
+                 elseif ($old_statuspf=='preparacion') {
+                  $statuspf='siguiente';
+                }
+                elseif ($old_statuspf=='programado1') {
+                  $statuspf='preparacion';
+                }
+                else{ 
+                  $progNumpf=$i3pf-3;
+                  $statuspf='programado'.$progNumpf;
+                }
+             $update3pf ="UPDATE odt_flujo SET orden_display = $i3pf , status='$statuspf' WHERE id_flujo= $idpf";
+            $updpf= $mysqli->query($update3pf);
+          
+            $i3pf++;
+            }
+               } 
+              
+
+
+          }
+
+            //termina guardando personal******************************************************
+
+            
 
 
             }else{

@@ -45,7 +45,7 @@ if (isset($_GET['order'])) {
      $getOrder = mysqli_fetch_assoc($pausedOrder);
     $getActODT[] = $getOrder['numodt'];
     $ordenActual[] = $getOrder['id_orden'];
-    header('Location:http:'.dirname($_SERVER['PHP_SELF']).'/index3.php');
+    
     echo "<script>console.log('orden pausa');</script>";
 
   }else{
@@ -89,6 +89,11 @@ if ( $p==1) {
 
 <html>
 <?php include 'head.php'; ?>
+<style>
+  .modal-body{
+    height: 350px;
+  }
+</style>
 <body onload="setTimeout('alerttime()',2000000);">
 <div id="formulario"></div>
     <input type="hidden" id="mac" value="<?=$mac ?>">
@@ -110,16 +115,20 @@ if ( $p==1) {
                         <div class="modal-header">
                             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
                             <div class="text-center" style="font-size:18pt; text-transform: uppercase;">AREA: <?php echo (isset($machineName))? $machineName : $mrecovered ; ?></div>
-                            <div class="text-center2" id="currentOrder" style="font-size:18pt; color: #96989A;">ELIJE UNA ACTIVIDAD</div>
+                            <?php $sql=$mysqli->query("SELECT numodt FROM odt_flujo WHERE status='actual' AND proceso='$machineName'");
+                            $actodt=mysqli_fetch_object($sql); 
+
+                            ?>
+                            <div class="text-center2" id="currentOrder" style="font-size:18pt; color: #96989A;">ORDEN ACTUAL: <?=(isset($actodt->numodt))? $actodt->numodt : '--';  ?></div>
                    
                     <p id="success-msj" style="display: none;">Datos guardados correctamente</p>
                         </div>
                         <div class="modal-body">
                         <div class="button-panel" >
-                       <a href="index2.php" >
-                        <div class="square-button yellow">
+                       
+                        <div class="square-button yellow" onclick="sendActODT('<?=(isset($actodt->numodt))? $actodt->numodt : ''; ?>');">
                           <img src="images/ajuste.png">
-                        </div></a>
+                        </div>
                         <div class="square-button purple  eatpanel goeat">
                           <img src="images/clean.png">
                         </div>
@@ -148,24 +157,30 @@ if ( $p==1) {
                           <input type="hidden" name="pausetime">
                         </form>
                             <div class="row ">
-                                 <div class="pause" style="display: none;"><div class="pauseicon"><img src="images/pause.png"></div><div class="pausetext">PAUSAR ORDEN</div></div>
+                            <a href="logout.php" > 
+                                 <div class="pause red"><div class="pauseicon"><img src="images/exit-door.png"></div><div class="pausetext">SALIR</div></div></a>
+                                 <div class="pause blue" onclick="requireOrder()" style="line-height:60px;color:#fff;font-size: 18px; font-weight: bolder;"><div class="">CAMBIAR ORDEN</div></div>
+                                  
+                            
                             </div>
                         </div>
                     </div>
             </div>
         </div>
-       <div class="backdrop"></div>
+       <div class="backdrop" onclick="close_box();"></div>
 
-<div class="box">
-  <div class="saveloader">
-  
-    <img src="images/loader.gif">
-    <p style="text-align: center; font-weight: bold;">Guardando..</p>
-  </div>
-  <div class="savesucces" style="display: none;">
-  
-    <img src="images/success.png">
-    <p style="text-align: center; font-weight: bold;">Listo!</p>
+<div class="boxorder">
+<div class="odtsearch">
+  <input type="text" id="getodt" onkeyup="gatODT()" placeholder="Buscar ODT">
+</div>
+  <div id="odtresult">
+    <?php if ($actodt->numodt!='') { ?>
+    <div id="<?=$actodt->numodt ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face face-osc" onclick=" sendActODT('<?=$actodt->numodt ?>'); ">
+                       
+                          <?php echo  $actodt->numodt; ?>
+                          <p class="product" ></p>
+                        </div>
+    <?php } ?>
   </div>
   </div>
    <div id="panelbottom">
@@ -323,8 +338,7 @@ if ( $p==1) {
     </div>
    </div>
 </div>
-    
-   
+
 
 
 </body>
@@ -352,4 +366,59 @@ if (!empty($update)) {
   
 ?>
 
-<script src="js/ajuste.js"></script>
+
+<script>
+ function requireOrder(){
+   $('.backdrop').animate({'opacity':'.50'}, 300, 'linear');
+          $('.boxorder').animate({'opacity':'1.00'}, 300, 'linear');
+          $('.backdrop, .boxorder').css('display', 'block');
+ }
+ 
+  function gatODT(){
+    var odt=$('#getodt').val();
+     $.ajax({  
+                      
+                     type:"POST",
+                     url:"getODTS.php",   
+                     data:{numodt:odt},  
+                       
+                     success:function(data){ 
+                          
+                          $('#odtresult').html(data);
+                          console.log(data);
+                     }  
+                });
+  }
+
+  function sendODT(odt){
+    $.ajax({  
+                      
+                     type:"POST",
+                     url:"opp.php",   
+                     data:{entorno:'general',odt:odt,machine:'<?=$machineName?>'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                         window.location.replace("index2.php?odt="+odt);
+                     }  
+                });
+    
+  }  
+  function sendActODT(odt){
+    
+                         window.location.replace("index2.php?odt="+odt);
+                  
+  }  
+$('.radio-menu-small').click(function() {
+                                              $('.face-osc').find('input').prop('checked', false);
+                                              $('.face-osc').removeClass('face-osc');
+                                              $(this).addClass('face-osc').find('input').prop('checked', true);
+                                              sendOrder();
+                                            });
+function close_box()
+      {
+        $('.backdrop, .box, .boxorder').animate({'opacity':'0'}, 300, 'linear', function(){
+          $('.backdrop, .box, .boxorder').css('display', 'none');
+        });
+      }
+</script>

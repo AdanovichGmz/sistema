@@ -288,7 +288,7 @@ $('.radio-menu').click(function() {
                        
                           //$('#update-form')[0].reset();  
                           //$('.close').click(); 
-                         window.location.replace("encuesta.php?order="+id+"&odt="+odt+"&qty="+qty);
+                       window.location.replace("encuesta.php?order="+id+"&odt="+odt+"&qty="+qty);
                           console.log(data);
                      }  
                 });

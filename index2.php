@@ -34,10 +34,7 @@ $mac=(isset($_SESSION['mac']))?$_SESSION['mac'] : system($cmd) ;
 $machineName=$_SESSION['machineName'];
 $machineID = $_SESSION['machineID'];
 
-if (isset($_GET['order'])) {
-  $currentOrder=$_GET['order'];
 
-}else{
   
   $pausedOrder=$mysqli->query("SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='en pausa'");
   //verificar si hay una orden en pausa 
@@ -61,21 +58,24 @@ if (isset($_GET['order'])) {
 
     } else{
 
-      $queryOrden="SELECT o.*,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual'";
+      $queryOrden="SELECT * FROM odt_flujo WHERE status='actual' AND proceso='$machineName'";
       $asoc=$mysqli->query($queryOrden);
      
       while($get_Act=mysqli_fetch_assoc($asoc)){
        
+      $getID=mysqli_fetch_assoc($mysqli->query("SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS element,(SELECT nombre_elemento FROM elementos WHERE id_elemento=element) AS nom_element FROM personal_process pp WHERE proceso_actual='$machineName' AND status='actual'"));
         $getActODT[] = $get_Act['numodt'];
-        $ordenActual[] = $get_Act['idorden'];
-  
+        $ordenActual[] =(isset($getID['id_orden']))? $getID['id_orden'] : '';
+        $parteDeOrden=(isset($getID['nom_element']))? $getID['nom_element'] : '';
+
+
 }
     echo "<script>console.log('orden normal');</script>";
 
 
     }
   }
-}
+
 
 
 
@@ -89,6 +89,11 @@ if ( $p==1) {
 
 <html>
 <?php include 'head.php'; ?>
+<style>
+  legend{
+    height: 97px;
+}
+</style>
 <body onload="setTimeout('alerttime()',2000000);">
 <div id="formulario"></div>
     <input type="hidden" id="mac" value="<?=$mac ?>">
@@ -113,19 +118,15 @@ if ( $p==1) {
                             <?php if (!isset($getActODT)) {?>
                             <div class="text-center2" id="currentOrder" style="font-size:18pt; color:#E9573E;">NO HAS SELECCIONADO UNA ORDEN</div>
                             <?php } else{ ?>
-                              <div class="text-center2" id="currentOrder" style="font-size:18pt;">ORDEN ACTUAL: <?php echo (isset($getActODT))? implode(",", $getActODT)  : $stoppedOrder ; ?></div>
+                              <div class="text-center2" id="currentOrder" style="font-size:18pt;">EN PROCESO: <?= implode(",", $getActODT)." ".$parteDeOrden  ?></div>
                            <?php } ?>
                    
                     <p id="success-msj" style="display: none;">Datos guardados correctamente</p>
                         </div>
                         <div class="modal-body">
                         <div class="button-panel" >
-                        <a href="index1.php" > <img src=""  class="img-responsive"  />
-                        <div class="square-button" style="background: #447D9B">
-                          <img src="images/home.png">
-                        </div></a>
-                        <div class="square-button green stop eatpanel goeat">
-                          <img src="images/dinner2.png">
+                        <div id="parts" class="square-button purple abajo">
+                          <img src="images/elegir.png">
                         </div>
                         <div id="stop" class="square-button blue " onclick="saveAjuste()" >
                           <img src="images/guard.png">
@@ -133,9 +134,12 @@ if ( $p==1) {
                         <div class="square-button yellow derecha goalert">
                           <img src="images/alerts.png">
                         </div>
-                        <div class="square-button purple abajo">
-                          <img src="images/tareas.png">
+                        <div class="square-button green stop eatpanel goeat">
+                          <img src="images/other.png">
                         </div>
+                        
+                        
+                        
                         </div>
                         </div>
                         <div class="timer-container">
@@ -188,59 +192,67 @@ if ( $p==1) {
    <div id="panelbottom">
        <div id="panelbottom2"></div> 
        <div class="row ">
-                <legend style="font-size:18pt; font-family: 'monse-bold';">TAREAS</legend>
-                <div style="width: 95%; margin:0 auto; position: relative;">
+                <legend style="font-size:18pt; font-family: 'monse-bold';"><div class="odtsearch">
+  <input type="text" id="getodt" onkeyup="gatODT()" placeholder="Buscar ODT"> 
+</div><div id="close-down"  class="square-button-micro red abajo ">
+                          <img src="images/ex.png">
+                        </div></legend>
+                        <p id="elementerror" style="display: none;">ELIGE UN ELEMENTO</p>
+                        <div id="odtresult">
+                          <div style="width: 95%; margin:0 auto; position: relative;">
                 
                    <div class="form-group" id="tareasdiv">
                   <div class="button-panel-small2" >
                   <form id="tareas" action="opp.php" method="post" >
                   <input type="hidden" name="machine" value="<?=$machineName; ?>">
                   
-                  <!-- <input type="hidden" name="ordId" value="<?=$getAct['idorden']; ?>"> -->
+                 
                   <?php
-                      $query = "  SELECT o.*,p.id_proceso,p.avance,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status IS NOT NULL order by orden_display asc LIMIT 12";
-                      $query2 = "  SELECT o.*,p.id_proceso,p.avance,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
-                      $initquery="SELECT COUNT(*) AS conteo FROM orden_estatus WHERE proceso_actual='$machineName'";
+                    $getodt=(isset($getActODT))? implode(",", $getActODT) : $_GET['odt'] ;
+                      $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto FROM personal_process pp WHERE proceso_actual='$machineName' order by orden_display asc";
+                      $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
+                      $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";
                       $initial = mysqli_fetch_assoc($mysqli->query($initquery));
                       $init=$initial['conteo'];
+
                       $result=$mysqli->query(($init>0)? $query : $query2);
+                      if (!$result) {
+                        echo $query2;
+                       printf($mysqli->error);
+                      }
                       if ($result->num_rows==0) {
-                       echo '<p style="font-size:18pt; color:#E9573E;font-family: monse-bold; text-align:center;">POR EL MOMENTO NO HAY ORDENES<p>';
+                       echo '<p style="font-size:18pt; color:#E9573E;font-family: monse-bold; text-align:center;">NO HAS SELECCIONADO UNA ORDEN<p>';
                        
                       }
                       else{
+                        $i=1;
                       while ($valores=mysqli_fetch_array($result)) {
                         $prod=$valores['producto'];
                       $element_query="SELECT nombre_elemento FROM elementos WHERE id_elemento=$prod";
                       $get_elem=mysqli_fetch_assoc($mysqli->query($element_query));
                       $element=$get_elem['nombre_elemento'];
                      ?>
-                        <div id="<?=$valores['idorden'] ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face    <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick=" sendOrder('<?=$valores['idorden'] ?>'); selectOrders(this.id,'<?=$valores['numodt'] ?>')">
-                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['numodt']; ?>">
-                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['idorden'] ?>"  >
-                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="order[]"  value="<?=$valores['orden'] ?>"  >
-                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="display[]"  value="<?=$valores['orden'] ?>"  >
+                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face abajo   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
+                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
+                        
+                        
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="idpro[]"  value="<?=$valores['id_proceso'] ?>"  >
-                          <?php echo  $valores['numodt']; ?>
-                          <p class="product" ><?=$element ?></p>
+                          <p class="elem" ><?php echo  trim($element); ?></p>
+                          <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                         
-                        <?php } }?>
+                        <?php $i++; } }?>
                           </form>
                         </div> 
                 </div>
                 </div>
+                        </div>
+                
                    <div id="resultaado"></div> 
                 <div class="form-group">
                 <div id="resultaado"></div>
-                  <div class="button-panel-small">
-                        <div id="close-down"  class="square-button-small red abajo ">
-                          <img src="images/ex.png">
-                        </div>
-                        <div  class="save-bottom square-button-small blue abajo" onclick="showLoad();">
-                          <img src="images/saving.png">
-                        </div>
-                        </div>
+                 
                 </div>
    </div></div>
    <div id="panelder">

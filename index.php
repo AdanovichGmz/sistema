@@ -77,7 +77,7 @@ if(@$_SESSION['logged_in'] == true){
         </div>
 
     </div> 
-    <script type="text/javascript">load();</script>
+   
     <script src="./jquery-1.11.2.min.js"></script>
 </body>
 </html>

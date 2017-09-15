@@ -1,6 +1,6 @@
 /******************** index2.php ********************/
 
-$(document).ready(function(e) {
+$(document).ready(function(event) {
    // Esta primera parte crea un loader no es necesaria
     $().ajaxStart(function() {
         $('#loading').show();
@@ -10,32 +10,7 @@ $(document).ready(function(e) {
         $('#resultaado').fadeIn('slow');
     });
    // Interceptamos el evento submit
-    $('#tareas').submit(function() {
-  // Enviamos el formulario usando AJAX
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: $(this).serialize(),
-            // Mostramos un mensaje con la respuesta de PHP
-            success: function(data) {
-                //$('#currentOrder').html('ORDEN ACTUAL: '+data);
-               $('#tareas').html(data);
-               var curorder= $('#returning').val();
-               var curid= $('#returning2').val();
-              $('#order').val(curid);
-               
-               $('#currentOrder').html('ORDEN ACTUAL: orden '+curorder);
-                $('.saveloader').hide();
-                $('.savesucces').show();
-                 setTimeout(function() {   
-                   close_box();
-                }, 1000);
-                 
-               
-            }
-        })        
-        return false;
-    }); 
+    
     $('#form, #fat').submit(function() {
   // Enviamos el formulario usando AJAX
         $.ajax({
@@ -94,37 +69,32 @@ setInterval(animacion, 550);
                                             });
 
                                              $('.radio-menu-small').click(function() {
-                                              
-
+                                              $('.face-osc').find('input').prop('checked', false);
+                                              $('.face-osc').removeClass('face-osc');
+                                              $(this).addClass('face-osc').find('input').prop('checked', true);
+                                              sendOrder();
                                             });
 
+                                              $( document ).ajaxStop(function() {
+
+                                              $('.radio-menu-small').click(function() {
+                                                $('.face-osc').find('input').prop('checked', false);
+                                              $('.face-osc').removeClass('face-osc');
+                                              $(this).addClass('face-osc').find('input').prop('checked', true);
+                                              sendOrder();
+                                              $('#close-down').click();    
+                                            });
+
+                                               
+
+                                              });
+
                                              function selectOrders(id){
-                                               $('#'+id).toggleClass('face-osc');
-                                              var checkBoxes=$('#'+id).find('input').prop('checked', function(_, checked) {
-                                                return !checked;
-                                            }); 
-                                              var seri='';
-                                              var seriodt='';
-                                             var fields= $('input[name="datos[]"]:checked').serializeArray();
-                                             var fields2= $('input[name="odetes[]"]:checked').serializeArray();  
-                                             jQuery.each( fields, function( i, field ) {
-                                            seri+= field.value + "," ;
-                                          });
-                                             jQuery.each( fields2, function( i, field2 ) {
-                                            seriodt+= field2.value + "," ;
-                                          });
-                                             $('#orderID').val(seri);
-                                             $('#orderODT').val(seriodt);
-                                             console.log(seriodt);
+                                              
                                              }
                                              
                                              
-                                            $( ".save-bottom").click(function() {
-                                             
-                                                      $( "#tareas" ).submit();
-                                                   
-                                             
-                                            });
+                                            
 
                                             $( document ).ajaxStop(function() {
 
@@ -156,8 +126,8 @@ setInterval(animacion, 550);
   }
   function close_box()
       {
-        $('.backdrop, .box').animate({'opacity':'0'}, 300, 'linear', function(){
-          $('.backdrop, .box').css('display', 'none');
+        $('.backdrop, .box, .boxorder').animate({'opacity':'0'}, 300, 'linear', function(){
+          $('.backdrop, .box, .boxorder').css('display', 'none');
         });
       }
   function showLoad(){
@@ -166,7 +136,28 @@ setInterval(animacion, 550);
           $('.backdrop, .box').css('display', 'block');
       }
       function sendOrder(id){
-       // $('#orderID').replaceWith( "<input type='hidden' id='orderID' name='numodt' value= " + id + ">" );
+        
+       $.ajax({
+            type: 'POST',
+            url: 'opp.php',
+            data: $('#tareas').serialize(),
+            // Mostramos un mensaje con la respuesta de PHP
+            success: function(data) {
+                $('#tareas').html(data);
+               var curorder= $('#returning').val();
+               var curid= $('#returning2').val();
+               var orid= $('#returning3').val();
+               $('#orderID').val(orid);
+              $('#order').val(orid);
+               
+               $('#currentOrder').html('EN PROCESO: '+curorder+" "+curid);
+                $('.saveloader').hide();
+                $('.savesucces').show();
+                 setTimeout(function() {   
+                   close_box();
+                }, 1000); 
+            }
+        })
        
       }
 
@@ -283,7 +274,11 @@ timer.addEventListener('started', function (e) {
   var mac=$('#mac').val();
     var order=$('#order').val();
     if($('#orderID').val()==''){
-        alert('Debes seleccionar una orden para continuar');
+      $('#parts').click();
+      $('#elementerror').show();
+      setTimeout(function() {   
+                   $('#elementerror').hide();
+                }, 5000);
     }else{
        timer.pause();
     $('#timee').val(timer.getTimeValues().toString());
@@ -307,3 +302,32 @@ timer.addEventListener('started', function (e) {
  }
 
 
+ function gatODT(){
+    var odt=$('#getodt').val();
+     $.ajax({  
+                      
+                     type:"POST",
+                     url:"getODTS.php",   
+                     data:{numodt:odt},  
+                       
+                     success:function(data){ 
+                          
+                          $('#odtresult').html(data);
+                          
+                     }  
+                });
+  }
+function sendODT(odt,machine){
+    $.ajax({  
+                      
+                     type:"POST",
+                     url:"opp.php",   
+                     data:{entorno:'general',odt:odt,machine:machine},  
+                       
+                     success:function(data){ 
+                       $('#odtresult').html(data);   
+                         
+                     }  
+                });
+    
+  }  
