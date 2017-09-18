@@ -116,13 +116,12 @@ require('classes/functions.class.php');
             $log->lwrite('$tiraje_estandar '.$tiraje_estandar,'desemp');
               $log->lwrite($standar_query2,'desemp');
               $log->lclose();
-            echo $tiraje_estandar;
-            echo $standar_query2;
+            $prodEsperada=round($tiraje_estandar);
             $_query="select MAX(idtiraje) as last FROM tiraje";
             $hora=$_POST['hour'];
             $getLast = mysqli_fetch_assoc($mysqli->query($_query));
             $lastId=$getLast['last'];
-            $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horadeldia', id_user=$logged_in,desempenio=$tiraje_desemp WHERE horadeldia_ajuste='$hora'  AND id_maquina=$machineID AND id_orden=$numodt";
+            $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horadeldia', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE horadeldia_ajuste='$hora'  AND id_maquina=$machineID AND id_orden=$numodt";
 
            
 

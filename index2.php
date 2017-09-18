@@ -197,7 +197,7 @@ if ( $p==1) {
 </div><div id="close-down"  class="square-button-micro red abajo ">
                           <img src="images/ex.png">
                         </div></legend>
-                        <p id="elementerror" style="display: none;">ELIGE UN ELEMENTO</p>
+                        <p id="elementerror" style="display: none;">ELIGE UN ELEMENTO PARA CONTINUAR</p>
                         <div id="odtresult">
                           <div style="width: 95%; margin:0 auto; position: relative;">
                 
