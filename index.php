@@ -65,6 +65,8 @@ if(@$_SESSION['logged_in'] == true){
             
             <option value="b0:34:95:01:ec:2b">SUAJE</option>
             <option value="f0:db:f8:11:97:bc">SERIGRAFIA</option>
+            <option value="2c:f0:ee:3d:53:99">SERIGRAFIA2</option>
+            <option value="90:b9:31:ed:0f:6b">SERIGRAFIA3</option>
            
            
         </select> 
