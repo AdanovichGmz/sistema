@@ -164,8 +164,25 @@ timer.addEventListener('started', function (e) {
 
 
       $(document).ready(function(){
- 
-        
+  timer.addEventListener('secondsUpdated', function (e) {
+    $('#realtime').val(timer.getTimeValues().toString());
+});
+        setInterval(function() { 
+          var tiem=$('#realtime').val();
+          var mach=$('#mach').val();
+          var elem=$('#el').val();
+                   $.ajax({  
+                      
+                     type:"POST",
+                     url:"avance.php",   
+                     data:{tiempo:tiem,maquina:mach,elemento:elem},  
+                       
+                     success:function(data){ 
+                       
+                          $('#avancerealtime').html(data);
+                     }  
+                });
+                }, 6000);
  
         $('.backdrop').click(function(){
           close_box();
@@ -292,4 +309,5 @@ $('.radio-menu').click(function() {
                           console.log(data);
                      }  
                 });
-    } 
+    }
+

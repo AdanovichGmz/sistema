@@ -1,170 +1,21 @@
 <?php 
+require('classes/functions.class.php');
+  $log = new Functions();
  require('saves/conexion.php');
 $entorno=(isset($_POST["entorno"]))? $_POST["entorno"] : 'personal';
 $machineName=(isset($_POST['machine']))? $_POST['machine'] :'';
 if ($entorno=='general') {
   $datos=(isset($_POST["odt"]))? explode(",",$_POST["odt"] ):''; 
 
-
+$getodt=$_POST["odt"];
 $maqID=$_POST["machine"]; 
 
-$odetes=(isset($_POST["odt"]))? explode(",",$_POST["odt"] ):'';
-foreach ($datos as $dato) {
-  $results4[]=$dato;
-}
-$getodt=$odetes[0];
- $times=count($datos);
 
-
-$sql="SELECT o.numodt FROM ordenes o INNER JOIN procesos p WHERE p.nombre_proceso='$maqID'  GROUP BY o.numodt";
-$sql2="SELECT * FROM odt_flujo WHERE proceso='$maqID' order by orden_display ASC";
-
-
-
-
-$initquery="SELECT COUNT(*) AS conteo FROM odt_flujo WHERE proceso='$maqID'";
-                      $initial = mysqli_fetch_assoc($mysqli->query($initquery));
-                      $init=$initial['conteo'];
-                      $fin=($init>0)? $sql2 : $sql;
-                      $result=$mysqli->query($fin);
-                      $i=1;
-                     
-                 
-while($arr=mysqli_fetch_assoc($result)){
-  $results[$i] = $arr;
-  $i++;
-}
-//echo count($results);
-function searchArrayKeyVal($sKey, $id, $array) {
-   foreach ($array as $key => $val) {
-       if ($val[$sKey] == $id) {
-           return $key;
-       }
-   }
-   return false;
-}
- function move_to_top($array, $key) {
-    $temp = array($key => $array[$key]);
-    unset($array[$key]);
-    $array = $temp + $array;
-  }
-
-$queryclean="DELETE FROM odt_flujo WHERE proceso='$maqID'";
-$mysqli->query($queryclean);
-
-$i2=1;
-foreach ($results as $row) {
-$numodt=$row['numodt'];
- 
- $ord=$i2;
- 
-$queryst="INSERT INTO odt_flujo(id_flujo,numodt,proceso,status,orden_display) VALUES(null,'$numodt','$maqID','programado',$ord)";
-
-if (!$mysqli->query($queryst)) {
-  printf($mysqli->error);
-}
- 
-
-$i2++;
-}
-
-
-
-
-$i0=0;
-$sql2="SELECT * FROM odt_flujo WHERE proceso='$maqID' order by orden_display asc";
-$ords2=$mysqli->query($sql2);
-
-while($arr2=mysqli_fetch_assoc($ords2)) {
-  
-  $results2[$i0] = $arr2;
-  $i0++;
-}
-
-
-$total=count($results2);
-
-//print_r($datos);
-
-$actuales = array_slice($results2, 0, $times);
-$siguientes = array_slice($results2, $times, $total);
-
-
-
-
-foreach ($datos as $orden) {
-  $arrayKey = searchArrayKeyVal("numodt", $orden, $results2);
-if ($arrayKey!==false) {
-    $theKey= $arrayKey;
-     $temp[]=$results2[$theKey];
-     $keys[]=$arrayKey;
-} else {
-    echo "No se encontro ".$orden."  ";
-}
-}
-
-foreach ($keys as $key) {
- unset($results2[$key]);
-}
-
-
-
-$results3=array_merge($temp,$results2);
-
- 
-/*
-unset($results3[$theKey]);
-array_unshift($results3, $temp);
- */
-//Guardando orden de display
-$i3=1;
-
-foreach ($results3 as $row2) {
- 
-  $id=$row2['id_flujo'];
- 
-   
- $update3 = "UPDATE odt_flujo SET orden_display = $i3 WHERE id_flujo= $id ";
-$mysqli->query($update3);
-$i3++;
-}
-
-//Guardando estatus siguientes
-$i4=1;
-
-foreach ($results2 as $row3) {
- 
-  $id=$row3['id_flujo'];
-  
-    if ($i4==1) {
-      $status='siguiente';
-    }
-    elseif ($i4==2) {
-     $status='preparacion';
-    }     
-    else{ 
-      $progNum=$i4-2;
-      $status='programado'.$progNum;
-    }
- $update3 = "UPDATE odt_flujo SET status='$status' WHERE id_flujo= $id";
-$mysqli->query($update3);
-$i4++;
-}
-//Guardando estatus actuales
-$i5=1;
-foreach ($temp as $row4) {
- 
-  $id=$row4['id_flujo'];
-  
- $update3 = "UPDATE odt_flujo SET status='actual' WHERE id_flujo= $id ";
-$mysqli->query($update3);
-$i5++;
-}
 ?> <form id="tareas" action="opp.php" method="post" >
                   <input type="hidden" name="machine" value="<?=$machineName; ?>">
-
- <input type="hidden" name="machine" value="<?=$maqID; ?>">
-                 <input type='hidden' id='returning' name="returning" value="<?=implode(",", $odetes); ?>">
+                  <input type="hidden" name="init" value="true">
+ 
+                 <input type='hidden' id='returning' name="returning" value="<?=implode(",", $datos); ?>">
                  
                   <?php
                   
@@ -195,6 +46,170 @@ $i5++;
                         </div> 
  <?php # termina general
 }else{
+  //************************************************************
+  function searchArrayKeyVal($sKey, $id, $array) {
+   foreach ($array as $key => $val) {
+       if ($val[$sKey] == $id) {
+           return $key;
+       }
+   }
+   return false;
+}
+ function move_to_top($array, $key) {
+    $temp = array($key => $array[$key]);
+    unset($array[$key]);
+    $array = $temp + $array;
+  }
+  $initial=$_POST['init'];
+  $maqID=$_POST['machine'];
+$datosflow=(isset($_POST["odetes"]))? $_POST["odetes"]:''; 
+$odetesflow=(isset($_POST["odetes"]))? $_POST["odetes"]:'';
+if ($initial=='true') {
+  $log->lwrite('si entro','PRIMERA_VEZ');
+  $log->lclose();
+foreach ($datosflow as $datoflow) {
+  $results4flow[]=$datoflow;
+}
+$getodtflow=$odetesflow[0];
+ $timesflow=count($datosflow);
+
+
+$sqlflow="SELECT o.numodt FROM ordenes o INNER JOIN procesos p WHERE p.nombre_proceso='$maqID'  GROUP BY o.numodt";
+$sql2flow="SELECT * FROM odt_flujo WHERE proceso='$maqID' order by orden_display ASC";
+
+
+
+
+$initqueryflow="SELECT COUNT(*) AS conteo FROM odt_flujo WHERE proceso='$maqID'";
+                      $initialflow = mysqli_fetch_assoc($mysqli->query($initqueryflow));
+                      $initflow=$initialflow['conteo'];
+                      $finflow=($initflow>0)? $sql2flow : $sqlflow;
+                      $resultflow=$mysqli->query($finflow);
+                      $iflow=1;
+                     
+                 
+while($arrflow=mysqli_fetch_assoc($resultflow)){
+  $resultsflow[$iflow] = $arrflow;
+  $iflow++;
+}
+//echo count($results);
+
+
+$querycleanflow="DELETE FROM odt_flujo WHERE proceso='$maqID'";
+$mysqli->query($querycleanflow);
+
+$i2flow=1;
+foreach ($resultsflow as $rowflow) {
+$numodtflow=$rowflow['numodt'];
+ 
+ $ordflow=$i2flow;
+ 
+$querystflow="INSERT INTO odt_flujo(id_flujo,numodt,proceso,status,orden_display) VALUES(null,'$numodtflow','$maqID','programado',$ordflow)";
+
+if (!$mysqli->query($querystflow)) {
+  printf($mysqli->error);
+}
+ 
+
+$i2flow++;
+}
+
+
+
+
+$i0flow=0;
+$sql3flow="SELECT * FROM odt_flujo WHERE proceso='$maqID' order by orden_display asc";
+$ords2flow=$mysqli->query($sql3flow);
+
+while($arr2flow=mysqli_fetch_assoc($ords2flow)) {
+  
+  $results2flow[$i0flow] = $arr2flow;
+  $i0flow++;
+}
+
+
+$totalflow=count($results2flow);
+
+//print_r($datos);
+
+$actualesflow = array_slice($results2flow, 0, $timesflow);
+$siguientesflow = array_slice($results2flow, $timesflow, $totalflow);
+
+
+
+
+foreach ($datosflow as $ordenflow) {
+  $arrayKeyflow = searchArrayKeyVal("numodt", $ordenflow, $results2flow);
+if ($arrayKeyflow!==false) {
+    $theKeyflow= $arrayKeyflow;
+     $tempflow[]=$results2flow[$theKeyflow];
+     $keysflow[]=$arrayKeyflow;
+} else {
+    echo "No se encontro ".$ordenflow."  ";
+}
+}
+
+foreach ($keysflow as $keyflow) {
+ unset($results2flow[$keyflow]);
+}
+
+
+
+$results3flow=array_merge($tempflow,$results2flow);
+
+ 
+/*
+unset($results3[$theKey]);
+array_unshift($results3, $temp);
+ */
+//Guardando orden de display
+$i3flow=1;
+
+foreach ($results3flow as $row2flow) {
+ 
+  $idflow=$row2flow['id_flujo'];
+ 
+   
+ $update3flow = "UPDATE odt_flujo SET orden_display = $i3flow WHERE id_flujo= $idflow ";
+$mysqli->query($update3flow);
+$i3flow++;
+}
+
+//Guardando estatus siguientes
+$i4flow=1;
+
+foreach ($results2flow as $row3flow) {
+ 
+  $idflow=$row3flow['id_flujo'];
+  
+    if ($i4flow==1) {
+      $statusflow='siguiente';
+    }
+    elseif ($i4flow==2) {
+     $statusflow='preparacion';
+    }     
+    else{ 
+      $progNumflow=$i4flow-2;
+      $statusflow='programado'.$progNumflow;
+    }
+ $update3flow = "UPDATE odt_flujo SET status='$statusflow' WHERE id_flujo= $idflow";
+$mysqli->query($update3flow);
+$i4flow++;
+}
+//Guardando estatus actuales
+$i5flow=1;
+foreach ($tempflow as $row4flow) {
+ 
+  $idflow=$row4flow['id_flujo'];
+  
+ $update3flow = "UPDATE odt_flujo SET status='actual' WHERE id_flujo= $idflow ";
+$mysqli->query($update3flow);
+$i5flow++;
+}
+} else{$log->lwrite('no entro','PRIMERA_VEZ');
+          $log->lclose();}
+
+  //*************************************************
 $datos=$_POST["datos"]; 
 
 
@@ -225,19 +240,6 @@ while($arr=mysqli_fetch_assoc($result)){
   $i++;
 }
 
-function searchArrayKeyVal($sKey, $id, $array) {
-   foreach ($array as $key => $val) {
-       if ($val[$sKey] == $id) {
-           return $key;
-       }
-   }
-   return false;
-}
- function move_to_top($array, $key) {
-    $temp = array($key => $array[$key]);
-    unset($array[$key]);
-    $array = $temp + $array;
-  }
 
 $queryclean="DELETE FROM personal_process WHERE proceso_actual='$maqID'";
 $mysqli->query($queryclean);
@@ -354,7 +356,7 @@ $i5++;
     if ( $resultado) {
 ?>
             
-                
+                <input type="hidden" name="init" value="false">
                   <input type="hidden" name="machine" value="<?=$maqID; ?>">
                  <input type='hidden' id='returning' name="returning" value="<?=implode(",", $odetes); ?>">
                  

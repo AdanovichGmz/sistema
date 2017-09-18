@@ -131,13 +131,13 @@ if ( $p==1) {
                         <div id="stop" class="square-button blue " onclick="saveAjuste()" >
                           <img src="images/guard.png">
                         </div>
-                        <div class="square-button yellow derecha goalert">
-                          <img src="images/alerts.png">
-                        </div>
+                        
                         <div class="square-button green stop eatpanel goeat">
                           <img src="images/other.png">
                         </div>
-                        
+                        <div class="square-button yellow derecha goalert">
+                          <img src="images/alerts.png">
+                        </div>
                         
                         
                         </div>
@@ -205,10 +205,11 @@ if ( $p==1) {
                   <div class="button-panel-small2" >
                   <form id="tareas" action="opp.php" method="post" >
                   <input type="hidden" name="machine" value="<?=$machineName; ?>">
-                  
+                  <input type="hidden" name="init" value="false">
                  
                   <?php
-                    $getodt=(isset($getActODT))? implode(",", $getActODT) : $_GET['odt'] ;
+                    $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
+                    $getodt=(isset($getActODT))? implode(",", $getActODT) : '' ;
                       $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto FROM personal_process pp WHERE proceso_actual='$machineName' order by orden_display asc";
                       $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
                       $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";

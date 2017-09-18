@@ -464,13 +464,13 @@ if (@$_SESSION['logged_in'] != true) {
     echo $machineName;
 ?></span></li>
 
-           
+    <input type="hidden" id="realtime">
+    <input type="hidden" id="mach" value="<?=$machineID ?>"> 
+     <input type="hidden" id="el" value="<?=$element ?>">         
   <li style="float:right"></li>
    <li style="float:right"><span id="hora" ></span></li>
-    <li style="float:right ;display:none;"><span><?php
-    $fecha = strftime("%Y-%m-%d", time());
-    echo $fecha;
-?></span></li>
+    <li style="float:right ;" id="avancerealtime"><?php include 'avance.php';
+?></li>
               
 </ul>
         

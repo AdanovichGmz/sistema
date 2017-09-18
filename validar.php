@@ -58,6 +58,12 @@ if($f=mysqli_fetch_assoc($sql)){
         $_SESSION['mac']=$mac;
         $_SESSION['machineID']=$machine['idmaquina'];
         $_SESSION['machineName']=$machine['nommaquina'];
+        if ($machine['nommaquina']=='Serigrafia1'||$machine['nommaquina']=='Serigrafia2'||$machine['nommaquina']=='Serigrafia3') {
+            $pseudomachine = mysqli_fetch_assoc($mysqli->query("SELECT * FROM maquina WHERE mac='f0:db:f8:11:97:bc'"));
+            $_SESSION['pseudoID']=$pseudomachine['idmaquina'];
+            $_SESSION['pseudoName']=$pseudomachine['nommaquina'];
+        }
+        
     
 
 if (isset($_COOKIE['ajuste'])){
