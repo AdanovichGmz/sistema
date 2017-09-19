@@ -90,7 +90,7 @@ if ( $p==1) {
 <html>
 <?php include 'head.php'; ?>
 <style>
-  legend{
+  .panelbottom legend{
     height: 97px;
 }
 </style>
@@ -168,8 +168,11 @@ if ( $p==1) {
                           <input type="hidden" name="pausetime" id="pausetime">
                           <input type="hidden" name="pausetime">
                         </form>
+                        
                             <div class="row "> <a href="logout.php" > 
                                  <div class="pause red"><div class="pauseicon"><img src="images/exit-door.png"></div><div class="pausetext">SALIR</div></div></a>
+                                 <a href="resume.php" > 
+                                 <div class="endOfDay blue"><div class="pauseicon"><img src="images/reloj.png"></div><div class="pausetext">FIN DEL DIA</div></div></a>
                             </div>
                         </div>
                     </div>
@@ -307,6 +310,10 @@ if ( $p==1) {
                     </div>
                 </div>
                 <div class="two-columns">
+                <div class=" radio-menu face">
+                    <input type="radio" name="radios" id="radios-8" value="No tengo Material">
+                    No tengo Material
+                    </div>
                   <div class=" radio-menu face">
                     <input type="radio" name="radios" id="radios-6" value="Otro">
                     Otro
@@ -350,27 +357,33 @@ if ( $p==1) {
                 
                 </div>
                 <!-- Button (Double) -->
-                <div class="form-group">
+                
+               </fieldset>
+             </form>
+    
+    <div  style="width: 60%; display: inline-block;vertical-align: top">
+      <div class="reloj-container2">  
+        <div class="timersmall">
+                                    <div id="alertajuste">
+                                    <div id="timersmall"><span class="valuesAlert">00:00:00</span></div>
+                                </div>
+                                </div>
+    </div>
+    
+    </div><div  style="width: 40%; display: inline-block;vertical-align: top">
+      <div class="form-group">
                   <div class="button-panel-small">
                        
-                        <div class="square-button-small red derecha stopalert start reset">
+                        <div class="square-button-micro2 red derecha stopalert start reset">
                           <img src="images/ex.png">
                         </div>
-                        <div id="save-ajuste" class="square-button-small derecha  blue" onclick="showLoad();">
+                        <div id="save-ajuste" class="square-button-micro2 derecha  blue" onclick="showLoad();">
                           <img src="images/saving.png">
                         </div>
                         
                           
                         </div>
                 </div>
-               </fieldset>
-             </form>
-    <div class="reloj-container2">  
-        <div class="timersmall">
-                                    <div id="alertajuste">
-                                    <div id="timersmall"><span class="valuesAlert">00:00:00</span></div>
-                                </div>
-                                </div>
     </div>
       </div>
    </div>

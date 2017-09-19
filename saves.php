@@ -373,7 +373,7 @@ require('classes/functions.class.php');
                     }
 
                     $i3=1;
-                    print_r($results);
+                    
                     foreach ($results as $row2) {
                      
                       $id=$row2['id_orden'];

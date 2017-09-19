@@ -565,6 +565,17 @@ width:100%;
     cursor: pointer;
 
 }
+.endOfDay{
+    width: 250px;
+    height: 60px;
+    position: relative;
+    
+    border-radius: 3px;
+   float: left;
+   margin-left: 20px;
+    cursor: pointer;
+
+}
 .pauseicon{
     height: 45px;
     width: 45px;

@@ -86,16 +86,16 @@ if (@$_SESSION['logged_in'] != true) {
     
     
     $_GET['mivariable'] = $machineName;
-    $query0             = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual' ";
+    $query0             = "SELECT o.*,p.proceso,p.id_proceso,pp.orden_display,pp.status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND status='actual'";
     
     $resultado0 = $mysqli->query($query0);
     
-    $query01 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual' ";
+    $query01 = "SELECT o.*,p.proceso,p.id_proceso,pp.orden_display,pp.status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND status='actual'";
     
     $resultado01 = $mysqli->query($query01);
     
     
-    $query02 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual' ";
+    $query02 = "SELECT o.*,p.proceso,p.id_proceso,pp.orden_display,pp.status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND status='actual'";
     
     $resultado02   = $mysqli->query($query02);
     $resultado02_5 = $mysqli->query($query02);
