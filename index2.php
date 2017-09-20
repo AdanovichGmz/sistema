@@ -213,12 +213,12 @@ if ( $p==1) {
                   <?php
                     $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
                     $getodt=(isset($getActODT))? implode(",", $getActODT) : '' ;
-                      $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto FROM personal_process pp WHERE proceso_actual='$machineName' order by orden_display asc";
-                      $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
+                      $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$machineName' AND nombre_proceso='$process' order by orden_display asc";
+                      $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
                       $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";
                       $initial = mysqli_fetch_assoc($mysqli->query($initquery));
                       $init=$initial['conteo'];
-
+                      
                       $result=$mysqli->query(($init>0)? $query : $query2);
                       if (!$result) {
                         echo $query2;
@@ -274,7 +274,7 @@ if ( $p==1) {
                 <legend style="font-size:18pt; font-family: 'monse-bold';">ALERTA AJUSTE</legend>
                <div class="form-group" style="width:80% ;margin:0 auto;">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
-                <?php if ($_SESSION['machineName']=='Serigrafia') { ?>
+                <?php if ($_SESSION['machineName']=='Serigrafia'||$_SESSION['machineName']=='Serigrafia2'||$_SESSION['machineName']=='Serigrafia3') { ?>
                
 
                 <div class="two-columns">

@@ -454,7 +454,8 @@ require('classes/functions.class.php');
             $arr_odetes=explode(',', $odt);
             foreach (explode(',',$lastOrder) as $key => $order) {
               $arr_odt=$arr_odetes[$key];
-          $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_orden=$order AND nombre_proceso='$machineName'";
+              $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
+          $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_orden=$order AND nombre_proceso='$process'";
         $mysqli->query($queryavance);
         $query_deliv="SELECT avance FROM procesos WHERE numodt='$arr_odt' AND id_orden=$order ";
 
@@ -487,8 +488,8 @@ require('classes/functions.class.php');
 
         }
         else{
-
-        $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_orden=$lastOrder AND nombre_proceso='$machineName'";
+           $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
+        $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_orden=$lastOrder AND nombre_proceso='$process'";
         $mysqli->query($queryavance);
 
         $query_deliv="SELECT avance FROM procesos WHERE numodt='$odt' AND id_orden=$lastOrder ";
@@ -521,7 +522,7 @@ require('classes/functions.class.php');
         }
 
 
-        $queryOrden="SELECT o.*,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='actual'";
+        $queryOrden="SELECT o.*,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' HAVING status='actual'";
         $asoc=($mysqli->query($queryOrden));
         //$ordenActual = $getAct['numodt'];
 

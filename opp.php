@@ -18,9 +18,11 @@ $maqID=$_POST["machine"];
                  <input type='hidden' id='returning' name="returning" value="<?=implode(",", $datos); ?>">
                  
                   <?php
-                  
-                      $query = $mysqli->query("SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12");
+                    $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
+                    $q="SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
+                      $query = $mysqli->query($q);
                       $i=1;
+                      
                       while ($valores = mysqli_fetch_array($query)) {
                         
                       $prod=$valores['producto'];
@@ -73,14 +75,15 @@ foreach ($datosflow as $datoflow) {
 $getodtflow=$odetesflow[0];
  $timesflow=count($datosflow);
 
+//$processID=($maqID==20||$maqID==21)?10:$maqID;
+$process=($maqID=='Serigrafia2'||$maqID=='Serigrafia3')?'Serigrafia':$maqID;
+$sqlflow="SELECT o.numodt FROM ordenes o INNER JOIN procesos p WHERE p.nombre_proceso='$process'  GROUP BY o.numodt";
+$sql2flow="SELECT * FROM odt_flujo WHERE proceso='$process' order by orden_display ASC";
 
-$sqlflow="SELECT o.numodt FROM ordenes o INNER JOIN procesos p WHERE p.nombre_proceso='$maqID'  GROUP BY o.numodt";
-$sql2flow="SELECT * FROM odt_flujo WHERE proceso='$maqID' order by orden_display ASC";
 
 
 
-
-$initqueryflow="SELECT COUNT(*) AS conteo FROM odt_flujo WHERE proceso='$maqID'";
+$initqueryflow="SELECT COUNT(*) AS conteo FROM odt_flujo WHERE proceso='$process'";
                       $initialflow = mysqli_fetch_assoc($mysqli->query($initqueryflow));
                       $initflow=$initialflow['conteo'];
                       $finflow=($initflow>0)? $sql2flow : $sqlflow;
@@ -222,15 +225,17 @@ foreach ($datos as $dato) {
 $getodt=$odetes[0];
  $times=count($datos);
 
+$process=($maqID=='Serigrafia2'||$maqID=='Serigrafia3')?'Serigrafia':$maqID;
+$sql="SELECT o.*, pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso INNER JOIN ordenes o ON o.idorden=pp.id_orden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' order by orden_display asc";
 
-$sql="SELECT o.idorden,o.numodt,o.orden,p.id_proceso FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$maqID' AND o.numodt='$getodt' order by idorden asc";
+$sql2="SELECT o.idorden,o.numodt,o.orden,p.id_proceso,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS display FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt'  order by display ASC";
 
-$sql2="SELECT o.idorden,o.numodt,o.orden,p.id_proceso,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS display FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$maqID' AND o.numodt='$getodt'  order by display ASC";
-
-$initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$maqID'";
+$initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";
                       $initial = mysqli_fetch_assoc($mysqli->query($initquery));
                       $init=$initial['conteo'];
-                      $fin=($init>0)? $sql2 : $sql;
+                      
+                      $fin=($init>0)? $sql : $sql2;
+
                       $result=$mysqli->query($fin);
                       $i=1;
                      
@@ -361,8 +366,9 @@ $i5++;
                  <input type='hidden' id='returning' name="returning" value="<?=implode(",", $odetes); ?>">
                  
                   <?php
-                  
-                      $query = $mysqli->query("SELECT  o.idorden,o.numodt AS odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$maqID' AND o.numodt='$getodt' AND avance NOT IN('completado') order by orden_display asc LIMIT 12");
+                    $q="SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$machineName' AND nombre_proceso='$process' order by orden_display asc";
+                      $query = $mysqli->query($q);
+                      
                       $i=1;
                       while ($valores = mysqli_fetch_array($query)) {
                         
@@ -371,14 +377,14 @@ $i5++;
                       $get_elem=mysqli_fetch_assoc($mysqli->query($element_query));
                       $element=(isset($get_elem['nombre_elemento']))? $get_elem['nombre_elemento'] : '';
                      ?>
-                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face abajo   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['odt'] ?>')">
-                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['odt']; ?>">
-                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['idorden'] ?>"  >
+                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face abajo   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
+                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
                         
                        
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="idpro[]"  value="<?=$valores['id_proceso'] ?>"  >
                           <p class="elem" ><?php echo  trim($element); ?></p>
-                          <p class="product" style="display: none;"><?= $valores['odt']?></p>
+                          <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                        
                         <?php $i++; } 
