@@ -27,92 +27,9 @@ if (@$_SESSION['logged_in'] != true) {
     $machineName=$_SESSION['machineName'];
     $machineID = $_SESSION['machineID'];
     $pause_exist = false;
-    $getPaused = "SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='en pausa'";
-    $getretaking       = "SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='retomado'";
-
-    $paused = $mysqli->query($getPaused);
-    $retaking       = $mysqli->query($getretaking);
-        if ($paused->num_rows > 0) {
-            $pause_exist    = true;
-           
-            $usID           = $_SESSION['id'];
-            $recoOrden      = mysqli_fetch_assoc($paused);
-            $OrderODT   = $recoOrden['numodt'];
-            $orderID[] = $recoOrden['id_orden'];
-            //$secondspaused  = $recoOrden['seconds'];
-            //$fecha_pausa    = $recoOrden['fecha_pausa'];
-            $horaAjuste     = date(" H:i:s", time());
-            $newtiraje      = "INSERT INTO tiraje(id_maquina,id_orden,id_user,horadeldia_ajuste) VALUES ($machineID,$OrderID, $usID,'$horaAjuste')";
-            $inserting      = $mysqli->query($newtiraje);
-            if (!$inserting) {
-                echo $newtiraje . "<br>";
-                printf($mysqli->error);
-            }
-        } elseif ($retaking->num_rows > 0)  {
-            
-            //$secondspaused  = 'false';
-            $recoOrden      = mysqli_fetch_assoc($retaking);
-            $OrderODT   = $recoOrden['numodt'];
-            $orderID[] = $recoOrden['id_orden'];
-            $singleID=$recoOrden['id_orden'];
-            $getretakingTiro    = "SELECT * FROM tiraje WHERE id_orden=$singleID ORDER BY idtiraje DESC";
-            $retakingTiro       = mysqli_fetch_assoc($mysqli->query($getretakingTiro));
-            $horaAjuste     = $retakingTiro['horadeldia_ajuste'];
-        }else{
-
-             $getid="SELECT * FROM personal_process WHERE status='actual' AND proceso_actual='$machineName'";
-              $id=mysqli_fetch_assoc($mysqli->query($getid));
-            
-
-            $orderID = (isset($_GET['order']))? explode(",", $_GET['order'] ) : explode(",", $id['id_orden']);
-           
-            $singleID=$orderID[0];
-            $userID      = $_SESSION['id'];
-            $getAjuste    = "SELECT horadeldia_ajuste FROM tiraje WHERE id_orden=$singleID AND id_maquina=$machineID";
-
-            $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
-            $horaAjuste     = $Ajuste['horadeldia_ajuste'];
-            foreach ($orderID as $order) {
-              $getOdt="SELECT numodt FROM ordenes WHERE idorden=$order";
-              $odt=mysqli_fetch_assoc($mysqli->query($getOdt));
-            $odetesArr[]=$odt['numodt'];
-            }
-            $odetes=implode(",", $odetesArr);
-            
-
-        }
-
-
     
     
-    $_GET['mivariable'] = $machineName;
-    $query0             = "SELECT o.*,p.proceso,p.id_proceso,pp.orden_display,pp.status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND status='actual'";
-    
-    $resultado0 = $mysqli->query($query0);
-    
-    $query01 = "SELECT o.*,p.proceso,p.id_proceso,pp.orden_display,pp.status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND status='actual'";
-    
-    $resultado01 = $mysqli->query($query01);
-    
-    
-    $query02 = "SELECT o.*,p.proceso,p.id_proceso,pp.orden_display,pp.status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND status='actual'";
-    
-    $resultado02   = $mysqli->query($query02);
-    $resultado02_5 = $mysqli->query($query02);
-    
-    
-    $query1 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' AND o.idorden=$singleID";
-    
-    $resultado1 = $mysqli->query($query1);
-    
-    
-    $query2 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='siguiente' ";
-    
-    $resultado2 = $mysqli->query($query2);
-    
-    $query3 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$machineName' HAVING status='preparacion'";
-    
-    $resultado3 = $mysqli->query($query3);
+   
 ?>
 <!-- ************************ Contenido ******************** -->
   
@@ -133,8 +50,7 @@ if (@$_SESSION['logged_in'] != true) {
     $etequery4 = "SELECT SUM(desempenio) AS desemp ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID";
     $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')) as desempenio";
     //obtenemos el elemento o producto
-    $getelement = mysqli_fetch_assoc($resultado02_5);
-    $element    = $getelement['producto'];
+   
     $begin      = new DateTime('09:00');
     $current    = new DateTime(date('H:i'));
     //obtenemos el tiempo transcurrido desde el inicio del dia hasta el momento actual
@@ -149,10 +65,9 @@ if (@$_SESSION['logged_in'] != true) {
         $seconds += pow(60, $key) * $value;
     }
     //obtenemos el estandar de piezas por hora para el elemento y proceso actual
-    $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$machineID AND id_elemento= $element";
+   
     
-    $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
-    $estandar       = $getstandar['piezas_por_hora'];
+   
     
     
     $getdeadTime = mysqli_fetch_assoc($mysqli->query($etequery2));
@@ -166,7 +81,7 @@ if (@$_SESSION['logged_in'] != true) {
     $getdesemp= $mysqli->query($etequery4);
     $getEfec       = mysqli_fetch_assoc($getdesemp);
     //obtenemos el porcentaje de estandar segundos*estandar/1hora
-    $estandar_prod = (($seconds-3600) * $estandar) / 3600;
+   
     
     $desempenio =($getEfec['tirajes']>0)? ($getEfec['desemp']*100)/($getEfec['tirajes']*100) : 0;
     //echo $etequery3;
@@ -186,81 +101,7 @@ if (@$_SESSION['logged_in'] != true) {
     $showpercent=100 - $getEte;
     
 ?>
-    <!-- bar chart -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
-  <!-- pie -->
-       <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Type', 'ETE'],['<?="ETE ".round($getEte)."%" ?>', <?php
-    echo $getEte;
-?>],['<?="MUDA ".round(($showpercent<0)? 0 : $showpercent)."%" ?>', <?=($showpercent<0)? 0 : $showpercent;
-     
-?>] ]);
-        var options = {chartArea: {width: '90%',  height: '90%'},
-                       
-                       pieSliceTextStyle: {color: 'white', fontSize: 16},
-                       
-                       legend: 'none',
-                    pieSliceText: 'label',
-                       is3D:false,                                               
-                      // enableInteractivity: false,
-                       colors: ['#05BDE3','#1F242A' ],
-                                           
-                       backgroundColor: 'transparent'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-
-    </script>
-    <script type="text/javascript">
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(drawChart);
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-          ['valor', 'porcentaje'],
-         <?php
-    echo "['DISPONIBILIDAD'," . $dispon . "],";
-    echo "['DESEMPEÑO'," . $desempenio  . "],";
-    echo "['CALIDAD'," . $Quality . "],";
     
-?> ]);
-        var options = { // api de google chats, son estilos css puestos desde js
-            chartArea: {width: '100%', height: '90%'},
-            width: "100%", 
-            height: "100%",
-            chartArea: {left: 25, top: 10, width: "100%", height: "80%"},
-            legend: 'none',
-            enableInteractivity: true,                                               
-            fontSize: 11,
-            hAxis: {
-                    textStyle: {
-                      color: '#ffffff'
-                    }
-                  },
-            vAxis: {
-                textStyle: {
-                      color: '#ffffff'
-                    },
-            viewWindowMode:'explicit',
-            viewWindow: {
-              max:100,
-              min:0
-            }
-        },
-
-            colors: ['#05BDE3'],    
-            backgroundColor: 'transparent'
-        };
-      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart"));
-      chart.draw(data,options);
-  }
-  </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php
     echo $machineName;
@@ -458,22 +299,7 @@ table td:last-child{
 ?>">
 <input type='hidden' id='pausedorder' value="<?= (isset($secondspaused)) ? $secondspaused : 'false' ?>">
  
-  <?php
-    $valorQuePasa  = (isset($_GET['mivariable'])) ? $_GET['mivariable'] : $recoverMac;
-    $valorQuePasa2 = (isset($_GET['mivariable'])) ? $_GET['mivariable'] : $recoverMac;
-    
-    
-    $machine    = "SELECT * FROM maquina m INNER JOIN asaichi a ON m.idmaquina = a.id_maquina WHERE nommaquina = '$machineName' and DATE(vdate) = DATE(NOW()) ORDER BY vdate DESC";
-    //echo $valorQuePasa;
-    $deamachine = $mysqli->query($machine);
-    
-?>         
-
-<?php
-    if ($row = mysqli_fetch_object($deamachine)) {
-        $mach_name = $row->nommaquina;
-    }
-?>
+  
 
     <div class="msj">
         <img src="images/msj.fw.png" />
@@ -488,10 +314,7 @@ table td:last-child{
   <li><span>Area: <?php
     echo $machineName;
 ?></span></li>
-
-    <input type="hidden" id="realtime">
-    <input type="hidden" id="mach" value="<?=$machineID ?>"> 
-     <input type="hidden" id="el" value="<?=$element ?>">         
+       
   <li style="float:right"></li>
    <li style="float:right"><span id="hora" ></span></li>
     <li style="float:right ;"></li>
@@ -607,7 +430,7 @@ table td:last-child{
 </div>
 </div>
 <div class="stat-body2">
-    <span>90%</span>
+    <span><?=$getEte ?>%</span>
 </div>
      </div>
 </div>
@@ -638,7 +461,6 @@ table td:last-child{
 
 <!-- ********************** Termina Panel comida ******************** -->
 
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  
  
 </body>
@@ -658,4 +480,4 @@ table td:last-child{
 
 
 
-  <script src="js/tiraje.js"></script>
+  
