@@ -105,7 +105,13 @@ require('classes/functions.class.php');
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
             $estandar       = $getstandar['piezas_por_hora'];
             //calculando desempeño para pieza actual
-            $tiraje_estandar=($seconds*$estandar)/3600;
+            if (is_null($estandar)) {
+              
+              $tiraje_estandar=$cantidad;
+            }else{
+              $tiraje_estandar=($seconds*$estandar)/3600;
+            }
+            
             if ($tiraje_estandar>0) {
              $tiraje_desemp=($entregados*100)/$tiraje_estandar;
              $log->lwrite('si vale algo','desemp');

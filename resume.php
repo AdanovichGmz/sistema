@@ -430,7 +430,7 @@ table td:last-child{
 </div>
 </div>
 <div class="stat-body2">
-    <span><?=$getEte ?>%</span>
+    <span><?=round($getEte) ?>%</span>
 </div>
      </div>
 </div>

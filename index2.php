@@ -88,7 +88,145 @@ if ( $p==1) {
 <!DOCTYPE html>
 
 <html>
-<?php include 'head.php'; ?>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AJUSTE <?php echo (isset($machineName))? $machineName : $mrecovered ; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <?php include 'head.php'; ?>
+    <link href="css/estiloshome.css" rel="stylesheet" />
+    <link href="css/ajuste.css" rel="stylesheet" />
+</head>
+
+<style type="text/css">
+       .clock{
+        transform: scale(1.5);
+-ms-transform: scale(1.5); 
+-webkit-transform: scale(1.5); 
+-o-transform: scale(1.5);
+-moz-transform: scale(1.5);
+      }  
+
+#load{
+  width: 100%; text-align: center; 
+}
+
+         .congral2{
+            width: 100%;
+            height: 100%;
+
+        }
+ .cont2{
+           
+          
+            
+        }
+
+        #result {
+  width:280px;
+  padding:10px;
+  border:1px solid #bfcddb;
+  margin:auto;
+  margin-top:10px;
+  text-align:center;
+}
+
+ #success-msj{
+    color: #BB1B1B!important;
+    font-family: "monse-medium"!important;
+
+}   
+.backdrop
+    {
+      position:absolute;
+      top:0px;
+      left:0px;
+      width:100%;
+      height:100%;
+      background:#000;
+      opacity: .0;
+      filter:alpha(opacity=0);
+      z-index:50;
+      display:none;
+    }
+ 
+ 
+    .box
+    {
+      position:absolute;
+      top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      width:150px;
+      height: 150px;
+      
+      background:#ffffff;
+      z-index:51;
+      padding:10px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -moz-box-shadow:0px 0px 5px #444444;
+      -webkit-box-shadow:0px 0px 5px #444444;
+      box-shadow:0px 0px 5px #444444;
+      display:none;
+    }
+ 
+    .close
+    {
+      float:right;
+      margin-right:6px;
+      cursor:pointer;
+    }
+    .saveloader{
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+    .saveloader img{
+      width: 100%;
+    }
+    .saveloader p{
+     margin-top: -20px;
+    }
+     .savesucces{
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+    .savesucces img{
+      width: 60%;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .savesucces p{
+     
+    }
+        
+@media only screen and (min-width:481px) and (max-width:768px) and (orientation: portrait) {
+    .contegral{
+        display:none;
+    }
+        body {
+             background-image:none;
+        }
+    .msj {
+    display:block;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    top: 40%;
+    left: 10%;
+    position: absolute;
+    z-index:122;
+    }
+}
+
+@media screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation: landscape) {
+ .msj {
+ display: none;
+ }
+}
+    </style>
 <style>
   .panelbottom legend{
     height: 97px;
@@ -412,13 +550,22 @@ if ( $p==1) {
                <input type="radio"  id="radios-1" >
                    SANITARIO
                     </div>
+                    
+                    <div class="radio-menu face eatpanel" onclick="submitEat('Otro');showLoad();">
+                <input type="radio" class=""  id="radios-3"  >
+                    OTRA ACTIVIDAD</div>
+
+                </div>
+                <div class="form-group" style="text-align: center; color:black;">
+                    <textarea style="display: none;" placeholder="Especifique.." name="specific" id="specific"></textarea>
+                
                 </div>
                    </br>
                    </br>
                    </br>
                 <!-- Button (Double) -->
                 <div class="form-group">
-                  <div class="button-panel-small">
+                  <div class="button-panel-small" >
                         <div   class="square-button-small red eatpanel stopeat start reseteat2 ">
                           <img src="images/ex.png">
                         </div>

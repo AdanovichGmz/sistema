@@ -3,22 +3,8 @@
 84,Mapa
 143,"No Solicitado"
 17,Boleto
-39,Cintilla
-40,Cintillo
-64,"Esquela Triple"
-84,Mapa
-136,Paquete
-111,Rotulacion
-17,Boleto
 58,"Esquela Exterior"
 60,"Esquela Interior Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-17,Boleto
-62,Esquela
-56,"Esquela 2 Dobleces"
-143,"Lacre 2.5 Redondo"
 84,Mapa
 136,Paquete
 111,Rotulacion
@@ -27,45 +13,24 @@
 84,Mapa
 114,Sobre
 17,Boleto
-62,"Esquela Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-62,"Esquela Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-143,Tubo
-17,Boleto
-62,Esquela
-143,"Papel Couche"
-62,Esquela
-143,"Papel Couche"
-62,Esquela
-143,"Papel Couche"
-62,"Esquela Sencilla"
-63,"Esquela Sencilla Empalmada"
-72,Forro
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-114,Sobre
-93,Mini
-143,"Costal Lino"
-62,Esquela
-93,Mini
-101,Papel
-143,Aspirina
-25,Caja
-143,Curitas
-143,Pepto
-143,"Sal De Uvas"
 58,"Esquela Exterior"
-66,"Esquela Interior Doble"
+60,"Esquela Interior Sencilla"
+84,Mapa
+136,Paquete
+111,Rotulacion
+17,Boleto
+62,Esquela
+143,"Papel Couche"
+62,Esquela
+143,"Papel Couche"
+62,Esquela
+143,"Papel Couche"
+56,"Esquela Doble"
+84,Mapa
+136,Paquete
+111,Rotulacion
+114,Sobre
+17,Boleto
 62,"Esquela Sencilla"
 63,"Esquela Sencilla Empalmada"
 84,Mapa
@@ -73,8 +38,8 @@
 111,Rotulacion
 114,Sobre
 17,Boleto
-62,"Esquela Sencilla"
-84,Mapa
+58,"Esquela Exterior"
+140,"Hojas Interiores"
 136,Paquete
 111,Rotulacion
 114,Sobre
@@ -95,29 +60,6 @@
 84,Mapa
 136,Paquete
 111,Rotulacion
-17,Boleto
-58,"Esquela Exterior"
-60,"Esquela Interior Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-17,Boleto
-58,"Esquela Exterior"
-60,"Esquela Interior Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-17,Boleto
-58,"Esquela Exterior"
-60,"Esquela Interior Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-17,Boleto
-62,"Esquela Sencilla"
-84,Mapa
-136,Paquete
-114,Sobre
 17,Boleto
 62,"Esquela Sencilla"
 84,Mapa
@@ -147,28 +89,29 @@
 84,Mapa
 114,Sobre
 17,Boleto
-62,"Esquela Sencilla"
-63,"Esquela Sencilla Empalmada"
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
 143,Armado
 33,Cartera
 138,"Cartera Forro Exterior"
 74,Guarda
 140,"Hojas Interiores"
 143,"Hojas Personalizadas"
-65,"Esquela Triptico"
+56,"Esquela Doble"
 84,Mapa
 136,Paquete
 111,Rotulacion
+114,Sobre
 17,Boleto
 39,Cintilla
 62,"Esquela Sencilla"
 72,Forro
 84,Mapa
+136,Paquete
+111,Rotulacion
+114,Sobre
+17,Boleto
+58,"Esquela Exterior"
+143,"Hoja Interior 1"
+140,"Hojas Interiores"
 136,Paquete
 111,Rotulacion
 114,Sobre
@@ -201,19 +144,6 @@
 111,Rotulacion
 114,Sobre
 17,Boleto
-62,"Esquela Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-143,Tubo
-17,Boleto
-49,Dulce
-62,Esquela
-62,"Esquela Sencilla"
-84,Mapa
-111,Rotulacion
-143,Tubo
-17,Boleto
 143,Cantera
 82,Liston
 93,Mini
@@ -222,30 +152,17 @@
 31,Canasta
 143,Material
 143,Producto
-58,"Esquela Exterior"
-60,"Esquela Interior Sencilla"
+56,"Esquela Doble"
 84,Mapa
 136,Paquete
 111,Rotulacion
+114,Sobre
 17,Boleto
 143,Carton
 37,Chocolate
 62,Esquela
 93,Mini
 101,Papel
-62,"Esquela Sencilla"
-63,"Esquela Sencilla Empalmada"
-72,Forro
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-17,Boleto
-62,"Esquela Sencilla"
-84,Mapa
-85,"Maria Luisa"
-114,Sobre
 57,"Esquela Empalme"
 62,"Esquela Sencilla"
 72,Forro
@@ -260,14 +177,6 @@
 143,"No Solicitado"
 136,Paquete
 17,Boleto
-62,"Esquela Sencilla"
-84,Mapa
-111,Rotulacion
-114,Sobre
-17,Boleto
-26,Cajon
-143,Carton
-62,Esquela
 62,"Esquela Sencilla"
 84,Mapa
 136,Paquete
@@ -284,44 +193,18 @@
 143,Frasco
 13,Almendra
 25,Caja
-56,"Esquela Doble"
-114,Sobre
-58,"Esquela Exterior"
-60,"Esquela Interior Sencilla"
-17,Boleto
 62,"Esquela Sencilla"
-84,Mapa
-111,Rotulacion
-114,Sobre
-17,Boleto
-58,"Esquela Exterior"
-60,"Esquela Interior Sencilla"
 84,Mapa
 136,Paquete
 111,Rotulacion
+143,Tubo
 17,Boleto
-62,"Esquela Sencilla"
-72,Forro
-84,Mapa
-85,"Maria Luisa"
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-62,"Esquela Sencilla"
-63,"Esquela Sencilla Empalmada"
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-56,"Esquela Doble"
-58,"Esquela Exterior"
-66,"Esquela Interior Doble"
-84,Mapa
-111,Rotulacion
-17,Boleto
-58,"Esquela Exterior"
+26,Cajon
+27,"Cajon Forro Exterior"
+28,"Cajon Forro Interior"
+119,Tapa
+121,"Tapa Forro Exterior"
+122,"Tapa Forro Interior"
 58,"Esquela Exterior"
 66,"Esquela Interior Doble"
 65,"Esquela Triptico"
@@ -329,41 +212,12 @@
 136,Paquete
 111,Rotulacion
 17,Boleto
-25,Caja
 62,"Esquela Sencilla"
 143,"Hoja Interior 1"
 89,Mesa
 111,Rotulacion
 114,Sobre
 17,Boleto
-23,Boton
-141,"Boton Maria Luisa"
-58,"Esquela Exterior"
-60,"Esquela Interior Sencilla"
-84,Mapa
-85,"Maria Luisa"
-136,Paquete
-111,Rotulacion
-17,Boleto
-62,"Esquela Sencilla"
-63,"Esquela Sencilla Empalmada"
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-62,Esquela
-93,Mini
-19,Bolsa
-62,"Esquela Sencilla"
-111,Rotulacion
-56,"Esquela Doble"
-72,Forro
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
 58,"Esquela Exterior"
 60,"Esquela Interior Sencilla"
 84,Mapa
@@ -376,23 +230,6 @@
 136,Paquete
 111,Rotulacion
 114,Sobre
-17,Boleto
-10,"Agradecimiento Sencillo"
-10,"Agradecimiento Sencillo"
-58,"Esquela Exterior"
-143,"Hoja Interior 1"
-140,"Hojas Interiores"
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-143,Pantunfla
-58,"Esquela Exterior"
-60,"Esquela Interior Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-143,Tarjeton
 17,Boleto
 58,"Esquela Exterior"
 84,Mapa
@@ -400,27 +237,20 @@
 111,Rotulacion
 17,Boleto
 56,"Esquela Doble"
+142,"Esquela Empalmada"
+62,"Esquela Sencilla"
 72,Forro
 84,Mapa
 136,Paquete
 111,Rotulacion
 114,Sobre
 17,Boleto
-123,Tarjeta
-58,"Esquela Exterior"
-60,"Esquela Interior Sencilla"
-84,Mapa
-85,"Maria Luisa"
-136,Paquete
-111,Rotulacion
-17,Boleto
 58,"Esquela Exterior"
 60,"Esquela Interior Sencilla"
 84,Mapa
 136,Paquete
 111,Rotulacion
 17,Boleto
-62,Esquela
 56,"Esquela Doble"
 72,Forro
 84,Mapa
@@ -429,58 +259,36 @@
 111,Rotulacion
 114,Sobre
 17,Boleto
-41,Cinturon
-56,"Esquela Doble"
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-62,"Esquela Sencilla"
-63,"Esquela Sencilla Empalmada"
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-33,Cartera
-114,Sobre
 123,Tarjeta
 62,"Esquela Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-123,Tarjeta
-114,Sobre
-65,"Esquela Triptico"
-84,Mapa
-111,Rotulacion
-17,Boleto
-65,"Esquela Triptico"
-84,Mapa
-136,Paquete
-111,Rotulacion
-17,Boleto
-56,"Esquela Doble"
 72,Forro
 84,Mapa
+85,"Maria Luisa"
 136,Paquete
 111,Rotulacion
 114,Sobre
 17,Boleto
 65,"Esquela Triptico"
+84,Mapa
+111,Rotulacion
+17,Boleto
+65,"Esquela Triptico"
+84,Mapa
+136,Paquete
+111,Rotulacion
+17,Boleto
 56,"Esquela Doble"
 84,Mapa
 136,Paquete
 111,Rotulacion
 114,Sobre
 17,Boleto
-88,Menu
-26,Cajon
-143,Carton
-62,Esquela
+62,"Esquela Sencilla"
+84,Mapa
+136,Paquete
+111,Rotulacion
+114,Sobre
+17,Boleto
 62,"Esquela Sencilla"
 84,Mapa
 111,Rotulacion
@@ -496,35 +304,10 @@
 17,Boleto
 65,"Esquela Triptico"
 111,Rotulacion
-88,Menu
-10,"Agradecimiento Sencillo"
 56,"Esquela Doble"
 58,"Esquela Exterior"
 111,Rotulacion
 17,Boleto
-62,Esquela
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-62,Esquela
-57,"Esquela Empalme"
-72,Forro
-84,Mapa
-111,Rotulacion
-114,Sobre
-17,Boleto
-143,Gancho
-62,"Esquela Sencilla"
-63,"Esquela Sencilla Empalmada"
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-111,Rotulacion
-114,Sobre
 62,Esquela
 84,Mapa
 111,Rotulacion
@@ -548,10 +331,6 @@
 111,Rotulacion
 143,Tubo
 17,Boleto
-84,Mapa
-143,Pantunfla
-123,Tarjeta
-123,Tarjeta
 56,"Esquela Doble"
 72,Forro
 84,Mapa
@@ -559,7 +338,6 @@
 111,Rotulacion
 114,Sobre
 17,Boleto
-84,Mapa
 57,"Esquela Empalme"
 63,"Esquela Sencilla Empalmada"
 72,Forro
@@ -572,25 +350,14 @@
 93,Mini
 97,Motivo
 101,Papel
-114,Sobre
-64,"Esquela Triple"
-93,Mini
-123,Tarjeta
-142,"Esquela Empalmada"
 62,"Esquela Sencilla"
+72,Forro
 84,Mapa
-136,Paquete
+85,"Maria Luisa"
+143,"Maria Luisa Doble"
 111,Rotulacion
 114,Sobre
 17,Boleto
-58,"Esquela Exterior"
-66,"Esquela Interior Doble"
-17,Boleto
-56,"Esquela Doble"
-31,Canasta
-143,Material
-143,Producto
-31,Canasta
 58,"Esquela Exterior"
 60,"Esquela Interior Sencilla"
 84,Mapa
@@ -604,96 +371,11 @@
 136,Paquete
 111,Rotulacion
 17,Boleto
-17,Boleto
-65,"Esquela Triptico"
-84,Mapa
-111,Rotulacion
-17,Boleto
-89,Mesa
-62,Esquela
 58,"Esquela Exterior"
-143,Hojas
-102,Pasta
-62,"Esquela Sencilla"
-84,Mapa
-136,Paquete
-111,Rotulacion
-114,Sobre
-17,Boleto
-17,Boleto
-62,"Esquela Sencilla"
-85,"Maria Luisa"
-111,Rotulacion
-114,Sobre
-62,Esquela
-65,"Esquela Triptico"
-84,Mapa
-143,"No Solicitado"
-17,Boleto
-115,"Sobre Bolsa"
-71,Folder
-68,Etiqueta
-37,Chocolate
-53,Envoltura
-82,Liston
-101,Papel
-143,Dummie
-93,Mini
-101,Papel
-123,Tarjeta
-65,"Esquela Triptico"
+60,"Esquela Interior Sencilla"
 84,Mapa
 111,Rotulacion
 17,Boleto
-31,Canasta
-143,Material
-143,Producto
-56,"Esquela Doble"
-84,Mapa
-136,Paquete
-111,Rotulacion
-17,Boleto
-82,Liston
-93,Mini
-143,Producto
-129,Tela
-143,"Caja Sencilla"
-62,Esquela
-75,Hilo
-82,Liston
-93,Mini
-68,Etiqueta
-101,Papel
-25,Caja
-26,Cajon
-27,"Cajon Forro Exterior"
-28,"Cajon Forro Interior"
-33,Cartera
-119,Tapa
-121,"Tapa Forro Exterior"
-122,"Tapa Forro Interior"
-25,Caja
-62,Esquela
-93,Mini
-62,"Esquela Sencilla"
-82,Liston
-93,Mini
-82,Liston
-93,Mini
-143,Producto
-129,Tela
-41,Cinturon
-25,Caja
-119,Tapa
-111,Rotulacion
-58,"Esquela Exterior"
-89,Mesa
-140,"Hoja Interior"
-88,Menu
-114,Sobre
-89,Mesa
-62,"Esquela Sencilla"
-114,Sobre
 62,"Esquela Sencilla"
 72,Forro
 84,Mapa
@@ -701,21 +383,50 @@
 111,Rotulacion
 114,Sobre
 17,Boleto
-111,Rotulacion
-111,Rotulacion
-143,Corazones
-143,Frasco
-56,"Esquela Doble"
-114,Sobre
 62,"Esquela Sencilla"
 84,Mapa
+136,Paquete
 111,Rotulacion
-143,Tubo
-17,Boleto
 114,Sobre
 17,Boleto
+17,Boleto
+62,"Esquela Sencilla"
+63,"Esquela Sencilla Empalmada"
+84,Mapa
+136,Paquete
 111,Rotulacion
+114,Sobre
+17,Boleto
+12,Albanene
+114,Sobre
 123,Tarjeta
+56,"Esquela Doble"
+84,Mapa
+136,Paquete
+111,Rotulacion
+17,Boleto
+82,Liston
+93,Mini
+143,Producto
+129,Tela
+25,Caja
+62,"Esquela Sencilla"
+72,Forro
+84,Mapa
+136,Paquete
+111,Rotulacion
+114,Sobre
+17,Boleto
+143,Corazones
+143,Frasco
+17,Boleto
+58,"Esquela Exterior"
+62,"Esquela Sencilla"
+84,Mapa
+85,"Maria Luisa"
+136,Paquete
+111,Rotulacion
+17,Boleto
 57,"Esquela Empalme"
 63,"Esquela Sencilla Empalmada"
 72,Forro
@@ -724,16 +435,40 @@
 111,Rotulacion
 114,Sobre
 17,Boleto
-123,Tarjeta
+62,"Esquela Sencilla"
+84,Mapa
+111,Rotulacion
+114,Sobre
+17,Boleto
+58,"Esquela Exterior"
+60,"Esquela Interior Sencilla"
+84,Mapa
+136,Paquete
+111,Rotulacion
+17,Boleto
+62,Esquela
+72,Forro
+84,Mapa
+85,"Maria Luisa"
+136,Paquete
+111,Rotulacion
+114,Sobre
 17,Boleto
 62,"Esquela Sencilla"
+72,Forro
+84,Mapa
 85,"Maria Luisa"
+136,Paquete
+111,Rotulacion
 114,Sobre
-62,"Esquela Sencilla"
-76,Hoja
-77,"Hoja Membretada"
-123,Tarjeta
+17,Boleto
+58,"Esquela Exterior"
+60,"Esquela Interior Sencilla"
+84,Mapa
+136,Paquete
+111,Rotulacion
 114,Sobre
+17,Boleto
 62,"Esquela Sencilla"
 72,Forro
 84,Mapa
@@ -742,11 +477,121 @@
 114,Sobre
 17,Boleto
 62,"Esquela Sencilla"
+84,Mapa
+136,Paquete
 17,Boleto
-37,Chocolate
-53,Envoltura
-82,Liston
+17,Boleto
+58,"Esquela Exterior"
+60,"Esquela Interior Sencilla"
+17,Boleto
+58,"Esquela Exterior"
+60,"Esquela Interior Sencilla"
+84,Mapa
+136,Paquete
+111,Rotulacion
+17,Boleto
+62,Esquela
+64,"Esquela Triple"
+84,Mapa
+136,Paquete
+111,Rotulacion
+17,Boleto
+58,"Esquela Exterior"
+60,"Esquela Interior Sencilla"
+84,Mapa
+111,Rotulacion
+114,Sobre
+17,Boleto
+19,Bolsa
+143,Asa
+19,Bolsa
+62,"Esquela Sencilla"
+114,Sobre
+58,"Esquela Exterior"
+62,"Esquela Sencilla"
+84,Mapa
+136,Paquete
+111,Rotulacion
+114,Sobre
+17,Boleto
+57,"Esquela Empalme"
+63,"Esquela Sencilla Empalmada"
+72,Forro
+84,Mapa
+136,Paquete
+111,Rotulacion
+114,Sobre
+17,Boleto
+114,Sobre
+114,Sobre
+26,Cajon
+143,Carton
+72,Forro
+62,Esquela
+114,Sobre
+58,"Esquela Exterior"
+60,"Esquela Interior Sencilla"
+84,Mapa
+136,Paquete
+111,Rotulacion
+17,Boleto
+123,Tarjeta
+62,"Esquela Sencilla"
+62,"Esquela Sencilla"
+63,"Esquela Sencilla Empalmada"
+72,Forro
+84,Mapa
+136,Paquete
+111,Rotulacion
+114,Sobre
+17,Boleto
+65,"Esquela Triptico"
+84,Mapa
+111,Rotulacion
+17,Boleto
+123,Tarjeta
+56,"Esquela Doble"
+84,Mapa
+111,Rotulacion
+114,Sobre
+17,Boleto
+62,"Esquela Sencilla"
+72,Forro
+84,Mapa
+85,"Maria Luisa"
+143,"No Solicitado"
+114,Sobre
+17,Boleto
+12,Albanene
+114,Sobre
+56,"Esquela Doble"
+65,"Esquela Triptico"
+84,Mapa
+85,"Maria Luisa"
+111,Rotulacion
+17,Boleto
+89,Mesa
+93,Mini
+18,"Boleto Empalme"
+62,"Esquela Sencilla"
+63,"Esquela Sencilla Empalmada"
+114,Sobre
+17,Boleto
+19,Bolsa
+84,Mapa
+143,Dummie
+93,Mini
 101,Papel
+114,Sobre
+143,"Caja Sencilla"
+62,Esquela
+75,Hilo
+82,Liston
 93,Mini
-93,"Mini Agradecimiento"
 93,Mini
+111,Rotulacion
+114,Sobre
+93,Mini
+26,Cajon
+143,Carton
+62,Esquela

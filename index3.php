@@ -265,24 +265,33 @@ if (@$_SESSION['logged_in'] != true) {
     echo $machineName;
 ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
     <!-- reloj -->   
     <link href="compiled/flipclock.css" rel="stylesheet" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <script src="js/libs/jquery.min.js"></script>
+<script src="js/libs/kendo.all.min.js"></script>
     <script src="compiled/flipclock.js"></script>
     <script src="js/easytimer.min.js"></script>
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.914/styles/kendo.common-material.min.css" />
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.914/styles/kendo.material.min.css" />
-    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.3.914/styles/kendo.material.mobile.min.css" />
+     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="js/libs/bootstrap.min.js"></script>
+  
+      <link href="css/general-styles.css" rel="stylesheet" />
+    <!-- LOADER -->
+    <link rel="stylesheet" href="css/normalize.min.css">
+<link rel="stylesheet" href="css/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="css/kendo.material.min.css" />
+    <link rel="stylesheet" href="css/kendo.material.mobile.min.css" />
+<link rel="stylesheet" href="css/3.3.6/bootstrap.min.css" />
 
-    <script src="//kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js"></script>
+    
   <link href="css/corte.css" rel="stylesheet" />
     <link href="css/estiloshome.css" rel="stylesheet" />
     <link href="css/general-styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   
+   
     <script src="js/jsGrafica.js"></script>
     <script src="js/graficabarras.js"></script>
     <script src="js/divdespegable.js"></script>
@@ -718,7 +727,7 @@ foreach ($orderID as $odt) {
                 $merm = ($row->merma_recibida != null) ? $cantrecib - $cpedido : $cantrecib - $cpedido;
             }
 ?>
-    <td class=""><input id="pedido" class="darkinput" name="pedido" value="<?= $cpedido ?>" readonly  ></td>
+    <td class=""><input id="pedido" type="number" class="" name="pedido" value="<?= $cpedido ?> " onkeyup="opera();"  ></td>
    
    
    <td class=""><input id="buenos"  name="buenos" type="number"  name="" onkeyup="opera();" style="margin-right: 10px;" required="required"></td>
@@ -1022,7 +1031,7 @@ foreach ($orderID as $odt) {
 
 <!-- ********************** Termina Panel comida ******************** -->
 
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="js/libs/jquery-ui.js"></script>
  <script>
  $('.radio-menu').click(function() {
   $('.face-osc').removeClass('face-osc');

@@ -98,9 +98,9 @@
 
                   }
 
-                  //for total count data
+                  //for total count data $countSql = "SELECT COUNT(idorden) FROM ordenes WHERE entregado NOT IN('true')"; 
                   $limit = 200;
-                  $countSql = "SELECT COUNT(idorden) FROM ordenes WHERE entregado NOT IN('true')";  
+                  $countSql = "SELECT COUNT(idorden) FROM ordenes ";  
                   $tot_result = $mysqli->query($countSql);   
                   $row = mysqli_fetch_row($tot_result);  
                   $total_records = $row[0]; 

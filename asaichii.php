@@ -337,7 +337,7 @@ $('#chronoExample2 .startButton').click(function () {
                        
                           //$('#update-form')[0].reset();  
                           //$('.close').click(); 
-                          window.location.replace("index1.php");
+                          window.location.replace("index2.php");
                           console.log(data);
                      }  
                 });

@@ -9,12 +9,12 @@ if ($entorno=='general') {
 
 $getodt=$_POST["odt"];
 $maqID=$_POST["machine"]; 
-
+$old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process WHERE proceso_actual='$maqID' AND status='actual' "));
 
 ?> <form id="tareas" action="opp.php" method="post" >
                   <input type="hidden" name="machine" value="<?=$machineName; ?>">
                   <input type="hidden" name="init" value="true">
- 
+                <input type="hidden" name="anterior" value="<?=$old_odt['num_odt'] ?>">
                  <input type='hidden' id='returning' name="returning" value="<?=implode(",", $datos); ?>">
                  
                   <?php
@@ -99,8 +99,13 @@ while($arrflow=mysqli_fetch_assoc($resultflow)){
 
 
 $querycleanflow="DELETE FROM odt_flujo WHERE proceso='$maqID'";
-$mysqli->query($querycleanflow);
 
+$cleanFlow=$mysqli->query($querycleanflow);
+if ($cleanFlow) {
+  
+}else{
+  printf($mysqli->error);
+}
 $i2flow=1;
 foreach ($resultsflow as $rowflow) {
 $numodtflow=$rowflow['numodt'];
@@ -108,9 +113,11 @@ $numodtflow=$rowflow['numodt'];
  $ordflow=$i2flow;
  
 $querystflow="INSERT INTO odt_flujo(id_flujo,numodt,proceso,status,orden_display) VALUES(null,'$numodtflow','$maqID','programado',$ordflow)";
-
-if (!$mysqli->query($querystflow)) {
+$inserted=$mysqli->query($querystflow);
+if (!$inserted) {
   printf($mysqli->error);
+}else{
+
 }
  
 
@@ -139,16 +146,15 @@ $actualesflow = array_slice($results2flow, 0, $timesflow);
 $siguientesflow = array_slice($results2flow, $timesflow, $totalflow);
 
 
-
-
 foreach ($datosflow as $ordenflow) {
+  
   $arrayKeyflow = searchArrayKeyVal("numodt", $ordenflow, $results2flow);
 if ($arrayKeyflow!==false) {
     $theKeyflow= $arrayKeyflow;
      $tempflow[]=$results2flow[$theKeyflow];
      $keysflow[]=$arrayKeyflow;
 } else {
-    echo "No se encontro ".$ordenflow."  ";
+    echo "No se encontro ".$ordenflow." ";
 }
 }
 
@@ -215,7 +221,7 @@ $i5flow++;
   //*************************************************
 $datos=$_POST["datos"]; 
 
-
+$oldOdt=(isset($_POST["anterior"]))? $_POST["anterior"] : '';
 $maqID=$_POST["machine"]; 
 $idpro=$_POST["idpro"];
 $odetes=$_POST['odetes'];
@@ -233,8 +239,12 @@ $sql2="SELECT o.idorden,o.numodt,o.orden,p.id_proceso,(SELECT status FROM person
 $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";
                       $initial = mysqli_fetch_assoc($mysqli->query($initquery));
                       $init=$initial['conteo'];
+                      if ($getodt==$oldOdt) {
+                         $fin=($init>0)? $sql : $sql2;                     
+                      } else{
+                        $fin=$sql2; 
+                      }                     
                       
-                      $fin=($init>0)? $sql : $sql2;
 
                       $result=$mysqli->query($fin);
                       $i=1;
