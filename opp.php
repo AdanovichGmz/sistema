@@ -239,12 +239,18 @@ $sql2="SELECT o.idorden,o.numodt,o.orden,p.id_proceso,(SELECT status FROM person
 $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";
                       $initial = mysqli_fetch_assoc($mysqli->query($initquery));
                       $init=$initial['conteo'];
+                      if ($oldOdt!='') {
+                        
                       if ($getodt==$oldOdt) {
-                         $fin=($init>0)? $sql : $sql2;                     
+                         $fin=($init>0)? $sql : $sql2;
+                                           
                       } else{
                         $fin=$sql2; 
+                        
                       }                     
-                      
+                      }else{
+                        $fin=($init>0)? $sql : $sql2;
+                      }
 
                       $result=$mysqli->query($fin);
                       $i=1;

@@ -1,7 +1,7 @@
 <?php
 ini_set("session.gc_maxlifetime","7200");  
         session_start();
-     
+date_default_timezone_set("America/Mexico_City");     
         
 
 require('saves/conexion.php');
@@ -36,8 +36,10 @@ require('classes/functions.class.php');
      elseif ($section=='ajuste') {
       print_r($_POST);
        $tiempo      = $_POST['tiempo'];
+       $ontime      = $_POST['ontime'];
         $nommaquina  = $_SESSION['machineName'];
         $userID   = $_SESSION['id'];
+        $orderodts=$_POST['orderodts'];
         $horadeldia  = $_POST['horadeldia'];
         $fechadeldia = $_POST['fechadeldia'];
         $machineID=$_SESSION['machineID'];
@@ -52,8 +54,20 @@ require('classes/functions.class.php');
         }
         $odetes=implode(",", $odt);
         foreach ($numodt as $odt) {
+          if ($ontime=='false') {
+            $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,numodt,id_orden, seccion) VALUES (null,'$tiempo','$fechadeldia','$machineID','$orderodts',$odt,'ajuste')";
+            $deadresultado = $mysqli->query($deadquery);
+            if ($deadresultado) {
+              $log->lwrite('se registro un tiempo muerto','TIEMPO_MUERTO');
+              
+              $log->lclose();
+            }
+            $tiempoajuste='"00:20:00.000000"';
+          }else{
+            $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
+          }
             
-            $query     = "INSERT INTO tiraje (tiempo_ajuste, id_maquina, id_user, horadeldia_ajuste, fechadeldia_ajuste, id_orden) VALUES ('$tiempo','$machineID','$userID','$horadeldia','$fechadeldia', $odt)";
+            $query     = "INSERT INTO tiraje (tiempo_ajuste, id_maquina, id_user, horadeldia_ajuste, fechadeldia_ajuste, id_orden) VALUES ($tiempoajuste,'$machineID','$userID','$horadeldia','$fechadeldia', $odt)";
             $resultado = $mysqli->query($query);
             if ($resultado) {
         } else {
@@ -91,7 +105,7 @@ require('classes/functions.class.php');
             $passmerma=$merma-($merma_entregada+$defectos+$ajuste);
             $element=$_POST['element'];
     
-           
+           $horaTiraje     = date(" H:i:s", time());
             $userID = $_SESSION['id'];
             
             $seconds = strtotime("1970-01-01 $tiempoTiraje UTC");
@@ -99,15 +113,15 @@ require('classes/functions.class.php');
            
             $machineID = $_SESSION['machineID'];
             $machineName = $_SESSION['machineName'];
-
-            $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$machineID AND id_elemento= $element";
+            $processID=($machineID==20||$machineID==21)? 10:$machineID;
+            $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$processID AND id_elemento= $element";
             
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
             $estandar       = $getstandar['piezas_por_hora'];
             //calculando desempeño para pieza actual
             if (is_null($estandar)) {
               
-              $tiraje_estandar=$cantidad;
+              $tiraje_estandar=$buenos;
             }else{
               $tiraje_estandar=($seconds*$estandar)/3600;
             }
@@ -127,7 +141,7 @@ require('classes/functions.class.php');
             $hora=$_POST['hour'];
             $getLast = mysqli_fetch_assoc($mysqli->query($_query));
             $lastId=$getLast['last'];
-            $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horadeldia', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE horadeldia_ajuste='$hora'  AND id_maquina=$machineID AND id_orden=$numodt";
+            $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horaTiraje', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE horadeldia_ajuste='$hora'  AND id_maquina=$machineID AND id_orden=$numodt";
 
            
 

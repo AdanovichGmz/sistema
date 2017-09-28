@@ -66,10 +66,10 @@ if (@$_SESSION['logged_in'] != true) {
             
 
             $orderID = (isset($_GET['order']))? explode(",", $_GET['order'] ) : explode(",", $id['id_orden']);
-           
+           $today=date("d-m-Y");
             $singleID=$orderID[0];
             $userID      = $_SESSION['id'];
-            $getAjuste    = "SELECT horadeldia_ajuste FROM tiraje WHERE id_orden=$singleID AND id_maquina=$machineID";
+            $getAjuste    = "SELECT horadeldia_ajuste FROM tiraje WHERE id_orden=$singleID AND id_maquina=$machineID AND fechadeldia_ajuste='$today' AND horadeldia_tiraje IS NULL";
 
             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
             $horaAjuste     = $Ajuste['horadeldia_ajuste'];
@@ -102,7 +102,7 @@ if (@$_SESSION['logged_in'] != true) {
     $resultado02_5 = $mysqli->query($query02);
     
     
-    $query1 = "SELECT o.*,p.proceso,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.idorden=$singleID";
+    $query1 = "SELECT o.*,p.proceso,p.id_proceso,pp.*,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS nombre_elemento FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='actual'";
     
     $resultado1 = $mysqli->query($query1);
     
@@ -125,14 +125,15 @@ if (@$_SESSION['logged_in'] != true) {
     <?php
     $today     = date("d-m-Y");
     //obtenemos el tiempo real sumando tiempoTiraje + tiempo_ajuste +tiempoalertamaquina + tiempoajuste
-    $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today')+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today')) as tiempo_real";
+    $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today')) as tiempo_real";
     //obtenemos el tiempo muerto sumando las idas al sanitario
-    $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime) ),0) AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
+    $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$machineID AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
+    
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
-    $etequery3 = "SELECT COALESCE((SELECT SUM( entregados ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today'))*100 as calidad_primera";
+    $etequery3 = "SELECT COALESCE((SELECT SUM( entregados ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera";
     //obtenemos desempeño operando entregados+merma
-    $etequery4 = "SELECT SUM(desempenio) AS desemp ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID";
-    $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')) as desempenio";
+    $etequery4 = "SELECT SUM(desempenio) AS desemp ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
+    $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
     $element    = $getelement['producto'];
@@ -314,6 +315,9 @@ if (@$_SESSION['logged_in'] != true) {
 </script> 
 
 <style type="text/css">
+.prple img{
+  width: 80%!important;
+}
   #cantpedido{
     width: 170px;
     height: 82px;
@@ -502,10 +506,8 @@ if (@$_SESSION['logged_in'] != true) {
    
      } else{
         if ($row = mysqli_fetch_object($resultado1)) {
-        $prodact       = $row->producto;
-        $element_query = "SELECT nombre_elemento FROM elementos WHERE id_elemento=$prodact";
-        $get_elem      = mysqli_fetch_assoc($mysqli->query($element_query));
-        $actelement    = $get_elem['nombre_elemento'];
+        
+        $actelement    = $row->nombre_elemento;
         $size=(strlen($actelement)>17)?'font-size: 17px;':'';
         echo $row->numodt . " <span style='color:#2FE3BF; ".$size."'>" . $actelement . "</span>";
     } else {
@@ -628,7 +630,7 @@ if (@$_SESSION['logged_in'] != true) {
           <div class="button-panel" id="leftbuttons">
                         <a href="#" onClick="endSesion()"> <img src=""  href="#" class="img-responsive"  />
                         <div class="square-button-h red">
-                          <img src="images/exit-door.png">
+                          <img src="images/sal.png">
                         </div></a>
                         <div class="square-button-h green stop eatpanel goeat">
                           <img src="images/dinner2.png">
@@ -640,7 +642,10 @@ if (@$_SESSION['logged_in'] != true) {
                         <?php } ?>
                         <div class="square-button-h yellow   derecha goalert">
                           <img src="images/warning.png">
-                        </div>
+                        </div><a href="index2.php">
+                        <div  class="square-button-h prple" >
+                          <img src="images/volv.png">
+                        </div></a>
                        <div style="display: none;" class="square-button-h prple" onclick="pauseConfirm();">
                           <div class="square-text"> PAUSAR Y CONTINUAR MAÑANA</div>
                         </div>
@@ -727,7 +732,7 @@ foreach ($orderID as $odt) {
                 $merm = ($row->merma_recibida != null) ? $cantrecib - $cpedido : $cantrecib - $cpedido;
             }
 ?>
-    <td class=""><input id="pedido" type="number" class="" name="pedido" value="<?= $cpedido ?> " onkeyup="opera();"  ></td>
+    <td class=""><input type="number"  id="pedido"  name="pedido" value="<?=$cpedido ?>" onkeyup="opera();"  ></td>
    
    
    <td class=""><input id="buenos"  name="buenos" type="number"  name="" onkeyup="opera();" style="margin-right: 10px;" required="required"></td>
@@ -739,9 +744,9 @@ foreach ($orderID as $odt) {
     <td class="title-form">PIEZAS DE AJUSTE</td>
   </tr>
   <tr>
-    <td class=""> <input type="number" id="cantidad" class="" name="cantidad" value="<?= $cantrecib ?>"  >
+    <td class=""> <input type="number" id="cantidad" class="" name="cantidad" value="<?= $cantrecib ?>"  onkeyup="opera();">
     <!-- <input id="merma" class="" name="merma" type="number"   value="<?= $merm ?>"  style="width: 75px;margin-right: 10px;" required="required"> --> </td>
-    <td class=""><input  id="piezas-ajuste" name="piezas-ajuste" type="number"    style="margin-right: 10px;"  > </td>
+    <td class=""><input  id="piezas-ajuste" name="piezas-ajuste" type="number"    style="margin-right: 10px;" onkeyup="GetDefectos()" > </td>
   </tr>
   <tr>
     <td class="title-form">MERMA</td>

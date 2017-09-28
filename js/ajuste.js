@@ -47,13 +47,7 @@ $(document).ready(function(event) {
                                             }); */
 });
 
-function alerttime(){
-  animacion = function(){
-  
-  document.getElementById('formulario').classList.toggle('fade');
-}
-setInterval(animacion, 550);
-}
+
 
 
                                              $( "#save-ajuste").click(function() {
@@ -122,6 +116,11 @@ setInterval(animacion, 550);
 
   function submitEat(suceso){
     $('#s-radios').val(suceso);
+    if ($('#ontime').val()=='true') {
+      timer.start();
+    }else{
+      deadTimer.start();
+    }
     $( "#fo3" ).submit();
   }
   function close_box()
@@ -164,14 +163,22 @@ setInterval(animacion, 550);
       var timer = new Timer();
  var timerEat = new Timer();
  var timerAlert = new Timer();
+ var deadTimer= new Timer();
+   
 $(document).ready(function(){
-timer.start();
+timer.start({countdown: true, startValues: {seconds: 1200}});
+$('#chronoExample2').hide();
 });
        
 
 $('#nuevo_registro').submit(function () {
-    timer.pause();
+    if (ontime=='true') {
+        timer.pause();
     $('#timee').val(timer.getTimeValues().toString());
+  }else{
+    deadTimer.pause();
+    $('#timee').val(deadTimer.getTimeValues().toString());
+  }
     //$('#timee').val(timer.getTimeValues().toString());
 });
 /*$('#chronoExample .stopButton').click(function () {
@@ -184,10 +191,24 @@ timer.addEventListener('secondsUpdated', function (e) {
 timer.addEventListener('started', function (e) {
     $('#chronoExample .values').html(timer.getTimeValues().toString());
 });
+timer.addEventListener('reset', function (e) {
+    $('#chronoExample .values').html(timer.getTimeValues().toString());
+});
      
-     
+  deadTimer.addEventListener('secondsUpdated', function (e) {
+    $('#chronoExample .values').html(deadTimer.getTimeValues().toString());
+});
+  deadTimer.addEventListener('started', function (e) {
+      $('#chronoExample .values').html(deadTimer.getTimeValues().toString());
+  });    
 
    $('.goeat').click(function () {
+    if ($('#ontime').val()=='true') {
+      timer.pause();
+    }else{
+      deadTimer.pause();
+    }
+    
     timerEat.start();
     //$('#timee').val(timerEat.getTimeValues().toString());
     timerEat.addEventListener('secondsUpdated', function (e) {
@@ -205,11 +226,24 @@ timer.addEventListener('started', function (e) {
    });
 
    $('.stopeat').click(function () {
-    
+    if ($('#ontime').val()=='true') {
+      timer.start();
+    }else{
+      deadTimer.start();
+    }
     timerEat.stop();
    });
+    $('#chronoExample2 .startButton').click(function () {
+    deadTimer.start();
+    console.log('le picaron');
+});
 
    $('.goalert').click(function () {
+    if ($('#ontime').val()=='true') {
+      timer.pause();
+    }else{
+      deadTimer.pause();
+    }
     timerAlert.start();
     //$('#timee').val(timerAlert.getTimeValues().toString());
     timerAlert.addEventListener('secondsUpdated', function (e) {
@@ -224,13 +258,42 @@ timer.addEventListener('started', function (e) {
      timerAlert.pause();
     $('#tiempoalertamaquina').val(timerAlert.getTimeValues().toString());
     timerAlert.stop();
+    if ($('#ontime').val()=='true') {
+      timer.start();
+    }else{
+      deadTimer.start();
+    }
    });
 
    $('.stopalert').click(function () {
-    
+    if ($('#ontime').val()=='true') {
+      timer.start();
+    }else{
+      deadTimer.start();
+    }
     timerAlert.stop();
    });
+timer.addEventListener('targetAchieved', function (e) {
+    timer.stop();
+    deadTimer.start();
+    alerttime();
+    $('#ontime').val('false');
+    // $('#chronoExample').hide();
+    //$('#chronoExample2').show(); 
+   // $('#chronoExample2 .startButton').click();
+    
+    
+    
+});  
+function alerttime(){
+  
+  animacion = function(){
+  
+  document.getElementById('formulario').classList.toggle('fade');
+}
+setInterval(animacion, 550);
 
+} 
    $(document).ready(function() {
    // Esta primera parte crea un loader no es necesaria
     $().ajaxStart(function() {
@@ -272,6 +335,8 @@ timer.addEventListener('started', function (e) {
 
  function saveAjuste(){
   var mac=$('#mac').val();
+  var ontime=$('#ontime').val();
+  console.log(ontime);
     var order=$('#order').val();
     if($('#orderID').val()==''){
       $('#parts').click();
@@ -280,8 +345,14 @@ timer.addEventListener('started', function (e) {
                    $('#elementerror').hide();
                 }, 5000);
     }else{
-       timer.pause();
+      if (ontime=='true') {
+        timer.pause();
     $('#timee').val(timer.getTimeValues().toString());
+  }else{
+    deadTimer.pause();
+    $('#timee').val(deadTimer.getTimeValues().toString());
+  }
+       
      $.ajax({  
                       
                      type:"POST",

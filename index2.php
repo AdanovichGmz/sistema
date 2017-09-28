@@ -220,7 +220,12 @@ if ( $p==1) {
     z-index:122;
     }
 }
-
+#timer2 span {
+    line-height: 140px;
+    font-size: 110px;
+    font-weight: bold;
+    color: #fff;
+}
 @media screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation: landscape) {
  .msj {
  display: none;
@@ -232,7 +237,7 @@ if ( $p==1) {
     height: 97px;
 }
 </style>
-<body onload="setTimeout('alerttime()',2000000);">
+<body onload="">
 <div id="formulario"></div>
     <input type="hidden" id="mac" value="<?=$mac ?>">
     <input type="hidden" id="order" value="<?= (isset($ordenActual))? implode(",", $ordenActual)  : ((isset($stoppedOrderID))? $stoppedOrderID : '') ;?>">
@@ -285,7 +290,14 @@ if ( $p==1) {
                                     <div id="timer"><span class="values">00:00:00</span></div>
                                     
                                     <input type="hidden" id="timee" name="tiempo">
-                                    
+                                    <input type="hidden" id="ontime" name="ontime" value="true">
+                                </div>
+                                <div id="chronoExample2">
+                                    <div id="timer2"><span class="values">00:00:00</span></div>
+                                   
+                                   
+                                   
+                       
                                 </div>
                                 </div>
                         

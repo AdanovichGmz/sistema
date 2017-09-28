@@ -27,7 +27,7 @@ if (@$_SESSION['logged_in'] != true) {
     $machineName=$_SESSION['machineName'];
     $machineID = $_SESSION['machineID'];
     $pause_exist = false;
-    
+     $userID      = $_SESSION['id'];
     
    
 ?>
@@ -40,16 +40,28 @@ if (@$_SESSION['logged_in'] != true) {
 
     <?php
     $today     = date("d-m-Y");
+    $getodts=$mysqli->query("SELECT t.id_orden,(SELECT numodt FROM ordenes WHERE idorden=t.id_orden) AS odt FROM tiraje t WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL");
+if ($getodts) {
+  while ($ordenes=mysqli_fetch_assoc($getodts)) {
+   $arrOdt[$ordenes['odt']]=$ordenes['odt'];
+  }
+    
+  }else{
+    printf($mysqli->error);
+  }
+    
     //obtenemos el tiempo real sumando tiempoTiraje + tiempo_ajuste +tiempoalertamaquina + tiempoajuste
-    $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today')+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today')) as tiempo_real";
+     $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today')) as tiempo_real";
     //obtenemos el tiempo muerto sumando las idas al sanitario
-    $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime) ),0) AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
+    $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$machineID AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
+    
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
-    $etequery3 = "SELECT COALESCE((SELECT SUM( entregados ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today'))*100 as calidad_primera";
+    $etequery3 = "SELECT COALESCE((SELECT SUM( entregados ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera, (SELECT SUM( buenos ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today') AS buenos";
     //obtenemos desempeño operando entregados+merma
-    $etequery4 = "SELECT SUM(desempenio) AS desemp ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID";
-    $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')) as desempenio";
-    //obtenemos el elemento o producto
+    $etequery4 = "SELECT SUM(desempenio) AS desemp ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
+    $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
+
+
    
     $begin      = new DateTime('09:00');
     $current    = new DateTime(date('H:i'));
@@ -305,7 +317,7 @@ table td:last-child{
         <img src="images/msj.fw.png" />
     </div>
 <div class="contegral">
-   
+   <form  id="resumeform" method="post">
       <ul>
   <li> <div id="divPHOTO" class="user-photo"></div></li>
   <li><span><?php
@@ -320,7 +332,9 @@ table td:last-child{
     <li style="float:right ;"></li>
               
 </ul>
-        
+<input type="hidden" name="ordenes" value="<?=implode(',', $arrOdt);?>">  
+ <input type="hidden" name="user" value="<?=$userID   ?>">  
+  <input type="hidden" name="maquina" value="<?=$machineID  ?>">      
 <div class="statistics">
 <div class="stat-panel" style="">
  <div class="stat-head2"><div class="efectivity2">DISPONIBILIDAD
@@ -328,6 +342,7 @@ table td:last-child{
  <div class="stat-percent"><div class="efectivity3"><?php
     echo round($dispon);
 ?>%
+<input type="hidden" name="disponibilidad" value="<?=round($dispon)  ?>">
 </div></div>
 <div class="stat-body">
     <table>
@@ -339,11 +354,12 @@ table td:last-child{
   <tr>
     <td width="60">TIEMPO REAL</td>
     <td width="40"><?=gmdate('H:i:s',$gettotalTime['tiempo_real']) ?></td>
-    
+    <input type="hidden" name="t-real" value="<?=gmdate('H:i:s',$gettotalTime['tiempo_real']) ?>">
   </tr>
   <tr>
     <td width="60">TIEMPO DISPONIBLE</td>
     <td width="40"><?= gmdate('H:i:s',$seconds)?></td>
+    <input type="hidden" name="t-disponible" value="<?= gmdate('H:i:s',$seconds)?>">
     
   </tr>
   
@@ -357,6 +373,7 @@ table td:last-child{
  <div class="stat-percent"><div class="efectivity3"><?php
     echo round($desempenio);
 ?>%
+<input type="hidden" name="desempenio" value="<?=round($desempenio) ?>">
 </div></div>
 <div class="stat-body">
     <table>
@@ -368,12 +385,12 @@ table td:last-child{
   <tr>
     <td width="60">PRODUCCION ESPERADA</td>
     <td width="40"><?=$esperada['p_esperada'] ?></td>
-    
+    <input type="hidden" name="prod-esperada" value="<?=$esperada['p_esperada']  ?>">
   </tr>
   <tr>
     <td width="60">MERMA</td>
     <td width="40"><?=$merma['merma'] ?></td>
-    
+    <input type="hidden" name="merma" value="<?=$merma['merma']  ?>">
   </tr>
   
 </table>
@@ -386,6 +403,7 @@ table td:last-child{
  <div class="stat-percent"><div class="efectivity3"><?php
     echo round($Quality);
 ?>%
+<input type="hidden" name="calidad" value="<?=round($Quality)  ?>">
 </div></div>
 <div class="stat-body">
     <table>
@@ -396,13 +414,13 @@ table td:last-child{
   </tr>
   <tr>
     <td width="60">CALIDAD A LA PRIMERA</td>
-    <td width="40">200</td>
-    
+    <td width="40"><?= $getQuality['buenos'] ?></td>
+    <input type="hidden" name="calidad-primera" value="<?=$getQuality['buenos']  ?>">
   </tr>
   <tr>
     <td width="60">PRODUCCION REAL</td>
     <td width="40"><?=$real['desempenio'] ?></td>
-    
+    <input type="hidden" name="prod-real" value="<?=$real['desempenio']  ?>">
   </tr>
   
 </table>
@@ -419,9 +437,12 @@ table td:last-child{
 <div style="width: 100%; margin: 0 auto;text-align: center;">
     <div class="left-panel">
         <div style="position: absolute; width: 90%; top: 50%;left: 50%;transform: translate(-50%, -50%);"><a href="logout.php">
-             <div id="parts" class="square-button-small red ">
-                          <img src="images/exit-door.png">
+             <div class="square-button-small red ">
+                          <img src="images/sal.png">
                         </div></a>
+                        <div id="parts" class="square-button-small blue " onclick="saveResume()">
+                          <img src="images/guard.png">
+                        </div>
                        
         </div>
     </div>
@@ -431,11 +452,12 @@ table td:last-child{
 </div>
 <div class="stat-body2">
     <span><?=round($getEte) ?>%</span>
+    <input type="hidden" name="ete" value="<?=round($getEte)  ?>">
 </div>
      </div>
 </div>
  
-
+</form>
 
 
  
@@ -453,6 +475,38 @@ table td:last-child{
     echo $_SESSION['MM_Foto_user'];
 ?>');
                     });
+
+        function saveResume(){
+           //var qty=$('#qty').val();
+           showLoad();
+         $.ajax({  
+                      
+                     type:"POST",
+                     url:"saveResume.php",   
+                     data:$('#resumeform').serialize(),  
+                       
+                     success:function(data){ 
+                        $('.saveloader').hide();
+                $('.savesucces').show();
+                 setTimeout(function() {   
+                   close_box();
+                }, 1000); 
+                 $('#parts').removeAttr('onclick');
+                          console.log(data);
+                     }  
+                });
+        }
+        function close_box()
+      {
+        $('.backdrop, .box, .boxorder').animate({'opacity':'0'}, 300, 'linear', function(){
+          $('.backdrop, .box, .boxorder').css('display', 'none');
+        });
+      }
+  function showLoad(){
+        $('.backdrop, .box').animate({'opacity':'.50'}, 300, 'linear');
+          $('.box').animate({'opacity':'1.00'}, 300, 'linear');
+          $('.backdrop, .box').css('display', 'block');
+      }
                                 </script>
 
       
@@ -464,7 +518,20 @@ table td:last-child{
  
  
 </body>
+ <div class="backdrop"></div>
 
+<div class="box">
+  <div class="saveloader">
+  
+    <img src="images/loader.gif">
+    <p style="text-align: center; font-weight: bold;">Guardando..</p>
+  </div>
+  <div class="savesucces" style="display: none;">
+  
+    <img src="images/success.png">
+    <p style="text-align: center; font-weight: bold;">Guardado</p>
+  </div>
+  </div>
 </html>
 
 <!-- ************************ Contenido ******************** -->

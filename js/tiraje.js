@@ -8,7 +8,7 @@
                             }else{
                               defectos =0;
                             }
-                            mermaent=parseInt(buenos)-parseInt(cantidad);
+                            mermaent=parseInt(buenos)-parseInt(pedido);
                              if (mermaent<0) {
                               mermaent =0;
                             }
@@ -18,6 +18,14 @@
                             document.getElementById("merma-entregada").value = mermaent;
                             
                            
+                           }
+                           function GetDefectos(){
+                            var defect;
+                            var ajuste= $('#piezas-ajuste').val();
+                            if (parseInt(ajuste)>2) {
+                               defect=parseInt(ajuste)-2;
+                              $('#defectos').val(defect);
+                            }
                            }
 
  /*function opera(){ 
