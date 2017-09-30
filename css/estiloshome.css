@@ -623,7 +623,43 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
     top:0;
     background-color:transparent;
 }
+#panelkeyboard{
+    width:60%;
+    height:100%;
+    left:-60%;
+    float:left; 
+    position:fixed;
+    z-index:700;
+    top:0;
+    background:rgba(29, 26, 29, 0.95);
+    
+}
+#panelkeyboard2{
+    width:100%;
+    height:58%;
+    bottom:-58%;
+     
+    position:fixed;
+    z-index:999999999!important;
+    
+    background:rgba(29, 26, 29, 0.95);
+    
+}
+.cerrarkey{
+    position: relative;
+    width: 100%;
+    height: 150px;
+}
+.cerrarkey2{
+    position: relative;
+    width: 100%;
+    height: 70px;
+}
 
+.keycontainer{
+    width: 100%;
+    position: relative;
+}
 
 .tit{
 

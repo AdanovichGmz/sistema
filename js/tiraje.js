@@ -1,3 +1,6 @@
+ var jQuery214=$.noConflict(true);
+ var r = false;
+ var k=false;
  function opera(){ 
      var cantidad = document.all.cantidad.value; 
                            var buenos = document.all.buenos.value;  
@@ -195,7 +198,13 @@ timer.addEventListener('started', function (e) {
         $('.backdrop').click(function(){
           close_box();
         });
+
+
+
+        //teclado virtual
+        
  
+                
         
        });
       function close_box()
@@ -300,6 +309,7 @@ $('.radio-menu').click(function() {
                 });
     } 
  function saveTiro(){
+    
          event.preventDefault();
          var id=$('#numodt').val();
           var odt=$('#odt').val();
@@ -321,3 +331,324 @@ $('.radio-menu').click(function() {
                 });
     }
 
+
+                                   function createChart() {
+                                       $("#graficajs").kendoChart({
+                                           title: {
+                                               position: "bottom",
+                                               text: ""
+                                           },
+                                           legend: {
+                                               visible: false
+                                           },
+                                           chartArea: {
+                                               background: ""
+                                           },
+                                           seriesDefaults: {
+                                               labels: {
+                                                   visible: false,
+                                                   background: "transparent",
+                                                   template: "#= category #: \n #= value#%"
+                                               }
+                                           },
+                                           series: [{
+                                               type: "pie",
+                                               startAngle: 150,
+                                               data: [{
+                                                   category: "",
+                                                   value: 53.8,
+                                                   color: "#00B050"
+                                               },{
+                                                   category: "",
+                                                   value: 16.1,
+                                                   color: "#FF2626"
+                                               }]
+                                           }],
+                                           tooltip: {
+                                               visible: true,
+                                               format: "{0}%"
+                                           }
+                                           //,
+                                           //seriesClick: onSeriesClick
+                                       });
+                                   }
+
+$(document).ready(createChart);
+$(document).bind("kendo:skinChange", createChart);
+function createChart() {
+    $("#_GraficaInter").kendoChart({
+        theme: "metro",
+        chartArea: { background: "transparent" },
+        title: {
+            text: ""
+        },
+        legend: {
+            position: "bottom"
+        },
+        seriesDefaults: {
+            type: "column"
+        },
+        series: [{
+            name: "Disponiblidad",
+            data: [75],
+            color: "#265CFF"
+        }, {
+            name: "Calidad",
+            data: [25],
+            color: "#00BFFF"
+        }, {
+            name: "Desempeño",
+            data: [89],
+            color: "#00D900"
+        }],
+        valueAxis: {
+            labels: {
+                format: "{0}%"
+            },
+            line: {
+                visible: false
+            },
+            axisCrossingValue: 0
+        },
+        categoryAxis: {
+            categories: [],
+            line: {
+                visible: false
+            },
+            labels: {
+                padding: { top: 135 }
+            }
+        },
+        tooltip: {
+            visible: true,
+            format: "{0}%",
+            template: "#= series.name #: #= value #"
+        }
+    });
+}
+
+$(document).ready(createChart);
+$(document).bind("kendo:skinChange", createChart);
+
+
+$(document).ready(function () {
+
+    var p = false;
+    $(".abajo").click(function () {
+        if (p == false) {
+
+            $("#panelbottom2").animate({ top: '+=3%' }, 200);
+            $("#panelbottom").animate({ bottom: '+=97%' }, 200);
+            p = true;
+        }
+        else {
+            $("#panelbottom2").animate({ top: '-=3%' }, 200);
+            $("#panelbottom").animate({ bottom: '-=97%' }, 200);
+            p = false;
+        }
+
+
+
+    });
+
+
+
+    var b = false;
+    $(".derecha").click(function () {
+        if (b == false) {
+
+            $("#panelder2").animate({ left: '+=40%' }, 200);
+            $("#panelder").animate({ right: '+=75%' }, 200);
+            b = true;
+        }
+        else {
+            $("#panelder2").animate({ left: '-=40%' }, 200);
+            $("#panelder").animate({ right: '-=75%' }, 200);
+            b = false;
+        }      
+
+
+
+    });
+
+
+
+
+    
+    
+    $(".eatpanel").click(function () {
+        if (r == false) {
+
+            $("#panelbrake2").animate({ right: '+=40%' }, 200);
+            $("#panelbrake").animate({ left: '+=60%' }, 200);
+            r = true;
+        }
+        else {
+            $("#panelbrake2").animate({ right: '-=40%' }, 200);
+            $("#panelbrake").animate({ left: '-=60%' }, 200);
+            r = false;
+        }      
+
+
+
+    });
+
+    
+
+    
+
+     var nob = false;
+    $(".nobien").click(function () {
+        if (nob == false) {
+
+            
+            $("#nobien").animate({ right: '+=108%' }, 200);
+            nob = true;
+        }
+        else {
+            
+            $("#nobien").animate({ right: '-=108%' }, 200);
+            nob = false;
+        }      
+
+
+
+    });
+
+    $(".no-first").click(function () {
+        if (nob == true) {
+
+            $("#nobien").animate({ right: '-=108%' }, 200);
+            nob = false;
+        }
+}); 
+    
+
+    var len = false;
+    $(".lento").click(function () {
+        if (len == false) {
+
+            $("#lento").animate({ left: '+=108%' }, 200);
+            len = true;
+        }
+        else {
+            
+            $("#lento").animate({ left: '-=108%' }, 200);
+            len = false;
+        }      
+
+
+
+    });
+    $(".no-slow").click(function () {
+        if (len == true) {
+
+            $("#lento").animate({ left: '-=108%' }, 200);
+            len = false;
+        }
+}); 
+
+
+$("#close-down").click(function () {
+   $("#panelkeyboard").animate({ left: '-=60%' }, 200);     
+  r=false;
+
+    });
+    // panel capas 
+
+    var a = false;
+    $("#izquierda1").click(function () {
+        if (a == false) {
+
+            $("#btniz").animate({ left: '+=60%' }, 200);
+            $("#panelizqui").animate({ left: '+=60%' }, 200);
+            a = true;
+        }
+        else {
+            $("#btniz").animate({ left: '-=60%' }, 200);
+            $("#panelizqui").animate({ left: '-=60%' }, 200);
+            a = false;
+        }
+
+
+
+    });
+
+
+
+
+});
+       
+      
+function getKeys(id,name) {
+      $('#'+id).focus();
+      jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
+        if (r == false) {
+
+            
+            $("#panelkeyboard").animate({ left: '+=60%' }, 200);
+            r = true;
+        }
+        else {
+            
+            
+            r = true;
+        } 
+        $('#softk').empty();     
+         jQuery214('.softkeys').softkeys({
+                    target :  $('#'+id),
+                    layout : [
+                        [
+                            
+                            ['1','!'],
+                            ['2','@'],
+                            ['3','#'],
+                            ['4','$'],
+                            ['5','%'],
+                            ['6','^'],
+                            ['7','&amp;'],
+                            ['8','*'],
+                            ['9','('],
+                            ['0',')'],
+                           
+                            
+                            '←',
+                            'GUARDAR'
+                        ]
+                    ],
+                    id:'softkeys'
+                });
+                /*
+
+                jQuery214('.letras').softkeys({
+                    target : jQuery214('.letras').data('target'),
+                    layout : [
+                       
+                        [
+                            'q','w','e','r','t','y','u','i','o'
+                            
+                        ],
+                        [
+                            
+                            'p','a','s','d','f','g','h','j','k'
+                            
+                            
+                            
+                        ],
+                        [
+                            
+                            'l','z','x','c','v','b','n','m','BORRAR'
+                            
+                           
+                            
+                            
+                        ]
+                    ],
+                    id:'letras'
+                }); */ 
+    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver');            
+jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
+            jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
+    }
+
+ 

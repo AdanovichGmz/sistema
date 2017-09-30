@@ -95,6 +95,7 @@ if ( $p==1) {
     <?php include 'head.php'; ?>
     <link href="css/estiloshome.css" rel="stylesheet" />
     <link href="css/ajuste.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/softkeys-small.css">
 </head>
 
 <style type="text/css">
@@ -346,7 +347,7 @@ if ( $p==1) {
        <div id="panelbottom2"></div> 
        <div class="row ">
                 <legend style="font-size:18pt; font-family: 'monse-bold';"><div class="odtsearch">
-  <input type="text" id="getodt" onkeyup="gatODT()" placeholder="Buscar ODT"> 
+  <input type="text" id="getodt" name="getodt" readonly="true" onclick="getKeys(this.id,'pedido')" onkeyup="gatODT()" placeholder="Buscar ODT"> 
 </div><div id="close-down"  class="square-button-micro red abajo ">
                           <img src="images/ex.png">
                         </div></legend>
@@ -537,6 +538,7 @@ if ( $p==1) {
     </div>
       </div>
    </div>
+    </div>
     <div id="panelbrake">
     <div id="panelbrake2"></div>
       <div class="container-fluid">
@@ -597,7 +599,21 @@ if ( $p==1) {
    </div>
 </div>
     
-   
+  <!-- ********************** Inicia Panel teclado ******************** -->
+   <div id="panelkeyboard2">
+    
+    <div class="keycontainer">
+      <div id="softk" class="softkeys" data-target="input[name='getodt']"></div>
+    </div>
+    
+      <div id="close-down-key" class="square-button-micro red  " style="display: none;">
+                          <img src="images/ex.png">
+                        </div>
+    
+    
+</div>
+
+<!-- ********************** Termina Panel teclado ******************** --> 
 
 
 </body>
@@ -624,5 +640,9 @@ if (!empty($update)) {
 }
   
 ?>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+  
+</script>
+<script src="js/softkeys-0.0.1.js"></script>
 <script src="js/ajuste.js"></script>

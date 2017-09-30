@@ -270,6 +270,7 @@ if (@$_SESSION['logged_in'] != true) {
     <!-- reloj -->   
     <link href="compiled/flipclock.css" rel="stylesheet" />
      <script src="js/libs/jquery.min.js"></script>
+     
 <script src="js/libs/kendo.all.min.js"></script>
     <script src="compiled/flipclock.js"></script>
     <script src="js/easytimer.min.js"></script>
@@ -293,9 +294,7 @@ if (@$_SESSION['logged_in'] != true) {
     <link href="css/general-styles.css" rel="stylesheet" />
    
    
-    <script src="js/jsGrafica.js"></script>
-    <script src="js/graficabarras.js"></script>
-    <script src="js/divdespegable.js"></script>
+   
    
     <script src="js/test.js"></script>
     
@@ -304,8 +303,8 @@ if (@$_SESSION['logged_in'] != true) {
     <script language="javascript">// <![CDATA[
 
 // ]]></script>
-
-
+ 
+<link rel="stylesheet" href="css/softkeys-0.0.1.css">
 <script language="javascript">
          function limpiar() {
            setTimeout('document.fo3.reset()',20);
@@ -732,10 +731,10 @@ foreach ($orderID as $odt) {
                 $merm = ($row->merma_recibida != null) ? $cantrecib - $cpedido : $cantrecib - $cpedido;
             }
 ?>
-    <td class=""><input type="number"  id="pedido"  name="pedido" value="<?=$cpedido ?>" onkeyup="opera();"  ></td>
+    <td class=""><input type="number" class="getkeyboard"  id="pedido"  name="pedido" value="<?=$cpedido ?>" readonly onclick="getKeys(this.id,'pedido')" onkeyup="opera();"  ></td>
    
    
-   <td class=""><input id="buenos"  name="buenos" type="number"  name="" onkeyup="opera();" style="margin-right: 10px;" required="required"></td>
+   <td class=""><input id="buenos" class="getkeyboard" onclick="getKeys(this.id,'buenos')"  name="buenos" type="number"  name="" onkeyup="opera();" readonly style="margin-right: 10px;" required="required"></td>
     
     
   </tr>
@@ -744,17 +743,17 @@ foreach ($orderID as $odt) {
     <td class="title-form">PIEZAS DE AJUSTE</td>
   </tr>
   <tr>
-    <td class=""> <input type="number" id="cantidad" class="" name="cantidad" value="<?= $cantrecib ?>"  onkeyup="opera();">
+    <td class=""> <input type="number" id="cantidad" readonly onclick="getKeys(this.id,'cantidad')"  class="getkeyboard" name="cantidad" value="<?= $cantrecib ?>"  onkeyup="opera();">
     <!-- <input id="merma" class="" name="merma" type="number"   value="<?= $merm ?>"  style="width: 75px;margin-right: 10px;" required="required"> --> </td>
-    <td class=""><input  id="piezas-ajuste" name="piezas-ajuste" type="number"    style="margin-right: 10px;" onkeyup="GetDefectos()" > </td>
+    <td class=""><input  id="piezas-ajuste" readonly class="getkeyboard" name="piezas-ajuste" type="number"  onclick="getKeys(this.id,'piezas-ajuste')"  style="margin-right: 10px;" onkeyup="GetDefectos()" > </td>
   </tr>
   <tr>
     <td class="title-form">MERMA</td>
     <td class="title-form">DEFECTOS</td>
   </tr>
   <tr>
-    <td class=""><input class="" value="" id="merma-entregada" name="merma-entregada" type="number"    style="margin-right: 10px;"></td>
-      <td class=""><input id="defectos" class="" name="defectos" type="number" value=""    ><!--<input id="entregados" name="entregados" type="number" value="" required="true"  style="">--></td>
+    <td class=""><input class="" value="" readonly id="merma-entregada" onclick="getKeys(this.id,'merma-entregada')" name="merma-entregada" type="number"    style="margin-right: 10px;"></td>
+      <td class=""><input id="defectos"  onclick="getKeys(this.id,'defectos')" readonly class="getkeyboard" name="defectos" type="number" value=""    ><!--<input id="entregados" name="entregados" type="number" value="" required="true"  style="">--></td>
   </tr>
 </table>
 
@@ -873,6 +872,7 @@ foreach ($orderID as $odt) {
       <div class="container">
           
             <div id="estilo">
+
              <form id="alerta-tiro" name="alerta-tiro" method="post"  class="form-horizontal"  >
                 
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php
@@ -941,6 +941,7 @@ foreach ($orderID as $odt) {
           -->  
            
       <div class="reloj-container2">
+      
         <div  id="relojajuste" class="relojajuste" ></div>
       </div>
       </div>
@@ -1028,7 +1029,20 @@ foreach ($orderID as $odt) {
 </div>
 
 <!-- ********************** Termina Panel comida ******************** -->
+  <!-- ********************** Inicia Panel teclado ******************** -->
+   <div id="panelkeyboard">
+    <div class="cerrarkey">
+      <div id="close-down" class="square-button-micro red  ">
+                          <img src="images/ex.png">
+                        </div>
+    </div>
+    <div class="keycontainer">
+      <div id="softk" class="softkeys" data-target="input[name='buenos']"></div>
+    </div>
+    
+</div>
 
+<!-- ********************** Termina Panel teclado ******************** -->
   <script src="js/libs/jquery-ui.js"></script>
  <script>
  $('.radio-menu').click(function() {
@@ -1036,6 +1050,7 @@ foreach ($orderID as $odt) {
   $(this).addClass('face-osc').find('input').prop('checked', true)    
 });                         
                          $( "#saving").click(function() {
+
                           var buenos=$('#buenos').val();
                           var merma=$('#merma').val();
                           var entre=$('#entregados').val();
@@ -1050,14 +1065,15 @@ foreach ($orderID as $odt) {
 ?>                           tiempoTiraje
                             timer.pause();
                             $('#tiempoTiraje').val(timer.getTimeValues().toString());   
-                            $( "#formbutton" ).click();
+                           $( "#formbutton" ).click();
                              showLoad();
                             <?php
     } else {
 ?>
                                 if (buenos!=''&&ajuste!='') {
                                     timer.pause();
-                            $('#tiempoTiraje').val(timer.getTimeValues().toString());  
+                            $('#tiempoTiraje').val(timer.getTimeValues().toString()); 
+                            $('#close-down').click(); 
                              $( "#formbutton" ).click();
                              showLoad();
                            }else{
@@ -1161,7 +1177,10 @@ foreach ($orderID as $odt) {
   
   </div>
 <!-- ********************** Termina Ventana de pausar ordenes ******************** -->
-
-
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+  
+</script>
+<script src="js/softkeys-0.0.1.js"></script>
 
   <script src="js/tiraje.js"></script>

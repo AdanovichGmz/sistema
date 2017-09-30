@@ -1,5 +1,6 @@
 /******************** index2.php ********************/
-
+var jQuery214=$.noConflict(true);
+var kb=false;
 $(document).ready(function(event) {
    // Esta primera parte crea un loader no es necesaria
     $().ajaxStart(function() {
@@ -295,6 +296,16 @@ setInterval(animacion, 550);
 
 } 
    $(document).ready(function() {
+
+    $("#close-down").click(function () {
+      if (kb==true) {
+        $("#panelkeyboard2").animate({ bottom: '-=58%' }, 200);     
+  kb=false;
+      }
+   
+
+    });
+    
    // Esta primera parte crea un loader no es necesaria
     $().ajaxStart(function() {
         $('#loading').show();
@@ -391,6 +402,9 @@ setInterval(animacion, 550);
                 });
   }
 function sendODT(odt,machine){
+  $('#getodt').val(odt);
+   $("#panelkeyboard2").animate({ bottom: '-=58%' }, 200);     
+  kb=false;
     $.ajax({  
                       
                      type:"POST",
@@ -404,3 +418,79 @@ function sendODT(odt,machine){
                 });
     
   }  
+
+function getKeys(id,name) {
+      $('#'+id).select();
+      console.log(kb);
+      jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
+        if (kb == false) {
+            $("#panelkeyboard2").animate({ bottom: '+=58%' }, 200);
+            kb = true;
+        }
+        
+        $('#softk').empty();     
+         jQuery214('.softkeys').softkeys({
+                    target :  $('#'+id),
+                    layout : [
+                        [
+                            
+                            ['1','!'],
+                            ['2','@'],
+                            ['3','#'],
+                            ['4','$'],
+                            ['5','%'],
+                            ['6','^'],
+                            ['7','&amp;'],
+                            ['8','*'],
+                            ['9','('],
+                            ['0',')']
+                        ],
+                    [
+                            'q','w','e','r','t','y','u','i','o','p'
+                            
+                        ],
+                        [
+                            
+                            'a','s','d','f','g','h','j','k','l','z'
+                            
+                            
+                            
+                        ],[
+                            
+                            'x','c','v','b','n','m','←']
+                            ],
+                    id:'softkeys'
+                });
+                /*
+
+                jQuery214('.letras').softkeys({
+                    target : jQuery214('.letras').data('target'),
+                    layout : [
+                       
+                        [
+                            'q','w','e','r','t','y','u','i','o'
+                            
+                        ],
+                        [
+                            
+                            'p','a','s','d','f','g','h','j','k'
+                            
+                            
+                            
+                        ],
+                        [
+                            
+                            'l','z','x','c','v','b','n','m','BORRAR'
+                            
+                           
+                            
+                            
+                        ]
+                    ],
+                    id:'letras'
+                }); */ 
+                jQuery214('#hidekey').parent('.softkeys__btn').addClass('hidder'); 
+    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver');            
+jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
+            jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
+    }
