@@ -1,6 +1,6 @@
 
 <?php
-ini_set("session.gc_maxlifetime","7200");  
+ ini_set('session.gc_maxlifetime', 30*60);
 date_default_timezone_set("America/Mexico_City");
 if (isset($_COOKIE['ajuste'])) {
     setcookie('ajuste', true, time() - 3600);
@@ -467,14 +467,7 @@ table td:last-child{
      
                                     <script>
 
-                        $(document).ready(function(){
-                        $('#divPHOTO').css("background-image", "url('<?php
-    echo $_SESSION['MM_Foto_user'];
-?>')");  
-                        console.log('<?php
-    echo $_SESSION['MM_Foto_user'];
-?>');
-                    });
+                       
 
         function saveResume(){
            //var qty=$('#qty').val();

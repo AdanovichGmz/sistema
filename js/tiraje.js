@@ -290,6 +290,8 @@ $('.radio-menu').click(function() {
                         setTimeout(function() {   
                    close_box();
                 }, 600);
+                        $('#alerta-tiro')[0].reset();
+                        $('.face-osc').removeClass('face-osc');
                           //$('#update-form')[0].reset();  
                           //$('.close').click(); 
                           //window.location.replace("index2.php?mac="+mac);

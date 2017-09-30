@@ -1,7 +1,7 @@
 
 
 <?php
-ini_set("session.gc_maxlifetime","7200");  
+ini_set('session.gc_maxlifetime', 30*60); 
 date_default_timezone_set("America/Mexico_City");
  if( !session_id() )
     {
@@ -276,7 +276,7 @@ if ( $p==1) {
                         </div>
                         
                         <div class="square-button green stop eatpanel goeat">
-                          <img src="images/other.png">
+                          <img src="images/dinner2.png">
                         </div>
                         <div class="square-button yellow derecha goalert">
                           <img src="images/alerts.png">
@@ -562,10 +562,10 @@ if ( $p==1) {
                <input type="radio"  id="radios-1" >
                    SANITARIO
                     </div>
-                    
+                    <!-- 
                     <div class="radio-menu face eatpanel" onclick="submitEat('Otro');showLoad();">
                 <input type="radio" class=""  id="radios-3"  >
-                    OTRA ACTIVIDAD</div>
+                    OTRA ACTIVIDAD</div> -->
 
                 </div>
                 <div class="form-group" style="text-align: center; color:black;">

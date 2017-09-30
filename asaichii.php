@@ -1,5 +1,5 @@
  <?php
- ini_set("session.gc_maxlifetime","7200");  
+ ini_set('session.gc_maxlifetime', 30*60);
     if( !session_id() )
     {   
         session_start();

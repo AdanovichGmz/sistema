@@ -319,6 +319,8 @@ setInterval(animacion, 550);
                  setTimeout(function() {   
                    close_box();
                 }, 1000);
+                 $('#fo4')[0].reset();
+                        $('.face-osc').removeClass('face-osc');
                 console.log(data);
 
             }
