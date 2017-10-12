@@ -56,7 +56,11 @@
                                 character = '<span>tab</span>';
                                 type = 'tab';
                                 break;
-
+                            case '__' :
+                                character = '<span>___</span>';
+                                type = 'space';
+                                styleClass = 'savebutton saver';
+                                break;    
                             case 'space' :
                                 character = '<span>space</span>';
                                 type = 'space';
@@ -69,6 +73,7 @@
                                 break;
                             case 'GUARDAR' :
                             character = '<span id="savekey">GUARDAR</span>';
+                            styleClass = 'savebutton';
                             type = 'save';
                             break;
                              case 'OCULTAR' :

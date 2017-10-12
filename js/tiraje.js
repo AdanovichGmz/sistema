@@ -129,6 +129,7 @@ timer.addEventListener('started', function (e) {
                                             });
 
    $('.goeat').click(function () {
+    timer.pause();
     timerEat.start();
     //$('#timee').val(timerEat.getTimeValues().toString());
     timerEat.addEventListener('secondsUpdated', function (e) {
@@ -142,11 +143,12 @@ timer.addEventListener('started', function (e) {
    
 
    $('.stopeat').click(function () {
-    
+    timer.start();
     timerEat.stop();
    });
 
    $('.goalert').click(function () {
+     timer.pause();
     timerAlertm.start();
     //$('#timee').val(timerAlert.getTimeValues().toString());
     timerAlertm.addEventListener('secondsUpdated', function (e) {
@@ -166,7 +168,7 @@ timer.addEventListener('started', function (e) {
    });
 
    $('.stopalert').click(function () {
-    
+    timer.start();
     timerAlertm.stop();
    });
 
@@ -226,6 +228,7 @@ timer.addEventListener('started', function (e) {
       }
     
   function submitEat(){
+    timer.start();
     timerEat.pause();
               $('#timeeat').val(timerEat.getTimeValues().toString());
               timerEat.stop();
@@ -280,6 +283,7 @@ $('.radio-menu').click(function() {
                       $(this).addClass('face-osc').find('input').prop('checked', true)    
                     });
  function saveAlert(){
+  timer.start();
          event.preventDefault();
          //var mac=$('#mac').val();
          timerAlertm.pause();
@@ -455,6 +459,7 @@ $(document).ready(function () {
 
     var b = false;
     $(".derecha").click(function () {
+     
         if (b == false) {
 
             $("#panelder2").animate({ left: '+=40%' }, 200);
@@ -477,6 +482,7 @@ $(document).ready(function () {
     
     
     $(".eatpanel").click(function () {
+      
         if (r == false) {
 
             $("#panelbrake2").animate({ right: '+=40%' }, 200);

@@ -107,9 +107,10 @@ if ($getodts) {
     $esperada       = mysqli_fetch_assoc($mysqli->query("SELECT COALESCE((SELECT SUM(produccion_esperada) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')) as p_esperada"));
     $merma       = mysqli_fetch_assoc($mysqli->query("SELECT COALESCE((SELECT SUM(merma_entregada) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')) as merma"));
 
-
+ $roundDesemp=($desempenio>100)? 100 : $desempenio;
+$roundQuality=($Quality>100)? 100 : $Quality;
     //echo "<p style='color:#fff;'>dispon ".$dispon." calidad ".$Quality." desempeño ".$desempenio." prod esperada ".$getEfec['esper']." real ".$real['desempenio']." calidad ".$Quality." tiempo hasta ahora: ".$seconds."</p>";
-    $getEte     = (($dispon / 100) * ($Quality / 100) * ($desempenio / 100)) * 100;
+    $getEte     = (($dispon / 100) * ($roundQuality / 100) * ($roundDesemp / 100)) * 100;
     $showpercent=100 - $getEte;
     
 ?>
@@ -137,9 +138,7 @@ if ($getodts) {
     <link href="css/general-styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="js/jsGrafica.js"></script>
-    <script src="js/graficabarras.js"></script>
-    <script src="js/divdespegable.js"></script>
+  
    
     <script src="js/test.js"></script>
     
@@ -307,7 +306,7 @@ table td:last-child{
 </head>
 <body style="">
 <input type="hidden" id="display-ete" value="<?php
-    echo "getete " . $getEte . " dispon " . $dispon . " quality " . $Quality . " efec " . $desempenio;
+    echo "getete " . $getEte . " dispon " . $dispon . " quality " . $roundQuality . " efec " . $roundDesemp;
 ?>">
 <input type='hidden' id='pausedorder' value="<?= (isset($secondspaused)) ? $secondspaused : 'false' ?>">
  
@@ -371,9 +370,9 @@ table td:last-child{
  <div class="stat-head2"><div class="efectivity2">DESEMPEÑO
 </div></div>
  <div class="stat-percent"><div class="efectivity3"><?php
-    echo round($desempenio);
+    echo round($roundDesemp);
 ?>%
-<input type="hidden" name="desempenio" value="<?=round($desempenio) ?>">
+<input type="hidden" name="desempenio" value="<?=round($roundDesemp) ?>">
 </div></div>
 <div class="stat-body">
     <table>
@@ -401,9 +400,9 @@ table td:last-child{
  <div class="stat-head2"><div class="efectivity2">CALIDAD
 </div></div>
  <div class="stat-percent"><div class="efectivity3"><?php
-    echo round($Quality);
+    echo round($roundQuality);
 ?>%
-<input type="hidden" name="calidad" value="<?=round($Quality)  ?>">
+<input type="hidden" name="calidad" value="<?=round($roundQuality)  ?>">
 </div></div>
 <div class="stat-body">
     <table>

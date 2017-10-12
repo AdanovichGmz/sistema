@@ -14,7 +14,7 @@ $seconds = strtotime("1970-01-01 $tiempoTiraje UTC");
             //calculando desempeño para pieza actual
             $tiraje_estandar=($seconds*$estandar)/3600;
             
-             $prodEsperada=($tiraje_estandar>0)? round($tiraje_estandar):'<label style="color:red; font-size:11px;">Estandar no definido</label>';
+             $prodEsperada=($tiraje_estandar>0)? round($tiraje_estandar):'<label style="color:red; font-size:11px;">Indefinido</label>';
  ?>
 
  <span>Produccion Esperada: <?=$prodEsperada?></span>

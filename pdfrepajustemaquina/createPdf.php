@@ -5,7 +5,7 @@ include '../saves/conexion.php';
 $numodt=$_POST['id'];
 
 
- $query="SELECT t.*,m.nommaquina,o.producto,u.logged_in,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS element,(SELECT piezas_por_hora FROM estandares WHERE id_elemento=o.producto AND id_maquina= 10) AS estandar,TIME_TO_SEC(tiempoTiraje) AS seconds FROM tiraje t INNER JOIN maquina m ON m.idmaquina=t.id_maquina INNER JOIN login u ON u.id=t.id_user INNER JOIN ordenes o ON o.idorden=t.id_orden WHERE fechadeldia_tiraje='$numodt' ORDER BY nommaquina ASC";
+ $query="SELECT t.*,m.nommaquina,o.numodt,o.producto,u.logged_in,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS element,(SELECT piezas_por_hora FROM estandares WHERE id_elemento=o.producto AND id_maquina= 10) AS estandar,TIME_TO_SEC(tiempoTiraje) AS seconds FROM tiraje t LEFT JOIN maquina m ON m.idmaquina=t.id_maquina LEFT JOIN login u ON u.id=t.id_user LEFT JOIN ordenes o ON o.idorden=t.id_orden WHERE fechadeldia_tiraje='$numodt' ORDER BY nommaquina ASC";
    
        
         $resss=$mysqli->query($query);
@@ -15,7 +15,10 @@ $numodt=$_POST['id'];
 <html>
 <head>
 <style>
-
+@page {
+            margin: 1.3em 1.3em;
+            
+        }
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -76,19 +79,20 @@ tbody tr:nth-child(even) {
   <div class="inhead"></div>
   <div class="inhead" id="last"></div>
 </div>
-<div style="height: 40px;"></div>
+<div style="height: 15px;"></div>
 <table>
 <thead><tr>
     <th>Maquina</th>
     <th>Usuario</th>
+    <th>ODT</th>
     <th>Elemento</th>
     <th>Tiempo Ajuste</th>
     <th>Tiempo Tiraje</th>
     <th>Sec</th>
     <th>Estandar por hora</th>
     <th>Cantidad Pedida</th>
-    <th>Produccion Esperada</th>
-    <th>Produccion Real</th>
+    <th>Prod. Esperada</th>
+    <th>Prod. Real</th>
     <th>Desempeño</th>
   </tr></thead>
   <tbody>
@@ -97,7 +101,8 @@ tbody tr:nth-child(even) {
                           <tr>
     <td><?= $row['nommaquina'];?></td>
     <td><?= $row['logged_in'];?> </td>
-    <td><?= $row['element'];?> </td>
+    <td <?=($row['is_virtual']=='true')? 'style="color:red;"':'' ?>><?=($row['is_virtual']=='true')? $row['odt_virtual'] : $row['numodt'];?> </td>
+    <td <?=($row['is_virtual']=='true')? 'style="color:red;"':'' ?> ><?=($row['is_virtual']=='true')? $row['elemento_virtual'] : $row['element'];?> </td>
     <td><?= substr($row['tiempo_ajuste'],0,-7);?></td>
     <td><?= substr($row['tiempoTiraje'],0,-7);?></td>
     <td><?= $row['seconds'];?></td>
@@ -123,6 +128,7 @@ $html = ob_get_clean();
 
 $dompdf = new DOMPDF();
 $dompdf->load_html($html);
+//$dompdf->set_paper('letter', 'landscape');
 $dompdf->render();
 $dompdf->stream("reporte_de_orden.pdf", array('Attachment' => 0));
 

@@ -673,6 +673,13 @@ background:#3C752B;
     font-weight: bold;
     width: 140px;
 }
+.suborder{
+    color: #4b94ce; position: absolute; top: 48px; font-size: 25px;left: 50%;
+    transform: translate(-50%, 0);
+    line-height: 14px;
+    font-weight: bold;
+    width: 140px;
+}
 .face2{
  background:#67BE4B;
 }

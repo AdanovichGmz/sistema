@@ -2,6 +2,16 @@
 var jQuery214=$.noConflict(true);
 var kb=false;
 $(document).ready(function(event) {
+ $(document).on("click", "#virtualodt", function () {
+    getKeys('virtualodt','cosa');
+});
+ $(document).on("click", "#virtualelem", function () {
+    getKeys('virtualelem','cosa');
+});
+ $(document).on("click", "#saving", function () {
+    createVirtualOdt();
+    $('#close-down').click();
+});
    // Esta primera parte crea un loader no es necesaria
     $().ajaxStart(function() {
         $('#loading').show();
@@ -364,7 +374,7 @@ setInterval(animacion, 550);
   }else{
     deadTimer.pause();
     $('#timee').val(deadTimer.getTimeValues().toString());
-  }
+  }var elem=$('#returning2').val();
        
      $.ajax({  
                       
@@ -376,7 +386,13 @@ setInterval(animacion, 550);
                        
                           //$('#update-form')[0].reset();  
                           //$('.close').click(); 
-                          window.location.replace("index3.php?mac="+mac+"&order="+order);
+                          if ($('#orderID').val()=='virtual') {
+                            window.location.replace("index3_5.php?elem="+elem+"&mac="+mac+"&order="+order);
+                          }
+                            else{
+                               window.location.replace("index3.php?mac="+mac+"&order="+order);
+                            }
+                         
                           console.log(data);
                      }  
                 }); 
@@ -421,12 +437,13 @@ function sendODT(odt,machine){
 
 function getKeys(id,name) {
       $('#'+id).select();
-      console.log(kb);
+      
       jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
         if (kb == false) {
             $("#panelkeyboard2").animate({ bottom: '+=58%' }, 200);
             kb = true;
         }
+        var bguardar;
         
         $('#softk').empty();     
          jQuery214('.softkeys').softkeys({
@@ -446,18 +463,18 @@ function getKeys(id,name) {
                             ['0',')']
                         ],
                     [
-                            'q','w','e','r','t','y','u','i','o','p'
+                            'q','w','e','r','t','y','u','i','o','p','a'
                             
                         ],
                         [
                             
-                            'a','s','d','f','g','h','j','k','l','z'
+                            's','d','f','g','h','j','k','l','z','x','c'
                             
                             
                             
                         ],[
                             
-                            'x','c','v','b','n','m','←']
+                            'v','b','n','m','__','←','GUARDAR' ]
                             ],
                     id:'softkeys'
                 });
@@ -490,7 +507,42 @@ function getKeys(id,name) {
                     id:'letras'
                 }); */ 
                 jQuery214('#hidekey').parent('.softkeys__btn').addClass('hidder'); 
-    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver');            
+    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver').attr('id', 'saver');;            
 jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
+            if (id=='virtualodt'||id=='virtualelem') { jQuery214('.savebutton').show();}else{$('.savebutton').hide();}
     }
+
+function createVirtualOdt(){
+
+  if ($('#virtualodt').val()=='') {
+    $('#podt').show();
+  }
+  else if ($('#virtualelem').val()=='') {
+    $('#pelem').show();
+  }
+  else{
+     $("#panelkeyboard2").animate({ bottom: '-=58%' }, 200);     
+  kb=false;
+    $.ajax({  
+                      
+                     type:"POST",
+                     url:"opp.php",   
+                     data:$('#virtualform').serialize(),  
+                       
+                     success:function(data){ 
+                       $('#odtresult').html(data);
+                        var curorder= $('#returning').val();
+               var curid= $('#returning2').val();
+               var orid= $('#returning3').val();
+               $('#orderID').val(orid);
+              $('#order').val(orid);
+              $('#elemvirtual').val(curid);
+              $('#odtvirtual').val(curorder);
+               
+
+               $('#currentOrder').html('EN PROCESO: '+curorder+" "+curid);  
+                     }  
+                });
+  }
+}

@@ -69,14 +69,15 @@ if (@$_SESSION['logged_in'] != true) {
            $today=date("d-m-Y");
             $singleID=$orderID[0];
             $userID      = $_SESSION['id'];
-            $getAjuste    = "SELECT horadeldia_ajuste FROM tiraje WHERE id_orden=$singleID AND id_maquina=$machineID AND fechadeldia_ajuste='$today' AND horadeldia_tiraje IS NULL";
+            $elemv=(isset($_GET['elem']))?$_GET['elem']:'';
+            $getAjuste    = "SELECT horadeldia_ajuste,elemento_virtual FROM tiraje WHERE is_virtual='true' AND id_maquina=$machineID AND fechadeldia_ajuste='$today' AND elemento_virtual='$elemv' AND tiempoTiraje IS NULL";
 
             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
             $horaAjuste     = $Ajuste['horadeldia_ajuste'];
             foreach ($orderID as $order) {
-              $getOdt="SELECT numodt FROM ordenes WHERE idorden=$order";
+              $getOdt="SELECT num_odt FROM personal_process WHERE proceso_actual='$machineName' AND status='actual'";
               $odt=mysqli_fetch_assoc($mysqli->query($getOdt));
-            $odetesArr[]=$odt['numodt'];
+            $odetesArr[]=$odt['num_odt'];
             }
             $odetes=implode(",", $odetesArr);
             
@@ -151,7 +152,7 @@ if (@$_SESSION['logged_in'] != true) {
         $seconds += pow(60, $key) * $value;
     }
     //obtenemos el estandar de piezas por hora para el elemento y proceso actual
-    $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$processID AND id_elemento= $element";
+    $standar_query2 = "SELECT * FROM estandares WHERE id_elemento= 143";
     
     $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
     $estandar       = $getstandar['piezas_por_hora'];
@@ -173,17 +174,16 @@ if (@$_SESSION['logged_in'] != true) {
     $desempenio =($getEfec['tirajes']>0)? ($getEfec['desemp']*100)/($getEfec['tirajes']*100) : 0;
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
-    $roundDesemp=($desempenio>100)? 100 : $desempenio;
+    
     $dispon     =($seconds>14400)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
     //$disponible = round($dispon, 1);
     $disponible = round($dispon);
     
     $real       = mysqli_fetch_assoc($mysqli->query($etequery5));
-
+    $roundDesemp=($desempenio>100)? 100 : $desempenio;
 
     //echo "<p style='color:#fff;'>dispon ".$dispon." calidad ".$Quality." desempeño ".$desempenio." prod esperada ".$getEfec['esper']." real ".$real['desempenio']." calidad ".$Quality." tiempo hasta ahora: ".$seconds."</p>";
-    $roundQuality=($Quality>100)? 100 : $Quality;
-    $getEte     = (($dispon / 100) * ($roundQuality / 100) * ($roundDesemp / 100)) * 100;
+    $getEte     = (($dispon / 100) * ($Quality / 100) * ($roundDesemp / 100)) * 100;
     $showpercent=100 - $getEte;
     
 ?>
@@ -228,7 +228,7 @@ if (@$_SESSION['logged_in'] != true) {
          <?php
     echo "['DISPONIBILIDAD'," . $dispon . "],";
     echo "['DESEMPEÑO'," . $roundDesemp  . "],";
-    echo "['CALIDAD'," . $roundQuality . "],";
+    echo "['CALIDAD'," . $Quality . "],";
     
 ?> ]);
         var options = { // api de google chats, son estilos css puestos desde js
@@ -443,7 +443,7 @@ if (@$_SESSION['logged_in'] != true) {
 </head>
 <body style="">
 <input type="hidden" id="display-ete" value="<?php
-    echo "getete " . $getEte . " dispon " . $dispon . " quality " . $roundQuality . " efec " . $roundDesemp;
+    echo "getete " . $getEte . " dispon " . $dispon . " quality " . $Quality . " efec " . $roundDesemp;
 ?>">
 <input type='hidden' id='pausedorder' value="<?= (isset($secondspaused)) ? $secondspaused : 'false' ?>">
  
@@ -479,12 +479,12 @@ if (@$_SESSION['logged_in'] != true) {
 ?></span></li>
 
     <input type="hidden" id="realtime">
+
     <input type="hidden" id="mach" value="<?=$machineID ?>"> 
      <input type="hidden" id="el" value="<?=$element ?>">         
   <li style="float:right"></li>
    <li style="float:right"><span id="hora" ></span></li>
-    <li style="float:right ;" id="avancerealtime"><?php include 'avance.php';
-?></li>
+    
               
 </ul>
         
@@ -501,20 +501,9 @@ if (@$_SESSION['logged_in'] != true) {
   </tr>
   <tr>
     
-    <td class="orders-td"> <?php if (count($orderID) > 1) {
-        echo $odetes;
-   
-     } else{
-        if ($row = mysqli_fetch_object($resultado1)) {
-        
-        $actelement    = $row->nombre_elemento;
-        $size=(strlen($actelement)>17)?'font-size: 17px;':'';
-        echo $row->numodt . " <span style='color:#2FE3BF; ".$size."'>" . $actelement . "</span>";
-    } else {
-        echo "--";
-    }
-     }
-    
+    <td class="orders-td"> <?php 
+    $size=(strlen($Ajuste['elemento_virtual'])>17)?'font-size: 17px;':'';
+        echo $odetes . " <span style='color:#2FE3BF; ".$size."'>" . $Ajuste['elemento_virtual'] . "</span>";    
 ?></td>
   </tr>
   
@@ -603,6 +592,9 @@ if (@$_SESSION['logged_in'] != true) {
   </div>
 </div>
  <form name="fvalida" id="fvalida" method="POST" onsubmit="saveTiro()">
+  <input type="hidden" name="isvirtual" value="true"> 
+  <input  type="hidden" id="qty" name="qty" value="single" />
+  <input type="hidden" name="element_v" value="<?=$Ajuste['elemento_virtual'] ?>">
  <input type="hidden" name="element" value="<?=$element ?>">
   <input type="hidden" name="section" value="tiraje">
  <input type="hidden" name="hour" value="<?= (isset($_POST['horadeldia'])) ? $_POST['horadeldia'] : $horaAjuste; ?>"> 
@@ -643,7 +635,7 @@ if (@$_SESSION['logged_in'] != true) {
                         <div class="square-button-h yellow   derecha goalert">
                           <img src="images/warning.png">
                         </div><a href="index2.php">
-                        <div  class="square-button-h prple" >
+                        <div style="display: none;"  class="square-button-h prple" >
                           <img src="images/volv.png">
                         </div></a>
                        <div style="display: none;" class="square-button-h prple" onclick="pauseConfirm();">
@@ -709,7 +701,7 @@ foreach ($orderID as $odt) {
   </div>
   <!-- ********************** Termina Ventana multiples ordenes seleccionadas ******************** -->
  <input type="hidden" id="numodt" name="numodt" value="<?= implode(",", $orderID) ?>"/>
- <input  type="hidden" id="qty" name="qty" value="multi" />
+ 
 <input  type="hidden" id="odt" name="odt" value="<?=$odetes ?>" />
   <?php
     } else {
@@ -719,7 +711,7 @@ foreach ($orderID as $odt) {
         if ($pause_exist != true) {
 ?>
      <table id="former">
-  <input  type="hidden" id="qty" name="qty" value="single" />
+  
   <tr>
     <td class="title-form">CANTIDAD DE PEDIDO</td>
     <td class="title-form">BUENOS</td>
@@ -732,7 +724,7 @@ foreach ($orderID as $odt) {
                 $merm = ($row->merma_recibida != null) ? $cantrecib - $cpedido : $cantrecib - $cpedido;
             }
 ?>
-    <td class=""><input type="number" class="getkeyboard"  id="pedido"  name="pedido" value="<?=$cpedido ?>" readonly onclick="getKeys(this.id,'pedido')" onkeyup="opera();"  ></td>
+    <td class=""><input type="number" class="getkeyboard"  id="pedido"  name="pedido" value="" readonly onclick="getKeys(this.id,'pedido')" onkeyup="opera();"  ></td>
    
    
    <td class=""><input id="buenos" class="getkeyboard" onclick="getKeys(this.id,'buenos')"  name="buenos" type="number"  name="" onkeyup="opera();" readonly style="margin-right: 10px;" required="required"></td>
@@ -744,7 +736,7 @@ foreach ($orderID as $odt) {
     <td class="title-form">PIEZAS DE AJUSTE</td>
   </tr>
   <tr>
-    <td class=""> <input type="number" id="cantidad" readonly onclick="getKeys(this.id,'cantidad')"  class="getkeyboard" name="cantidad" value="<?= $cantrecib ?>"  onkeyup="opera();">
+    <td class=""> <input type="number" id="cantidad" readonly onclick="getKeys(this.id,'cantidad')"  class="getkeyboard" name="cantidad" value=""  onkeyup="opera();">
     <!-- <input id="merma" class="" name="merma" type="number"   value="<?= $merm ?>"  style="width: 75px;margin-right: 10px;" required="required"> --> </td>
     <td class=""><input  id="piezas-ajuste" readonly class="getkeyboard" name="piezas-ajuste" type="number"  onclick="getKeys(this.id,'piezas-ajuste')"  style="margin-right: 10px;" onkeyup="GetDefectos()" > </td>
   </tr>

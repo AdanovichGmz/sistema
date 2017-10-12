@@ -99,6 +99,7 @@ if ( $p==1) {
 </head>
 
 <style type="text/css">
+
        .clock{
         transform: scale(1.5);
 -ms-transform: scale(1.5); 
@@ -121,6 +122,43 @@ if ( $p==1) {
           
             
         }
+        .vform{
+          width: 40%;
+          display: inline-block;
+          text-align: center;
+          vertical-align: top;
+        }
+
+  #virtualodt{
+    text-transform:uppercase;
+        width: 90%;
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #D2D3D5;
+   
+    
+  }
+  .vform p{
+    font-size: 20px!important;
+    font-weight: bold;
+  }
+  .vform p:last-child{
+    color: red;
+  }
+  
+    #virtualelem{
+    
+        width: 90%;
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #D2D3D5;
+   
+  }
+
 
         #result {
   width:280px;
@@ -289,7 +327,8 @@ if ( $p==1) {
                         <div class="timer-container">
                                     <div id="chronoExample">
                                     <div id="timer"><span class="values">00:00:00</span></div>
-                                    
+                                    <input type="hidden" id="elemvirtual" name="elemvirtual">
+                                    <input type="hidden" id="odtvirtual" name="odtvirtual">
                                     <input type="hidden" id="timee" name="tiempo">
                                     <input type="hidden" id="ontime" name="ontime" value="true">
                                 </div>
@@ -642,7 +681,24 @@ if (!empty($update)) {
 ?>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-  
+  function addOrder(){
+//$("#panelkeyboard2").animate({ bottom: '-=58%' }, 200);     
+ // kb=false;
+  var form='<form id="virtualform"><div class="vform"><p>Numero de ODT:</p>'+
+  ' <input type="hidden" name="entorno" value="virtual">'+
+  ' <input type="hidden" name="machine" value="<?=$machineName; ?>">'+
+  ' <input type="text" readonly required="true" name="virtualodt" id="virtualodt" >'+
+  '<p id="podt" style="display:none">Rellena este campo</p></div>'+
+  '<div class="vform"><p>Parte:</p>'+
+            '<input type="text" readonly required="true" name="virtualelem" id="virtualelem" >'+
+            '<p id="pelem" style="display:none">Rellena este campo</p></div>'+
+           
+            '<input type="button" id="saving" style="display: none;"></form>';
+
+
+   $('#odtresult').html(form);
+   $('#virtualodt').focus();
+}
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js"></script>
+<script src="js/ajuste.js?v=2"></script>

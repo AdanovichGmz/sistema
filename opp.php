@@ -47,6 +47,45 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
 </form>
                         </div> 
  <?php # termina general
+}elseif ($entorno=='virtual') {
+ 
+ $vodt=strtoupper ($_POST['virtualodt']);
+ $velem=ucfirst($_POST['virtualelem']);
+ $machineName=$_POST['machine'];
+ $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
+ $clean=$mysqli->query("DELETE FROM personal_process WHERE proceso_actual='$machineName'");
+ if ($clean) {
+   $addvirtual=$mysqli->query("INSERT INTO `personal_process` (`id_pp`, `id_orden`, `num_odt`, `proceso_actual`, `id_proceso`, `status`, `orden_display`, `elemento_virtual`) VALUES (NULL, NULL, '$vodt', '$machineName', NULL, 'actual', 1, '$velem')");
+   if ($addvirtual) {
+    $getvirtual=$mysqli->query("SELECT * FROM personal_process WHERE proceso_actual='$machineName' ORDER BY orden_display ASC");
+    while ($valores = mysqli_fetch_array($getvirtual)) {
+     $getprocessId=$mysqli->query("SELECT idmaquina FROM maquina WHERE nommaquina='$process'");
+    $procId=mysqli_fetch_assoc($getprocessId);
+    $vi=1;
+   ?>
+    <div id="<?=$vi ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face abajo   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
+                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
+                        
+                       
+                       
+                          <p class="elem" ><?php echo  trim($valores['elemento_virtual']); ?></p>
+                          <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
+                        </div>
+                         <input type='hidden' id='returning' name="returning" value="<?=$valores['num_odt']; ?>">
+                        <input type='hidden' id='returning2' name="returning2" value="<?=$valores['elemento_virtual']; ?>">
+                          <input type='hidden' id='returning3' name="returning3"    value="virtual">
+   <?php
+   $vi++;
+ }
+   }else{
+    echo "ocurrio un error     ";
+    printf($mysqli->error);
+   }
+ }
+
+
+
 }else{
   //************************************************************
   function searchArrayKeyVal($sKey, $id, $array) {

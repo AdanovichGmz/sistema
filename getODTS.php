@@ -24,7 +24,14 @@ if (!$result) {
                   <?php
                       
                       if ($result->num_rows==0) {
-                       echo '<p style="font-size:18pt; color:#E9573E;font-family: monse-bold; text-align:center;">NO HAY ORDENES<p>';
+                       echo '<p style="font-size:18pt; color:#E9573E;font-family: monse-bold; text-align:center; margin-bottom:0;">NO HAY ORDENES</p>';
+                       ?>
+                       <div id="" style="text-transform: uppercase;line-height: 65px;width: 250px"   class="rect-button-small radio-menu-small2 face" onclick="addOrder();getKeys('virtualodt','pedido')">
+                      
+                          REGISTRAR 
+                          <p class="suborder" >ORDEN</p>
+                        </div>
+                       <?php 
                        
                       }
                       else{

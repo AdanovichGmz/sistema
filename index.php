@@ -59,7 +59,7 @@ if(@$_SESSION['logged_in'] == true){
         </div>
         
         <select name="mac" required="true" class="login-input" style="text-align: center!important;">
-        <option   disabled="true" selected="true" value="">Selecciona el area</option>
+        <option   disabled="true" selected="true">Selecciona el area</option>
             
             <option value="b0:34:95:01:ec:2b">SUAJE</option>
             <option value="f0:db:f8:11:97:bc">SERIGRAFIA</option>

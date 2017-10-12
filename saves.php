@@ -44,7 +44,31 @@ require('classes/functions.class.php');
         $fechadeldia = $_POST['fechadeldia'];
         $machineID=$_SESSION['machineID'];
         $machineName=$_SESSION['machineName'];
-        //$odetes= explode(',',$_POST['orderodts']);
+        //$odetes= explode(',',$_POST['orderodts'])
+        if ($_POST['numodt']=='virtual') {
+          $virtOdt=$_POST['odtvirtual'];
+          $virtElem=$_POST['elemvirtual'];
+            if ($ontime=='false') {
+            $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,numodt,id_orden, seccion) VALUES (null,'$tiempo','$fechadeldia','$machineID','$orderodts',$odt,'ajuste')";
+            $deadresultado = $mysqli->query($deadquery);
+            if ($deadresultado) {
+              $log->lwrite('se registro un tiempo muerto','TIEMPO_MUERTO');
+              
+              $log->lclose();
+            }
+            $tiempoajuste='"00:20:00.000000"';
+          }else{
+            $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
+          }
+            
+            $query     = "INSERT INTO tiraje (tiempo_ajuste, id_maquina, id_user, horadeldia_ajuste, fechadeldia_ajuste, id_orden,is_virtual,odt_virtual,elemento_virtual) VALUES ($tiempoajuste,'$machineID','$userID','$horadeldia','$fechadeldia', NULL,1,'$virtOdt','$virtElem')";
+            $resultado = $mysqli->query($query);
+            if ($resultado) {
+              echo "tiraje virtual insertado";
+            }else{
+              printf($mysqli->error);
+            }
+         } else{
         $actuals_query="SELECT  os.status, o.idorden,o.numodt, os.proceso_actual FROM personal_process os INNER JOIN ordenes o on os.id_orden=o.idorden WHERE status='actual' AND proceso_actual='$machineName'";
         $resultodt=$mysqli->query($actuals_query);
         //$numodt      = (isset($_POST['numodt'])) ? explode(',', substr($_POST['numodt'], 0, -1)) : '';
@@ -80,17 +104,19 @@ require('classes/functions.class.php');
               $log->lclose();
         }
         }
+      }
        
      } 
       elseif ($section=='tiraje') {
-            
+            $log->lwrite(json_encode($_POST),'UPDATING');
+              
             if ($_POST['qty']=='single') {
-             
+               $isvirtual=(isset($_POST['isvirtual'])? $_POST['isvirtual'] :'false');
             $producto=(isset($_POST['producto'])) ?$_POST['producto'] : '';
             $numodt=(isset($_POST['numodt'])) ?$_POST['numodt'] : '';
             $logged_in=$_POST['logged_in'];
             $nombremaquina=$_POST['nombremaquina'];
-            $odt=$_POST['odt'];
+            $odt=(isset($_POST['odt']))? $_POST['odt'] : '';
             $pedido=(isset($_POST['pedido'])) ?$_POST['pedido'] : '';
             $cantidad=(isset($_POST['cantidad'])) ?$_POST['cantidad'] : '';
             $buenos=(isset($_POST['buenos'])) ?$_POST['buenos'] : '';
@@ -104,7 +130,7 @@ require('classes/functions.class.php');
             $merma_entregada=$_POST['merma-entregada'];
             $passmerma=$merma-($merma_entregada+$defectos+$ajuste);
             $element=$_POST['element'];
-    
+      $log->lwrite( $isvirtual,'UPDATING');
            $horaTiraje     = date(" H:i:s", time());
             $userID = $_SESSION['id'];
             
@@ -115,7 +141,44 @@ require('classes/functions.class.php');
             $machineName = $_SESSION['machineName'];
             $processID=($machineID==20||$machineID==21)? 10:$machineID;
             $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$processID AND id_elemento= $element";
-            
+                if($isvirtual=='true'){
+                  $elem_v=$_POST['element_v'];
+                  $tiraje_estandar=$buenos;
+                  if ($tiraje_estandar>0) {
+                    $predesemp=($entregados*100)/$tiraje_estandar;
+                   $tiraje_desemp=($predesemp>100)? 100 : $predesemp;
+                   $log->lwrite('si vale algo','desemp');
+                  }else{
+                    $tiraje_desemp=0;
+                    $log->lwrite('no vale nada','desemp');
+                  }
+                  $prodEsperada=round($tiraje_estandar);
+                  $_query="select MAX(idtiraje) as last FROM tiraje";
+                  $hora=$_POST['hour'];
+                  $getLast = mysqli_fetch_assoc($mysqli->query($_query));
+                  $lastId=$getLast['last'];
+                  $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horaTiraje', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE horadeldia_ajuste='$hora'  AND id_maquina=$machineID AND is_virtual='true' AND elemento_virtual='$elem_v' AND tiempoTiraje IS NULL";
+
+           
+
+            $resultado=$mysqli->query($query);
+            if (!$resultado) {
+              
+              $log->lwrite(printf($mysqli->error),'UPDATING');
+
+            }
+             $log->lwrite($query,'UPDATING');
+              $log->lclose();
+            $cleanPersonal=$mysqli->query("DELETE FROM personal_process WHERE proceso_actual='$machineName'");
+             $cleanall=$mysqli->query("DELETE FROM odt_flujo WHERE proceso='$machineName'");
+             if (!$cleanall) {
+               printf($mysqli->error);             }
+               if (!$cleanPersonal) {
+               printf($mysqli->error);             }
+               if (!$resultado) {
+               printf($mysqli->error);             }
+                    
+                }else{
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
             $estandar       = $getstandar['piezas_por_hora'];
             //calculando desempeño para pieza actual
@@ -127,7 +190,8 @@ require('classes/functions.class.php');
             }
             
             if ($tiraje_estandar>0) {
-             $tiraje_desemp=($entregados*100)/$tiraje_estandar;
+              $predesemp=($entregados*100)/$tiraje_estandar;
+             $tiraje_desemp=($predesemp>100)? 100 : $predesemp;
              $log->lwrite('si vale algo','desemp');
             }else{
               $tiraje_desemp=0;
@@ -303,6 +367,7 @@ require('classes/functions.class.php');
                         $log->lwrite($query,'multi-error');
                         $log->lclose();
                       }
+            }
             } elseif ($_POST['qty']=='multi') {
               print_r($_POST);
               $hora=$_POST['hour'];
