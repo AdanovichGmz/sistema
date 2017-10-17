@@ -160,6 +160,7 @@ $(document).ready(function(event) {
                $('#orderID').val(orid);
               $('#order').val(orid);
                
+               
                $('#currentOrder').html('EN PROCESO: '+curorder+" "+curid);
                 $('.saveloader').hide();
                 $('.savesucces').show();
@@ -309,7 +310,7 @@ setInterval(animacion, 550);
 
     $("#close-down").click(function () {
       if (kb==true) {
-        $("#panelkeyboard2").animate({ bottom: '-=58%' }, 200);     
+        $("#panelkeyboard2").animate({ bottom: '-=60%' }, 200);     
   kb=false;
       }
    
@@ -419,7 +420,7 @@ setInterval(animacion, 550);
   }
 function sendODT(odt,machine){
   $('#getodt').val(odt);
-   $("#panelkeyboard2").animate({ bottom: '-=58%' }, 200);     
+   $("#panelkeyboard2").animate({ bottom: '-=60%' }, 200);     
   kb=false;
     $.ajax({  
                       
@@ -440,7 +441,7 @@ function getKeys(id,name) {
       
       jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
         if (kb == false) {
-            $("#panelkeyboard2").animate({ bottom: '+=58%' }, 200);
+            $("#panelkeyboard2").animate({ bottom: '+=60%' }, 200);
             kb = true;
         }
         var bguardar;
@@ -463,19 +464,21 @@ function getKeys(id,name) {
                             ['0',')']
                         ],
                     [
-                            'q','w','e','r','t','y','u','i','o','p','a'
+                            'q','w','e','r','t','y','u','i','o','p'
                             
                         ],
                         [
                             
-                            's','d','f','g','h','j','k','l','z','x','c'
+                            'a','s','d','f','g','h','j','k','l','ñ'
                             
                             
                             
                         ],[
                             
-                            'v','b','n','m','__','←','GUARDAR' ]
+                            'z','x','c','v','b','n','m','←'],
+                            ['__','GUARDAR']
                             ],
+
                     id:'softkeys'
                 });
                 /*
@@ -522,7 +525,7 @@ function createVirtualOdt(){
     $('#pelem').show();
   }
   else{
-     $("#panelkeyboard2").animate({ bottom: '-=58%' }, 200);     
+     $("#panelkeyboard2").animate({ bottom: '-=60%' }, 200);     
   kb=false;
     $.ajax({  
                       
@@ -539,7 +542,7 @@ function createVirtualOdt(){
               $('#order').val(orid);
               $('#elemvirtual').val(curid);
               $('#odtvirtual').val(curorder);
-               
+               $('#orderODT').val(curorder);
 
                $('#currentOrder').html('EN PROCESO: '+curorder+" "+curid);  
                      }  

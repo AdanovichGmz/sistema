@@ -234,6 +234,11 @@ require('../saves/conexion.php');
    <p>Generar Reporte</p>
    <div class="mini-left2">
 <input id="datepicker" required="true" value="" name="id" />
+<select name="iduser" required="true">
+  <option value="14">Arturo</option>
+  <option value="16">Armando</option>
+  <option value="8">Eduardo</option>
+</select>
 <div id="hidetable"></div>
    </div>
    <div class="mini-right2"> <button id="button1id" name="button1id" class="btn btn-primary">PDF</button><button style="margin-left: 5px;" type="button" class="btn btn-primary" onclick="getExcel();">EXCEL</button></div>

@@ -59,7 +59,7 @@
                             case '__' :
                                 character = '<span>___</span>';
                                 type = 'space';
-                                styleClass = 'savebutton saver';
+                                styleClass = 'spacer';
                                 break;    
                             case 'space' :
                                 character = '<span>space</span>';

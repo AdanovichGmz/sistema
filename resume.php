@@ -58,7 +58,7 @@ if ($getodts) {
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
     $etequery3 = "SELECT COALESCE((SELECT SUM( entregados ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera, (SELECT SUM( buenos ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today') AS buenos";
     //obtenemos desempeño operando entregados+merma
-    $etequery4 = "SELECT SUM(desempenio) AS desemp ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
+    $etequery4 = "SELECT SUM(produccion_esperada) AS prod_esperada, SUM(buenos) AS prod_real  ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
     $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
 
 
@@ -95,7 +95,7 @@ if ($getodts) {
     //obtenemos el porcentaje de estandar segundos*estandar/1hora
    
     
-    $desempenio =($getEfec['tirajes']>0)? ($getEfec['desemp']*100)/($getEfec['tirajes']*100) : 0;
+    $desempenio =($getEfec['prod_real']/$getEfec['prod_esperada'])*100;
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     
@@ -357,7 +357,7 @@ table td:last-child{
   </tr>
   <tr>
     <td width="60">TIEMPO DISPONIBLE</td>
-    <td width="40"><?= gmdate('H:i:s',$seconds)?></td>
+    <td width="40"><?= gmdate('H:i:s',($seconds>14400)? $seconds-3600 : $seconds ); ?></td>
     <input type="hidden" name="t-disponible" value="<?= gmdate('H:i:s',$seconds)?>">
     
   </tr>

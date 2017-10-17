@@ -38,18 +38,18 @@
         min-width: 8em;
         min-height:  8em;
         margin: 0 0.2em 0.8em 0.2em;
-        border: 0.1em solid #aaa;
+        border: 0.1em solid #0F0F0F;
         border-radius: 5px;
         cursor: pointer;
         position: relative;
         vertical-align: top;
-        background:#343434;
+        background:#353535;
     }
     .large{
-        min-width: 15em!important;
+        min-width: 16em!important;
     }
     .saver{
-        min-width: 26em!important;
+        min-width: 28em!important;
     }
 
         .softkeys__btn:hover, .softkeys__btn:focus {

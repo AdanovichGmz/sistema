@@ -71,7 +71,17 @@ if (isset($_COOKIE['ajuste'])){
 }
 
 elseif (isset($_COOKIE['tiraje'])){
-    header("Location: index3.php");
+    $machineName=$_SESSION['machineName'];
+    $isVirtual=mysqli_fetch_assoc( $mysqli->query("SELECT elemento_virtual FROM personal_process WHERE status='actual' AND proceso_actual='$machineName' "));
+    if ($isVirtual['elemento_virtual']!=null) {
+       header("Location: index3_5.php");
+    }else{
+        header("Location: index3.php");
+    }
+
+
+
+    
     } 
 else{
     header("Location: asaichii.php");

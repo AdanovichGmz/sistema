@@ -1,5 +1,6 @@
 
 <?php
+error_reporting(0);
 ini_set('session.gc_maxlifetime', 30*60);
 date_default_timezone_set("America/Mexico_City");
 if (isset($_COOKIE['ajuste'])) {
@@ -69,7 +70,7 @@ if (@$_SESSION['logged_in'] != true) {
            $today=date("d-m-Y");
             $singleID=$orderID[0];
             $userID      = $_SESSION['id'];
-            $elemv=(isset($_GET['elem']))?$_GET['elem']:'';
+            $elemv=(isset($_GET['elem']))?$_GET['elem']: $id['elemento_virtual'];
             $getAjuste    = "SELECT horadeldia_ajuste,elemento_virtual FROM tiraje WHERE is_virtual='true' AND id_maquina=$machineID AND fechadeldia_ajuste='$today' AND elemento_virtual='$elemv' AND tiempoTiraje IS NULL";
 
             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
@@ -133,7 +134,7 @@ if (@$_SESSION['logged_in'] != true) {
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
     $etequery3 = "SELECT COALESCE((SELECT SUM( entregados ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera";
     //obtenemos desempeño operando entregados+merma
-    $etequery4 = "SELECT SUM(desempenio) AS desemp ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
+    $etequery4 = "SELECT SUM(produccion_esperada) AS prod_esperada, SUM(buenos) AS prod_real  ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
     $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
@@ -171,11 +172,12 @@ if (@$_SESSION['logged_in'] != true) {
     //obtenemos el porcentaje de estandar segundos*estandar/1hora
     $estandar_prod = (($seconds-3600) * $estandar) / 3600;
     
-    $desempenio =($getEfec['tirajes']>0)? ($getEfec['desemp']*100)/($getEfec['tirajes']*100) : 0;
+    $desempenio =($getEfec['prod_esperada']>0)? ($getEfec['prod_real']/$getEfec['prod_esperada'])*100 :0;
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
-    
+   
     $dispon     =($seconds>14400)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
+     
     //$disponible = round($dispon, 1);
     $disponible = round($dispon);
     
@@ -485,7 +487,8 @@ if (@$_SESSION['logged_in'] != true) {
   <li style="float:right"></li>
    <li style="float:right"><span id="hora" ></span></li>
     
-              
+   <li style="float:right ;" id="avancerealtime"><?php include 'avance.php';
+?></li>           
 </ul>
         
 <div class="statistics">

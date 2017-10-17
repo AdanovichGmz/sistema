@@ -13,7 +13,9 @@
 /*------------------------------------*\
     BASE
 \*------------------------------------*/
-
+legend{
+    margin-bottom: 10px;
+}
 .softkeys {
     display: table;
     list-style: none;
@@ -35,21 +37,25 @@
         text-align: center;
         font-size: 1em;
         line-height: 6em;
-        min-width: 6em;
-        min-height:  6em;
+        min-width: 6.5em;
+        min-height:  5em;
         margin: 0 0.2em 0.4em 0.2em;
-        border: 0.1em solid #aaa;
+        border: 0.1em solid #0F0F0F;
         border-radius: 5px;
         cursor: pointer;
         position: relative;
         vertical-align: top;
-        background:#343434;
+        background:#353535;
     }
     .large{
-        min-width: 10em!important;
+        min-width: 15em!important;
+    }
+    .spacer{
+        min-width: 30em!important;
     }
     .saver{
-        min-width: 16em!important;
+        min-width: 25em!important;
+        /* background: #0F0F0F!important */
     }
     .hidder{
         min-width: 14.6em!important;

@@ -1,5 +1,6 @@
 
 <?php
+error_reporting(0);
 ini_set('session.gc_maxlifetime', 30*60);
 date_default_timezone_set("America/Mexico_City");
 if (isset($_COOKIE['ajuste'])) {
@@ -132,7 +133,7 @@ if (@$_SESSION['logged_in'] != true) {
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
     $etequery3 = "SELECT COALESCE((SELECT SUM( entregados ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera";
     //obtenemos desempeño operando entregados+merma
-    $etequery4 = "SELECT SUM(desempenio) AS desemp ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
+    $etequery4 = "SELECT SUM(produccion_esperada) AS prod_esperada, SUM(buenos) AS prod_real  ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
     $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
@@ -170,7 +171,7 @@ if (@$_SESSION['logged_in'] != true) {
     //obtenemos el porcentaje de estandar segundos*estandar/1hora
     $estandar_prod = (($seconds-3600) * $estandar) / 3600;
     
-    $desempenio =($getEfec['tirajes']>0)? ($getEfec['desemp']*100)/($getEfec['tirajes']*100) : 0;
+    $desempenio =($getEfec['prod_real']/$getEfec['prod_esperada'])*100;
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     $roundDesemp=($desempenio>100)? 100 : $desempenio;
@@ -179,7 +180,7 @@ if (@$_SESSION['logged_in'] != true) {
     $disponible = round($dispon);
     
     $real       = mysqli_fetch_assoc($mysqli->query($etequery5));
-
+   
 
     //echo "<p style='color:#fff;'>dispon ".$dispon." calidad ".$Quality." desempeño ".$desempenio." prod esperada ".$getEfec['esper']." real ".$real['desempenio']." calidad ".$Quality." tiempo hasta ahora: ".$seconds."</p>";
     $roundQuality=($Quality>100)? 100 : $Quality;
@@ -1038,7 +1039,7 @@ foreach ($orderID as $odt) {
                         </div>
     </div>
     <div class="keycontainer">
-      <div id="softk" class="softkeys" data-target="input[name='buenos']"></div>
+      <div id="softk" style="width: 80%;margin: 0 auto; text-align: center;" class="softkeys" data-target="input[name='buenos']"></div>
     </div>
     
 </div>
