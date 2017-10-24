@@ -1,6 +1,25 @@
  var jQuery214=$.noConflict(true);
  var r = false;
  var k=false;
+ function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    // add a zero in front of numbers<10
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('inicioAlerta').value = h + ":" + m + ":" + s;
+
+    
+}
  function opera(){ 
      var cantidad = document.all.cantidad.value; 
                            var buenos = document.all.buenos.value;  
@@ -150,6 +169,7 @@ timer.addEventListener('started', function (e) {
    $('.goalert').click(function () {
      timer.pause();
     timerAlertm.start();
+    startTime(); 
     //$('#timee').val(timerAlert.getTimeValues().toString());
     timerAlertm.addEventListener('secondsUpdated', function (e) {
     $('#alertajuste .valuesAlert').html(timerAlertm.getTimeValues().toString());

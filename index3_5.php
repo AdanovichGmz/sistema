@@ -600,6 +600,7 @@ if (@$_SESSION['logged_in'] != true) {
   <input type="hidden" name="element_v" value="<?=$Ajuste['elemento_virtual'] ?>">
  <input type="hidden" name="element" value="<?=$element ?>">
   <input type="hidden" name="section" value="tiraje">
+  <input type="hidden" name="horainiciotiro" value="<?=date(" H:i:s", time()); ?>">
  <input type="hidden" name="hour" value="<?= (isset($_POST['horadeldia'])) ? $_POST['horadeldia'] : $horaAjuste; ?>"> 
 <div class="statistics">
   <div class="left-sec" style="position: relative;">
@@ -870,7 +871,8 @@ foreach ($orderID as $odt) {
             <div id="estilo">
 
              <form id="alerta-tiro" name="alerta-tiro" method="post"  class="form-horizontal"  >
-                
+                <input type="hidden" name="tiro" value="<?=$id['last_tiraje'] ?>">
+                <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php
     echo "" . $_SESSION['logged_in'];
 ?>" />
@@ -1179,4 +1181,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js"></script>
+  <script src="js/tiraje.js?v=2"></script>

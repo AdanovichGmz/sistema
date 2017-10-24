@@ -1,15 +1,16 @@
 <?php
 session_start();
+date_default_timezone_set("America/Mexico_City"); 
 require('saves/conexion.php');
 $radios=$_POST['radios'];
 $observaciones=$_POST['observaciones'];
-
+$tiro=$_POST['tiro'];
 //foreach ($_POST['opcion'] as $opcion); 
-
+$inicioAlerta=$_POST['inicioAlerta'];
 $tiempoalertamaquina=$_POST['tiempoalertamaquina'];
 $nombremaquinaajuste=$_POST['nombremaquinaajuste'];
 
-
+$horafin=date(" H:i:s", time());
 $horadeldiaam=$_POST['horadeldiaam'];
 $fechadeldiaam=$_POST['fechadeldiaam'];
 
@@ -19,7 +20,7 @@ $getMachine = $_SESSION['machineName'];
 $machineID = $_SESSION['machineID'];
 
 
-$query="INSERT INTO alertamaquinaoperacion (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam, fechadeldiaam) VALUES ('$radios','$observaciones','$tiempoalertamaquina',$machineID,$userID,'$horadeldiaam','$fechadeldiaam')";
+$query="INSERT INTO alertamaquinaoperacion (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,  horafin_alerta, fechadeldiaam,id_tiraje) VALUES ('$radios','$observaciones','$tiempoalertamaquina',$machineID,$userID,'$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro)";
 
 
 $resultado=$mysqli->query($query);

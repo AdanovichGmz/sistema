@@ -131,7 +131,7 @@ if (@$_SESSION['logged_in'] != true) {
     $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$machineID AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
     
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
-    $etequery3 = "SELECT COALESCE((SELECT SUM( entregados ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera";
+    $etequery3 = "SELECT COALESCE((SELECT SUM( buenos ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera";
     //obtenemos desempeño operando entregados+merma
     $etequery4 = "SELECT SUM(produccion_esperada) AS prod_esperada, SUM(buenos) AS prod_real  ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
     $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
@@ -607,6 +607,7 @@ if (@$_SESSION['logged_in'] != true) {
  <input type="hidden" name="element" value="<?=$element ?>">
   <input type="hidden" name="section" value="tiraje">
  <input type="hidden" name="hour" value="<?= (isset($_POST['horadeldia'])) ? $_POST['horadeldia'] : $horaAjuste; ?>"> 
+ <input type="hidden" name="horainiciotiro" value="<?=date(" H:i:s", time()); ?>">
 <div class="statistics">
   <div class="left-sec" style="position: relative;">
       <div class="timersmall">
@@ -876,7 +877,8 @@ foreach ($orderID as $odt) {
             <div id="estilo">
 
              <form id="alerta-tiro" name="alerta-tiro" method="post"  class="form-horizontal"  >
-                
+                <input type="hidden" name="tiro" value="<?=$id['last_tiraje'] ?>">
+                <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php
     echo "" . $_SESSION['logged_in'];
 ?>" />
@@ -1185,4 +1187,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js"></script>
+  <script src="js/tiraje.js?v=2"></script>

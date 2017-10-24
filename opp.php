@@ -4,6 +4,7 @@ require('classes/functions.class.php');
  require('saves/conexion.php');
 $entorno=(isset($_POST["entorno"]))? $_POST["entorno"] : 'personal';
 $machineName=(isset($_POST['machine']))? $_POST['machine'] :'';
+
 if ($entorno=='general') {
   $datos=(isset($_POST["odt"]))? explode(",",$_POST["odt"] ):''; 
 
@@ -30,7 +31,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
                       $get_elem=mysqli_fetch_assoc($mysqli->query($element_query));
                       $element=$get_elem['nombre_elemento'];
                      ?>
-                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face abajo   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face    <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
                         
@@ -63,7 +64,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
     $procId=mysqli_fetch_assoc($getprocessId);
     $vi=1;
    ?>
-    <div id="<?=$vi ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face abajo   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+    <div id="<?=$vi ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face    <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
                         
@@ -276,25 +277,25 @@ $sql="SELECT o.*, pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) 
 $sql2="SELECT o.idorden,o.numodt,o.orden,p.id_proceso,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS display FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt'  order by display ASC";
 
 $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";
-                      $initial = mysqli_fetch_assoc($mysqli->query($initquery));
-                      $init=$initial['conteo'];
+                      $initial_ = mysqli_fetch_assoc($mysqli->query($initquery));
+                      $init_=$initial_['conteo'];
                       if ($oldOdt!='') {
                         
                       if ($getodt==$oldOdt) {
-                         $fin=($init>0)? $sql : $sql2;
+                         $fin=($init_>0)? $sql : $sql2;
                                            
                       } else{
                         $fin=$sql2; 
                         
                       }                     
                       }else{
-                        $fin=($init>0)? $sql : $sql2;
+                        $fin=($init_>0)? $sql : $sql2;
                       }
 
                       $result=$mysqli->query($fin);
                       $i=1;
                      
-                 
+           
 while($arr=mysqli_fetch_assoc($result)){
   $results[$i] = $arr;
   $i++;
@@ -432,7 +433,7 @@ $i5++;
                       $get_elem=mysqli_fetch_assoc($mysqli->query($element_query));
                       $element=(isset($get_elem['nombre_elemento']))? $get_elem['nombre_elemento'] : '';
                      ?>
-                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face abajo   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face    <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
                         

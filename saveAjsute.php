@@ -1,10 +1,11 @@
 <?php
 
 require('saves/conexion.php');
-
+date_default_timezone_set("America/Mexico_City"); 
 $radios=$_POST['radios'];
 $observaciones=$_POST['observaciones'];
-
+$tiro=$_POST['actual_tiro'];
+$inicioAlerta=$_POST['inicioAlerta'];
 //foreach ($_POST['opcion'] as $opcion); 
 
 $tiempoalertamaquina=$_POST['tiempoalertamaquina'];
@@ -20,9 +21,9 @@ $getID = mysqli_fetch_assoc($mysqli->query($query2));
 $userID = $getID['id'];
 $getMachine = mysqli_fetch_assoc($mysqli->query($query4));
 $machineID = $getMachine['idmaquina'];
+$horafin=date(" H:i:s", time());
 
-
-$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam, fechadeldiaam) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$machineID','$userID','$horadeldiaam','$fechadeldiaam')";
+$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$machineID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro)";
 
 
 $resultado=$mysqli->query($query);

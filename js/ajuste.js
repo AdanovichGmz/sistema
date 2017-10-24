@@ -1,4 +1,23 @@
 /******************** index2.php ********************/
+function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    // add a zero in front of numbers<10
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('inicioAlerta').value = h + ":" + m + ":" + s;
+
+    
+}
 var jQuery214=$.noConflict(true);
 var kb=false;
 $(document).ready(function(event) {
@@ -62,9 +81,21 @@ $(document).ready(function(event) {
 
 
                                              $( "#save-ajuste").click(function() {
-                                             
-                                                      $( "#fo4" ).submit();
-                                                   
+
+                                               var tiro=$('#actual_tiro').val();
+                                              $.ajax({
+                                                  type: 'POST',
+                                                  url: 'init_tiro.php',
+                                                  data: {tiraje:tiro,init:'reinit'},
+                                                  // Mostramos un mensaje con la respuesta de PHP
+                                                  success: function(data) {
+                                                    console.log(data);
+                                                      $('#horadeldia').val(data.hora);
+                                                     $( "#fo4" ).submit();
+                                                  }
+                                              })
+                                                      
+                                                       
                                              
                                             });
 
@@ -77,6 +108,7 @@ $(document).ready(function(event) {
                                               $('.face-osc').find('input').prop('checked', false);
                                               $('.face-osc').removeClass('face-osc');
                                               $(this).addClass('face-osc').find('input').prop('checked', true);
+
                                               sendOrder();
                                             });
 
@@ -87,6 +119,7 @@ $(document).ready(function(event) {
                                               $('.face-osc').removeClass('face-osc');
                                               $(this).addClass('face-osc').find('input').prop('checked', true);
                                               sendOrder();
+                                              kb=true;
                                               $('#close-down').click();    
                                             });
 
@@ -251,6 +284,7 @@ timer.addEventListener('reset', function (e) {
 });
 
    $('.goalert').click(function () {
+   startTime(); 
     if ($('#ontime').val()=='true') {
       timer.pause();
     }else{
@@ -267,6 +301,7 @@ timer.addEventListener('reset', function (e) {
 });  
 
    $('#fo4').submit(function () {
+
      timerAlert.pause();
     $('#tiempoalertamaquina').val(timerAlert.getTimeValues().toString());
     timerAlert.stop();

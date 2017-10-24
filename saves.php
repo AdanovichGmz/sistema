@@ -44,6 +44,8 @@ require('classes/functions.class.php');
         $fechadeldia = $_POST['fechadeldia'];
         $machineID=$_SESSION['machineID'];
         $machineName=$_SESSION['machineName'];
+        $tirajeActual=$_POST['actual_tiro'];
+        $horafinajuste=date("H:i:s",time());
         //$odetes= explode(',',$_POST['orderodts'])
         if ($_POST['numodt']=='virtual') {
           $virtOdt=$_POST['odtvirtual'];
@@ -55,19 +57,18 @@ require('classes/functions.class.php');
             $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
           }
             
-            $query     = "INSERT INTO tiraje (tiempo_ajuste, id_maquina, id_user, horadeldia_ajuste, fechadeldia_ajuste, id_orden,is_virtual,odt_virtual,elemento_virtual) VALUES ($tiempoajuste,'$machineID','$userID','$horadeldia','$fechadeldia', NULL,1,'$virtOdt','$virtElem')";
+            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste',  is_virtual=1,odt_virtual='$virtOdt',elemento_virtual='$virtElem' WHERE idtiraje=$tirajeActual";
             
             $resultado = $mysqli->query($query);
-            $lastTiraje=$mysqli->insert_id;
-            
-             $setTiraje=$mysqli->query("UPDATE personal_process SET last_tiraje=$lastTiraje WHERE status='actual' AND proceso_actual='$machineName' ");
+                       
+             $setTiraje=$mysqli->query("UPDATE personal_process SET last_tiraje=$tirajeActual WHERE status='actual' AND proceso_actual='$machineName' ");
             if ($resultado) {
               echo "tiraje virtual insertado";
             }else{
               printf($mysqli->error);
             }
              if ($ontime=='false') {
-               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID','$orderodts',null,'ajuste','$horadeldia',$lastTiraje)";
+               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID','$orderodts',null,'ajuste','$horadeldia',$tirajeActual)";
             $log->lwrite($deadquery,'TIEMPO_MUERTO');
             $deadresultado = $mysqli->query($deadquery);
             if ($deadresultado) {
@@ -93,14 +94,14 @@ require('classes/functions.class.php');
           }else{
             $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
           }
-            
-            $query     = "INSERT INTO tiraje (tiempo_ajuste, id_maquina, id_user, horadeldia_ajuste, fechadeldia_ajuste, id_orden) VALUES ($tiempoajuste,'$machineID','$userID','$horadeldia','$fechadeldia', $odt)";
+            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', id_orden=$odt WHERE idtiraje=$tirajeActual";
+           
 
             $resultado = $mysqli->query($query);
-             $lastTiraje=$mysqli->insert_id;
-             $setTiraje=$mysqli->query("UPDATE personal_process SET last_tiraje=$lastTiraje WHERE status='actual' AND proceso_actual='$machineName' ");
+             
+             $setTiraje=$mysqli->query("UPDATE personal_process SET last_tiraje=$tirajeActual WHERE status='actual' AND proceso_actual='$machineName' ");
               if ($ontime=='false') {
-               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID','$orderodts',null,'ajuste','$horadeldia',$lastTiraje)";
+               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID','$orderodts',null,'ajuste','$horadeldia',$tirajeActual)";
             $log->lwrite($deadquery,'TIEMPO_MUERTO');
             $deadresultado = $mysqli->query($deadquery);
             if ($deadresultado) {
@@ -147,6 +148,8 @@ require('classes/functions.class.php');
             $merma_entregada=$_POST['merma-entregada'];
             $passmerma=$merma-($merma_entregada+$defectos+$ajuste);
             $element=$_POST['element'];
+            $horainiciotiro=$_POST['horainiciotiro'];
+            $horafintiraje=date("H:i:s",time());
       $log->lwrite( $isvirtual,'UPDATING');
            $horaTiraje     = date(" H:i:s", time());
             $userID = $_SESSION['id'];
@@ -179,7 +182,7 @@ require('classes/functions.class.php');
                    $LastT=mysqli_fetch_assoc( $mysqli->query("SELECT last_tiraje FROM personal_process WHERE status='actual' AND proceso_actual='$machineName' "));
                   $getLast=$LastT['last_tiraje'];
 
-                  $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horaTiraje', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
+                  $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horainiciotiro', horafin_tiraje='$horafintiraje', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
                   $log->lwrite("Ultimo ID de ".$machineName.": ".$getLast,'LAST_ID');
            $log->lclose();
 
@@ -233,7 +236,7 @@ require('classes/functions.class.php');
            $LastT=mysqli_fetch_assoc( $mysqli->query("SELECT last_tiraje FROM personal_process WHERE status='actual' AND proceso_actual='$machineName' "));
            $getLast=$LastT['last_tiraje'];
 
-            $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horaTiraje', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
+            $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horainiciotiro', horafin_tiraje='$horafintiraje',id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
             print_r($mysqli);
             $log->lwrite("Ultimo ID de ".$machineName.": ".$getLast,'LAST_ID');
            $log->lclose();

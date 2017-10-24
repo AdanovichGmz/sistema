@@ -294,6 +294,7 @@ if ( $p==1) {
                  <input hidden type="text" name="fechadeldia" id="fechadeldia" value="<?php echo date("d-m-Y"); ?>" />
                      <input hidden type="text" name="recover" value="<?php echo $recoverSession; ?>" />  
                     <div class="modal-content" style="">
+                    <div id="actual_tiraje" style="display: none;"></div>
                         <div class="modal-header">
                             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
                             <div class="text-center" style="font-size:18pt; text-transform: uppercase;">AJUSTE <?php echo (isset($machineName))? $machineName : $mrecovered ; ?></div>
@@ -426,7 +427,7 @@ if ( $p==1) {
                       $get_elem=mysqli_fetch_assoc($mysqli->query($element_query));
                       $element=$get_elem['nombre_elemento'];
                      ?>
-                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face abajo   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
                         
@@ -463,6 +464,7 @@ if ( $p==1) {
                  <!-- Form Name -->
                 <legend style="font-size:18pt; font-family: 'monse-bold';">ALERTA AJUSTE</legend>
                <div class="form-group" style="width:80% ;margin:0 auto;">
+               <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
                 <?php if ($_SESSION['machineName']=='Serigrafia'||$_SESSION['machineName']=='Serigrafia2'||$_SESSION['machineName']=='Serigrafia3') { ?>
                
@@ -508,10 +510,12 @@ if ( $p==1) {
                     <input type="radio" name="radios" id="radios-6" value="Otro">
                     Otro
                     </div>
+                     <div id="tiro"></div>
                 </div>
                 <?php }else{ ?>
                  <div class="two-columns">
                   <div class=" radio-menu face">
+                  <div id="tiro"></div>
                     <input type="radio" name="radios" id="radios-0" value="ODT Confusa">
                     ODT Confusa
                     </div>
@@ -586,6 +590,7 @@ if ( $p==1) {
                 <fieldset style="position: relative;left: -15px;">                
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php echo "". $_SESSION['logged_in'] ?>" />
                 <input hidden name="horadeldiaam" id="horadeldiaam" value="<?php echo date(" H:i:s",time()); ?>" />
+                 <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php echo date("d-m-Y"); ?>" />
                 <input hidden name="maquina" id="maquina" value="<?php echo $valorQuePasa5; ?>"  />
                   <!-- Form Name -->
@@ -699,6 +704,23 @@ if (!empty($update)) {
    $('#odtresult').html(form);
    $('#virtualodt').focus();
 }
+$(document).ready(function() { 
+var hora=$('#horadeldia').val();
+var fecha=$('#fechadeldia').val();
+$.ajax({  
+                      
+                     type:"POST",
+                     url:"init_tiro.php",   
+                     data:{hora:hora,fecha:fecha,init:'init'},  
+                       
+                     success:function(data){ 
+                       $('#actual_tiraje').html(data);
+                       $('#tiro').html(data);
+                       
+                     }  
+                });
+
+ });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=2"></script>
+<script src="js/ajuste.js?v=4"></script>
