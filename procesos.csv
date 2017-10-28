@@ -1,356 +1,960 @@
 numodt,elemento,nombre_proceso
-B6178,,Serigrafia
-B6178,Agradecimiento Sencillo,Corte
-J1091,Agradecimiento Sencillo,Corte
-B6180,Agradecimiento Sencillo,Corte
-J1091,Agradecimiento Sencillo,Serigrafia
-B6180,Agradecimiento Sencillo,Serigrafia
+D2428,,Laser
+M0650,,Corte
+M0650,,Acabado
+M0650,,Hot Stamping
+I3175,,Digital
+M0653,,Digital
+M0650,,Suaje
+M0653,,Suaje
+H4317,,Suaje
+J1108,,Serigrafia
+H4325,,Serigrafia
+D2395EC,Agradecimiento,Corte
+D2395EC,Agradecimiento,Serigrafia
+B6184,Agradecimiento Sencillo,Corte
+B6184,Agradecimiento Sencillo,Serigrafia
 H3510,Boleto,Corte
-B5794,Boleto,Corte
+I3175,Boleto,Corte
+H3812,Boleto,Corte
+B5871V1,Boleto,Corte
+68228,Boleto,Corte
+68229,Boleto,Corte
+68230,Boleto,Corte
+68231,Boleto,Corte
+68232,Boleto,Corte
+68233,Boleto,Corte
+68234,Boleto,Corte
+68236,Boleto,Corte
+H3957,Boleto,Corte
 H4051,Boleto,Corte
-B6104,Boleto,Corte
-D2395,Boleto,Corte
-D2400,Boleto,Corte
-I3405E1,Boleto,Corte
-H4251,Boleto,Corte
-I3322E2,Boleto,Corte
-H4257,Boleto,Corte
-D2422,Boleto,Corte
-I3369E1,Boleto,Corte
-B6064E2,Boleto,Corte
-B6103E1,Boleto,Corte
-B5724D,Boleto,Corte
-B5794,Boleto,Grabado
-I3405E1,Boleto,Grabado
-I3322E2,Boleto,Grabado
-B6064E2,Boleto,Grabado
+H4173,Boleto,Corte
+J1079,Boleto,Corte
+B6093,Boleto,Corte
+B6131,Boleto,Corte
+H4231V1,Boleto,Corte
+H4237,Boleto,Corte
+L1046,Boleto,Corte
+F1663,Boleto,Corte
+H4260V1,Boleto,Corte
+G0929,Boleto,Corte
+K2727,Boleto,Corte
+H4269,Boleto,Corte
+B6187,Boleto,Corte
+H4277,Boleto,Corte
+H4290,Boleto,Corte
+I3454,Boleto,Corte
+D2427V1,Boleto,Corte
+B6200,Boleto,Corte
+H4291,Boleto,Corte
+B6201,Boleto,Corte
+B6203,Boleto,Corte
+H4296,Boleto,Corte
+G0933,Boleto,Corte
+B6208,Boleto,Corte
+B6211,Boleto,Corte
+B6212,Boleto,Corte
+J1098,Boleto,Corte
+B6217,Boleto,Corte
+B6218,Boleto,Corte
+B6222,Boleto,Corte
+J1101,Boleto,Corte
+B6223,Boleto,Corte
+B6227,Boleto,Corte
+G0935,Boleto,Corte
+H4342,Boleto,Corte
+H4215E3,Boleto,Corte
+B6236,Boleto,Corte
+B6237,Boleto,Corte
+B6242,Boleto,Corte
+D2425E1,Boleto,Corte
+F1687,Boleto,Corte
+H3812,Boleto,Grabado
+68232,Boleto,Grabado
+H4231V1,Boleto,Grabado
+H4237,Boleto,Grabado
+H4269,Boleto,Grabado
+H4277,Boleto,Grabado
+H4296,Boleto,Grabado
+J1098,Boleto,Grabado
+B6218,Boleto,Grabado
+J1101,Boleto,Grabado
+B6223,Boleto,Grabado
+B6242,Boleto,Grabado
+B6242,Boleto,Grabado
+F1687,Boleto,Grabado
+68233,Boleto,Hot Stamping
 H4051,Boleto,Hot Stamping
-B6104,Boleto,Hot Stamping
-D2400,Boleto,Digital
-D2422,Boleto,Digital
-D2422,Boleto,Suaje
+H4260V1,Boleto,Hot Stamping
+K2727,Boleto,Hot Stamping
+G0933,Boleto,Hot Stamping
+B6208,Boleto,Hot Stamping
+B6211,Boleto,Hot Stamping
+B6218,Boleto,Hot Stamping
+J1101,Boleto,Hot Stamping
+B6208,Boleto,Serigrafia
+B6208,Boleto,Serigrafia
+B6208,Boleto,Serigrafia
+68234,Boleto,Digital
+68236,Boleto,Digital
+H3957,Boleto,Digital
+B6237,Boleto,Digital
+H3957,Boleto,Suaje
+J1079,Boleto,Suaje
+H4260V1,Boleto,Suaje
+H4260V1,Boleto,Suaje
+B6237,Boleto,Suaje
 H3510,Boleto,Serigrafia
-B5794,Boleto,Serigrafia
-B6104,Boleto,Serigrafia
-D2395,Boleto,Serigrafia
-D2400,Boleto,Serigrafia
-I3405E1,Boleto,Serigrafia
-H4251,Boleto,Serigrafia
-I3322E2,Boleto,Serigrafia
-H4257,Boleto,Serigrafia
-I3369E1,Boleto,Serigrafia
-B6064E2,Boleto,Serigrafia
-B6103E1,Boleto,Serigrafia
-B5724D,Boleto,Serigrafia
-D2400,Boleto,Serigrafia
-D2422,Boleto Empalme,Corte
-D2422,Boleto Empalme,Acabado
-B6066,Cajon,Encuadernacion
-B6066,Cajon,Corte
-B6066,Cajon,Hot Stamping
-B6066,Cajon,Acabado
-K2728,Canasta,Acabado
-H4257,Cartera,Corte
-B5864D3,Cartera,Corte
-B5864D3,Cartera,Encuadernacion
-B5864D3,Cartera,Serigrafia
-H4257,Cartera Boletos,Corte
-H4257,Cartera Boletos,Encuadernacion
-H4257,Cartera Forro Exterior,Corte
-H4257,Cartera Forro Exterior,Hot Stamping
-H4257,Cartera Forro Exterior,Acabado
-H4257,Cartera Forro Exterior,Encuadernacion
-H4257,Cartera Forro Interior,Corte
-H4257,Cartera Forro Interior,Encuadernacion
-H4257,Cartera Forro Interior,Serigrafia
-B5864EC,Cintilla,Laser
-B5864D4,Cintilla,Laser
-B5864EC1,Cintilla,Laser
-B5864EC2,Cintilla,Laser
-B5864EC,Cintilla,Corte
-B5864D4,Cintilla,Corte
-B5864EC1,Cintilla,Corte
-B5864EC2,Cintilla,Corte
-H4242RT,Dummie,Corte
-I3437,Envoltura,Corte
-I3437,Envoltura,Digital
-B6066,Esquela,Diseño
-B6066,Esquela,Digital
-B6104,Esquela Doble,Corte
-B6064E2,Esquela Doble,Corte
-B6104,Esquela Doble,Suaje
-B6064E2,Esquela Doble,Suaje
-B6064E2,Esquela Doble,Grabado
-B6104,Esquela Doble,Hot Stamping
-B6064E2,Esquela Doble,Serigrafia
-B6104,Esquela Doble,Serigrafia
-B6064E2,Esquela Doble,Serigrafia
-I3405E1,Esquela Empalme,Corte
-I3322E2,Esquela Empalme,Corte
-I3405E1,Esquela Empalme,Acabado
-I3322E2,Esquela Empalme,Acabado
-B6154,Esquela Exterior,Corte
-B6155V1,Esquela Exterior,Corte
-H4251,Esquela Exterior,Corte
-B6103E1,Esquela Exterior,Corte
-B6154,Esquela Exterior,Suaje
-B6155V1,Esquela Exterior,Suaje
-H4251,Esquela Exterior,Suaje
-B6103E1,Esquela Exterior,Suaje
-H4251,Esquela Exterior,Grabado
-H4251,Esquela Exterior,Acabado
-B6103E1,Esquela Exterior,Acabado
-B6154,Esquela Exterior,Acabado
-B6155V1,Esquela Exterior,Acabado
-H4251,Esquela Exterior,Acabado
-H4251,Esquela Exterior,Suaje
-B6103E1,Esquela Exterior,Suaje
-B6154,Esquela Exterior,Serigrafia
-B6155V1,Esquela Exterior,Serigrafia
-H4251,Esquela Exterior,Serigrafia
-B6154,Esquela Interior Doble,Corte
-B6155V1,Esquela Interior Doble,Corte
-B6154,Esquela Interior Doble,Suaje
-B6155V1,Esquela Interior Doble,Suaje
-B6154,Esquela Interior Doble,Acabado
-B6155V1,Esquela Interior Doble,Acabado
-B6154,Esquela Interior Doble,Digital
-B6155V1,Esquela Interior Doble,Digital
-H4251,Esquela Interior Sencilla,Corte
-H4257,Esquela Interior Sencilla,Corte
-B6103E1,Esquela Interior Sencilla,Corte
-H4257,Esquela Interior Sencilla,Hot Stamping
-H4251,Esquela Interior Sencilla,Acabado
-H4257,Esquela Interior Sencilla,Encuadernacion
-B6103E1,Esquela Interior Sencilla,Acabado
-H4251,Esquela Interior Sencilla,Serigrafia
-H4257,Esquela Interior Sencilla,Serigrafia
-B6103E1,Esquela Interior Sencilla,Serigrafia
-M0709,Esquela Sencilla,Corte
+H3812,Boleto,Serigrafia
+B5871V1,Boleto,Serigrafia
+68228,Boleto,Serigrafia
+68229,Boleto,Serigrafia
+68231,Boleto,Serigrafia
+68232,Boleto,Serigrafia
+68233,Boleto,Serigrafia
+H4173,Boleto,Serigrafia
+B6093,Boleto,Serigrafia
+B6131,Boleto,Serigrafia
+H4231V1,Boleto,Serigrafia
+H4237,Boleto,Serigrafia
+L1046,Boleto,Serigrafia
+F1663,Boleto,Serigrafia
+G0929,Boleto,Serigrafia
+K2727,Boleto,Serigrafia
+H4269,Boleto,Serigrafia
+B6187,Boleto,Serigrafia
+H4277,Boleto,Serigrafia
+I3454,Boleto,Serigrafia
+D2427V1,Boleto,Serigrafia
+B6200,Boleto,Serigrafia
+H4291,Boleto,Serigrafia
+B6201,Boleto,Serigrafia
+B6203,Boleto,Serigrafia
+H4296,Boleto,Serigrafia
+G0933,Boleto,Serigrafia
+B6208,Boleto,Serigrafia
+B6211,Boleto,Serigrafia
+B6212,Boleto,Serigrafia
+J1098,Boleto,Serigrafia
+B6217,Boleto,Serigrafia
+B6218,Boleto,Serigrafia
+B6222,Boleto,Serigrafia
+J1101,Boleto,Serigrafia
+B6223,Boleto,Serigrafia
+B6227,Boleto,Serigrafia
+G0935,Boleto,Serigrafia
+H4215E3,Boleto,Serigrafia
+B6236,Boleto,Serigrafia
+B6242,Boleto,Serigrafia
+D2425E1,Boleto,Serigrafia
+F1687,Boleto,Serigrafia
+I3175,Boleto,Serigrafia
+B5871V1,Boleto,Serigrafia
+H4260V1,Boleto,Serigrafia
+H4290,Boleto,Serigrafia
+B6236,Boleto,Serigrafia
+B6223,Boleto Y Mapa Empalmado,Acabado
+D2440,Caja,Laser
+D2440,Caja,Corte
+D2440,Caja,Suaje
+D2440,Caja,Acabado
+D2440,Caja,Acabado
+D2440,Caja,Acabado
+D2440,Caja,Acabado
+D2440,Caja,Suaje
+I3449,Caja Sencilla,Corte
+I3465,Caja Sencilla,Corte
+I3449,Caja Sencilla,Suaje
+I3465,Caja Sencilla,Suaje
+I3449,Caja Sencilla,Acabado
+I3465,Caja Sencilla,Acabado
+I3449,Caja Sencilla,Suaje
+I3465,Caja Sencilla,Suaje
+B6211,Cajon,Encuadernacion
+B6211,Cajon,Acabado
+B6211,Cajon,Acabado
+B6211,Cajon,Encuadernacion
+B6211,Cajon Forro Exterior,Corte
+B6211,Cajon Forro Exterior,Encuadernacion
+B6211,Cajon Forro Interior,Corte
+B6211,Cajon Forro Interior,Encuadernacion
+I3490,Canasta,Acabado
+I3490,Canasta,Acabado
+I3490,Canasta,Acabado
+I3490,Canasta,Acabado
+68231,Cinturon,Laser
+F1687,Cinturon,Corte
+68231,Cinturon,Corte
+F1687,Cinturon,Grabado
+68231,Cinturon,Acabado
+H4302,Dummie,Corte
+H4302RT,Dummie,Corte
+H4362,Dummie,Corte
+H4302,Dummie,Serigrafia
+H4302RT,Dummie,Serigrafia
+H4362,Dummie,Serigrafia
+D2428,Esquela,Corte
+H4260V1,Esquela,Corte
+B6187,Esquela,Corte
+B6187,Esquela,Corte
+G0933,Esquela,Corte
+B6208,Esquela,Corte
+B6218,Esquela,Corte
+B6236,Esquela,Corte
+I3449,Esquela,Corte
+D2428,Esquela,Corte
+D2421,Esquela,Corte
+D2428,Esquela,Suaje
+B6236,Esquela,Suaje
+D2421,Esquela,Suaje
+B6187,Esquela,Acabado
+B6208,Esquela,Grabado
+B6218,Esquela,Grabado
+H4260V1,Esquela,Hot Stamping
+G0933,Esquela,Hot Stamping
+B6208,Esquela,Hot Stamping
+B6208,Esquela,Serigrafia
+B6208,Esquela,Serigrafia
+B6208,Esquela,Serigrafia
+D2421,Esquela,Digital
+D2428,Esquela,Acabado
+D2428,Esquela,Acabado
+D2421,Esquela,Acabado
+B6187,Esquela,Serigrafia
+G0933,Esquela,Serigrafia
+B6208,Esquela,Serigrafia
+B6218,Esquela,Serigrafia
+B6236,Esquela,Serigrafia
+I3449,Esquela,Serigrafia
+D2428,Esquela,Serigrafia
+H4260V1,Esquela,Serigrafia
+B6187,Esquela,Serigrafia
+B6236,Esquela,Serigrafia
+K2727,Esquela Doble,Corte
+H4277,Esquela Doble,Corte
+H4297,Esquela Doble,Corte
+I3494,Esquela Doble,Corte
+B6247,Esquela Doble,Corte
+K2727,Esquela Doble,Suaje
+H4277,Esquela Doble,Suaje
+H4297,Esquela Doble,Suaje
+I3494,Esquela Doble,Suaje
+B6247,Esquela Doble,Suaje
+H4277,Esquela Doble,Grabado
+I3494,Esquela Doble,Grabado
+K2727,Esquela Doble,Hot Stamping
+K2727,Esquela Doble,Serigrafia
+H4277,Esquela Doble,Serigrafia
+H4297,Esquela Doble,Serigrafia
+I3494,Esquela Doble,Serigrafia
+B6247,Esquela Doble,Serigrafia
+G0933,Esquela Empalme,Corte
+B6218,Esquela Empalme,Corte
+G0933,Esquela Empalme,Acabado
+B6218,Esquela Empalme,Acabado
+68228,Esquela Exterior,Laser
+68230,Esquela Exterior,Laser
+68234,Esquela Exterior,Laser
+B6131,Esquela Exterior,Laser
+B6200,Esquela Exterior,Laser
+H4291,Esquela Exterior,Laser
+B5871V1,Esquela Exterior,Corte
+68228,Esquela Exterior,Corte
+68230,Esquela Exterior,Corte
+68234,Esquela Exterior,Corte
+H3957,Esquela Exterior,Corte
+H4173,Esquela Exterior,Corte
+J1079,Esquela Exterior,Corte
+B6131,Esquela Exterior,Corte
+H4237,Esquela Exterior,Corte
+I3431V1,Esquela Exterior,Corte
+G0929,Esquela Exterior,Corte
+H4290,Esquela Exterior,Corte
+B6200,Esquela Exterior,Corte
+H4291,Esquela Exterior,Corte
+B6203,Esquela Exterior,Corte
+G0935,Esquela Exterior,Corte
+H4215E3,Esquela Exterior,Corte
+I3495,Esquela Exterior,Corte
+B6237,Esquela Exterior,Corte
+B5871V1,Esquela Exterior,Suaje
+68230,Esquela Exterior,Suaje
+H3957,Esquela Exterior,Suaje
+H4173,Esquela Exterior,Suaje
+J1079,Esquela Exterior,Suaje
+B6131,Esquela Exterior,Suaje
+H4237,Esquela Exterior,Suaje
+I3431V1,Esquela Exterior,Suaje
+G0929,Esquela Exterior,Suaje
+H4290,Esquela Exterior,Suaje
+B6200,Esquela Exterior,Suaje
+H4291,Esquela Exterior,Suaje
+B6203,Esquela Exterior,Suaje
+H4215E3,Esquela Exterior,Suaje
+I3495,Esquela Exterior,Suaje
+B6237,Esquela Exterior,Suaje
+B5871V1,Esquela Exterior,Grabado
+H4237,Esquela Exterior,Grabado
+H4290,Esquela Exterior,Grabado
+B6203,Esquela Exterior,Grabado
+H3957,Esquela Exterior,Acabado
+J1079,Esquela Exterior,Acabado
+I3431V1,Esquela Exterior,Digital
+G0929,Esquela Exterior,Acabado
+B6200,Esquela Exterior,Acabado
+G0935,Esquela Exterior,Acabado
+B6131,Esquela Exterior,Acabado
+I3495,Esquela Exterior,Acabado
+I3495,Esquela Exterior,Acabado
+I3495,Esquela Exterior,Acabado
+I3431V1,Esquela Exterior,Encuadernacion
+B6203,Esquela Exterior,Acabado
+G0935,Esquela Exterior,Encuadernacion
+I3495,Esquela Exterior,Acabado
+B5871V1,Esquela Exterior,Suaje
+B6131,Esquela Exterior,Suaje
+H4237,Esquela Exterior,Suaje
+H4290,Esquela Exterior,Suaje
+B6203,Esquela Exterior,Suaje
+G0935,Esquela Exterior,Suaje
+G0935,Esquela Exterior,Suaje
+I3495,Esquela Exterior,Suaje
+B5871V1,Esquela Exterior,Serigrafia
+H3957,Esquela Exterior,Serigrafia
+H4173,Esquela Exterior,Serigrafia
+H4237,Esquela Exterior,Serigrafia
+G0929,Esquela Exterior,Serigrafia
+H4291,Esquela Exterior,Serigrafia
+B6203,Esquela Exterior,Serigrafia
+G0935,Esquela Exterior,Serigrafia
+H4215E3,Esquela Exterior,Serigrafia
+H3957,Esquela Exterior,Serigrafia
+H4237,Esquela Exterior,Serigrafia
+H4215E3,Esquela Exterior,Serigrafia
+I3431V1,Esquela Interior,Corte
+I3431V1,Esquela Interior,Suaje
+I3431V1,Esquela Interior,Digital
+I3431V1,Esquela Interior,Acabado
+D2425E1,Esquela Interior,Encuadernacion
+D2425E1,Esquela Interior,Serigrafia
+D2425E1,Esquela Interior,Serigrafia
+I3495,Esquela Interior Doble,Corte
+I3495,Esquela Interior Doble,Suaje
+I3495,Esquela Interior Doble,Acabado
+I3495,Esquela Interior Doble,Serigrafia
+B5871V1,Esquela Interior Sencilla,Corte
+68228,Esquela Interior Sencilla,Corte
+68230,Esquela Interior Sencilla,Corte
+B6131,Esquela Interior Sencilla,Corte
+H4237,Esquela Interior Sencilla,Corte
+H4290,Esquela Interior Sencilla,Corte
+H4291,Esquela Interior Sencilla,Corte
+B6203,Esquela Interior Sencilla,Corte
+G0935,Esquela Interior Sencilla,Corte
+H4215E3,Esquela Interior Sencilla,Corte
+H4173,Esquela Interior Sencilla,Corte
+H4215E3,Esquela Interior Sencilla,Letter Press
+B5871V1,Esquela Interior Sencilla,Acabado
+68228,Esquela Interior Sencilla,Acabado
+68230,Esquela Interior Sencilla,Acabado
+B6131,Esquela Interior Sencilla,Acabado
+H4237,Esquela Interior Sencilla,Acabado
+H4290,Esquela Interior Sencilla,Acabado
+H4291,Esquela Interior Sencilla,Acabado
+B6203,Esquela Interior Sencilla,Acabado
+G0935,Esquela Interior Sencilla,Encuadernacion
+H4215E3,Esquela Interior Sencilla,Encuadernacion
+H4173,Esquela Interior Sencilla,Encuadernacion
+B5871V1,Esquela Interior Sencilla,Serigrafia
+H4173,Esquela Interior Sencilla,Serigrafia
+B6131,Esquela Interior Sencilla,Serigrafia
+H4237,Esquela Interior Sencilla,Serigrafia
+H4291,Esquela Interior Sencilla,Serigrafia
+B6203,Esquela Interior Sencilla,Serigrafia
+G0935,Esquela Interior Sencilla,Serigrafia
+B5871V1,Esquela Interior Sencilla,Serigrafia
+H4290,Esquela Interior Sencilla,Serigrafia
+D2427V1,Esquela Sencilla,Laser
 H3510,Esquela Sencilla,Corte
-B5794,Esquela Sencilla,Corte
+68229,Esquela Sencilla,Corte
+68232,Esquela Sencilla,Corte
+68233,Esquela Sencilla,Corte
+68234,Esquela Sencilla,Corte
+68236,Esquela Sencilla,Corte
 H4051,Esquela Sencilla,Corte
-D2400,Esquela Sencilla,Corte
-K2725,Esquela Sencilla,Corte
-D2422,Esquela Sencilla,Corte
-I3369E1,Esquela Sencilla,Corte
-B5794,Esquela Sencilla,Grabado
-M0709,Esquela Sencilla,Hot Stamping
+B6093,Esquela Sencilla,Corte
+F1663,Esquela Sencilla,Corte
+I3432V1,Esquela Sencilla,Corte
+H4260V1,Esquela Sencilla,Corte
+H4269,Esquela Sencilla,Corte
+I3454,Esquela Sencilla,Corte
+D2427V1,Esquela Sencilla,Corte
+B6200,Esquela Sencilla,Corte
+H4296,Esquela Sencilla,Corte
+B6211,Esquela Sencilla,Corte
+J1098,Esquela Sencilla,Corte
+B6222,Esquela Sencilla,Corte
+H4051EC,Esquela Sencilla,Corte
+B6223,Esquela Sencilla,Corte
+H4324,Esquela Sencilla,Corte
+B6242,Esquela Sencilla,Corte
+F1687,Esquela Sencilla,Corte
+H4260V1,Esquela Sencilla,Corte
+68232,Esquela Sencilla,Grabado
+J1098,Esquela Sencilla,Grabado
+B6223,Esquela Sencilla,Grabado
+B6242,Esquela Sencilla,Grabado
+68233,Esquela Sencilla,Hot Stamping
 H4051,Esquela Sencilla,Hot Stamping
-D2400,Esquela Sencilla,Digital
-D2422,Esquela Sencilla,Digital
-M0709,Esquela Sencilla,Offset
-D2422,Esquela Sencilla,Acabado
-D2422,Esquela Sencilla,Suaje
-M0709,Esquela Sencilla,Serigrafia
+B6093,Esquela Sencilla,Hot Stamping
+F1663,Esquela Sencilla,Hot Stamping
+B6211,Esquela Sencilla,Hot Stamping
+B6222,Esquela Sencilla,Hot Stamping
+H4051EC,Esquela Sencilla,Hot Stamping
+B6223,Esquela Sencilla,Hot Stamping
+B6242,Esquela Sencilla,Hot Stamping
+H4260V1,Esquela Sencilla,Hot Stamping
+B6242,Esquela Sencilla,Hot Stamping
+68234,Esquela Sencilla,Digital
+68236,Esquela Sencilla,Digital
+I3432V1,Esquela Sencilla,Digital
+I3432V1,Esquela Sencilla,Acabado
+H4324,Esquela Sencilla,Acabado
+68234,Esquela Sencilla,Encuadernacion
+B6200,Esquela Sencilla,Acabado
+I3432V1,Esquela Sencilla,Acabado
+H4324,Esquela Sencilla,Acabado
+H4260V1,Esquela Sencilla,Suaje
 H3510,Esquela Sencilla,Serigrafia
-B5794,Esquela Sencilla,Serigrafia
+68232,Esquela Sencilla,Serigrafia
+68233,Esquela Sencilla,Serigrafia
 H4051,Esquela Sencilla,Serigrafia
-D2400,Esquela Sencilla,Serigrafia
-I3369E1,Esquela Sencilla,Serigrafia
-D2395,Esquela Sencilla,Serigrafia
-D2400,Esquela Sencilla,Serigrafia
-B5794,Esquela Sencilla Empalmada,Corte
-I3405E1,Esquela Sencilla Empalmada,Corte
-I3322E2,Esquela Sencilla Empalmada,Corte
-D2422,Esquela Sencilla Empalmada,Corte
-B5794,Esquela Sencilla Empalmada,Acabado
-D2422,Esquela Sencilla Empalmada,Acabado
-I3405E1,Esquela Sencilla Empalmada,Serigrafia
-I3322E2,Esquela Sencilla Empalmada,Serigrafia
-D2395,Esquela Triptico,Corte
-D2395,Esquela Triptico,Corte
-D2395,Esquela Triptico,Suaje
-D2395,Esquela Triptico,Serigrafia
-B6104,Forro,Corte
-D2400,Forro,Corte
-I3405E1,Forro,Corte
-I3322E2,Forro,Corte
-B6064E2,Forro,Corte
-D2400,Forro,Digital
-D2400,Forro,Acabado
-B6104,Forro,Suaje
-D2400,Forro,Suaje
-I3405E1,Forro,Suaje
-I3322E2,Forro,Suaje
-B6064E2,Forro,Suaje
-B6104,Forro,Serigrafia
-I3405E1,Forro,Serigrafia
-I3322E2,Forro,Serigrafia
-B6064E2,Forro,Serigrafia
-I3437,Liston,Acabado
+B6093,Esquela Sencilla,Serigrafia
+F1663,Esquela Sencilla,Serigrafia
+H4269,Esquela Sencilla,Serigrafia
+I3454,Esquela Sencilla,Serigrafia
+B6200,Esquela Sencilla,Serigrafia
+H4296,Esquela Sencilla,Serigrafia
+B6211,Esquela Sencilla,Serigrafia
+J1098,Esquela Sencilla,Serigrafia
+B6222,Esquela Sencilla,Serigrafia
+H4051EC,Esquela Sencilla,Serigrafia
+B6223,Esquela Sencilla,Serigrafia
+B6242,Esquela Sencilla,Serigrafia
+F1687,Esquela Sencilla,Serigrafia
+D2395EC,Esquela Sencilla,Serigrafia
+H4260V1,Esquela Sencilla,Serigrafia
+68236,Esquela Sencilla Empalmada,Corte
+F1663,Esquela Sencilla Empalmada,Corte
+H4269,Esquela Sencilla Empalmada,Corte
+H4296,Esquela Sencilla Empalmada,Corte
+J1101,Esquela Sencilla Empalmada,Corte
+B6242,Esquela Sencilla Empalmada,Corte
+68236,Esquela Sencilla Empalmada,Acabado
+F1663,Esquela Sencilla Empalmada,Acabado
+H4269,Esquela Sencilla Empalmada,Acabado
+H4296,Esquela Sencilla Empalmada,Acabado
+J1101,Esquela Sencilla Empalmada,Acabado
+B6242,Esquela Sencilla Empalmada,Acabado
+J1101,Esquela Sencilla Empalmada,Hot Stamping
+H4296,Esquela Sencilla Empalmada,Serigrafia
+L1046,Esquela Triple,Corte
+B6212,Esquela Triple,Corte
+B6227,Esquela Triple,Corte
+L1046,Esquela Triple,Suaje
+B6212,Esquela Triple,Suaje
+B6227,Esquela Triple,Suaje
+B6212,Esquela Triple,Grabado
+B6227,Esquela Triple,Grabado
+B6212,Esquela Triple,Acabado
+L1046,Esquela Triple,Acabado
+L1046,Esquela Triple,Serigrafia
+B6212,Esquela Triple,Serigrafia
+B6227,Esquela Triple,Serigrafia
+I3175,Esquela Triptico,Corte
+H3812,Esquela Triptico,Corte
+68231,Esquela Triptico,Corte
+H4231V1,Esquela Triptico,Corte
+B6217,Esquela Triptico,Corte
+D2425E1,Esquela Triptico,Corte
+D2425E1,Esquela Triptico,Corte
+68231,Esquela Triptico,Suaje
+B6217,Esquela Triptico,Suaje
+H3812,Esquela Triptico,Grabado
+68231,Esquela Triptico,Grabado
+H4231V1,Esquela Triptico,Grabado
+B6217,Esquela Triptico,Grabado
+B6217,Esquela Triptico,Grabado
+D2425E1,Esquela Triptico,Grabado
+H3812,Esquela Triptico,Acabado
+H4231V1,Esquela Triptico,Acabado
+I3175,Esquela Triptico,Acabado
+D2425E1,Esquela Triptico,Encuadernacion
+I3175,Esquela Triptico,Suaje
+H3812,Esquela Triptico,Suaje
+H4231V1,Esquela Triptico,Suaje
+D2425E1,Esquela Triptico,Suaje
+I3175,Esquela Triptico,Serigrafia
+H3812,Esquela Triptico,Serigrafia
+68231,Esquela Triptico,Serigrafia
+H4231V1,Esquela Triptico,Serigrafia
+B6217,Esquela Triptico,Serigrafia
+D2425E1,Esquela Triptico,Serigrafia
+H4231V1,Esquela Triptico,Serigrafia
+B6217,Esquela Triptico,Serigrafia
+I3466,Etiqueta,Corte
+I3466,Etiqueta,Digital
+I3466,Etiqueta,Acabado
+I3466,Etiqueta,Encuadernacion
+H4329EC,Folder,Corte
+H4329EC,Folder,Digital
+H4329EC,Folder,Suaje
+68233,Forro,Corte
+K2727,Forro,Corte
+H4296,Forro,Corte
+B6218,Forro,Corte
+J1101,Forro,Corte
+B6218,Forro,Grabado
+68233,Forro,Suaje
+K2727,Forro,Suaje
+H4296,Forro,Suaje
+B6218,Forro,Suaje
+J1101,Forro,Suaje
+K2727,Forro,Serigrafia
+H4296,Forro,Serigrafia
+J1101,Forro,Serigrafia
+I3449,Hilo,Corte
+I3465,Hilo,Corte
+I3449,Hilo,Acabado
+I3465,Hilo,Acabado
+B6237,Hoja Interior 1,Corte
+B6237,Hoja Interior 1,Suaje
+B6237,Hoja Interior 1,Digital
+B6237,Hoja Interior 2,Corte
+B6237,Hoja Interior 2,Suaje
+B6237,Hoja Interior 2,Digital
+H4266,Hoja Monarca,Corte
+H4266,Hoja Monarca,Hot Stamping
+H4266,Hoja Monarca,Serigrafia
+H3957,Hojas Interiores,Corte
+J1079,Hojas Interiores,Corte
+H3957,Hojas Interiores,Diseño
+J1079,Hojas Interiores,Diseño
+H3957,Hojas Interiores,Suaje
+J1079,Hojas Interiores,Suaje
+H3957,Hojas Interiores,Digital
+J1079,Hojas Interiores,Digital
+I3449,Liston,Corte
+D2428,Liston,Corte
+I3465,Liston,Corte
+I3449,Liston,Acabado
+D2428,Liston,Acabado
+I3465,Liston,Acabado
 H3510,Mapa,Corte
-B5794,Mapa,Corte
+I3175,Mapa,Corte
+H3812,Mapa,Corte
+B5871V1,Mapa,Corte
+68228,Mapa,Corte
+68229,Mapa,Corte
+68230,Mapa,Corte
+68231,Mapa,Corte
+68232,Mapa,Corte
+68233,Mapa,Corte
+68234,Mapa,Corte
+68236,Mapa,Corte
 H4051,Mapa,Corte
-D2395,Mapa,Corte
-D2400,Mapa,Corte
-I3405E1,Mapa,Corte
-H4251,Mapa,Corte
-I3322E2,Mapa,Corte
-H4257,Mapa,Corte
-J1069EC1,Mapa,Corte
-I3369E1,Mapa,Corte
-B6064E2,Mapa,Corte
-B6103E1,Mapa,Corte
+H4173,Mapa,Corte
+B6093,Mapa,Corte
+B6131,Mapa,Corte
+H4231V1,Mapa,Corte
+H4237,Mapa,Corte
+L1046,Mapa,Corte
+F1663,Mapa,Corte
+G0929,Mapa,Corte
+K2727,Mapa,Corte
+H4269,Mapa,Corte
+B6187,Mapa,Corte
+H4277,Mapa,Corte
+H4290,Mapa,Corte
+I3454,Mapa,Corte
+D2427V1,Mapa,Corte
+B6200,Mapa,Corte
+H4291,Mapa,Corte
+B6203,Mapa,Corte
+H4296,Mapa,Corte
+G0933,Mapa,Corte
+B6208,Mapa,Corte
+B6211,Mapa,Corte
+B6212,Mapa,Corte
+J1098,Mapa,Corte
+B6217,Mapa,Corte
+B6218,Mapa,Corte
+B6222,Mapa,Corte
+J1101,Mapa,Corte
+B6223,Mapa,Corte
+B6227,Mapa,Corte
+G0935,Mapa,Corte
+H4343,Mapa,Corte
+H4215E3,Mapa,Corte
+B6236,Mapa,Corte
+B6237,Mapa,Corte
+D2425E1,Mapa,Corte
+B6098D,Mapa,Corte
+F1687,Mapa,Corte
+B6242,Mapa,Corte
+H4343,Mapa,Diseño
 H3510,Mapa,Serigrafia
-B5794,Mapa,Serigrafia
+I3175,Mapa,Serigrafia
+H3812,Mapa,Serigrafia
+B5871V1,Mapa,Serigrafia
+68228,Mapa,Serigrafia
+68229,Mapa,Serigrafia
+68230,Mapa,Serigrafia
+68231,Mapa,Serigrafia
+68232,Mapa,Serigrafia
+68233,Mapa,Serigrafia
+68234,Mapa,Serigrafia
+68236,Mapa,Serigrafia
 H4051,Mapa,Serigrafia
-D2395,Mapa,Serigrafia
-D2400,Mapa,Serigrafia
-I3405E1,Mapa,Serigrafia
-H4251,Mapa,Serigrafia
-I3322E2,Mapa,Serigrafia
-H4257,Mapa,Serigrafia
-J1069EC1,Mapa,Serigrafia
-I3369E1,Mapa,Serigrafia
-B6064E2,Mapa,Serigrafia
-B6103E1,Mapa,Serigrafia
+H4173,Mapa,Serigrafia
+B6093,Mapa,Serigrafia
+B6131,Mapa,Serigrafia
+H4231V1,Mapa,Serigrafia
+H4237,Mapa,Serigrafia
+L1046,Mapa,Serigrafia
+F1663,Mapa,Serigrafia
+G0929,Mapa,Serigrafia
+K2727,Mapa,Serigrafia
+H4269,Mapa,Serigrafia
+B6187,Mapa,Serigrafia
+H4277,Mapa,Serigrafia
+H4290,Mapa,Serigrafia
+I3454,Mapa,Serigrafia
+D2427V1,Mapa,Serigrafia
+B6200,Mapa,Serigrafia
+H4291,Mapa,Serigrafia
+B6203,Mapa,Serigrafia
+H4296,Mapa,Serigrafia
+G0933,Mapa,Serigrafia
+B6208,Mapa,Serigrafia
+B6211,Mapa,Serigrafia
+B6212,Mapa,Serigrafia
+J1098,Mapa,Serigrafia
+B6217,Mapa,Serigrafia
+B6218,Mapa,Serigrafia
+B6222,Mapa,Serigrafia
+J1101,Mapa,Serigrafia
+B6223,Mapa,Serigrafia
+B6227,Mapa,Serigrafia
+G0935,Mapa,Serigrafia
+H4343,Mapa,Serigrafia
+H4215E3,Mapa,Serigrafia
+B6236,Mapa,Serigrafia
+B6237,Mapa,Serigrafia
+D2425E1,Mapa,Serigrafia
+B6098D,Mapa,Serigrafia
+F1687,Mapa,Serigrafia
+B6242,Mapa,Serigrafia
+B6223,Mapa Y Boleto Empalmado,Acabado
+J1108,Marco,Corte
+J1108,Marco,Grabado
+J1108,Marco,Acabado
+J1108,Marco,Acabado
+J1108,Marco,Acabado
+68233,Maria Luisa,Corte
 H4051,Maria Luisa,Corte
-H4257,Maria Luisa,Corte
+H4173,Maria Luisa,Corte
+B6211,Maria Luisa,Corte
+B6222,Maria Luisa,Corte
+68233,Maria Luisa,Acabado
 H4051,Maria Luisa,Acabado
-H4257,Maria Luisa,Acabado
-L1030,Menu,Corte
+H4173,Maria Luisa,Encuadernacion
+B6211,Maria Luisa,Acabado
+B6222,Maria Luisa,Acabado
 H4234,Menu,Corte
-L1030,Menu,Suaje
+H4325,Menu,Corte
 H4234,Menu,Suaje
+H4325,Menu,Suaje
 H4234,Menu,Digital
-L1030,Menu,Serigrafia
 H4234,Menu,Serigrafia
-L1030,Menu,Serigrafia
+H4325,Menu,Serigrafia
 H4234,Menu,Serigrafia
-B6104,Mesa Regalo,Corte
-B6104,Mesa Regalo,Serigrafia
-I3438,Mini,Corte
-B6174,Mini,Corte
-B6181,Mini,Corte
-B6174,Mini,Diseño
-I3438,Mini,Acabado
-I3438,Mini,Serigrafia
-B6181,Mini,Serigrafia
-B5794,Paquete,Corte
-H4051,Paquete,Corte
-D2395,Paquete,Corte
-I3405E1,Paquete,Corte
-H4251,Paquete,Corte
-I3322E2,Paquete,Corte
-B6064E2,Paquete,Corte
-B6103E1,Paquete,Corte
-D2398,Paquete,Corte
-B5794,Paquete,Serigrafia
-H4051,Paquete,Serigrafia
-D2395,Paquete,Serigrafia
-I3405E1,Paquete,Serigrafia
-H4251,Paquete,Serigrafia
-I3322E2,Paquete,Serigrafia
-B6064E2,Paquete,Serigrafia
-B6103E1,Paquete,Serigrafia
-D2405,Rotulacion,Rotulación
+H4325,Menu,Serigrafia
+L1058,Mesa,Corte
+D2395EC,Mesa,Corte
+L1058,Mesa,Serigrafia
+D2395EC,Mesa,Serigrafia
+H4295,Mini,Corte
+D2440,Mini,Corte
+H4302,Mini,Corte
+J1108,Mini,Corte
+I3488,Mini,Corte
+H4348,Mini,Corte
+H4362,Mini,Corte
+I3448,Mini,Digital
+H4295,Mini,Digital
+D2440,Mini,Digital
+H4302,Mini,Digital
+J1108,Mini,Digital
+H4362,Mini,Digital
+I3488,Mini,Serigrafia
+I3175,Paquete,Corte
+H3812,Paquete,Corte
+B5871V1,Paquete,Corte
+H3957,Paquete,Corte
+H4173,Paquete,Corte
+H4231V1,Paquete,Corte
+H4237,Paquete,Corte
+F1663,Paquete,Corte
+G0929,Paquete,Corte
+K2727,Paquete,Corte
+H4269,Paquete,Corte
+B6187,Paquete,Corte
+H4277,Paquete,Corte
+I3454,Paquete,Corte
+D2427V1,Paquete,Corte
+B6200,Paquete,Corte
+B6203,Paquete,Corte
+H4296,Paquete,Corte
+G0933,Paquete,Corte
+B6208,Paquete,Corte
+B6211,Paquete,Corte
+B6212,Paquete,Corte
+J1098,Paquete,Corte
+B6217,Paquete,Corte
+B6218,Paquete,Corte
+B6222,Paquete,Corte
+J1101,Paquete,Corte
+B6223,Paquete,Corte
+B6227,Paquete,Corte
+G0935,Paquete,Corte
+B6242,Paquete,Corte
+F1687,Paquete,Corte
+H3510,Paquete,Corte
+H4215E3,Paquete,Corte
+B6236,Paquete,Corte
+B6237,Paquete,Corte
+J1098,Paquete,Grabado
+B6208,Paquete,Serigrafia
+B6208,Paquete,Serigrafia
+B6208,Paquete,Serigrafia
+I3175,Paquete,Serigrafia
+H3812,Paquete,Serigrafia
+B5871V1,Paquete,Serigrafia
+H3957,Paquete,Serigrafia
+H4173,Paquete,Serigrafia
+H4231V1,Paquete,Serigrafia
+H4237,Paquete,Serigrafia
+F1663,Paquete,Serigrafia
+G0929,Paquete,Serigrafia
+K2727,Paquete,Serigrafia
+H4269,Paquete,Serigrafia
+B6187,Paquete,Serigrafia
+H4277,Paquete,Serigrafia
+I3454,Paquete,Serigrafia
+D2427V1,Paquete,Serigrafia
+B6200,Paquete,Serigrafia
+B6203,Paquete,Serigrafia
+H4296,Paquete,Serigrafia
+G0933,Paquete,Serigrafia
+B6208,Paquete,Serigrafia
+B6211,Paquete,Serigrafia
+B6212,Paquete,Serigrafia
+J1098,Paquete,Serigrafia
+B6217,Paquete,Serigrafia
+B6218,Paquete,Serigrafia
+B6222,Paquete,Serigrafia
+J1101,Paquete,Serigrafia
+B6223,Paquete,Serigrafia
+B6227,Paquete,Serigrafia
+G0935,Paquete,Serigrafia
+B6242,Paquete,Serigrafia
+F1687,Paquete,Serigrafia
+H3510,Paquete,Serigrafia
+H4215E3,Paquete,Serigrafia
+B6236,Paquete,Serigrafia
+B6237,Paquete,Serigrafia
+B6236,Rotulacion,Corte
+B6237,Rotulacion,Corte
 D2406,Rotulacion,Rotulación
-I3433,Rotulacion,Rotulación
-I3434,Rotulacion,Rotulación
-M0709,Sobre,Corte
+B6207,Rotulacion,Rotulación
+68229,Sobre,Laser
+B6093,Sobre,Laser
+F1687,Sobre,Corte
 H3510,Sobre,Corte
-B5794,Sobre,Corte
+68228,Sobre,Corte
+68229,Sobre,Corte
+68232,Sobre,Corte
+68233,Sobre,Corte
+68236,Sobre,Corte
+H3957,Sobre,Corte
 H4051,Sobre,Corte
-B6104,Sobre,Corte
-D2400,Sobre,Corte
-I3405E1,Sobre,Corte
-I3322E2,Sobre,Corte
-H4258,Sobre,Corte
-F1670,Sobre,Corte
-K2725,Sobre,Corte
-D2422,Sobre,Corte
-I3369E1,Sobre,Corte
-I3371D,Sobre,Corte
-B6064E2,Sobre,Corte
-B5794,Sobre,Grabado
-B5794,Sobre,Grabado
-I3405E1,Sobre,Grabado
-I3322E2,Sobre,Grabado
-B6064E2,Sobre,Grabado
+J1079,Sobre,Corte
+B6093,Sobre,Corte
+F1663,Sobre,Corte
+H4260V1,Sobre,Corte
+H4266,Sobre,Corte
+K2727,Sobre,Corte
+H4269,Sobre,Corte
+B6187,Sobre,Corte
+H4277,Sobre,Corte
+I3454,Sobre,Corte
+D2427V1,Sobre,Corte
+H4296,Sobre,Corte
+H4297,Sobre,Corte
+G0933,Sobre,Corte
+B6208,Sobre,Corte
+J1098,Sobre,Corte
+B6218,Sobre,Corte
+B6222,Sobre,Corte
+J1101,Sobre,Corte
+B6223,Sobre,Corte
+H4215E3,Sobre,Corte
+I3494,Sobre,Corte
+I3495,Sobre,Corte
+B6236,Sobre,Corte
+B6237,Sobre,Corte
+B6242,Sobre,Corte
+B6245,Sobre,Corte
+B6247,Sobre,Corte
+H4301D,Sobre,Corte
+B6187,Sobre,Suaje
+I3495,Sobre,Suaje
+B6236,Sobre,Suaje
+B6237,Sobre,Suaje
+B6245,Sobre,Suaje
+68232,Sobre,Grabado
+F1663,Sobre,Grabado
+I3454,Sobre,Grabado
+H4296,Sobre,Grabado
+J1098,Sobre,Grabado
+J1101,Sobre,Grabado
+B6242,Sobre,Grabado
+68233,Sobre,Hot Stamping
 H4051,Sobre,Hot Stamping
-B6104,Sobre,Hot Stamping
-I3371D,Sobre,Acabado
-I3322E2,Sobre,Acabado
-B6064E2,Sobre,Acabado
+F1663,Sobre,Hot Stamping
+H4260V1,Sobre,Hot Stamping
+H4266,Sobre,Hot Stamping
+K2727,Sobre,Hot Stamping
+B6208,Sobre,Hot Stamping
+B6218,Sobre,Hot Stamping
+J1101,Sobre,Hot Stamping
+H4301D,Sobre,Acabado
+H4269,Sobre,Acabado
+B6222,Sobre,Acabado
+B6242,Sobre,Acabado
+B6222,Sobre,Acabado
+B6236,Sobre,Acabado
+B6236,Sobre,Acabado
+68236,Sobre,Acabado
+H4301D,Sobre,Acabado
+H4301D,Sobre,Acabado
 H3510,Sobre,Acabado
-I3369E1,Sobre,Acabado
-M0709,Sobre,Suaje
+I3495,Sobre,Acabado
+B6237,Sobre,Acabado
+B6245,Sobre,Acabado
+68236,Sobre,Acabado
+J1102,Sobre,Rotulación
 H3510,Sobre,Suaje
-B5794,Sobre,Suaje
+68228,Sobre,Suaje
+68229,Sobre,Suaje
+68232,Sobre,Suaje
+68233,Sobre,Suaje
+68236,Sobre,Suaje
+H3957,Sobre,Suaje
 H4051,Sobre,Suaje
-B6104,Sobre,Suaje
-D2400,Sobre,Suaje
-I3405E1,Sobre,Suaje
-I3322E2,Sobre,Suaje
-H4258,Sobre,Suaje
-F1670,Sobre,Suaje
-K2725,Sobre,Suaje
-D2422,Sobre,Suaje
-I3369E1,Sobre,Suaje
-I3371D,Sobre,Suaje
-B6064E2,Sobre,Suaje
+J1079,Sobre,Suaje
+B6093,Sobre,Suaje
+F1663,Sobre,Suaje
+H4260V1,Sobre,Suaje
+H4266,Sobre,Suaje
+K2727,Sobre,Suaje
+H4269,Sobre,Suaje
+H4277,Sobre,Suaje
+I3454,Sobre,Suaje
+D2427V1,Sobre,Suaje
+H4296,Sobre,Suaje
+H4297,Sobre,Suaje
+G0933,Sobre,Suaje
+B6208,Sobre,Suaje
+J1098,Sobre,Suaje
+J1098,Sobre,Suaje
+B6218,Sobre,Suaje
+B6222,Sobre,Suaje
+J1101,Sobre,Suaje
+B6223,Sobre,Suaje
+H4215E3,Sobre,Suaje
+I3494,Sobre,Suaje
+I3495,Sobre,Suaje
+B6236,Sobre,Suaje
+B6237,Sobre,Suaje
+B6242,Sobre,Suaje
+B6245,Sobre,Suaje
+B6247,Sobre,Suaje
+H4301D,Sobre,Suaje
+F1687,Sobre,Serigrafia
 H3510,Sobre,Serigrafia
-B5794,Sobre,Serigrafia
+68232,Sobre,Serigrafia
+68233,Sobre,Serigrafia
+H3957,Sobre,Serigrafia
 H4051,Sobre,Serigrafia
-B6104,Sobre,Serigrafia
-D2400,Sobre,Serigrafia
-I3369E1,Sobre,Serigrafia
-I3371D,Sobre,Serigrafia
-B6064E2,Sobre,Serigrafia
-B6172,Tarjeta,Corte
-B6173,Tarjeta,Corte
-D2423,Tarjeta,Corte
-D2415,Tarjeta,Corte
-D2416,Tarjeta,Corte
-D2417,Tarjeta,Corte
-B6163,Tarjeta,Corte
-B6164,Tarjeta,Corte
-B6165,Tarjeta,Corte
-B6166,Tarjeta,Corte
-B6167,Tarjeta,Corte
-D2419,Tarjeta,Corte
-D2415,Tarjeta,Diseño
-D2416,Tarjeta,Diseño
-D2417,Tarjeta,Diseño
-B6163,Tarjeta,Diseño
-B6164,Tarjeta,Diseño
-B6165,Tarjeta,Diseño
-B6166,Tarjeta,Diseño
-B6167,Tarjeta,Diseño
-D2419,Tarjeta,Diseño
-D2423,Tarjeta,Suaje
-B6172,Tarjeta,Serigrafia
-B6173,Tarjeta,Serigrafia
-D2415,Tarjeta,Serigrafia
-D2416,Tarjeta,Serigrafia
-D2417,Tarjeta,Serigrafia
-B6163,Tarjeta,Serigrafia
-B6164,Tarjeta,Serigrafia
-B6165,Tarjeta,Serigrafia
-B6166,Tarjeta,Serigrafia
-B6167,Tarjeta,Serigrafia
-D2419,Tarjeta,Serigrafia
-B6172,Tarjeta,Serigrafia
-B6173,Tarjeta,Serigrafia
-D2415,Tarjeta,Serigrafia
-D2416,Tarjeta,Serigrafia
-D2417,Tarjeta,Serigrafia
-B6163,Tarjeta,Serigrafia
-B6164,Tarjeta,Serigrafia
-B6165,Tarjeta,Serigrafia
-B6166,Tarjeta,Serigrafia
-B6167,Tarjeta,Serigrafia
-D2419,Tarjeta,Serigrafia
-B6172,Tarjeta,Serigrafia
-D2415,Tarjeta,Serigrafia
-D2416,Tarjeta,Serigrafia
-D2417,Tarjeta,Serigrafia
-B6163,Tarjeta,Serigrafia
-B6164,Tarjeta,Serigrafia
-B6165,Tarjeta,Serigrafia
-B6166,Tarjeta,Serigrafia
-B6167,Tarjeta,Serigrafia
-D2419,Tarjeta,Serigrafia
-B6173,Tarjeta,Serigrafia
-I3438,Vela,Acabado
+J1079,Sobre,Serigrafia
+H4266,Sobre,Serigrafia
+K2727,Sobre,Serigrafia
+H4269,Sobre,Serigrafia
+B6187,Sobre,Serigrafia
+H4277,Sobre,Serigrafia
+I3454,Sobre,Serigrafia
+D2427V1,Sobre,Serigrafia
+G0933,Sobre,Serigrafia
+B6208,Sobre,Serigrafia
+J1098,Sobre,Serigrafia
+B6218,Sobre,Serigrafia
+B6223,Sobre,Serigrafia
+H4215E3,Sobre,Serigrafia
+B6236,Sobre,Serigrafia
+B6237,Sobre,Serigrafia
+H4301D,Sobre,Serigrafia
+F1687,Sobre,Serigrafia
+B6222,Sobre,Serigrafia
+H4215E3,Sobre,Serigrafia
+B6237,Sobre,Serigrafia
+M0653,Sticker,Corte
+B6211,Tapa,Corte
+B6211,Tapa,Encuadernacion
+B6211,Tapa,Acabado
+B6211,Tapa,Encuadernacion
+B6211,Tapa Bolsa Canguro,Corte
+B6211,Tapa Bolsa Canguro,Encuadernacion
+B6211,Tapa Forro Exterior,Corte
+B6211,Tapa Forro Exterior,Encuadernacion
+B6211,Tapa Forro Interior,Corte
+B6211,Tapa Forro Interior,Encuadernacion
+B6211,Tapa Ma Luisa,Corte
+B6211,Tapa Ma Luisa,Hot Stamping
+B6211,Tapa Ma Luisa,Encuadernacion
+B6211,Tapa Ma Luisa,Serigrafia
+H4317,Tarjeta,Corte
+H4319,Tarjeta,Corte
+M0650,Tarjeta,Corte
+B6084,Tarjeta,Corte
+L1060,Tarjeta,Corte
+B6238,Tarjeta,Corte
+B6238,Tarjeta,Diseño
+L1060,Tarjeta,Suaje
+H4317,Tarjeta,Serigrafia
+H4319,Tarjeta,Serigrafia
+B6084,Tarjeta,Serigrafia
+B6238,Tarjeta,Serigrafia
+H4317,Tarjeta,Serigrafia
+H4319,Tarjeta,Serigrafia
+L1060,Tarjeta,Serigrafia
+B6238,Tarjeta,Serigrafia
+B6084,Tarjeta Empalme,Corte
+H4295,Tela,Corte
+H4295,Tela,Suaje
+H4295,Tela,Acabado
+H4295,Tela,Acabado
+H4295,Tela,Acabado
+H4295,Tela,Suaje
+H4295,Tela,Serigrafia
