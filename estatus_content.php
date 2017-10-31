@@ -1,25 +1,25 @@
+
+
 <?php
 date_default_timezone_set("America/Mexico_City");
 error_reporting(0);
-if( !session_id() )
-{
-    session_start();
-    
-
-}
-if(@$_SESSION['logged_in'] != true){
-    echo '
-     <script>
-        alert("No has iniciado sesion");
-        self.location.replace("../index.php");
-    </script>';
-}else{
-    echo '';
-}
+ 
 
     ?>
 
   <?php
+   function isActive($machineID){
+    require('saves/conexion.php');
+    $today=date("d-m-Y");
+    $check=$mysqli->query("SELECT * FROM operacion_estatus WHERE fecha='$today' AND maquina=$machineID");
+ 
+  
+if ($check->num_rows==0) {
+ return false;
+}else{
+  return true;
+}
+  }
   function personalData($idmaquina,$maquina,$photo){
 require('saves/conexion.php');
 $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquina;
@@ -39,7 +39,9 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
      $row = mysqli_fetch_object($actual);
      $row2 =mysqli_fetch_assoc($actual);
      
-      $act = (!empty($row->numodt))? $row->numodt : '--';
+
+     $actual=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process WHERE proceso_actual='$maquina' "));
+      $act = (!empty($actual['num_odt']))? $actual['num_odt'] : '--';
       $nom_act=(!empty($row->producto))? $row->nombre_elemento : '';
       $element   = $idmaquina;
     
@@ -59,7 +61,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
      $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$idmaquina AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$idmaquina AND fechadeldiaam = '$today')) as tiempo_real";
     //obtenemos el tiempo muerto sumando las idas al sanitario
     $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$idmaquina AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$idmaquina AND radios='Sanitario' AND fechadeldiaam = '$today'";
-    
+    $t_muerto=mysqli_fetch_assoc($mysqli->query("SELECT SUM(TIME_TO_SEC(tiempo_muerto)) AS seconds_muertos FROM tiempo_muerto WHERE fecha='$today' AND id_maquina=$idmaquina "));
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
     $etequery3 = "SELECT COALESCE((SELECT SUM( buenos ) FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera";
     //obtenemos desempeño operando entregados+merma
@@ -68,7 +70,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
     $element    = $getelement['producto'];
-    $begin      = new DateTime('09:00');
+    $begin      = new DateTime('09:00:00');
     $current    = new DateTime(date('H:i'));
     //obtenemos el tiempo transcurrido desde el inicio del dia hasta el momento actual
     $interval   = $begin->diff($current);
@@ -89,7 +91,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
     $deadTime    = $getdeadTime['tiempo_muerto'];
     
     $gettotalTime = mysqli_fetch_assoc($mysqli->query($etequery1));
-    $totalTime    = $gettotalTime['tiempo_real'] - $getdeadTime['tiempo_muerto'];
+    $totalTime    = ($gettotalTime['tiempo_real']-$t_muerto["seconds_muertos"]) - $getdeadTime['tiempo_muerto'];
     
     $getQuality = mysqli_fetch_assoc($mysqli->query($etequery3));
     $Quality    = $getQuality['calidad_primera'];
@@ -106,7 +108,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     $roundDesemp=($desempenio>100)? 100 : $desempenio;
-    $dispon     =($seconds>14400)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
+    $dispon     =($seconds>19800)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
     //$disponible = round($dispon, 1);
     $disponible = round($dispon);
     
@@ -115,35 +117,94 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
 
     //echo "<p style='color:#fff;'>dispon ".$dispon." calidad ".$Quality." desempeño ".$desempenio." prod esperada ".$getEfec['esper']." real ".$real['desempenio']." calidad ".$Quality." tiempo hasta ahora: ".$seconds."</p>";
     $roundQuality=($Quality>100)? 100 : $Quality;
-    $getEte     = (($dispon / 100) * ($roundQuality / 100) * ($roundDesemp / 100)) * 100;
+$lim_dispon=($dispon>100)? 100 : $dispon;
+$lim_roundQuality=($roundQuality>100)? 100 : $roundQuality;
+$lim_roundDesemp=($roundDesemp>100)? 100 : $roundDesemp;
+    $getEte     = (($lim_dispon / 100) * ($lim_roundQuality / 100) * ($lim_roundDesemp / 100)) * 100;
     $showpercent=100 - $getEte;
   /****************** Calcular ETE ******************/
           
-
+  $actividad=mysqli_fetch_assoc($mysqli->query("SELECT * FROM operacion_estatus WHERE maquina='$idmaquina' AND fecha='$today' "));
+$qlty=(is_null($lim_roundQuality))? 0 : $lim_roundQuality;
+    if (isActive($idmaquina)) {
+      $grafica='<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(draw'.$maquina.'Chart);
+    function draw'.$maquina.'Chart() {
+      var data = google.visualization.arrayToDataTable([
+          ["valor", "porcentaje",{ role: "style" }, { role: "annotation"}],
+         
+    ["DISPONIBILIDAD",'. $lim_dispon .',"#1F487C",'.round($lim_dispon,1).' ],
+     ["DESEMPEÑO",'. $lim_roundDesemp  .',"#C0504E",'.round($lim_roundDesemp,1).' ],
+     ["CALIDAD", '.$qlty.',"#F79647",'.round($qlty,1).' ]]);
     
-    $credencial='<div class="ete-photo"><div class="person-photo" style=background:url("images/'.$photo.'.jpg")></div>
+
+        var options = { // '. $maquina .'
+            chartArea: {width: "100%", height: "90%"},
+            width: "100%", 
+            height: "100%",
+            chartArea: {left: 25, top: 10, width: "100%", height: "70%"},
+            annotations: {
+            
+            textStyle: {
+                fontSize: 20,
+                 bold:true
+            }},
+            enableInteractivity: true,                                               
+            fontSize: 11,
+            hAxis: {
+                    textStyle: {
+                      color: "#272B34"
+                    }
+                  },
+            vAxis: {
+                textStyle: {
+                      color: "#272B34"
+                    },
+            viewWindowMode:"explicit",
+            viewWindow: {
+              max:100,
+              min:0
+            }
+        },
+
+            colors: ["#4B5161"],    
+            backgroundColor: "transparent"
+        };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById("'.$maquina.'"));
+      chart.draw(data,options);
+  }
+console.log("real time '.$maquina.' '.gmdate("H:i",$gettotalTime['tiempo_real']) .' total '.gmdate("H:i",$totalTime) .' disponible '.gmdate("H:i",$seconds-3600) .'");
+  </script>';
+    }else{
+      $grafica='';
+    }
+ 
+  //console.log("total time '.$maquina.' '.gmdate("H:i",$totalTime) .' seconds '.$seconds .'");
+    $outtime=($actividad['en_tiempo']=='false')? 'outtime':'';
+    $credencial=' '.$grafica.'
+    <div class='.$outtime.'></div> <div class="ete-photo '.$actividad['actividad_actual'].'"><div class="person-photo" style=background:url("images/'.$photo.'.jpg")></div>
     <div class="ete-num">'.round($getEte).'%</div>
+
     </div>
-    <div class="machinename">'.$maquina.'</div>
-    <div class="ete-stat">
+    <div class="machinename">'.$actividad['actividad_actual'].'</div>
+    <div class="ete-stat ">
       <table>
       <thead>
       <tr class="trh">
-        <td>Actual</td>
-        <td class="">Siguiente</td>
-        <td>Preparacion</td>
+        <td>Orden Actual:</td>
+        <td class="">'.$act.'</td>
+        
         </tr></thead>
         <tbody>
         <tr style="font-size: 10px;"><td>&nbsp</td>
         <td>&nbsp</td>
-        <td>&nbsp</td></tr>
-        <tr class="trb">
-          <td>'.$act." <div class='nombre_elemento'>".$nom_act.'</div></td>
-          <td class="middletd">'.$sig." <div class='nombre_elemento'>".$nom_sig.'</div></td>
-          <td>'.$prep." <div class='nombre_elemento'>".$nom_prep.'</div></td>
         </tr>
+        
         </tbody>
       </table>
+      <div id="'.$maquina.'" style="bottom:0;width: 100%; height: 110px; position:absolute; "></div>
     </div>';
   echo $credencial;
 }
@@ -153,24 +214,24 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
 
 
 <div class="prod-container">
- <div class="personal">
+ <div class="personal <?=(!isActive(10))? 'disabled' : '' ?>">
     <?=personalData(10,'Serigrafia','12'); ?>
   </div>
-  <div class="personal">
+  <div class="personal <?=(!isActive(20))? 'disabled' : ''?>">
     <?=personalData(20,'Serigrafia2','10'); ?>
   </div>
   
-   <div class="personal">
+   <div class="personal <?=(!isActive(21))? 'disabled' : '' ?>">
     <?=personalData(21,'Serigrafia3','15'); ?>
   </div>
-  <div class="personal disabled">
-    <?=personalData(4,'Original','default'); ?>
+  <div class="personal <?=(!isActive(4))? 'disabled' : '' ?>">
+    <?=personalData(4,'Original','4'); ?>
   </div>
-  <div class="personal disabled">
-    <?=personalData(5,'Placa','default'); ?>
+  <div class="personal <?=(!isActive(5))? 'disabled' : '' ?>">
+    <?=personalData(5,'Placa','11'); ?>
   </div>
-  <div class="personal disabled">
-    <?=personalData(9,'Suaje','default'); ?>
+  <div class="personal <?=(!isActive(9))? 'disabled' : '' ?>">
+    <?=personalData(9,'Suaje','7'); ?>
   </div>
  
 </div>

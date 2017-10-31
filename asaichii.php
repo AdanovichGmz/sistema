@@ -275,6 +275,7 @@ $(document).ready(function() {
  var timer2 = new Timer();
 $(document).ready(function(){
 timer.start({countdown: true, startValues: {seconds: 900}});
+saveOperstatus();
 });
 $('#chronoExample2').hide();       
 
@@ -341,7 +342,22 @@ $('#chronoExample2 .startButton').click(function () {
                           console.log(data);
                      }  
                 });
-    }   
+    }
+
+    function saveOperstatus(){
+        
+    
+         $.ajax({  
+                      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'asaichii'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
+    }     
     </script>
      
     

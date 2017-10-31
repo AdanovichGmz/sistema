@@ -63,14 +63,19 @@ if($f=mysqli_fetch_assoc($sql)){
             $_SESSION['pseudoID']=$pseudomachine['idmaquina'];
             $_SESSION['pseudoName']=$pseudomachine['nommaquina'];
         }
-        
+     $mac_id=$machine['idmaquina'];   
     
+ $today=date("d-m-Y");
+$check=$mysqli->query("SELECT * FROM operacion_estatus WHERE fecha='$today' AND maquina=$mac_id");
+$datas=mysqli_fetch_assoc($check);
+//echo '<script>alert("'.$datas['actividad_actual'].'")</script> ';
+if ($check->num_rows>0) {
+   if ($datas['actividad_actual']=='ajuste'){
 
-if (isset($_COOKIE['ajuste'])){
     header("Location: index2.php");
 }
 
-elseif (isset($_COOKIE['tiraje'])){
+elseif ($datas['actividad_actual']=='tiro'){
     $machineName=$_SESSION['machineName'];
     $isVirtual=mysqli_fetch_assoc( $mysqli->query("SELECT elemento_virtual FROM personal_process WHERE status='actual' AND proceso_actual='$machineName' "));
     if ($isVirtual['elemento_virtual']!=null) {
@@ -78,11 +83,11 @@ elseif (isset($_COOKIE['tiraje'])){
     }else{
         header("Location: index3.php");
     }
-
-
-
-    
+    }
+    else{
+       header("Location: index2.php"); 
     } 
+}
 else{
     header("Location: asaichii.php");
 } 

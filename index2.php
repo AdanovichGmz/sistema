@@ -14,13 +14,7 @@ date_default_timezone_set("America/Mexico_City");
         self.location.replace("index.php");
     </script>';
     }else{
-      if (isset($_COOKIE['tiraje'])){
-    setcookie('tiraje', true,  time()-3600);
-    unset ($_COOKIE['tiraje']);
-    }
-  if (!isset($_COOKIE['ajuste'])){
-    setcookie('ajuste', true,  time()+1800);
-    }        
+              
 require('saves/conexion.php');
 
 
@@ -315,10 +309,10 @@ if ( $p==1) {
                           <img src="images/guard.png">
                         </div>
                         
-                        <div class="square-button green stop eatpanel goeat">
+                        <div class="square-button green stop eatpanel goeat" onclick="saveoperComida();">
                           <img src="images/dinner2.png">
                         </div>
-                        <div class="square-button yellow derecha goalert">
+                        <div class="square-button yellow derecha goalert" onclick="saveoperAlert();">
                           <img src="images/alerts.png">
                         </div>
                         
@@ -568,10 +562,10 @@ if ( $p==1) {
       <div class="form-group">
                   <div class="button-panel-small">
                        
-                        <div class="square-button-micro2 red derecha stopalert start reset">
+                        <div class="square-button-micro2 red derecha stopalert start reset" onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
-                        <div id="save-ajuste" class="square-button-micro2 derecha  blue" onclick="showLoad();">
+                        <div id="save-ajuste" class="square-button-micro2 derecha  blue" onclick="showLoad();saveOperstatus();">
                           <img src="images/saving.png">
                         </div>
                         
@@ -601,10 +595,10 @@ if ( $p==1) {
                    <div class="form-group" style="width:80% ;margin:0 auto;">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
                 <input type="hidden" id="s-radios" name="radios">
-              <div class="radio-menu face eatpanel" onclick="submitEat('Comida');showLoad();">
+              <div class="radio-menu face eatpanel" onclick="submitEat('Comida');showLoad();saveOperstatus();">
                 <input type="radio" class=""  id="radios-0"  >
                     COMIDA</div>
-               <div class="radio-menu face eatpanel" onclick="submitEat('Sanitario');showLoad();">
+               <div class="radio-menu face eatpanel" onclick="submitEat('Sanitario');showLoad();saveOperstatus();">
                <input type="radio"  id="radios-1" >
                    SANITARIO
                     </div>
@@ -624,7 +618,7 @@ if ( $p==1) {
                 <!-- Button (Double) -->
                 <div class="form-group">
                   <div class="button-panel-small" >
-                        <div   class="square-button-small red eatpanel stopeat start reseteat2 ">
+                        <div   class="square-button-small red eatpanel stopeat start reseteat2 " onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
                         </div>
@@ -723,4 +717,4 @@ $.ajax({
  });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=4"></script>
+<script src="js/ajuste.js?v=5"></script>

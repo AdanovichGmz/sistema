@@ -105,7 +105,7 @@ var timer = new Timer();
  var timerAlertm = new Timer();
 $(document).ready(function(){
   timer.start();
-
+saveOperstatus();
   $(document).keypress(function(e) {
     if(e.which == 13) {
       event.preventDefault();
@@ -677,4 +677,46 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
     }
 
- 
+  function saveOperstatus(){
+        
+    
+         $.ajax({  
+                      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'tiro'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
+    } 
+
+    function saveoperAlert(){
+        
+    
+         $.ajax({  
+                      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'alerta'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
+    }
+     function saveoperComida(){
+        
+    
+         $.ajax({  
+                      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'comida'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
+    }

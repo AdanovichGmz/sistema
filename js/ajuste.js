@@ -75,6 +75,7 @@ $(document).ready(function(event) {
                                         
 
                                             }); */
+                                            saveOperstatus();
 });
 
 
@@ -325,9 +326,15 @@ timer.addEventListener('targetAchieved', function (e) {
     deadTimer.start();
     alerttime();
     $('#ontime').val('false');
-    // $('#chronoExample').hide();
-    //$('#chronoExample2').show(); 
-   // $('#chronoExample2 .startButton').click();
+   $.ajax({      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'outtime'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
     
     
     
@@ -584,3 +591,47 @@ function createVirtualOdt(){
                 });
   }
 }
+
+ function saveOperstatus(){
+        
+    
+         $.ajax({  
+                      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'ajuste'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
+    } 
+
+     function saveoperAlert(){
+        
+    
+         $.ajax({  
+                      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'alerta'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
+    }
+     function saveoperComida(){
+        
+    
+         $.ajax({  
+                      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'comida'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
+    }

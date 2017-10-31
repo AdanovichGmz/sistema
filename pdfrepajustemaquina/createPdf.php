@@ -5,7 +5,7 @@ include '../saves/conexion.php';
 $numodt=$_POST['id'];
 $userid=$_POST['iduser'];
 
- $query="SELECT t.*,m.nommaquina,o.numodt,o.producto,u.logged_in,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS element,((t.entregados-t.merma_entregada)-t.defectos) AS calidad,(SELECT piezas_por_hora FROM estandares WHERE id_elemento=o.producto AND id_maquina= 10) AS estandar,TIME_TO_SEC(tiempoTiraje) AS seconds_tiraje,TIME_TO_SEC(timediff(horafin_tiraje,horadeldia_tiraje)) AS dispon_tiro,TIME_TO_SEC(timediff(horafin_ajuste,horadeldia_ajuste)) AS dispon_ajuste,TIME_TO_SEC(tiempo_ajuste) AS seconds_ajuste,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro  FROM tiraje t LEFT JOIN maquina m ON m.idmaquina=t.id_maquina LEFT JOIN login u ON u.id=t.id_user LEFT JOIN ordenes o ON o.idorden=t.id_orden WHERE fechadeldia_tiraje='$numodt' AND t.id_user=$userid ORDER BY horadeldia_ajuste ASC";
+ $query="SELECT t.*, m.nommaquina,o.numodt,o.producto,u.logged_in,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS element,((t.entregados-t.merma_entregada)-t.defectos) AS calidad,(SELECT piezas_por_hora FROM estandares WHERE id_elemento=o.producto AND id_maquina= 10) AS estandar,TIME_TO_SEC(tiempoTiraje) AS seconds_tiraje,TIME_TO_SEC(timediff(horafin_tiraje,horadeldia_tiraje)) AS dispon_tiro,TIME_TO_SEC(timediff(horafin_ajuste,horadeldia_ajuste)) AS dispon_ajuste,TIME_TO_SEC(tiempo_ajuste) AS seconds_ajuste,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro  FROM tiraje t LEFT JOIN maquina m ON m.idmaquina=t.id_maquina LEFT JOIN login u ON u.id=t.id_user LEFT JOIN ordenes o ON o.idorden=t.id_orden WHERE fechadeldia_tiraje='$numodt' AND t.id_user=$userid ORDER BY horadeldia_ajuste ASC";
    
        
         $resss=$mysqli->query($query);
@@ -190,11 +190,17 @@ border:1px solid #E1E0E5!important;
    $sum_defectos=0;
   $sum_calidad=0;
   $sum_dispon=0;
-                          while($row=mysqli_fetch_assoc($resss)):  
+  $sum_recibidos=0;
+                          while($row=mysqli_fetch_assoc($resss)):
+                            if ($i==0) {
+                              $transcur=strtotime($row['horadeldia_ajuste'])-strtotime("09:00:00"); 
+                              $sum_muerto+=$transcur; 
+                            }
+                          
                             $sum_esper+=$row['produccion_esperada'];
                           $sum_merm+=$row['merma_entregada'];
                           $sum_real+=$row['entregados']-$row['merma_entregada'];
-                          
+                          $sum_recibidos+=$row['cantidad'];
                            $sum_ajuste+=$row['seconds_ajuste'];
                             $sum_muerto+=$row['seconds_muertos_tiro'];
                             $sum_defectos+=$row['defectos'];
@@ -226,7 +232,7 @@ border:1px solid #E1E0E5!important;
     <td><?=gmdate("H:i",$row['dispon_ajuste']);  ?></td>
    
     <td><?=gmdate("H:i",$sum_dispon);  ?></td>
-    
+    <?php $sum_muerto+=$row['seconds_muertos']; ?>
     <td><?=gmdate("H:i", $row['seconds_muertos']); ?></td>
     <td><?=gmdate("H:i", $sum_muerto); ?></td>
     <td><?= gmdate("H:i", $row['seconds_ajuste']);?></td>
@@ -367,17 +373,25 @@ $i++;
   
   </tbody>
 </table>
-
+<?php $treal=$sum_tiraje-$sum_muerto; 
+if ($sum_dispon>19800) {
+  $sum_dispon-=3600;
+}
+if (isset($transcur)) {
+ $sum_dispon+=$transcur;
+}
+?>
 <div style="width: 103%; padding-top: 10px;margin: 0 auto!important">
   <div class="botom-stats" style="width: 24%;">
     <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
-     <?php $dispon=$sum_tiraje/$sum_dispon; ?>
+     <?php $dispon=$treal/$sum_dispon; ?>
       DISPONIBILIDAD= <?=round($dispon*100,2) ?>%
     </div><div style="width: 100%;">
       <table>
         <tr>
           <th>TIEMPO REAL</th>
-          <td><?=gmdate("H:i",$sum_tiraje) ?></td>
+
+          <td><?=gmdate("H:i",$treal) ?></td>
         </tr>
         <tr>
           <th class="extrath">TIEMPO DISPONIBLE</th>
@@ -407,7 +421,7 @@ $i++;
     </div>
   </div><div class="botom-stats" style="width: 24%;">
     <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
-    <?php $calidad=$sum_calidad/$sum_real; ?>
+    <?php $calidad=($sum_calidad+$sum_merm)/$sum_recibidos; ?>
       CALIDAD= <?=round($calidad*100,2) ?>%
     </div><div style="width: 100%;">
       <table>

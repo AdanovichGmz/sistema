@@ -1,4 +1,4 @@
-     
+  <?php session_start(); ?>   
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr" xmlns:fb="http://ogp.me/ns/fb#">
@@ -64,9 +64,11 @@
   width: 100%;
   height: 30px;
   position:relative;
-  color:#B7D8F3;
+  color:#3F4553;
   line-height: 30px;
   font-weight: normal;
+  font-size: 20px;
+  text-transform: uppercase;
 }
     .prod-container{
       width: 100%;
@@ -74,7 +76,7 @@
     }
     .personal{
       width: 31%;
-    background-color: #333333;
+    background-color: #fff;
     height: 22em;
     display: inline-block;
     border-radius: 5px;
@@ -82,7 +84,7 @@
     vertical-align: top;
     position: relative;
     font-family: "monse";
-
+    border: 1px solid #BABECA;
 
     }
     .personal:hover{
@@ -98,16 +100,17 @@
       top: 10px;
       left: 10px;
       background-size: contain!important;
-      border: 1px solid #777878;
+      border: 1px solid #E6E8E7;
     }
     .ete-photo{
       height: 110px;
       width: 100%;
-      background: #212121;
+      
       position: relative;
-      border-top-left-radius:5px;
-      border-top-right-radius:5px;
-     
+      border-top-left-radius:3px;
+      border-top-right-radius:3px;
+     z-index: 100;
+     background: #F9F9F9;
 
     }
     .ete-num{
@@ -117,8 +120,8 @@
       top: 10px;
       right: 18px;
       line-height: 90px;
-      font-size: 50px;
-      color: #fff;
+      font-size: 70px;
+      color: #272B34;
       text-align: right;
     }
     .ete-stat{
@@ -136,8 +139,8 @@
 
     }
     .ete-stat thead{
-     font-size: 18px;
-     color: #979999;
+     font-size: 25px;
+     color: #272B34;
       
     }
     .ete-stat td{
@@ -145,13 +148,13 @@
     }
     .trh{
       height: 50px;
-      background:#393939;
-      border-bottom: 1px solid #444444;
-      border-top: 1px solid #444444;  
+      background: #F9F9F9;
+      font-weight: bolder;
+       
     }
     .middletd{
-      border-right: 1px dashed #444444;
-      border-left: 1px dashed #444444;
+      border-right: 1px dashed #E6E8E7;
+    border-left: 1px dashed #E6E8E7;
     }
     .trb{
       line-height: 24px;
@@ -161,13 +164,13 @@
       width: 100%;
     }
     .prod-container{
-      background: #1D1A1D!important;
+      background: #272B34!important;
     }
 .disabled{
-  opacity: 0.3
+  opacity: 0.1
 }
 #cuerpito{
-  background: #000;
+  
 }
     @media screen and (max-width: 768px) {
  
@@ -177,6 +180,16 @@
 
 }
 
+.fade {
+   width: 100%;
+  height: 100%;
+  background-color:#E9573E;
+ transition: opacity 0.6s ease-in-out;
+ position: absolute;
+  border-radius:5px;
+  
+
+}
 
 @media screen and (max-width: 412px) {
  
@@ -185,9 +198,30 @@
  }
 
 }
+.ajuste{
+  background: #4C89DC!important;
+
+}
+.ajuste div{
+  color:#fff!important;
+}
+.alerta{
+  background: #F6BB43!important;
+}
+.tiro{
+  background: #35BC9B!important;
+}
+.tiro div{
+  color:#fff!important;
+}
+.comida{
+  
+}
 
 
   </style>
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
+  
 </head>
 <body id="cuerpito">
 
@@ -197,17 +231,27 @@
 </body>
 </html>
 <script>
-$(document).ready(function(){ 
+$(document).ready(function(){
+ alerttime();
 setInterval(function() {
             
-              $('#cuerpito').hide().fadeIn('slow'); 
-                  $('#cuerpito').load('estatus_content.php').show().fadeIn(3000);;
-                          $('#cuerpito').show().fadeIn(3000);
-                          console.log('se reargo');
-                }, 61000);
+              //$('#cuerpito').hide().fadeIn('slow'); 
+                  $('#cuerpito').load('estatus_content.php', function(resp, status, xhr) {drawSerigrafia3Chart();drawSerigrafia2Chart();drawSuajeChart();});
+                          //$('#cuerpito').show().fadeIn(3000);
+                          
+                }, 10000);
 
 
                 });
    
-       
+      function alerttime(){
+  
+  animacion = function(){
+  
+  $('.outtime').toggleClass('fade');
+ 
+}
+setInterval(animacion, 550);
+
+}  
 </script>

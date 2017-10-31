@@ -374,43 +374,159 @@
 [27/Oct/2017:10:48:58] (saves) si vale algo
 [27/Oct/2017:10:48:58] (saves) Ultimo ID de Serigrafia3: 773
 [27/Oct/2017:10:48:58] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=126, buenos=125, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=25, entregados=125, tiempoTiraje='00:17:34', fechadeldia_tiraje='27-10-2017', horadeldia_tiraje=' 10:30:56', horafin_tiraje='10:48:58', id_user=8,produccion_esperada=123,desempenio=100 WHERE idtiraje=773
-[27/Oct/2017:11:27:57] (saves) {"isvirtual":"true","qty":"single","element_v":"Tarjetas","element":"","section":"tiraje","horainiciotiro":" 11:01:00","hour":"10:04:35","pedido":"225","buenos":"246","cantidad":"246","piezas-ajuste":"1","merma-entregada":"21","defectos":"0","tiempoTiraje":"00:26:53","logged_in":"14","horadeldia":" 03:01:00","fechadeldia":"27-10-2017","nombremaquina":"Serigrafia2"}
-[27/Oct/2017:11:27:57] (saves) true
-[27/Oct/2017:11:27:57] (saves) si vale algo
-[27/Oct/2017:11:27:57] (saves) Ultimo ID de Serigrafia2: 777
-[27/Oct/2017:11:27:57] (saves) UPDATE tiraje set producto='', pedido='225', cantidad=246, buenos=246, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=21, entregados=246, tiempoTiraje='00:26:53', fechadeldia_tiraje='27-10-2017', horadeldia_tiraje=' 11:01:00', horafin_tiraje='11:27:57', id_user=14,produccion_esperada=188,desempenio=100 WHERE idtiraje=777
-[27/Oct/2017:11:59:28] (saves) {"isvirtual":"true","qty":"single","element_v":"Boletos","element":"","section":"tiraje","horainiciotiro":" 11:09:44","hour":"10:49:05","pedido":"250","buenos":"274","cantidad":"275","piezas-ajuste":"1","merma-entregada":"24","defectos":"0","tiempoTiraje":"00:49:38","logged_in":"8","horadeldia":" 03:09:44","fechadeldia":"27-10-2017","nombremaquina":"Serigrafia3"}
-[27/Oct/2017:11:59:28] (saves) true
-[27/Oct/2017:11:59:28] (saves) si vale algo
-[27/Oct/2017:11:59:28] (saves) Ultimo ID de Serigrafia3: 783
-[27/Oct/2017:11:59:28] (saves) UPDATE tiraje set producto='', pedido='250', cantidad=275, buenos=274, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=24, entregados=274, tiempoTiraje='00:49:38', fechadeldia_tiraje='27-10-2017', horadeldia_tiraje=' 11:09:44', horafin_tiraje='11:59:28', id_user=8,produccion_esperada=347,desempenio=78.8640506572 WHERE idtiraje=783
-[27/Oct/2017:12:38:22] (saves) {"isvirtual":"true","qty":"single","element_v":"Menus","element":"","section":"tiraje","horainiciotiro":" 12:27:23","hour":"11:28:01","pedido":"50","buenos":"70","cantidad":"70","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:10:56","logged_in":"14","horadeldia":" 04:27:23","fechadeldia":"27-10-2017","nombremaquina":"Serigrafia2"}
-[27/Oct/2017:12:38:22] (saves) true
-[27/Oct/2017:12:38:22] (saves) si vale algo
-[27/Oct/2017:12:38:22] (saves) Ultimo ID de Serigrafia2: 785
-[27/Oct/2017:12:38:22] (saves) UPDATE tiraje set producto='', pedido='50', cantidad=70, buenos=70, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=70, tiempoTiraje='00:10:56', fechadeldia_tiraje='27-10-2017', horadeldia_tiraje=' 12:27:23', horafin_tiraje='12:38:22', id_user=14,produccion_esperada=77,desempenio=91.463414634146 WHERE idtiraje=785
-[27/Oct/2017:12:52:57] (saves) {"isvirtual":"true","qty":"single","element_v":"Accesorios","element":"","section":"tiraje","horainiciotiro":" 12:31:23","hour":"11:59:32","pedido":"250","buenos":"269","cantidad":"270","piezas-ajuste":"1","merma-entregada":"19","defectos":"0","tiempoTiraje":"00:21:31","logged_in":"8","horadeldia":" 04:31:23","fechadeldia":"27-10-2017","nombremaquina":"Serigrafia3"}
-[27/Oct/2017:12:52:57] (saves) true
-[27/Oct/2017:12:52:57] (saves) si vale algo
-[27/Oct/2017:12:52:57] (saves) Ultimo ID de Serigrafia3: 786
-[27/Oct/2017:12:52:57] (saves) UPDATE tiraje set producto='', pedido='250', cantidad=270, buenos=269, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=269, tiempoTiraje='00:21:31', fechadeldia_tiraje='27-10-2017', horadeldia_tiraje=' 12:31:23', horafin_tiraje='12:52:57', id_user=8,produccion_esperada=151,desempenio=100 WHERE idtiraje=786
-[27/Oct/2017:13:23:08] (saves) {"isvirtual":"true","qty":"single","element_v":"Agradecimientos","element":"","section":"tiraje","horainiciotiro":" 13:12:35","hour":"12:53:00","pedido":"120","buenos":"135","cantidad":"136","piezas-ajuste":"1","merma-entregada":"15","defectos":"0","tiempoTiraje":"00:10:22","logged_in":"8","horadeldia":" 05:12:35","fechadeldia":"27-10-2017","nombremaquina":"Serigrafia3"}
-[27/Oct/2017:13:23:08] (saves) true
-[27/Oct/2017:13:23:08] (saves) si vale algo
-[27/Oct/2017:13:23:08] (saves) Ultimo ID de Serigrafia3: 797
-[27/Oct/2017:13:23:08] (saves) UPDATE tiraje set producto='', pedido='120', cantidad=136, buenos=135, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=15, entregados=135, tiempoTiraje='00:10:22', fechadeldia_tiraje='27-10-2017', horadeldia_tiraje=' 13:12:35', horafin_tiraje='13:23:08', id_user=8,produccion_esperada=73,desempenio=100 WHERE idtiraje=797
-[27/Oct/2017:15:39:42] (saves) {"isvirtual":"true","qty":"single","element_v":"","element":"","section":"tiraje","horainiciotiro":" 14:29:59","hour":"","pedido":"250","buenos":"270","cantidad":"271","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:53:28","logged_in":"8","horadeldia":" 06:29:59","fechadeldia":"27-10-2017","nombremaquina":"Serigrafia3"}
-[27/Oct/2017:15:39:42] (saves) true
-[27/Oct/2017:15:39:42] (saves) si vale algo
-[27/Oct/2017:15:39:42] (saves) Ultimo ID de Serigrafia3: 801
-[27/Oct/2017:15:39:42] (saves) UPDATE tiraje set producto='', pedido='250', cantidad=271, buenos=270, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=270, tiempoTiraje='00:53:28', fechadeldia_tiraje='27-10-2017', horadeldia_tiraje=' 14:29:59', horafin_tiraje='15:39:42', id_user=8,produccion_esperada=374,desempenio=72.141075881724 WHERE idtiraje=801
-[27/Oct/2017:16:36:24] (saves) {"isvirtual":"true","qty":"single","element_v":"Accesorios","element":"","section":"tiraje","horainiciotiro":" 16:20:25","hour":"15:39:50","pedido":"100","buenos":"119","cantidad":"120","piezas-ajuste":"1","merma-entregada":"19","defectos":"0","tiempoTiraje":"00:15:56","logged_in":"8","horadeldia":" 08:20:25","fechadeldia":"27-10-2017","nombremaquina":"Serigrafia3"}
-[27/Oct/2017:16:36:24] (saves) true
-[27/Oct/2017:16:36:24] (saves) si vale algo
-[27/Oct/2017:16:36:24] (saves) Ultimo ID de Serigrafia3: 804
-[27/Oct/2017:16:36:24] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=119, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=119, tiempoTiraje='00:15:56', fechadeldia_tiraje='27-10-2017', horadeldia_tiraje=' 16:20:25', horafin_tiraje='16:36:24', id_user=8,produccion_esperada=112,desempenio=100 WHERE idtiraje=804
-[27/Oct/2017:17:18:46] (saves) {"isvirtual":"true","qty":"single","element_v":"Esquelas","element":"","section":"tiraje","horainiciotiro":" 16:57:40","hour":"16:36:27","pedido":"100","buenos":"120","cantidad":"121","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:21:02","logged_in":"8","horadeldia":" 08:57:40","fechadeldia":"27-10-2017","nombremaquina":"Serigrafia3"}
-[27/Oct/2017:17:18:46] (saves) true
-[27/Oct/2017:17:18:46] (saves) si vale algo
-[27/Oct/2017:17:18:46] (saves) Ultimo ID de Serigrafia3: 821
-[27/Oct/2017:17:18:46] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:21:02', fechadeldia_tiraje='27-10-2017', horadeldia_tiraje=' 16:57:40', horafin_tiraje='17:18:46', id_user=8,produccion_esperada=147,desempenio=81.503282771112 WHERE idtiraje=821
+[27/Oct/2017:12:40:39] (saves) {"element":"58","section":"tiraje","hour":"12:35:52","horainiciotiro":" 12:39:49","qty":"single","pedido":"100","buenos":"120","cantidad":"100","piezas-ajuste":"2","merma-entregada":"20","defectos":"0","producto":"58","numodt":"510","odt":"I3258D","tiempoTiraje":"00:00:49","logged_in":"2","horadeldia":" 04:39:49","fechadeldia":"27-10-2017","nombremaquina":"Suaje"}
+[27/Oct/2017:12:40:39] (saves) false
+[27/Oct/2017:12:40:39] (saves) si vale algo
+[27/Oct/2017:12:40:39] (saves) $tiraje_estandar 3.4027777777778
+[27/Oct/2017:12:40:39] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 58
+[27/Oct/2017:13:02:49] (saves) {"element":"114","section":"tiraje","hour":"12:50:28","horainiciotiro":" 12:56:47","qty":"single","pedido":"100","buenos":"120","cantidad":"100","piezas-ajuste":"3","merma-entregada":"20","defectos":"1","producto":"114","numodt":"390","odt":"I3412","tiempoTiraje":"00:04:53","logged_in":"2","horadeldia":" 04:56:47","fechadeldia":"27-10-2017","nombremaquina":"Suaje"}
+[27/Oct/2017:13:02:49] (saves) false
+[27/Oct/2017:13:02:49] (saves) si vale algo
+[27/Oct/2017:13:02:49] (saves) $tiraje_estandar 48.833333333333
+[27/Oct/2017:13:02:49] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 114
+[27/Oct/2017:13:17:37] (saves) {"element":"114","section":"tiraje","hour":"13:12:29","horainiciotiro":" 13:14:14","qty":"single","pedido":"30","buenos":"50","cantidad":"30","piezas-ajuste":"3","merma-entregada":"20","defectos":"1","producto":"114","numodt":"566","odt":"I3423","tiempoTiraje":"00:01:26","logged_in":"2","horadeldia":" 05:14:14","fechadeldia":"27-10-2017","nombremaquina":"Suaje"}
+[27/Oct/2017:13:17:37] (saves) false
+[27/Oct/2017:13:17:37] (saves) si vale algo
+[27/Oct/2017:13:17:37] (saves) $tiraje_estandar 14.333333333333
+[27/Oct/2017:13:17:37] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 114
+[27/Oct/2017:15:54:01] (saves) {"element":"114","section":"tiraje","hour":"14:01:21","horainiciotiro":" 15:49:46","qty":"single","pedido":"85","buenos":"100","cantidad":"85","piezas-ajuste":"3","merma-entregada":"15","defectos":"1","producto":"114","numodt":"39","odt":"I3233","tiempoTiraje":"00:04:13","logged_in":"2","horadeldia":" 07:49:46","fechadeldia":"27-10-2017","nombremaquina":"Suaje"}
+[27/Oct/2017:15:54:01] (saves) false
+[27/Oct/2017:15:54:01] (saves) si vale algo
+[27/Oct/2017:15:54:01] (saves) $tiraje_estandar 42.166666666667
+[27/Oct/2017:15:54:01] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 114
+[27/Oct/2017:16:10:05] (saves) {"element":"17","section":"tiraje","hour":"16:09:45","horainiciotiro":" 16:09:51","qty":"single","pedido":"300","buenos":"320","cantidad":"300","piezas-ajuste":"2","merma-entregada":"20","defectos":"0","producto":"17","numodt":"46","odt":"I3248","tiempoTiraje":"00:00:12","logged_in":"2","horadeldia":" 08:09:51","fechadeldia":"27-10-2017","nombremaquina":"Suaje"}
+[27/Oct/2017:16:10:05] (saves) false
+[27/Oct/2017:16:10:05] (saves) si vale algo
+[27/Oct/2017:16:10:05] (saves) $tiraje_estandar 2
+[27/Oct/2017:16:10:05] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 17
+[27/Oct/2017:16:11:14] (saves) {"element":"140","section":"tiraje","hour":"16:11:04","horainiciotiro":" 16:11:09","qty":"single","pedido":"100","buenos":"120","cantidad":"100","piezas-ajuste":"2","merma-entregada":"20","defectos":"0","producto":"140","numodt":"42","odt":"I3248","tiempoTiraje":"00:00:05","logged_in":"2","horadeldia":" 08:11:09","fechadeldia":"27-10-2017","nombremaquina":"Suaje"}
+[27/Oct/2017:16:11:14] (saves) false
+[27/Oct/2017:16:11:14] (saves) si vale algo
+[27/Oct/2017:16:11:14] (saves) $tiraje_estandar 0.83333333333333
+[27/Oct/2017:16:11:14] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 140
+[27/Oct/2017:16:23:02] (saves) {"element":"114","section":"tiraje","hour":"16:22:46","horainiciotiro":" 16:22:54","qty":"single","pedido":"100","buenos":"120","cantidad":"100","piezas-ajuste":"2","merma-entregada":"20","defectos":"0","producto":"114","numodt":"45","odt":"I3248","tiempoTiraje":"00:00:06","logged_in":"2","horadeldia":" 08:22:54","fechadeldia":"27-10-2017","nombremaquina":"Suaje"}
+[27/Oct/2017:16:23:02] (saves) false
+[27/Oct/2017:16:23:02] (saves) si vale algo
+[27/Oct/2017:16:23:02] (saves) $tiraje_estandar 1
+[27/Oct/2017:16:23:02] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 114
+[27/Oct/2017:16:29:30] (saves) {"element":"58","section":"tiraje","hour":"16:28:53","horainiciotiro":" 16:29:18","qty":"single","pedido":"100","buenos":"120","cantidad":"100","piezas-ajuste":"3","merma-entregada":"20","defectos":"1","producto":"58","numodt":"41","odt":"I3248","tiempoTiraje":"00:00:10","logged_in":"2","horadeldia":" 08:29:18","fechadeldia":"27-10-2017","nombremaquina":"Suaje"}
+[27/Oct/2017:16:29:30] (saves) false
+[27/Oct/2017:16:29:30] (saves) si vale algo
+[27/Oct/2017:16:29:30] (saves) $tiraje_estandar 0.69444444444444
+[27/Oct/2017:16:29:30] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 58
+[28/Oct/2017:10:21:04] (saves) {"isvirtual":"true","qty":"single","element_v":"Jjjj","element":"","section":"tiraje","horainiciotiro":" 08:58:22","hour":"08:58:08","pedido":"120","buenos":"140","cantidad":"150","piezas-ajuste":"2","merma-entregada":"20","defectos":"0","tiempoTiraje":"01:07:23","logged_in":"2","horadeldia":" 00:58:22","fechadeldia":"28-10-2017","nombremaquina":"Suaje"}
+[28/Oct/2017:10:21:04] (saves) true
+[28/Oct/2017:10:21:04] (saves) si vale algo
+[28/Oct/2017:10:21:04] (saves) Ultimo ID de : 
+[28/Oct/2017:10:21:04] (saves) 146
+[28/Oct/2017:10:21:04] (saves) UPDATE tiraje set producto='', pedido='120', cantidad=150, buenos=140, defectos=0, merma=0,piezas_ajuste=2, merma_entregada=20, entregados=140, tiempoTiraje='01:07:23', fechadeldia_tiraje='28-10-2017', horadeldia_tiraje=' 08:58:22', horafin_tiraje='10:21:04', id_user=2,produccion_esperada=674,desempenio=20.776651001731 WHERE idtiraje=
+[28/Oct/2017:10:21:31] (saves) {"isvirtual":"true","qty":"single","element_v":"Jjjj","element":"","section":"tiraje","horainiciotiro":" 10:21:16","hour":"08:58:08","pedido":"140","buenos":"150","cantidad":"150","piezas-ajuste":"2","merma-entregada":"10","defectos":"0","tiempoTiraje":"00:00:13","logged_in":"2","horadeldia":" 02:21:16","fechadeldia":"28-10-2017","nombremaquina":"Suaje"}
+[28/Oct/2017:10:21:31] (saves) true
+[28/Oct/2017:10:21:31] (saves) si vale algo
+[28/Oct/2017:10:21:31] (saves) Ultimo ID de Suaje: 829
+[28/Oct/2017:10:21:31] (saves) UPDATE tiraje set producto='', pedido='140', cantidad=150, buenos=150, defectos=0, merma=0,piezas_ajuste=2, merma_entregada=10, entregados=150, tiempoTiraje='00:00:13', fechadeldia_tiraje='28-10-2017', horadeldia_tiraje=' 10:21:16', horafin_tiraje='10:21:31', id_user=2,produccion_esperada=2,desempenio=100 WHERE idtiraje=829
+[28/Oct/2017:10:53:19] (saves) {"isvirtual":"true","qty":"single","element_v":"Exteriores","element":"","section":"tiraje","horainiciotiro":" 10:10:32","hour":"09:02:22","pedido":"250","buenos":"270","cantidad":"271","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:42:42","logged_in":"8","horadeldia":" 02:10:32","fechadeldia":"28-10-2017","nombremaquina":"Serigrafia3"}
+[28/Oct/2017:10:53:19] (saves) true
+[28/Oct/2017:10:53:19] (saves) si vale algo
+[28/Oct/2017:10:53:19] (saves) Ultimo ID de Serigrafia3: 830
+[28/Oct/2017:10:53:19] (saves) UPDATE tiraje set producto='', pedido='250', cantidad=271, buenos=270, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=270, tiempoTiraje='00:42:42', fechadeldia_tiraje='28-10-2017', horadeldia_tiraje=' 10:10:32', horafin_tiraje='10:53:19', id_user=8,produccion_esperada=299,desempenio=90.331214452994 WHERE idtiraje=830
+[28/Oct/2017:11:28:34] (saves) {"isvirtual":"true","qty":"single","element_v":"Menus 2a tinta","element":"","section":"tiraje","horainiciotiro":" 11:15:32","hour":"10:53:24","pedido":"30","buenos":"50","cantidad":"51","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:12:59","logged_in":"8","horadeldia":" 03:15:32","fechadeldia":"28-10-2017","nombremaquina":"Serigrafia3"}
+[28/Oct/2017:11:28:34] (saves) true
+[28/Oct/2017:11:28:34] (saves) si vale algo
+[28/Oct/2017:11:28:34] (saves) Ultimo ID de Serigrafia3: 832
+[28/Oct/2017:11:28:34] (saves) UPDATE tiraje set producto='', pedido='30', cantidad=51, buenos=50, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=50, tiempoTiraje='00:12:59', fechadeldia_tiraje='28-10-2017', horadeldia_tiraje=' 11:15:32', horafin_tiraje='11:28:34', id_user=8,produccion_esperada=91,desempenio=55.015587749862 WHERE idtiraje=832
+[28/Oct/2017:12:09:34] (saves) {"isvirtual":"true","qty":"single","element_v":"Accesorios","element":"","section":"tiraje","horainiciotiro":" 11:50:43","hour":"11:28:43","pedido":"100","buenos":"120","cantidad":"121","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:18:40","logged_in":"8","horadeldia":" 03:50:43","fechadeldia":"28-10-2017","nombremaquina":"Serigrafia3"}
+[28/Oct/2017:12:09:34] (saves) true
+[28/Oct/2017:12:09:34] (saves) si vale algo
+[28/Oct/2017:12:09:34] (saves) Ultimo ID de Serigrafia3: 833
+[28/Oct/2017:12:09:34] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:18:40', fechadeldia_tiraje='28-10-2017', horadeldia_tiraje=' 11:50:43', horafin_tiraje='12:09:34', id_user=8,produccion_esperada=131,desempenio=91.836734693878 WHERE idtiraje=833
+[28/Oct/2017:12:43:17] (saves) {"isvirtual":"true","qty":"single","element_v":"Boletos","element":"","section":"tiraje","horainiciotiro":" 12:27:15","hour":"12:09:37","pedido":"150","buenos":"160","cantidad":"161","piezas-ajuste":"1","merma-entregada":"10","defectos":"0","tiempoTiraje":"00:15:59","logged_in":"8","horadeldia":" 04:27:15","fechadeldia":"28-10-2017","nombremaquina":"Serigrafia3"}
+[28/Oct/2017:12:43:17] (saves) true
+[28/Oct/2017:12:43:17] (saves) si vale algo
+[28/Oct/2017:12:43:17] (saves) Ultimo ID de Serigrafia3: 834
+[28/Oct/2017:12:43:17] (saves) UPDATE tiraje set producto='', pedido='150', cantidad=161, buenos=160, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=10, entregados=160, tiempoTiraje='00:15:59', fechadeldia_tiraje='28-10-2017', horadeldia_tiraje=' 12:27:15', horafin_tiraje='12:43:17', id_user=8,produccion_esperada=112,desempenio=100 WHERE idtiraje=834
+[28/Oct/2017:13:14:15] (saves) {"isvirtual":"true","qty":"single","element_v":"Ttt","element":"","section":"tiraje","horainiciotiro":" 10:41:14","hour":"10:21:32","pedido":"1200","buenos":"1210","cantidad":"1215","piezas-ajuste":"3","merma-entregada":"10","defectos":"1","tiempoTiraje":"02:06:18","logged_in":"2","horadeldia":" 02:41:14","fechadeldia":"28-10-2017","nombremaquina":"Suaje"}
+[28/Oct/2017:13:14:15] (saves) true
+[28/Oct/2017:13:14:15] (saves) si vale algo
+[28/Oct/2017:13:14:15] (saves) Ultimo ID de Suaje: 831
+[28/Oct/2017:13:14:15] (saves) UPDATE tiraje set producto='', pedido='1200', cantidad=1215, buenos=1210, defectos=1, merma=0,piezas_ajuste=3, merma_entregada=10, entregados=1210, tiempoTiraje='02:06:18', fechadeldia_tiraje='28-10-2017', horadeldia_tiraje=' 10:41:14', horafin_tiraje='13:14:15', id_user=2,produccion_esperada=1263,desempenio=95.803642121932 WHERE idtiraje=831
+[28/Oct/2017:13:35:14] (saves) {"isvirtual":"true","qty":"single","element_v":"Esquelas","element":"","section":"tiraje","horainiciotiro":" 13:05:04","hour":"12:43:20","pedido":"100","buenos":"119","cantidad":"120","piezas-ajuste":"1","merma-entregada":"19","defectos":"0","tiempoTiraje":"00:21:01","logged_in":"8","horadeldia":" 05:05:04","fechadeldia":"28-10-2017","nombremaquina":"Serigrafia3"}
+[28/Oct/2017:13:35:14] (saves) true
+[28/Oct/2017:13:35:14] (saves) si vale algo
+[28/Oct/2017:13:35:14] (saves) Ultimo ID de Serigrafia3: 835
+[28/Oct/2017:13:35:14] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=119, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=119, tiempoTiraje='00:21:01', fechadeldia_tiraje='28-10-2017', horadeldia_tiraje=' 13:05:04', horafin_tiraje='13:35:14', id_user=8,produccion_esperada=147,desempenio=80.888183980967 WHERE idtiraje=835
+[28/Oct/2017:13:55:13] (saves) {"isvirtual":"true","qty":"single","element_v":"Mapas","element":"","section":"tiraje","horainiciotiro":" 13:50:21","hour":"13:35:17","pedido":"100","buenos":"119","cantidad":"120","piezas-ajuste":"1","merma-entregada":"19","defectos":"0","tiempoTiraje":"00:04:50","logged_in":"8","horadeldia":" 05:50:21","fechadeldia":"28-10-2017","nombremaquina":"Serigrafia3"}
+[28/Oct/2017:13:55:13] (saves) true
+[28/Oct/2017:13:55:13] (saves) si vale algo
+[28/Oct/2017:13:55:13] (saves) Ultimo ID de Serigrafia3: 837
+[28/Oct/2017:13:55:13] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=119, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=119, tiempoTiraje='00:04:50', fechadeldia_tiraje='28-10-2017', horadeldia_tiraje=' 13:50:21', horafin_tiraje='13:55:13', id_user=8,produccion_esperada=34,desempenio=100 WHERE idtiraje=837
+[30/Oct/2017:09:37:16] (saves) {"element":"114","section":"tiraje","hour":"09:23:50","horainiciotiro":" 09:30:36","qty":"single","pedido":"50","buenos":"60","cantidad":"50","piezas-ajuste":"2","merma-entregada":"10","defectos":"0","producto":"114","numodt":"219","odt":"B6022","tiempoTiraje":"00:06:39","logged_in":"2","horadeldia":" 01:30:36","fechadeldia":"30-10-2017","nombremaquina":"Suaje"}
+[30/Oct/2017:09:37:16] (saves) false
+[30/Oct/2017:09:37:16] (saves) si vale algo
+[30/Oct/2017:09:37:16] (saves) $tiraje_estandar 66.5
+[30/Oct/2017:09:37:16] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 114
+[30/Oct/2017:09:47:05] (saves) {"isvirtual":"true","qty":"single","element_v":"Esquelas","element":"","section":"tiraje","horainiciotiro":" 09:31:26","hour":"09:05:20","pedido":"40","buenos":"54","cantidad":"55","piezas-ajuste":"1","merma-entregada":"14","defectos":"0","tiempoTiraje":"00:15:37","logged_in":"8","horadeldia":" 01:31:26","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia3"}
+[30/Oct/2017:09:47:05] (saves) true
+[30/Oct/2017:09:47:05] (saves) si vale algo
+[30/Oct/2017:09:47:05] (saves) Ultimo ID de Serigrafia3: 839
+[30/Oct/2017:09:47:05] (saves) UPDATE tiraje set producto='', pedido='40', cantidad=55, buenos=54, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=14, entregados=54, tiempoTiraje='00:15:37', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 09:31:26', horafin_tiraje='09:47:05', id_user=8,produccion_esperada=109,desempenio=49.397774050922 WHERE idtiraje=839
+[30/Oct/2017:10:16:44] (saves) {"isvirtual":"true","qty":"single","element_v":"Exteriores","element":"","section":"tiraje","horainiciotiro":" 10:01:21","hour":"09:47:08","pedido":"40","buenos":"50","cantidad":"51","piezas-ajuste":"1","merma-entregada":"10","defectos":"0","tiempoTiraje":"00:15:21","logged_in":"8","horadeldia":" 02:01:21","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia3"}
+[30/Oct/2017:10:16:44] (saves) true
+[30/Oct/2017:10:16:44] (saves) si vale algo
+[30/Oct/2017:10:16:44] (saves) Ultimo ID de Serigrafia3: 843
+[30/Oct/2017:10:16:44] (saves) UPDATE tiraje set producto='', pedido='40', cantidad=51, buenos=50, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=10, entregados=50, tiempoTiraje='00:15:21', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 10:01:21', horafin_tiraje='10:16:44', id_user=8,produccion_esperada=107,desempenio=46.533271288972 WHERE idtiraje=843
+[30/Oct/2017:11:12:20] (saves) {"isvirtual":"true","qty":"single","element_v":"Esquelas","element":"","section":"tiraje","horainiciotiro":" 10:39:09","hour":"10:16:48","pedido":"200","buenos":"226","cantidad":"227","piezas-ajuste":"1","merma-entregada":"26","defectos":"0","tiempoTiraje":"00:33:07","logged_in":"8","horadeldia":" 02:39:09","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia3"}
+[30/Oct/2017:11:12:20] (saves) true
+[30/Oct/2017:11:12:20] (saves) si vale algo
+[30/Oct/2017:11:12:20] (saves) Ultimo ID de Serigrafia3: 844
+[30/Oct/2017:11:12:20] (saves) UPDATE tiraje set producto='', pedido='200', cantidad=227, buenos=226, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=26, entregados=226, tiempoTiraje='00:33:07', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 10:39:09', horafin_tiraje='11:12:20', id_user=8,produccion_esperada=232,desempenio=97.49083327342 WHERE idtiraje=844
+[30/Oct/2017:11:39:53] (saves) {"isvirtual":"true","qty":"single","element_v":"Mapas","element":"","section":"tiraje","horainiciotiro":" 11:26:56","hour":"11:12:23","pedido":"40","buenos":"52","cantidad":"53","piezas-ajuste":"1","merma-entregada":"12","defectos":"0","tiempoTiraje":"00:12:55","logged_in":"8","horadeldia":" 03:26:56","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia3"}
+[30/Oct/2017:11:39:53] (saves) true
+[30/Oct/2017:11:39:53] (saves) si vale algo
+[30/Oct/2017:11:39:53] (saves) Ultimo ID de Serigrafia3: 846
+[30/Oct/2017:11:39:53] (saves) UPDATE tiraje set producto='', pedido='40', cantidad=53, buenos=52, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=12, entregados=52, tiempoTiraje='00:12:55', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 11:26:56', horafin_tiraje='11:39:53', id_user=8,produccion_esperada=90,desempenio=57.511520737327 WHERE idtiraje=846
+[30/Oct/2017:12:28:37] (saves) {"isvirtual":"true","qty":"single","element_v":"Accesorios","element":"","section":"tiraje","horainiciotiro":" 11:54:43","hour":"11:39:55","pedido":"100","buenos":"115","cantidad":"116","piezas-ajuste":"1","merma-entregada":"15","defectos":"0","tiempoTiraje":"00:16:31","logged_in":"8","horadeldia":" 03:54:43","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia3"}
+[30/Oct/2017:12:28:37] (saves) true
+[30/Oct/2017:12:28:37] (saves) si vale algo
+[30/Oct/2017:12:28:37] (saves) Ultimo ID de Serigrafia3: 848
+[30/Oct/2017:12:28:37] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=116, buenos=115, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=15, entregados=115, tiempoTiraje='00:16:31', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 11:54:43', horafin_tiraje='12:28:37', id_user=8,produccion_esperada=116,desempenio=99.466628225458 WHERE idtiraje=848
+[30/Oct/2017:12:56:03] (saves) {"element":"143","section":"tiraje","hour":"11:33:46","horainiciotiro":" 12:39:28","qty":"single","pedido":"250","buenos":"260","cantidad":"250","piezas-ajuste":"3","merma-entregada":"10","defectos":"1","producto":"143","numodt":"506","odt":"M0696","tiempoTiraje":"00:15:58","logged_in":"2","horadeldia":" 04:39:28","fechadeldia":"30-10-2017","nombremaquina":"Suaje"}
+[30/Oct/2017:12:56:03] (saves) false
+[30/Oct/2017:12:56:03] (saves) si vale algo
+[30/Oct/2017:12:56:03] (saves) $tiraje_estandar 159.66666666667
+[30/Oct/2017:12:56:03] (saves) SELECT * FROM estandares WHERE id_maquina=9 AND id_elemento= 143
+[30/Oct/2017:13:01:36] (saves) {"isvirtual":"true","qty":"single","element_v":"Mapas","element":"","section":"tiraje","horainiciotiro":" 12:47:16","hour":"12:28:41","pedido":"100","buenos":"120","cantidad":"121","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:14:17","logged_in":"8","horadeldia":" 04:47:16","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia3"}
+[30/Oct/2017:13:01:36] (saves) true
+[30/Oct/2017:13:01:36] (saves) si vale algo
+[30/Oct/2017:13:01:36] (saves) Ultimo ID de Serigrafia3: 849
+[30/Oct/2017:13:01:36] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:14:17', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 12:47:16', horafin_tiraje='13:01:36', id_user=8,produccion_esperada=100,desempenio=100 WHERE idtiraje=849
+[30/Oct/2017:14:37:21] (saves) {"isvirtual":"true","qty":"single","element_v":"Boletos","element":"","section":"tiraje","horainiciotiro":" 13:13:15","hour":"13:01:42","pedido":"100","buenos":"120","cantidad":"121","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:38:53","logged_in":"8","horadeldia":" 05:13:15","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia3"}
+[30/Oct/2017:14:37:21] (saves) true
+[30/Oct/2017:14:37:21] (saves) si vale algo
+[30/Oct/2017:14:37:21] (saves) Ultimo ID de Serigrafia3: 851
+[30/Oct/2017:14:37:21] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:38:53', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 13:13:15', horafin_tiraje='14:37:21', id_user=8,produccion_esperada=272,desempenio=44.087930928908 WHERE idtiraje=851
+[30/Oct/2017:14:54:28] (saves) {"isvirtual":"true","qty":"single","element_v":"Paquete","element":"","section":"tiraje","horainiciotiro":" 14:24:17","hour":"10:44:15","pedido":"350","buenos":"190","cantidad":"192","piezas-ajuste":"2","merma-entregada":"34","defectos":"0","tiempoTiraje":"00:30:07","logged_in":"14","horadeldia":" 06:24:17","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia2"}
+[30/Oct/2017:14:54:28] (saves) true
+[30/Oct/2017:14:54:28] (saves) si vale algo
+[30/Oct/2017:14:54:28] (saves) Ultimo ID de Serigrafia2: 845
+[30/Oct/2017:14:54:28] (saves) UPDATE tiraje set producto='', pedido='350', cantidad=192, buenos=190, defectos=0, merma=0,piezas_ajuste=2, merma_entregada=34, entregados=190, tiempoTiraje='00:30:07', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 14:24:17', horafin_tiraje='14:54:28', id_user=14,produccion_esperada=211,desempenio=90.125701636493 WHERE idtiraje=845
+[30/Oct/2017:15:17:27] (saves) {"isvirtual":"true","qty":"single","element_v":"Agradecimientos","element":"","section":"tiraje","horainiciotiro":" 14:58:10","hour":"14:37:24","pedido":"100","buenos":"120","cantidad":"121","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:19:13","logged_in":"8","horadeldia":" 06:58:10","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia3"}
+[30/Oct/2017:15:17:27] (saves) true
+[30/Oct/2017:15:17:27] (saves) si vale algo
+[30/Oct/2017:15:17:27] (saves) Ultimo ID de Serigrafia3: 852
+[30/Oct/2017:15:17:27] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:19:13', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 14:58:10', horafin_tiraje='15:17:27', id_user=8,produccion_esperada=135,desempenio=89.208276545657 WHERE idtiraje=852
+[30/Oct/2017:16:01:16] (saves) {"isvirtual":"true","qty":"single","element_v":"Boleto","element":"","section":"tiraje","horainiciotiro":" 15:09:23","hour":"14:54:32","pedido":"750","buenos":"835","cantidad":"840","piezas-ajuste":"2","merma-entregada":"85","defectos":"0","tiempoTiraje":"00:51:47","logged_in":"14","horadeldia":" 07:09:23","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia2"}
+[30/Oct/2017:16:01:16] (saves) true
+[30/Oct/2017:16:01:16] (saves) si vale algo
+[30/Oct/2017:16:01:16] (saves) Ultimo ID de Serigrafia2: 853
+[30/Oct/2017:16:01:16] (saves) UPDATE tiraje set producto='', pedido='750', cantidad=840, buenos=835, defectos=0, merma=0,piezas_ajuste=2, merma_entregada=85, entregados=835, tiempoTiraje='00:51:47', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 15:09:23', horafin_tiraje='16:01:16', id_user=14,produccion_esperada=362,desempenio=100 WHERE idtiraje=853
+[30/Oct/2017:16:03:32] (saves) {"isvirtual":"true","qty":"single","element_v":"Boletos","element":"","section":"tiraje","horainiciotiro":" 15:50:53","hour":"15:17:29","pedido":"150","buenos":"160","cantidad":"161","piezas-ajuste":"1","merma-entregada":"10","defectos":"0","tiempoTiraje":"00:12:38","logged_in":"8","horadeldia":" 07:50:53","fechadeldia":"30-10-2017","nombremaquina":"Serigrafia3"}
+[30/Oct/2017:16:03:32] (saves) true
+[30/Oct/2017:16:03:32] (saves) si vale algo
+[30/Oct/2017:16:03:32] (saves) Ultimo ID de Serigrafia3: 854
+[30/Oct/2017:16:03:32] (saves) UPDATE tiraje set producto='', pedido='150', cantidad=161, buenos=160, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=10, entregados=160, tiempoTiraje='00:12:38', fechadeldia_tiraje='30-10-2017', horadeldia_tiraje=' 15:50:53', horafin_tiraje='16:03:32', id_user=8,produccion_esperada=88,desempenio=100 WHERE idtiraje=854
+[31/Oct/2017:09:54:32] (saves) {"isvirtual":"true","qty":"single","element_v":"Agradecimientos","element":"","section":"tiraje","horainiciotiro":" 09:40:31","hour":"09:24:14","pedido":"100","buenos":"120","cantidad":"121","piezas-ajuste":"1","merma-entregada":"20","defectos":"0","tiempoTiraje":"00:13:58","logged_in":"8","horadeldia":" 01:40:31","fechadeldia":"31-10-2017","nombremaquina":"Serigrafia3"}
+[31/Oct/2017:09:54:32] (saves) true
+[31/Oct/2017:09:54:32] (saves) si vale algo
+[31/Oct/2017:09:54:32] (saves) Ultimo ID de Serigrafia3: 858
+[31/Oct/2017:09:54:32] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:13:58', fechadeldia_tiraje='31-10-2017', horadeldia_tiraje=' 09:40:31', horafin_tiraje='09:54:32', id_user=8,produccion_esperada=98,desempenio=100 WHERE idtiraje=858

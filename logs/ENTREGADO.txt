@@ -1,2 +1,14 @@
 [24/Oct/2017:14:42:14] (saves) no se pudo actualizar ordenB6138
 [24/Oct/2017:14:42:14] (saves) 0
+[27/Oct/2017:12:40:39] (saves) no se pudo actualizar ordenI3258D
+[27/Oct/2017:12:40:39] (saves) 0
+[27/Oct/2017:13:02:49] (saves) no se pudo actualizar ordenI3412
+[27/Oct/2017:13:02:49] (saves) 0
+[27/Oct/2017:13:17:37] (saves) no se pudo actualizar ordenI3423
+[27/Oct/2017:13:17:37] (saves) 0
+[27/Oct/2017:15:54:01] (saves) no se pudo actualizar ordenI3233
+[27/Oct/2017:15:54:01] (saves) 0
+[27/Oct/2017:16:29:30] (saves) no se pudo actualizar ordenI3248
+[27/Oct/2017:16:29:30] (saves) 0
+[30/Oct/2017:09:37:16] (saves) no se pudo actualizar ordenB6022
+[30/Oct/2017:09:37:16] (saves) 0

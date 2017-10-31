@@ -6,6 +6,8 @@ date_default_timezone_set("America/Mexico_City");
 
 require('saves/conexion.php');
 require('classes/functions.class.php');
+
+
   $log = new Functions();
   $section=$_POST['section'];
    if ($section=='asaichi') {
@@ -19,7 +21,7 @@ require('classes/functions.class.php');
         
         $machineID=$_SESSION['machineID'];
         $machineName=$_SESSION['machineName'];
-       
+        $today=date("d-m-Y");
         $query="INSERT INTO asaichi (tiempo, id_maquina, id_usuario, horadeldia, fechadeldia) VALUES ('$tiempo',$machineID,$logged_in,'$horadeldia','$fechadeldia')";
         $resultado=$mysqli->query($query);
         if ($resultado) {
@@ -31,6 +33,7 @@ require('classes/functions.class.php');
           $log->lwrite($query,'multi-error');
           $log->lclose();
         }
+        $change_status=$mysqli->query("UPDATE operacion_estatus SET asaichi_cumplido=1 WHERE fecha='$today' AND maquina=$machineID ");
 
      }
      elseif ($section=='ajuste') {
@@ -46,6 +49,8 @@ require('classes/functions.class.php');
         $machineName=$_SESSION['machineName'];
         $tirajeActual=$_POST['actual_tiro'];
         $horafinajuste=date("H:i:s",time());
+        $today=date("d-m-Y");
+        $changestatus=$mysqli->query("UPDATE operacion_estatus SET en_tiempo=1 WHERE fecha='$today' AND maquina=$machineID ");
         //$odetes= explode(',',$_POST['orderodts'])
         if ($_POST['numodt']=='virtual') {
           $virtOdt=$_POST['odtvirtual'];

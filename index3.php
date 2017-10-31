@@ -3,13 +3,7 @@
 error_reporting(0);
 ini_set('session.gc_maxlifetime', 30*60);
 date_default_timezone_set("America/Mexico_City");
-if (isset($_COOKIE['ajuste'])) {
-    setcookie('ajuste', true, time() - 3600);
-    unset($_COOKIE['ajuste']);
-}
-if (!isset($_COOKIE['tiraje'])) {
-    setcookie('tiraje', true, time() + 3600);
-}
+
 require('saves/conexion.php');
 if (!session_id()) {
     session_start();
@@ -175,7 +169,7 @@ if (@$_SESSION['logged_in'] != true) {
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     $roundDesemp=($desempenio>100)? 100 : $desempenio;
-    $dispon     =($seconds>14400)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
+    $dispon     =($seconds>19800)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
     //$disponible = round($dispon, 1);
     $disponible = round($dispon);
     
@@ -227,9 +221,9 @@ if (@$_SESSION['logged_in'] != true) {
       var data = google.visualization.arrayToDataTable([
           ['valor', 'porcentaje'],
          <?php
-    echo "['DISPONIBILIDAD'," . $dispon . "],";
-    echo "['DESEMPEÑO'," . $roundDesemp  . "],";
-    echo "['CALIDAD'," . $roundQuality . "],";
+    echo "['DISPONIBILIDAD'," .round($dispon,2)  . "],";
+    echo "['DESEMPEÑO'," . round($roundDesemp,2)  . "],";
+    echo "['CALIDAD'," . round($roundQuality,2) . "],";
     
 ?> ]);
         var options = { // api de google chats, son estilos css puestos desde js
@@ -634,7 +628,7 @@ if (@$_SESSION['logged_in'] != true) {
                         <div class="square-button-h red">
                           <img src="images/sal.png">
                         </div></a>
-                        <div class="square-button-h green stop eatpanel goeat">
+                        <div class="square-button-h green stop eatpanel goeat" onclick="saveoperComida()">
                           <img src="images/dinner2.png">
                         </div>
                         <?php if (count($orderID)== 1) { ?>
@@ -642,7 +636,7 @@ if (@$_SESSION['logged_in'] != true) {
                           <img src="images/saving.png">
                         </div>
                         <?php } ?>
-                        <div class="square-button-h yellow   derecha goalert">
+                        <div class="square-button-h yellow   derecha goalert" onclick="saveoperAlert();">
                           <img src="images/warning.png">
                         </div><a href="index2.php">
                         <div  class="square-button-h prple" >
@@ -914,10 +908,10 @@ foreach ($orderID as $odt) {
                 <div class="form-group">
                   <div class="button-panel-small">
                        
-                        <div class="square-button-small red derecha stopalert start reset">
+                        <div class="square-button-small red derecha stopalert start reset" onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
-                        <div id="savealerta" class="square-button-small derecha blue " onclick="showLoad(); saveAlert();">
+                        <div id="savealerta" class="square-button-small derecha blue " onclick="showLoad(); saveAlert();saveOperstatus();">
                           <img src="images/saving.png">
                         </div>
                         
@@ -983,10 +977,10 @@ foreach ($orderID as $odt) {
                    <div class="form-group" style="width:80% ;margin:0 auto;">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
 
-              <div class=" radio-menu face  eatpanel" onclick="showLoad();submitEat();">
+              <div class=" radio-menu face  eatpanel" onclick="showLoad();submitEat();saveOperstatus();">
                 <input type="radio" class="" name="radios" id="radios-0" value="Comida">
                     COMIDA</div>
-               <div class=" radio-menu face eatpanel" onclick="showLoad();submitEat();">
+               <div class=" radio-menu face eatpanel" onclick="showLoad();submitEat();saveOperstatus();">
                <input type="radio" name="radios" id="radios-1" value="Sanitario" >
                    SANITARIO
                     
@@ -1000,7 +994,7 @@ foreach ($orderID as $odt) {
                 <div class="form-group">
                   <div class="button-panel-small">
                        
-                        <div  class="square-button-small red eatpanel stopeat start reseteat2 ">
+                        <div  class="square-button-small red eatpanel stopeat start reseteat2 " onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
                         </div>
@@ -1187,4 +1181,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=2"></script>
+  <script src="js/tiraje.js?v=3"></script>

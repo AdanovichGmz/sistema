@@ -1,2 +1,12 @@
 [24/Oct/2017:14:42:14] (saves) Ultimo ID de Serigrafia2: 670
 [26/Oct/2017:15:54:03] (saves) Ultimo ID de Suaje: 760
+[27/Oct/2017:12:40:39] (saves) Ultimo ID de Suaje: 790
+[27/Oct/2017:13:02:49] (saves) Ultimo ID de Suaje: 796
+[27/Oct/2017:13:17:37] (saves) Ultimo ID de Suaje: 799
+[27/Oct/2017:15:54:01] (saves) Ultimo ID de Suaje: 805
+[27/Oct/2017:16:10:05] (saves) Ultimo ID de Suaje: 808
+[27/Oct/2017:16:11:14] (saves) Ultimo ID de Suaje: 810
+[27/Oct/2017:16:23:02] (saves) Ultimo ID de Suaje: 813
+[27/Oct/2017:16:29:30] (saves) Ultimo ID de Suaje: 817
+[30/Oct/2017:09:37:16] (saves) Ultimo ID de Suaje: 841
+[30/Oct/2017:12:56:03] (saves) Ultimo ID de Suaje: 847
