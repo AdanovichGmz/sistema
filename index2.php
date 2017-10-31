@@ -717,4 +717,4 @@ $.ajax({
  });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=5"></script>
+<script src="js/ajuste.js?v=6"></script>

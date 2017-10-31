@@ -175,7 +175,7 @@ $qlty=(is_null($lim_roundQuality))? 0 : $lim_roundQuality;
       var chart = new google.visualization.ColumnChart(document.getElementById("'.$maquina.'"));
       chart.draw(data,options);
   }
-console.log("real time '.$maquina.' '.gmdate("H:i",$gettotalTime['tiempo_real']) .' total '.gmdate("H:i",$totalTime) .' disponible '.gmdate("H:i",$seconds-3600) .'");
+console.log("real time '.$maquina.' '.gmdate("H:i",$gettotalTime['tiempo_real']) .' total '.gmdate("H:i",$totalTime) .' disponible '.gmdate("H:i",$seconds) .'");
   </script>';
     }else{
       $grafica='';

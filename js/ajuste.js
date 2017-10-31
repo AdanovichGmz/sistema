@@ -31,6 +31,16 @@ $(document).ready(function(event) {
     createVirtualOdt();
     $('#close-down').click();
 });
+
+$(document).on("click", ".radio-menu-small", function () {
+   $('.face-osc').find('input').prop('checked', false);
+                                              $('.face-osc').removeClass('face-osc');
+                                              $(this).addClass('face-osc').find('input').prop('checked', true);
+
+                                              sendOrder();
+                                              $('#close-down').click(); 
+});
+
    // Esta primera parte crea un loader no es necesaria
     $().ajaxStart(function() {
         $('#loading').show();
@@ -105,24 +115,11 @@ $(document).ready(function(event) {
                                               $(this).addClass('face-osc').find('input').prop('checked', true)    
                                             });
 
-                                             $('.radio-menu-small').click(function() {
-                                              $('.face-osc').find('input').prop('checked', false);
-                                              $('.face-osc').removeClass('face-osc');
-                                              $(this).addClass('face-osc').find('input').prop('checked', true);
-
-                                              sendOrder();
-                                            });
+                                            
 
                                               $( document ).ajaxStop(function() {
 
-                                              $('.radio-menu-small').click(function() {
-                                                $('.face-osc').find('input').prop('checked', false);
-                                              $('.face-osc').removeClass('face-osc');
-                                              $(this).addClass('face-osc').find('input').prop('checked', true);
-                                              sendOrder();
-                                              kb=true;
-                                              $('#close-down').click();    
-                                            });
+                                             
 
                                                
 
