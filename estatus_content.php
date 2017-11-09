@@ -1,7 +1,7 @@
 
 
 <?php
-date_default_timezone_set("America/Mexico_City");
+
 error_reporting(0);
  
 
@@ -21,6 +21,7 @@ if ($check->num_rows==0) {
 }
   }
   function personalData($idmaquina,$maquina,$photo){
+    date_default_timezone_set("America/Mexico_City");
 require('saves/conexion.php');
 $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquina;
              $processID=($idmaquina==20||$idmaquina==21)? 10:$idmaquina;
@@ -58,9 +59,10 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
        /****************** Calcular ETE ******************/
     $today     = date("d-m-Y");
    
-     $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$idmaquina AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$idmaquina AND fechadeldiaam = '$today')) as tiempo_real";
+     $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)) as tiempo_real";
     //obtenemos el tiempo muerto sumando las idas al sanitario
     $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$idmaquina AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$idmaquina AND radios='Sanitario' AND fechadeldiaam = '$today'";
+    $tmuerto_alertas=mysqli_fetch_assoc($mysqli->query("SELECT (SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$idmaquina AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$idmaquina AND fechadeldiaam = '$today') AS tmuerto_alert"));
     $t_muerto=mysqli_fetch_assoc($mysqli->query("SELECT SUM(TIME_TO_SEC(tiempo_muerto)) AS seconds_muertos FROM tiempo_muerto WHERE fecha='$today' AND id_maquina=$idmaquina "));
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
     $etequery3 = "SELECT COALESCE((SELECT SUM( buenos ) FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera";
@@ -70,7 +72,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
     $element    = $getelement['producto'];
-    $begin      = new DateTime('09:00:00');
+    $begin      = new DateTime('08:45:00');
     $current    = new DateTime(date('H:i'));
     //obtenemos el tiempo transcurrido desde el inicio del dia hasta el momento actual
     $interval   = $begin->diff($current);
@@ -88,10 +90,10 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
     
     
     $getdeadTime = mysqli_fetch_assoc($mysqli->query($etequery2));
-    $deadTime    = $getdeadTime['tiempo_muerto'];
+    $deadTime    = $getdeadTime['tiempo_muerto']+$tmuerto_alertas['tmuerto_alert'];
     
     $gettotalTime = mysqli_fetch_assoc($mysqli->query($etequery1));
-    $totalTime    = ($gettotalTime['tiempo_real']-$t_muerto["seconds_muertos"]) - $getdeadTime['tiempo_muerto'];
+    $totalTime    = $gettotalTime['tiempo_real'] ;
     
     $getQuality = mysqli_fetch_assoc($mysqli->query($etequery3));
     $Quality    = $getQuality['calidad_primera'];
@@ -104,12 +106,13 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
     }else{
       $desempenio=0;
     }
-    
+    //echo "real-muerto: ".gmdate("H:i", $totalTime)." disponible: ".gmdate("H:i", ($seconds>19800)?$seconds-3600 : $seconds);
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     $roundDesemp=($desempenio>100)? 100 : $desempenio;
     $dispon     =($seconds>19800)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
     //$disponible = round($dispon, 1);
+  
     $disponible = round($dispon);
     
     $real       = mysqli_fetch_assoc($mysqli->query($etequery5));

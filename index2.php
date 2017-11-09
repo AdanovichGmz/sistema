@@ -581,7 +581,10 @@ if ( $p==1) {
       <div class="container-fluid">
           <div id="estilo">
              <form id="fo3" name="fo3" action="saveeat.php" method="post" class="form-horizontal" onSubmit=" return limpiar();" >
-                <fieldset style="position: relative;left: -15px;">                
+                <fieldset style="position: relative;left: -15px;"> 
+                <input type="hidden" id="act_tiro" name="act_tiro">
+                <input type="hidden" name="curr-section" value="ajuste">  
+                <input type="hidden" id="inicioAlertaEat" name="inicioAlertaEat">             
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php echo "". $_SESSION['logged_in'] ?>" />
                 <input hidden name="horadeldiaam" id="horadeldiaam" value="<?php echo date(" H:i:s",time()); ?>" />
                  <input type="hidden" id="inicioAlerta" name="inicioAlerta">
@@ -717,4 +720,4 @@ $.ajax({
  });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=6"></script>
+<script src="js/ajuste.js?v=8"></script>

@@ -1,5 +1,7 @@
  <?php
  ini_set('session.gc_maxlifetime', 30*60);
+ date_default_timezone_set("America/Mexico_City");
+
     if( !session_id() )
     {   
         session_start();
@@ -195,7 +197,7 @@ $(document).ready(function() {
                                 <div class="timer-container">
                                     <div id="chronoExample">
                                     <div id="timer"><span class="values">00:00:00</span></div>
-                                    
+                                    <input type="hidden" id="ontime" name="ontime" value="true">
                                     <input type="hidden" id="timee" name="tiempo">
                                     
                                     
@@ -219,7 +221,7 @@ $(document).ready(function() {
                         
                         <input hidden type="text" name="logged_in" id="logged_in" value="<?php echo "". $_SESSION['logged_in'] ?>" />
                         <input hidden name="tiempo" id="tiempo" />
-                        <input hidden type="text" name="horadeldia" id="horadeldia" value="<?php echo date("H:i:s",time()-25200); ?>" />
+                        <input hidden type="text" name="horadeldia" id="horadeldia" value="<?=date(" H:i:s", time()); ?>" />
                         <input hidden type="text" name="fechadeldia" id="fechadeldia" value="<?php echo date("d-m-Y"); ?>" />
 
                        
@@ -273,6 +275,7 @@ $(document).ready(function() {
 <script type="text/javascript">
  var timer = new Timer();
  var timer2 = new Timer();
+ var deadTimer= new Timer();
 $(document).ready(function(){
 timer.start({countdown: true, startValues: {seconds: 900}});
 saveOperstatus();
@@ -289,16 +292,7 @@ $('#nuevo_registro').submit(function () {
 
 });*/
 
-timer.addEventListener('targetAchieved', function (e) {
-    timer.stop();
-
-    alerttime();
-    $('#chronoExample').hide();
-    $('#chronoExample2').show(); 
-    $('#chronoExample2 .startButton').click();
-    
-    
-});     
+     
  function alerttime(){
   animacion = function(){
   
@@ -319,15 +313,58 @@ timer2.addEventListener('secondsUpdated', function (e) {
 timer2.addEventListener('started', function (e) {
     $('#chronoExample2 .values').html(timer2.getTimeValues().toString());
 });    
-
+deadTimer.addEventListener('secondsUpdated', function (e) {
+    $('#chronoExample .values').html(deadTimer.getTimeValues().toString());
+});
+  deadTimer.addEventListener('started', function (e) {
+      $('#chronoExample .values').html(deadTimer.getTimeValues().toString());
+  });  
 $('#chronoExample2 .startButton').click(function () {
     timer2.start();
     console.log('le picaron');
 });
+
+timer.addEventListener('targetAchieved', function (e) {
+    timer.stop();
+    deadTimer.start();
+    $('#ontime').val('false');
+    alerttime();
+   $.ajax({      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'outtime'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
+    
+    
+});
+
     function saveAsaichi(){
         timer.pause();
     $('#tiempo').val(timer.getTimeValues().toString());
+    var ontime=$('#ontime').val();
+
+if (ontime=='true') {
+        timer.pause();
+    $('#tiempo').val(timer.getTimeValues().toString());
+  }else{
+    deadTimer.pause();
+    $('#tiempo').val(deadTimer.getTimeValues().toString());
+  }
+
          var mac=$('#mac').val();
+         $.ajax({      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'intime'},  
+                       
+                     success:function(data){ 
+                          console.log(data);
+                     }  
+                });
          $.ajax({  
                       
                      type:"POST",

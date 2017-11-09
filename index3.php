@@ -120,9 +120,12 @@ if (@$_SESSION['logged_in'] != true) {
     <?php
     $today     = date("d-m-Y");
     //obtenemos el tiempo real sumando tiempoTiraje + tiempo_ajuste +tiempoalertamaquina + tiempoajuste
-    $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today')) as tiempo_real";
+    $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)) as tiempo_real";
     //obtenemos el tiempo muerto sumando las idas al sanitario
     $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$machineID AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
+    $tmuerto_alertas=mysqli_fetch_assoc($mysqli->query("SELECT (SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today') AS tmuerto_alert"));
+   
+  
     
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
     $etequery3 = "SELECT COALESCE((SELECT SUM( buenos ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera";
@@ -132,7 +135,7 @@ if (@$_SESSION['logged_in'] != true) {
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
     $element    = $getelement['producto'];
-    $begin      = new DateTime('09:00');
+    $begin      = new DateTime('08:45');
     $current    = new DateTime(date('H:i'));
     //obtenemos el tiempo transcurrido desde el inicio del dia hasta el momento actual
     $interval   = $begin->diff($current);
@@ -153,10 +156,10 @@ if (@$_SESSION['logged_in'] != true) {
     
     
     $getdeadTime = mysqli_fetch_assoc($mysqli->query($etequery2));
-    $deadTime    = $getdeadTime['tiempo_muerto'];
+    $deadTime    = $getdeadTime['tiempo_muerto']+$tmuerto_alertas['tmuerto_alert'];
     
     $gettotalTime = mysqli_fetch_assoc($mysqli->query($etequery1));
-    $totalTime    = $gettotalTime['tiempo_real'] - $getdeadTime['tiempo_muerto'];
+    $totalTime    = $gettotalTime['tiempo_real'];
     
     $getQuality = mysqli_fetch_assoc($mysqli->query($etequery3));
     $Quality    = $getQuality['calidad_primera'];
@@ -877,7 +880,7 @@ foreach ($orderID as $odt) {
     echo "" . $_SESSION['logged_in'];
 ?>" />
                 <input hidden  name="horadeldiaam" id="horadeldiaam" value="<?php
-    echo date(" H:i:s", time() - 28800);
+    echo date(" H:i:s", time());
 ?>" />
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php
     echo date("d-m-Y");
@@ -955,12 +958,14 @@ foreach ($orderID as $odt) {
           <div id="estilo" style="text-align: center;">
              <form id="fo4" name="fo4"  method="post" class="form-horizontal" >
                 <fieldset style="position: relative;left: -15px;">
-                
+                 <input type="hidden" name="act_tiro" value="<?=$id['last_tiraje'] ?>">
+                 <input type="hidden" name="curr-section" value="tiro">
+                 <input type="hidden" id="inicioAlertaEat" name="inicioAlertaEat">
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php
     echo "" . $_SESSION['logged_in'];
 ?>" />
                 <input hidden name="horadeldiaam" id="horadeldiaam" value="<?php
-    echo date(" H:i:s", time() - 28800);
+    echo date(" H:i:s", time());
 ?>" />
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php
     echo date("d-m-Y");
@@ -1181,4 +1186,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=3"></script>
+  <script src="js/tiraje.js?v=5"></script>

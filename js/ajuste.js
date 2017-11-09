@@ -18,6 +18,18 @@ function startTime() {
 
     
 }
+function startEat() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    // add a zero in front of numbers<10
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('inicioAlertaEat').value = h + ":" + m + ":" + s;
+
+    
+}
 var jQuery214=$.noConflict(true);
 var kb=false;
 $(document).ready(function(event) {
@@ -157,6 +169,9 @@ $(document).on("click", ".radio-menu-small", function () {
         });
 
   function submitEat(suceso){
+    startEat();
+    var actiro=$('#actual_tiro').val();
+    $('#act_tiro').val(actiro);
     $('#s-radios').val(suceso);
     if ($('#ontime').val()=='true') {
       timer.start();

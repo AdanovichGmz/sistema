@@ -99,5 +99,15 @@ elseif ($section=='outtime') {
 		printf($mysqli->error);
 	}
 }
+elseif ($section=='intime') {
+
+	$changestatus=$mysqli->query("UPDATE operacion_estatus SET en_tiempo=1 WHERE fecha='$today' AND maquina=$machineID ");
+
+	if ($changestatus) {
+		echo "estatus cambiado a en tiempo";
+	}else{
+		printf($mysqli->error);
+	}
+}
 
 ?>

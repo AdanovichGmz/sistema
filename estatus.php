@@ -1,4 +1,6 @@
-  <?php session_start(); ?>   
+  <?php 
+  date_default_timezone_set("America/Mexico_City");
+  session_start(); ?>   
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr" xmlns:fb="http://ogp.me/ns/fb#">
@@ -84,7 +86,7 @@
     vertical-align: top;
     position: relative;
     font-family: "monse";
-    border: 1px solid #BABECA;
+    
 
     }
     .personal:hover{
@@ -95,7 +97,7 @@
     .person-photo{
       width: 90px;
       height: 90px;
-      background: #383838;
+      
       position: absolute;
       top: 10px;
       left: 10px;
@@ -164,10 +166,10 @@
       width: 100%;
     }
     .prod-container{
-      background: #272B34!important;
+      background: #E5E9EC!important;
     }
 .disabled{
-  opacity: 0.1
+  opacity: 0.4
 }
 #cuerpito{
   
@@ -199,17 +201,17 @@
 
 }
 .ajuste{
-  background: #4C89DC!important;
+  background: #31A1CF!important;
 
 }
 .ajuste div{
   color:#fff!important;
 }
 .alerta{
-  background: #F6BB43!important;
+  background: #FFCF6B!important;
 }
 .tiro{
-  background: #35BC9B!important;
+  background: #67BE4B!important;
 }
 .tiro div{
   color:#fff!important;
@@ -225,18 +227,31 @@
 </head>
 <body id="cuerpito">
 
-<?php include 'estatus_content.php' ?>
+<?php include 'estatus_content.php'; 
+
+?>
 
 
 </body>
 </html>
 <script>
+<?php 
+require('saves/conexion.php');
+$today=date("d-m-Y");
+ 
+  $turn_on=$mysqli->query("SELECT e.maquina,(SELECT nommaquina FROM maquina WHERE idmaquina=e.maquina) AS nom_maquina FROM operacion_estatus e WHERE fecha='$today'");
+if (!$turn_on) {
+  printf($mysqli->error);
+}
+?>
 $(document).ready(function(){
  alerttime();
 setInterval(function() {
             
               //$('#cuerpito').hide().fadeIn('slow'); 
-                  $('#cuerpito').load('estatus_content.php', function(resp, status, xhr) {drawSerigrafia3Chart();drawSerigrafia2Chart();drawSuajeChart();});
+                  $('#cuerpito').load('estatus_content.php', function(resp, status, xhr) {<?php while ( $turn_row=mysqli_fetch_assoc($turn_on)) {
+ echo "draw".$turn_row['nom_maquina']."Chart();";
+} ?>});
                           //$('#cuerpito').show().fadeIn(3000);
                           
                 }, 10000);

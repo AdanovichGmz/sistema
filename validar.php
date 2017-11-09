@@ -5,7 +5,7 @@
 ini_set("session.gc_maxlifetime","7200");  
 session_start();
 require("saves/conexion.php");
-
+date_default_timezone_set("America/Mexico_City");
 $username=$_POST['usuario'];
 $pass=$_POST['pass'];
 //$nmac=$_POST['maquina'];
@@ -85,11 +85,27 @@ elseif ($datas['actividad_actual']=='tiro'){
     }
     }
     else{
-       header("Location: index2.php"); 
+       
+header("Location: index2.php"); 
+       
     } 
 }
 else{
-    header("Location: asaichii.php");
+    if(date("w")==1||date("w")==3||date("w")==5){
+        header("Location: asaichii.php");
+    }else{
+         $logged_in=$_SESSION['id'];
+    $op_query=$mysqli->query("INSERT INTO operacion_estatus(operador,maquina,actividad_actual,en_tiempo,asaichi_cumplido,fecha) VALUES($logged_in,$mac_id,2,1,1,'$today')");
+    if ($op_query) {
+       header("Location: index2.php");
+    }else{
+        printf($mysqli->error);
+    }
+
+        
+    }
+
+    
 } 
         //header("Location: asaichii.php");
         }else{

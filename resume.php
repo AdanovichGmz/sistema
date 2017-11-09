@@ -94,8 +94,12 @@ if ($getodts) {
     $getEfec       = mysqli_fetch_assoc($getdesemp);
     //obtenemos el porcentaje de estandar segundos*estandar/1hora
    
+    if ($getEfec['prod_esperada']>0) {
+      $desempenio =($getEfec['prod_real']/$getEfec['prod_esperada'])*100;
+    }else{
+      $desempenio =0;
+    }
     
-    $desempenio =($getEfec['prod_real']/$getEfec['prod_esperada'])*100;
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     
@@ -331,7 +335,7 @@ table td:last-child{
     <li style="float:right ;"></li>
               
 </ul>
-<input type="hidden" name="ordenes" value="<?=implode(',', $arrOdt);?>">  
+<input type="hidden" name="ordenes" value="<?=(isset($arrOdt))? implode(',', $arrOdt):null;?>">  
  <input type="hidden" name="user" value="<?=$userID   ?>">  
   <input type="hidden" name="maquina" value="<?=$machineID  ?>">      
 <div class="statistics">

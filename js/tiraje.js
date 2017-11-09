@@ -20,6 +20,18 @@ function startTime() {
 
     
 }
+function startEat() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    // add a zero in front of numbers<10
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('inicioAlertaEat').value = h + ":" + m + ":" + s;
+
+    
+}
  function opera(){ 
      var cantidad = document.all.cantidad.value; 
                            var buenos = document.all.buenos.value;  
@@ -150,6 +162,7 @@ timer.addEventListener('started', function (e) {
    $('.goeat').click(function () {
     timer.pause();
     timerEat.start();
+    startEat();
     //$('#timee').val(timerEat.getTimeValues().toString());
     timerEat.addEventListener('secondsUpdated', function (e) {
     $('#horacomida .valuesEat').html(timerEat.getTimeValues().toString());

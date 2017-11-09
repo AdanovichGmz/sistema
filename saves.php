@@ -1,6 +1,6 @@
 <?php
 ini_set("session.gc_maxlifetime","7200");  
-        session_start();
+session_start();
 date_default_timezone_set("America/Mexico_City");     
         
 
@@ -18,11 +18,23 @@ require('classes/functions.class.php');
         $logged_in=$_SESSION['id'];
         $horadeldia=$_POST['horadeldia'];
         $fechadeldia=$_POST['fechadeldia'];
-        
+        $ontime      = $_POST['ontime'];
         $machineID=$_SESSION['machineID'];
         $machineName=$_SESSION['machineName'];
         $today=date("d-m-Y");
-        $query="INSERT INTO asaichi (tiempo, id_maquina, id_usuario, horadeldia, fechadeldia) VALUES ('$tiempo',$machineID,$logged_in,'$horadeldia','$fechadeldia')";
+        $horafin=date(" H:i:s", time());
+        if ($ontime=='false') {
+           
+            $tiempoasa='"00:15:00.000000"';
+             
+             $mysqli->query("INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID',$logged_in,null,null,1,'$horadeldia',null)");
+          }else{
+            $tiempoasa= ' TIMEDIFF("00:15:00.000000","'.$tiempo.'")';
+          }
+          $log->lwrite('tiempo: '.$tiempo,'ASA');
+          $log->lwrite('tiempo asa: '.$tiempoasa,'ASA');
+          $log->lwrite(printf($mysqli->error),'ASA');
+        $query="INSERT INTO asaichi (tiempo, id_maquina, id_usuario, horadeldia,hora_fin, fechadeldia) VALUES ($tiempoasa,$machineID,$logged_in,'$horadeldia','$horafin','$fechadeldia')";
         $resultado=$mysqli->query($query);
         if ($resultado) {
           echo "Todo bien";
@@ -73,7 +85,7 @@ require('classes/functions.class.php');
               printf($mysqli->error);
             }
              if ($ontime=='false') {
-               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID','$orderodts',null,'ajuste','$horadeldia',$tirajeActual)";
+               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID',$userID,'$orderodts',null,'ajuste','$horadeldia',$tirajeActual)";
             $log->lwrite($deadquery,'TIEMPO_MUERTO');
             $deadresultado = $mysqli->query($deadquery);
             if ($deadresultado) {
@@ -106,7 +118,7 @@ require('classes/functions.class.php');
              
              $setTiraje=$mysqli->query("UPDATE personal_process SET last_tiraje=$tirajeActual WHERE status='actual' AND proceso_actual='$machineName' ");
               if ($ontime=='false') {
-               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID','$orderodts',null,'ajuste','$horadeldia',$tirajeActual)";
+               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID',$userID,'$orderodts',null,'ajuste','$horadeldia',$tirajeActual)";
             $log->lwrite($deadquery,'TIEMPO_MUERTO');
             $deadresultado = $mysqli->query($deadquery);
             if ($deadresultado) {
