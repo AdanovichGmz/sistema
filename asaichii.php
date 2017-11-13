@@ -232,7 +232,7 @@ $(document).ready(function() {
                             <div class="row ">
                             <div class="center-input">
 
-<input type="text" name="mac"  id="mac" value="<?=$_SESSION['mac'] ?>"/>
+<input type="text" name="mac"  id="mac" value=""/>
                                <!--  
                             <input type="text" name="mac"  id="mac" value="<?=$_SESSION['nommaquina'] ?>"/>
                                 <div class="col-lg-5 col-sm-offset-3 col-sm-5  ">

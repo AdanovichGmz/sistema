@@ -1,9 +1,15 @@
 <?php
-
+error_reporting(0);
 
 include '../saves/conexion.php';
-$numodt=$_POST['fecha'];
-$userid=$_POST['usuario'];
+$numodt=$_POST['id'];
+$userid=$_POST['iduser'];
+function getComida($idtiraje,$section){
+  include '../saves/conexion.php';
+  $query="SELECT TIME_TO_SEC(breaktime) AS real_comida FROM breaktime WHERE id_tiraje=$idtiraje AND seccion='$section' AND radios='Comida'";
+  $tiempo_comida=mysqli_fetch_assoc($mysqli->query($query));
+  return $tiempo_comida['real_comida'];
+}
 
  $query="SELECT t.*, m.nommaquina,o.numodt,o.producto,u.logged_in,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS element,((t.entregados-t.merma_entregada)-t.defectos) AS calidad,(SELECT piezas_por_hora FROM estandares WHERE id_elemento=o.producto AND id_maquina= 10) AS estandar,TIME_TO_SEC(tiempoTiraje) AS seconds_tiraje,TIME_TO_SEC(timediff(horafin_tiraje,horadeldia_tiraje)) AS dispon_tiro,TIME_TO_SEC(timediff(horafin_ajuste,horadeldia_ajuste)) AS dispon_ajuste, (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='ajuste' AND radios='Comida')AS comida_ajuste,(SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida')AS comida_tiro, TIME_TO_SEC(tiempo_ajuste) AS seconds_ajuste,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro  FROM tiraje t LEFT JOIN maquina m ON m.idmaquina=t.id_maquina LEFT JOIN login u ON u.id=t.id_user LEFT JOIN ordenes o ON o.idorden=t.id_orden WHERE fechadeldia_ajuste='$numodt' AND t.id_user=$userid ORDER BY horadeldia_ajuste ASC";
 
@@ -17,12 +23,151 @@ $userid=$_POST['usuario'];
         
 ?>
 
+<html>
+<head>
+<style>
+@page {
+            margin: 1.3em 1.3em;
+            
+        }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead{
+  background: #1A1F25;
+  color: #fff;
+}
+
+td, th {
+    border: 1px solid #E1E0E5;
+    text-align: center;
+    padding: 4px;
+    font-size: 9px;
+}
 
 
+.inhead{
+  display: inline-block;
+  width: 69%;
+   font-family: arial, sans-serif;
+   
+   height: 50px;
+  
 
+}
+.inhead table{
+  width: 100%;
+  text-align: center;
 
+}
+.inhead th{
+ padding: 2px;
+ text-align: center;
+ border:1px solid #E1E0E5!important;
 
-<table id="texcel">
+}
+.inhead td{
+border:1px solid #E1E0E5!important;
+ text-align: center;
+
+}
+.logo{
+  display: inline-block;
+  width: 5%;
+   font-family: arial, sans-serif;
+   background: yellow;
+   
+
+}
+.title{
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+   font-family: arial, sans-serif;
+  font-weight: bold;
+   height: 50px;
+   line-height: 50px;
+   vertical-align: middle;
+   
+
+}
+
+.header{
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  
+}
+.header img{
+  width: 100%;
+}
+#last {
+  text-align: right!important;
+}
+#last img{
+  width: 50%;
+}
+.botom-stats{
+  display: inline-block;
+  border:1px solid #E1E0E5;
+  position: relative;
+  font-family: arial, sans-serif;
+}
+.botom-stats div{
+  position: relative;
+  font-size: 12px;
+}
+.botom-stats td,th{
+  font-size: 10px;
+  font-weight: normal;
+  border-top:none;
+}
+.botom-stats td{
+  border-bottom:1px dashed #E1E0E5;
+  border-left: none;
+  border-right: none;
+}
+.botom-stats th{
+  border-bottom:1px dashed #E1E0E5;
+  border-right:1px dashed #E1E0E5;
+}
+.extra{
+  border-right: 1px dashed #E1E0E5!important;
+}
+.extrath{
+  border-bottom: none!important;
+}
+</style>
+</head>
+
+<body>
+<div class="header">
+  <div class="logo"><img src="../img/logoIzquierda.png">
+  </div><div class="title">REPORTE DIARIO ETE
+ 
+ </div> <div class="inhead">
+
+  <table >
+  <tr><th>OPERADOR</th>
+    <th>MAQUINA</th>
+    <th>TURNO</th>
+    <th>FECHA</th>
+    </tr>
+    <tr>
+      <td><?=$getuser['logged_in'] ?></td>
+      <td></td>
+      <td></td>
+      <td><?=$numodt ?></td>
+    </tr>
+  </table>
+  </div>
+</div>
+
+<table>
 <thead><tr>
     <th >Inicio</th>
     <th >Fin</th>
@@ -244,3 +389,85 @@ $i++;
   
   </tbody>
 </table>
+<?php $treal=$sum_tiraje; 
+
+
+?>
+<div style="width: 103%; padding-top: 10px;margin: 0 auto!important">
+  <div class="botom-stats" style="width: 24%;">
+    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
+     <?php $dispon=$treal/$sum_dispon; ?>
+      DISPONIBILIDAD= <?=round($dispon*100,2) ?>%
+    </div><div style="width: 100%;">
+      <table>
+        <tr>
+          <th>TIEMPO REAL</th>
+
+          <td><?=gmdate("H:i",$treal) ?></td>
+        </tr>
+        <tr>
+          <th class="extrath">TIEMPO DISPONIBLE</th>
+          <td class="extrath"><?=gmdate("H:i",$sum_dispon) ?></td>
+        </tr>
+      </table>
+    </div>
+
+  </div><div class="botom-stats" style="width: 39%;">
+    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
+     <?php $desempenio=($sum_real+$sum_merm)/$sum_esper; ?>
+     DESEMPEÑO= <?=round(($desempenio*100>100)?100:$desempenio*100,2) ?>%
+    </div><div style="width: 100%;">
+      <table>
+        
+        <tr>
+          <td class="extra">PRODUCCION REAL</td>
+          <td class="extra"><?=$sum_real ?></td>
+           <td class="extra">MERMA</td>
+          <td><?=$sum_merm ?></td>
+        </tr>
+        <tr>
+          <th class="extrath" colspan="2" style="border-right: 1px dashed #E1E0E5!important;">PRODUCCION ESPERADA</th>
+          <th class="extrath" style="border:none!important;" colspan="2"><?=$sum_esper ?></th>
+        </tr>
+      </table>
+    </div>
+  </div><div class="botom-stats" style="width: 24%;">
+    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
+    <?php $calidad=($sum_calidad)/$sum_real; ?>
+      CALIDAD= <?=round($calidad*100,2) ?>%
+    </div><div style="width: 100%;">
+      <table>
+        <tr>
+          <th>CALIDAD A LA PRIMERA</th>
+          <td><?=$sum_calidad ?></td>
+        </tr>
+        <tr>
+          <th class="extrath">PRODUCCION REAL</th>
+          <td class="extra" style="border:none!important;"><?=$sum_real ?></td>
+        </tr>
+      </table>
+    </div>
+  </div><div class="botom-stats" style="width: 9%;">
+    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
+      ETE
+    </div><div style="width: 100%; position: relative;">
+      <table>
+        <tr>
+          <th style="color: #fff!important; border:none!important;">&nbsp</th>
+          
+        </tr>
+         <tr>
+          <th style="color: #fff!important; border:none!important;">&nbsp</th>
+          
+        </tr>
+      </table>
+      <div style="position: absolute;top: 0.5%;left: 20%; transform: translate(-50%, -50%);font-size: 30px;"><?=round(($dispon*$desempenio*$calidad)*100) ?>%</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+

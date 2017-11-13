@@ -1,48 +1,8 @@
-[24/Oct/2017:14:42:14] (saves) no se pudo actualizar ordenB6138
-[24/Oct/2017:14:42:14] (saves) 0
-[27/Oct/2017:12:40:39] (saves) no se pudo actualizar ordenI3258D
-[27/Oct/2017:12:40:39] (saves) 0
-[27/Oct/2017:13:02:49] (saves) no se pudo actualizar ordenI3412
-[27/Oct/2017:13:02:49] (saves) 0
-[27/Oct/2017:13:17:37] (saves) no se pudo actualizar ordenI3423
-[27/Oct/2017:13:17:37] (saves) 0
-[27/Oct/2017:15:54:01] (saves) no se pudo actualizar ordenI3233
-[27/Oct/2017:15:54:01] (saves) 0
-[27/Oct/2017:16:29:30] (saves) no se pudo actualizar ordenI3248
-[27/Oct/2017:16:29:30] (saves) 0
-[30/Oct/2017:09:37:16] (saves) no se pudo actualizar ordenB6022
-[30/Oct/2017:09:37:16] (saves) 0
-[31/Oct/2017:16:42:11] (saves) no se pudo actualizar ordenB5991
-[31/Oct/2017:16:42:11] (saves) 0
-[31/Oct/2017:16:54:35] (saves) no se pudo actualizar ordenB6079
-[31/Oct/2017:16:54:35] (saves) 0
-[01/Nov/2017:09:58:16] (saves) no se pudo actualizar ordenB5903
-[01/Nov/2017:09:58:16] (saves) 0
-[01/Nov/2017:11:04:51] (saves) no se pudo actualizar ordenB6119
-[01/Nov/2017:11:04:51] (saves) 0
-[01/Nov/2017:11:45:58] (saves) no se pudo actualizar ordenB6135
-[01/Nov/2017:11:45:58] (saves) 0
-[01/Nov/2017:13:29:10] (saves) no se pudo actualizar ordenB6040
-[01/Nov/2017:13:29:10] (saves) 0
-[01/Nov/2017:15:24:07] (saves) no se pudo actualizar ordenB5894
-[01/Nov/2017:15:24:07] (saves) 0
-[01/Nov/2017:16:28:52] (saves) no se pudo actualizar ordenB6098
-[01/Nov/2017:16:28:52] (saves) 0
-[01/Nov/2017:16:49:31] (saves) no se pudo actualizar ordenB6137
-[01/Nov/2017:16:49:31] (saves) 0
-[01/Nov/2017:17:28:00] (saves) no se pudo actualizar ordenB6092
-[01/Nov/2017:17:28:00] (saves) 0
-[01/Nov/2017:17:36:19] (saves) no se pudo actualizar ordenB6100
-[01/Nov/2017:17:36:19] (saves) 0
-[01/Nov/2017:17:43:01] (saves) no se pudo actualizar ordenB6091
-[01/Nov/2017:17:43:01] (saves) 0
-[07/Nov/2017:13:25:49] (saves) no se pudo actualizar ordenM0695
-[07/Nov/2017:13:25:49] (saves) 0
-[08/Nov/2017:13:34:32] (saves) no se pudo actualizar ordenB6122
-[08/Nov/2017:13:34:32] (saves) 0
-[08/Nov/2017:13:43:09] (saves) no se pudo actualizar ordenB6118
-[08/Nov/2017:13:43:09] (saves) 0
-[08/Nov/2017:13:56:41] (saves) no se pudo actualizar ordenB6136
-[08/Nov/2017:13:56:41] (saves) 0
-[08/Nov/2017:14:01:18] (saves) no se pudo actualizar ordenB6160
-[08/Nov/2017:14:01:18] (saves) 0
+[09/Nov/2017:10:20:38] (saves) no se pudo actualizar ordenG0913
+[09/Nov/2017:10:20:38] (saves) 0
+[09/Nov/2017:10:23:10] (saves) no se pudo actualizar ordenD2342
+[09/Nov/2017:10:23:10] (saves) 0
+[09/Nov/2017:16:07:00] (saves) no se pudo actualizar ordenM0696
+[09/Nov/2017:16:07:00] (saves) 0
+[10/Nov/2017:11:49:03] (saves) no se pudo actualizar ordenB5887
+[10/Nov/2017:11:49:03] (saves) 0

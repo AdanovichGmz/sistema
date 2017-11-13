@@ -224,7 +224,13 @@ $(document).on("click", ".radio-menu-small", function () {
  var deadTimer= new Timer();
    
 $(document).ready(function(){
-timer.start({countdown: true, startValues: {seconds: 1200}});
+  var idmaquina=$('#idmachine').val();
+  if (idmaquina==16) {
+    timer.start({countdown: true, startValues: {seconds: 3600}});
+  }else{
+    timer.start({countdown: true, startValues: {seconds: 1200}});
+  }
+
 $('#chronoExample2').hide();
 });
        

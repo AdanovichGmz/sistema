@@ -53,13 +53,13 @@ if($f=mysqli_fetch_assoc($sql)){
         $recoverSession=(!empty($_POST))? 'false' : 'true' ;
         //$mac=system($cmd);
        // $mac='5c:f5:da:2f:33:5e';
-        $mac=$_POST['mac'];
-        $machine = mysqli_fetch_assoc($mysqli->query("SELECT * FROM maquina WHERE mac='$mac'"));
-        $_SESSION['mac']=$mac;
-        $_SESSION['machineID']=$machine['idmaquina'];
+        $mac=$f['area'];
+        $machine = mysqli_fetch_assoc($mysqli->query("SELECT * FROM maquina WHERE idmaquina='$mac'"));
+        
+        $_SESSION['machineID']=$f['area'];
         $_SESSION['machineName']=$machine['nommaquina'];
         if ($machine['nommaquina']=='Serigrafia1'||$machine['nommaquina']=='Serigrafia2'||$machine['nommaquina']=='Serigrafia3') {
-            $pseudomachine = mysqli_fetch_assoc($mysqli->query("SELECT * FROM maquina WHERE mac='f0:db:f8:11:97:bc'"));
+            $pseudomachine = mysqli_fetch_assoc($mysqli->query("SELECT * FROM maquina WHERE idmaquina=10"));
             $_SESSION['pseudoID']=$pseudomachine['idmaquina'];
             $_SESSION['pseudoName']=$pseudomachine['nommaquina'];
         }

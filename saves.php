@@ -68,10 +68,24 @@ require('classes/functions.class.php');
           $virtOdt=$_POST['odtvirtual'];
           $virtElem=$_POST['elemvirtual'];
             if ($ontime=='false') {
+              if ($machineID==16) {
+               $tiempoajuste='"01:00:00.000000"';
+              }else{
+
+                $tiempoajuste='"00:20:00.000000"';
+              }
            
-            $tiempoajuste='"00:20:00.000000"';
+            
           }else{
-            $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
+            if ($machineID==16) {
+                $tiempoajuste= ' TIMEDIFF("01:00:00.000000","'.$tiempo.'")';
+              }else{
+                $log->lwrite('no es hotstamp','HOTSAMP');
+              
+              $log->lclose();
+                 $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
+              }
+           
           }
             
             $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste',  is_virtual=1,odt_virtual='$virtOdt',elemento_virtual='$virtElem' WHERE idtiraje=$tirajeActual";

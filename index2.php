@@ -273,6 +273,7 @@ if ( $p==1) {
 <body onload="">
 <div id="formulario"></div>
     <input type="hidden" id="mac" value="<?=$mac ?>">
+     <input type="hidden" id="idmachine" value="<?=$machineID ?>">
     <input type="hidden" id="order" value="<?= (isset($ordenActual))? implode(",", $ordenActual)  : ((isset($stoppedOrderID))? $stoppedOrderID : '') ;?>">
     <div class="msj">
         <img src="images/msj.fw.png" />
@@ -356,8 +357,8 @@ if ( $p==1) {
                         
                             <div class="row "> <a href="logout.php" > 
                                  <div class="pause red"><div class="pauseicon"><img src="images/exit-door.png"></div><div class="pausetext">SALIR</div></div></a>
-                                 <a href="resume.php" > 
-                                 <div class="endOfDay blue"><div class="pauseicon"><img src="images/reloj.png"></div><div class="pausetext">FIN DEL DIA</div></div></a>
+                                 
+                                 <div class="endOfDay blue" onclick="endOfDay()"><div class="pauseicon"><img src="images/reloj.png"></div><div class="pausetext">FIN DEL DIA</div></div>
                             </div>
                         </div>
                     </div>
@@ -718,6 +719,19 @@ $.ajax({
                 });
 
  });
+function endOfDay(){
+  var lastiro=$('#actual_tiro').val();
+  var now = new Date();
+  var hour = now.getHours();
+  var day = now.getDay();
+  var minutes = now.getMinutes();
+  if(hour >= 17){
+     window.location.replace("resume.php?tiro="+lastiro);
+  }else{
+  alert('Favor de picarle aqui despues de las 6pm');
+}
+      
+}
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=8"></script>
+<script src="js/ajuste.js?v=9"></script>

@@ -174,6 +174,20 @@
 #cuerpito{
   
 }
+@media screen and (max-width: 1025px) {
+.ete-stat table{
+      
+      font-size: 10px;
+      
+
+    }
+    .ete-stat thead{
+     font-size: 18px;
+     
+      
+    }
+    
+}
     @media screen and (max-width: 768px) {
  
  .personal{

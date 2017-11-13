@@ -11,7 +11,7 @@ function getComida($idtiraje,$section){
   return $tiempo_comida['real_comida'];
 }
 
- $query="SELECT t.*, m.nommaquina,o.numodt,o.producto,u.logged_in,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS element,((t.entregados-t.merma_entregada)-t.defectos) AS calidad,(SELECT piezas_por_hora FROM estandares WHERE id_elemento=o.producto AND id_maquina= 10) AS estandar,TIME_TO_SEC(tiempoTiraje) AS seconds_tiraje,TIME_TO_SEC(timediff(horafin_tiraje,horadeldia_tiraje)) AS dispon_tiro,TIME_TO_SEC(timediff(horafin_ajuste,horadeldia_ajuste)) AS dispon_ajuste,TIME_TO_SEC(tiempo_ajuste) AS seconds_ajuste,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro  FROM tiraje t LEFT JOIN maquina m ON m.idmaquina=t.id_maquina LEFT JOIN login u ON u.id=t.id_user LEFT JOIN ordenes o ON o.idorden=t.id_orden WHERE fechadeldia_ajuste='$numodt' AND t.id_user=$userid ORDER BY horadeldia_ajuste ASC";
+ $query="SELECT t.*, m.nommaquina,o.numodt,o.producto,u.logged_in,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS element,((t.entregados-t.merma_entregada)-t.defectos) AS calidad,(SELECT piezas_por_hora FROM estandares WHERE id_elemento=o.producto AND id_maquina= 10) AS estandar,TIME_TO_SEC(tiempoTiraje) AS seconds_tiraje,TIME_TO_SEC(timediff(horafin_tiraje,horadeldia_tiraje)) AS dispon_tiro,TIME_TO_SEC(timediff(horafin_ajuste,horadeldia_ajuste)) AS dispon_ajuste, (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='ajuste' AND radios='Comida')AS comida_ajuste,(SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida')AS comida_tiro, TIME_TO_SEC(tiempo_ajuste) AS seconds_ajuste,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro  FROM tiraje t LEFT JOIN maquina m ON m.idmaquina=t.id_maquina LEFT JOIN login u ON u.id=t.id_user LEFT JOIN ordenes o ON o.idorden=t.id_orden WHERE fechadeldia_ajuste='$numodt' AND t.id_user=$userid ORDER BY horadeldia_ajuste ASC";
 
   $asa_query="SELECT *, TIME_TO_SEC(tiempo) AS tiempo_asaichi,TIME_TO_SEC(timediff(hora_fin,horadeldia)) AS dispon_asaichi, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE seccion='asaichi' AND fecha='$numodt' AND id_user=$userid) AS tmuerto_asa FROM asaichi WHERE fechadeldia='$numodt' AND id_usuario=$userid" ;
        
@@ -185,6 +185,7 @@ border:1px solid #E1E0E5!important;
     <th>Porque no se hizo bien a la primera?</th>
     <th>Porque se hizo mas lento?</th>
     <th>Porque se perdio tiempo?</th>
+    
   </tr></thead>
   <tbody>
   <?php 
@@ -200,6 +201,7 @@ border:1px solid #E1E0E5!important;
   $sum_dispon=0;
   $sum_recibidos=0;
   $comida_exist='';
+  $comida_exist2='';
   $asa_exist=($asa_resss->num_rows>0)? true : false;
   while ($asa=mysqli_fetch_assoc($asa_resss)) {
 if ($i==0) {
@@ -260,16 +262,8 @@ if ($i==0) {
                               }
                              
                             }
-                            $idtiraje=$row['idtiraje'];
-                            $querycom1="SELECT TIME_TO_SEC(breaktime) AS real_comida FROM breaktime WHERE id_tiraje=$idtiraje AND seccion='ajuste' AND radios='Comida'";
-                            $tiempo_comida1=mysqli_fetch_assoc($mysqli->query($querycom1));
-                            $comida1= $tiempo_comida1['real_comida'];
-                            if (!empty($comida1) ) {
-                             $sum_muerto+=$comida1;
-                             $comida_exist='| Comida';
-                            }
-                             
-                          
+                            $comida_exist=(isset($row['comida_auste']))?'' : '' ;
+                          $sum_muerto+=$row['comida_ajuste'];
                             $sum_esper+=$row['produccion_esperada'];
                           $sum_merm+=$row['merma_entregada'];
                           $sum_real+=$row['entregados']-$row['merma_entregada'];
@@ -339,20 +333,15 @@ if ($i==0) {
     <td>--</td>
     <td><?=($comida_exist!='')?  $comida_exist :'--' ?></td>
     <td>--</td>
+    
     <?php }?>
     <!--
    
     <td><?= round($row['desempenio'],2);?>%</td> -->
   </tr>
 <?php 
-$querycom2="SELECT TIME_TO_SEC(breaktime) AS real_comida FROM breaktime WHERE id_tiraje=$idtiraje AND seccion='tiro' AND radios='Comida'";
-                            $tiempo_comida2=mysqli_fetch_assoc($mysqli->query($querycom2));
-                            $comida2= $tiempo_comida2['real_comida'];
-
-if (!empty($comida2)) {
-                             $sum_muerto+=$comida2;
-                             $comida_exist2='Comida';
-                            }
+$sum_muerto+=$row['comida_tiro'];
+$comida_exist2=(isset($row['comida_tiro']))? '' : '';
     if (!empty($alertaT['alert_real'])) {
                           $sum_muerto+= $alertaT['alert_real'];
                         }
@@ -388,6 +377,7 @@ if (!empty($comida2)) {
     <td>--</td>
     <td><?=($comida_exist2!='')?  $comida_exist2 :'--' ?></td>
     <td>--</td>
+    
     <?php }?>
    
   </tr>
