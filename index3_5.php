@@ -67,11 +67,12 @@ if (@$_SESSION['logged_in'] != true) {
             
 
             $orderID = (isset($_GET['order']))? explode(",", $_GET['order'] ) : explode(",", $id['id_orden']);
+            $idtiro=$id['last_tiraje'];
            $today=date("d-m-Y");
             $singleID=$orderID[0];
             $userID      = $_SESSION['id'];
             $elemv=(isset($_GET['elem']))?$_GET['elem']: $id['elemento_virtual'];
-            $getAjuste    = "SELECT horadeldia_ajuste,elemento_virtual FROM tiraje WHERE is_virtual='true' AND id_maquina=$machineID AND fechadeldia_ajuste='$today' AND elemento_virtual='$elemv' AND tiempoTiraje IS NULL";
+            $getAjuste    = "SELECT horadeldia_ajuste,elemento_virtual,TIME_TO_SEC(horadeldia_tiraje) AS iniciotiro FROM tiraje WHERE idtiraje=$idtiro";
 
             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
             $horaAjuste     = $Ajuste['horadeldia_ajuste'];
@@ -127,7 +128,7 @@ if (@$_SESSION['logged_in'] != true) {
     <?php
     $today     = date("d-m-Y");
     //obtenemos el tiempo real sumando tiempoTiraje + tiempo_ajuste +tiempoalertamaquina + tiempoajuste
-   $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)) as tiempo_real";
+   $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' )) as tiempo_real";
     //obtenemos el tiempo muerto sumando las idas al sanitario
     $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$machineID AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
     $tmuerto_alertas=mysqli_fetch_assoc($mysqli->query("SELECT (SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today') AS tmuerto_alert"));
@@ -138,7 +139,10 @@ if (@$_SESSION['logged_in'] != true) {
     $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
-    $element    = $getelement['producto'];
+
+
+    $element    =(empty($getelement['producto']))? $id['id_elemento_virtual'] : $getelement['producto'];
+    
     $begin      = new DateTime('08:45');
     $current    = new DateTime(date('H:i'));
     //obtenemos el tiempo transcurrido desde el inicio del dia hasta el momento actual
@@ -176,7 +180,7 @@ if (@$_SESSION['logged_in'] != true) {
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
    
-    $dispon     =($seconds>19800)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
+     $dispon     =($seconds>19800)? ($totalTime / ($seconds-3600))*100 : ($totalTime / $seconds)*100;
      
     //$disponible = round($dispon, 1);
     $disponible = round($dispon);
@@ -444,9 +448,7 @@ if (@$_SESSION['logged_in'] != true) {
 
 </head>
 <body style="">
-<input type="hidden" id="display-ete" value="<?php
-    echo "getete " . $getEte . " dispon " . $dispon . " quality " . $Quality . " efec " . $roundDesemp;
-?>">
+<input type="hidden" id="iniciotiro" value="<?=$Ajuste['iniciotiro'] ?>">
 <input type='hidden' id='pausedorder' value="<?= (isset($secondspaused)) ? $secondspaused : 'false' ?>">
  
   <?php
@@ -601,6 +603,7 @@ if (@$_SESSION['logged_in'] != true) {
  <input type="hidden" name="element" value="<?=$element ?>">
   <input type="hidden" name="section" value="tiraje">
   <input type="hidden" name="horainiciotiro" value="<?=date(" H:i:s", time()); ?>">
+  <input type="hidden" name="planillas" value="<?= $id['planillas_de'] ?>"/>
  <input type="hidden" name="hour" value="<?= (isset($_POST['horadeldia'])) ? $_POST['horadeldia'] : $horaAjuste; ?>"> 
 <div class="statistics">
   <div class="left-sec" style="position: relative;">
@@ -801,6 +804,7 @@ foreach ($orderID as $odt) {
     <td class=""><input class="darkinput" value="0" id="merma-entregada" name="merma-entregada" type="number" readonly   style="margin-right: 10px;" ></td>
       <td class=""><input id="entregados" name="entregados" type="number" value="0" required="true" readonly style="background: #4C89DC; border:1px solid rgba(255,255,255,.5); color: #fff;"></td>
   </tr>
+
 </table> 
 <?php
         }
@@ -824,6 +828,7 @@ foreach ($orderID as $odt) {
     }
 ?>
          <input hidden class="diseños"  type="text" name="tiempoTiraje" id="tiempoTiraje" />
+         <input type="hidden" name="element" value="<?=$element ?>">
                    <input hidden type="text"  name="logged_in" id="logged_in" value="<?php
     echo "" . $_SESSION['id'];
 ?>" />
@@ -908,7 +913,7 @@ foreach ($orderID as $odt) {
                 <div class="form-group">
                   <div class="button-panel-small">
                        
-                        <div class="square-button-small red derecha stopalert start reset" onclick="saveOperstatus()">
+                        <div style="display: none;" class="square-button-small red derecha stopalert start reset" onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
                         <div id="savealerta" class="square-button-small derecha blue " onclick="showLoad(); saveAlert();saveOperstatus();">
@@ -996,7 +1001,7 @@ foreach ($orderID as $odt) {
                 <div class="form-group">
                   <div class="button-panel-small">
                        
-                        <div  class="square-button-small red eatpanel stopeat start reseteat2 " onclick="saveOperstatus()">
+                        <div style="display: none;"  class="square-button-small red eatpanel stopeat start reseteat2 " onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
                         </div>
@@ -1183,4 +1188,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=5"></script>
+  <script src="js/tiraje.js?v=7"></script>

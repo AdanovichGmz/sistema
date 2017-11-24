@@ -88,7 +88,7 @@ require('classes/functions.class.php');
            
           }
             
-            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste',  is_virtual=1,odt_virtual='$virtOdt',elemento_virtual='$virtElem' WHERE idtiraje=$tirajeActual";
+            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', horadeldia_tiraje='$horafinajuste',  is_virtual=1,odt_virtual='$virtOdt',elemento_virtual='$virtElem' WHERE idtiraje=$tirajeActual";
             
             $resultado = $mysqli->query($query);
                        
@@ -125,7 +125,7 @@ require('classes/functions.class.php');
           }else{
             $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
           }
-            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', id_orden=$odt WHERE idtiraje=$tirajeActual";
+            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', horadeldia_tiraje='$horafinajuste', id_orden=$odt WHERE idtiraje=$tirajeActual";
            
 
             $resultado = $mysqli->query($query);
@@ -160,15 +160,17 @@ require('classes/functions.class.php');
             $log->lwrite(json_encode($_POST),'UPDATING');
               
             if ($_POST['qty']=='single') {
-               $isvirtual=(isset($_POST['isvirtual'])? $_POST['isvirtual'] :'false');
+
+            $planillas=(!empty($_POST['planillas']))? $_POST['planillas'] : 'null';  
+            $isvirtual=(isset($_POST['isvirtual'])? $_POST['isvirtual'] :'false');
             $producto=(isset($_POST['producto'])) ?$_POST['producto'] : '';
             $numodt=(isset($_POST['numodt'])) ?$_POST['numodt'] : '';
             $logged_in=$_POST['logged_in'];
             $nombremaquina=$_POST['nombremaquina'];
             $odt=(isset($_POST['odt']))? $_POST['odt'] : '';
-            $pedido=(isset($_POST['pedido'])) ?$_POST['pedido'] : '';
+            $pedido=(isset($_POST['pedido'])) ?(($planillas=='null')? $_POST['pedido'] : $_POST['pedido']/$planillas) : '';
             $cantidad=(isset($_POST['cantidad'])) ?$_POST['cantidad'] : '';
-            $buenos=(isset($_POST['buenos'])) ?$_POST['buenos'] : '';
+            $buenos=(isset($_POST['buenos'])) ? (($planillas=='null')? $_POST['buenos'] : $_POST['buenos']/$planillas) : '';
             $defectos=(isset($_POST['defectos'])) ?$_POST['defectos'] : '';
             $merma=(isset($_POST['merma']))? $_POST['merma'] : 0;
             $ajuste=$_POST['piezas-ajuste'];
@@ -181,6 +183,7 @@ require('classes/functions.class.php');
             $element=$_POST['element'];
             $horainiciotiro=$_POST['horainiciotiro'];
             $horafintiraje=date("H:i:s",time());
+
       $log->lwrite( $isvirtual,'UPDATING');
            $horaTiraje     = date(" H:i:s", time());
             $userID = $_SESSION['id'];
@@ -192,13 +195,23 @@ require('classes/functions.class.php');
             $machineName = $_SESSION['machineName'];
             $processID=($machineID==20||$machineID==21)? 10:$machineID;
             $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$processID AND id_elemento= $element";
+            $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
+            $estandar       = $getstandar['piezas_por_hora'];
+            
                 if($isvirtual=='true'){
                   $elem_v=$_POST['element_v'];
+                  if (!empty($estandar)) {
+                    $tiraje_estandar=($seconds*$estandar)/3600;
+                    $log->lwrite(  "ESTANDAR: ".$estandar,'UPDATING');
+                  }
+                  else{
                    if ($processID==10) {
-                    $tiraje_estandar=($seconds*420)/3600;
+                    $tiraje_estandar=($seconds*480)/3600;
                   }else{
                     $tiraje_estandar=($seconds*600)/3600;
-                  }
+                  } }
+
+
                   if ($tiraje_estandar>0) {
                     $predesemp=($entregados*100)/$tiraje_estandar;
                    $tiraje_desemp=($predesemp>100)? 100 : $predesemp;
@@ -207,13 +220,15 @@ require('classes/functions.class.php');
                     $tiraje_desemp=0;
                     $log->lwrite('no vale nada','desemp');
                   }
+
+                    $log->lwrite(  "ESPERADO: ".$tiraje_estandar,'UPDATING');
                   $prodEsperada=round($tiraje_estandar);
                   
                   $hora=$_POST['hour'];
                    $LastT=mysqli_fetch_assoc( $mysqli->query("SELECT last_tiraje FROM personal_process WHERE status='actual' AND proceso_actual='$machineName' "));
                   $getLast=$LastT['last_tiraje'];
 
-                  $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horainiciotiro', horafin_tiraje='$horafintiraje', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
+                  $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horafin_tiraje='$horafintiraje', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
                   $log->lwrite("Ultimo ID de ".$machineName.": ".$getLast,'LAST_ID');
            $log->lclose();
 
@@ -267,7 +282,7 @@ require('classes/functions.class.php');
            $LastT=mysqli_fetch_assoc( $mysqli->query("SELECT last_tiraje FROM personal_process WHERE status='actual' AND proceso_actual='$machineName' "));
            $getLast=$LastT['last_tiraje'];
 
-            $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horadeldia_tiraje='$horainiciotiro', horafin_tiraje='$horafintiraje',id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
+            $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horafin_tiraje='$horafintiraje',id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
             print_r($mysqli);
             $log->lwrite("Ultimo ID de ".$machineName.": ".$getLast,'LAST_ID');
            $log->lclose();

@@ -2,13 +2,7 @@
 <?php
  ini_set('session.gc_maxlifetime', 30*60);
 date_default_timezone_set("America/Mexico_City");
-if (isset($_COOKIE['ajuste'])) {
-    setcookie('ajuste', true, time() - 3600);
-    unset($_COOKIE['ajuste']);
-}
-if (!isset($_COOKIE['tiraje'])) {
-    setcookie('tiraje', true, time() + 3600);
-}
+
 require('saves/conexion.php');
 if (!session_id()) {
     session_start();
@@ -22,12 +16,28 @@ if (@$_SESSION['logged_in'] != true) {
 } else {
     //echo $_SESSION['machineName'];
 
-    $mac=(isset($_SESSION['mac']))?$_SESSION['mac'] : system($cmd) ;
+    //$mac=(isset($_SESSION['mac']))?$_SESSION['mac'] : system($cmd) ;
 
     $machineName=$_SESSION['machineName'];
     $machineID = $_SESSION['machineID'];
     $pause_exist = false;
      $userID      = $_SESSION['id'];
+
+     if (isset($_REQUEST['tiro'])) {
+       $tiro=$_REQUEST['tiro'];
+        $cleanLast=$mysqli->query("DELETE FROM tiraje WHERE idtiraje=$tiro");
+        if (!$cleanLast) {
+         printf($mysqli->error);
+        }
+        $closeday=$mysqli->query("DELETE FROM operacion_estatus WHERE maquina=$machineID");
+        if (!$closeday) {
+         printf($mysqli->error);
+        }
+     }
+
+
+
+    
     
    
 ?>
@@ -51,7 +61,7 @@ if ($getodts) {
   }
     
     //obtenemos el tiempo real sumando tiempoTiraje + tiempo_ajuste +tiempoalertamaquina + tiempoajuste
-     $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today')) as tiempo_real";
+     $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today')+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today')) as tiempo_real";
     //obtenemos el tiempo muerto sumando las idas al sanitario
     $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$machineID AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
     
@@ -103,7 +113,7 @@ if ($getodts) {
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     
-    $dispon     =($seconds>14400)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
+   $dispon     =($seconds>19800)? ($totalTime / ($seconds-3600))*100 : ($totalTime / $seconds)*100;
     //$disponible = round($dispon, 1);
     $disponible = round($dispon);
     

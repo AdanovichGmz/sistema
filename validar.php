@@ -92,7 +92,19 @@ header("Location: index2.php");
 }
 else{
     if(date("w")==1||date("w")==3||date("w")==5){
-        header("Location: asaichii.php");
+        $hora_actual=date(" H:i:s", time());
+        if ( strtotime($hora_actual)>=strtotime('10:24:00')) {
+             $logged_in=$_SESSION['id'];
+        $op_query=$mysqli->query("INSERT INTO operacion_estatus(operador,maquina,actividad_actual,en_tiempo,asaichi_cumplido,fecha) VALUES($logged_in,$mac_id,2,1,1,'$today')");
+        if ($op_query) {
+        header("Location: index2.php");
+    }else{
+        printf($mysqli->error);
+    }
+        }else{
+            header("Location: asaichii.php");
+        }
+        
     }else{
          $logged_in=$_SESSION['id'];
     $op_query=$mysqli->query("INSERT INTO operacion_estatus(operador,maquina,actividad_actual,en_tiempo,asaichi_cumplido,fecha) VALUES($logged_in,$mac_id,2,1,1,'$today')");

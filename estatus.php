@@ -79,7 +79,7 @@
     .personal{
       width: 31%;
     background-color: #fff;
-    height: 22em;
+    
     display: inline-block;
     border-radius: 5px;
     margin: 10px;
@@ -172,7 +172,8 @@
   opacity: 0.4
 }
 #cuerpito{
-  
+ 
+  background: #E5E9EC!important;
 }
 @media screen and (max-width: 1025px) {
 .ete-stat table{
@@ -259,6 +260,12 @@ if (!$turn_on) {
 }
 ?>
 $(document).ready(function(){
+  var one = $(window).height();
+  $('body').height(one);
+  $('.personal').height((one/2)-25);
+var grafics2=((wind/2)-25)-140;
+$('.ete-stat').height(grafics2);
+  
  alerttime();
 setInterval(function() {
             
@@ -269,7 +276,9 @@ setInterval(function() {
                           //$('#cuerpito').show().fadeIn(3000);
                           
                 }, 10000);
-
+setInterval(function() {
+  location.reload();
+}, 300000);
 
                 });
    

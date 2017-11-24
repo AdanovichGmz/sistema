@@ -59,7 +59,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
        /****************** Calcular ETE ******************/
     $today     = date("d-m-Y");
    
-     $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)) as tiempo_real";
+     $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_tiraje = '$today' )+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$idmaquina AND fechadeldia_ajuste = '$today' )) as tiempo_real";
     //obtenemos el tiempo muerto sumando las idas al sanitario
     $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$idmaquina AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$idmaquina AND radios='Sanitario' AND fechadeldiaam = '$today'";
     $tmuerto_alertas=mysqli_fetch_assoc($mysqli->query("SELECT (SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$idmaquina AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$idmaquina AND fechadeldiaam = '$today') AS tmuerto_alert"));
@@ -110,9 +110,9 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     $roundDesemp=($desempenio>100)? 100 : $desempenio;
-    $dispon     =($seconds>19800)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
+    $dispon     =($seconds>19800)? ($totalTime / ($seconds-3600))*100 : ($totalTime / $seconds)*100;
     //$disponible = round($dispon, 1);
-  
+  //echo $seconds." real ".$totalTime;
     $disponible = round($dispon);
     
     $real       = mysqli_fetch_assoc($mysqli->query($etequery5));
@@ -191,7 +191,7 @@ console.log("real time '.$maquina.' '.gmdate("H:i",$gettotalTime['tiempo_real'])
     <div class="ete-num">'.round($getEte).'%</div>
 
     </div>
-    <div class="machinename">'.$actividad['actividad_actual'].'</div>
+    <div class="machinename">'.(($actividad['actividad_actual']=='comida')? "comida/wc" : $actividad['actividad_actual']).'</div>
     <div class="ete-stat ">
       <table>
       <thead>
@@ -207,7 +207,7 @@ console.log("real time '.$maquina.' '.gmdate("H:i",$gettotalTime['tiempo_real'])
         
         </tbody>
       </table>
-      <div id="'.$maquina.'" style="bottom:0;width: 100%; height: 110px; position:absolute; "></div>
+      <div id="'.$maquina.'" style="bottom:0;width: 97%; height: 80%; position:absolute; "></div>
     </div>';
   echo $credencial;
 }
@@ -227,14 +227,20 @@ console.log("real time '.$maquina.' '.gmdate("H:i",$gettotalTime['tiempo_real'])
    <div class="personal <?=(!isActive(21))? 'disabled' : '' ?>">
     <?=personalData(21,'Serigrafia3','15'); ?>
   </div>
-  <div class="personal <?=(!isActive(4))? 'disabled' : '' ?>">
-    <?=personalData(4,'Original','4'); ?>
+  <div class="personal <?=(!isActive(9))? 'disabled' : '' ?>">
+    <?=personalData(9,'Suaje','default'); ?>
   </div>
   <div class="personal <?=(!isActive(5))? 'disabled' : '' ?>">
-    <?=personalData(5,'Placa','11'); ?>
+    <?=personalData(5,'Placa','default'); ?>
   </div>
   <div class="personal <?=(!isActive(16))? 'disabled' : '' ?>">
     <?=personalData(16,'HotStamping','7'); ?>
   </div>
  
 </div>
+<script>
+  var wind = $(window).height();
+$('.personal').height((wind/2)-25);
+var grafics=((wind/2)-25)-140;
+$('.ete-stat').height(grafics);
+</script>

@@ -1,8 +1,0 @@
-[09/Nov/2017:10:19:53] (saves) Ultimo ID de Suaje: 1080
-[09/Nov/2017:10:20:24] (saves) Ultimo ID de Suaje: 1081
-[09/Nov/2017:10:20:38] (saves) Ultimo ID de Suaje: 1082
-[09/Nov/2017:10:22:38] (saves) Ultimo ID de Suaje: 1084
-[09/Nov/2017:10:23:10] (saves) Ultimo ID de Suaje: 1085
-[09/Nov/2017:16:07:00] (saves) Ultimo ID de HotStamping: 1107
-[10/Nov/2017:11:43:22] (saves) Ultimo ID de Suaje: 1142
-[10/Nov/2017:11:49:03] (saves) Ultimo ID de Suaje: 1144

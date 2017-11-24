@@ -72,7 +72,8 @@ $machineID = $_SESSION['machineID'];
 
 
 
-
+$actualMachine=($machineID==20||$machineID==21)? 10 : $machineID;
+$getElementStandar=$mysqli->query("SELECT * FROM estandares e INNER JOIN elementos el ON e.id_elemento=el.id_elemento WHERE e.id_maquina=$actualMachine ORDER BY nombre_elemento ASC");
 
 $p=1;
 if ( $p==1) {
@@ -203,7 +204,24 @@ if ( $p==1) {
       box-shadow:0px 0px 5px #444444;
       display:none;
     }
- 
+  .setElement
+    {
+      position:absolute;
+      top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      width:100%;
+      height: 100%;
+      background: #E5E9EC; 
+        display: none;
+      z-index:9999999999;
+      padding:10px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    
+      
+    }
     .close
     {
       float:right;
@@ -234,6 +252,64 @@ if ( $p==1) {
     .savesucces p{
      
     }
+    .elem-button{
+      width: 190px;
+      height: 80px;
+      background: #302F37;
+      color: #DADADA;
+      
+     
+      display: inline-block;
+      vertical-align: top;
+      border-radius: 4px;
+      margin:3px 1px;
+      cursor: pointer;
+      position: relative;
+    }
+    .qty-button{
+      margin: 15px;
+       width: 150px;
+      height: 150px;
+      background: #302F37;
+      color: #DADADA;
+      
+     
+      display: inline-block;
+      vertical-align: top;
+      border-radius: 4px;
+     
+      cursor: pointer;
+      position: relative;
+    }
+    .qty-button p{
+      font-size: 45px!important;
+       margin: 0 auto;
+      width: 90%;
+    text-align: center;
+   font-weight: bold;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    }
+    .elem-button:hover{
+      background:#161618;
+    }
+    .elem-button p {
+      margin: 0 auto;
+      width: 90%;
+    text-align: center;
+    font-size: 20px;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.other{
+  background:#1D1C21!important;
+}
         
 @media only screen and (min-width:481px) and (max-width:768px) and (orientation: portrait) {
     .contegral{
@@ -259,6 +335,35 @@ if ( $p==1) {
     font-weight: bold;
     color: #fff;
 }
+.c0{background:#CB4335 !important;}
+.c1{background:#A93226 !important;}
+
+.c2{background:#2E86C1 !important;}
+.c3{background:#884EA0 !important;}
+
+.c4{background:#2471A3 !important;}
+.c5{background:#7D3C98 !important;}
+.c6{background:#17A589 !important;}
+.c7{background:#138D75 !important;}
+.c8{background:#28B463 !important;}
+.c9{background:#229954 !important;}
+
+.c10{background:#F1C40F !important;color:#933209;}
+.c11{background:#D4AC0D !important;}
+.c12{background:#D68910 !important;}
+.c13{background:#CA6F1E !important;}
+.c14{background:#BA4A00 !important;}
+.c15{background:#D0D3D4 !important;color:#4D4D4D;}
+.c16{background:#A6ACAF !important;color:#4D4D4D;}
+.c17{background:#839192 !important;}
+.c18{background:#707B7C !important;}
+.c19{background: #616A6B !important;}
+.c20{background: #2E4053!important;}
+.c21{background:#273746 !important;}
+.c22{background:#283747 !important;}
+.c23{background:#212F3D !important;}
+
+.c24{background:#616A6B !important;}
 @media screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation: landscape) {
  .msj {
  display: none;
@@ -324,6 +429,7 @@ if ( $p==1) {
                                     <div id="chronoExample">
                                     <div id="timer"><span class="values">00:00:00</span></div>
                                     <input type="hidden" id="elemvirtual" name="elemvirtual">
+                                     <input type="hidden" id="idelemvirtual" name="idelemvirtual">
                                     <input type="hidden" id="odtvirtual" name="odtvirtual">
                                     <input type="hidden" id="timee" name="tiempo">
                                     <input type="hidden" id="ontime" name="ontime" value="true">
@@ -377,6 +483,17 @@ if ( $p==1) {
     <img src="images/success.png">
     <p style="text-align: center; font-weight: bold;">Listo!</p>
   </div>
+  </div>
+  <div class="setElement">
+  <div id="elems-container" style="width: 100%;margin:0 auto; height: 100%; overflow: auto;">
+  <?php 
+  $c=0;
+  while ($e_row=mysqli_fetch_assoc($getElementStandar)) { ?>
+    <div class="elem-button <?='c'.$c ?>" data-name="<?=$e_row['nombre_elemento'] ?>" data-id="<?=$e_row['id_elemento'] ?>"><p><?=$e_row['nombre_elemento'] ?></p></div>
+  <?php $c++; } ?>
+  <div style="display: none;" class="elem-button other"><p>Otro</p></div>
+  </div>
+    
   </div>
    <div id="panelbottom">
        <div id="panelbottom2"></div> 
@@ -587,7 +704,7 @@ if ( $p==1) {
                 <input type="hidden" name="curr-section" value="ajuste">  
                 <input type="hidden" id="inicioAlertaEat" name="inicioAlertaEat">             
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php echo "". $_SESSION['logged_in'] ?>" />
-                <input hidden name="horadeldiaam" id="horadeldiaam" value="<?php echo date(" H:i:s",time()); ?>" />
+                <input hidden name="horadeldiaam" id="horadeldiaeat" value="<?php echo date(" H:i:s",time()); ?>" />
                  <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php echo date("d-m-Y"); ?>" />
                 <input hidden name="maquina" id="maquina" value="<?php echo $valorQuePasa5; ?>"  />
@@ -648,7 +765,7 @@ if ( $p==1) {
       <div id="softk" class="softkeys" data-target="input[name='getodt']"></div>
     </div>
     
-      <div id="close-down-key" class="square-button-micro red  " style="display: none;">
+      <div id="close-down-key" class="square-button-micro red " style="display: none;">
                           <img src="images/ex.png">
                         </div>
     
@@ -694,6 +811,8 @@ if (!empty($update)) {
   '<p id="podt" style="display:none">Rellena este campo</p></div>'+
   '<div class="vform"><p>Parte:</p>'+
             '<input type="text" readonly required="true" name="virtualelem" id="virtualelem" >'+
+            
+            '<input type="hidden"  name="idelem" id="idelem" >'+
             '<p id="pelem" style="display:none">Rellena este campo</p></div>'+
            
             '<input type="button" id="saving" style="display: none;"></form>';
@@ -732,6 +851,46 @@ function endOfDay(){
 }
       
 }
+<?php if ($machineID==20||$machineID==21||$machineID==10) {?>
+$(document).on("click", "#virtualelem", function () {
+    selectElement();
+});
+
+<?php }else{ ?>
+$(document).on("click", "#virtualelem", function () {
+    getKeys('virtualelem','cosa');
+});
+<?php } ?>
+$(document).on("click", ".elem-button", function () {
+  var id=$(this).data("id");
+  var name=$(this).data("name");
+  if (id==17) {
+    var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="2"><p>2</p></div>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="4"><p>4</p></div>';
+    $('#elems-container').html(planillas);
+   
+  }else{
+     $('#virtualelem').val(name);
+$('#idelem').val(id);
+  
+    close_Elements();
+  }
+ 
+
+});
+$(document).on("click", ".qty-button", function () {
+  var id=$(this).data("id");
+  var name=$(this).data("name");
+  var plans=$(this).data("plans");
+    $('#virtualelem').val(name);
+    $('#idelem').val(id);
+
+    $('#virtualform').append('<input type="hidden" name="plans" id="plans" value="'+plans+'">');
+    close_Elements();
+
+
+});
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=9"></script>
+<script src="js/ajuste.js?v=10"></script>

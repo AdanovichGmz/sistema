@@ -61,10 +61,11 @@ if (@$_SESSION['logged_in'] != true) {
             
 
             $orderID = (isset($_GET['order']))? explode(",", $_GET['order'] ) : explode(",", $id['id_orden']);
+            $idtiro=$id['last_tiraje'];
            $today=date("d-m-Y");
             $singleID=$orderID[0];
             $userID      = $_SESSION['id'];
-            $getAjuste    = "SELECT horadeldia_ajuste FROM tiraje WHERE id_orden=$singleID AND id_maquina=$machineID AND fechadeldia_ajuste='$today' AND horadeldia_tiraje IS NULL";
+            $getAjuste    = "SELECT horadeldia_ajuste,elemento_virtual,TIME_TO_SEC(horadeldia_tiraje) AS iniciotiro FROM tiraje WHERE idtiraje=$idtiro";
 
             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
             $horaAjuste     = $Ajuste['horadeldia_ajuste'];
@@ -120,7 +121,7 @@ if (@$_SESSION['logged_in'] != true) {
     <?php
     $today     = date("d-m-Y");
     //obtenemos el tiempo real sumando tiempoTiraje + tiempo_ajuste +tiempoalertamaquina + tiempoajuste
-    $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' AND tiempoTiraje IS NOT NULL)) as tiempo_real";
+    $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' )+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' )) as tiempo_real";
     //obtenemos el tiempo muerto sumando las idas al sanitario
     $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$machineID AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
     $tmuerto_alertas=mysqli_fetch_assoc($mysqli->query("SELECT (SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today') + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today') AS tmuerto_alert"));
@@ -134,7 +135,8 @@ if (@$_SESSION['logged_in'] != true) {
     $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
-    $element    = $getelement['producto'];
+
+    $element    =($getelement['is_virtual']=='true')? $getelement['id_elem_virtual'] : $getelement['producto'];
     $begin      = new DateTime('08:45');
     $current    = new DateTime(date('H:i'));
     //obtenemos el tiempo transcurrido desde el inicio del dia hasta el momento actual
@@ -172,7 +174,7 @@ if (@$_SESSION['logged_in'] != true) {
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     $roundDesemp=($desempenio>100)? 100 : $desempenio;
-    $dispon     =($seconds>19800)? ($totalTime * 100) / ($seconds-3600) : ($totalTime * 100) / $seconds;
+    $dispon     =($seconds>19800)? ($totalTime / ($seconds-3600))*100 : ($totalTime / $seconds)*100;
     //$disponible = round($dispon, 1);
     $disponible = round($dispon);
     
@@ -440,9 +442,7 @@ if (@$_SESSION['logged_in'] != true) {
 
 </head>
 <body style="">
-<input type="hidden" id="display-ete" value="<?php
-    echo "getete " . $getEte . " dispon " . $dispon . " quality " . $roundQuality . " efec " . $roundDesemp;
-?>">
+<input type="hidden" id="iniciotiro" value="<?=$Ajuste['iniciotiro'] ?>">
 <input type='hidden' id='pausedorder' value="<?= (isset($secondspaused)) ? $secondspaused : 'false' ?>">
  
   <?php
@@ -813,7 +813,7 @@ foreach ($orderID as $odt) {
     while ($row = mysqli_fetch_object($resultado02)) {
         
 ?>
-                                                         
+                             <input hidden name="planillas" value="<?= $id['planillas_de'] ?>"/>                            
                             <input hidden id="producto" name="producto" class=" diseños" value="<?= $row->producto ?>"/>
                              <input hidden id="numodt" name="numodt" class="diseños" value="<?= implode(',', $orderID) ?>"/>
                              <input hidden id="odt" name="odt" class=" diseños" value="<?= $row->numodt ?>"/>
@@ -1186,4 +1186,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=5"></script>
+  <script src="js/tiraje.js?v=6"></script>

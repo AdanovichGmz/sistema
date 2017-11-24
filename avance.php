@@ -3,6 +3,7 @@ require('saves/conexion.php');
 if (isset($_POST['maquina'])) {
 $machineID=$_POST['maquina'];
 $element=$_POST['elemento'];
+
 $processID=($machineID==20||$machineID==21)? 10:$machineID;
 $tiempoTiraje=(isset($_POST['tiempo']))? $_POST['tiempo'] :'00:00:00';
 $seconds = strtotime("1970-01-01 $tiempoTiraje UTC");
@@ -13,6 +14,7 @@ if ($element!='') {
             
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
             $get_estandar       = $getstandar['piezas_por_hora'];
+           
             if (is_null($get_estandar)) {
             	if ($processID==10) {
                     $def_estandar=420;

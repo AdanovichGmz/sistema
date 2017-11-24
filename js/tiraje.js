@@ -1,6 +1,8 @@
  var jQuery214=$.noConflict(true);
  var r = false;
  var k=false;
+ var b = false;
+ var sec=parseInt($('#iniciotiro').val());
  function checkTime(i) {
     if (i < 10) {
         i = "0" + i;
@@ -32,6 +34,17 @@ function startEat() {
 
     
 }
+function currentSeconds() {
+     var today = new Date();
+    var h = today.getHours()*3600;
+    var m = today.getMinutes()*60;
+    var s = today.getSeconds();
+      seconds=h+m+s;
+
+    return Math.round(seconds);
+    
+}
+
  function opera(){ 
      var cantidad = document.all.cantidad.value; 
                            var buenos = document.all.buenos.value;  
@@ -116,7 +129,36 @@ var timer = new Timer();
  var timerEat = new Timer();
  var timerAlertm = new Timer();
 $(document).ready(function(){
-  timer.start();
+  if (localStorage.getItem('myTime')) {
+    if (localStorage.getItem('alertTime')) {
+      $("#panelder2").animate({ left: '+=40%' }, 200);
+      $("#panelder").animate({ right: '+=75%' }, 200);
+      b = true;
+      alertsecs=currentSeconds()-localStorage.getItem('alertTime');
+       timerAlertm.start({startValues: {seconds: alertsecs}});
+       timerAlertm.addEventListener('secondsUpdated', function (e) {
+    $('#alertajuste .valuesAlert').html(timerAlertm.getTimeValues().toString());
+    });
+    timerAlertm.addEventListener('started', function (e) {
+    $('#alertajuste .valuesAlert').html(timerAlertm.getTimeValues().toString());
+});
+      console.log('horaalerta: '+alertsecs);
+     
+    }else{
+    var lastsecs=currentSeconds()-sec;
+    console.log();
+
+    timer.start({startValues: {seconds: lastsecs}});
+    localStorage.setItem('myTime', lastsecs); 
+    }  
+  }else{
+    timer.start();
+    localStorage.setItem('myTime', sec); 
+
+
+  }
+  
+
 saveOperstatus();
   $(document).keypress(function(e) {
     if(e.which == 13) {
@@ -137,6 +179,7 @@ if (timepause=='false') {
 
 });
        
+
 
 $('#fvalida').submit(function () {
     timer.pause();
@@ -201,6 +244,7 @@ timer.addEventListener('started', function (e) {
    });
 
    $('.stopalert').click(function () {
+    localStorage.removeItem('alertTime');
     timer.start();
     timerAlertm.stop();
    });
@@ -316,7 +360,19 @@ $('.radio-menu').click(function() {
                       $(this).addClass('face-osc').find('input').prop('checked', true)    
                     });
  function saveAlert(){
-  timer.start();
+  
+  if (localStorage.getItem('alertTime')) {
+    var lastsecs=currentSeconds()-sec;
+    var t_alert=currentSeconds()-localStorage.getItem('alertTime');
+    var continueTimer=lastsecs-t_alert;
+    console.log('Tiempo-alerta: '+continueTimer);
+
+    timer.start({startValues: {seconds: continueTimer}});
+    localStorage.removeItem('alertTime');
+  }else{
+    timer.start();
+  }
+  
          event.preventDefault();
          //var mac=$('#mac').val();
          timerAlertm.pause();
@@ -346,7 +402,7 @@ $('.radio-menu').click(function() {
                 });
     } 
  function saveTiro(){
-    
+      localStorage.removeItem('myTime');
          event.preventDefault();
          var id=$('#numodt').val();
           var odt=$('#odt').val();
@@ -490,7 +546,7 @@ $(document).ready(function () {
 
 
 
-    var b = false;
+    
     $(".derecha").click(function () {
      
         if (b == false) {
@@ -707,7 +763,7 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
 
     function saveoperAlert(){
         
-    
+    localStorage.setItem('alertTime', currentSeconds());
          $.ajax({  
                       
                      type:"POST",

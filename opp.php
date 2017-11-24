@@ -52,11 +52,14 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
  
  $vodt=strtoupper ($_POST['virtualodt']);
  $velem=ucfirst($_POST['virtualelem']);
+ $videlem=(!empty($_POST['idelem']))? $_POST['idelem']:'null';
+ $plans=(isset($_POST['plans']))? $_POST['plans']:'null';
  $machineName=$_POST['machine'];
  $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
  $clean=$mysqli->query("DELETE FROM personal_process WHERE proceso_actual='$machineName'");
  if ($clean) {
-   $addvirtual=$mysqli->query("INSERT INTO `personal_process` (`id_pp`, `id_orden`, `num_odt`, `proceso_actual`, `id_proceso`, `status`, `orden_display`, `elemento_virtual`) VALUES (NULL, NULL, '$vodt', '$machineName', NULL, 'actual', 1, '$velem')");
+   $addvirtual=$mysqli->query("INSERT INTO `personal_process` (`id_pp`, `id_orden`, `num_odt`, `proceso_actual`, `id_proceso`, `status`, `orden_display`, `elemento_virtual`,id_elemento_virtual,planillas_de) VALUES (NULL, NULL, '$vodt', '$machineName', NULL, 'actual', 1, '$velem',$videlem,$plans)");
+   //$inquery="INSERT INTO `personal_process` (`id_pp`, `id_orden`, `num_odt`, `proceso_actual`, `id_proceso`, `status`, `orden_display`, `elemento_virtual`,id_elemento_virtual) VALUES (NULL, NULL, '$vodt', '$machineName', NULL, 'actual', 1, '$velem',$videlem)";
    if ($addvirtual) {
     $getvirtual=$mysqli->query("SELECT * FROM personal_process WHERE proceso_actual='$machineName' ORDER BY orden_display ASC");
     while ($valores = mysqli_fetch_array($getvirtual)) {
@@ -70,18 +73,20 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
                         
                        
                        
-                          <p class="elem" ><?php echo  trim($valores['elemento_virtual']); ?></p>
+                          <p class="elem" style="<?=(strlen(trim($valores['elemento_virtual']))>16)? 'font-size: 15px; line-height: 18px!important;' : ''; ?>"><?= trim($valores['elemento_virtual']); ?></p>
                           <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                          <input type='hidden' id='returning' name="returning" value="<?=$valores['num_odt']; ?>">
                         <input type='hidden' id='returning2' name="returning2" value="<?=$valores['elemento_virtual']; ?>">
                           <input type='hidden' id='returning3' name="returning3"    value="virtual">
+                          <input type='hidden' id='returning4' name="returning3"    value="<?=$videlem ?>">
    <?php
    $vi++;
  }
    }else{
     echo "ocurrio un error     ";
     printf($mysqli->error);
+    //echo $inquery;
    }
  }
 

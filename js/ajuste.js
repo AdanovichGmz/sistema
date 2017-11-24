@@ -18,7 +18,7 @@ function startTime() {
 
     
 }
-function startEat() {
+function startEat(){
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();
@@ -26,6 +26,7 @@ function startEat() {
     // add a zero in front of numbers<10
     m = checkTime(m);
     s = checkTime(s);
+    console.log('cambiando hora');
     document.getElementById('inicioAlertaEat').value = h + ":" + m + ":" + s;
 
     
@@ -36,9 +37,7 @@ $(document).ready(function(event) {
  $(document).on("click", "#virtualodt", function () {
     getKeys('virtualodt','cosa');
 });
- $(document).on("click", "#virtualelem", function () {
-    getKeys('virtualelem','cosa');
-});
+ 
  $(document).on("click", "#saving", function () {
     createVirtualOdt();
     $('#close-down').click();
@@ -169,7 +168,7 @@ $(document).on("click", ".radio-menu-small", function () {
         });
 
   function submitEat(suceso){
-    startEat();
+    
     var actiro=$('#actual_tiro').val();
     $('#act_tiro').val(actiro);
     $('#s-radios').val(suceso);
@@ -190,6 +189,17 @@ $(document).on("click", ".radio-menu-small", function () {
         $('.backdrop, .box').animate({'opacity':'.50'}, 300, 'linear');
           $('.box').animate({'opacity':'1.00'}, 300, 'linear');
           $('.backdrop, .box').css('display', 'block');
+      }
+      function selectElement(){
+        
+          $('.setElement').animate({'opacity':'1.00'}, 300, 'linear');
+          $('.setElement').css('display', 'block');
+      }
+      function close_Elements()
+      {
+        $('.setElement').animate({'opacity':'0'}, 300, 'linear', function(){
+          $('.setElement').css('display', 'none');
+        });
       }
       function sendOrder(id){
         
@@ -598,9 +608,11 @@ function createVirtualOdt(){
                         var curorder= $('#returning').val();
                var curid= $('#returning2').val();
                var orid= $('#returning3').val();
+               var elemid=$('#returning4').val();
                $('#orderID').val(orid);
               $('#order').val(orid);
               $('#elemvirtual').val(curid);
+              $('#idelemvirtual').val(elemid);
               $('#odtvirtual').val(curorder);
                $('#orderODT').val(curorder);
 
@@ -640,7 +652,7 @@ function createVirtualOdt(){
                 });
     }
      function saveoperComida(){
-        
+        startEat();
     
          $.ajax({  
                       

@@ -1,30 +1,21 @@
-[08/Nov/2017:14:17:23] (saves) tiempo: 00:12:52
-[08/Nov/2017:14:17:23] (saves) tiempo asa:  TIMEDIFF("00:20:00.000000","00:12:52")
-[08/Nov/2017:14:17:23] (saves) 0
-[08/Nov/2017:14:19:26] (saves) tiempo: 00:14:00
-[08/Nov/2017:14:19:26] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:14:00")
-[08/Nov/2017:14:19:26] (saves) 0
-[10/Nov/2017:09:08:31] (saves) tiempo: 00:14:31
-[10/Nov/2017:09:08:31] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:14:31")
-[10/Nov/2017:09:08:31] (saves) 0
-[10/Nov/2017:09:15:43] (saves) tiempo: 00:01:42
-[10/Nov/2017:09:15:43] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:01:42")
-[10/Nov/2017:09:15:43] (saves) 0
-[10/Nov/2017:09:46:03] (saves) tiempo: 00:14:51
-[10/Nov/2017:09:46:03] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:14:51")
-[10/Nov/2017:09:46:03] (saves) 0
-[10/Nov/2017:11:12:35] (saves) tiempo: 00:14:49
-[10/Nov/2017:11:12:35] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:14:49")
-[10/Nov/2017:11:12:35] (saves) 0
-[10/Nov/2017:11:48:27] (saves) tiempo: 00:14:56
-[10/Nov/2017:11:48:27] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:14:56")
-[10/Nov/2017:11:48:27] (saves) 0
-[13/Nov/2017:08:54:06] (saves) tiempo: 00:08:08
-[13/Nov/2017:08:54:06] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:08:08")
-[13/Nov/2017:08:54:06] (saves) 0
-[13/Nov/2017:08:58:58] (saves) tiempo: 00:06:46
-[13/Nov/2017:08:58:58] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:06:46")
-[13/Nov/2017:08:58:58] (saves) 0
-[13/Nov/2017:09:14:07] (saves) tiempo: 00:14:51
-[13/Nov/2017:09:14:07] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:14:51")
-[13/Nov/2017:09:14:07] (saves) 0
+[22/Nov/2017:08:54:17] (saves) tiempo: 00:14:54
+[22/Nov/2017:08:54:17] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:14:54")
+[22/Nov/2017:08:54:17] (saves) 0
+[22/Nov/2017:08:59:34] (saves) tiempo: 00:02:55
+[22/Nov/2017:08:59:34] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:02:55")
+[22/Nov/2017:08:59:34] (saves) 0
+[22/Nov/2017:09:07:23] (saves) tiempo: 00:01:57
+[22/Nov/2017:09:07:23] (saves) tiempo asa: "00:15:00.000000"
+[22/Nov/2017:09:07:23] (saves) 0
+[22/Nov/2017:09:31:42] (saves) tiempo: 00:14:58
+[22/Nov/2017:09:31:42] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:14:58")
+[22/Nov/2017:09:31:42] (saves) 0
+[24/Nov/2017:09:06:57] (saves) tiempo: 00:00:57
+[24/Nov/2017:09:06:57] (saves) tiempo asa: "00:15:00.000000"
+[24/Nov/2017:09:06:57] (saves) 0
+[24/Nov/2017:09:08:42] (saves) tiempo: 00:06:50
+[24/Nov/2017:09:08:42] (saves) tiempo asa: "00:15:00.000000"
+[24/Nov/2017:09:08:42] (saves) 0
+[24/Nov/2017:09:19:45] (saves) tiempo: 00:14:59
+[24/Nov/2017:09:19:45] (saves) tiempo asa:  TIMEDIFF("00:15:00.000000","00:14:59")
+[24/Nov/2017:09:19:45] (saves) 0
