@@ -326,7 +326,8 @@ while ($row = mysqli_fetch_assoc($resss)):
         }
         
     }
-    $comida_exist = (!empty($row['comida_ajuste'])) ? 'Comida ' . gmdate("H:i", $row['ini_comida_ajuste']) . "-" . gmdate("H:i", $row['fin_comida_ajuste']) : '';
+    //$comida_exist = (!empty($row['comida_ajuste'])) ? 'Comida ' . gmdate("H:i", $row['ini_comida_ajuste']) . "-" . gmdate("H:i", $row['fin_comida_ajuste']) : '';
+    $comida_exist = (!empty($row['comida_ajuste'])) ? '<tr><td colspan="24" style="color:#fff;background:#A6A6A6;"> COMIDA ' . gmdate("H:i", $row['ini_comida_ajuste']) . "-" . gmdate("H:i", $row['fin_comida_ajuste']).' </td></tr>' : '';
     //$sum_muerto+=$row['comida_ajuste'];
     $sum_esper += $row['produccion_esperada'];
     $sum_merm += $row['merma_entregada'];
@@ -404,12 +405,12 @@ while ($row = mysqli_fetch_assoc($resss)):
     <?php
     if (!empty($alert)) {
 ?>
-    <td colspan="3"><?= implode(' | ', $alert[$i]) . " " . $comida_exist ?></td>
+    <td colspan="3"><?= implode(' | ', $alert[$i]) ?></td>
     <?php
     } else {
 ?>
     <td>--</td>
-    <td><?= ($comida_exist != '') ? $comida_exist : '--' ?></td>
+    <td>--</td>
     <td>--</td>
     
     <?php
@@ -419,10 +420,11 @@ while ($row = mysqli_fetch_assoc($resss)):
    
     <td><?= round($row['desempenio'], 2); ?>%</td> -->
   </tr>
+  <?php echo $comida_exist ?>
 <?php
     //$sum_muerto+=$row['comida_tiro'];
-    $comida_exist2 = (!empty($row['comida_tiro'])) ? 'Comida ' . gmdate("H:i", $row['ini_comida_tiro']) . "-" . gmdate("H:i", $row['fin_comida_tiro']) : '';
-    
+    //$comida_exist2 = (!empty($row['comida_tiro'])) ? 'Comida ' . gmdate("H:i", $row['ini_comida_tiro']) . "-" . gmdate("H:i", $row['fin_comida_tiro']) : '';
+    $comida_exist2 = (!empty($row['comida_tiro'])) ? '<tr><td colspan="24" style="color:#fff;background:#A6A6A6;"> COMIDA ' . gmdate("H:i", $row['ini_comida_tiro']) . "-" . gmdate("H:i", $row['fin_comida_tiro']).' </td></tr>' : '';
     
     
     while ($alertaT = mysqli_fetch_assoc($alertaTiro)) {
@@ -480,7 +482,7 @@ while ($row = mysqli_fetch_assoc($resss)):
     } else {
 ?>
     <td>--</td>
-    <td><?= ($comida_exist2 != '') ? $comida_exist2 : '--' ?></td>
+    <td></td>
     <td>--</td>
     
     <?php
@@ -488,7 +490,7 @@ while ($row = mysqli_fetch_assoc($resss)):
 ?>
    
   </tr>
-              
+   <?php echo $comida_exist2 ?>          
   <?php
     $i++;
 endwhile;

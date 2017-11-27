@@ -167,6 +167,7 @@ require('classes/functions.class.php');
             $numodt=(isset($_POST['numodt'])) ?$_POST['numodt'] : '';
             $logged_in=$_POST['logged_in'];
             $nombremaquina=$_POST['nombremaquina'];
+            $table_mac=(isset($_POST['table-machine']))? $_POST['table-machine'] : 1;
             $odt=(isset($_POST['odt']))? $_POST['odt'] : '';
             $pedido=(isset($_POST['pedido'])) ?(($planillas=='null')? $_POST['pedido'] : $_POST['pedido']/$planillas) : '';
             $cantidad=(isset($_POST['cantidad'])) ?$_POST['cantidad'] : '';
@@ -200,9 +201,14 @@ require('classes/functions.class.php');
             
                 if($isvirtual=='true'){
                   $elem_v=$_POST['element_v'];
+                  if ($table_mac==2) {
+                    $tiraje_estandar=($seconds*300)/3600;
+                    $log->lwrite( "IMPRESION EN MESA",'UPDATING');
+                  }
+                  else{
                   if (!empty($estandar)) {
                     $tiraje_estandar=($seconds*$estandar)/3600;
-                    $log->lwrite(  "ESTANDAR: ".$estandar,'UPDATING');
+                    $log->lwrite( "ESTANDAR: ".$estandar,'UPDATING');
                   }
                   else{
                    if ($processID==10) {
@@ -210,6 +216,7 @@ require('classes/functions.class.php');
                   }else{
                     $tiraje_estandar=($seconds*600)/3600;
                   } }
+                }
 
 
                   if ($tiraje_estandar>0) {

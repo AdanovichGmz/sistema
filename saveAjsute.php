@@ -1,6 +1,8 @@
 <?php
 
 require('saves/conexion.php');
+session_start();
+$userID = $_SESSION['id'];
 date_default_timezone_set("America/Mexico_City"); 
 $radios=(isset($_POST['radios']))? $_POST['radios'] : 'Otro';
 $observaciones=$_POST['observaciones'];
@@ -15,12 +17,12 @@ $logged_in=$_POST['logged_in'];
 $horadeldiaam=$_POST['horadeldiaam'];
 $fechadeldiaam=$_POST['fechadeldiaam'];
 
-$query2="SELECT id FROM login WHERE logged_in='$logged_in'";
-$query4="SELECT idmaquina FROM maquina WHERE mac='$maquina'";
-$getID = mysqli_fetch_assoc($mysqli->query($query2));
-$userID = $getID['id'];
-$getMachine = mysqli_fetch_assoc($mysqli->query($query4));
-$machineID = $getMachine['idmaquina'];
+//$query2="SELECT id FROM login WHERE logged_in='$logged_in'";
+//$query4="SELECT idmaquina FROM maquina WHERE mac='$maquina'";
+//$getID = mysqli_fetch_assoc($mysqli->query($query2));
+//$userID = $getID['id'];
+//$getMachine = mysqli_fetch_assoc($mysqli->query($query4));
+$machineID = $_SESSION['machineID'];
 $horafin=date(" H:i:s", time());
 
 $query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$machineID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro)";
@@ -31,6 +33,7 @@ $resultado=$mysqli->query($query);
 //print_r($_POST) ;
 if ( $resultado) {
 print_r($_POST);
+echo $query;
  }else{
             printf("Errormessage: %s\n", $mysqli->error);
           }

@@ -293,6 +293,41 @@ if ( $p==1) {
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     }
+     .maquinamesa{
+      margin: 15px;
+       width: 150px;
+      height: 150px;
+      background: #302F37;
+      color: #DADADA;
+      
+     
+      display: inline-block;
+      vertical-align: top;
+      border-radius: 4px;
+     
+      cursor: pointer;
+      position: relative;
+    }
+    .maquinamesa p{
+      font-size: 25px!important;
+       margin: 0 auto;
+      width: 90%;
+    text-align: center;
+   font-weight: bold;
+    position: relative;
+    top: 80%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #fff!important;
+    }
+    .maquinamesa img{
+      position: absolute;
+      width: 70%;
+     top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
     .elem-button:hover{
       background:#161618;
     }
@@ -411,7 +446,7 @@ if ( $p==1) {
                         <div id="parts" class="square-button purple abajo">
                           <img src="images/elegir.png">
                         </div>
-                        <div id="stop" class="square-button blue " onclick="saveAjuste()" >
+                        <div id="stop" class="square-button blue " onclick="<?=($machineID==20||$machineID==21||$machineID==10)? 'saveAjusteSerigrafia()' : 'saveAjuste()' ?>" >
                           <img src="images/guard.png">
                         </div>
                         
@@ -873,8 +908,8 @@ $(document).on("click", ".elem-button", function () {
   }
   else if (id==84) {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
-    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="2"><p>2</p></div>'+
-    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="4"><p>4</p></div>';
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="1"><p>1</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="2"><p>2</p></div>';
     $('#elems-container').html(planillas);
    
   }else{
@@ -900,4 +935,4 @@ $(document).on("click", ".qty-button", function () {
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=10"></script>
+<script src="js/ajuste.js?v=11"></script>

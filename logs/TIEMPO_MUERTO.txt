@@ -30,3 +30,15 @@
 [24/Nov/2017:18:36:59] (saves) se registro un tiempo muerto
 [25/Nov/2017:09:16:49] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:01:16','25-11-2017','10',16,'E2677',null,'ajuste','08:55:30',1799)
 [25/Nov/2017:09:16:49] (saves) se registro un tiempo muerto
+[25/Nov/2017:13:49:21] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:38','25-11-2017','9',2,'PRUEBA',null,'ajuste','',1807)
+[25/Nov/2017:13:49:21] (saves) se registro un tiempo muerto
+[27/Nov/2017:12:14:57] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:05:10','27-11-2017','21',8,'I3393',null,'ajuste','11:49:40',1851)
+[27/Nov/2017:12:14:57] (saves) se registro un tiempo muerto
+[27/Nov/2017:13:06:48] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:34','27-11-2017','20',14,'B6358',null,'ajuste','',1854)
+[27/Nov/2017:13:06:48] (saves) se registro un tiempo muerto
+[27/Nov/2017:14:14:02] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:02','27-11-2017','10',16,'I3445',null,'ajuste','13:01:42',1857)
+[27/Nov/2017:14:14:02] (saves) se registro un tiempo muerto
+[27/Nov/2017:14:39:29] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:10:10','27-11-2017','21',8,'B6291',null,'ajuste','',1858)
+[27/Nov/2017:14:39:29] (saves) se registro un tiempo muerto
+[27/Nov/2017:15:57:57] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:57','27-11-2017','21',8,'I35077',null,'ajuste','',1863)
+[27/Nov/2017:15:57:57] (saves) se registro un tiempo muerto

@@ -601,6 +601,7 @@ if (@$_SESSION['logged_in'] != true) {
   <input  type="hidden" id="qty" name="qty" value="single" />
   <input type="hidden" name="element_v" value="<?=$Ajuste['elemento_virtual'] ?>">
  <input type="hidden" name="element" value="<?=$element ?>">
+ <input type="hidden" id="table-machine" name="table-machine" value="<?=(isset($_REQUEST['mm']))? $_REQUEST['mm'] : 1 ?>">
   <input type="hidden" name="section" value="tiraje">
   <input type="hidden" name="horainiciotiro" value="<?=date(" H:i:s", time()); ?>">
   <input type="hidden" name="planillas" value="<?= $id['planillas_de'] ?>"/>
@@ -829,6 +830,7 @@ foreach ($orderID as $odt) {
 ?>
          <input hidden class="diseños"  type="text" name="tiempoTiraje" id="tiempoTiraje" />
          <input type="hidden" name="element" value="<?=$element ?>">
+         <input type="hidden" id="table-machine" name="table-machine" value="<?=(isset($_REQUEST['mm']))? $_REQUEST['mm'] : 1 ?>">
                    <input hidden type="text"  name="logged_in" id="logged_in" value="<?php
     echo "" . $_SESSION['id'];
 ?>" />
@@ -1188,4 +1190,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=7"></script>
+  <script src="js/tiraje.js?v=8"></script>

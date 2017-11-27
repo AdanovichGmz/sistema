@@ -261,11 +261,12 @@ timer.addEventListener('started', function (e) {
           var tiem=$('#realtime').val();
           var mach=$('#mach').val();
           var elem=$('#el').val();
+          var tm=$('#table-machine').val();
                    $.ajax({  
                       
                      type:"POST",
                      url:"avance.php",   
-                     data:{tiempo:tiem,maquina:mach,elemento:elem},  
+                     data:{tiempo:tiem,maquina:mach,elemento:elem,tabm:tm},  
                        
                      success:function(data){ 
                        

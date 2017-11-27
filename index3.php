@@ -602,6 +602,7 @@ if (@$_SESSION['logged_in'] != true) {
 </div>
  <form name="fvalida" id="fvalida" method="POST" onsubmit="saveTiro()">
  <input type="hidden" name="element" value="<?=$element ?>">
+ <input type="hidden" id="table-machine" name="table-machine" value="<?=(isset($_REQUEST['mm']))? $_REQUEST['mm'] : 1 ?>">
   <input type="hidden" name="section" value="tiraje">
  <input type="hidden" name="hour" value="<?= (isset($_POST['horadeldia'])) ? $_POST['horadeldia'] : $horaAjuste; ?>"> 
  <input type="hidden" name="horainiciotiro" value="<?=date(" H:i:s", time()); ?>">
@@ -1186,4 +1187,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=6"></script>
+  <script src="js/tiraje.js?v=8"></script>

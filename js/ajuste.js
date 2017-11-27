@@ -427,7 +427,63 @@ setInterval(animacion, 550);
 }
  
 
- function saveAjuste(){
+ function saveAjusteSerigrafia(){
+  var mac=$('#mac').val();
+  var ontime=$('#ontime').val();
+  console.log(ontime);
+    var order=$('#order').val();
+    if($('#orderID').val()==''){
+      $('#parts').click();
+      $('#elementerror').show();
+      setTimeout(function() {   
+                   $('#elementerror').hide();
+                }, 5000);
+    }else{
+      if (ontime=='true') {
+        timer.pause();
+    $('#timee').val(timer.getTimeValues().toString());
+  }else{
+    deadTimer.pause();
+    $('#timee').val(deadTimer.getTimeValues().toString());
+  }var elem=$('#returning2').val();
+
+     $.ajax({  
+                      
+                     type:"POST",
+                     url:"saves.php",   
+                     data:$('#nuevo_registro').serialize(),  
+                       
+                     success:function(data){ 
+                       
+                          //$('#update-form')[0].reset();  
+                          //$('.close').click();
+                          var mesa='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">REALIZAR TIRO EN:</p>'+
+                          '<div class="maquinamesa" data-maq="1"><img src="images/maquina.png"><p>MAQUINA</p></div>'+
+                          '<div class="maquinamesa" data-maq="2"><img src="images/mesa.png"><p>MESA</p></div>';
+
+                          $('#elems-container').html(mesa);
+                         
+                          selectElement(); 
+                          $(document).on("click", ".maquinamesa", function () {
+                             var maquinamesa=$(this).data('maq');
+                            if ($('#orderID').val()=='virtual') {
+                            window.location.replace("index3_5.php?elem="+elem+"&mac="+mac+"&order="+order+"&mm="+maquinamesa);
+                          }
+                            else{
+                               window.location.replace("index3.php?mac="+mac+"&order="+order+"&mm="+maquinamesa);
+                            }
+});
+                          
+                         
+                          console.log(data);
+                     }  
+                }); 
+    }
+
+     
+ }
+ 
+function saveAjuste(){
   var mac=$('#mac').val();
   var ontime=$('#ontime').val();
   console.log(ontime);
