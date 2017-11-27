@@ -844,7 +844,7 @@ function endOfDay(){
   var hour = now.getHours();
   var day = now.getDay();
   var minutes = now.getMinutes();
-  if(hour >= 17){
+  if(hour >= 12){
      window.location.replace("resume.php?tiro="+lastiro);
   }else{
   alert('Favor de picarle aqui despues de las 6pm');
@@ -868,6 +868,13 @@ $(document).on("click", ".elem-button", function () {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="2"><p>2</p></div>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="4"><p>4</p></div>';
+    $('#elems-container').html(planillas);
+   
+  }
+  else if (id==84) {
+    var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="2"><p>2</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="4"><p>4</p></div>';
     $('#elems-container').html(planillas);
    
   }else{

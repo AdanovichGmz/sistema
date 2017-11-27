@@ -2,7 +2,7 @@
 session_start();
 date_default_timezone_set("America/Mexico_City"); 
 require('saves/conexion.php');
-$radios=$_POST['radios'];
+$radios=(isset($_POST['radios']))? $_POST['radios'] : 'Otro';
 $observaciones=$_POST['observaciones'];
 $tiro=$_POST['tiro'];
 //foreach ($_POST['opcion'] as $opcion); 

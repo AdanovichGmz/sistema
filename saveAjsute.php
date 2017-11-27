@@ -2,7 +2,7 @@
 
 require('saves/conexion.php');
 date_default_timezone_set("America/Mexico_City"); 
-$radios=$_POST['radios'];
+$radios=(isset($_POST['radios']))? $_POST['radios'] : 'Otro';
 $observaciones=$_POST['observaciones'];
 $tiro=$_POST['actual_tiro'];
 $inicioAlerta=$_POST['inicioAlerta'];

@@ -174,7 +174,7 @@ require('classes/functions.class.php');
             $defectos=(isset($_POST['defectos'])) ?$_POST['defectos'] : '';
             $merma=(isset($_POST['merma']))? $_POST['merma'] : 0;
             $ajuste=$_POST['piezas-ajuste'];
-            $entregados=(isset($_POST['entregados']))? $_POST['entregados'] : $_POST['buenos'];
+            $entregados=(isset($_POST['entregados']))? (($planillas=='null')? $_POST['entregados'] : $_POST['entregados']/$planillas) : (($planillas=='null')? $_POST['buenos'] : $_POST['buenos']/$planillas);
             $tiempoTiraje=$_POST['tiempoTiraje'];
             $fechadeldia=$_POST['fechadeldia'];
             $horadeldia=$_POST['hour'];
