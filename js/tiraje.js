@@ -403,7 +403,7 @@ $('.radio-menu').click(function() {
                 });
     } 
  function saveTiro(){
-      localStorage.removeItem('myTime');
+      
          event.preventDefault();
          var id=$('#numodt').val();
           var odt=$('#odt').val();

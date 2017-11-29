@@ -1190,4 +1190,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=8"></script>
+  <script src="js/tiraje.js?v=9"></script>

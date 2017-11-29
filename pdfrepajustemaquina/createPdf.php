@@ -24,11 +24,51 @@ function getStandar($elem,$maquina)
     return $estandar['piezas_por_hora'];
 }
 
-$query = "SELECT t.*, m.nommaquina,o.numodt,o.producto,u.logged_in,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS element,((t.entregados-t.merma_entregada)-t.defectos) AS calidad,(SELECT piezas_por_hora FROM estandares WHERE id_elemento=o.producto AND id_maquina= 10) AS estandar,TIME_TO_SEC(tiempoTiraje) AS seconds_tiraje,TIME_TO_SEC(timediff(horafin_tiraje,horadeldia_tiraje)) AS dispon_tiro,TIME_TO_SEC(timediff(horafin_ajuste,horadeldia_ajuste)) AS dispon_ajuste, (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='ajuste' AND radios='Comida')AS comida_ajuste,(SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='ajuste' AND radios='Comida')AS ini_comida_ajuste,(SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='ajuste' AND radios='Comida')AS fin_comida_ajuste,(SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida')AS comida_tiro,(SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida')AS ini_comida_tiro,(SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida')AS fin_comida_tiro, TIME_TO_SEC(tiempo_ajuste) AS seconds_ajuste,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro  FROM tiraje t LEFT JOIN maquina m ON m.idmaquina=t.id_maquina LEFT JOIN login u ON u.id=t.id_user LEFT JOIN ordenes o ON o.idorden=t.id_orden WHERE fechadeldia_ajuste='$numodt' AND t.id_user=$userid ORDER BY horadeldia_ajuste ASC";
+$query = "SELECT
+   t.*,
+   m.nommaquina,
+   o.numodt,
+   o.producto,
+   u.logged_in,
+   (SELECT nombre_elemento FROM elementos WHERE id_elemento = o.producto) AS element,
+   ((t.entregados - t.merma_entregada) - t.defectos) AS calidad,
+   (SELECT piezas_por_hora FROM estandares WHERE id_elemento = o.producto AND id_maquina = 10) AS estandar,
+   TIME_TO_SEC(tiempoTiraje) AS seconds_tiraje,
+   TIME_TO_SEC(timediff(horafin_tiraje, horadeldia_tiraje)) AS dispon_tiro,
+   TIME_TO_SEC(timediff(horafin_ajuste, horadeldia_ajuste)) AS dispon_ajuste,
+   (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS comida_ajuste,
+   (SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS ini_comida_ajuste,
+   (SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='ajuste' AND radios='Comida' AND id_usuario =$userid) AS fin_comida_ajuste,
+   (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario =$userid) AS comida_tiro,
+   (SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=$userid) AS ini_comida_tiro,
+   (SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=$userid) AS fin_comida_tiro,
+   TIME_TO_SEC(tiempo_ajuste) AS seconds_ajuste,
+   (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,
+   (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro 
+FROM
+   tiraje t 
+   LEFT JOIN
+      maquina m 
+      ON m.idmaquina = t.id_maquina 
+   LEFT JOIN
+      login u 
+      ON u.id = t.id_user 
+   LEFT JOIN
+      ordenes o 
+      ON o.idorden = t.id_orden 
+WHERE
+   fechadeldia_ajuste = '$numodt' 
+   AND t.id_user =$userid 
+ORDER BY
+   horadeldia_ajuste ASC";
 
 $asa_query = "SELECT *, TIME_TO_SEC(tiempo) AS tiempo_asaichi,TIME_TO_SEC(timediff(hora_fin,horadeldia)) AS dispon_asaichi, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE seccion='asaichi' AND fecha='$numodt' AND id_user=$userid) AS tmuerto_asa FROM asaichi WHERE fechadeldia='$numodt' AND id_usuario=$userid";
 
 $resss     = $mysqli->query($query);
+if (!$resss) {
+  printf($mysqli->error); 
+  echo $query;
+}
 $asa_resss = $mysqli->query($asa_query);
 $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHERE id=$userid"));
 

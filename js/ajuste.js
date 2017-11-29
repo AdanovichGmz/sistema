@@ -18,6 +18,16 @@ function startTime() {
 
     
 }
+function currentSeconds() {
+     var today = new Date();
+    var h = today.getHours()*3600;
+    var m = today.getMinutes()*60;
+    var s = today.getSeconds();
+      seconds=h+m+s;
+
+    return Math.round(seconds);
+    
+}
 function startEat(){
     var today = new Date();
     var h = today.getHours();
@@ -117,7 +127,7 @@ $(document).on("click", ".radio-menu-small", function () {
                                                   }
                                               })
                                                       
-                                                       
+                                                     
                                              
                                             });
 
@@ -236,9 +246,42 @@ $(document).on("click", ".radio-menu-small", function () {
 $(document).ready(function(){
   var idmaquina=$('#idmachine').val();
   if (idmaquina==16) {
-    timer.start({countdown: true, startValues: {seconds: 3600}});
+    //timer.start({countdown: true, startValues: {seconds: 3600}});
+
+    if (localStorage.getItem('segundosincio')) {
+      $('#act_tiro').val(localStorage.getItem('tiroactual'));
+      var transcursecs=currentSeconds()-localStorage.getItem('segundosincio');
+    var start_in=3600-transcursecs;
+    timer.start({countdown: true, startValues: {seconds: start_in}});
+    }else{
+       timer.start({countdown: true, startValues: {seconds: 3600}});
+    }
   }else{
-    timer.start({countdown: true, startValues: {seconds: 1200}});
+    
+    if (localStorage.getItem('segundosincio')) {
+      $('#act_tiro').val(localStorage.getItem('tiroactual'));
+      var transcursecs=currentSeconds()-localStorage.getItem('segundosincio');
+      console.log('segundos transcurridos: '+transcursecs);
+      console.log('segundos '+currentSeconds());
+      console.log('segundos inicio'+localStorage.getItem('segundosincio'));
+   if (transcursecs>=1200) {
+        var start_in=transcursecs-1200;
+
+        deadTimer.start({startValues: {seconds: start_in}});
+        $('#ontime').val('false');
+        alerttime();
+        console.log('dead startin: '+start_in);
+      }else{
+        var start_in=1200-transcursecs;
+        timer.start({countdown: true, startValues: {seconds: start_in}});
+        console.log('startin: '+start_in);
+      }
+
+    }else{
+       timer.start({countdown: true, startValues: {seconds: 1200}});
+    }
+
+   
   }
 
 $('#chronoExample2').hide();
@@ -360,6 +403,7 @@ timer.addEventListener('targetAchieved', function (e) {
                      data:{section:'outtime'},  
                        
                      success:function(data){ 
+
                           console.log(data);
                      }  
                 });
@@ -413,6 +457,7 @@ setInterval(animacion, 550);
                 }, 1000);
                  $('#fo4')[0].reset();
                         $('.face-osc').removeClass('face-osc');
+                        $('#actual_tiro_alert').remove(); 
                 console.log(data);
 
             }
@@ -428,6 +473,10 @@ setInterval(animacion, 550);
  
 
  function saveAjusteSerigrafia(){
+   localStorage.removeItem('horaincio');
+  localStorage.removeItem('tiroactual');
+  localStorage.removeItem('segundosincio');
+  
   var mac=$('#mac').val();
   var ontime=$('#ontime').val();
   console.log(ontime);
@@ -484,6 +533,9 @@ setInterval(animacion, 550);
  }
  
 function saveAjuste(){
+  localStorage.removeItem('horaincio');
+  localStorage.removeItem('tiroactual');
+  localStorage.removeItem('segundosincio');
   var mac=$('#mac').val();
   var ontime=$('#ontime').val();
   console.log(ontime);
@@ -695,7 +747,7 @@ function createVirtualOdt(){
 
      function saveoperAlert(){
         
-    
+      $('#fo4').append('<input type="hidden" name="actual_tiro" id="actual_tiro_alert" value="'+localStorage.getItem('tiroactual')+'">');
          $.ajax({  
                       
                      type:"POST",

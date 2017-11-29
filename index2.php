@@ -605,7 +605,8 @@ if ( $p==1) {
                 <fieldset>
                 <input hidden type="text" name="tiempoalertamaquina" id="tiempoalertamaquina" />
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php echo "". $_SESSION['logged_in'] ?>" />
-                <input hidden  name="horadeldiaam" id="horadeldiaam" value="<?php echo date(" H:i:s",time()); ?>" />
+                <input hidden  name="horadeldiaam" id="horadeldiaam" value="<?=date(" H:i:s",time()); ?>" />
+                <input hidden   id="segundosdeldia" value="<?= strtotime(date(" H:i:s",time())) - strtotime('TODAY'); ?>" />
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php echo date("d-m-Y"); ?>" />
                 <input  hidden name="maquina" id="maquina" value="<?php echo $valorQuePasa4; ?>"  />
                  <!-- Form Name -->
@@ -715,7 +716,7 @@ if ( $p==1) {
       <div class="form-group">
                   <div class="button-panel-small">
                        
-                        <div class="square-button-micro2 red derecha stopalert start reset" onclick="saveOperstatus()">
+                        <div style="display: none;" class="square-button-micro2 red derecha stopalert start reset" onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
                         <div id="save-ajuste" class="square-button-micro2 derecha  blue" onclick="showLoad();saveOperstatus();">
@@ -774,7 +775,7 @@ if ( $p==1) {
                 <!-- Button (Double) -->
                 <div class="form-group">
                   <div class="button-panel-small" >
-                        <div   class="square-button-small red eatpanel stopeat start reseteat2 " onclick="saveOperstatus()">
+                        <div style="display: none;"  class="square-button-small red eatpanel stopeat start reseteat2 " onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
                         </div>
@@ -859,7 +860,17 @@ if (!empty($update)) {
 $(document).ready(function() { 
 var hora=$('#horadeldia').val();
 var fecha=$('#fechadeldia').val();
-$.ajax({  
+var segundosdeldia=$('#segundosdeldia').val();
+
+
+  if (localStorage.getItem('horaincio')) {
+   
+    console.log('No se insertara un nuevo tiro porque ya existe');
+    var tiroactual='<input type="hidden" name="actual_tiro" id="actual_tiro" value="'+localStorage.getItem('tiroactual')+'">';
+   $('#actual_tiraje').html(tiroactual);
+   $('#horadeldia').val(localStorage.getItem('horaincio'));
+  }else{
+    $.ajax({  
                       
                      type:"POST",
                      url:"init_tiro.php",   
@@ -868,9 +879,16 @@ $.ajax({
                      success:function(data){ 
                        $('#actual_tiraje').html(data);
                        $('#tiro').html(data);
-                       
+                       var tiroactual=$('#actual_tiro').val();
+                       localStorage.setItem('horaincio', hora);
+                       localStorage.setItem('segundosincio', segundosdeldia);  
+                       localStorage.setItem('tiroactual', tiroactual); 
+                       $('#act_tiro').val(tiroactual);
                      }  
                 });
+  }
+
+
 
  });
 function endOfDay(){
@@ -935,4 +953,4 @@ $(document).on("click", ".qty-button", function () {
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=11"></script>
+<script src="js/ajuste.js?v=21"></script>
