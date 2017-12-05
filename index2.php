@@ -549,7 +549,7 @@ if ( $p==1) {
                   <input type="hidden" name="init" value="false">
                  
                   <?php
-                    $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
+                    $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
                     $getodt=(isset($getActODT))? implode(",", $getActODT) : '' ;
                       $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$machineName' AND nombre_proceso='$process' order by orden_display asc";
                       $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
@@ -622,9 +622,9 @@ if ( $p==1) {
                     <input type="radio" name="radios" id="radios-0" value="Preparar Tinta">
                     Preparar Tinta
                     </div>
-                <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-1" value="Impresion Mesa">
-                    Impresion Mesa
+               <div class=" radio-menu face">
+                    <input type="radio" name="radios" id="radios-5" value="Tirar basura">
+                    Tirar basura
                     </div>
                 </div>
                 <div class="two-columns">
@@ -644,10 +644,7 @@ if ( $p==1) {
                     <input type="radio" name="radios" id="radios-4" value="ODT confusa">
                     ODT confusa
                     </div>
-                    <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-5" value="Tirar basura">
-                    Tirar basura
-                    </div>
+                    
                 </div>
                 <div class="two-columns">
                 <div class=" radio-menu face">
@@ -897,7 +894,7 @@ function endOfDay(){
   var hour = now.getHours();
   var day = now.getDay();
   var minutes = now.getMinutes();
-  if(hour >= 12){
+  if(hour >= 17){
      window.location.replace("resume.php?tiro="+lastiro);
   }else{
   alert('Favor de picarle aqui despues de las 6pm');

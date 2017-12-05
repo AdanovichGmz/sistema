@@ -2,6 +2,15 @@
 session_start();
 date_default_timezone_set("America/Mexico_City"); 
 require('saves/conexion.php');
+require('classes/functions.class.php');
+$log = new Functions();
+function logpost($post){
+  foreach ($post as $key => $value) {
+    $info.=$key.": ".$value." | ";
+  }
+  return $info;
+
+}  
 $radios=(isset($_POST['radios']))? $_POST['radios'] : 'Otro';
 $observaciones=$_POST['observaciones'];
 $tiro=$_POST['tiro'];
@@ -18,7 +27,9 @@ $fechadeldiaam=$_POST['fechadeldiaam'];
 $userID =$_SESSION['id'];
 $getMachine = $_SESSION['machineName'];
 $machineID = $_SESSION['machineID'];
-
+ $log->lwrite($_POST['logged_in'].": ".logpost($_POST),'ALERTAS_OPERACION_'.date("d-m-Y"));
+$log->lwrite("Hora fin alerta: ".$horafin,'ALERTAS_OPERACION_'.date("d-m-Y"));
+$log->lwrite("---------------------------",'ALERTAS_OPERACION_'.date("d-m-Y"));
 
 $query="INSERT INTO alertamaquinaoperacion (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,  horafin_alerta, fechadeldiaam,id_tiraje) VALUES ('$radios','$observaciones','$tiempoalertamaquina',$machineID,$userID,'$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro)";
 

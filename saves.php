@@ -7,11 +7,20 @@ date_default_timezone_set("America/Mexico_City");
 require('saves/conexion.php');
 require('classes/functions.class.php');
 
+function logpost($post){
+  foreach ($post as $key => $value) {
+    $info.=$key.": ".$value." | ";
+  }
+  return $info;
+
+}
 
   $log = new Functions();
   $section=$_POST['section'];
+  /*********** Guardando Asaichi ***********/
    if ($section=='asaichi') {
-
+    $log->lwrite(implode(' | ', $_POST),'ASAICHIS_'.date("d-m-Y"));
+            $log->lclose();
    
        $tiempo=$_POST['tiempo'];
         $mac=$_POST['mac'];
@@ -48,6 +57,9 @@ require('classes/functions.class.php');
         $change_status=$mysqli->query("UPDATE operacion_estatus SET asaichi_cumplido=1 WHERE fecha='$today' AND maquina=$machineID ");
 
      }
+     /*********** Termina Guardando Asaichi ***********/
+
+     /*********** Guardando Ajuste ***********/
      elseif ($section=='ajuste') {
       print_r($_POST);
        $tiempo      = $_POST['tiempo'];
@@ -64,6 +76,10 @@ require('classes/functions.class.php');
         $today=date("d-m-Y");
         $changestatus=$mysqli->query("UPDATE operacion_estatus SET en_tiempo=1 WHERE fecha='$today' AND maquina=$machineID ");
         //$odetes= explode(',',$_POST['orderodts'])
+        $log->lwrite(logpost($_POST),'AJUSTES_'.date("d-m-Y"));
+        $log->lwrite('hora_fin_ajuste: '.$horafinajuste,'AJUSTES_'.date("d-m-Y"));
+        $log->lwrite('--------------------------------','AJUSTES_'.date("d-m-Y"));
+        $log->lclose();
         if ($_POST['numodt']=='virtual') {
           $virtOdt=$_POST['odtvirtual'];
           $virtElem=$_POST['elemvirtual'];
@@ -80,9 +96,7 @@ require('classes/functions.class.php');
             if ($machineID==16) {
                 $tiempoajuste= ' TIMEDIFF("01:00:00.000000","'.$tiempo.'")';
               }else{
-                $log->lwrite('no es hotstamp','HOTSAMP');
-              
-              $log->lclose();
+                
                  $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
               }
            
@@ -156,8 +170,14 @@ require('classes/functions.class.php');
       }
        
      } 
+     /*********** Termina Guardando Ajuste ***********/
+
+     /*********** Guardando Tiraje ***********/
       elseif ($section=='tiraje') {
-            $log->lwrite(json_encode($_POST),'UPDATING');
+                $log->lwrite($_SESSION['logged_in']." ".logpost($_POST),'TIRAJES_'.date("d-m-Y"));
+            
+
+            //$log->lwrite(json_encode($_POST),'UPDATING');
               
             if ($_POST['qty']=='single') {
 
@@ -184,6 +204,9 @@ require('classes/functions.class.php');
             $element=$_POST['element'];
             $horainiciotiro=$_POST['horainiciotiro'];
             $horafintiraje=date("H:i:s",time());
+            $log->lwrite('horafin_tiraje: '.$horafintiraje,'TIRAJES_'.date("d-m-Y"));
+            $log->lwrite('--------------------------------','TIRAJES_'.date("d-m-Y"));
+            $log->lclose();
 
       $log->lwrite( $isvirtual,'UPDATING');
            $horaTiraje     = date(" H:i:s", time());
@@ -194,7 +217,9 @@ require('classes/functions.class.php');
            
             $machineID = $_SESSION['machineID'];
             $machineName = $_SESSION['machineName'];
-            $processID=($machineID==20||$machineID==21)? 10:$machineID;
+           
+
+             $processID=($machineID==20||$machineID==21)? 10:(($machineID==22)? 9 : $machineID );
             $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$processID AND id_elemento= $element";
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
             $estandar       = $getstandar['piezas_por_hora'];
@@ -579,6 +604,9 @@ require('classes/functions.class.php');
 
 
      } 
+     /*********** Termina Guardando Tiraje ***********/
+
+     /*********** Guardando Encuesta ***********/
       elseif ($section=='encuesta') {
 
         print_r($_POST);
@@ -624,7 +652,9 @@ require('classes/functions.class.php');
             $arr_odetes=explode(',', $odt);
             foreach (explode(',',$lastOrder) as $key => $order) {
               $arr_odt=$arr_odetes[$key];
-              $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
+              
+               $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
+             
           $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_orden=$order AND nombre_proceso='$process'";
         $mysqli->query($queryavance);
         $query_deliv="SELECT avance FROM procesos WHERE numodt='$arr_odt' AND id_orden=$order ";
@@ -658,7 +688,8 @@ require('classes/functions.class.php');
 
         }
         else{
-           $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':$machineName;
+            $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
+             
         $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_orden=$lastOrder AND nombre_proceso='$process'";
         $mysqli->query($queryavance);
 
@@ -726,6 +757,7 @@ require('classes/functions.class.php');
                   }
        
      }
+     /*********** Termina Guardando Encuesta ***********/
      elseif ($section=='restart') {
                
         

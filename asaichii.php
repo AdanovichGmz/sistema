@@ -100,6 +100,9 @@
 <!--<script language="javascript" src="jquery-1.3.min.js"></script>-->
 <script language="javascript">// <![CDATA[
 $(document).ready(function() {
+  localStorage.removeItem('horaincio');
+        localStorage.removeItem('tiroactual');
+        localStorage.removeItem('segundosincio');
    // Esta primera parte crea un loader no es necesaria
     $().ajaxStart(function() {
         $('#loading').show();
