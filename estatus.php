@@ -235,7 +235,18 @@
   
 }
 
-
+.santa{
+  background-image: url('images/san.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: absolute;
+ 
+  width: 60px;
+  height: 60px;
+  top:-10px;
+  left: 35px;
+}
   </style>
    <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
   
