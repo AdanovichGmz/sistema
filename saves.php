@@ -199,7 +199,7 @@ function logpost($post){
             $tiempoTiraje=$_POST['tiempoTiraje'];
             $fechadeldia=$_POST['fechadeldia'];
             $horadeldia=$_POST['hour'];
-            $merma_entregada=$_POST['merma-entregada'];
+            $merma_entregada=(!empty($_POST['planillas']))? $_POST['merma-entregada']/$_POST['planillas'] : $_POST['merma-entregada'];
             $passmerma=$merma-($merma_entregada+$defectos+$ajuste);
             $element=$_POST['element'];
             $horainiciotiro=$_POST['horainiciotiro'];
