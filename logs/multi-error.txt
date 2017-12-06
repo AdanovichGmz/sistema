@@ -1038,3 +1038,8 @@
 [06/Dec/2017:15:07:38] (saves) ordenundefined
 [06/Dec/2017:15:07:38] (saves) 44
 [06/Dec/2017:15:07:38] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[06/Dec/2017:15:16:46] (saves) encuesta multi
+[06/Dec/2017:15:16:46] (saves) error al actualizar avance
+[06/Dec/2017:15:16:46] (saves) ordenundefined
+[06/Dec/2017:15:16:46] (saves) 44
+[06/Dec/2017:15:16:46] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 

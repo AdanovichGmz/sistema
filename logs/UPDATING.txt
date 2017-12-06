@@ -1314,3 +1314,9 @@
 [06/Dec/2017:15:07:35] (saves) ESPERADO: 77.3
 [06/Dec/2017:15:07:35] (saves) Ultimo ID de Serigrafia: 2203
 [06/Dec/2017:15:07:35] (saves) UPDATE tiraje set producto='', pedido='90', cantidad=110, buenos=110, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=110, tiempoTiraje='00:12:53', fechadeldia_tiraje='06-12-2017', horafin_tiraje='15:07:35', id_user=16,produccion_esperada=77,desempenio=100 WHERE idtiraje=2203
+[06/Dec/2017:15:16:43] (saves) true
+[06/Dec/2017:15:16:43] (saves) ESTANDAR: 480
+[06/Dec/2017:15:16:43] (saves) si vale algo
+[06/Dec/2017:15:16:43] (saves) ESPERADO: 131.46666666667
+[06/Dec/2017:15:16:43] (saves) Ultimo ID de Serigrafia3: 2204
+[06/Dec/2017:15:16:43] (saves) UPDATE tiraje set producto='', pedido='85', cantidad=103, buenos=102, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=17, entregados=102, tiempoTiraje='00:16:26', fechadeldia_tiraje='06-12-2017', horafin_tiraje='15:16:43', id_user=8,produccion_esperada=131,desempenio=77.586206896552 WHERE idtiraje=2204
