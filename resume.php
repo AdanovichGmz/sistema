@@ -131,7 +131,7 @@ body{
   width: 100%!important;
   margin: 0 auto!important;
   position: fixed;
-  background: #1D1A1D!important;
+  background: #2B2B2B!important;
 }
 
 table {
@@ -141,18 +141,19 @@ table {
 }
 
 thead{
-  background: #1A1F25;
-  color: #fff;
+  background: #212121;
+  color: #CECECE;
   text-transform: uppercase;
   font-size: 9px!important;
   padding: 1px!important;
 }
 
 .maintable td, th {
-    border: 1px solid #E1E0E5;
+    border-bottom: 1px solid #444444;
     text-align: center;
     padding:6px 4px;
     font-size: 14px;
+    color:#CECECE;
 }
 
 
@@ -173,11 +174,11 @@ thead{
 .inhead th{
  padding: 2px;
  text-align: center;
- border:1px solid #E1E0E5!important;
+ border:1px solid #444444!important;
 
 }
 .inhead td{
-border:1px solid #E1E0E5!important;
+border:1px solid #444444!important;
  text-align: center;
 
 }
@@ -227,9 +228,10 @@ border:1px solid #E1E0E5!important;
 }
 .botom-stats{
   display: inline-block;
-  border:1px solid #E1E0E5;
+  border:1px solid #444444;
   position: relative;
   font-family: arial, sans-serif;
+  background: #393939;
 }
 .botom-stats div{
   position: relative;
@@ -244,16 +246,16 @@ border:1px solid #E1E0E5!important;
 }
 
 .botom-stats td{
-  border-bottom:1px dashed #E1E0E5;
+  border-bottom:1px solid #444444;
   border-left: none;
   border-right: none;
 }
 .botom-stats th{
-  border-bottom:1px dashed #E1E0E5;
-  border-right:1px dashed #E1E0E5;
+  border-bottom:1px solid #444444;
+  border-right:1px solid #444444;
 }
 .extra{
-  border-right: 1px dashed #E1E0E5!important;
+  border-right: 1px solid #444444!important;
 }
 .extrath{
   border-bottom: none!important;
@@ -267,7 +269,7 @@ border:1px solid #E1E0E5!important;
 }
 .maintable{
   width: 100%;
-  background: #fff;
+  background: rgb(51, 51, 51);
   overflow: auto;
 }
 .pausetext {
@@ -309,47 +311,26 @@ border:1px solid #E1E0E5!important;
 <div class="maintable">
 <table>
 <thead><tr>
-    <th colspan="2"  >Hora</th>
+    <th   >Inicio</th>
+    <th   >Fin</th>
+    <th   >ODT</th>
+    <th  >Producto</th>
     
-    <th rowspan="2"  >ODT</th>
-    <th rowspan="2" >Producto</th>
-    
-    <th rowspan="2" >STD</th>
-    <th   colspan="2">Tiempo Disponible</th>
-    <th   colspan="2">Tiempo Muerto</th>
-    <th   colspan="2">Tiempo Real</th>
-    <th   colspan="2">Produccion Esperada</th>
-    <th   colspan="2">Produccion Real</th>
-    <th  colspan="2">Merma</th>
-    <th   colspan="2">Calidad a la Primera</th>
-    <th   colspan="2">Defectos</th>
-    <th rowspan="2" >Porque no se hizo bien a la primera?</th>
-    <th rowspan="2" >Porque se hizo mas lento?</th>
-    <th rowspan="2" >Porque se perdio tiempo?</th>
-    
-  </tr>
-<tr >
-    <th class="sub-head">Inicio</th>
-    <th class="sub-head">Fin</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
+    <th  >STD</th>
+    <th  >Tiempo Disponible</th>
+    <th   >Tiempo Muerto</th>
+    <th   >Tiempo Real</th>
+    <th  >Produccion Esperada</th>
+    <th  >Produccion Real</th>
+    <th >Merma</th>
+    <th  >Calidad a la Primera</th>
+    <th  >Defectos</th>
+    <th >Porque no se hizo bien a la primera?</th>
+    <th >Porque se hizo mas lento?</th>
+    <th >Porque se perdio tiempo?</th>
     
   </tr>
+
   </thead>
   <tbody>
   <?php
@@ -381,7 +362,7 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
     <td><?= substr($asa['hora_fin'], 0, -3); ?></td>
     <td>  </td>
     <td> Asaiichi </td>
-    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
+    <!-- <td <?= ($row['is_virtual'] == 'true') ? '"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
     <td>0</td>
     <?php
     $sum_tiraje += $asa['tiempo_asaichi'];
@@ -402,16 +383,16 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
 
     <td><?= gmdate("H:i", $sum_tiraje) ?></td>
    
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
-    <td>0</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>--</td>
     <td>--</td>
     <td>--</td>
@@ -495,33 +476,33 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
      <td><?= substr($row['horadeldia_ajuste'], 0, -3); ?></td>                     
     <td><?= substr($row['horafin_ajuste'], 0, -3); ?></td>
     <td> </td>
-    <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?> >Ajuste </td>
-    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
-    <td>0</td>
+    <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?> >Ajuste </td>
+    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
+    <td></td>
     <td><?= gmdate("H:i", (!empty($row['comida_ajuste'])) ? $row['dispon_ajuste'] - $row['comida_ajuste'] : $row['dispon_ajuste']); ?></td>
    
-    <td><?= gmdate("H:i", $sum_dispon); ?></td>
+    
     <?php
     $sum_muerto += $row['seconds_muertos'];
 ?>
     <td><?= gmdate("H:i", $row['seconds_muertos'] + ((isset($alertA_Sum[$i]))?array_sum($alertA_Sum[$i]) : 0)); ?></td>
-    <td><?= gmdate("H:i", $sum_muerto); ?></td>
+    
     <td><?= gmdate("H:i", $row['seconds_ajuste']); ?></td>
   <?php
     $sum_tiraje += $row['seconds_ajuste'];
 ?>
-    <td><?= gmdate("H:i", $sum_tiraje); ?></td>
+    
    
-    <td>0</td>
-    <td><?= $sum_esper ?></td>
-    <td>0</td>
-    <td><?= $sum_real ?></td>
-    <td>0</td>
-    <td><?= $sum_merm ?></td>
-    <td>0</td>
-    <td><?= $sum_calidad ?></td>
-    <td>0</td>
-    <td><?= $sum_defectos ?></td>
+    <td></td>
+   
+    <td></td>
+    
+    <td></td>
+    
+    <td></td>
+    
+    <td></td>
+   
     <?php
     if (!empty($alert)) {
 ?>
@@ -529,9 +510,9 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <?php
     } else {
 ?>
-    <td>--</td>
-    <td>--</td>
-    <td>--</td>
+    <td></td>
+    <td></td>
+    <td></td>
     
     <?php
     }
@@ -561,12 +542,12 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     
     
 ?>
-      <tr style=" background-color: #EBEBEB;">
+      <tr style=" background-color: #393939;">
      <td><?= substr($row['horadeldia_tiraje'], 0, -3); ?></td>                     
     <td><?= substr($row['horafin_tiraje'], 0, -3); ?></td>
-    <td> <?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?> </td>
-    <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?> ><?= ($row['is_virtual'] == 'true') ? $row['elemento_virtual'] : $row['element']; ?> </td>
-    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
+    <td style="color: #7F88C1"> <?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?> </td>
+    <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?> ><?= ($row['is_virtual'] == 'true') ? $row['elemento_virtual'] : $row['element']; ?> </td>
+    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
     <td><?=getStandar(($row['is_virtual'] == 'true')? $row['elemento_virtual'] : $row['element'] ,$row['id_maquina']); ?></td>
     <td><?= gmdate("H:i", (!empty($row['comida_tiro'])) ? $row['dispon_tiro'] - $row['comida_tiro'] : $row['dispon_tiro']) ?></td>
      <?php
@@ -579,21 +560,21 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
    <?php
     $sum_tiraje += $row['seconds_tiraje'];
 ?>
-    <td><?= gmdate("H:i", $sum_dispon); ?></td>
+    
     <td><?= gmdate("H:i", ((isset($alertT_Sum[$i]))? array_sum($alertT_Sum[$i]) : 0) ); ?></td>
-    <td><?= gmdate("H:i", $sum_muerto); ?></td>
+    
     <td><?= gmdate("H:i", $row['seconds_tiraje']); ?></td>
-    <td><?= gmdate("H:i", $sum_tiraje); ?></td>
+    
     <td><?= $row['produccion_esperada']; ?></td>
-    <td><?= $sum_esper ?></td>
+   
     <td><?= $row['entregados'] - $row['merma_entregada']; ?></td>
-    <td><?= $sum_real ?></td>
+   
     <td><?= $row['merma_entregada']; ?></td>
-    <td><?= $sum_merm ?></td>
+    
     <td><?= $row['calidad']; ?></td>
-    <td><?= $sum_calidad ?></td>
+    
     <td><?= $row['defectos']; ?></td>
-    <td><?= $sum_defectos ?></td>
+    
     <?php
     if (!empty($alertTiro)) {
 ?>
@@ -623,11 +604,12 @@ $treal = $sum_tiraje;
 
 
 ?>
+<
 </div>
 <div class="bottomcontainer">
 <div style=" padding-top: 10px;margin: 0 auto!important">
   <div class="botom-stats bottomfont" style="width: 24%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle; color: #fff;">
+    <div style="width: 100%;height: 23px; border-bottom: 1px solid #444444; line-height:23px;text-align: center; vertical-align: middle; color: #CECECE; background: #212121;">
      <?php
 $dispon      = $treal / $sum_dispon;
 $dispon_tope = ($dispon * 100 > 100) ? 100 : $dispon * 100;
@@ -648,7 +630,7 @@ $dispon_tope = ($dispon * 100 > 100) ? 100 : $dispon * 100;
     </div>
 
   </div><div class="botom-stats bottomfont" style="width: 39%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;color: #fff;">
+    <div style="width: 100%;height: 23px; border-bottom: 1px solid #444444; line-height:23px;text-align: center; vertical-align: middle;color: #CECECE; background: #212121;">
      <?php
 $desempenio  = ($sum_real + $sum_merm) / $sum_esper;
 $desemp_tope = ($desempenio * 100 > 100) ? 100 : $desempenio * 100;
@@ -664,13 +646,13 @@ $desemp_tope = ($desempenio * 100 > 100) ? 100 : $desempenio * 100;
           <td><?= $sum_merm ?></td>
         </tr>
         <tr>
-          <th class="extrath" colspan="2" style="border-right: 1px dashed #E1E0E5!important;">PRODUCCION ESPERADA</th>
+          <th class="extrath" colspan="2" style="border-right: 1px dashed #444444!important;">PRODUCCION ESPERADA</th>
           <th class="extrath" style="border:none!important;" colspan="2"><?= $sum_esper ?></th>
         </tr>
       </table>
     </div>
   </div><div class="botom-stats bottomfont" style="width: 24%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;color: #fff;">
+    <div style="width: 100%;height: 23px; border-bottom: 1px solid #444444; line-height:23px;text-align: center; vertical-align: middle;color: #CECECE; background: #212121;">
     <?php
 $calidad      = ($sum_calidad) / $sum_real;
 $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
@@ -689,7 +671,7 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
       </table>
     </div>
   </div><div class="botom-stats bottomfont" style="width: 12.2%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;color: #fff;">
+    <div style="width: 100%;height: 23px; border-bottom: 1px solid #444444; line-height:23px;text-align: center; vertical-align: middle;color: #CECECE; background: #212121;">
       ETE
     </div><div style="width: 100%; position: relative;">
       <table>

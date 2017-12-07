@@ -4,6 +4,7 @@ require('saves/conexion.php');
 require('classes/functions.class.php');
 $log = new Functions();
 function logpost($post){
+	$info='';
   foreach ($post as $key => $value) {
     $info.=$key.": ".$value." | ";
   }
@@ -11,6 +12,8 @@ function logpost($post){
 
 }  
 session_start();
+
+
 $userID = $_SESSION['id'];
 date_default_timezone_set("America/Mexico_City"); 
 $radios=(isset($_POST['radios']))? $_POST['radios'] : 'Otro';
@@ -25,6 +28,12 @@ $maquina=$_POST['maquina'];
 $logged_in=$_POST['logged_in'];
 $horadeldiaam=$_POST['horadeldiaam'];
 $fechadeldiaam=$_POST['fechadeldiaam'];
+$timeInSeconds = strtotime($tiempoalertamaquina) - strtotime('TODAY');
+
+$collectAlerts=mysqli_fetch_assoc($mysqli->query("SELECT SUM(TIME_TO_SEC(tiempoalertamaquina)) AS sumtiempo FROM alertageneralajuste WHERE id_tiraje=$tiro"));
+$totalT=$collectAlerts['sumtiempo']+$timeInSeconds;
+echo "tiempo alertas: ".$totalT;
+$isdead=($totalT<=1200)? 2 : 1;
 
 //$query2="SELECT id FROM login WHERE logged_in='$logged_in'";
 //$query4="SELECT idmaquina FROM maquina WHERE mac='$maquina'";
@@ -36,7 +45,7 @@ $horafin=date(" H:i:s", time());
 if ($radios=='Preparar Tinta') {
 	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$machineID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,2)";
 }else{
-	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$machineID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro)";
+	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$machineID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,$isdead)";
 }
 
  $log->lwrite($_POST['logged_in'].": ".logpost($_POST),'ALERTAS_AJUSTE_'.date("d-m-Y"));

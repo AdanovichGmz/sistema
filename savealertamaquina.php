@@ -5,6 +5,7 @@ require('saves/conexion.php');
 require('classes/functions.class.php');
 $log = new Functions();
 function logpost($post){
+	$info='';
   foreach ($post as $key => $value) {
     $info.=$key.": ".$value." | ";
   }
