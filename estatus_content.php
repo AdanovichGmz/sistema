@@ -187,7 +187,7 @@ console.log("real time '.$maquina.' '.gmdate("H:i",$gettotalTime['tiempo_real'])
   //console.log("total time '.$maquina.' '.gmdate("H:i",$totalTime) .' seconds '.$seconds .'");
     $outtime=($actividad['en_tiempo']=='false')? 'outtime':'';
     $credencial=' '.$grafica.'
-    <div class='.$outtime.'></div> <div class="ete-photo '.$actividad['actividad_actual'].'"><div class="person-photo" style=background:url("images/'.$photo.'.jpg")></div><div class="santa"></div>
+    <div class='.$outtime.'></div> <div class="ete-photo '.$actividad['actividad_actual'].'"><div class="person-photo" style=background:url("images/'.$photo.'.jpg")></div>
     <div class="ete-num">'.round($getEte).'%</div>
 
     </div>

@@ -876,7 +876,9 @@ var segundosdeldia=$('#segundosdeldia').val();
                      success:function(data){ 
                        $('#actual_tiraje').html(data);
                        $('#tiro').html(data);
+                        var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
                        var tiroactual=$('#actual_tiro').val();
+                       localStorage.setItem('fecha', utc);
                        localStorage.setItem('horaincio', hora);
                        localStorage.setItem('segundosincio', segundosdeldia);  
                        localStorage.setItem('tiroactual', tiroactual); 

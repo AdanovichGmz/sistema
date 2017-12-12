@@ -84,6 +84,19 @@ if(@$_SESSION['logged_in'] == true){
                                              
     });
     });
+    $(function() {
+        console.log('fecha: '+localStorage.getItem('fecha')); 
+      var currentdate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+  console.log("fecha actual: "+currentdate);
+console.log("fecha guardada: "+localStorage.getItem('fecha'));
+if (localStorage.getItem('fecha')!==currentdate) {
+  localStorage.removeItem('horaincio');
+  localStorage.removeItem('tiroactual');
+  localStorage.removeItem('segundosincio');
+  localStorage.removeItem('fecha');
+  console.log('se eliminaron los estorages');
+}
+   });
 </script>
 </html>
 <?php } ?>
