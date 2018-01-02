@@ -77,9 +77,9 @@ function logpost($post){
         $today=date("d-m-Y");
         $changestatus=$mysqli->query("UPDATE operacion_estatus SET en_tiempo=1 WHERE fecha='$today' AND maquina=$machineID ");
         //$odetes= explode(',',$_POST['orderodts'])
-        $log->lwrite(logpost($_POST),'AJUSTES_'.date("d-m-Y"));
-        $log->lwrite('hora_fin_ajuste: '.$horafinajuste,'AJUSTES_'.date("d-m-Y"));
-        $log->lwrite('--------------------------------','AJUSTES_'.date("d-m-Y"));
+        $log->lwrite(logpost($_POST),'AJUSTES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
+        $log->lwrite('hora_fin_ajuste: '.$horafinajuste,'AJUSTES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
+        $log->lwrite('--------------------------------','AJUSTES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
         $log->lclose();
         if ($_POST['numodt']=='virtual') {
           $virtOdt=$_POST['odtvirtual'];
@@ -175,7 +175,7 @@ function logpost($post){
 
      /*********** Guardando Tiraje ***********/
       elseif ($section=='tiraje') {
-                $log->lwrite($_SESSION['logged_in']." ".logpost($_POST),'TIRAJES_'.date("d-m-Y"));
+                $log->lwrite($_SESSION['logged_in']." ".logpost($_POST),'TIRAJES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
             
 
             //$log->lwrite(json_encode($_POST),'UPDATING');
@@ -205,8 +205,8 @@ function logpost($post){
             $element=$_POST['element'];
             $horainiciotiro=$_POST['horainiciotiro'];
             $horafintiraje=date("H:i:s",time());
-            $log->lwrite('horafin_tiraje: '.$horafintiraje,'TIRAJES_'.date("d-m-Y"));
-            $log->lwrite('--------------------------------','TIRAJES_'.date("d-m-Y"));
+            $log->lwrite('horafin_tiraje: '.$horafintiraje,'TIRAJES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
+            $log->lwrite('--------------------------------','TIRAJES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
             $log->lclose();
 
       $log->lwrite( $isvirtual,'UPDATING');
@@ -682,7 +682,7 @@ function logpost($post){
         if(@$_SESSION['logged_in'] != true){
             echo '
             <script>
-                alert("tu no estas autorizado para entrar a esta pagina");
+                alert("La sesion se cerro inseperadamente, favor de iniciar sesion otra vez");
                 self.location.replace("index.php");
             </script>';
         }
@@ -743,7 +743,7 @@ function logpost($post){
         if(@$_SESSION['logged_in'] != true){
             echo '
             <script>
-                alert("tu no estas autorizado para entrar a esta pagina");
+                alert("La sesion se cerro inseperadamente, favor de iniciar sesion otra vez");
                 self.location.replace("index.php");
             </script>';
         }else{

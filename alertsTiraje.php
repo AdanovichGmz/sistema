@@ -1,7 +1,7 @@
 <?php
 
-
-switch ($_SESSION['mac']){
+$maquina=($_SESSION['machineID']==20||$_SESSION['machineID']==21)? 10 :( ($_SESSION['machineID']==22)? 9 : $_SESSION['machineID']);
+switch ($maquina){
     case 'corte':
     include("areas/maquinas/corte/ajustecorte.php");
     //header('Location: home.php');
@@ -20,9 +20,6 @@ switch ($_SESSION['mac']){
 
 
   case '90:b9:31:ed:0f:6b':
-
-
-
          $options[]='ODT Confusa';
        $options[]='ODT Faltante' ;
        $options[]= 'Se Movio el Registro';
@@ -94,11 +91,11 @@ switch ($_SESSION['mac']){
      //echo $nommaquina;
         break;
     ////// cambio de area
-  case '34:e2:fd:dd:d0:7b':
-        $options[]='Papel maltratado';
-       $options[]='Tirar basura' ;
-       $options[]= 'Papel mal registrado';
-       $options[]= 'Otro';
+  case '10':
+  $options[]='ODT Confusa';
+$options[]='No Hay Material';
+$options[]='Material Incompleto';
+        
        
      //echo $nommaquina;
         break;
@@ -125,7 +122,7 @@ switch ($_SESSION['mac']){
                     $i=0;
                     foreach ($options as $option) { ?>
                     <div class=" radio-menu face">
-                       <input type="radio" name="radios" id="radios-<?php echo $i; ?>" value="<?=$option; ?>">
+                       <input type="radio" name="radios" class="alertradios" id="radios-<?php echo $i; ?>" value="<?=$option; ?>">
                        <?php echo $option; ?>
                        </div>
                    <?php $i++; } ?>

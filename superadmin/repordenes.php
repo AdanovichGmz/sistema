@@ -240,6 +240,7 @@ require('../saves/conexion.php');
   <option value="8">Eduardo</option>
   <option value="2">Developer</option>
   <option value="11">El Poncho</option>
+  <option value="13">Christian</option>
 </select>
 <div id="hidetable"></div>
    </div>

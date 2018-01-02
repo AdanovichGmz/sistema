@@ -1,11 +1,25 @@
 /******************** index2.php ********************/
+var sec=localStorage.getItem('segundosincio');
+var b = false;
 function checkTime(i) {
     if (i < 10) {
         i = "0" + i;
     }
     return i;
 }
+function GetstartTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    // add a zero in front of numbers<10
+    m = checkTime(m);
+    s = checkTime(s);
+    hour= h + ":" + m + ":" + s;
+    return hour;
 
+    
+}
 function startTime() {
     var today = new Date();
     var h = today.getHours();
@@ -113,7 +127,7 @@ $(document).on("click", ".radio-menu-small", function () {
 
 
                                              $( "#save-ajuste").click(function() {
-
+                                              
                                                var tiro=$('#actual_tiro').val();
                                               $.ajax({
                                                   type: 'POST',
@@ -249,16 +263,92 @@ $(document).ready(function(){
     //timer.start({countdown: true, startValues: {seconds: 3600}});
 
     if (localStorage.getItem('segundosincio')) {
+      if (localStorage.getItem('alertTime')) {
+         console.log('existia una alerta: '+localStorage.getItem('alertTime'));
+         $('#fo4').append('<input type="hidden" name="actual_tiro" id="actual_tiro_alert" value="'+localStorage.getItem('tiroactual')+'">');
+        $("#panelder2").animate({ left: '+=40%' }, 200);
+        $("#panelder").animate({ right: '+=75%' }, 200);
+        b = true;
+        alertsecs=currentSeconds()-localStorage.getItem('alertTime');
+           timerAlert.start({startValues: {seconds: alertsecs}});
+           timerAlert.addEventListener('secondsUpdated', function (e) {
+        $('#alertajuste .valuesAlert').html(timerAlert.getTimeValues().toString());
+        });
+        timerAlert.addEventListener('started', function (e) {
+        $('#alertajuste .valuesAlert').html(timerAlertm.getTimeValues().toString());
+        });
+        $('#inicioAlerta').val(localStorage.getItem('inicioAlert'));
+        console.log('horaalerta: '+alertsecs);
+        console.log('alertie: '+localStorage.getItem('inicioAlert'));
+
+
+      }else{
       $('#act_tiro').val(localStorage.getItem('tiroactual'));
       var transcursecs=currentSeconds()-localStorage.getItem('segundosincio');
     var start_in=3600-transcursecs;
     timer.start({countdown: true, startValues: {seconds: start_in}});
+    
+    }
     }else{
        timer.start({countdown: true, startValues: {seconds: 3600}});
+    }
+  }
+  else if (idmaquina==9||idmaquina==22) {
+    //timer.start({countdown: true, startValues: {seconds: 3600}});
+
+    if (localStorage.getItem('segundosincio')) {
+      if (localStorage.getItem('alertTime')) {
+         console.log('existia una alerta: '+localStorage.getItem('alertTime'));
+         $('#fo4').append('<input type="hidden" name="actual_tiro" id="actual_tiro_alert" value="'+localStorage.getItem('tiroactual')+'">');
+        $("#panelder2").animate({ left: '+=40%' }, 200);
+        $("#panelder").animate({ right: '+=75%' }, 200);
+        b = true;
+        alertsecs=currentSeconds()-localStorage.getItem('alertTime');
+           timerAlert.start({startValues: {seconds: alertsecs}});
+           timerAlert.addEventListener('secondsUpdated', function (e) {
+        $('#alertajuste .valuesAlert').html(timerAlert.getTimeValues().toString());
+        });
+        timerAlert.addEventListener('started', function (e) {
+        $('#alertajuste .valuesAlert').html(timerAlertm.getTimeValues().toString());
+        });
+        $('#inicioAlerta').val(localStorage.getItem('inicioAlert'));
+        console.log('horaalerta: '+alertsecs);
+        console.log('alertie: '+localStorage.getItem('inicioAlert'));
+
+
+      }else{
+      $('#act_tiro').val(localStorage.getItem('tiroactual'));
+      var transcursecs=currentSeconds()-localStorage.getItem('segundosincio');
+    var start_in=1500-transcursecs;
+    timer.start({countdown: true, startValues: {seconds: start_in}});
+    
+    }
+    }else{
+       timer.start({countdown: true, startValues: {seconds: 1500}});
     }
   }else{
     
     if (localStorage.getItem('segundosincio')) {
+      if (localStorage.getItem('alertTime')) {
+         console.log('existia una alerta: '+localStorage.getItem('alertTime'));
+         $('#fo4').append('<input type="hidden" name="actual_tiro" id="actual_tiro_alert" value="'+localStorage.getItem('tiroactual')+'">');
+        $("#panelder2").animate({ left: '+=40%' }, 200);
+        $("#panelder").animate({ right: '+=75%' }, 200);
+        b = true;
+        alertsecs=currentSeconds()-localStorage.getItem('alertTime');
+           timerAlert.start({startValues: {seconds: alertsecs}});
+           timerAlert.addEventListener('secondsUpdated', function (e) {
+        $('#alertajuste .valuesAlert').html(timerAlert.getTimeValues().toString());
+        });
+        timerAlert.addEventListener('started', function (e) {
+        $('#alertajuste .valuesAlert').html(timerAlert.getTimeValues().toString());
+        });
+        $('#inicioAlerta').val(localStorage.getItem('inicioAlert'));
+        console.log('horaalerta: '+alertsecs);
+        console.log('alertie: '+localStorage.getItem('inicioAlert'));
+
+
+      }else{
       $('#act_tiro').val(localStorage.getItem('tiroactual'));
       var transcursecs=currentSeconds()-localStorage.getItem('segundosincio');
       console.log('segundos transcurridos: '+transcursecs);
@@ -266,7 +356,6 @@ $(document).ready(function(){
       console.log('segundos inicio'+localStorage.getItem('segundosincio'));
    if (transcursecs>=1200) {
         var start_in=transcursecs-1200;
-
         deadTimer.start({startValues: {seconds: start_in}});
         $('#ontime').val('false');
         alerttime();
@@ -276,6 +365,8 @@ $(document).ready(function(){
         timer.start({countdown: true, startValues: {seconds: start_in}});
         console.log('startin: '+start_in);
       }
+
+    }
 
     }else{
        timer.start({countdown: true, startValues: {seconds: 1200}});
@@ -378,13 +469,49 @@ timer.addEventListener('reset', function (e) {
     $('#tiempoalertamaquina').val(timerAlert.getTimeValues().toString());
     timerAlert.stop();
     if ($('#ontime').val()=='true') {
-      timer.start();
+      if (localStorage.getItem('alertTime')) {
+    var lastsecs=currentSeconds()-sec;
+    var t_alert=currentSeconds()-localStorage.getItem('alertTime');
+    var continueTimer=1200-(lastsecs-t_alert);
+    console.log('estorage: '+localStorage.getItem('alertTime'));
+    console.log('lastsecs: '+lastsecs);
+    console.log('t_alert: '+t_alert);
+    console.log('Tiempo-alerta: '+(lastsecs-t_alert));
+    console.log('negat-posit: '+continueTimer);
+     timer.start({countdown: true, startValues: {seconds: continueTimer}});
+     /*
+    if (continueTimer>0) {
+      timer.start({countdown: true, startValues: {seconds: continueTimer}});
     }else{
-      deadTimer.start();
+      console.log('a positivo: '+Math.abs(continueTimer));
+      deadTimer.start({startValues: {seconds: Math.abs(continueTimer)}});
+    } */
+    
+    localStorage.removeItem('alertTime');
+  }else{
+    timer.start();
+  }
+
+    }else{
+      if (localStorage.getItem('alertTime')) {
+    var lastsecs=currentSeconds()-sec;
+    var t_alert=currentSeconds()-localStorage.getItem('alertTime');
+    var continueTimer=lastsecs-t_alert;
+    console.log('Tiempo-alerta: '+continueTimer);
+
+    deadTimer.start({startValues: {seconds: continueTimer}});
+    localStorage.removeItem('alertTime');
+  }else{
+    deadTimer.start();
+  }
+
+
+      
     }
    });
 
    $('.stopalert').click(function () {
+    
     if ($('#ontime').val()=='true') {
       timer.start();
     }else{
@@ -746,7 +873,9 @@ function createVirtualOdt(){
     } 
 
      function saveoperAlert(){
-        
+        localStorage.setItem('alertTime', currentSeconds());
+        localStorage.setItem('inicioAlert', GetstartTime());
+        console.log('alerta iniciada: '+GetstartTime());
       $('#fo4').append('<input type="hidden" name="actual_tiro" id="actual_tiro_alert" value="'+localStorage.getItem('tiroactual')+'">');
          $.ajax({  
                       
@@ -773,3 +902,21 @@ function createVirtualOdt(){
                      }  
                 });
     }
+
+    $(".derecha").click(function () {
+     
+        if (b == false) {
+
+            $("#panelder2").animate({ left: '+=40%' }, 200);
+            $("#panelder").animate({ right: '+=75%' }, 200);
+            b = true;
+        }
+        else {
+            $("#panelder2").animate({ left: '-=40%' }, 200);
+            $("#panelder").animate({ right: '-=75%' }, 200);
+            b = false;
+        }      
+
+
+
+    });

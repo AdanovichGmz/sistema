@@ -241,7 +241,7 @@
   background-size: contain;
   background-position: center;
   position: absolute;
- 
+ display: none;
   width: 60px;
   height: 60px;
   top:-10px;

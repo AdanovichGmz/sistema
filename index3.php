@@ -905,7 +905,7 @@ foreach ($orderID as $odt) {
                
 
                 <!-- Textarea -->
-                <div class="form-group" style="text-align: center; color:black;">
+                <div class="form-group" id="explanation" style="text-align: center; color:black;">
                     <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones"></textarea>
                 
                 </div>
@@ -1187,4 +1187,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=9"></script>
+  <script src="js/tiraje.js?v=10"></script>

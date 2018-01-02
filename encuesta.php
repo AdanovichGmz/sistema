@@ -124,7 +124,7 @@
     if(@$_SESSION['logged_in'] != true){
         echo '
     <script>
-        alert("tu no estas autorizado para entrar a esta pagina");
+        alert("La sesion se cerro inseperadamente, favor de iniciar sesion otra vez");
         self.location.replace("index.php");
     </script>';
     }else{

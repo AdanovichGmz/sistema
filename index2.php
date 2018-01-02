@@ -3,7 +3,7 @@
 <?php
 ini_set('session.gc_maxlifetime', 30*60); 
 date_default_timezone_set("America/Mexico_City");
- if( !session_id() )
+ if( !session_id())
     {
         session_start();
     }
@@ -952,4 +952,4 @@ $(document).on("click", ".qty-button", function () {
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=21"></script>
+<script src="js/ajuste.js?v=23"></script>

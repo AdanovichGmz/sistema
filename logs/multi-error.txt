@@ -1173,478 +1173,2563 @@
 [07/Dec/2017:12:43:33] (saves) ordenundefined
 [07/Dec/2017:12:43:33] (saves) 44
 [07/Dec/2017:12:43:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:12:58:42] (saves) encuesta multi
-[07/Dec/2017:12:58:42] (saves) error al actualizar avance
-[07/Dec/2017:12:58:42] (saves) ordenundefined
-[07/Dec/2017:12:58:42] (saves) 44
-[07/Dec/2017:12:58:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:13:07:25] (saves) encuesta multi
-[07/Dec/2017:13:07:25] (saves) error al actualizar avance
-[07/Dec/2017:13:07:25] (saves) ordenundefined
-[07/Dec/2017:13:07:25] (saves) 44
-[07/Dec/2017:13:07:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:13:10:42] (saves) encuesta multi
-[07/Dec/2017:13:10:42] (saves) error al actualizar avance
-[07/Dec/2017:13:10:42] (saves) ordenundefined
-[07/Dec/2017:13:10:42] (saves) 44
-[07/Dec/2017:13:10:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:13:32:04] (saves) encuesta multi
-[07/Dec/2017:13:32:04] (saves) error al actualizar avance
-[07/Dec/2017:13:32:04] (saves) ordenundefined
-[07/Dec/2017:13:32:04] (saves) 44
-[07/Dec/2017:13:32:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:14:22:19] (saves) encuesta multi
-[07/Dec/2017:14:22:19] (saves) error al actualizar avance
-[07/Dec/2017:14:22:19] (saves) ordenundefined
-[07/Dec/2017:14:22:19] (saves) 44
-[07/Dec/2017:14:22:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:14:51:33] (saves) encuesta multi
-[07/Dec/2017:14:51:33] (saves) error al actualizar avance
-[07/Dec/2017:14:51:33] (saves) ordenundefined
-[07/Dec/2017:14:51:33] (saves) 44
-[07/Dec/2017:14:51:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:14:57:47] (saves) encuesta multi
-[07/Dec/2017:14:57:47] (saves) error al actualizar avance
-[07/Dec/2017:14:57:47] (saves) ordenundefined
-[07/Dec/2017:14:57:47] (saves) 44
-[07/Dec/2017:14:57:47] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:15:16:56] (saves) encuesta multi
-[07/Dec/2017:15:16:56] (saves) error al actualizar avance
-[07/Dec/2017:15:16:56] (saves) ordenundefined
-[07/Dec/2017:15:16:56] (saves) 44
-[07/Dec/2017:15:16:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:15:35:36] (saves) encuesta multi
-[07/Dec/2017:15:35:36] (saves) error al actualizar avance
-[07/Dec/2017:15:35:36] (saves) ordenundefined
-[07/Dec/2017:15:35:36] (saves) 44
-[07/Dec/2017:15:35:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:15:44:32] (saves) encuesta multi
-[07/Dec/2017:15:44:32] (saves) error al actualizar avance
-[07/Dec/2017:15:44:32] (saves) ordenundefined
-[07/Dec/2017:15:44:32] (saves) 44
-[07/Dec/2017:15:44:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:15:46:40] (saves) encuesta multi
-[07/Dec/2017:15:46:40] (saves) error al actualizar avance
-[07/Dec/2017:15:46:40] (saves) ordenundefined
-[07/Dec/2017:15:46:40] (saves) 44
-[07/Dec/2017:15:46:40] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:16:07:16] (saves) encuesta multi
-[07/Dec/2017:16:07:16] (saves) error al actualizar avance
-[07/Dec/2017:16:07:16] (saves) ordenundefined
-[07/Dec/2017:16:07:16] (saves) 44
-[07/Dec/2017:16:07:16] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:16:15:45] (saves) encuesta multi
-[07/Dec/2017:16:15:45] (saves) error al actualizar avance
-[07/Dec/2017:16:15:45] (saves) ordenundefined
-[07/Dec/2017:16:15:45] (saves) 44
-[07/Dec/2017:16:15:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:16:29:05] (saves) encuesta multi
-[07/Dec/2017:16:29:05] (saves) error al actualizar avance
-[07/Dec/2017:16:29:05] (saves) ordenundefined
-[07/Dec/2017:16:29:05] (saves) 44
-[07/Dec/2017:16:29:05] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:16:35:43] (saves) encuesta multi
-[07/Dec/2017:16:35:43] (saves) error al actualizar avance
-[07/Dec/2017:16:35:43] (saves) ordenundefined
-[07/Dec/2017:16:35:43] (saves) 44
-[07/Dec/2017:16:35:43] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:16:56:36] (saves) encuesta multi
-[07/Dec/2017:16:56:36] (saves) error al actualizar avance
-[07/Dec/2017:16:56:36] (saves) ordenundefined
-[07/Dec/2017:16:56:36] (saves) 44
-[07/Dec/2017:16:56:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:17:04:38] (saves) encuesta multi
-[07/Dec/2017:17:04:38] (saves) error al actualizar avance
-[07/Dec/2017:17:04:38] (saves) ordenundefined
-[07/Dec/2017:17:04:38] (saves) 44
-[07/Dec/2017:17:04:38] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:17:07:22] (saves) encuesta multi
-[07/Dec/2017:17:07:22] (saves) error al actualizar avance
-[07/Dec/2017:17:07:22] (saves) ordenundefined
-[07/Dec/2017:17:07:22] (saves) 44
-[07/Dec/2017:17:07:22] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:17:32:57] (saves) encuesta multi
-[07/Dec/2017:17:32:57] (saves) error al actualizar avance
-[07/Dec/2017:17:32:57] (saves) ordenundefined
-[07/Dec/2017:17:32:57] (saves) 44
-[07/Dec/2017:17:32:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:17:41:53] (saves) encuesta multi
-[07/Dec/2017:17:41:53] (saves) error al actualizar avance
-[07/Dec/2017:17:41:53] (saves) ordenundefined
-[07/Dec/2017:17:41:53] (saves) 44
-[07/Dec/2017:17:41:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:17:47:05] (saves) encuesta multi
-[07/Dec/2017:17:47:05] (saves) error al actualizar avance
-[07/Dec/2017:17:47:05] (saves) ordenundefined
-[07/Dec/2017:17:47:05] (saves) 44
-[07/Dec/2017:17:47:05] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:18:02:52] (saves) encuesta multi
-[07/Dec/2017:18:02:52] (saves) error al actualizar avance
-[07/Dec/2017:18:02:52] (saves) ordenundefined
-[07/Dec/2017:18:02:52] (saves) 44
-[07/Dec/2017:18:02:52] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[07/Dec/2017:18:15:30] (saves) encuesta multi
-[07/Dec/2017:18:15:30] (saves) error al actualizar avance
-[07/Dec/2017:18:15:30] (saves) ordenundefined
-[07/Dec/2017:18:15:30] (saves) 44
-[07/Dec/2017:18:15:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:09:56:15] (saves) encuesta multi
-[08/Dec/2017:09:56:15] (saves) error al actualizar avance
-[08/Dec/2017:09:56:15] (saves) ordenundefined
-[08/Dec/2017:09:56:15] (saves) 44
-[08/Dec/2017:09:56:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:10:43:54] (saves) encuesta multi
-[08/Dec/2017:10:43:54] (saves) error al actualizar avance
-[08/Dec/2017:10:43:54] (saves) ordenundefined
-[08/Dec/2017:10:43:54] (saves) 44
-[08/Dec/2017:10:43:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:10:57:48] (saves) encuesta multi
-[08/Dec/2017:10:57:48] (saves) error al actualizar avance
-[08/Dec/2017:10:57:48] (saves) ordenundefined
-[08/Dec/2017:10:57:48] (saves) 44
-[08/Dec/2017:10:57:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:10:59:20] (saves) encuesta multi
-[08/Dec/2017:10:59:20] (saves) error al actualizar avance
-[08/Dec/2017:10:59:20] (saves) ordenundefined
-[08/Dec/2017:10:59:20] (saves) 44
-[08/Dec/2017:10:59:20] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:11:10:18] (saves) encuesta multi
-[08/Dec/2017:11:10:18] (saves) error al actualizar avance
-[08/Dec/2017:11:10:18] (saves) ordenundefined
-[08/Dec/2017:11:10:18] (saves) 44
-[08/Dec/2017:11:10:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:11:30:09] (saves) encuesta multi
-[08/Dec/2017:11:30:09] (saves) error al actualizar avance
-[08/Dec/2017:11:30:09] (saves) ordenundefined
-[08/Dec/2017:11:30:09] (saves) 44
-[08/Dec/2017:11:30:09] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:11:40:20] (saves) encuesta multi
-[08/Dec/2017:11:40:20] (saves) error al actualizar avance
-[08/Dec/2017:11:40:20] (saves) ordenundefined
-[08/Dec/2017:11:40:20] (saves) 44
-[08/Dec/2017:11:40:20] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:12:04:52] (saves) encuesta multi
-[08/Dec/2017:12:04:52] (saves) error al actualizar avance
-[08/Dec/2017:12:04:52] (saves) ordenundefined
-[08/Dec/2017:12:04:52] (saves) 44
-[08/Dec/2017:12:04:52] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:12:14:58] (saves) encuesta multi
-[08/Dec/2017:12:14:58] (saves) error al actualizar avance
-[08/Dec/2017:12:14:58] (saves) ordenundefined
-[08/Dec/2017:12:14:58] (saves) 44
-[08/Dec/2017:12:14:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:12:31:26] (saves) encuesta multi
-[08/Dec/2017:12:31:26] (saves) error al actualizar avance
-[08/Dec/2017:12:31:26] (saves) ordenundefined
-[08/Dec/2017:12:31:26] (saves) 44
-[08/Dec/2017:12:31:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:12:37:25] (saves) encuesta multi
-[08/Dec/2017:12:37:25] (saves) error al actualizar avance
-[08/Dec/2017:12:37:25] (saves) ordenundefined
-[08/Dec/2017:12:37:25] (saves) 44
-[08/Dec/2017:12:37:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:13:09:30] (saves) encuesta multi
-[08/Dec/2017:13:09:30] (saves) error al actualizar avance
-[08/Dec/2017:13:09:30] (saves) ordenundefined
-[08/Dec/2017:13:09:30] (saves) 44
-[08/Dec/2017:13:09:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:13:20:55] (saves) encuesta multi
-[08/Dec/2017:13:20:55] (saves) error al actualizar avance
-[08/Dec/2017:13:20:55] (saves) ordenundefined
-[08/Dec/2017:13:20:55] (saves) 44
-[08/Dec/2017:13:20:55] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:14:45:53] (saves) encuesta multi
-[08/Dec/2017:14:45:53] (saves) error al actualizar avance
-[08/Dec/2017:14:45:53] (saves) ordenundefined
-[08/Dec/2017:14:45:53] (saves) 44
-[08/Dec/2017:14:45:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:15:00:47] (saves) encuesta multi
-[08/Dec/2017:15:00:47] (saves) error al actualizar avance
-[08/Dec/2017:15:00:47] (saves) ordenundefined
-[08/Dec/2017:15:00:47] (saves) 44
-[08/Dec/2017:15:00:47] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:15:12:00] (saves) encuesta multi
-[08/Dec/2017:15:12:00] (saves) error al actualizar avance
-[08/Dec/2017:15:12:00] (saves) ordenundefined
-[08/Dec/2017:15:12:00] (saves) 44
-[08/Dec/2017:15:12:00] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:15:12:00] (saves) encuesta multi
-[08/Dec/2017:15:12:00] (saves) error al actualizar avance
-[08/Dec/2017:15:12:00] (saves) ordenundefined
-[08/Dec/2017:15:12:00] (saves) 44
-[08/Dec/2017:15:12:00] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:15:15:39] (saves) encuesta multi
-[08/Dec/2017:15:15:39] (saves) error al actualizar avance
-[08/Dec/2017:15:15:39] (saves) ordenundefined
-[08/Dec/2017:15:15:39] (saves) 44
-[08/Dec/2017:15:15:39] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:16:35:27] (saves) encuesta multi
-[08/Dec/2017:16:35:27] (saves) error al actualizar avance
-[08/Dec/2017:16:35:27] (saves) ordenundefined
-[08/Dec/2017:16:35:27] (saves) 44
-[08/Dec/2017:16:35:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:16:39:35] (saves) encuesta multi
-[08/Dec/2017:16:39:35] (saves) error al actualizar avance
-[08/Dec/2017:16:39:35] (saves) ordenundefined
-[08/Dec/2017:16:39:35] (saves) 44
-[08/Dec/2017:16:39:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:16:40:14] (saves) encuesta multi
-[08/Dec/2017:16:40:14] (saves) error al actualizar avance
-[08/Dec/2017:16:40:14] (saves) ordenundefined
-[08/Dec/2017:16:40:14] (saves) 44
-[08/Dec/2017:16:40:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:17:02:56] (saves) encuesta multi
-[08/Dec/2017:17:02:56] (saves) error al actualizar avance
-[08/Dec/2017:17:02:56] (saves) ordenundefined
-[08/Dec/2017:17:02:56] (saves) 44
-[08/Dec/2017:17:02:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:17:25:50] (saves) encuesta multi
-[08/Dec/2017:17:25:50] (saves) error al actualizar avance
-[08/Dec/2017:17:25:50] (saves) ordenundefined
-[08/Dec/2017:17:25:50] (saves) 44
-[08/Dec/2017:17:25:50] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[08/Dec/2017:17:28:01] (saves) encuesta multi
-[08/Dec/2017:17:28:01] (saves) error al actualizar avance
-[08/Dec/2017:17:28:01] (saves) ordenundefined
-[08/Dec/2017:17:28:01] (saves) 44
-[08/Dec/2017:17:28:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:10:39:55] (saves) encuesta multi
-[09/Dec/2017:10:39:55] (saves) error al actualizar avance
-[09/Dec/2017:10:39:55] (saves) ordenundefined
-[09/Dec/2017:10:39:55] (saves) 44
-[09/Dec/2017:10:39:55] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:10:45:29] (saves) encuesta multi
-[09/Dec/2017:10:45:29] (saves) error al actualizar avance
-[09/Dec/2017:10:45:29] (saves) ordenundefined
-[09/Dec/2017:10:45:29] (saves) 44
-[09/Dec/2017:10:45:29] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:11:08:22] (saves) encuesta multi
-[09/Dec/2017:11:08:22] (saves) error al actualizar avance
-[09/Dec/2017:11:08:22] (saves) ordenundefined
-[09/Dec/2017:11:08:22] (saves) 44
-[09/Dec/2017:11:08:22] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:11:14:51] (saves) encuesta multi
-[09/Dec/2017:11:14:51] (saves) error al actualizar avance
-[09/Dec/2017:11:14:51] (saves) ordenundefined
-[09/Dec/2017:11:14:51] (saves) 44
-[09/Dec/2017:11:14:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:11:28:57] (saves) encuesta multi
-[09/Dec/2017:11:28:57] (saves) error al actualizar avance
-[09/Dec/2017:11:28:57] (saves) ordenundefined
-[09/Dec/2017:11:28:57] (saves) 44
-[09/Dec/2017:11:28:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:11:40:05] (saves) encuesta multi
-[09/Dec/2017:11:40:05] (saves) error al actualizar avance
-[09/Dec/2017:11:40:05] (saves) ordenundefined
-[09/Dec/2017:11:40:05] (saves) 44
-[09/Dec/2017:11:40:05] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:11:47:43] (saves) encuesta multi
-[09/Dec/2017:11:47:43] (saves) error al actualizar avance
-[09/Dec/2017:11:47:43] (saves) ordenundefined
-[09/Dec/2017:11:47:43] (saves) 44
-[09/Dec/2017:11:47:43] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:12:09:20] (saves) encuesta multi
-[09/Dec/2017:12:09:20] (saves) error al actualizar avance
-[09/Dec/2017:12:09:20] (saves) ordenundefined
-[09/Dec/2017:12:09:20] (saves) 44
-[09/Dec/2017:12:09:20] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:12:27:56] (saves) encuesta multi
-[09/Dec/2017:12:27:56] (saves) error al actualizar avance
-[09/Dec/2017:12:27:56] (saves) ordenundefined
-[09/Dec/2017:12:27:56] (saves) 44
-[09/Dec/2017:12:27:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:12:28:18] (saves) encuesta multi
-[09/Dec/2017:12:28:18] (saves) error al actualizar avance
-[09/Dec/2017:12:28:18] (saves) ordenundefined
-[09/Dec/2017:12:28:18] (saves) 44
-[09/Dec/2017:12:28:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[09/Dec/2017:12:34:32] (saves) encuesta multi
-[09/Dec/2017:12:34:32] (saves) error al actualizar avance
-[09/Dec/2017:12:34:32] (saves) ordenundefined
-[09/Dec/2017:12:34:32] (saves) 44
-[09/Dec/2017:12:34:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:09:45:21] (saves) encuesta multi
-[11/Dec/2017:09:45:21] (saves) error al actualizar avance
-[11/Dec/2017:09:45:21] (saves) ordenundefined
-[11/Dec/2017:09:45:21] (saves) 44
-[11/Dec/2017:09:45:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:10:02:52] (saves) encuesta multi
-[11/Dec/2017:10:02:52] (saves) error al actualizar avance
-[11/Dec/2017:10:02:52] (saves) ordenundefined
-[11/Dec/2017:10:02:52] (saves) 44
-[11/Dec/2017:10:02:52] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:10:33:57] (saves) encuesta multi
-[11/Dec/2017:10:33:57] (saves) error al actualizar avance
-[11/Dec/2017:10:33:57] (saves) ordenundefined
-[11/Dec/2017:10:33:57] (saves) 44
-[11/Dec/2017:10:33:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:10:48:27] (saves) encuesta multi
-[11/Dec/2017:10:48:27] (saves) error al actualizar avance
-[11/Dec/2017:10:48:27] (saves) ordenundefined
-[11/Dec/2017:10:48:27] (saves) 44
-[11/Dec/2017:10:48:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:11:04:42] (saves) encuesta multi
-[11/Dec/2017:11:04:42] (saves) error al actualizar avance
-[11/Dec/2017:11:04:42] (saves) ordenundefined
-[11/Dec/2017:11:04:42] (saves) 44
-[11/Dec/2017:11:04:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:11:11:39] (saves) encuesta multi
-[11/Dec/2017:11:11:39] (saves) error al actualizar avance
-[11/Dec/2017:11:11:39] (saves) ordenundefined
-[11/Dec/2017:11:11:39] (saves) 44
-[11/Dec/2017:11:11:39] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:11:35:17] (saves) encuesta multi
-[11/Dec/2017:11:35:17] (saves) error al actualizar avance
-[11/Dec/2017:11:35:17] (saves) ordenundefined
-[11/Dec/2017:11:35:17] (saves) 44
-[11/Dec/2017:11:35:17] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:11:36:23] (saves) encuesta multi
-[11/Dec/2017:11:36:23] (saves) error al actualizar avance
-[11/Dec/2017:11:36:23] (saves) ordenundefined
-[11/Dec/2017:11:36:23] (saves) 44
-[11/Dec/2017:11:36:23] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:11:39:02] (saves) encuesta multi
-[11/Dec/2017:11:39:02] (saves) error al actualizar avance
-[11/Dec/2017:11:39:02] (saves) ordenundefined
-[11/Dec/2017:11:39:02] (saves) 44
-[11/Dec/2017:11:39:02] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:12:05:54] (saves) encuesta multi
-[11/Dec/2017:12:05:54] (saves) error al actualizar avance
-[11/Dec/2017:12:05:54] (saves) ordenundefined
-[11/Dec/2017:12:05:54] (saves) 44
-[11/Dec/2017:12:05:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:12:26:37] (saves) encuesta multi
-[11/Dec/2017:12:26:37] (saves) error al actualizar avance
-[11/Dec/2017:12:26:37] (saves) ordenundefined
-[11/Dec/2017:12:26:37] (saves) 44
-[11/Dec/2017:12:26:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:12:53:56] (saves) encuesta multi
-[11/Dec/2017:12:53:56] (saves) error al actualizar avance
-[11/Dec/2017:12:53:56] (saves) ordenundefined
-[11/Dec/2017:12:53:56] (saves) 44
-[11/Dec/2017:12:53:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:13:22:31] (saves) encuesta multi
-[11/Dec/2017:13:22:31] (saves) error al actualizar avance
-[11/Dec/2017:13:22:31] (saves) ordenundefined
-[11/Dec/2017:13:22:31] (saves) 44
-[11/Dec/2017:13:22:31] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:13:23:46] (saves) encuesta multi
-[11/Dec/2017:13:23:46] (saves) error al actualizar avance
-[11/Dec/2017:13:23:46] (saves) ordenundefined
-[11/Dec/2017:13:23:46] (saves) 44
-[11/Dec/2017:13:23:46] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:13:28:13] (saves) encuesta multi
-[11/Dec/2017:13:28:13] (saves) error al actualizar avance
-[11/Dec/2017:13:28:13] (saves) ordenundefined
-[11/Dec/2017:13:28:13] (saves) 44
-[11/Dec/2017:13:28:13] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:13:32:56] (saves) encuesta multi
-[11/Dec/2017:13:32:56] (saves) error al actualizar avance
-[11/Dec/2017:13:32:56] (saves) ordenundefined
-[11/Dec/2017:13:32:56] (saves) 44
-[11/Dec/2017:13:32:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:14:39:05] (saves) encuesta multi
-[11/Dec/2017:14:39:05] (saves) error al actualizar avance
-[11/Dec/2017:14:39:05] (saves) ordenundefined
-[11/Dec/2017:14:39:05] (saves) 44
-[11/Dec/2017:14:39:05] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:14:45:15] (saves) encuesta multi
-[11/Dec/2017:14:45:15] (saves) error al actualizar avance
-[11/Dec/2017:14:45:15] (saves) ordenundefined
-[11/Dec/2017:14:45:15] (saves) 44
-[11/Dec/2017:14:45:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:14:57:59] (saves) encuesta multi
-[11/Dec/2017:14:57:59] (saves) error al actualizar avance
-[11/Dec/2017:14:57:59] (saves) ordenundefined
-[11/Dec/2017:14:57:59] (saves) 44
-[11/Dec/2017:14:57:59] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:15:02:36] (saves) encuesta multi
-[11/Dec/2017:15:02:36] (saves) error al actualizar avance
-[11/Dec/2017:15:02:36] (saves) ordenundefined
-[11/Dec/2017:15:02:36] (saves) 44
-[11/Dec/2017:15:02:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:15:09:04] (saves) encuesta multi
-[11/Dec/2017:15:09:04] (saves) error al actualizar avance
-[11/Dec/2017:15:09:04] (saves) ordenundefined
-[11/Dec/2017:15:09:04] (saves) 44
-[11/Dec/2017:15:09:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:15:40:10] (saves) encuesta multi
-[11/Dec/2017:15:40:10] (saves) error al actualizar avance
-[11/Dec/2017:15:40:10] (saves) ordenundefined
-[11/Dec/2017:15:40:10] (saves) 44
-[11/Dec/2017:15:40:10] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:15:45:57] (saves) encuesta multi
-[11/Dec/2017:15:45:57] (saves) error al actualizar avance
-[11/Dec/2017:15:45:57] (saves) ordenundefined
-[11/Dec/2017:15:45:57] (saves) 44
-[11/Dec/2017:15:45:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:15:57:25] (saves) encuesta multi
-[11/Dec/2017:15:57:25] (saves) error al actualizar avance
-[11/Dec/2017:15:57:25] (saves) ordenundefined
-[11/Dec/2017:15:57:25] (saves) 44
-[11/Dec/2017:15:57:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:16:07:41] (saves) encuesta multi
-[11/Dec/2017:16:07:41] (saves) error al actualizar avance
-[11/Dec/2017:16:07:41] (saves) ordenundefined
-[11/Dec/2017:16:07:41] (saves) 44
-[11/Dec/2017:16:07:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:16:10:56] (saves) encuesta multi
-[11/Dec/2017:16:10:56] (saves) error al actualizar avance
-[11/Dec/2017:16:10:56] (saves) ordenundefined
-[11/Dec/2017:16:10:56] (saves) 44
-[11/Dec/2017:16:10:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:16:31:03] (saves) encuesta multi
-[11/Dec/2017:16:31:03] (saves) error al actualizar avance
-[11/Dec/2017:16:31:03] (saves) ordenundefined
-[11/Dec/2017:16:31:03] (saves) 44
-[11/Dec/2017:16:31:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:16:37:11] (saves) encuesta multi
-[11/Dec/2017:16:37:11] (saves) error al actualizar avance
-[11/Dec/2017:16:37:11] (saves) ordenundefined
-[11/Dec/2017:16:37:11] (saves) 44
-[11/Dec/2017:16:37:11] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:16:44:25] (saves) encuesta multi
-[11/Dec/2017:16:44:25] (saves) error al actualizar avance
-[11/Dec/2017:16:44:25] (saves) ordenundefined
-[11/Dec/2017:16:44:25] (saves) 44
-[11/Dec/2017:16:44:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:17:04:16] (saves) encuesta multi
-[11/Dec/2017:17:04:16] (saves) error al actualizar avance
-[11/Dec/2017:17:04:16] (saves) ordenundefined
-[11/Dec/2017:17:04:16] (saves) 44
-[11/Dec/2017:17:04:16] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:17:12:19] (saves) encuesta multi
-[11/Dec/2017:17:12:19] (saves) error al actualizar avance
-[11/Dec/2017:17:12:19] (saves) ordenundefined
-[11/Dec/2017:17:12:19] (saves) 44
-[11/Dec/2017:17:12:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:17:22:15] (saves) encuesta multi
-[11/Dec/2017:17:22:15] (saves) error al actualizar avance
-[11/Dec/2017:17:22:15] (saves) ordenundefined
-[11/Dec/2017:17:22:15] (saves) 44
-[11/Dec/2017:17:22:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:17:32:22] (saves) encuesta multi
-[11/Dec/2017:17:32:22] (saves) error al actualizar avance
-[11/Dec/2017:17:32:22] (saves) ordenundefined
-[11/Dec/2017:17:32:22] (saves) 44
-[11/Dec/2017:17:32:22] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:17:38:06] (saves) encuesta multi
-[11/Dec/2017:17:38:06] (saves) error al actualizar avance
-[11/Dec/2017:17:38:06] (saves) ordenundefined
-[11/Dec/2017:17:38:06] (saves) 44
-[11/Dec/2017:17:38:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:18:00:20] (saves) encuesta multi
-[11/Dec/2017:18:00:20] (saves) error al actualizar avance
-[11/Dec/2017:18:00:20] (saves) ordenundefined
-[11/Dec/2017:18:00:20] (saves) 44
-[11/Dec/2017:18:00:20] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:18:30:03] (saves) encuesta multi
-[11/Dec/2017:18:30:03] (saves) error al actualizar avance
-[11/Dec/2017:18:30:03] (saves) ordenundefined
-[11/Dec/2017:18:30:03] (saves) 44
-[11/Dec/2017:18:30:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
-[11/Dec/2017:19:20:02] (saves) encuesta multi
-[11/Dec/2017:19:20:02] (saves) error al actualizar avance
-[11/Dec/2017:19:20:02] (saves) ordenundefined
-[11/Dec/2017:19:20:02] (saves) 44
-[11/Dec/2017:19:20:02] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[07/Dec/2017:12:54:50] (saves) encuesta multi
+[07/Dec/2017:12:54:50] (saves) error al actualizar avance
+[07/Dec/2017:12:54:50] (saves) ordenundefined
+[07/Dec/2017:12:54:50] (saves) 44
+[07/Dec/2017:12:54:50] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[07/Dec/2017:13:02:43] (saves) encuesta multi
+[07/Dec/2017:13:02:43] (saves) error al actualizar avance
+[07/Dec/2017:13:02:43] (saves) ordenundefined
+[07/Dec/2017:13:02:43] (saves) 44
+[07/Dec/2017:13:02:43] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[07/Dec/2017:14:43:56] (saves) encuesta multi
+[07/Dec/2017:14:43:56] (saves) error al actualizar avance
+[07/Dec/2017:14:43:56] (saves) ordenundefined
+[07/Dec/2017:14:43:56] (saves) 44
+[07/Dec/2017:14:43:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[08/Dec/2017:11:03:59] (saves) encuesta multi
+[08/Dec/2017:11:03:59] (saves) error al actualizar avance
+[08/Dec/2017:11:03:59] (saves) ordenundefined
+[08/Dec/2017:11:03:59] (saves) 44
+[08/Dec/2017:11:03:59] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[08/Dec/2017:11:13:29] (saves) encuesta multi
+[08/Dec/2017:11:13:29] (saves) error al actualizar avance
+[08/Dec/2017:11:13:29] (saves) ordenundefined
+[08/Dec/2017:11:13:29] (saves) 44
+[08/Dec/2017:11:13:29] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[08/Dec/2017:11:24:11] (saves) encuesta multi
+[08/Dec/2017:11:24:11] (saves) error al actualizar avance
+[08/Dec/2017:11:24:11] (saves) ordenundefined
+[08/Dec/2017:11:24:11] (saves) 44
+[08/Dec/2017:11:24:11] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[08/Dec/2017:11:26:30] (saves) encuesta multi
+[08/Dec/2017:11:26:30] (saves) error al actualizar avance
+[08/Dec/2017:11:26:30] (saves) ordenundefined
+[08/Dec/2017:11:26:30] (saves) 44
+[08/Dec/2017:11:26:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[08/Dec/2017:11:30:34] (saves) encuesta multi
+[08/Dec/2017:11:30:34] (saves) error al actualizar avance
+[08/Dec/2017:11:30:34] (saves) ordenundefined
+[08/Dec/2017:11:30:34] (saves) 44
+[08/Dec/2017:11:30:34] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[08/Dec/2017:11:39:29] (saves) encuesta multi
+[08/Dec/2017:11:39:29] (saves) error al actualizar avance
+[08/Dec/2017:11:39:29] (saves) ordenundefined
+[08/Dec/2017:11:39:29] (saves) 44
+[08/Dec/2017:11:39:29] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[08/Dec/2017:17:46:04] (saves) encuesta multi
+[08/Dec/2017:17:46:04] (saves) error al actualizar avance
+[08/Dec/2017:17:46:04] (saves) ordenundefined
+[08/Dec/2017:17:46:04] (saves) 44
+[08/Dec/2017:17:46:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:10:22:51] (saves) encuesta multi
+[11/Dec/2017:10:22:51] (saves) error al actualizar avance
+[11/Dec/2017:10:22:51] (saves) ordenundefined
+[11/Dec/2017:10:22:51] (saves) 44
+[11/Dec/2017:10:22:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:10:49:37] (saves) encuesta multi
+[11/Dec/2017:10:49:37] (saves) error al actualizar avance
+[11/Dec/2017:10:49:37] (saves) ordenundefined
+[11/Dec/2017:10:49:37] (saves) 44
+[11/Dec/2017:10:49:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:11:52:40] (saves) encuesta multi
+[11/Dec/2017:11:52:40] (saves) error al actualizar avance
+[11/Dec/2017:11:52:40] (saves) ordenundefined
+[11/Dec/2017:11:52:40] (saves) 44
+[11/Dec/2017:11:52:40] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:11:55:50] (saves) encuesta multi
+[11/Dec/2017:11:55:50] (saves) error al actualizar avance
+[11/Dec/2017:11:55:50] (saves) ordenundefined
+[11/Dec/2017:11:55:50] (saves) 44
+[11/Dec/2017:11:55:50] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:12:01:19] (saves) encuesta multi
+[11/Dec/2017:12:01:19] (saves) error al actualizar avance
+[11/Dec/2017:12:01:19] (saves) ordenundefined
+[11/Dec/2017:12:01:19] (saves) 44
+[11/Dec/2017:12:01:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:12:56:58] (saves) encuesta multi
+[11/Dec/2017:12:56:58] (saves) error al actualizar avance
+[11/Dec/2017:12:56:58] (saves) ordenundefined
+[11/Dec/2017:12:56:58] (saves) 44
+[11/Dec/2017:12:56:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:13:28:09] (saves) encuesta multi
+[11/Dec/2017:13:28:09] (saves) error al actualizar avance
+[11/Dec/2017:13:28:09] (saves) ordenundefined
+[11/Dec/2017:13:28:09] (saves) 44
+[11/Dec/2017:13:28:09] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:13:32:00] (saves) encuesta multi
+[11/Dec/2017:13:32:00] (saves) error al actualizar avance
+[11/Dec/2017:13:32:00] (saves) ordenundefined
+[11/Dec/2017:13:32:00] (saves) 44
+[11/Dec/2017:13:32:00] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:13:44:45] (saves) encuesta multi
+[11/Dec/2017:13:44:45] (saves) error al actualizar avance
+[11/Dec/2017:13:44:45] (saves) ordenundefined
+[11/Dec/2017:13:44:45] (saves) 44
+[11/Dec/2017:13:44:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:15:15:36] (saves) encuesta multi
+[11/Dec/2017:15:15:36] (saves) error al actualizar avance
+[11/Dec/2017:15:15:36] (saves) ordenundefined
+[11/Dec/2017:15:15:36] (saves) 44
+[11/Dec/2017:15:15:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:16:00:20] (saves) encuesta multi
+[11/Dec/2017:16:00:20] (saves) error al actualizar avance
+[11/Dec/2017:16:00:20] (saves) ordenundefined
+[11/Dec/2017:16:00:20] (saves) 44
+[11/Dec/2017:16:00:20] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:16:34:54] (saves) encuesta multi
+[11/Dec/2017:16:34:54] (saves) error al actualizar avance
+[11/Dec/2017:16:34:54] (saves) ordenundefined
+[11/Dec/2017:16:34:54] (saves) 44
+[11/Dec/2017:16:34:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:17:09:47] (saves) encuesta multi
+[11/Dec/2017:17:09:47] (saves) error al actualizar avance
+[11/Dec/2017:17:09:47] (saves) ordenundefined
+[11/Dec/2017:17:09:47] (saves) 44
+[11/Dec/2017:17:09:47] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:17:27:50] (saves) encuesta multi
+[11/Dec/2017:17:27:50] (saves) error al actualizar avance
+[11/Dec/2017:17:27:50] (saves) ordenundefined
+[11/Dec/2017:17:27:50] (saves) 44
+[11/Dec/2017:17:27:50] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[11/Dec/2017:17:44:11] (saves) encuesta multi
+[11/Dec/2017:17:44:11] (saves) error al actualizar avance
+[11/Dec/2017:17:44:11] (saves) ordenundefined
+[11/Dec/2017:17:44:11] (saves) 44
+[11/Dec/2017:17:44:11] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:09:42:12] (saves) encuesta multi
+[12/Dec/2017:09:42:12] (saves) error al actualizar avance
+[12/Dec/2017:09:42:12] (saves) ordenundefined
+[12/Dec/2017:09:42:12] (saves) 44
+[12/Dec/2017:09:42:12] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:10:08:53] (saves) encuesta multi
+[12/Dec/2017:10:08:53] (saves) error al actualizar avance
+[12/Dec/2017:10:08:53] (saves) ordenundefined
+[12/Dec/2017:10:08:53] (saves) 44
+[12/Dec/2017:10:08:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:10:14:37] (saves) encuesta multi
+[12/Dec/2017:10:14:37] (saves) error al actualizar avance
+[12/Dec/2017:10:14:37] (saves) ordenundefined
+[12/Dec/2017:10:14:37] (saves) 44
+[12/Dec/2017:10:14:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:10:43:31] (saves) encuesta multi
+[12/Dec/2017:10:43:31] (saves) error al actualizar avance
+[12/Dec/2017:10:43:31] (saves) ordenundefined
+[12/Dec/2017:10:43:31] (saves) 44
+[12/Dec/2017:10:43:31] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:11:12:18] (saves) encuesta multi
+[12/Dec/2017:11:12:18] (saves) error al actualizar avance
+[12/Dec/2017:11:12:18] (saves) ordenundefined
+[12/Dec/2017:11:12:18] (saves) 44
+[12/Dec/2017:11:12:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:11:14:47] (saves) encuesta multi
+[12/Dec/2017:11:14:47] (saves) error al actualizar avance
+[12/Dec/2017:11:14:47] (saves) ordenundefined
+[12/Dec/2017:11:14:47] (saves) 44
+[12/Dec/2017:11:14:47] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:11:45:22] (saves) encuesta multi
+[12/Dec/2017:11:45:22] (saves) error al actualizar avance
+[12/Dec/2017:11:45:22] (saves) ordenundefined
+[12/Dec/2017:11:45:22] (saves) 44
+[12/Dec/2017:11:45:22] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:11:51:44] (saves) encuesta multi
+[12/Dec/2017:11:51:44] (saves) error al actualizar avance
+[12/Dec/2017:11:51:44] (saves) ordenundefined
+[12/Dec/2017:11:51:44] (saves) 44
+[12/Dec/2017:11:51:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:11:56:43] (saves) encuesta multi
+[12/Dec/2017:11:56:43] (saves) error al actualizar avance
+[12/Dec/2017:11:56:43] (saves) ordenundefined
+[12/Dec/2017:11:56:43] (saves) 44
+[12/Dec/2017:11:56:43] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:12:15:16] (saves) encuesta multi
+[12/Dec/2017:12:15:16] (saves) error al actualizar avance
+[12/Dec/2017:12:15:16] (saves) ordenundefined
+[12/Dec/2017:12:15:16] (saves) 44
+[12/Dec/2017:12:15:16] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:12:29:57] (saves) encuesta multi
+[12/Dec/2017:12:29:57] (saves) error al actualizar avance
+[12/Dec/2017:12:29:57] (saves) ordenundefined
+[12/Dec/2017:12:29:57] (saves) 44
+[12/Dec/2017:12:29:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:13:01:13] (saves) encuesta multi
+[12/Dec/2017:13:01:13] (saves) error al actualizar avance
+[12/Dec/2017:13:01:13] (saves) ordenundefined
+[12/Dec/2017:13:01:13] (saves) 44
+[12/Dec/2017:13:01:13] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:13:14:46] (saves) encuesta multi
+[12/Dec/2017:13:14:46] (saves) error al actualizar avance
+[12/Dec/2017:13:14:46] (saves) ordenundefined
+[12/Dec/2017:13:14:46] (saves) 44
+[12/Dec/2017:13:14:46] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:13:20:41] (saves) encuesta multi
+[12/Dec/2017:13:20:41] (saves) error al actualizar avance
+[12/Dec/2017:13:20:41] (saves) ordenundefined
+[12/Dec/2017:13:20:41] (saves) 44
+[12/Dec/2017:13:20:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:13:24:37] (saves) encuesta multi
+[12/Dec/2017:13:24:37] (saves) error al actualizar avance
+[12/Dec/2017:13:24:37] (saves) ordenundefined
+[12/Dec/2017:13:24:37] (saves) 44
+[12/Dec/2017:13:24:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:13:54:33] (saves) encuesta multi
+[12/Dec/2017:13:54:33] (saves) error al actualizar avance
+[12/Dec/2017:13:54:33] (saves) ordenundefined
+[12/Dec/2017:13:54:33] (saves) 44
+[12/Dec/2017:13:54:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:14:38:10] (saves) encuesta multi
+[12/Dec/2017:14:38:10] (saves) error al actualizar avance
+[12/Dec/2017:14:38:10] (saves) ordenundefined
+[12/Dec/2017:14:38:10] (saves) 44
+[12/Dec/2017:14:38:10] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:14:38:42] (saves) encuesta multi
+[12/Dec/2017:14:38:42] (saves) error al actualizar avance
+[12/Dec/2017:14:38:42] (saves) ordenundefined
+[12/Dec/2017:14:38:42] (saves) 44
+[12/Dec/2017:14:38:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:15:07:04] (saves) encuesta multi
+[12/Dec/2017:15:07:04] (saves) error al actualizar avance
+[12/Dec/2017:15:07:04] (saves) ordenundefined
+[12/Dec/2017:15:07:04] (saves) 44
+[12/Dec/2017:15:07:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:15:09:48] (saves) encuesta multi
+[12/Dec/2017:15:09:48] (saves) error al actualizar avance
+[12/Dec/2017:15:09:48] (saves) ordenundefined
+[12/Dec/2017:15:09:48] (saves) 44
+[12/Dec/2017:15:09:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:16:38:58] (saves) encuesta multi
+[12/Dec/2017:16:38:58] (saves) error al actualizar avance
+[12/Dec/2017:16:38:58] (saves) ordenundefined
+[12/Dec/2017:16:38:58] (saves) 44
+[12/Dec/2017:16:38:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:16:48:35] (saves) encuesta multi
+[12/Dec/2017:16:48:35] (saves) error al actualizar avance
+[12/Dec/2017:16:48:35] (saves) ordenundefined
+[12/Dec/2017:16:48:35] (saves) 44
+[12/Dec/2017:16:48:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:16:57:16] (saves) encuesta multi
+[12/Dec/2017:16:57:16] (saves) error al actualizar avance
+[12/Dec/2017:16:57:16] (saves) ordenundefined
+[12/Dec/2017:16:57:16] (saves) 44
+[12/Dec/2017:16:57:16] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:17:11:23] (saves) tiraje single
+[12/Dec/2017:17:11:23] (saves) error al completar ajustes con tirajes
+[12/Dec/2017:17:11:23] (saves) orden
+[12/Dec/2017:17:11:23] (saves) 146
+[12/Dec/2017:17:11:23] (saves) UPDATE tiraje set producto='', pedido='75', cantidad=100, buenos=100, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=25, entregados=100, tiempoTiraje='00:00:24', fechadeldia_tiraje='12-12-2017', horafin_tiraje='17:11:23',id_user=14,produccion_esperada=3,desempenio=100 WHERE idtiraje=
+[12/Dec/2017:17:12:24] (saves) encuesta multi
+[12/Dec/2017:17:12:24] (saves) error al actualizar avance
+[12/Dec/2017:17:12:24] (saves) ordenundefined
+[12/Dec/2017:17:12:24] (saves) 44
+[12/Dec/2017:17:12:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:17:37:01] (saves) encuesta multi
+[12/Dec/2017:17:37:01] (saves) error al actualizar avance
+[12/Dec/2017:17:37:01] (saves) ordenundefined
+[12/Dec/2017:17:37:01] (saves) 44
+[12/Dec/2017:17:37:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:17:40:32] (saves) encuesta multi
+[12/Dec/2017:17:40:32] (saves) error al actualizar avance
+[12/Dec/2017:17:40:32] (saves) ordenundefined
+[12/Dec/2017:17:40:32] (saves) 44
+[12/Dec/2017:17:40:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:18:05:01] (saves) encuesta multi
+[12/Dec/2017:18:05:01] (saves) error al actualizar avance
+[12/Dec/2017:18:05:01] (saves) ordenundefined
+[12/Dec/2017:18:05:01] (saves) 44
+[12/Dec/2017:18:05:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:18:05:26] (saves) encuesta multi
+[12/Dec/2017:18:05:26] (saves) error al actualizar avance
+[12/Dec/2017:18:05:26] (saves) ordenundefined
+[12/Dec/2017:18:05:26] (saves) 44
+[12/Dec/2017:18:05:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:18:34:13] (saves) encuesta multi
+[12/Dec/2017:18:34:13] (saves) error al actualizar avance
+[12/Dec/2017:18:34:13] (saves) ordenundefined
+[12/Dec/2017:18:34:13] (saves) 44
+[12/Dec/2017:18:34:13] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[12/Dec/2017:18:38:00] (saves) encuesta multi
+[12/Dec/2017:18:38:00] (saves) error al actualizar avance
+[12/Dec/2017:18:38:00] (saves) ordenundefined
+[12/Dec/2017:18:38:00] (saves) 44
+[12/Dec/2017:18:38:00] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:09:51:57] (saves) encuesta multi
+[13/Dec/2017:09:51:57] (saves) error al actualizar avance
+[13/Dec/2017:09:51:57] (saves) ordenundefined
+[13/Dec/2017:09:51:57] (saves) 44
+[13/Dec/2017:09:51:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:10:11:56] (saves) encuesta multi
+[13/Dec/2017:10:11:56] (saves) error al actualizar avance
+[13/Dec/2017:10:11:56] (saves) ordenundefined
+[13/Dec/2017:10:11:56] (saves) 44
+[13/Dec/2017:10:11:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:10:25:30] (saves) encuesta multi
+[13/Dec/2017:10:25:30] (saves) error al actualizar avance
+[13/Dec/2017:10:25:30] (saves) ordenundefined
+[13/Dec/2017:10:25:30] (saves) 44
+[13/Dec/2017:10:25:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:10:41:57] (saves) encuesta multi
+[13/Dec/2017:10:41:57] (saves) error al actualizar avance
+[13/Dec/2017:10:41:57] (saves) ordenundefined
+[13/Dec/2017:10:41:57] (saves) 44
+[13/Dec/2017:10:41:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:11:10:26] (saves) encuesta multi
+[13/Dec/2017:11:10:26] (saves) error al actualizar avance
+[13/Dec/2017:11:10:26] (saves) ordenundefined
+[13/Dec/2017:11:10:26] (saves) 44
+[13/Dec/2017:11:10:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:11:33:36] (saves) encuesta multi
+[13/Dec/2017:11:33:36] (saves) error al actualizar avance
+[13/Dec/2017:11:33:36] (saves) ordenundefined
+[13/Dec/2017:11:33:36] (saves) 44
+[13/Dec/2017:11:33:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:11:40:49] (saves) encuesta multi
+[13/Dec/2017:11:40:49] (saves) error al actualizar avance
+[13/Dec/2017:11:40:49] (saves) ordenundefined
+[13/Dec/2017:11:40:49] (saves) 44
+[13/Dec/2017:11:40:49] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:11:42:00] (saves) encuesta multi
+[13/Dec/2017:11:42:00] (saves) error al actualizar avance
+[13/Dec/2017:11:42:00] (saves) ordenundefined
+[13/Dec/2017:11:42:00] (saves) 44
+[13/Dec/2017:11:42:00] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:11:59:09] (saves) encuesta multi
+[13/Dec/2017:11:59:09] (saves) error al actualizar avance
+[13/Dec/2017:11:59:09] (saves) ordenundefined
+[13/Dec/2017:11:59:09] (saves) 44
+[13/Dec/2017:11:59:09] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:12:03:11] (saves) encuesta multi
+[13/Dec/2017:12:03:11] (saves) error al actualizar avance
+[13/Dec/2017:12:03:11] (saves) ordenundefined
+[13/Dec/2017:12:03:11] (saves) 44
+[13/Dec/2017:12:03:11] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:12:13:24] (saves) encuesta multi
+[13/Dec/2017:12:13:24] (saves) error al actualizar avance
+[13/Dec/2017:12:13:24] (saves) ordenundefined
+[13/Dec/2017:12:13:24] (saves) 44
+[13/Dec/2017:12:13:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:12:38:41] (saves) encuesta multi
+[13/Dec/2017:12:38:41] (saves) error al actualizar avance
+[13/Dec/2017:12:38:41] (saves) ordenundefined
+[13/Dec/2017:12:38:41] (saves) 44
+[13/Dec/2017:12:38:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:12:41:42] (saves) encuesta multi
+[13/Dec/2017:12:41:42] (saves) error al actualizar avance
+[13/Dec/2017:12:41:42] (saves) ordenundefined
+[13/Dec/2017:12:41:42] (saves) 44
+[13/Dec/2017:12:41:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:13:09:30] (saves) encuesta multi
+[13/Dec/2017:13:09:30] (saves) error al actualizar avance
+[13/Dec/2017:13:09:30] (saves) ordenundefined
+[13/Dec/2017:13:09:30] (saves) 44
+[13/Dec/2017:13:09:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:13:14:26] (saves) encuesta multi
+[13/Dec/2017:13:14:26] (saves) error al actualizar avance
+[13/Dec/2017:13:14:26] (saves) ordenundefined
+[13/Dec/2017:13:14:26] (saves) 44
+[13/Dec/2017:13:14:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:13:29:28] (saves) encuesta multi
+[13/Dec/2017:13:29:28] (saves) error al actualizar avance
+[13/Dec/2017:13:29:28] (saves) ordenundefined
+[13/Dec/2017:13:29:28] (saves) 44
+[13/Dec/2017:13:29:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:14:35:04] (saves) encuesta multi
+[13/Dec/2017:14:35:04] (saves) error al actualizar avance
+[13/Dec/2017:14:35:04] (saves) ordenundefined
+[13/Dec/2017:14:35:04] (saves) 44
+[13/Dec/2017:14:35:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:15:12:27] (saves) encuesta multi
+[13/Dec/2017:15:12:27] (saves) error al actualizar avance
+[13/Dec/2017:15:12:27] (saves) ordenundefined
+[13/Dec/2017:15:12:27] (saves) 44
+[13/Dec/2017:15:12:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:15:22:12] (saves) encuesta multi
+[13/Dec/2017:15:22:12] (saves) error al actualizar avance
+[13/Dec/2017:15:22:12] (saves) ordenundefined
+[13/Dec/2017:15:22:12] (saves) 44
+[13/Dec/2017:15:22:12] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:15:50:45] (saves) encuesta multi
+[13/Dec/2017:15:50:45] (saves) error al actualizar avance
+[13/Dec/2017:15:50:45] (saves) ordenundefined
+[13/Dec/2017:15:50:45] (saves) 44
+[13/Dec/2017:15:50:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:15:52:15] (saves) encuesta multi
+[13/Dec/2017:15:52:15] (saves) error al actualizar avance
+[13/Dec/2017:15:52:15] (saves) ordenundefined
+[13/Dec/2017:15:52:15] (saves) 44
+[13/Dec/2017:15:52:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:15:53:56] (saves) encuesta multi
+[13/Dec/2017:15:53:56] (saves) error al actualizar avance
+[13/Dec/2017:15:53:56] (saves) ordenundefined
+[13/Dec/2017:15:53:56] (saves) 44
+[13/Dec/2017:15:53:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:16:16:04] (saves) encuesta multi
+[13/Dec/2017:16:16:04] (saves) error al actualizar avance
+[13/Dec/2017:16:16:04] (saves) ordenundefined
+[13/Dec/2017:16:16:04] (saves) 44
+[13/Dec/2017:16:16:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:16:17:56] (saves) encuesta multi
+[13/Dec/2017:16:17:56] (saves) error al actualizar avance
+[13/Dec/2017:16:17:56] (saves) ordenundefined
+[13/Dec/2017:16:17:56] (saves) 44
+[13/Dec/2017:16:17:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:16:32:03] (saves) encuesta multi
+[13/Dec/2017:16:32:03] (saves) error al actualizar avance
+[13/Dec/2017:16:32:03] (saves) ordenundefined
+[13/Dec/2017:16:32:03] (saves) 44
+[13/Dec/2017:16:32:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:16:45:53] (saves) encuesta multi
+[13/Dec/2017:16:45:53] (saves) error al actualizar avance
+[13/Dec/2017:16:45:53] (saves) ordenundefined
+[13/Dec/2017:16:45:53] (saves) 44
+[13/Dec/2017:16:45:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:16:52:44] (saves) encuesta multi
+[13/Dec/2017:16:52:44] (saves) error al actualizar avance
+[13/Dec/2017:16:52:44] (saves) ordenundefined
+[13/Dec/2017:16:52:44] (saves) 44
+[13/Dec/2017:16:52:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:17:04:23] (saves) encuesta multi
+[13/Dec/2017:17:04:23] (saves) error al actualizar avance
+[13/Dec/2017:17:04:23] (saves) ordenundefined
+[13/Dec/2017:17:04:23] (saves) 44
+[13/Dec/2017:17:04:23] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:17:13:37] (saves) encuesta multi
+[13/Dec/2017:17:13:37] (saves) error al actualizar avance
+[13/Dec/2017:17:13:37] (saves) ordenundefined
+[13/Dec/2017:17:13:37] (saves) 44
+[13/Dec/2017:17:13:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:17:20:26] (saves) encuesta multi
+[13/Dec/2017:17:20:26] (saves) error al actualizar avance
+[13/Dec/2017:17:20:26] (saves) ordenundefined
+[13/Dec/2017:17:20:26] (saves) 44
+[13/Dec/2017:17:20:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:17:32:46] (saves) encuesta multi
+[13/Dec/2017:17:32:46] (saves) error al actualizar avance
+[13/Dec/2017:17:32:46] (saves) ordenundefined
+[13/Dec/2017:17:32:46] (saves) 44
+[13/Dec/2017:17:32:46] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:17:38:11] (saves) encuesta multi
+[13/Dec/2017:17:38:11] (saves) error al actualizar avance
+[13/Dec/2017:17:38:11] (saves) ordenundefined
+[13/Dec/2017:17:38:11] (saves) 44
+[13/Dec/2017:17:38:11] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:17:38:51] (saves) encuesta multi
+[13/Dec/2017:17:38:51] (saves) error al actualizar avance
+[13/Dec/2017:17:38:51] (saves) ordenundefined
+[13/Dec/2017:17:38:51] (saves) 44
+[13/Dec/2017:17:38:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:17:40:28] (saves) encuesta multi
+[13/Dec/2017:17:40:28] (saves) error al actualizar avance
+[13/Dec/2017:17:40:28] (saves) ordenundefined
+[13/Dec/2017:17:40:28] (saves) 44
+[13/Dec/2017:17:40:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:18:09:23] (saves) encuesta multi
+[13/Dec/2017:18:09:23] (saves) error al actualizar avance
+[13/Dec/2017:18:09:23] (saves) ordenundefined
+[13/Dec/2017:18:09:23] (saves) 44
+[13/Dec/2017:18:09:23] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:18:19:39] (saves) encuesta multi
+[13/Dec/2017:18:19:39] (saves) error al actualizar avance
+[13/Dec/2017:18:19:39] (saves) ordenundefined
+[13/Dec/2017:18:19:39] (saves) 44
+[13/Dec/2017:18:19:39] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[13/Dec/2017:18:36:32] (saves) encuesta multi
+[13/Dec/2017:18:36:32] (saves) error al actualizar avance
+[13/Dec/2017:18:36:32] (saves) ordenundefined
+[13/Dec/2017:18:36:32] (saves) 44
+[13/Dec/2017:18:36:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:09:44:17] (saves) encuesta multi
+[14/Dec/2017:09:44:17] (saves) error al actualizar avance
+[14/Dec/2017:09:44:17] (saves) ordenundefined
+[14/Dec/2017:09:44:17] (saves) 44
+[14/Dec/2017:09:44:17] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:10:08:03] (saves) encuesta multi
+[14/Dec/2017:10:08:03] (saves) error al actualizar avance
+[14/Dec/2017:10:08:03] (saves) ordenundefined
+[14/Dec/2017:10:08:03] (saves) 44
+[14/Dec/2017:10:08:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:10:09:30] (saves) encuesta multi
+[14/Dec/2017:10:09:30] (saves) error al actualizar avance
+[14/Dec/2017:10:09:30] (saves) ordenundefined
+[14/Dec/2017:10:09:30] (saves) 44
+[14/Dec/2017:10:09:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:10:30:40] (saves) encuesta multi
+[14/Dec/2017:10:30:40] (saves) error al actualizar avance
+[14/Dec/2017:10:30:40] (saves) ordenundefined
+[14/Dec/2017:10:30:40] (saves) 44
+[14/Dec/2017:10:30:40] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:10:45:59] (saves) encuesta multi
+[14/Dec/2017:10:45:59] (saves) error al actualizar avance
+[14/Dec/2017:10:45:59] (saves) ordenundefined
+[14/Dec/2017:10:45:59] (saves) 44
+[14/Dec/2017:10:45:59] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:10:58:51] (saves) encuesta multi
+[14/Dec/2017:10:58:51] (saves) error al actualizar avance
+[14/Dec/2017:10:58:51] (saves) ordenundefined
+[14/Dec/2017:10:58:51] (saves) 44
+[14/Dec/2017:10:58:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:11:23:30] (saves) encuesta multi
+[14/Dec/2017:11:23:30] (saves) error al actualizar avance
+[14/Dec/2017:11:23:30] (saves) ordenundefined
+[14/Dec/2017:11:23:30] (saves) 44
+[14/Dec/2017:11:23:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:11:28:57] (saves) encuesta multi
+[14/Dec/2017:11:28:57] (saves) error al actualizar avance
+[14/Dec/2017:11:28:57] (saves) ordenundefined
+[14/Dec/2017:11:28:57] (saves) 44
+[14/Dec/2017:11:28:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:11:41:32] (saves) encuesta multi
+[14/Dec/2017:11:41:32] (saves) error al actualizar avance
+[14/Dec/2017:11:41:32] (saves) ordenundefined
+[14/Dec/2017:11:41:32] (saves) 44
+[14/Dec/2017:11:41:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:11:52:33] (saves) encuesta multi
+[14/Dec/2017:11:52:33] (saves) error al actualizar avance
+[14/Dec/2017:11:52:33] (saves) ordenundefined
+[14/Dec/2017:11:52:33] (saves) 44
+[14/Dec/2017:11:52:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:12:08:14] (saves) encuesta multi
+[14/Dec/2017:12:08:14] (saves) error al actualizar avance
+[14/Dec/2017:12:08:14] (saves) ordenundefined
+[14/Dec/2017:12:08:14] (saves) 44
+[14/Dec/2017:12:08:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:12:17:36] (saves) encuesta multi
+[14/Dec/2017:12:17:36] (saves) error al actualizar avance
+[14/Dec/2017:12:17:36] (saves) ordenundefined
+[14/Dec/2017:12:17:36] (saves) 44
+[14/Dec/2017:12:17:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:12:24:23] (saves) encuesta multi
+[14/Dec/2017:12:24:23] (saves) error al actualizar avance
+[14/Dec/2017:12:24:23] (saves) ordenundefined
+[14/Dec/2017:12:24:23] (saves) 44
+[14/Dec/2017:12:24:23] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:12:46:34] (saves) encuesta multi
+[14/Dec/2017:12:46:34] (saves) error al actualizar avance
+[14/Dec/2017:12:46:34] (saves) ordenundefined
+[14/Dec/2017:12:46:34] (saves) 44
+[14/Dec/2017:12:46:34] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:13:08:25] (saves) encuesta multi
+[14/Dec/2017:13:08:25] (saves) error al actualizar avance
+[14/Dec/2017:13:08:25] (saves) ordenundefined
+[14/Dec/2017:13:08:25] (saves) 44
+[14/Dec/2017:13:08:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:13:16:26] (saves) encuesta multi
+[14/Dec/2017:13:16:26] (saves) error al actualizar avance
+[14/Dec/2017:13:16:26] (saves) ordenundefined
+[14/Dec/2017:13:16:26] (saves) 44
+[14/Dec/2017:13:16:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:14:37:32] (saves) encuesta multi
+[14/Dec/2017:14:37:32] (saves) error al actualizar avance
+[14/Dec/2017:14:37:32] (saves) ordenundefined
+[14/Dec/2017:14:37:32] (saves) 44
+[14/Dec/2017:14:37:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:14:51:09] (saves) encuesta multi
+[14/Dec/2017:14:51:09] (saves) error al actualizar avance
+[14/Dec/2017:14:51:09] (saves) ordenundefined
+[14/Dec/2017:14:51:09] (saves) 44
+[14/Dec/2017:14:51:09] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:15:49:10] (saves) encuesta multi
+[14/Dec/2017:15:49:10] (saves) error al actualizar avance
+[14/Dec/2017:15:49:10] (saves) ordenundefined
+[14/Dec/2017:15:49:10] (saves) 44
+[14/Dec/2017:15:49:10] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:16:17:42] (saves) encuesta multi
+[14/Dec/2017:16:17:42] (saves) error al actualizar avance
+[14/Dec/2017:16:17:42] (saves) ordenundefined
+[14/Dec/2017:16:17:42] (saves) 44
+[14/Dec/2017:16:17:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:16:52:19] (saves) encuesta multi
+[14/Dec/2017:16:52:19] (saves) error al actualizar avance
+[14/Dec/2017:16:52:19] (saves) ordenundefined
+[14/Dec/2017:16:52:19] (saves) 44
+[14/Dec/2017:16:52:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:17:15:42] (saves) encuesta multi
+[14/Dec/2017:17:15:42] (saves) error al actualizar avance
+[14/Dec/2017:17:15:42] (saves) ordenundefined
+[14/Dec/2017:17:15:42] (saves) 44
+[14/Dec/2017:17:15:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:17:16:15] (saves) encuesta multi
+[14/Dec/2017:17:16:15] (saves) error al actualizar avance
+[14/Dec/2017:17:16:15] (saves) ordenundefined
+[14/Dec/2017:17:16:15] (saves) 44
+[14/Dec/2017:17:16:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:17:50:00] (saves) encuesta multi
+[14/Dec/2017:17:50:00] (saves) error al actualizar avance
+[14/Dec/2017:17:50:00] (saves) ordenundefined
+[14/Dec/2017:17:50:00] (saves) 44
+[14/Dec/2017:17:50:00] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:17:59:33] (saves) encuesta multi
+[14/Dec/2017:17:59:33] (saves) error al actualizar avance
+[14/Dec/2017:17:59:33] (saves) ordenundefined
+[14/Dec/2017:17:59:33] (saves) 44
+[14/Dec/2017:17:59:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:18:31:57] (saves) encuesta multi
+[14/Dec/2017:18:31:57] (saves) error al actualizar avance
+[14/Dec/2017:18:31:57] (saves) ordenundefined
+[14/Dec/2017:18:31:57] (saves) 44
+[14/Dec/2017:18:31:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[14/Dec/2017:18:36:56] (saves) encuesta multi
+[14/Dec/2017:18:36:56] (saves) error al actualizar avance
+[14/Dec/2017:18:36:56] (saves) ordenundefined
+[14/Dec/2017:18:36:56] (saves) 44
+[14/Dec/2017:18:36:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:10:07:09] (saves) encuesta multi
+[15/Dec/2017:10:07:09] (saves) error al actualizar avance
+[15/Dec/2017:10:07:09] (saves) ordenundefined
+[15/Dec/2017:10:07:09] (saves) 44
+[15/Dec/2017:10:07:09] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:10:15:02] (saves) encuesta multi
+[15/Dec/2017:10:15:02] (saves) error al actualizar avance
+[15/Dec/2017:10:15:02] (saves) ordenundefined
+[15/Dec/2017:10:15:02] (saves) 44
+[15/Dec/2017:10:15:02] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:10:49:42] (saves) encuesta multi
+[15/Dec/2017:10:49:42] (saves) error al actualizar avance
+[15/Dec/2017:10:49:42] (saves) ordenundefined
+[15/Dec/2017:10:49:42] (saves) 44
+[15/Dec/2017:10:49:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:10:51:25] (saves) encuesta multi
+[15/Dec/2017:10:51:25] (saves) error al actualizar avance
+[15/Dec/2017:10:51:25] (saves) ordenundefined
+[15/Dec/2017:10:51:25] (saves) 44
+[15/Dec/2017:10:51:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:11:32:41] (saves) encuesta multi
+[15/Dec/2017:11:32:41] (saves) error al actualizar avance
+[15/Dec/2017:11:32:41] (saves) ordenundefined
+[15/Dec/2017:11:32:41] (saves) 44
+[15/Dec/2017:11:32:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:11:43:06] (saves) encuesta multi
+[15/Dec/2017:11:43:06] (saves) error al actualizar avance
+[15/Dec/2017:11:43:06] (saves) ordenundefined
+[15/Dec/2017:11:43:06] (saves) 44
+[15/Dec/2017:11:43:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:12:03:48] (saves) encuesta multi
+[15/Dec/2017:12:03:48] (saves) error al actualizar avance
+[15/Dec/2017:12:03:48] (saves) ordenundefined
+[15/Dec/2017:12:03:48] (saves) 44
+[15/Dec/2017:12:03:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:12:12:46] (saves) encuesta multi
+[15/Dec/2017:12:12:46] (saves) error al actualizar avance
+[15/Dec/2017:12:12:46] (saves) ordenundefined
+[15/Dec/2017:12:12:46] (saves) 44
+[15/Dec/2017:12:12:46] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:12:15:49] (saves) encuesta multi
+[15/Dec/2017:12:15:49] (saves) error al actualizar avance
+[15/Dec/2017:12:15:49] (saves) ordenundefined
+[15/Dec/2017:12:15:49] (saves) 44
+[15/Dec/2017:12:15:49] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:12:34:03] (saves) encuesta multi
+[15/Dec/2017:12:34:03] (saves) error al actualizar avance
+[15/Dec/2017:12:34:03] (saves) ordenundefined
+[15/Dec/2017:12:34:03] (saves) 44
+[15/Dec/2017:12:34:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:12:36:44] (saves) encuesta multi
+[15/Dec/2017:12:36:44] (saves) error al actualizar avance
+[15/Dec/2017:12:36:44] (saves) ordenundefined
+[15/Dec/2017:12:36:44] (saves) 44
+[15/Dec/2017:12:36:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:12:55:30] (saves) encuesta multi
+[15/Dec/2017:12:55:30] (saves) error al actualizar avance
+[15/Dec/2017:12:55:30] (saves) ordenundefined
+[15/Dec/2017:12:55:30] (saves) 44
+[15/Dec/2017:12:55:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:13:17:53] (saves) encuesta multi
+[15/Dec/2017:13:17:53] (saves) error al actualizar avance
+[15/Dec/2017:13:17:53] (saves) ordenundefined
+[15/Dec/2017:13:17:53] (saves) 44
+[15/Dec/2017:13:17:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:13:36:56] (saves) encuesta multi
+[15/Dec/2017:13:36:56] (saves) error al actualizar avance
+[15/Dec/2017:13:36:56] (saves) ordenundefined
+[15/Dec/2017:13:36:56] (saves) 44
+[15/Dec/2017:13:36:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:14:37:58] (saves) encuesta multi
+[15/Dec/2017:14:37:58] (saves) error al actualizar avance
+[15/Dec/2017:14:37:58] (saves) ordenundefined
+[15/Dec/2017:14:37:58] (saves) 44
+[15/Dec/2017:14:37:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:14:46:57] (saves) encuesta multi
+[15/Dec/2017:14:46:57] (saves) error al actualizar avance
+[15/Dec/2017:14:46:57] (saves) ordenundefined
+[15/Dec/2017:14:46:57] (saves) 44
+[15/Dec/2017:14:46:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:15:19:17] (saves) encuesta multi
+[15/Dec/2017:15:19:17] (saves) error al actualizar avance
+[15/Dec/2017:15:19:17] (saves) ordenundefined
+[15/Dec/2017:15:19:17] (saves) 44
+[15/Dec/2017:15:19:17] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:15:23:42] (saves) encuesta multi
+[15/Dec/2017:15:23:42] (saves) error al actualizar avance
+[15/Dec/2017:15:23:42] (saves) ordenundefined
+[15/Dec/2017:15:23:42] (saves) 44
+[15/Dec/2017:15:23:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:15:31:11] (saves) encuesta multi
+[15/Dec/2017:15:31:11] (saves) error al actualizar avance
+[15/Dec/2017:15:31:11] (saves) ordenundefined
+[15/Dec/2017:15:31:11] (saves) 44
+[15/Dec/2017:15:31:11] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:15:55:21] (saves) encuesta multi
+[15/Dec/2017:15:55:21] (saves) error al actualizar avance
+[15/Dec/2017:15:55:21] (saves) ordenundefined
+[15/Dec/2017:15:55:21] (saves) 44
+[15/Dec/2017:15:55:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:15:55:28] (saves) encuesta multi
+[15/Dec/2017:15:55:28] (saves) error al actualizar avance
+[15/Dec/2017:15:55:28] (saves) ordenundefined
+[15/Dec/2017:15:55:28] (saves) 44
+[15/Dec/2017:15:55:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:16:06:18] (saves) encuesta multi
+[15/Dec/2017:16:06:18] (saves) error al actualizar avance
+[15/Dec/2017:16:06:18] (saves) ordenundefined
+[15/Dec/2017:16:06:18] (saves) 44
+[15/Dec/2017:16:06:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:16:34:26] (saves) encuesta multi
+[15/Dec/2017:16:34:26] (saves) error al actualizar avance
+[15/Dec/2017:16:34:26] (saves) ordenundefined
+[15/Dec/2017:16:34:26] (saves) 44
+[15/Dec/2017:16:34:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:16:39:00] (saves) encuesta multi
+[15/Dec/2017:16:39:00] (saves) error al actualizar avance
+[15/Dec/2017:16:39:00] (saves) ordenundefined
+[15/Dec/2017:16:39:00] (saves) 44
+[15/Dec/2017:16:39:00] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:16:41:56] (saves) encuesta multi
+[15/Dec/2017:16:41:56] (saves) error al actualizar avance
+[15/Dec/2017:16:41:56] (saves) ordenundefined
+[15/Dec/2017:16:41:56] (saves) 44
+[15/Dec/2017:16:41:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:17:19:21] (saves) encuesta multi
+[15/Dec/2017:17:19:21] (saves) error al actualizar avance
+[15/Dec/2017:17:19:21] (saves) ordenundefined
+[15/Dec/2017:17:19:21] (saves) 44
+[15/Dec/2017:17:19:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:17:21:51] (saves) encuesta multi
+[15/Dec/2017:17:21:51] (saves) error al actualizar avance
+[15/Dec/2017:17:21:51] (saves) ordenundefined
+[15/Dec/2017:17:21:51] (saves) 44
+[15/Dec/2017:17:21:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:17:41:02] (saves) encuesta multi
+[15/Dec/2017:17:41:02] (saves) error al actualizar avance
+[15/Dec/2017:17:41:02] (saves) ordenundefined
+[15/Dec/2017:17:41:02] (saves) 44
+[15/Dec/2017:17:41:02] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:17:49:12] (saves) encuesta multi
+[15/Dec/2017:17:49:12] (saves) error al actualizar avance
+[15/Dec/2017:17:49:12] (saves) ordenundefined
+[15/Dec/2017:17:49:12] (saves) 44
+[15/Dec/2017:17:49:12] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:17:49:29] (saves) encuesta multi
+[15/Dec/2017:17:49:29] (saves) error al actualizar avance
+[15/Dec/2017:17:49:29] (saves) ordenundefined
+[15/Dec/2017:17:49:29] (saves) 44
+[15/Dec/2017:17:49:29] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:18:17:14] (saves) encuesta multi
+[15/Dec/2017:18:17:14] (saves) error al actualizar avance
+[15/Dec/2017:18:17:14] (saves) ordenundefined
+[15/Dec/2017:18:17:14] (saves) 44
+[15/Dec/2017:18:17:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[15/Dec/2017:18:42:39] (saves) encuesta multi
+[15/Dec/2017:18:42:39] (saves) error al actualizar avance
+[15/Dec/2017:18:42:39] (saves) ordenundefined
+[15/Dec/2017:18:42:39] (saves) 44
+[15/Dec/2017:18:42:39] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:10:06:34] (saves) encuesta multi
+[18/Dec/2017:10:06:34] (saves) error al actualizar avance
+[18/Dec/2017:10:06:34] (saves) ordenundefined
+[18/Dec/2017:10:06:34] (saves) 44
+[18/Dec/2017:10:06:34] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:10:09:42] (saves) encuesta multi
+[18/Dec/2017:10:09:42] (saves) error al actualizar avance
+[18/Dec/2017:10:09:42] (saves) ordenundefined
+[18/Dec/2017:10:09:42] (saves) 44
+[18/Dec/2017:10:09:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:10:34:26] (saves) encuesta multi
+[18/Dec/2017:10:34:26] (saves) error al actualizar avance
+[18/Dec/2017:10:34:26] (saves) ordenundefined
+[18/Dec/2017:10:34:26] (saves) 44
+[18/Dec/2017:10:34:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:10:35:40] (saves) encuesta multi
+[18/Dec/2017:10:35:40] (saves) error al actualizar avance
+[18/Dec/2017:10:35:40] (saves) ordenundefined
+[18/Dec/2017:10:35:40] (saves) 44
+[18/Dec/2017:10:35:40] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:11:03:14] (saves) encuesta multi
+[18/Dec/2017:11:03:14] (saves) error al actualizar avance
+[18/Dec/2017:11:03:14] (saves) ordenundefined
+[18/Dec/2017:11:03:14] (saves) 44
+[18/Dec/2017:11:03:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:11:28:05] (saves) encuesta multi
+[18/Dec/2017:11:28:05] (saves) error al actualizar avance
+[18/Dec/2017:11:28:05] (saves) ordenundefined
+[18/Dec/2017:11:28:05] (saves) 44
+[18/Dec/2017:11:28:05] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:11:37:37] (saves) encuesta multi
+[18/Dec/2017:11:37:37] (saves) error al actualizar avance
+[18/Dec/2017:11:37:37] (saves) ordenundefined
+[18/Dec/2017:11:37:37] (saves) 44
+[18/Dec/2017:11:37:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:11:41:14] (saves) encuesta multi
+[18/Dec/2017:11:41:14] (saves) error al actualizar avance
+[18/Dec/2017:11:41:14] (saves) ordenundefined
+[18/Dec/2017:11:41:14] (saves) 44
+[18/Dec/2017:11:41:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:11:44:45] (saves) encuesta multi
+[18/Dec/2017:11:44:45] (saves) error al actualizar avance
+[18/Dec/2017:11:44:45] (saves) ordenundefined
+[18/Dec/2017:11:44:45] (saves) 44
+[18/Dec/2017:11:44:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:12:00:21] (saves) encuesta multi
+[18/Dec/2017:12:00:21] (saves) error al actualizar avance
+[18/Dec/2017:12:00:21] (saves) ordenundefined
+[18/Dec/2017:12:00:21] (saves) 44
+[18/Dec/2017:12:00:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:12:05:15] (saves) encuesta multi
+[18/Dec/2017:12:05:15] (saves) error al actualizar avance
+[18/Dec/2017:12:05:15] (saves) ordenundefined
+[18/Dec/2017:12:05:15] (saves) 44
+[18/Dec/2017:12:05:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:12:26:51] (saves) encuesta multi
+[18/Dec/2017:12:26:51] (saves) error al actualizar avance
+[18/Dec/2017:12:26:51] (saves) ordenundefined
+[18/Dec/2017:12:26:51] (saves) 44
+[18/Dec/2017:12:26:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:12:34:42] (saves) encuesta multi
+[18/Dec/2017:12:34:42] (saves) error al actualizar avance
+[18/Dec/2017:12:34:42] (saves) ordenundefined
+[18/Dec/2017:12:34:42] (saves) 44
+[18/Dec/2017:12:34:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:12:34:43] (saves) encuesta multi
+[18/Dec/2017:12:34:43] (saves) error al actualizar avance
+[18/Dec/2017:12:34:43] (saves) ordenundefined
+[18/Dec/2017:12:34:43] (saves) 44
+[18/Dec/2017:12:34:43] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:12:50:08] (saves) encuesta multi
+[18/Dec/2017:12:50:08] (saves) error al actualizar avance
+[18/Dec/2017:12:50:08] (saves) ordenundefined
+[18/Dec/2017:12:50:08] (saves) 44
+[18/Dec/2017:12:50:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:13:03:25] (saves) encuesta multi
+[18/Dec/2017:13:03:25] (saves) error al actualizar avance
+[18/Dec/2017:13:03:25] (saves) ordenundefined
+[18/Dec/2017:13:03:25] (saves) 44
+[18/Dec/2017:13:03:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:13:30:28] (saves) encuesta multi
+[18/Dec/2017:13:30:28] (saves) error al actualizar avance
+[18/Dec/2017:13:30:28] (saves) ordenundefined
+[18/Dec/2017:13:30:28] (saves) 44
+[18/Dec/2017:13:30:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:13:33:44] (saves) encuesta multi
+[18/Dec/2017:13:33:44] (saves) error al actualizar avance
+[18/Dec/2017:13:33:44] (saves) ordenundefined
+[18/Dec/2017:13:33:44] (saves) 44
+[18/Dec/2017:13:33:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:13:33:48] (saves) encuesta multi
+[18/Dec/2017:13:33:48] (saves) error al actualizar avance
+[18/Dec/2017:13:33:48] (saves) ordenundefined
+[18/Dec/2017:13:33:48] (saves) 44
+[18/Dec/2017:13:33:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:14:56:21] (saves) encuesta multi
+[18/Dec/2017:14:56:21] (saves) error al actualizar avance
+[18/Dec/2017:14:56:21] (saves) ordenundefined
+[18/Dec/2017:14:56:21] (saves) 44
+[18/Dec/2017:14:56:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:14:58:55] (saves) encuesta multi
+[18/Dec/2017:14:58:55] (saves) error al actualizar avance
+[18/Dec/2017:14:58:55] (saves) ordenundefined
+[18/Dec/2017:14:58:55] (saves) 44
+[18/Dec/2017:14:58:55] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:15:16:20] (saves) encuesta multi
+[18/Dec/2017:15:16:20] (saves) error al actualizar avance
+[18/Dec/2017:15:16:20] (saves) ordenundefined
+[18/Dec/2017:15:16:20] (saves) 44
+[18/Dec/2017:15:16:20] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:15:21:29] (saves) encuesta multi
+[18/Dec/2017:15:21:29] (saves) error al actualizar avance
+[18/Dec/2017:15:21:29] (saves) ordenundefined
+[18/Dec/2017:15:21:29] (saves) 44
+[18/Dec/2017:15:21:29] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:15:44:27] (saves) encuesta multi
+[18/Dec/2017:15:44:27] (saves) error al actualizar avance
+[18/Dec/2017:15:44:27] (saves) ordenundefined
+[18/Dec/2017:15:44:27] (saves) 44
+[18/Dec/2017:15:44:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:15:51:15] (saves) encuesta multi
+[18/Dec/2017:15:51:15] (saves) error al actualizar avance
+[18/Dec/2017:15:51:15] (saves) ordenundefined
+[18/Dec/2017:15:51:15] (saves) 44
+[18/Dec/2017:15:51:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:16:16:04] (saves) encuesta multi
+[18/Dec/2017:16:16:04] (saves) error al actualizar avance
+[18/Dec/2017:16:16:04] (saves) ordenundefined
+[18/Dec/2017:16:16:04] (saves) 44
+[18/Dec/2017:16:16:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:16:17:53] (saves) encuesta multi
+[18/Dec/2017:16:17:53] (saves) error al actualizar avance
+[18/Dec/2017:16:17:53] (saves) ordenundefined
+[18/Dec/2017:16:17:53] (saves) 44
+[18/Dec/2017:16:17:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:16:30:33] (saves) encuesta multi
+[18/Dec/2017:16:30:33] (saves) error al actualizar avance
+[18/Dec/2017:16:30:33] (saves) ordenundefined
+[18/Dec/2017:16:30:33] (saves) 44
+[18/Dec/2017:16:30:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:16:51:35] (saves) encuesta multi
+[18/Dec/2017:16:51:35] (saves) error al actualizar avance
+[18/Dec/2017:16:51:35] (saves) ordenundefined
+[18/Dec/2017:16:51:35] (saves) 44
+[18/Dec/2017:16:51:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:16:51:36] (saves) encuesta multi
+[18/Dec/2017:16:51:36] (saves) error al actualizar avance
+[18/Dec/2017:16:51:36] (saves) ordenundefined
+[18/Dec/2017:16:51:36] (saves) 44
+[18/Dec/2017:16:51:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:17:14:44] (saves) encuesta multi
+[18/Dec/2017:17:14:44] (saves) error al actualizar avance
+[18/Dec/2017:17:14:44] (saves) ordenundefined
+[18/Dec/2017:17:14:44] (saves) 44
+[18/Dec/2017:17:14:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:17:15:21] (saves) encuesta multi
+[18/Dec/2017:17:15:21] (saves) error al actualizar avance
+[18/Dec/2017:17:15:21] (saves) ordenundefined
+[18/Dec/2017:17:15:21] (saves) 44
+[18/Dec/2017:17:15:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:17:41:48] (saves) encuesta multi
+[18/Dec/2017:17:41:48] (saves) error al actualizar avance
+[18/Dec/2017:17:41:48] (saves) ordenundefined
+[18/Dec/2017:17:41:48] (saves) 44
+[18/Dec/2017:17:41:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:17:48:59] (saves) encuesta multi
+[18/Dec/2017:17:48:59] (saves) error al actualizar avance
+[18/Dec/2017:17:48:59] (saves) ordenundefined
+[18/Dec/2017:17:48:59] (saves) 44
+[18/Dec/2017:17:48:59] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:17:50:53] (saves) encuesta multi
+[18/Dec/2017:17:50:53] (saves) error al actualizar avance
+[18/Dec/2017:17:50:53] (saves) ordenundefined
+[18/Dec/2017:17:50:53] (saves) 44
+[18/Dec/2017:17:50:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[18/Dec/2017:18:08:07] (saves) encuesta multi
+[18/Dec/2017:18:08:07] (saves) error al actualizar avance
+[18/Dec/2017:18:08:07] (saves) ordenundefined
+[18/Dec/2017:18:08:07] (saves) 44
+[18/Dec/2017:18:08:07] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:09:25:17] (saves) encuesta multi
+[19/Dec/2017:09:25:17] (saves) error al actualizar avance
+[19/Dec/2017:09:25:17] (saves) ordenundefined
+[19/Dec/2017:09:25:17] (saves) 44
+[19/Dec/2017:09:25:17] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:09:48:45] (saves) encuesta multi
+[19/Dec/2017:09:48:45] (saves) error al actualizar avance
+[19/Dec/2017:09:48:45] (saves) ordenundefined
+[19/Dec/2017:09:48:45] (saves) 44
+[19/Dec/2017:09:48:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:09:52:14] (saves) encuesta multi
+[19/Dec/2017:09:52:14] (saves) error al actualizar avance
+[19/Dec/2017:09:52:14] (saves) ordenundefined
+[19/Dec/2017:09:52:14] (saves) 44
+[19/Dec/2017:09:52:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:10:21:58] (saves) encuesta multi
+[19/Dec/2017:10:21:58] (saves) error al actualizar avance
+[19/Dec/2017:10:21:58] (saves) ordenundefined
+[19/Dec/2017:10:21:58] (saves) 44
+[19/Dec/2017:10:21:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:10:26:55] (saves) encuesta multi
+[19/Dec/2017:10:26:55] (saves) error al actualizar avance
+[19/Dec/2017:10:26:55] (saves) ordenundefined
+[19/Dec/2017:10:26:55] (saves) 44
+[19/Dec/2017:10:26:55] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:10:29:05] (saves) encuesta multi
+[19/Dec/2017:10:29:05] (saves) error al actualizar avance
+[19/Dec/2017:10:29:05] (saves) ordenundefined
+[19/Dec/2017:10:29:05] (saves) 44
+[19/Dec/2017:10:29:05] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:10:45:44] (saves) encuesta multi
+[19/Dec/2017:10:45:44] (saves) error al actualizar avance
+[19/Dec/2017:10:45:44] (saves) ordenundefined
+[19/Dec/2017:10:45:44] (saves) 44
+[19/Dec/2017:10:45:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:10:59:15] (saves) encuesta multi
+[19/Dec/2017:10:59:15] (saves) error al actualizar avance
+[19/Dec/2017:10:59:15] (saves) ordenundefined
+[19/Dec/2017:10:59:15] (saves) 44
+[19/Dec/2017:10:59:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:11:11:24] (saves) encuesta multi
+[19/Dec/2017:11:11:24] (saves) error al actualizar avance
+[19/Dec/2017:11:11:24] (saves) ordenundefined
+[19/Dec/2017:11:11:24] (saves) 44
+[19/Dec/2017:11:11:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:11:26:30] (saves) encuesta multi
+[19/Dec/2017:11:26:30] (saves) error al actualizar avance
+[19/Dec/2017:11:26:30] (saves) ordenundefined
+[19/Dec/2017:11:26:30] (saves) 44
+[19/Dec/2017:11:26:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:11:28:08] (saves) encuesta multi
+[19/Dec/2017:11:28:08] (saves) error al actualizar avance
+[19/Dec/2017:11:28:08] (saves) ordenundefined
+[19/Dec/2017:11:28:08] (saves) 44
+[19/Dec/2017:11:28:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:11:40:09] (saves) encuesta multi
+[19/Dec/2017:11:40:09] (saves) error al actualizar avance
+[19/Dec/2017:11:40:09] (saves) ordenundefined
+[19/Dec/2017:11:40:09] (saves) 44
+[19/Dec/2017:11:40:09] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:12:07:00] (saves) encuesta multi
+[19/Dec/2017:12:07:00] (saves) error al actualizar avance
+[19/Dec/2017:12:07:00] (saves) ordenundefined
+[19/Dec/2017:12:07:00] (saves) 44
+[19/Dec/2017:12:07:00] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:12:26:46] (saves) encuesta multi
+[19/Dec/2017:12:26:46] (saves) error al actualizar avance
+[19/Dec/2017:12:26:46] (saves) ordenundefined
+[19/Dec/2017:12:26:46] (saves) 44
+[19/Dec/2017:12:26:46] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:12:43:24] (saves) encuesta multi
+[19/Dec/2017:12:43:24] (saves) error al actualizar avance
+[19/Dec/2017:12:43:24] (saves) ordenundefined
+[19/Dec/2017:12:43:24] (saves) 44
+[19/Dec/2017:12:43:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:13:07:25] (saves) encuesta multi
+[19/Dec/2017:13:07:25] (saves) error al actualizar avance
+[19/Dec/2017:13:07:25] (saves) ordenundefined
+[19/Dec/2017:13:07:25] (saves) 44
+[19/Dec/2017:13:07:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:13:19:27] (saves) encuesta multi
+[19/Dec/2017:13:19:27] (saves) error al actualizar avance
+[19/Dec/2017:13:19:27] (saves) ordenundefined
+[19/Dec/2017:13:19:27] (saves) 44
+[19/Dec/2017:13:19:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:13:35:14] (saves) encuesta multi
+[19/Dec/2017:13:35:14] (saves) error al actualizar avance
+[19/Dec/2017:13:35:14] (saves) ordenundefined
+[19/Dec/2017:13:35:14] (saves) 44
+[19/Dec/2017:13:35:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:14:38:13] (saves) encuesta multi
+[19/Dec/2017:14:38:13] (saves) error al actualizar avance
+[19/Dec/2017:14:38:13] (saves) ordenundefined
+[19/Dec/2017:14:38:13] (saves) 44
+[19/Dec/2017:14:38:13] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:14:47:36] (saves) encuesta multi
+[19/Dec/2017:14:47:36] (saves) error al actualizar avance
+[19/Dec/2017:14:47:36] (saves) ordenundefined
+[19/Dec/2017:14:47:36] (saves) 44
+[19/Dec/2017:14:47:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:14:59:07] (saves) encuesta multi
+[19/Dec/2017:14:59:07] (saves) error al actualizar avance
+[19/Dec/2017:14:59:07] (saves) ordenundefined
+[19/Dec/2017:14:59:07] (saves) 44
+[19/Dec/2017:14:59:07] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:15:07:35] (saves) encuesta multi
+[19/Dec/2017:15:07:35] (saves) error al actualizar avance
+[19/Dec/2017:15:07:35] (saves) ordenundefined
+[19/Dec/2017:15:07:35] (saves) 44
+[19/Dec/2017:15:07:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:15:41:24] (saves) encuesta multi
+[19/Dec/2017:15:41:24] (saves) error al actualizar avance
+[19/Dec/2017:15:41:24] (saves) ordenundefined
+[19/Dec/2017:15:41:24] (saves) 44
+[19/Dec/2017:15:41:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:15:46:40] (saves) encuesta multi
+[19/Dec/2017:15:46:40] (saves) error al actualizar avance
+[19/Dec/2017:15:46:40] (saves) ordenundefined
+[19/Dec/2017:15:46:40] (saves) 44
+[19/Dec/2017:15:46:40] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:16:05:08] (saves) encuesta multi
+[19/Dec/2017:16:05:08] (saves) error al actualizar avance
+[19/Dec/2017:16:05:08] (saves) ordenundefined
+[19/Dec/2017:16:05:08] (saves) 44
+[19/Dec/2017:16:05:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:16:07:19] (saves) encuesta multi
+[19/Dec/2017:16:07:19] (saves) error al actualizar avance
+[19/Dec/2017:16:07:19] (saves) ordenundefined
+[19/Dec/2017:16:07:19] (saves) 44
+[19/Dec/2017:16:07:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:16:36:55] (saves) encuesta multi
+[19/Dec/2017:16:36:55] (saves) error al actualizar avance
+[19/Dec/2017:16:36:55] (saves) ordenundefined
+[19/Dec/2017:16:36:55] (saves) 44
+[19/Dec/2017:16:36:55] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:17:01:35] (saves) encuesta multi
+[19/Dec/2017:17:01:35] (saves) error al actualizar avance
+[19/Dec/2017:17:01:35] (saves) ordenundefined
+[19/Dec/2017:17:01:35] (saves) 44
+[19/Dec/2017:17:01:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:17:58:18] (saves) encuesta multi
+[19/Dec/2017:17:58:18] (saves) error al actualizar avance
+[19/Dec/2017:17:58:18] (saves) ordenundefined
+[19/Dec/2017:17:58:18] (saves) 44
+[19/Dec/2017:17:58:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:18:04:08] (saves) encuesta multi
+[19/Dec/2017:18:04:08] (saves) error al actualizar avance
+[19/Dec/2017:18:04:08] (saves) ordenundefined
+[19/Dec/2017:18:04:08] (saves) 44
+[19/Dec/2017:18:04:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:18:30:58] (saves) encuesta multi
+[19/Dec/2017:18:30:58] (saves) error al actualizar avance
+[19/Dec/2017:18:30:58] (saves) ordenundefined
+[19/Dec/2017:18:30:58] (saves) 44
+[19/Dec/2017:18:30:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[19/Dec/2017:18:53:42] (saves) encuesta multi
+[19/Dec/2017:18:53:42] (saves) error al actualizar avance
+[19/Dec/2017:18:53:42] (saves) ordenundefined
+[19/Dec/2017:18:53:42] (saves) 44
+[19/Dec/2017:18:53:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:10:01:48] (saves) encuesta multi
+[20/Dec/2017:10:01:48] (saves) error al actualizar avance
+[20/Dec/2017:10:01:48] (saves) ordenundefined
+[20/Dec/2017:10:01:48] (saves) 44
+[20/Dec/2017:10:01:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:10:26:23] (saves) encuesta multi
+[20/Dec/2017:10:26:23] (saves) error al actualizar avance
+[20/Dec/2017:10:26:23] (saves) ordenundefined
+[20/Dec/2017:10:26:23] (saves) 44
+[20/Dec/2017:10:26:23] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:10:30:59] (saves) encuesta multi
+[20/Dec/2017:10:30:59] (saves) error al actualizar avance
+[20/Dec/2017:10:30:59] (saves) ordenundefined
+[20/Dec/2017:10:30:59] (saves) 44
+[20/Dec/2017:10:30:59] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:10:35:39] (saves) encuesta multi
+[20/Dec/2017:10:35:39] (saves) error al actualizar avance
+[20/Dec/2017:10:35:39] (saves) ordenundefined
+[20/Dec/2017:10:35:39] (saves) 44
+[20/Dec/2017:10:35:39] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:10:56:06] (saves) encuesta multi
+[20/Dec/2017:10:56:06] (saves) error al actualizar avance
+[20/Dec/2017:10:56:06] (saves) ordenundefined
+[20/Dec/2017:10:56:06] (saves) 44
+[20/Dec/2017:10:56:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:11:36:14] (saves) encuesta multi
+[20/Dec/2017:11:36:14] (saves) error al actualizar avance
+[20/Dec/2017:11:36:14] (saves) ordenundefined
+[20/Dec/2017:11:36:14] (saves) 44
+[20/Dec/2017:11:36:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:11:40:41] (saves) encuesta multi
+[20/Dec/2017:11:40:41] (saves) error al actualizar avance
+[20/Dec/2017:11:40:41] (saves) ordenundefined
+[20/Dec/2017:11:40:41] (saves) 44
+[20/Dec/2017:11:40:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:12:17:06] (saves) encuesta multi
+[20/Dec/2017:12:17:06] (saves) error al actualizar avance
+[20/Dec/2017:12:17:06] (saves) ordenundefined
+[20/Dec/2017:12:17:06] (saves) 44
+[20/Dec/2017:12:17:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:12:20:15] (saves) encuesta multi
+[20/Dec/2017:12:20:15] (saves) error al actualizar avance
+[20/Dec/2017:12:20:15] (saves) ordenundefined
+[20/Dec/2017:12:20:15] (saves) 44
+[20/Dec/2017:12:20:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:12:24:03] (saves) encuesta multi
+[20/Dec/2017:12:24:03] (saves) error al actualizar avance
+[20/Dec/2017:12:24:03] (saves) ordenundefined
+[20/Dec/2017:12:24:03] (saves) 44
+[20/Dec/2017:12:24:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:12:38:52] (saves) encuesta multi
+[20/Dec/2017:12:38:52] (saves) error al actualizar avance
+[20/Dec/2017:12:38:52] (saves) ordenundefined
+[20/Dec/2017:12:38:52] (saves) 44
+[20/Dec/2017:12:38:52] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:12:53:33] (saves) encuesta multi
+[20/Dec/2017:12:53:33] (saves) error al actualizar avance
+[20/Dec/2017:12:53:33] (saves) ordenundefined
+[20/Dec/2017:12:53:33] (saves) 44
+[20/Dec/2017:12:53:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:12:57:49] (saves) encuesta multi
+[20/Dec/2017:12:57:49] (saves) error al actualizar avance
+[20/Dec/2017:12:57:49] (saves) ordenundefined
+[20/Dec/2017:12:57:49] (saves) 44
+[20/Dec/2017:12:57:49] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:13:08:24] (saves) encuesta multi
+[20/Dec/2017:13:08:24] (saves) error al actualizar avance
+[20/Dec/2017:13:08:24] (saves) ordenundefined
+[20/Dec/2017:13:08:24] (saves) 44
+[20/Dec/2017:13:08:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:14:18:48] (saves) encuesta multi
+[20/Dec/2017:14:18:48] (saves) error al actualizar avance
+[20/Dec/2017:14:18:48] (saves) ordenundefined
+[20/Dec/2017:14:18:48] (saves) 44
+[20/Dec/2017:14:18:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:14:25:40] (saves) encuesta multi
+[20/Dec/2017:14:25:40] (saves) error al actualizar avance
+[20/Dec/2017:14:25:40] (saves) ordenundefined
+[20/Dec/2017:14:25:40] (saves) 44
+[20/Dec/2017:14:25:40] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:14:38:57] (saves) encuesta multi
+[20/Dec/2017:14:38:57] (saves) error al actualizar avance
+[20/Dec/2017:14:38:57] (saves) ordenundefined
+[20/Dec/2017:14:38:57] (saves) 44
+[20/Dec/2017:14:38:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:14:50:31] (saves) encuesta multi
+[20/Dec/2017:14:50:31] (saves) error al actualizar avance
+[20/Dec/2017:14:50:31] (saves) ordenundefined
+[20/Dec/2017:14:50:31] (saves) 44
+[20/Dec/2017:14:50:31] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:14:53:37] (saves) encuesta multi
+[20/Dec/2017:14:53:37] (saves) error al actualizar avance
+[20/Dec/2017:14:53:37] (saves) ordenundefined
+[20/Dec/2017:14:53:37] (saves) 44
+[20/Dec/2017:14:53:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:15:02:17] (saves) encuesta multi
+[20/Dec/2017:15:02:17] (saves) error al actualizar avance
+[20/Dec/2017:15:02:17] (saves) ordenundefined
+[20/Dec/2017:15:02:17] (saves) 44
+[20/Dec/2017:15:02:17] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:15:43:18] (saves) encuesta multi
+[20/Dec/2017:15:43:18] (saves) error al actualizar avance
+[20/Dec/2017:15:43:18] (saves) ordenundefined
+[20/Dec/2017:15:43:18] (saves) 44
+[20/Dec/2017:15:43:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:15:55:48] (saves) encuesta multi
+[20/Dec/2017:15:55:48] (saves) error al actualizar avance
+[20/Dec/2017:15:55:48] (saves) ordenundefined
+[20/Dec/2017:15:55:48] (saves) 44
+[20/Dec/2017:15:55:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:15:56:42] (saves) encuesta multi
+[20/Dec/2017:15:56:42] (saves) error al actualizar avance
+[20/Dec/2017:15:56:42] (saves) ordenundefined
+[20/Dec/2017:15:56:42] (saves) 44
+[20/Dec/2017:15:56:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:16:30:40] (saves) encuesta multi
+[20/Dec/2017:16:30:40] (saves) error al actualizar avance
+[20/Dec/2017:16:30:40] (saves) ordenundefined
+[20/Dec/2017:16:30:40] (saves) 44
+[20/Dec/2017:16:30:40] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:16:30:51] (saves) encuesta multi
+[20/Dec/2017:16:30:51] (saves) error al actualizar avance
+[20/Dec/2017:16:30:51] (saves) ordenundefined
+[20/Dec/2017:16:30:51] (saves) 44
+[20/Dec/2017:16:30:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:16:34:27] (saves) encuesta multi
+[20/Dec/2017:16:34:27] (saves) error al actualizar avance
+[20/Dec/2017:16:34:27] (saves) ordenundefined
+[20/Dec/2017:16:34:27] (saves) 44
+[20/Dec/2017:16:34:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:17:02:30] (saves) encuesta multi
+[20/Dec/2017:17:02:30] (saves) error al actualizar avance
+[20/Dec/2017:17:02:30] (saves) ordenundefined
+[20/Dec/2017:17:02:30] (saves) 44
+[20/Dec/2017:17:02:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:17:12:35] (saves) encuesta multi
+[20/Dec/2017:17:12:35] (saves) error al actualizar avance
+[20/Dec/2017:17:12:35] (saves) ordenundefined
+[20/Dec/2017:17:12:35] (saves) 44
+[20/Dec/2017:17:12:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:17:17:49] (saves) encuesta multi
+[20/Dec/2017:17:17:49] (saves) error al actualizar avance
+[20/Dec/2017:17:17:49] (saves) ordenundefined
+[20/Dec/2017:17:17:49] (saves) 44
+[20/Dec/2017:17:17:49] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:17:39:50] (saves) encuesta multi
+[20/Dec/2017:17:39:50] (saves) error al actualizar avance
+[20/Dec/2017:17:39:50] (saves) ordenundefined
+[20/Dec/2017:17:39:50] (saves) 44
+[20/Dec/2017:17:39:50] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:17:44:57] (saves) encuesta multi
+[20/Dec/2017:17:44:57] (saves) error al actualizar avance
+[20/Dec/2017:17:44:57] (saves) ordenundefined
+[20/Dec/2017:17:44:57] (saves) 44
+[20/Dec/2017:17:44:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:18:13:03] (saves) encuesta multi
+[20/Dec/2017:18:13:03] (saves) error al actualizar avance
+[20/Dec/2017:18:13:03] (saves) ordenundefined
+[20/Dec/2017:18:13:03] (saves) 44
+[20/Dec/2017:18:13:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[20/Dec/2017:18:13:35] (saves) encuesta multi
+[20/Dec/2017:18:13:35] (saves) error al actualizar avance
+[20/Dec/2017:18:13:35] (saves) ordenundefined
+[20/Dec/2017:18:13:35] (saves) 44
+[20/Dec/2017:18:13:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:09:39:35] (saves) encuesta multi
+[21/Dec/2017:09:39:35] (saves) error al actualizar avance
+[21/Dec/2017:09:39:35] (saves) ordenundefined
+[21/Dec/2017:09:39:35] (saves) 44
+[21/Dec/2017:09:39:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:10:10:50] (saves) encuesta multi
+[21/Dec/2017:10:10:50] (saves) error al actualizar avance
+[21/Dec/2017:10:10:50] (saves) ordenundefined
+[21/Dec/2017:10:10:50] (saves) 44
+[21/Dec/2017:10:10:50] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:10:22:16] (saves) encuesta multi
+[21/Dec/2017:10:22:16] (saves) error al actualizar avance
+[21/Dec/2017:10:22:16] (saves) ordenundefined
+[21/Dec/2017:10:22:16] (saves) 44
+[21/Dec/2017:10:22:16] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:10:30:37] (saves) encuesta multi
+[21/Dec/2017:10:30:37] (saves) error al actualizar avance
+[21/Dec/2017:10:30:37] (saves) ordenundefined
+[21/Dec/2017:10:30:37] (saves) 44
+[21/Dec/2017:10:30:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:10:48:59] (saves) encuesta multi
+[21/Dec/2017:10:48:59] (saves) error al actualizar avance
+[21/Dec/2017:10:48:59] (saves) ordenundefined
+[21/Dec/2017:10:48:59] (saves) 44
+[21/Dec/2017:10:48:59] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:10:48:59] (saves) encuesta multi
+[21/Dec/2017:10:48:59] (saves) error al actualizar avance
+[21/Dec/2017:10:48:59] (saves) ordenundefined
+[21/Dec/2017:10:48:59] (saves) 44
+[21/Dec/2017:10:48:59] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:10:55:01] (saves) encuesta multi
+[21/Dec/2017:10:55:01] (saves) error al actualizar avance
+[21/Dec/2017:10:55:01] (saves) ordenundefined
+[21/Dec/2017:10:55:01] (saves) 44
+[21/Dec/2017:10:55:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:11:19:37] (saves) encuesta multi
+[21/Dec/2017:11:19:37] (saves) error al actualizar avance
+[21/Dec/2017:11:19:37] (saves) ordenundefined
+[21/Dec/2017:11:19:37] (saves) 44
+[21/Dec/2017:11:19:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:11:30:48] (saves) encuesta multi
+[21/Dec/2017:11:30:48] (saves) error al actualizar avance
+[21/Dec/2017:11:30:48] (saves) ordenundefined
+[21/Dec/2017:11:30:48] (saves) 44
+[21/Dec/2017:11:30:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:11:42:03] (saves) encuesta multi
+[21/Dec/2017:11:42:03] (saves) error al actualizar avance
+[21/Dec/2017:11:42:03] (saves) ordenundefined
+[21/Dec/2017:11:42:03] (saves) 44
+[21/Dec/2017:11:42:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:11:53:51] (saves) encuesta multi
+[21/Dec/2017:11:53:51] (saves) error al actualizar avance
+[21/Dec/2017:11:53:51] (saves) ordenundefined
+[21/Dec/2017:11:53:51] (saves) 44
+[21/Dec/2017:11:53:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:12:23:43] (saves) encuesta multi
+[21/Dec/2017:12:23:43] (saves) error al actualizar avance
+[21/Dec/2017:12:23:43] (saves) ordenundefined
+[21/Dec/2017:12:23:43] (saves) 44
+[21/Dec/2017:12:23:43] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:12:35:45] (saves) encuesta multi
+[21/Dec/2017:12:35:45] (saves) error al actualizar avance
+[21/Dec/2017:12:35:45] (saves) ordenundefined
+[21/Dec/2017:12:35:45] (saves) 44
+[21/Dec/2017:12:35:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:12:43:02] (saves) encuesta multi
+[21/Dec/2017:12:43:02] (saves) error al actualizar avance
+[21/Dec/2017:12:43:02] (saves) ordenundefined
+[21/Dec/2017:12:43:02] (saves) 44
+[21/Dec/2017:12:43:02] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:13:04:58] (saves) encuesta multi
+[21/Dec/2017:13:04:58] (saves) error al actualizar avance
+[21/Dec/2017:13:04:58] (saves) ordenundefined
+[21/Dec/2017:13:04:58] (saves) 44
+[21/Dec/2017:13:04:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:13:21:11] (saves) encuesta multi
+[21/Dec/2017:13:21:11] (saves) error al actualizar avance
+[21/Dec/2017:13:21:11] (saves) ordenundefined
+[21/Dec/2017:13:21:11] (saves) 44
+[21/Dec/2017:13:21:11] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:14:20:54] (saves) encuesta multi
+[21/Dec/2017:14:20:54] (saves) error al actualizar avance
+[21/Dec/2017:14:20:54] (saves) ordenundefined
+[21/Dec/2017:14:20:54] (saves) 44
+[21/Dec/2017:14:20:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:14:37:18] (saves) encuesta multi
+[21/Dec/2017:14:37:18] (saves) error al actualizar avance
+[21/Dec/2017:14:37:18] (saves) ordenundefined
+[21/Dec/2017:14:37:18] (saves) 44
+[21/Dec/2017:14:37:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:14:41:51] (saves) encuesta multi
+[21/Dec/2017:14:41:51] (saves) error al actualizar avance
+[21/Dec/2017:14:41:51] (saves) ordenundefined
+[21/Dec/2017:14:41:51] (saves) 44
+[21/Dec/2017:14:41:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:00:30] (saves) encuesta multi
+[21/Dec/2017:15:00:30] (saves) error al actualizar avance
+[21/Dec/2017:15:00:30] (saves) ordenundefined
+[21/Dec/2017:15:00:30] (saves) 44
+[21/Dec/2017:15:00:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:05:52] (saves) encuesta multi
+[21/Dec/2017:15:05:52] (saves) error al actualizar avance
+[21/Dec/2017:15:05:52] (saves) ordenundefined
+[21/Dec/2017:15:05:52] (saves) 44
+[21/Dec/2017:15:05:52] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:07:42] (saves) encuesta multi
+[21/Dec/2017:15:07:42] (saves) error al actualizar avance
+[21/Dec/2017:15:07:42] (saves) ordenundefined
+[21/Dec/2017:15:07:42] (saves) 44
+[21/Dec/2017:15:07:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:14:18] (saves) encuesta multi
+[21/Dec/2017:15:14:18] (saves) error al actualizar avance
+[21/Dec/2017:15:14:18] (saves) ordenundefined
+[21/Dec/2017:15:14:18] (saves) 44
+[21/Dec/2017:15:14:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:20:27] (saves) encuesta multi
+[21/Dec/2017:15:20:27] (saves) error al actualizar avance
+[21/Dec/2017:15:20:27] (saves) ordenundefined
+[21/Dec/2017:15:20:27] (saves) 44
+[21/Dec/2017:15:20:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:24:21] (saves) encuesta multi
+[21/Dec/2017:15:24:21] (saves) error al actualizar avance
+[21/Dec/2017:15:24:21] (saves) ordenundefined
+[21/Dec/2017:15:24:21] (saves) 44
+[21/Dec/2017:15:24:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:40:26] (saves) encuesta multi
+[21/Dec/2017:15:40:26] (saves) error al actualizar avance
+[21/Dec/2017:15:40:26] (saves) ordenundefined
+[21/Dec/2017:15:40:26] (saves) 44
+[21/Dec/2017:15:40:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:41:53] (saves) encuesta multi
+[21/Dec/2017:15:41:53] (saves) error al actualizar avance
+[21/Dec/2017:15:41:53] (saves) ordenundefined
+[21/Dec/2017:15:41:53] (saves) 44
+[21/Dec/2017:15:41:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:49:45] (saves) encuesta multi
+[21/Dec/2017:15:49:45] (saves) error al actualizar avance
+[21/Dec/2017:15:49:45] (saves) ordenundefined
+[21/Dec/2017:15:49:45] (saves) 44
+[21/Dec/2017:15:49:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:15:57:48] (saves) encuesta multi
+[21/Dec/2017:15:57:48] (saves) error al actualizar avance
+[21/Dec/2017:15:57:48] (saves) ordenundefined
+[21/Dec/2017:15:57:48] (saves) 44
+[21/Dec/2017:15:57:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:16:01:29] (saves) encuesta multi
+[21/Dec/2017:16:01:29] (saves) error al actualizar avance
+[21/Dec/2017:16:01:29] (saves) ordenundefined
+[21/Dec/2017:16:01:29] (saves) 44
+[21/Dec/2017:16:01:29] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:16:28:56] (saves) encuesta multi
+[21/Dec/2017:16:28:56] (saves) error al actualizar avance
+[21/Dec/2017:16:28:56] (saves) ordenundefined
+[21/Dec/2017:16:28:56] (saves) 44
+[21/Dec/2017:16:28:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:16:41:45] (saves) encuesta multi
+[21/Dec/2017:16:41:45] (saves) error al actualizar avance
+[21/Dec/2017:16:41:45] (saves) ordenundefined
+[21/Dec/2017:16:41:45] (saves) 44
+[21/Dec/2017:16:41:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:16:57:19] (saves) encuesta multi
+[21/Dec/2017:16:57:19] (saves) error al actualizar avance
+[21/Dec/2017:16:57:19] (saves) ordenundefined
+[21/Dec/2017:16:57:19] (saves) 44
+[21/Dec/2017:16:57:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:17:14:58] (saves) encuesta multi
+[21/Dec/2017:17:14:58] (saves) error al actualizar avance
+[21/Dec/2017:17:14:58] (saves) ordenundefined
+[21/Dec/2017:17:14:58] (saves) 44
+[21/Dec/2017:17:14:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:17:21:32] (saves) encuesta multi
+[21/Dec/2017:17:21:32] (saves) error al actualizar avance
+[21/Dec/2017:17:21:32] (saves) ordenundefined
+[21/Dec/2017:17:21:32] (saves) 44
+[21/Dec/2017:17:21:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:17:25:04] (saves) encuesta multi
+[21/Dec/2017:17:25:04] (saves) error al actualizar avance
+[21/Dec/2017:17:25:04] (saves) ordenundefined
+[21/Dec/2017:17:25:04] (saves) 44
+[21/Dec/2017:17:25:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:17:27:21] (saves) encuesta multi
+[21/Dec/2017:17:27:21] (saves) error al actualizar avance
+[21/Dec/2017:17:27:21] (saves) ordenundefined
+[21/Dec/2017:17:27:21] (saves) 44
+[21/Dec/2017:17:27:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:17:53:07] (saves) encuesta multi
+[21/Dec/2017:17:53:07] (saves) error al actualizar avance
+[21/Dec/2017:17:53:07] (saves) ordenundefined
+[21/Dec/2017:17:53:07] (saves) 44
+[21/Dec/2017:17:53:07] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:17:59:33] (saves) encuesta multi
+[21/Dec/2017:17:59:33] (saves) error al actualizar avance
+[21/Dec/2017:17:59:33] (saves) ordenundefined
+[21/Dec/2017:17:59:33] (saves) 44
+[21/Dec/2017:17:59:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:18:12:10] (saves) encuesta multi
+[21/Dec/2017:18:12:10] (saves) error al actualizar avance
+[21/Dec/2017:18:12:10] (saves) ordenundefined
+[21/Dec/2017:18:12:10] (saves) 44
+[21/Dec/2017:18:12:10] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[21/Dec/2017:18:31:17] (saves) encuesta multi
+[21/Dec/2017:18:31:17] (saves) error al actualizar avance
+[21/Dec/2017:18:31:17] (saves) ordenundefined
+[21/Dec/2017:18:31:17] (saves) 44
+[21/Dec/2017:18:31:17] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:10:31:40] (saves) encuesta multi
+[22/Dec/2017:10:31:40] (saves) error al actualizar avance
+[22/Dec/2017:10:31:40] (saves) ordenundefined
+[22/Dec/2017:10:31:40] (saves) 44
+[22/Dec/2017:10:31:40] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:10:47:05] (saves) encuesta multi
+[22/Dec/2017:10:47:05] (saves) error al actualizar avance
+[22/Dec/2017:10:47:05] (saves) ordenundefined
+[22/Dec/2017:10:47:05] (saves) 44
+[22/Dec/2017:10:47:05] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:11:57:49] (saves) encuesta multi
+[22/Dec/2017:11:57:49] (saves) error al actualizar avance
+[22/Dec/2017:11:57:49] (saves) ordenundefined
+[22/Dec/2017:11:57:49] (saves) 44
+[22/Dec/2017:11:57:49] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:11:58:42] (saves) encuesta multi
+[22/Dec/2017:11:58:42] (saves) error al actualizar avance
+[22/Dec/2017:11:58:42] (saves) ordenundefined
+[22/Dec/2017:11:58:42] (saves) 44
+[22/Dec/2017:11:58:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:12:05:14] (saves) encuesta multi
+[22/Dec/2017:12:05:14] (saves) error al actualizar avance
+[22/Dec/2017:12:05:14] (saves) ordenundefined
+[22/Dec/2017:12:05:14] (saves) 44
+[22/Dec/2017:12:05:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:12:12:08] (saves) encuesta multi
+[22/Dec/2017:12:12:08] (saves) error al actualizar avance
+[22/Dec/2017:12:12:08] (saves) ordenundefined
+[22/Dec/2017:12:12:08] (saves) 44
+[22/Dec/2017:12:12:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:12:38:25] (saves) encuesta multi
+[22/Dec/2017:12:38:25] (saves) error al actualizar avance
+[22/Dec/2017:12:38:25] (saves) ordenundefined
+[22/Dec/2017:12:38:25] (saves) 44
+[22/Dec/2017:12:38:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:13:06:55] (saves) encuesta multi
+[22/Dec/2017:13:06:55] (saves) error al actualizar avance
+[22/Dec/2017:13:06:55] (saves) ordenundefined
+[22/Dec/2017:13:06:55] (saves) 44
+[22/Dec/2017:13:06:55] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:14:01:08] (saves) encuesta multi
+[22/Dec/2017:14:01:08] (saves) error al actualizar avance
+[22/Dec/2017:14:01:08] (saves) ordenundefined
+[22/Dec/2017:14:01:08] (saves) 44
+[22/Dec/2017:14:01:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:14:53:35] (saves) encuesta multi
+[22/Dec/2017:14:53:35] (saves) error al actualizar avance
+[22/Dec/2017:14:53:35] (saves) ordenundefined
+[22/Dec/2017:14:53:35] (saves) 44
+[22/Dec/2017:14:53:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:15:13:52] (saves) encuesta multi
+[22/Dec/2017:15:13:52] (saves) error al actualizar avance
+[22/Dec/2017:15:13:52] (saves) ordenundefined
+[22/Dec/2017:15:13:52] (saves) 44
+[22/Dec/2017:15:13:52] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:15:43:30] (saves) encuesta multi
+[22/Dec/2017:15:43:30] (saves) error al actualizar avance
+[22/Dec/2017:15:43:30] (saves) ordenundefined
+[22/Dec/2017:15:43:30] (saves) 44
+[22/Dec/2017:15:43:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:16:17:33] (saves) encuesta multi
+[22/Dec/2017:16:17:33] (saves) error al actualizar avance
+[22/Dec/2017:16:17:33] (saves) ordenundefined
+[22/Dec/2017:16:17:33] (saves) 44
+[22/Dec/2017:16:17:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:16:24:59] (saves) encuesta multi
+[22/Dec/2017:16:24:59] (saves) error al actualizar avance
+[22/Dec/2017:16:24:59] (saves) ordenundefined
+[22/Dec/2017:16:24:59] (saves) 44
+[22/Dec/2017:16:24:59] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:16:46:12] (saves) encuesta multi
+[22/Dec/2017:16:46:12] (saves) error al actualizar avance
+[22/Dec/2017:16:46:12] (saves) ordenundefined
+[22/Dec/2017:16:46:12] (saves) 44
+[22/Dec/2017:16:46:12] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:17:10:21] (saves) encuesta multi
+[22/Dec/2017:17:10:21] (saves) error al actualizar avance
+[22/Dec/2017:17:10:21] (saves) ordenundefined
+[22/Dec/2017:17:10:21] (saves) 44
+[22/Dec/2017:17:10:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:17:40:34] (saves) encuesta multi
+[22/Dec/2017:17:40:34] (saves) error al actualizar avance
+[22/Dec/2017:17:40:34] (saves) ordenundefined
+[22/Dec/2017:17:40:34] (saves) 44
+[22/Dec/2017:17:40:34] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:17:48:58] (saves) encuesta multi
+[22/Dec/2017:17:48:58] (saves) error al actualizar avance
+[22/Dec/2017:17:48:58] (saves) ordenundefined
+[22/Dec/2017:17:48:58] (saves) 44
+[22/Dec/2017:17:48:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:17:57:24] (saves) encuesta multi
+[22/Dec/2017:17:57:24] (saves) error al actualizar avance
+[22/Dec/2017:17:57:24] (saves) ordenundefined
+[22/Dec/2017:17:57:24] (saves) 44
+[22/Dec/2017:17:57:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[22/Dec/2017:18:25:58] (saves) encuesta multi
+[22/Dec/2017:18:25:58] (saves) error al actualizar avance
+[22/Dec/2017:18:25:58] (saves) ordenundefined
+[22/Dec/2017:18:25:58] (saves) 44
+[22/Dec/2017:18:25:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:10:17:28] (saves) encuesta multi
+[23/Dec/2017:10:17:28] (saves) error al actualizar avance
+[23/Dec/2017:10:17:28] (saves) ordenundefined
+[23/Dec/2017:10:17:28] (saves) 44
+[23/Dec/2017:10:17:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:10:23:54] (saves) encuesta multi
+[23/Dec/2017:10:23:54] (saves) error al actualizar avance
+[23/Dec/2017:10:23:54] (saves) ordenundefined
+[23/Dec/2017:10:23:54] (saves) 44
+[23/Dec/2017:10:23:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:11:01:02] (saves) encuesta multi
+[23/Dec/2017:11:01:02] (saves) error al actualizar avance
+[23/Dec/2017:11:01:02] (saves) ordenundefined
+[23/Dec/2017:11:01:02] (saves) 44
+[23/Dec/2017:11:01:02] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:11:14:25] (saves) encuesta multi
+[23/Dec/2017:11:14:25] (saves) error al actualizar avance
+[23/Dec/2017:11:14:25] (saves) ordenundefined
+[23/Dec/2017:11:14:25] (saves) 44
+[23/Dec/2017:11:14:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:11:26:07] (saves) encuesta multi
+[23/Dec/2017:11:26:07] (saves) error al actualizar avance
+[23/Dec/2017:11:26:07] (saves) ordenundefined
+[23/Dec/2017:11:26:07] (saves) 44
+[23/Dec/2017:11:26:07] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:11:51:19] (saves) encuesta multi
+[23/Dec/2017:11:51:19] (saves) error al actualizar avance
+[23/Dec/2017:11:51:19] (saves) ordenundefined
+[23/Dec/2017:11:51:19] (saves) 44
+[23/Dec/2017:11:51:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:11:54:50] (saves) encuesta multi
+[23/Dec/2017:11:54:50] (saves) error al actualizar avance
+[23/Dec/2017:11:54:50] (saves) ordenundefined
+[23/Dec/2017:11:54:50] (saves) 44
+[23/Dec/2017:11:54:50] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:12:15:04] (saves) encuesta multi
+[23/Dec/2017:12:15:04] (saves) error al actualizar avance
+[23/Dec/2017:12:15:04] (saves) ordenundefined
+[23/Dec/2017:12:15:04] (saves) 44
+[23/Dec/2017:12:15:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:12:30:36] (saves) encuesta multi
+[23/Dec/2017:12:30:36] (saves) error al actualizar avance
+[23/Dec/2017:12:30:36] (saves) ordenundefined
+[23/Dec/2017:12:30:36] (saves) 44
+[23/Dec/2017:12:30:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:13:04:10] (saves) encuesta multi
+[23/Dec/2017:13:04:10] (saves) error al actualizar avance
+[23/Dec/2017:13:04:10] (saves) ordenundefined
+[23/Dec/2017:13:04:10] (saves) 44
+[23/Dec/2017:13:04:10] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:13:26:26] (saves) encuesta multi
+[23/Dec/2017:13:26:26] (saves) error al actualizar avance
+[23/Dec/2017:13:26:26] (saves) ordenundefined
+[23/Dec/2017:13:26:26] (saves) 44
+[23/Dec/2017:13:26:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:13:32:19] (saves) encuesta multi
+[23/Dec/2017:13:32:19] (saves) error al actualizar avance
+[23/Dec/2017:13:32:19] (saves) ordenundefined
+[23/Dec/2017:13:32:19] (saves) 44
+[23/Dec/2017:13:32:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[23/Dec/2017:14:32:01] (saves) encuesta multi
+[23/Dec/2017:14:32:01] (saves) error al actualizar avance
+[23/Dec/2017:14:32:01] (saves) ordenundefined
+[23/Dec/2017:14:32:01] (saves) 44
+[23/Dec/2017:14:32:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:08:00:11] (saves) encuesta multi
+[26/Dec/2017:08:00:11] (saves) error al actualizar avance
+[26/Dec/2017:08:00:11] (saves) ordenundefined
+[26/Dec/2017:08:00:11] (saves) 44
+[26/Dec/2017:08:00:11] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:09:47:58] (saves) encuesta multi
+[26/Dec/2017:09:47:58] (saves) error al actualizar avance
+[26/Dec/2017:09:47:58] (saves) ordenundefined
+[26/Dec/2017:09:47:58] (saves) 44
+[26/Dec/2017:09:47:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:09:48:06] (saves) encuesta multi
+[26/Dec/2017:09:48:06] (saves) error al actualizar avance
+[26/Dec/2017:09:48:06] (saves) ordenundefined
+[26/Dec/2017:09:48:06] (saves) 44
+[26/Dec/2017:09:48:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:10:12:24] (saves) encuesta multi
+[26/Dec/2017:10:12:24] (saves) error al actualizar avance
+[26/Dec/2017:10:12:24] (saves) ordenundefined
+[26/Dec/2017:10:12:24] (saves) 44
+[26/Dec/2017:10:12:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:10:16:38] (saves) encuesta multi
+[26/Dec/2017:10:16:38] (saves) error al actualizar avance
+[26/Dec/2017:10:16:38] (saves) ordenundefined
+[26/Dec/2017:10:16:38] (saves) 44
+[26/Dec/2017:10:16:38] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:10:34:26] (saves) encuesta multi
+[26/Dec/2017:10:34:26] (saves) error al actualizar avance
+[26/Dec/2017:10:34:26] (saves) ordenundefined
+[26/Dec/2017:10:34:26] (saves) 44
+[26/Dec/2017:10:34:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:10:35:40] (saves) encuesta multi
+[26/Dec/2017:10:35:40] (saves) error al actualizar avance
+[26/Dec/2017:10:35:40] (saves) ordenundefined
+[26/Dec/2017:10:35:40] (saves) 44
+[26/Dec/2017:10:35:40] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:11:00:12] (saves) encuesta multi
+[26/Dec/2017:11:00:12] (saves) error al actualizar avance
+[26/Dec/2017:11:00:12] (saves) ordenundefined
+[26/Dec/2017:11:00:12] (saves) 44
+[26/Dec/2017:11:00:12] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:11:04:10] (saves) encuesta multi
+[26/Dec/2017:11:04:10] (saves) error al actualizar avance
+[26/Dec/2017:11:04:10] (saves) ordenundefined
+[26/Dec/2017:11:04:10] (saves) 44
+[26/Dec/2017:11:04:10] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:11:08:28] (saves) encuesta multi
+[26/Dec/2017:11:08:28] (saves) error al actualizar avance
+[26/Dec/2017:11:08:28] (saves) ordenundefined
+[26/Dec/2017:11:08:28] (saves) 44
+[26/Dec/2017:11:08:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:11:13:50] (saves) encuesta multi
+[26/Dec/2017:11:13:50] (saves) error al actualizar avance
+[26/Dec/2017:11:13:50] (saves) ordenundefined
+[26/Dec/2017:11:13:50] (saves) 44
+[26/Dec/2017:11:13:50] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:11:37:54] (saves) encuesta multi
+[26/Dec/2017:11:37:54] (saves) error al actualizar avance
+[26/Dec/2017:11:37:54] (saves) ordenundefined
+[26/Dec/2017:11:37:54] (saves) 44
+[26/Dec/2017:11:37:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:11:37:58] (saves) encuesta multi
+[26/Dec/2017:11:37:58] (saves) error al actualizar avance
+[26/Dec/2017:11:37:58] (saves) ordenundefined
+[26/Dec/2017:11:37:58] (saves) 44
+[26/Dec/2017:11:37:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:12:07:13] (saves) encuesta multi
+[26/Dec/2017:12:07:13] (saves) error al actualizar avance
+[26/Dec/2017:12:07:13] (saves) ordenundefined
+[26/Dec/2017:12:07:13] (saves) 44
+[26/Dec/2017:12:07:13] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:12:14:08] (saves) encuesta multi
+[26/Dec/2017:12:14:08] (saves) error al actualizar avance
+[26/Dec/2017:12:14:08] (saves) ordenundefined
+[26/Dec/2017:12:14:08] (saves) 44
+[26/Dec/2017:12:14:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:12:22:54] (saves) encuesta multi
+[26/Dec/2017:12:22:54] (saves) error al actualizar avance
+[26/Dec/2017:12:22:54] (saves) ordenundefined
+[26/Dec/2017:12:22:54] (saves) 44
+[26/Dec/2017:12:22:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:12:32:15] (saves) encuesta multi
+[26/Dec/2017:12:32:15] (saves) error al actualizar avance
+[26/Dec/2017:12:32:15] (saves) ordenundefined
+[26/Dec/2017:12:32:15] (saves) 44
+[26/Dec/2017:12:32:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:12:58:28] (saves) encuesta multi
+[26/Dec/2017:12:58:28] (saves) error al actualizar avance
+[26/Dec/2017:12:58:28] (saves) ordenundefined
+[26/Dec/2017:12:58:28] (saves) 44
+[26/Dec/2017:12:58:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:12:59:07] (saves) encuesta multi
+[26/Dec/2017:12:59:07] (saves) error al actualizar avance
+[26/Dec/2017:12:59:07] (saves) ordenundefined
+[26/Dec/2017:12:59:07] (saves) 44
+[26/Dec/2017:12:59:07] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:13:07:27] (saves) encuesta multi
+[26/Dec/2017:13:07:27] (saves) error al actualizar avance
+[26/Dec/2017:13:07:27] (saves) ordenundefined
+[26/Dec/2017:13:07:27] (saves) 44
+[26/Dec/2017:13:07:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:13:10:30] (saves) encuesta multi
+[26/Dec/2017:13:10:30] (saves) error al actualizar avance
+[26/Dec/2017:13:10:30] (saves) ordenundefined
+[26/Dec/2017:13:10:30] (saves) 44
+[26/Dec/2017:13:10:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:13:29:06] (saves) encuesta multi
+[26/Dec/2017:13:29:06] (saves) error al actualizar avance
+[26/Dec/2017:13:29:06] (saves) ordenundefined
+[26/Dec/2017:13:29:06] (saves) 44
+[26/Dec/2017:13:29:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:13:29:34] (saves) encuesta multi
+[26/Dec/2017:13:29:34] (saves) error al actualizar avance
+[26/Dec/2017:13:29:34] (saves) ordenundefined
+[26/Dec/2017:13:29:34] (saves) 44
+[26/Dec/2017:13:29:34] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:14:31:14] (saves) encuesta multi
+[26/Dec/2017:14:31:14] (saves) error al actualizar avance
+[26/Dec/2017:14:31:14] (saves) ordenundefined
+[26/Dec/2017:14:31:14] (saves) 44
+[26/Dec/2017:14:31:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:14:49:45] (saves) encuesta multi
+[26/Dec/2017:14:49:45] (saves) error al actualizar avance
+[26/Dec/2017:14:49:45] (saves) ordenundefined
+[26/Dec/2017:14:49:45] (saves) 44
+[26/Dec/2017:14:49:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:15:10:57] (saves) encuesta multi
+[26/Dec/2017:15:10:57] (saves) error al actualizar avance
+[26/Dec/2017:15:10:57] (saves) ordenundefined
+[26/Dec/2017:15:10:57] (saves) 44
+[26/Dec/2017:15:10:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:15:24:22] (saves) encuesta multi
+[26/Dec/2017:15:24:22] (saves) error al actualizar avance
+[26/Dec/2017:15:24:22] (saves) ordenundefined
+[26/Dec/2017:15:24:22] (saves) 44
+[26/Dec/2017:15:24:22] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:15:38:19] (saves) encuesta multi
+[26/Dec/2017:15:38:19] (saves) error al actualizar avance
+[26/Dec/2017:15:38:19] (saves) ordenundefined
+[26/Dec/2017:15:38:19] (saves) 44
+[26/Dec/2017:15:38:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:15:40:39] (saves) encuesta multi
+[26/Dec/2017:15:40:39] (saves) error al actualizar avance
+[26/Dec/2017:15:40:39] (saves) ordenundefined
+[26/Dec/2017:15:40:39] (saves) 44
+[26/Dec/2017:15:40:39] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:16:05:24] (saves) encuesta multi
+[26/Dec/2017:16:05:24] (saves) error al actualizar avance
+[26/Dec/2017:16:05:24] (saves) ordenundefined
+[26/Dec/2017:16:05:24] (saves) 44
+[26/Dec/2017:16:05:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:16:18:45] (saves) encuesta multi
+[26/Dec/2017:16:18:45] (saves) error al actualizar avance
+[26/Dec/2017:16:18:45] (saves) ordenundefined
+[26/Dec/2017:16:18:45] (saves) 44
+[26/Dec/2017:16:18:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:16:33:36] (saves) encuesta multi
+[26/Dec/2017:16:33:36] (saves) error al actualizar avance
+[26/Dec/2017:16:33:36] (saves) ordenundefined
+[26/Dec/2017:16:33:36] (saves) 44
+[26/Dec/2017:16:33:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:16:41:45] (saves) encuesta multi
+[26/Dec/2017:16:41:45] (saves) error al actualizar avance
+[26/Dec/2017:16:41:45] (saves) ordenundefined
+[26/Dec/2017:16:41:45] (saves) 44
+[26/Dec/2017:16:41:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:16:55:46] (saves) encuesta multi
+[26/Dec/2017:16:55:46] (saves) error al actualizar avance
+[26/Dec/2017:16:55:46] (saves) ordenundefined
+[26/Dec/2017:16:55:46] (saves) 44
+[26/Dec/2017:16:55:46] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:16:58:39] (saves) encuesta multi
+[26/Dec/2017:16:58:39] (saves) error al actualizar avance
+[26/Dec/2017:16:58:39] (saves) ordenundefined
+[26/Dec/2017:16:58:39] (saves) 44
+[26/Dec/2017:16:58:39] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:17:10:38] (saves) encuesta multi
+[26/Dec/2017:17:10:38] (saves) error al actualizar avance
+[26/Dec/2017:17:10:38] (saves) ordenundefined
+[26/Dec/2017:17:10:38] (saves) 44
+[26/Dec/2017:17:10:38] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:17:51:36] (saves) encuesta multi
+[26/Dec/2017:17:51:36] (saves) error al actualizar avance
+[26/Dec/2017:17:51:36] (saves) ordenundefined
+[26/Dec/2017:17:51:36] (saves) 44
+[26/Dec/2017:17:51:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[26/Dec/2017:17:53:42] (saves) encuesta multi
+[26/Dec/2017:17:53:42] (saves) error al actualizar avance
+[26/Dec/2017:17:53:42] (saves) ordenundefined
+[26/Dec/2017:17:53:42] (saves) 44
+[26/Dec/2017:17:53:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:09:56:06] (saves) encuesta multi
+[27/Dec/2017:09:56:06] (saves) error al actualizar avance
+[27/Dec/2017:09:56:06] (saves) ordenundefined
+[27/Dec/2017:09:56:06] (saves) 44
+[27/Dec/2017:09:56:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:10:00:26] (saves) encuesta multi
+[27/Dec/2017:10:00:26] (saves) error al actualizar avance
+[27/Dec/2017:10:00:26] (saves) ordenundefined
+[27/Dec/2017:10:00:26] (saves) 44
+[27/Dec/2017:10:00:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:10:40:36] (saves) encuesta multi
+[27/Dec/2017:10:40:36] (saves) error al actualizar avance
+[27/Dec/2017:10:40:36] (saves) ordenundefined
+[27/Dec/2017:10:40:36] (saves) 44
+[27/Dec/2017:10:40:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:10:48:41] (saves) encuesta multi
+[27/Dec/2017:10:48:41] (saves) error al actualizar avance
+[27/Dec/2017:10:48:41] (saves) ordenundefined
+[27/Dec/2017:10:48:41] (saves) 44
+[27/Dec/2017:10:48:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:11:24:44] (saves) encuesta multi
+[27/Dec/2017:11:24:44] (saves) error al actualizar avance
+[27/Dec/2017:11:24:44] (saves) ordenundefined
+[27/Dec/2017:11:24:44] (saves) 44
+[27/Dec/2017:11:24:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:11:44:52] (saves) encuesta multi
+[27/Dec/2017:11:44:52] (saves) error al actualizar avance
+[27/Dec/2017:11:44:52] (saves) ordenundefined
+[27/Dec/2017:11:44:52] (saves) 44
+[27/Dec/2017:11:44:52] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:11:59:32] (saves) encuesta multi
+[27/Dec/2017:11:59:32] (saves) error al actualizar avance
+[27/Dec/2017:11:59:32] (saves) ordenundefined
+[27/Dec/2017:11:59:32] (saves) 44
+[27/Dec/2017:11:59:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:12:33:39] (saves) encuesta multi
+[27/Dec/2017:12:33:39] (saves) error al actualizar avance
+[27/Dec/2017:12:33:39] (saves) ordenundefined
+[27/Dec/2017:12:33:39] (saves) 44
+[27/Dec/2017:12:33:39] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:12:56:10] (saves) encuesta multi
+[27/Dec/2017:12:56:10] (saves) error al actualizar avance
+[27/Dec/2017:12:56:10] (saves) ordenundefined
+[27/Dec/2017:12:56:10] (saves) 44
+[27/Dec/2017:12:56:10] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:12:58:32] (saves) encuesta multi
+[27/Dec/2017:12:58:32] (saves) error al actualizar avance
+[27/Dec/2017:12:58:32] (saves) ordenundefined
+[27/Dec/2017:12:58:32] (saves) 44
+[27/Dec/2017:12:58:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:13:09:31] (saves) encuesta multi
+[27/Dec/2017:13:09:31] (saves) error al actualizar avance
+[27/Dec/2017:13:09:31] (saves) ordenundefined
+[27/Dec/2017:13:09:31] (saves) 44
+[27/Dec/2017:13:09:31] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:13:33:52] (saves) encuesta multi
+[27/Dec/2017:13:33:52] (saves) error al actualizar avance
+[27/Dec/2017:13:33:52] (saves) ordenundefined
+[27/Dec/2017:13:33:52] (saves) 44
+[27/Dec/2017:13:33:52] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:14:40:33] (saves) encuesta multi
+[27/Dec/2017:14:40:33] (saves) error al actualizar avance
+[27/Dec/2017:14:40:33] (saves) ordenundefined
+[27/Dec/2017:14:40:33] (saves) 44
+[27/Dec/2017:14:40:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:14:42:36] (saves) encuesta multi
+[27/Dec/2017:14:42:36] (saves) error al actualizar avance
+[27/Dec/2017:14:42:36] (saves) ordenundefined
+[27/Dec/2017:14:42:36] (saves) 44
+[27/Dec/2017:14:42:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:14:46:34] (saves) encuesta multi
+[27/Dec/2017:14:46:34] (saves) error al actualizar avance
+[27/Dec/2017:14:46:34] (saves) ordenundefined
+[27/Dec/2017:14:46:34] (saves) 44
+[27/Dec/2017:14:46:34] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:15:06:33] (saves) encuesta multi
+[27/Dec/2017:15:06:33] (saves) error al actualizar avance
+[27/Dec/2017:15:06:33] (saves) ordenundefined
+[27/Dec/2017:15:06:33] (saves) 44
+[27/Dec/2017:15:06:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:15:12:22] (saves) encuesta multi
+[27/Dec/2017:15:12:22] (saves) error al actualizar avance
+[27/Dec/2017:15:12:22] (saves) ordenundefined
+[27/Dec/2017:15:12:22] (saves) 44
+[27/Dec/2017:15:12:22] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:15:13:28] (saves) encuesta multi
+[27/Dec/2017:15:13:28] (saves) error al actualizar avance
+[27/Dec/2017:15:13:28] (saves) ordenundefined
+[27/Dec/2017:15:13:28] (saves) 44
+[27/Dec/2017:15:13:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:15:21:57] (saves) encuesta multi
+[27/Dec/2017:15:21:57] (saves) error al actualizar avance
+[27/Dec/2017:15:21:57] (saves) ordenundefined
+[27/Dec/2017:15:21:57] (saves) 44
+[27/Dec/2017:15:21:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:15:38:07] (saves) encuesta multi
+[27/Dec/2017:15:38:07] (saves) error al actualizar avance
+[27/Dec/2017:15:38:07] (saves) ordenundefined
+[27/Dec/2017:15:38:07] (saves) 44
+[27/Dec/2017:15:38:07] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:16:13:29] (saves) encuesta multi
+[27/Dec/2017:16:13:29] (saves) error al actualizar avance
+[27/Dec/2017:16:13:29] (saves) ordenundefined
+[27/Dec/2017:16:13:29] (saves) 44
+[27/Dec/2017:16:13:29] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:16:25:18] (saves) encuesta multi
+[27/Dec/2017:16:25:18] (saves) error al actualizar avance
+[27/Dec/2017:16:25:18] (saves) ordenundefined
+[27/Dec/2017:16:25:18] (saves) 44
+[27/Dec/2017:16:25:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:16:35:27] (saves) encuesta multi
+[27/Dec/2017:16:35:27] (saves) error al actualizar avance
+[27/Dec/2017:16:35:27] (saves) ordenundefined
+[27/Dec/2017:16:35:27] (saves) 44
+[27/Dec/2017:16:35:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:16:54:51] (saves) encuesta multi
+[27/Dec/2017:16:54:51] (saves) error al actualizar avance
+[27/Dec/2017:16:54:51] (saves) ordenundefined
+[27/Dec/2017:16:54:51] (saves) 44
+[27/Dec/2017:16:54:51] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:17:08:14] (saves) encuesta multi
+[27/Dec/2017:17:08:14] (saves) error al actualizar avance
+[27/Dec/2017:17:08:14] (saves) ordenundefined
+[27/Dec/2017:17:08:14] (saves) 44
+[27/Dec/2017:17:08:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[27/Dec/2017:17:17:48] (saves) encuesta multi
+[27/Dec/2017:17:17:48] (saves) error al actualizar avance
+[27/Dec/2017:17:17:48] (saves) ordenundefined
+[27/Dec/2017:17:17:48] (saves) 44
+[27/Dec/2017:17:17:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:09:16:35] (saves) encuesta multi
+[28/Dec/2017:09:16:35] (saves) error al actualizar avance
+[28/Dec/2017:09:16:35] (saves) ordenundefined
+[28/Dec/2017:09:16:35] (saves) 44
+[28/Dec/2017:09:16:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:09:43:43] (saves) encuesta multi
+[28/Dec/2017:09:43:43] (saves) error al actualizar avance
+[28/Dec/2017:09:43:43] (saves) ordenundefined
+[28/Dec/2017:09:43:43] (saves) 44
+[28/Dec/2017:09:43:43] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:09:55:19] (saves) encuesta multi
+[28/Dec/2017:09:55:19] (saves) error al actualizar avance
+[28/Dec/2017:09:55:19] (saves) ordenundefined
+[28/Dec/2017:09:55:19] (saves) 44
+[28/Dec/2017:09:55:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:09:57:41] (saves) encuesta multi
+[28/Dec/2017:09:57:41] (saves) error al actualizar avance
+[28/Dec/2017:09:57:41] (saves) ordenundefined
+[28/Dec/2017:09:57:41] (saves) 44
+[28/Dec/2017:09:57:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:10:00:15] (saves) encuesta multi
+[28/Dec/2017:10:00:15] (saves) error al actualizar avance
+[28/Dec/2017:10:00:15] (saves) ordenundefined
+[28/Dec/2017:10:00:15] (saves) 44
+[28/Dec/2017:10:00:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:10:40:01] (saves) encuesta multi
+[28/Dec/2017:10:40:01] (saves) error al actualizar avance
+[28/Dec/2017:10:40:01] (saves) ordenundefined
+[28/Dec/2017:10:40:01] (saves) 44
+[28/Dec/2017:10:40:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:10:57:11] (saves) encuesta multi
+[28/Dec/2017:10:57:11] (saves) error al actualizar avance
+[28/Dec/2017:10:57:11] (saves) ordenundefined
+[28/Dec/2017:10:57:11] (saves) 44
+[28/Dec/2017:10:57:11] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:10:59:01] (saves) encuesta multi
+[28/Dec/2017:10:59:01] (saves) error al actualizar avance
+[28/Dec/2017:10:59:01] (saves) ordenundefined
+[28/Dec/2017:10:59:01] (saves) 44
+[28/Dec/2017:10:59:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:11:09:41] (saves) encuesta multi
+[28/Dec/2017:11:09:41] (saves) error al actualizar avance
+[28/Dec/2017:11:09:41] (saves) ordenundefined
+[28/Dec/2017:11:09:41] (saves) 44
+[28/Dec/2017:11:09:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:11:41:27] (saves) encuesta multi
+[28/Dec/2017:11:41:27] (saves) error al actualizar avance
+[28/Dec/2017:11:41:27] (saves) ordenundefined
+[28/Dec/2017:11:41:27] (saves) 44
+[28/Dec/2017:11:41:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:11:53:12] (saves) encuesta multi
+[28/Dec/2017:11:53:12] (saves) error al actualizar avance
+[28/Dec/2017:11:53:12] (saves) ordenundefined
+[28/Dec/2017:11:53:12] (saves) 44
+[28/Dec/2017:11:53:12] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:12:01:22] (saves) encuesta multi
+[28/Dec/2017:12:01:22] (saves) error al actualizar avance
+[28/Dec/2017:12:01:22] (saves) ordenundefined
+[28/Dec/2017:12:01:22] (saves) 44
+[28/Dec/2017:12:01:22] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:12:22:44] (saves) encuesta multi
+[28/Dec/2017:12:22:44] (saves) error al actualizar avance
+[28/Dec/2017:12:22:44] (saves) ordenundefined
+[28/Dec/2017:12:22:44] (saves) 44
+[28/Dec/2017:12:22:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:12:41:04] (saves) encuesta multi
+[28/Dec/2017:12:41:04] (saves) error al actualizar avance
+[28/Dec/2017:12:41:04] (saves) ordenundefined
+[28/Dec/2017:12:41:04] (saves) 44
+[28/Dec/2017:12:41:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:12:43:57] (saves) encuesta multi
+[28/Dec/2017:12:43:57] (saves) error al actualizar avance
+[28/Dec/2017:12:43:57] (saves) ordenundefined
+[28/Dec/2017:12:43:57] (saves) 44
+[28/Dec/2017:12:43:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:12:56:21] (saves) encuesta multi
+[28/Dec/2017:12:56:21] (saves) error al actualizar avance
+[28/Dec/2017:12:56:21] (saves) ordenundefined
+[28/Dec/2017:12:56:21] (saves) 44
+[28/Dec/2017:12:56:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:13:15:58] (saves) encuesta multi
+[28/Dec/2017:13:15:58] (saves) error al actualizar avance
+[28/Dec/2017:13:15:58] (saves) ordenundefined
+[28/Dec/2017:13:15:58] (saves) 44
+[28/Dec/2017:13:15:58] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:13:22:28] (saves) encuesta multi
+[28/Dec/2017:13:22:28] (saves) error al actualizar avance
+[28/Dec/2017:13:22:28] (saves) ordenundefined
+[28/Dec/2017:13:22:28] (saves) 44
+[28/Dec/2017:13:22:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:13:37:14] (saves) encuesta multi
+[28/Dec/2017:13:37:14] (saves) error al actualizar avance
+[28/Dec/2017:13:37:14] (saves) ordenundefined
+[28/Dec/2017:13:37:14] (saves) 44
+[28/Dec/2017:13:37:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:14:36:46] (saves) encuesta multi
+[28/Dec/2017:14:36:46] (saves) error al actualizar avance
+[28/Dec/2017:14:36:46] (saves) ordenundefined
+[28/Dec/2017:14:36:46] (saves) 44
+[28/Dec/2017:14:36:46] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:14:58:08] (saves) encuesta multi
+[28/Dec/2017:14:58:08] (saves) error al actualizar avance
+[28/Dec/2017:14:58:08] (saves) ordenundefined
+[28/Dec/2017:14:58:08] (saves) 44
+[28/Dec/2017:14:58:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:15:01:22] (saves) encuesta multi
+[28/Dec/2017:15:01:22] (saves) error al actualizar avance
+[28/Dec/2017:15:01:22] (saves) ordenundefined
+[28/Dec/2017:15:01:22] (saves) 44
+[28/Dec/2017:15:01:22] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:15:21:31] (saves) encuesta multi
+[28/Dec/2017:15:21:31] (saves) error al actualizar avance
+[28/Dec/2017:15:21:31] (saves) ordenundefined
+[28/Dec/2017:15:21:31] (saves) 44
+[28/Dec/2017:15:21:31] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:15:23:49] (saves) encuesta multi
+[28/Dec/2017:15:23:49] (saves) error al actualizar avance
+[28/Dec/2017:15:23:49] (saves) ordenundefined
+[28/Dec/2017:15:23:49] (saves) 44
+[28/Dec/2017:15:23:49] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:15:28:18] (saves) encuesta multi
+[28/Dec/2017:15:28:18] (saves) error al actualizar avance
+[28/Dec/2017:15:28:18] (saves) ordenundefined
+[28/Dec/2017:15:28:18] (saves) 44
+[28/Dec/2017:15:28:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:15:54:26] (saves) encuesta multi
+[28/Dec/2017:15:54:26] (saves) error al actualizar avance
+[28/Dec/2017:15:54:26] (saves) ordenundefined
+[28/Dec/2017:15:54:26] (saves) 44
+[28/Dec/2017:15:54:26] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:16:19:35] (saves) encuesta multi
+[28/Dec/2017:16:19:35] (saves) error al actualizar avance
+[28/Dec/2017:16:19:35] (saves) ordenundefined
+[28/Dec/2017:16:19:35] (saves) 44
+[28/Dec/2017:16:19:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:16:39:48] (saves) encuesta multi
+[28/Dec/2017:16:39:48] (saves) error al actualizar avance
+[28/Dec/2017:16:39:48] (saves) ordenundefined
+[28/Dec/2017:16:39:48] (saves) 44
+[28/Dec/2017:16:39:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:16:44:42] (saves) encuesta multi
+[28/Dec/2017:16:44:42] (saves) error al actualizar avance
+[28/Dec/2017:16:44:42] (saves) ordenundefined
+[28/Dec/2017:16:44:42] (saves) 44
+[28/Dec/2017:16:44:42] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:16:54:32] (saves) encuesta multi
+[28/Dec/2017:16:54:32] (saves) error al actualizar avance
+[28/Dec/2017:16:54:32] (saves) ordenundefined
+[28/Dec/2017:16:54:32] (saves) 44
+[28/Dec/2017:16:54:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:17:14:41] (saves) encuesta multi
+[28/Dec/2017:17:14:41] (saves) error al actualizar avance
+[28/Dec/2017:17:14:41] (saves) ordenundefined
+[28/Dec/2017:17:14:41] (saves) 44
+[28/Dec/2017:17:14:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:17:19:19] (saves) encuesta multi
+[28/Dec/2017:17:19:19] (saves) error al actualizar avance
+[28/Dec/2017:17:19:19] (saves) ordenundefined
+[28/Dec/2017:17:19:19] (saves) 44
+[28/Dec/2017:17:19:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:17:19:44] (saves) encuesta multi
+[28/Dec/2017:17:19:44] (saves) error al actualizar avance
+[28/Dec/2017:17:19:44] (saves) ordenundefined
+[28/Dec/2017:17:19:44] (saves) 44
+[28/Dec/2017:17:19:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:17:34:20] (saves) encuesta multi
+[28/Dec/2017:17:34:20] (saves) error al actualizar avance
+[28/Dec/2017:17:34:20] (saves) ordenundefined
+[28/Dec/2017:17:34:20] (saves) 44
+[28/Dec/2017:17:34:20] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:17:48:44] (saves) encuesta multi
+[28/Dec/2017:17:48:44] (saves) error al actualizar avance
+[28/Dec/2017:17:48:44] (saves) ordenundefined
+[28/Dec/2017:17:48:44] (saves) 44
+[28/Dec/2017:17:48:44] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:17:52:13] (saves) encuesta multi
+[28/Dec/2017:17:52:13] (saves) error al actualizar avance
+[28/Dec/2017:17:52:13] (saves) ordenundefined
+[28/Dec/2017:17:52:13] (saves) 44
+[28/Dec/2017:17:52:13] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[28/Dec/2017:18:18:01] (saves) encuesta multi
+[28/Dec/2017:18:18:01] (saves) error al actualizar avance
+[28/Dec/2017:18:18:01] (saves) ordenundefined
+[28/Dec/2017:18:18:01] (saves) 44
+[28/Dec/2017:18:18:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:10:32:30] (saves) encuesta multi
+[29/Dec/2017:10:32:30] (saves) error al actualizar avance
+[29/Dec/2017:10:32:30] (saves) ordenundefined
+[29/Dec/2017:10:32:30] (saves) 44
+[29/Dec/2017:10:32:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:11:14:21] (saves) encuesta multi
+[29/Dec/2017:11:14:21] (saves) error al actualizar avance
+[29/Dec/2017:11:14:21] (saves) ordenundefined
+[29/Dec/2017:11:14:21] (saves) 44
+[29/Dec/2017:11:14:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:11:21:41] (saves) encuesta multi
+[29/Dec/2017:11:21:41] (saves) error al actualizar avance
+[29/Dec/2017:11:21:41] (saves) ordenundefined
+[29/Dec/2017:11:21:41] (saves) 44
+[29/Dec/2017:11:21:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:11:21:54] (saves) encuesta multi
+[29/Dec/2017:11:21:54] (saves) error al actualizar avance
+[29/Dec/2017:11:21:54] (saves) ordenundefined
+[29/Dec/2017:11:21:54] (saves) 44
+[29/Dec/2017:11:21:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:11:29:04] (saves) encuesta multi
+[29/Dec/2017:11:29:04] (saves) error al actualizar avance
+[29/Dec/2017:11:29:04] (saves) ordenundefined
+[29/Dec/2017:11:29:04] (saves) 44
+[29/Dec/2017:11:29:04] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:12:26:28] (saves) encuesta multi
+[29/Dec/2017:12:26:28] (saves) error al actualizar avance
+[29/Dec/2017:12:26:28] (saves) ordenundefined
+[29/Dec/2017:12:26:28] (saves) 44
+[29/Dec/2017:12:26:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:12:29:33] (saves) encuesta multi
+[29/Dec/2017:12:29:33] (saves) error al actualizar avance
+[29/Dec/2017:12:29:33] (saves) ordenundefined
+[29/Dec/2017:12:29:33] (saves) 44
+[29/Dec/2017:12:29:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:12:29:52] (saves) encuesta multi
+[29/Dec/2017:12:29:52] (saves) error al actualizar avance
+[29/Dec/2017:12:29:52] (saves) ordenundefined
+[29/Dec/2017:12:29:52] (saves) 44
+[29/Dec/2017:12:29:52] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:12:40:33] (saves) encuesta multi
+[29/Dec/2017:12:40:33] (saves) error al actualizar avance
+[29/Dec/2017:12:40:33] (saves) ordenundefined
+[29/Dec/2017:12:40:33] (saves) 44
+[29/Dec/2017:12:40:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:13:14:12] (saves) encuesta multi
+[29/Dec/2017:13:14:12] (saves) error al actualizar avance
+[29/Dec/2017:13:14:12] (saves) ordenundefined
+[29/Dec/2017:13:14:12] (saves) 44
+[29/Dec/2017:13:14:12] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:13:19:37] (saves) encuesta multi
+[29/Dec/2017:13:19:37] (saves) error al actualizar avance
+[29/Dec/2017:13:19:37] (saves) ordenundefined
+[29/Dec/2017:13:19:37] (saves) 44
+[29/Dec/2017:13:19:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:13:27:28] (saves) encuesta multi
+[29/Dec/2017:13:27:28] (saves) error al actualizar avance
+[29/Dec/2017:13:27:28] (saves) ordenundefined
+[29/Dec/2017:13:27:28] (saves) 44
+[29/Dec/2017:13:27:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:14:29:15] (saves) encuesta multi
+[29/Dec/2017:14:29:15] (saves) error al actualizar avance
+[29/Dec/2017:14:29:15] (saves) ordenundefined
+[29/Dec/2017:14:29:15] (saves) 44
+[29/Dec/2017:14:29:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:14:51:15] (saves) encuesta multi
+[29/Dec/2017:14:51:15] (saves) error al actualizar avance
+[29/Dec/2017:14:51:15] (saves) ordenundefined
+[29/Dec/2017:14:51:15] (saves) 44
+[29/Dec/2017:14:51:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:15:19:57] (saves) encuesta multi
+[29/Dec/2017:15:19:57] (saves) error al actualizar avance
+[29/Dec/2017:15:19:57] (saves) ordenundefined
+[29/Dec/2017:15:19:57] (saves) 44
+[29/Dec/2017:15:19:57] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:15:25:19] (saves) encuesta multi
+[29/Dec/2017:15:25:19] (saves) error al actualizar avance
+[29/Dec/2017:15:25:19] (saves) ordenundefined
+[29/Dec/2017:15:25:19] (saves) 44
+[29/Dec/2017:15:25:19] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:15:45:33] (saves) encuesta multi
+[29/Dec/2017:15:45:33] (saves) error al actualizar avance
+[29/Dec/2017:15:45:33] (saves) ordenundefined
+[29/Dec/2017:15:45:33] (saves) 44
+[29/Dec/2017:15:45:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:16:10:17] (saves) encuesta multi
+[29/Dec/2017:16:10:17] (saves) error al actualizar avance
+[29/Dec/2017:16:10:17] (saves) ordenundefined
+[29/Dec/2017:16:10:17] (saves) 44
+[29/Dec/2017:16:10:17] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:16:25:30] (saves) encuesta multi
+[29/Dec/2017:16:25:30] (saves) error al actualizar avance
+[29/Dec/2017:16:25:30] (saves) ordenundefined
+[29/Dec/2017:16:25:30] (saves) 44
+[29/Dec/2017:16:25:30] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:17:09:08] (saves) encuesta multi
+[29/Dec/2017:17:09:08] (saves) error al actualizar avance
+[29/Dec/2017:17:09:08] (saves) ordenundefined
+[29/Dec/2017:17:09:08] (saves) 44
+[29/Dec/2017:17:09:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:17:20:33] (saves) encuesta multi
+[29/Dec/2017:17:20:33] (saves) error al actualizar avance
+[29/Dec/2017:17:20:33] (saves) ordenundefined
+[29/Dec/2017:17:20:33] (saves) 44
+[29/Dec/2017:17:20:33] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:17:23:05] (saves) encuesta multi
+[29/Dec/2017:17:23:05] (saves) error al actualizar avance
+[29/Dec/2017:17:23:05] (saves) ordenundefined
+[29/Dec/2017:17:23:05] (saves) 44
+[29/Dec/2017:17:23:05] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:17:26:41] (saves) encuesta multi
+[29/Dec/2017:17:26:41] (saves) error al actualizar avance
+[29/Dec/2017:17:26:41] (saves) ordenundefined
+[29/Dec/2017:17:26:41] (saves) 44
+[29/Dec/2017:17:26:41] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:17:44:03] (saves) encuesta multi
+[29/Dec/2017:17:44:03] (saves) error al actualizar avance
+[29/Dec/2017:17:44:03] (saves) ordenundefined
+[29/Dec/2017:17:44:03] (saves) 44
+[29/Dec/2017:17:44:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[29/Dec/2017:17:59:23] (saves) encuesta multi
+[29/Dec/2017:17:59:23] (saves) error al actualizar avance
+[29/Dec/2017:17:59:23] (saves) ordenundefined
+[29/Dec/2017:17:59:23] (saves) 44
+[29/Dec/2017:17:59:23] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:10:04:06] (saves) encuesta multi
+[30/Dec/2017:10:04:06] (saves) error al actualizar avance
+[30/Dec/2017:10:04:06] (saves) ordenundefined
+[30/Dec/2017:10:04:06] (saves) 44
+[30/Dec/2017:10:04:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:10:22:35] (saves) encuesta multi
+[30/Dec/2017:10:22:35] (saves) error al actualizar avance
+[30/Dec/2017:10:22:35] (saves) ordenundefined
+[30/Dec/2017:10:22:35] (saves) 44
+[30/Dec/2017:10:22:35] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:10:24:07] (saves) encuesta multi
+[30/Dec/2017:10:24:07] (saves) error al actualizar avance
+[30/Dec/2017:10:24:07] (saves) ordenundefined
+[30/Dec/2017:10:24:07] (saves) 44
+[30/Dec/2017:10:24:07] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:10:37:38] (saves) encuesta multi
+[30/Dec/2017:10:37:38] (saves) error al actualizar avance
+[30/Dec/2017:10:37:38] (saves) ordenundefined
+[30/Dec/2017:10:37:38] (saves) 44
+[30/Dec/2017:10:37:38] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:10:53:53] (saves) encuesta multi
+[30/Dec/2017:10:53:53] (saves) error al actualizar avance
+[30/Dec/2017:10:53:53] (saves) ordenundefined
+[30/Dec/2017:10:53:53] (saves) 44
+[30/Dec/2017:10:53:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:11:27:10] (saves) encuesta multi
+[30/Dec/2017:11:27:10] (saves) error al actualizar avance
+[30/Dec/2017:11:27:10] (saves) ordenundefined
+[30/Dec/2017:11:27:10] (saves) 44
+[30/Dec/2017:11:27:10] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:11:43:55] (saves) encuesta multi
+[30/Dec/2017:11:43:55] (saves) error al actualizar avance
+[30/Dec/2017:11:43:55] (saves) ordenundefined
+[30/Dec/2017:11:43:55] (saves) 44
+[30/Dec/2017:11:43:55] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:11:48:01] (saves) encuesta multi
+[30/Dec/2017:11:48:01] (saves) error al actualizar avance
+[30/Dec/2017:11:48:01] (saves) ordenundefined
+[30/Dec/2017:11:48:01] (saves) 44
+[30/Dec/2017:11:48:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:12:04:14] (saves) encuesta multi
+[30/Dec/2017:12:04:14] (saves) error al actualizar avance
+[30/Dec/2017:12:04:14] (saves) ordenundefined
+[30/Dec/2017:12:04:14] (saves) 44
+[30/Dec/2017:12:04:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:12:11:56] (saves) encuesta multi
+[30/Dec/2017:12:11:56] (saves) error al actualizar avance
+[30/Dec/2017:12:11:56] (saves) ordenundefined
+[30/Dec/2017:12:11:56] (saves) 44
+[30/Dec/2017:12:11:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:12:48:15] (saves) encuesta multi
+[30/Dec/2017:12:48:15] (saves) error al actualizar avance
+[30/Dec/2017:12:48:15] (saves) ordenundefined
+[30/Dec/2017:12:48:15] (saves) 44
+[30/Dec/2017:12:48:15] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:12:58:32] (saves) encuesta multi
+[30/Dec/2017:12:58:32] (saves) error al actualizar avance
+[30/Dec/2017:12:58:32] (saves) ordenundefined
+[30/Dec/2017:12:58:32] (saves) 44
+[30/Dec/2017:12:58:32] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:13:36:27] (saves) encuesta multi
+[30/Dec/2017:13:36:27] (saves) error al actualizar avance
+[30/Dec/2017:13:36:27] (saves) ordenundefined
+[30/Dec/2017:13:36:27] (saves) 44
+[30/Dec/2017:13:36:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[30/Dec/2017:13:49:03] (saves) encuesta multi
+[30/Dec/2017:13:49:03] (saves) error al actualizar avance
+[30/Dec/2017:13:49:03] (saves) ordenundefined
+[30/Dec/2017:13:49:03] (saves) 44
+[30/Dec/2017:13:49:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:09:20:28] (saves) encuesta multi
+[02/Jan/2018:09:20:28] (saves) error al actualizar avance
+[02/Jan/2018:09:20:28] (saves) ordenundefined
+[02/Jan/2018:09:20:28] (saves) 44
+[02/Jan/2018:09:20:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:09:29:54] (saves) encuesta multi
+[02/Jan/2018:09:29:54] (saves) error al actualizar avance
+[02/Jan/2018:09:29:54] (saves) ordenundefined
+[02/Jan/2018:09:29:54] (saves) 44
+[02/Jan/2018:09:29:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:09:41:06] (saves) encuesta multi
+[02/Jan/2018:09:41:06] (saves) error al actualizar avance
+[02/Jan/2018:09:41:06] (saves) ordenundefined
+[02/Jan/2018:09:41:06] (saves) 44
+[02/Jan/2018:09:41:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:09:43:37] (saves) encuesta multi
+[02/Jan/2018:09:43:37] (saves) error al actualizar avance
+[02/Jan/2018:09:43:37] (saves) ordenundefined
+[02/Jan/2018:09:43:37] (saves) 44
+[02/Jan/2018:09:43:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:09:55:45] (saves) encuesta multi
+[02/Jan/2018:09:55:45] (saves) error al actualizar avance
+[02/Jan/2018:09:55:45] (saves) ordenundefined
+[02/Jan/2018:09:55:45] (saves) 44
+[02/Jan/2018:09:55:45] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:10:03:23] (saves) encuesta multi
+[02/Jan/2018:10:03:23] (saves) error al actualizar avance
+[02/Jan/2018:10:03:23] (saves) ordenundefined
+[02/Jan/2018:10:03:23] (saves) 44
+[02/Jan/2018:10:03:23] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:10:05:14] (saves) encuesta multi
+[02/Jan/2018:10:05:14] (saves) error al actualizar avance
+[02/Jan/2018:10:05:14] (saves) ordenundefined
+[02/Jan/2018:10:05:14] (saves) 44
+[02/Jan/2018:10:05:14] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:10:25:46] (saves) encuesta multi
+[02/Jan/2018:10:25:46] (saves) error al actualizar avance
+[02/Jan/2018:10:25:46] (saves) ordenundefined
+[02/Jan/2018:10:25:46] (saves) 44
+[02/Jan/2018:10:25:46] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:10:32:21] (saves) encuesta multi
+[02/Jan/2018:10:32:21] (saves) error al actualizar avance
+[02/Jan/2018:10:32:21] (saves) ordenundefined
+[02/Jan/2018:10:32:21] (saves) 44
+[02/Jan/2018:10:32:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:10:37:56] (saves) encuesta multi
+[02/Jan/2018:10:37:56] (saves) error al actualizar avance
+[02/Jan/2018:10:37:56] (saves) ordenundefined
+[02/Jan/2018:10:37:56] (saves) 44
+[02/Jan/2018:10:37:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:10:51:36] (saves) encuesta multi
+[02/Jan/2018:10:51:36] (saves) error al actualizar avance
+[02/Jan/2018:10:51:36] (saves) ordenundefined
+[02/Jan/2018:10:51:36] (saves) 44
+[02/Jan/2018:10:51:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:10:58:07] (saves) encuesta multi
+[02/Jan/2018:10:58:07] (saves) error al actualizar avance
+[02/Jan/2018:10:58:07] (saves) ordenundefined
+[02/Jan/2018:10:58:07] (saves) 44
+[02/Jan/2018:10:58:07] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:11:01:25] (saves) encuesta multi
+[02/Jan/2018:11:01:25] (saves) error al actualizar avance
+[02/Jan/2018:11:01:25] (saves) ordenundefined
+[02/Jan/2018:11:01:25] (saves) 44
+[02/Jan/2018:11:01:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:11:22:56] (saves) encuesta multi
+[02/Jan/2018:11:22:56] (saves) error al actualizar avance
+[02/Jan/2018:11:22:56] (saves) ordenundefined
+[02/Jan/2018:11:22:56] (saves) 44
+[02/Jan/2018:11:22:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:11:26:55] (saves) encuesta multi
+[02/Jan/2018:11:26:55] (saves) error al actualizar avance
+[02/Jan/2018:11:26:55] (saves) ordenundefined
+[02/Jan/2018:11:26:55] (saves) 44
+[02/Jan/2018:11:26:55] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:11:30:43] (saves) encuesta multi
+[02/Jan/2018:11:30:43] (saves) error al actualizar avance
+[02/Jan/2018:11:30:43] (saves) ordenundefined
+[02/Jan/2018:11:30:43] (saves) 44
+[02/Jan/2018:11:30:43] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:11:38:02] (saves) encuesta multi
+[02/Jan/2018:11:38:02] (saves) error al actualizar avance
+[02/Jan/2018:11:38:02] (saves) ordenundefined
+[02/Jan/2018:11:38:02] (saves) 44
+[02/Jan/2018:11:38:02] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:11:52:56] (saves) encuesta multi
+[02/Jan/2018:11:52:56] (saves) error al actualizar avance
+[02/Jan/2018:11:52:56] (saves) ordenundefined
+[02/Jan/2018:11:52:56] (saves) 44
+[02/Jan/2018:11:52:56] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:11:56:03] (saves) encuesta multi
+[02/Jan/2018:11:56:03] (saves) error al actualizar avance
+[02/Jan/2018:11:56:03] (saves) ordenundefined
+[02/Jan/2018:11:56:03] (saves) 44
+[02/Jan/2018:11:56:03] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:12:15:31] (saves) encuesta multi
+[02/Jan/2018:12:15:31] (saves) error al actualizar avance
+[02/Jan/2018:12:15:31] (saves) ordenundefined
+[02/Jan/2018:12:15:31] (saves) 44
+[02/Jan/2018:12:15:31] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:12:16:09] (saves) encuesta multi
+[02/Jan/2018:12:16:09] (saves) error al actualizar avance
+[02/Jan/2018:12:16:09] (saves) ordenundefined
+[02/Jan/2018:12:16:09] (saves) 44
+[02/Jan/2018:12:16:09] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:12:18:21] (saves) encuesta multi
+[02/Jan/2018:12:18:21] (saves) error al actualizar avance
+[02/Jan/2018:12:18:21] (saves) ordenundefined
+[02/Jan/2018:12:18:21] (saves) 44
+[02/Jan/2018:12:18:21] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:12:29:37] (saves) encuesta multi
+[02/Jan/2018:12:29:37] (saves) error al actualizar avance
+[02/Jan/2018:12:29:37] (saves) ordenundefined
+[02/Jan/2018:12:29:37] (saves) 44
+[02/Jan/2018:12:29:37] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:12:51:08] (saves) encuesta multi
+[02/Jan/2018:12:51:08] (saves) error al actualizar avance
+[02/Jan/2018:12:51:08] (saves) ordenundefined
+[02/Jan/2018:12:51:08] (saves) 44
+[02/Jan/2018:12:51:08] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:12:52:28] (saves) encuesta multi
+[02/Jan/2018:12:52:28] (saves) error al actualizar avance
+[02/Jan/2018:12:52:28] (saves) ordenundefined
+[02/Jan/2018:12:52:28] (saves) 44
+[02/Jan/2018:12:52:28] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:12:53:29] (saves) encuesta multi
+[02/Jan/2018:12:53:29] (saves) error al actualizar avance
+[02/Jan/2018:12:53:29] (saves) ordenundefined
+[02/Jan/2018:12:53:29] (saves) 44
+[02/Jan/2018:12:53:29] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:13:31:18] (saves) encuesta multi
+[02/Jan/2018:13:31:18] (saves) error al actualizar avance
+[02/Jan/2018:13:31:18] (saves) ordenundefined
+[02/Jan/2018:13:31:18] (saves) 44
+[02/Jan/2018:13:31:18] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:13:32:17] (saves) encuesta multi
+[02/Jan/2018:13:32:17] (saves) error al actualizar avance
+[02/Jan/2018:13:32:17] (saves) ordenundefined
+[02/Jan/2018:13:32:17] (saves) 44
+[02/Jan/2018:13:32:17] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:14:29:53] (saves) encuesta multi
+[02/Jan/2018:14:29:53] (saves) error al actualizar avance
+[02/Jan/2018:14:29:53] (saves) ordenundefined
+[02/Jan/2018:14:29:53] (saves) 44
+[02/Jan/2018:14:29:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:14:41:50] (saves) encuesta multi
+[02/Jan/2018:14:41:50] (saves) error al actualizar avance
+[02/Jan/2018:14:41:50] (saves) ordenundefined
+[02/Jan/2018:14:41:50] (saves) 44
+[02/Jan/2018:14:41:50] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:14:49:17] (saves) encuesta multi
+[02/Jan/2018:14:49:17] (saves) error al actualizar avance
+[02/Jan/2018:14:49:17] (saves) ordenundefined
+[02/Jan/2018:14:49:17] (saves) 44
+[02/Jan/2018:14:49:17] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:14:52:24] (saves) encuesta multi
+[02/Jan/2018:14:52:24] (saves) error al actualizar avance
+[02/Jan/2018:14:52:24] (saves) ordenundefined
+[02/Jan/2018:14:52:24] (saves) 44
+[02/Jan/2018:14:52:24] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:15:24:54] (saves) encuesta multi
+[02/Jan/2018:15:24:54] (saves) error al actualizar avance
+[02/Jan/2018:15:24:54] (saves) ordenundefined
+[02/Jan/2018:15:24:54] (saves) 44
+[02/Jan/2018:15:24:54] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:15:38:53] (saves) encuesta multi
+[02/Jan/2018:15:38:53] (saves) error al actualizar avance
+[02/Jan/2018:15:38:53] (saves) ordenundefined
+[02/Jan/2018:15:38:53] (saves) 44
+[02/Jan/2018:15:38:53] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:15:56:36] (saves) encuesta multi
+[02/Jan/2018:15:56:36] (saves) error al actualizar avance
+[02/Jan/2018:15:56:36] (saves) ordenundefined
+[02/Jan/2018:15:56:36] (saves) 44
+[02/Jan/2018:15:56:36] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:16:06:01] (saves) encuesta multi
+[02/Jan/2018:16:06:01] (saves) error al actualizar avance
+[02/Jan/2018:16:06:01] (saves) ordenundefined
+[02/Jan/2018:16:06:01] (saves) 44
+[02/Jan/2018:16:06:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:16:25:01] (saves) encuesta multi
+[02/Jan/2018:16:25:01] (saves) error al actualizar avance
+[02/Jan/2018:16:25:01] (saves) ordenundefined
+[02/Jan/2018:16:25:01] (saves) 44
+[02/Jan/2018:16:25:01] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:16:27:38] (saves) encuesta multi
+[02/Jan/2018:16:27:38] (saves) error al actualizar avance
+[02/Jan/2018:16:27:38] (saves) ordenundefined
+[02/Jan/2018:16:27:38] (saves) 44
+[02/Jan/2018:16:27:38] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:16:33:27] (saves) encuesta multi
+[02/Jan/2018:16:33:27] (saves) error al actualizar avance
+[02/Jan/2018:16:33:27] (saves) ordenundefined
+[02/Jan/2018:16:33:27] (saves) 44
+[02/Jan/2018:16:33:27] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:16:47:06] (saves) encuesta multi
+[02/Jan/2018:16:47:06] (saves) error al actualizar avance
+[02/Jan/2018:16:47:06] (saves) ordenundefined
+[02/Jan/2018:16:47:06] (saves) 44
+[02/Jan/2018:16:47:06] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:16:53:38] (saves) encuesta multi
+[02/Jan/2018:16:53:38] (saves) error al actualizar avance
+[02/Jan/2018:16:53:38] (saves) ordenundefined
+[02/Jan/2018:16:53:38] (saves) 44
+[02/Jan/2018:16:53:38] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:17:09:59] (saves) encuesta multi
+[02/Jan/2018:17:09:59] (saves) error al actualizar avance
+[02/Jan/2018:17:09:59] (saves) ordenundefined
+[02/Jan/2018:17:09:59] (saves) 44
+[02/Jan/2018:17:09:59] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:17:15:25] (saves) encuesta multi
+[02/Jan/2018:17:15:25] (saves) error al actualizar avance
+[02/Jan/2018:17:15:25] (saves) ordenundefined
+[02/Jan/2018:17:15:25] (saves) 44
+[02/Jan/2018:17:15:25] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:17:32:48] (saves) encuesta multi
+[02/Jan/2018:17:32:48] (saves) error al actualizar avance
+[02/Jan/2018:17:32:48] (saves) ordenundefined
+[02/Jan/2018:17:32:48] (saves) 44
+[02/Jan/2018:17:32:48] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 
+[02/Jan/2018:17:38:29] (saves) encuesta multi
+[02/Jan/2018:17:38:29] (saves) error al actualizar avance
+[02/Jan/2018:17:38:29] (saves) ordenundefined
+[02/Jan/2018:17:38:29] (saves) 44
+[02/Jan/2018:17:38:29] (saves) SELECT avance FROM procesos WHERE numodt='undefined' AND id_orden=undefined 

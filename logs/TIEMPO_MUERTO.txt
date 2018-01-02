@@ -141,55 +141,304 @@
 [07/Dec/2017:11:11:36] (saves) se registro un tiempo muerto
 [07/Dec/2017:12:10:43] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:19:25','07-12-2017','10',16,'D2470',null,'ajuste','11:31:11',2230)
 [07/Dec/2017:12:10:43] (saves) se registro un tiempo muerto
-[07/Dec/2017:12:52:11] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:47','07-12-2017','10',16,'D2470',null,'ajuste','12:27:18',2234)
-[07/Dec/2017:12:52:11] (saves) se registro un tiempo muerto
-[07/Dec/2017:15:35:29] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:41','07-12-2017','10',16,'D2471',null,'ajuste','',2244)
-[07/Dec/2017:15:35:29] (saves) se registro un tiempo muerto
-[07/Dec/2017:15:36:06] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'01:28:19','07-12-2017','16',11,'E2695',null,'ajuste','13:07:26',2239)
-[07/Dec/2017:15:36:06] (saves) se registro un tiempo muerto
-[07/Dec/2017:15:58:40] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:16','07-12-2017','20',14,'F1696',null,'ajuste','15:35:37',2246)
-[07/Dec/2017:15:58:40] (saves) se registro un tiempo muerto
-[07/Dec/2017:17:18:02] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:01:22','07-12-2017','21',8,'B6216V',null,'ajuste','16:56:36',2254)
-[07/Dec/2017:17:18:02] (saves) se registro un tiempo muerto
-[07/Dec/2017:17:29:30] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:04','07-12-2017','10',16,'D2471',null,'ajuste','17:07:22',2256)
-[07/Dec/2017:17:29:30] (saves) se registro un tiempo muerto
-[07/Dec/2017:17:35:29] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:10:27','07-12-2017','20',14,'M0768',null,'ajuste','17:04:39',2255)
-[07/Dec/2017:17:35:29] (saves) se registro un tiempo muerto
-[08/Dec/2017:10:09:34] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:17:06','08-12-2017','16',11,'B6179V1',null,'ajuste','08:52:19',2262)
-[08/Dec/2017:10:09:34] (saves) se registro un tiempo muerto
-[08/Dec/2017:10:24:48] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:27','08-12-2017','10',16,'I3485',null,'ajuste','09:56:15',2264)
-[08/Dec/2017:10:24:48] (saves) se registro un tiempo muerto
-[08/Dec/2017:12:42:29] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:44:28','08-12-2017','16',11,'B6179V1',null,'ajuste','10:57:48',2267)
-[08/Dec/2017:12:42:29] (saves) se registro un tiempo muerto
-[08/Dec/2017:14:45:15] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:29:57','08-12-2017','10',16,'I3536',null,'ajuste','13:09:30',2276)
-[08/Dec/2017:14:45:15] (saves) se registro un tiempo muerto
-[08/Dec/2017:16:35:34] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:59:57','08-12-2017','10',16,'H3892',null,'ajuste','15:15:39',2282)
-[08/Dec/2017:16:35:34] (saves) se registro un tiempo muerto
-[08/Dec/2017:17:24:06] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'01:11:13','08-12-2017','16',11,'E538D',null,'ajuste','15:12:01',2281)
-[08/Dec/2017:17:24:06] (saves) se registro un tiempo muerto
-[09/Dec/2017:11:02:23] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'01:07:39','09-12-2017','16',11,'B6179V1',null,'ajuste','08:54:20',2290)
-[09/Dec/2017:11:02:23] (saves) se registro un tiempo muerto
-[11/Dec/2017:09:27:55] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:00','11-12-2017','10',16,'E2696',null,'ajuste','09:00:50',2304)
-[11/Dec/2017:09:27:55] (saves) se registro un tiempo muerto
-[11/Dec/2017:10:12:45] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:19','11-12-2017','10',16,'E2696',null,'ajuste','09:45:22',2308)
-[11/Dec/2017:10:12:45] (saves) se registro un tiempo muerto
-[11/Dec/2017:10:49:47] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:26:02','11-12-2017','',,'I3491',null,'ajuste','09:22:38',2307)
-[11/Dec/2017:11:20:36] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:26:30','11-12-2017','',,'E2698',null,'ajuste','10:33:57',2310)
-[11/Dec/2017:11:26:05] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:01:20','11-12-2017','20',14,'B6272V1',null,'ajuste','11:04:43',2314)
-[11/Dec/2017:11:26:05] (saves) se registro un tiempo muerto
-[11/Dec/2017:12:29:51] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:34:24','11-12-2017','10',16,'E2698',null,'ajuste','11:35:17',2317)
-[11/Dec/2017:12:29:51] (saves) se registro un tiempo muerto
-[11/Dec/2017:12:50:59] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:39:07','11-12-2017','16',11,'I3491',null,'ajuste','11:11:40',2315)
-[11/Dec/2017:12:50:59] (saves) se registro un tiempo muerto
-[11/Dec/2017:13:21:56] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:53','11-12-2017','10',16,'H4585',null,'ajuste','12:53:56',2322)
-[11/Dec/2017:13:21:56] (saves) se registro un tiempo muerto
-[11/Dec/2017:14:25:20] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:42:54','11-12-2017','21',8,'H4601',null,'ajuste','13:22:32',2323)
-[11/Dec/2017:14:25:20] (saves) se registro un tiempo muerto
-[11/Dec/2017:14:38:49] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:11:27','11-12-2017','10',16,'L1076',null,'ajuste','13:32:57',2326)
-[11/Dec/2017:14:38:49] (saves) se registro un tiempo muerto
-[11/Dec/2017:15:39:30] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:21:24','11-12-2017','10',16,'H4553',null,'ajuste','14:57:59',2329)
-[11/Dec/2017:15:39:30] (saves) se registro un tiempo muerto
-[11/Dec/2017:17:05:34] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:01:06','11-12-2017','10',16,'D2487',null,'ajuste','16:44:25',2339)
-[11/Dec/2017:17:05:34] (saves) se registro un tiempo muerto
-[11/Dec/2017:17:14:05] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:16:31','11-12-2017','16',11,'H3491',null,'ajuste','15:57:25',2334)
-[11/Dec/2017:17:14:05] (saves) se registro un tiempo muerto
+[07/Dec/2017:12:59:54] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:03:46','07-12-2017','10',21,'RGGG',null,'ajuste','12:35:55',2028)
+[07/Dec/2017:12:59:54] (saves) se registro un tiempo muerto
+[07/Dec/2017:14:43:19] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'01:19:24','07-12-2017','10',21,'BBBB',null,'ajuste','13:02:43',2238)
+[07/Dec/2017:14:43:19] (saves) se registro un tiempo muerto
+[07/Dec/2017:15:07:07] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:21','07-12-2017','10',21,'GHJK',null,'ajuste','14:43:57',2029)
+[07/Dec/2017:15:07:07] (saves) se registro un tiempo muerto
+[11/Dec/2017:10:21:51] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:29:42','11-12-2017','10',16,'GGGG',null,'ajuste','09:32:08',2275)
+[11/Dec/2017:10:21:51] (saves) se registro un tiempo muerto
+[11/Dec/2017:10:49:04] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:06:11','11-12-2017','10',16,'NNNGG',null,'ajuste','10:22:52',2276)
+[11/Dec/2017:10:49:04] (saves) se registro un tiempo muerto
+[11/Dec/2017:12:28:52] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:05:55','11-12-2017','10',16,'HGFRT',null,'ajuste','12:01:19',2280)
+[11/Dec/2017:12:28:52] (saves) se registro un tiempo muerto
+[11/Dec/2017:13:43:36] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:03:40','11-12-2017','10',16,'BUHH',null,'ajuste','',2284)
+[11/Dec/2017:13:43:36] (saves) se registro un tiempo muerto
+[11/Dec/2017:15:15:05] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'01:09:19','11-12-2017','10',16,'TTT',null,'ajuste','',2285)
+[11/Dec/2017:15:15:05] (saves) se registro un tiempo muerto
+[11/Dec/2017:16:34:38] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:14:18','11-12-2017','10',16,'HHKK',null,'ajuste','16:00:20',2287)
+[11/Dec/2017:16:34:38] (saves) se registro un tiempo muerto
+[11/Dec/2017:17:09:24] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:14:30','11-12-2017','10',16,'GGJJ',null,'ajuste','16:34:54',2288)
+[11/Dec/2017:17:09:24] (saves) se registro un tiempo muerto
+[12/Dec/2017:09:41:28] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:25:22','12-12-2017','21',8,'H4601',null,'ajuste','08:56:13',2350)
+[12/Dec/2017:09:41:28] (saves) se registro un tiempo muerto
+[12/Dec/2017:10:46:50] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:54:30','12-12-2017','16',11,'E269O',null,'ajuste','08:52:00',2349)
+[12/Dec/2017:10:46:50] (saves) se registro un tiempo muerto
+[12/Dec/2017:11:51:34] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:16:53','12-12-2017','21',8,'H4601',null,'ajuste','11:14:48',2358)
+[12/Dec/2017:11:51:34] (saves) se registro un tiempo muerto
+[12/Dec/2017:12:57:17] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:15:36','12-12-2017','10',16,'H4340',null,'ajuste','',2361)
+[12/Dec/2017:12:57:17] (saves) se registro un tiempo muerto
+[12/Dec/2017:14:43:34] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:01:55','12-12-2017','10',16,'H4340',null,'ajuste','',2365)
+[12/Dec/2017:14:43:34] (saves) se registro un tiempo muerto
+[12/Dec/2017:16:12:33] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:38','12-12-2017','10',16,'H4340',null,'ajuste','',2371)
+[12/Dec/2017:16:12:33] (saves) se registro un tiempo muerto
+[12/Dec/2017:17:11:27] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:48','12-12-2017','10',16,'H4539',null,'ajuste','16:48:36',2375)
+[12/Dec/2017:17:11:27] (saves) se registro un tiempo muerto
+[12/Dec/2017:17:34:43] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:18','12-12-2017','20',14,'G0933E1',null,'ajuste','17:12:24',2377)
+[12/Dec/2017:17:34:43] (saves) se registro un tiempo muerto
+[12/Dec/2017:18:25:53] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:25','12-12-2017','20',14,'B6272V1',null,'ajuste','18:05:26',2381)
+[12/Dec/2017:18:25:53] (saves) se registro un tiempo muerto
+[13/Dec/2017:11:40:18] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:13:33','13-12-2017','10',16,'G0950',null,'ajuste','',2392)
+[13/Dec/2017:11:40:18] (saves) se registro un tiempo muerto
+[13/Dec/2017:11:45:20] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:33:10','13-12-2017','16',11,'B6359',null,'ajuste','10:11:57',2389)
+[13/Dec/2017:11:45:20] (saves) se registro un tiempo muerto
+[13/Dec/2017:12:27:06] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:53','13-12-2017','10',16,'D2489',null,'ajuste','11:59:09',2397)
+[13/Dec/2017:12:27:06] (saves) se registro un tiempo muerto
+[13/Dec/2017:13:11:53] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:56','13-12-2017','21',8,'H4456B',null,'ajuste','',2401)
+[13/Dec/2017:13:11:53] (saves) se registro un tiempo muerto
+[13/Dec/2017:14:21:49] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:29','13-12-2017','10',16,'D2489',null,'ajuste','13:09:31',2402)
+[13/Dec/2017:14:21:49] (saves) se registro un tiempo muerto
+[13/Dec/2017:15:00:08] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:54:58','13-12-2017','16',11,'B6359',null,'ajuste','12:13:24',2399)
+[13/Dec/2017:15:00:08] (saves) se registro un tiempo muerto
+[13/Dec/2017:17:13:35] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:19:15','13-12-2017','16',11,'B6359',null,'ajuste','15:53:56',2410)
+[13/Dec/2017:17:13:35] (saves) se registro un tiempo muerto
+[14/Dec/2017:11:51:12] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:22:28','14-12-2017','16',11,'B6377',null,'ajuste','09:44:18',2431)
+[14/Dec/2017:11:51:12] (saves) se registro un tiempo muerto
+[14/Dec/2017:11:55:04] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:06:03','14-12-2017','10',16,'J1118',null,'ajuste','11:28:57',2438)
+[14/Dec/2017:11:55:04] (saves) se registro un tiempo muerto
+[14/Dec/2017:12:50:32] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:49:01','14-12-2017','20',14,'E2697',null,'ajuste','11:41:32',2439)
+[14/Dec/2017:12:50:32] (saves) se registro un tiempo muerto
+[14/Dec/2017:16:24:30] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:33:09','14-12-2017','16',11,'B6377',null,'ajuste','14:51:09',2448)
+[14/Dec/2017:16:24:30] (saves) se registro un tiempo muerto
+[15/Dec/2017:09:25:21] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:56','15-12-2017','10',16,'J1118',null,'ajuste','09:02:20',2459)
+[15/Dec/2017:09:25:21] (saves) se registro un tiempo muerto
+[15/Dec/2017:10:42:02] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:14:45','15-12-2017','10',16,'D2481',null,'ajuste','10:07:09',2461)
+[15/Dec/2017:10:42:02] (saves) se registro un tiempo muerto
+[15/Dec/2017:14:20:31] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:24:51','15-12-2017','16',11,'D2491',null,'ajuste','12:55:30',2473)
+[15/Dec/2017:14:20:31] (saves) se registro un tiempo muerto
+[15/Dec/2017:14:32:55] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:03:53','15-12-2017','10',16,'F1544',null,'ajuste','',2472)
+[15/Dec/2017:14:32:55] (saves) se registro un tiempo muerto
+[15/Dec/2017:15:20:26] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:39:30','15-12-2017','20',14,'B6400',null,'ajuste','13:36:56',2475)
+[15/Dec/2017:15:20:26] (saves) se registro un tiempo muerto
+[15/Dec/2017:15:52:59] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:14:50','15-12-2017','16',11,'D2491',null,'ajuste','14:37:58',2476)
+[15/Dec/2017:15:52:59] (saves) se registro un tiempo muerto
+[15/Dec/2017:16:05:50] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:14:33','15-12-2017','20',14,'B6400',null,'ajuste','15:31:11',2480)
+[15/Dec/2017:16:05:50] (saves) se registro un tiempo muerto
+[15/Dec/2017:17:05:39] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:11:06','15-12-2017','10',16,'D2482',null,'ajuste','16:34:26',2484)
+[15/Dec/2017:17:05:39] (saves) se registro un tiempo muerto
+[18/Dec/2017:10:30:53] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:13','18-12-2017','9',13,'B6179V1D',null,'ajuste','10:06:34',2497)
+[18/Dec/2017:10:30:53] (saves) se registro un tiempo muerto
+[18/Dec/2017:10:50:45] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:18:30','18-12-2017','16',11,'E2614D',null,'ajuste','09:32:04',2496)
+[18/Dec/2017:10:50:45] (saves) se registro un tiempo muerto
+[18/Dec/2017:10:56:04] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:21','18-12-2017','9',13,'J1121',null,'ajuste','10:35:40',2500)
+[18/Dec/2017:10:56:04] (saves) se registro un tiempo muerto
+[18/Dec/2017:12:52:54] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:15:09','18-12-2017','16',11,'HO767',null,'ajuste','11:37:37',2503)
+[18/Dec/2017:12:52:54] (saves) se registro un tiempo muerto
+[18/Dec/2017:15:58:33] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:07','18-12-2017','16',11,'H4614',null,'ajuste','14:56:21',2515)
+[18/Dec/2017:15:58:33] (saves) se registro un tiempo muerto
+[19/Dec/2017:10:00:28] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:06','19-12-2017','10',16,'F1544',null,'ajuste','',2534)
+[19/Dec/2017:10:00:28] (saves) se registro un tiempo muerto
+[19/Dec/2017:10:10:26] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:55','19-12-2017','9',13,'H4609',null,'ajuste','',2535)
+[19/Dec/2017:10:10:26] (saves) se registro un tiempo muerto
+[19/Dec/2017:10:52:06] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:08','19-12-2017','9',13,'L1095',null,'ajuste','10:26:55',2540)
+[19/Dec/2017:10:52:06] (saves) se registro un tiempo muerto
+[19/Dec/2017:12:05:19] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:18:51','19-12-2017','20',14,'L1095',null,'ajuste','11:26:30',2545)
+[19/Dec/2017:12:05:19] (saves) se registro un tiempo muerto
+[19/Dec/2017:13:07:27] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:55','19-12-2017','10',16,'F1544',null,'ajuste','',2546)
+[19/Dec/2017:13:07:27] (saves) se registro un tiempo muerto
+[19/Dec/2017:15:46:37] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:27:20','19-12-2017','10',16,'D2482',null,'ajuste','14:59:07',2558)
+[19/Dec/2017:15:46:37] (saves) se registro un tiempo muerto
+[19/Dec/2017:16:50:11] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:24:50','19-12-2017','10',16,'F1544',null,'ajuste','16:05:08',2562)
+[19/Dec/2017:16:50:11] (saves) se registro un tiempo muerto
+[20/Dec/2017:09:39:32] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:10:52','20-12-2017','10',16,'F1544',null,'ajuste','09:08:30',2572)
+[20/Dec/2017:09:39:32] (saves) se registro un tiempo muerto
+[20/Dec/2017:10:26:08] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:16:19','20-12-2017','20',14,'E2698',null,'ajuste','',2570)
+[20/Dec/2017:10:26:08] (saves) se registro un tiempo muerto
+[20/Dec/2017:10:35:04] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:20:38','20-12-2017','16',11,'SOLO DOMIE',null,'ajuste','09:14:15',2573)
+[20/Dec/2017:10:35:04] (saves) se registro un tiempo muerto
+[20/Dec/2017:11:20:36] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:26','20-12-2017','20',14,'F1728',null,'ajuste','10:56:06',2578)
+[20/Dec/2017:11:20:36] (saves) se registro un tiempo muerto
+[20/Dec/2017:12:07:50] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:11:48','20-12-2017','10',16,'I3248',null,'ajuste','',2575)
+[20/Dec/2017:12:07:50] (saves) se registro un tiempo muerto
+[20/Dec/2017:12:13:13] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:37:17','20-12-2017','16',11,'D2481',null,'ajuste','10:35:40',2577)
+[20/Dec/2017:12:13:13] (saves) se registro un tiempo muerto
+[20/Dec/2017:13:26:07] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:05:45','20-12-2017','16',11,'J1118',null,'ajuste','12:20:15',2583)
+[20/Dec/2017:13:26:07] (saves) se registro un tiempo muerto
+[20/Dec/2017:14:17:49] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:16:26','20-12-2017','20',14,'F1732',null,'ajuste','12:53:33',2586)
+[20/Dec/2017:14:17:49] (saves) se registro un tiempo muerto
+[20/Dec/2017:14:19:24] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:12:24','20-12-2017','10',16,'F1544',null,'ajuste','12:57:50',2587)
+[20/Dec/2017:14:19:24] (saves) se registro un tiempo muerto
+[20/Dec/2017:15:15:17] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:16:14','20-12-2017','20',14,'E2708',null,'ajuste','14:38:58',2591)
+[20/Dec/2017:15:15:17] (saves) se registro un tiempo muerto
+[20/Dec/2017:15:44:26] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:08','20-12-2017','10',16,'E554D',null,'ajuste','',2592)
+[20/Dec/2017:15:44:26] (saves) se registro un tiempo muerto
+[20/Dec/2017:16:24:21] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:31','20-12-2017','10',16,'E554',null,'ajuste','15:56:43',2597)
+[20/Dec/2017:16:24:21] (saves) se registro un tiempo muerto
+[20/Dec/2017:17:07:06] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:12:33','20-12-2017','10',16,'E554',null,'ajuste','16:34:27',2600)
+[20/Dec/2017:17:07:06] (saves) se registro un tiempo muerto
+[20/Dec/2017:17:36:01] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:03:22','20-12-2017','10',16,'E554',null,'ajuste','17:12:35',2602)
+[20/Dec/2017:17:36:01] (saves) se registro un tiempo muerto
+[20/Dec/2017:17:46:40] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:47','20-12-2017','20',14,'B8343',null,'ajuste','17:17:49',2603)
+[20/Dec/2017:17:46:40] (saves) se registro un tiempo muerto
+[21/Dec/2017:09:18:42] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:54','21-12-2017','20',14,'68343',null,'ajuste','08:49:43',2609)
+[21/Dec/2017:09:18:42] (saves) se registro un tiempo muerto
+[21/Dec/2017:09:21:11] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:15:54','21-12-2017','10',16,'E554D',null,'ajuste','08:45:11',2608)
+[21/Dec/2017:09:21:11] (saves) se registro un tiempo muerto
+[21/Dec/2017:10:47:19] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:16:22','21-12-2017','10',16,'B6452',null,'ajuste','10:10:50',2614)
+[21/Dec/2017:10:47:19] (saves) se registro un tiempo muerto
+[21/Dec/2017:11:09:28] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:27','21-12-2017','21',8,'H4626',null,'ajuste','10:48:59',2617)
+[21/Dec/2017:11:09:28] (saves) se registro un tiempo muerto
+[21/Dec/2017:12:04:32] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:33:43','21-12-2017','16',11,'J1121',null,'ajuste','10:30:37',2616)
+[21/Dec/2017:12:04:32] (saves) se registro un tiempo muerto
+[21/Dec/2017:12:07:34] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:05:26','21-12-2017','20',14,'B6419RT',null,'ajuste','11:42:04',2622)
+[21/Dec/2017:12:07:34] (saves) se registro un tiempo muerto
+[21/Dec/2017:12:44:46] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:35','21-12-2017','10',16,'B6350',null,'ajuste','',2623)
+[21/Dec/2017:12:44:46] (saves) se registro un tiempo muerto
+[21/Dec/2017:12:51:09] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:21','21-12-2017','20',14,'H4652',null,'ajuste','12:23:43',2624)
+[21/Dec/2017:12:51:09] (saves) se registro un tiempo muerto
+[21/Dec/2017:14:16:49] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:33:35','21-12-2017','16',11,'B6296',null,'ajuste','12:43:02',2626)
+[21/Dec/2017:14:16:49] (saves) se registro un tiempo muerto
+[21/Dec/2017:14:25:56] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:03:21','21-12-2017','10',16,'B6350',null,'ajuste','13:04:59',2627)
+[21/Dec/2017:14:25:56] (saves) se registro un tiempo muerto
+[21/Dec/2017:14:33:26] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:18','21-12-2017','21',8,'J1070E',null,'ajuste','',2625)
+[21/Dec/2017:14:33:26] (saves) se registro un tiempo muerto
+[21/Dec/2017:15:15:51] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:14:32','21-12-2017','20',14,'D2517',null,'ajuste','',2628)
+[21/Dec/2017:15:15:51] (saves) se registro un tiempo muerto
+[21/Dec/2017:15:34:19] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:06:33','21-12-2017','10',16,'B6350',null,'ajuste','15:07:42',2634)
+[21/Dec/2017:15:34:19] (saves) se registro un tiempo muerto
+[21/Dec/2017:15:47:44] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:03:19','21-12-2017','20',14,'D2517',null,'ajuste','15:24:21',2637)
+[21/Dec/2017:15:47:44] (saves) se registro un tiempo muerto
+[21/Dec/2017:16:44:13] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:26:18','21-12-2017','20',14,'F1574',null,'ajuste','15:57:48',2641)
+[21/Dec/2017:16:44:13] (saves) se registro un tiempo muerto
+[21/Dec/2017:16:50:36] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:27:25','21-12-2017','16',11,'H4O95',null,'ajuste','15:14:18',2635)
+[21/Dec/2017:16:50:36] (saves) se registro un tiempo muerto
+[21/Dec/2017:17:00:02] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:11:02','21-12-2017','10',16,'F157',null,'ajuste','',2640)
+[21/Dec/2017:17:00:02] (saves) se registro un tiempo muerto
+[21/Dec/2017:17:42:24] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:21','21-12-2017','20',14,'E2706',null,'ajuste','17:14:59',2646)
+[21/Dec/2017:17:42:24] (saves) se registro un tiempo muerto
+[22/Dec/2017:09:54:08] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:25','22-12-2017','21',8,'F1742',null,'ajuste','',2654)
+[22/Dec/2017:09:54:08] (saves) se registro un tiempo muerto
+[22/Dec/2017:09:59:40] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:09:41','22-12-2017','10',16,'G0943',null,'ajuste','09:29:54',2656)
+[22/Dec/2017:09:59:40] (saves) se registro un tiempo muerto
+[22/Dec/2017:10:54:23] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:38','22-12-2017','10',16,'G0943',null,'ajuste','10:31:41',2658)
+[22/Dec/2017:10:54:23] (saves) se registro un tiempo muerto
+[22/Dec/2017:11:33:44] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:05:34','22-12-2017','16',11,'H4095',null,'ajuste','10:27:51',2657)
+[22/Dec/2017:11:33:44] (saves) se registro un tiempo muerto
+[22/Dec/2017:12:21:11] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:31','22-12-2017','10',16,'G0943',null,'ajuste','11:58:42',2662)
+[22/Dec/2017:12:21:11] (saves) se registro un tiempo muerto
+[22/Dec/2017:13:17:26] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:05:12','22-12-2017','16',11,'H4626',null,'ajuste','12:12:08',2664)
+[22/Dec/2017:13:17:26] (saves) se registro un tiempo muerto
+[22/Dec/2017:14:17:19] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:31:16','22-12-2017','10',16,'B6350',null,'ajuste','12:38:25',2665)
+[22/Dec/2017:14:17:19] (saves) se registro un tiempo muerto
+[22/Dec/2017:15:09:02] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:19','22-12-2017','20',14,'L1080',null,'ajuste','',2655)
+[22/Dec/2017:15:09:02] (saves) se registro un tiempo muerto
+[22/Dec/2017:17:30:10] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:23:51','22-12-2017','10',16,'G0943',null,'ajuste','16:46:12',2673)
+[22/Dec/2017:17:30:10] (saves) se registro un tiempo muerto
+[23/Dec/2017:09:48:19] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:11:19','23-12-2017','10',16,'D2504',null,'ajuste','',2680)
+[23/Dec/2017:09:48:19] (saves) se registro un tiempo muerto
+[23/Dec/2017:10:39:16] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:01:45','23-12-2017','10',16,'D2504',null,'ajuste','10:17:28',2683)
+[23/Dec/2017:10:39:16] (saves) se registro un tiempo muerto
+[23/Dec/2017:11:37:21] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'01:10:46','23-12-2017','16',11,'GO943',null,'ajuste','09:26:11',2681)
+[23/Dec/2017:11:37:21] (saves) se registro un tiempo muerto
+[23/Dec/2017:12:02:45] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:28:12','23-12-2017','10',16,'I3582',null,'ajuste','11:14:25',2686)
+[23/Dec/2017:12:02:45] (saves) se registro un tiempo muerto
+[23/Dec/2017:12:35:41] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:19','23-12-2017','21',8,'H4095',null,'ajuste','',2690)
+[23/Dec/2017:12:35:41] (saves) se registro un tiempo muerto
+[23/Dec/2017:12:52:55] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:16','23-12-2017','10',16,'I3582',null,'ajuste','12:30:36',2691)
+[23/Dec/2017:12:52:55] (saves) se registro un tiempo muerto
+[23/Dec/2017:13:00:06] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'03:13:37','23-12-2017','20',14,'K2749',null,'ajuste','09:26:33',2682)
+[23/Dec/2017:13:00:06] (saves) se registro un tiempo muerto
+[23/Dec/2017:13:27:37] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:32:36','23-12-2017','16',11,'GO943',null,'ajuste','11:54:50',2689)
+[23/Dec/2017:13:27:37] (saves) se registro un tiempo muerto
+[26/Dec/2017:11:00:05] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:21','26-12-2017','10',16,'B6362',null,'ajuste','10:35:40',2706)
+[26/Dec/2017:11:00:05] (saves) se registro un tiempo muerto
+[26/Dec/2017:11:42:11] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:17','26-12-2017','20',14,'L1080',null,'ajuste','11:13:51',2710)
+[26/Dec/2017:11:42:11] (saves) se registro un tiempo muerto
+[26/Dec/2017:12:19:24] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:15:05','26-12-2017','16',11,'H4O95',null,'ajuste','11:04:10',2708)
+[26/Dec/2017:12:19:24] (saves) se registro un tiempo muerto
+[26/Dec/2017:12:41:36] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:14','26-12-2017','20',14,'J1074',null,'ajuste','12:14:18',2714)
+[26/Dec/2017:12:41:36] (saves) se registro un tiempo muerto
+[26/Dec/2017:13:00:35] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:04','26-12-2017','10',16,'H4351',null,'ajuste','12:32:16',2716)
+[26/Dec/2017:13:00:35] (saves) se registro un tiempo muerto
+[26/Dec/2017:13:33:35] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:06:04','26-12-2017','10',16,'B6463',null,'ajuste','13:07:27',2719)
+[26/Dec/2017:13:33:35] (saves) se registro un tiempo muerto
+[26/Dec/2017:15:48:55] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:29','26-12-2017','20',14,'J1116',null,'ajuste','15:24:22',2726)
+[26/Dec/2017:15:48:55] (saves) se registro un tiempo muerto
+[26/Dec/2017:16:03:39] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'01:03:49','26-12-2017','16',11,'GO943EC',null,'ajuste','13:10:30',2720)
+[26/Dec/2017:16:03:39] (saves) se registro un tiempo muerto
+[26/Dec/2017:16:06:25] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:05:42','26-12-2017','10',16,'D2504',null,'ajuste','15:40:39',2728)
+[26/Dec/2017:16:06:25] (saves) se registro un tiempo muerto
+[26/Dec/2017:17:30:48] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:07','26-12-2017','20',14,'J1116',null,'ajuste','17:10:39',2735)
+[26/Dec/2017:17:30:48] (saves) se registro un tiempo muerto
+[27/Dec/2017:10:30:59] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:10:28','27-12-2017','10',16,'B6344',null,'ajuste','10:00:26',2743)
+[27/Dec/2017:10:30:59] (saves) se registro un tiempo muerto
+[27/Dec/2017:11:10:52] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:07','27-12-2017','10',16,'B6344',null,'ajuste','10:48:41',2745)
+[27/Dec/2017:11:10:52] (saves) se registro un tiempo muerto
+[27/Dec/2017:11:48:35] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:03:48','27-12-2017','10',16,'B6344',null,'ajuste','11:24:44',2746)
+[27/Dec/2017:11:48:35] (saves) se registro un tiempo muerto
+[27/Dec/2017:14:30:21] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'01:00:50','27-12-2017','10',16,'B6362',null,'ajuste','13:09:31',2752)
+[27/Dec/2017:14:30:21] (saves) se registro un tiempo muerto
+[27/Dec/2017:14:32:43] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:38:43','27-12-2017','20',14,'G0952',null,'ajuste','13:33:59',2755)
+[27/Dec/2017:14:32:43] (saves) se registro un tiempo muerto
+[27/Dec/2017:15:41:09] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:09','27-12-2017','20',14,'G0952',null,'ajuste','15:13:28',2761)
+[27/Dec/2017:15:41:09] (saves) se registro un tiempo muerto
+[27/Dec/2017:15:51:08] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:09:07','27-12-2017','10',16,'I3582',null,'ajuste','15:21:57',2762)
+[27/Dec/2017:15:51:08] (saves) se registro un tiempo muerto
+[27/Dec/2017:15:58:09] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:17:19','27-12-2017','16',11,'J1074',null,'ajuste','14:40:34',2756)
+[27/Dec/2017:15:58:09] (saves) se registro un tiempo muerto
+[27/Dec/2017:16:47:19] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:01:58','27-12-2017','20',14,'G0952',null,'ajuste','16:25:18',2765)
+[27/Dec/2017:16:47:19] (saves) se registro un tiempo muerto
+[28/Dec/2017:09:37:14] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:07','28-12-2017','9',13,'G0810V1',null,'ajuste','09:12:03',2773)
+[28/Dec/2017:09:37:14] (saves) se registro un tiempo muerto
+[28/Dec/2017:09:40:33] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:03:50','28-12-2017','10',16,'H4367',null,'ajuste','09:16:37',2774)
+[28/Dec/2017:09:40:33] (saves) se registro un tiempo muerto
+[28/Dec/2017:10:16:42] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:06:29','28-12-2017','20',14,'J1128',null,'ajuste','',2776)
+[28/Dec/2017:10:16:42] (saves) se registro un tiempo muerto
+[28/Dec/2017:10:24:43] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:24','28-12-2017','10',16,'H4367',null,'ajuste','10:00:15',2779)
+[28/Dec/2017:10:24:43] (saves) se registro un tiempo muerto
+[28/Dec/2017:12:07:46] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:06:14','28-12-2017','10',16,'B6395',null,'ajuste','11:41:28',2784)
+[28/Dec/2017:12:07:46] (saves) se registro un tiempo muerto
+[28/Dec/2017:14:39:37] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:10','28-12-2017','9',13,'B6381',null,'ajuste','',2791)
+[28/Dec/2017:14:39:37] (saves) se registro un tiempo muerto
+[28/Dec/2017:14:46:19] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:24','28-12-2017','20',14,'D2496',null,'ajuste','13:37:14',2793)
+[28/Dec/2017:14:46:19] (saves) se registro un tiempo muerto
+[28/Dec/2017:15:01:49] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:59','28-12-2017','10',16,'B6395',null,'ajuste','14:36:46',2794)
+[28/Dec/2017:15:01:49] (saves) se registro un tiempo muerto
+[28/Dec/2017:15:04:05] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:44:38','28-12-2017','16',11,'J1116',null,'ajuste','12:41:04',2788)
+[28/Dec/2017:15:04:05] (saves) se registro un tiempo muerto
+[28/Dec/2017:15:48:01] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:06:27','28-12-2017','10',16,'B6395',null,'ajuste','15:21:31',2797)
+[28/Dec/2017:15:48:01] (saves) se registro un tiempo muerto
+[28/Dec/2017:16:42:56] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:14:30','28-12-2017','',,'G0952',null,'ajuste','15:28:18',2799)
+[28/Dec/2017:17:13:45] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:34:02','28-12-2017','10',16,'B6344',null,'ajuste','16:19:35',2801)
+[28/Dec/2017:17:13:45] (saves) se registro un tiempo muerto
+[29/Dec/2017:10:43:50] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:41:44','29-12-2017','20',14,'J1128',null,'ajuste','09:41:57',2816)
+[29/Dec/2017:10:43:50] (saves) se registro un tiempo muerto
+[29/Dec/2017:12:49:21] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:48','29-12-2017','10',16,'B6430',null,'ajuste','12:26:28',2823)
+[29/Dec/2017:12:49:21] (saves) se registro un tiempo muerto
+[29/Dec/2017:14:16:57] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:38:18','29-12-2017','10',16,'B6426',null,'ajuste','13:14:12',2827)
+[29/Dec/2017:14:16:57] (saves) se registro un tiempo muerto
+[29/Dec/2017:14:25:40] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:38:12','29-12-2017','20',14,'J1131',null,'ajuste','13:27:28',2829)
+[29/Dec/2017:14:25:40] (saves) se registro un tiempo muerto
+[29/Dec/2017:15:18:07] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:06:48','29-12-2017','20',14,'J1131',null,'ajuste','14:51:15',2831)
+[29/Dec/2017:15:18:07] (saves) se registro un tiempo muerto
+[29/Dec/2017:16:31:07] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:49','29-12-2017','10',16,'G0954',null,'ajuste','16:10:18',2835)
+[29/Dec/2017:16:31:07] (saves) se registro un tiempo muerto
+[29/Dec/2017:16:53:38] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:28:09','29-12-2017','16',11,'J1128',null,'ajuste','15:25:19',2833)
+[29/Dec/2017:16:53:38] (saves) se registro un tiempo muerto
+[29/Dec/2017:16:57:01] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:11:27','29-12-2017','20',14,'L1098',null,'ajuste','16:25:30',2836)
+[29/Dec/2017:16:57:01] (saves) se registro un tiempo muerto
+[30/Dec/2017:11:08:46] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:11:03','30-12-2017','10',16,'F1722',null,'ajuste','10:37:38',2849)
+[30/Dec/2017:11:08:46] (saves) se registro un tiempo muerto
+[30/Dec/2017:11:14:47] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:00:50','30-12-2017','20',14,'J1131',null,'ajuste','10:53:54',2850)
+[30/Dec/2017:11:14:47] (saves) se registro un tiempo muerto
+[30/Dec/2017:12:34:32] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:02:32','30-12-2017','10',16,'F1722',null,'ajuste','12:11:56',2855)
+[30/Dec/2017:12:34:32] (saves) se registro un tiempo muerto
+[30/Dec/2017:13:13:57] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:05:38','30-12-2017','10',16,'H4481',null,'ajuste','12:48:15',2856)
+[30/Dec/2017:13:13:57] (saves) se registro un tiempo muerto
+[02/Jan/2018:09:29:02] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:04:11','02-01-2018','20',14,'F1735',null,'ajuste','09:04:47',2862)
+[02/Jan/2018:09:29:02] (saves) se registro un tiempo muerto
+[02/Jan/2018:10:38:23] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:14:54','02-01-2018','10',16,'E2717',null,'ajuste','10:03:23',2869)
+[02/Jan/2018:10:38:23] (saves) se registro un tiempo muerto
+[02/Jan/2018:11:12:26] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:14:26','02-01-2018','20',14,'B6423',null,'ajuste','10:37:56',2873)
+[02/Jan/2018:11:12:26] (saves) se registro un tiempo muerto
+[02/Jan/2018:11:51:49] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:48','02-01-2018','10',16,'H4526',null,'ajuste','11:22:56',2877)
+[02/Jan/2018:11:51:49] (saves) se registro un tiempo muerto
+[02/Jan/2018:12:40:01] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:01:37','02-01-2018','10',16,'H4526',null,'ajuste','12:18:21',2885)
+[02/Jan/2018:12:40:01] (saves) se registro un tiempo muerto
+[02/Jan/2018:15:20:56] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:18:59','02-01-2018','10',16,'E2717',null,'ajuste','14:41:51',2893)
+[02/Jan/2018:15:20:56] (saves) se registro un tiempo muerto
+[02/Jan/2018:16:07:31] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:08:33','02-01-2018','10',16,'E2717',null,'ajuste','15:38:53',2897)
+[02/Jan/2018:16:07:31] (saves) se registro un tiempo muerto
+[02/Jan/2018:16:55:04] (saves) INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'00:07:22','02-01-2018','10',16,'H4316',null,'ajuste','16:27:38',2901)
+[02/Jan/2018:16:55:04] (saves) se registro un tiempo muerto

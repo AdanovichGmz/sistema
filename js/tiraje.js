@@ -22,6 +22,19 @@ function startTime() {
 
     
 }
+function GetstartTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    // add a zero in front of numbers<10
+    m = checkTime(m);
+    s = checkTime(s);
+    hour= h + ":" + m + ":" + s;
+    return hour;
+
+    
+}
 function startEat() {
     var today = new Date();
     var h = today.getHours();
@@ -142,8 +155,9 @@ $(document).ready(function(){
     timerAlertm.addEventListener('started', function (e) {
     $('#alertajuste .valuesAlert').html(timerAlertm.getTimeValues().toString());
 });
+    $('#inicioAlerta').val(localStorage.getItem('inicioAlert'));
       console.log('horaalerta: '+alertsecs);
-     
+     console.log('alertie: '+localStorage.getItem('inicioAlert'));
     }else{
     var lastsecs=currentSeconds()-sec;
     console.log();
@@ -361,6 +375,13 @@ $('.radio-menu').click(function() {
                       $(this).addClass('face-osc').find('input').prop('checked', true)    
                     });
  function saveAlert(){
+  var rads=$('input:radio.alertradios:checked').lenght;
+   console.log('perrote '+rads);
+  if ($('input:radio.alertradios:checked').lenght==0) {
+   
+$('#explanation').append('<p style="color:red;"> POR FAVOR ESCRIBE UNA EXPLICACION ↑</p>')
+  }
+  else{
   
   if (localStorage.getItem('alertTime')) {
     var lastsecs=currentSeconds()-sec;
@@ -401,6 +422,7 @@ $('.radio-menu').click(function() {
                           console.log(data);
                      }  
                 });
+       }
     } 
  function saveTiro(){
       
@@ -765,6 +787,8 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
     function saveoperAlert(){
         
     localStorage.setItem('alertTime', currentSeconds());
+    localStorage.setItem('inicioAlert', GetstartTime());
+    
          $.ajax({  
                       
                      type:"POST",

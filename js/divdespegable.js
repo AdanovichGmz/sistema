@@ -20,7 +20,7 @@ $(document).ready(function () {
     });
 
 
-
+/*
     var b = false;
     $(".derecha").click(function () {
         if (b == false) {
@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
 
 
-
+*/
 
     
     var r = false;
