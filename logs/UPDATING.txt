@@ -4470,3 +4470,201 @@
 [02/Jan/2018:17:38:26] (saves) ESPERADO: 87.066666666667
 [02/Jan/2018:17:38:26] (saves) Ultimo ID de Serigrafia: 2905
 [02/Jan/2018:17:38:26] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=505, buenos=126, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=26, entregados=126, tiempoTiraje='00:10:53', fechadeldia_tiraje='02-01-2018', horafin_tiraje='17:38:26', id_user=16,produccion_esperada=87,desempenio=100 WHERE idtiraje=2905
+[02/Jan/2018:18:07:27] (saves) true
+[02/Jan/2018:18:07:27] (saves) ESTANDAR: 480
+[02/Jan/2018:18:07:27] (saves) si vale algo
+[02/Jan/2018:18:07:27] (saves) ESPERADO: 179.46666666667
+[02/Jan/2018:18:07:27] (saves) Ultimo ID de Serigrafia3: 2907
+[02/Jan/2018:18:07:27] (saves) UPDATE tiraje set producto='', pedido='90', cantidad=200, buenos=99.5, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=9.5, entregados=99.5, tiempoTiraje='00:22:26', fechadeldia_tiraje='02-01-2018', horafin_tiraje='18:07:27', id_user=8,produccion_esperada=179,desempenio=55.442050520059 WHERE idtiraje=2907
+[03/Jan/2018:09:00:47] (saves) true
+[03/Jan/2018:09:00:47] (saves) ESTANDAR: 480
+[03/Jan/2018:09:00:47] (saves) si vale algo
+[03/Jan/2018:09:00:47] (saves) ESPERADO: 70.933333333333
+[03/Jan/2018:09:00:47] (saves) Ultimo ID de Serigrafia: 2910
+[03/Jan/2018:09:00:47] (saves) UPDATE tiraje set producto='', pedido='130', cantidad=161, buenos=160, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=30, entregados=160, tiempoTiraje='00:08:52', fechadeldia_tiraje='03-01-2018', horafin_tiraje='09:00:47', id_user=16,produccion_esperada=71,desempenio=100 WHERE idtiraje=2910
+[03/Jan/2018:09:18:48] (saves) true
+[03/Jan/2018:09:18:48] (saves) si vale algo
+[03/Jan/2018:09:18:48] (saves) ESPERADO: 121.83333333333
+[03/Jan/2018:09:18:48] (saves) Ultimo ID de Suaje: 2913
+[03/Jan/2018:09:18:48] (saves) UPDATE tiraje set producto='', pedido='150', cantidad=175, buenos=150, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=015, entregados=150, tiempoTiraje='00:12:11', fechadeldia_tiraje='03-01-2018', horafin_tiraje='09:18:48', id_user=13,produccion_esperada=122,desempenio=100 WHERE idtiraje=2913
+[03/Jan/2018:09:22:17] (saves) true
+[03/Jan/2018:09:22:17] (saves) ESTANDAR: 480
+[03/Jan/2018:09:22:17] (saves) si vale algo
+[03/Jan/2018:09:22:17] (saves) ESPERADO: 126.8
+[03/Jan/2018:09:22:17] (saves) Ultimo ID de Serigrafia3: 2911
+[03/Jan/2018:09:22:17] (saves) UPDATE tiraje set producto='', pedido='61.5', cantidad=140, buenos=69.5, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=8, entregados=69.5, tiempoTiraje='00:15:51', fechadeldia_tiraje='03-01-2018', horafin_tiraje='09:22:17', id_user=8,produccion_esperada=127,desempenio=54.81072555205 WHERE idtiraje=2911
+[03/Jan/2018:09:46:32] (saves) true
+[03/Jan/2018:09:46:32] (saves) ESTANDAR: 480
+[03/Jan/2018:09:46:32] (saves) si vale algo
+[03/Jan/2018:09:46:32] (saves) ESPERADO: 113.86666666667
+[03/Jan/2018:09:46:32] (saves) Ultimo ID de Serigrafia3: 2916
+[03/Jan/2018:09:46:32] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=119, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=119, tiempoTiraje='00:14:14', fechadeldia_tiraje='03-01-2018', horafin_tiraje='09:46:32', id_user=8,produccion_esperada=114,desempenio=100 WHERE idtiraje=2916
+[03/Jan/2018:09:58:30] (saves) true
+[03/Jan/2018:09:58:30] (saves) ESTANDAR: 480
+[03/Jan/2018:09:58:30] (saves) si vale algo
+[03/Jan/2018:09:58:30] (saves) ESPERADO: 277.73333333333
+[03/Jan/2018:09:58:30] (saves) Ultimo ID de Serigrafia: 2912
+[03/Jan/2018:09:58:30] (saves) UPDATE tiraje set producto='', pedido='325', cantidad=757, buenos=378, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=53, entregados=378, tiempoTiraje='00:34:43', fechadeldia_tiraje='03-01-2018', horafin_tiraje='09:58:30', id_user=16,produccion_esperada=278,desempenio=100 WHERE idtiraje=2912
+[03/Jan/2018:10:07:48] (saves) true
+[03/Jan/2018:10:07:48] (saves) si vale algo
+[03/Jan/2018:10:07:48] (saves) ESPERADO: 70.833333333333
+[03/Jan/2018:10:07:48] (saves) Ultimo ID de Suaje: 2915
+[03/Jan/2018:10:07:48] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=100, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=020, entregados=100, tiempoTiraje='00:07:05', fechadeldia_tiraje='03-01-2018', horafin_tiraje='10:07:48', id_user=13,produccion_esperada=71,desempenio=100 WHERE idtiraje=2915
+[03/Jan/2018:10:17:11] (saves) true
+[03/Jan/2018:10:17:11] (saves) ESTANDAR: 480
+[03/Jan/2018:10:17:11] (saves) si vale algo
+[03/Jan/2018:10:17:11] (saves) ESPERADO: 127.73333333333
+[03/Jan/2018:10:17:11] (saves) Ultimo ID de Serigrafia3: 2917
+[03/Jan/2018:10:17:11] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=119, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=119, tiempoTiraje='00:15:58', fechadeldia_tiraje='03-01-2018', horafin_tiraje='10:17:11', id_user=8,produccion_esperada=128,desempenio=93.162839248434 WHERE idtiraje=2917
+[03/Jan/2018:10:22:19] (saves) true
+[03/Jan/2018:10:22:19] (saves) si vale algo
+[03/Jan/2018:10:22:19] (saves) ESPERADO: 39.333333333333
+[03/Jan/2018:10:22:19] (saves) Ultimo ID de Suaje: 2920
+[03/Jan/2018:10:22:19] (saves) UPDATE tiraje set producto='', pedido='60', cantidad=20, buenos=60, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=020, entregados=60, tiempoTiraje='00:03:56', fechadeldia_tiraje='03-01-2018', horafin_tiraje='10:22:19', id_user=13,produccion_esperada=39,desempenio=100 WHERE idtiraje=2920
+[03/Jan/2018:10:42:46] (saves) true
+[03/Jan/2018:10:42:46] (saves) ESTANDAR: 300
+[03/Jan/2018:10:42:46] (saves) si vale algo
+[03/Jan/2018:10:42:46] (saves) ESPERADO: 75.166666666667
+[03/Jan/2018:10:42:46] (saves) Ultimo ID de Serigrafia3: 2921
+[03/Jan/2018:10:42:46] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=119, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=119, tiempoTiraje='00:15:02', fechadeldia_tiraje='03-01-2018', horafin_tiraje='10:42:46', id_user=8,produccion_esperada=75,desempenio=100 WHERE idtiraje=2921
+[03/Jan/2018:10:43:30] (saves) true
+[03/Jan/2018:10:43:30] (saves) ESTANDAR: 480
+[03/Jan/2018:10:43:30] (saves) si vale algo
+[03/Jan/2018:10:43:30] (saves) ESPERADO: 254
+[03/Jan/2018:10:43:30] (saves) Ultimo ID de Serigrafia: 2919
+[03/Jan/2018:10:43:30] (saves) UPDATE tiraje set producto='', pedido='200', cantidad=235, buenos=234, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=34, entregados=234, tiempoTiraje='00:31:45', fechadeldia_tiraje='03-01-2018', horafin_tiraje='10:43:30', id_user=16,produccion_esperada=254,desempenio=92.125984251969 WHERE idtiraje=2919
+[03/Jan/2018:11:25:57] (saves) true
+[03/Jan/2018:11:25:57] (saves) ESTANDAR: 360
+[03/Jan/2018:11:25:57] (saves) si vale algo
+[03/Jan/2018:11:25:57] (saves) ESPERADO: 179.9
+[03/Jan/2018:11:25:57] (saves) Ultimo ID de Serigrafia3: 2923
+[03/Jan/2018:11:25:57] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=122, buenos=121, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=21, entregados=121, tiempoTiraje='00:29:59', fechadeldia_tiraje='03-01-2018', horafin_tiraje='11:25:57', id_user=8,produccion_esperada=180,desempenio=67.259588660367 WHERE idtiraje=2923
+[03/Jan/2018:11:29:33] (saves) true
+[03/Jan/2018:11:29:33] (saves) ESTANDAR: 420
+[03/Jan/2018:11:29:33] (saves) si vale algo
+[03/Jan/2018:11:29:33] (saves) ESPERADO: 179.78333333333
+[03/Jan/2018:11:29:33] (saves) Ultimo ID de Serigrafia: 2924
+[03/Jan/2018:11:29:33] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=231, buenos=115, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=15, entregados=115, tiempoTiraje='00:25:41', fechadeldia_tiraje='03-01-2018', horafin_tiraje='11:29:33', id_user=16,produccion_esperada=180,desempenio=63.965884861407 WHERE idtiraje=2924
+[03/Jan/2018:11:56:35] (saves) true
+[03/Jan/2018:11:56:35] (saves) si vale algo
+[03/Jan/2018:11:56:35] (saves) ESPERADO: 690.83333333333
+[03/Jan/2018:11:56:35] (saves) Ultimo ID de Suaje: 2922
+[03/Jan/2018:11:56:35] (saves) UPDATE tiraje set producto='', pedido='1300', cantidad=1400, buenos=1300, defectos=0, merma=0,piezas_ajuste=2, merma_entregada=01398, entregados=1300, tiempoTiraje='01:09:05', fechadeldia_tiraje='03-01-2018', horafin_tiraje='11:56:35', id_user=13,produccion_esperada=691,desempenio=100 WHERE idtiraje=2922
+[03/Jan/2018:12:05:50] (saves) true
+[03/Jan/2018:12:05:50] (saves) ESTANDAR: 420
+[03/Jan/2018:12:05:50] (saves) si vale algo
+[03/Jan/2018:12:05:50] (saves) ESPERADO: 137.08333333333
+[03/Jan/2018:12:05:50] (saves) Ultimo ID de Serigrafia3: 2925
+[03/Jan/2018:12:05:50] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:19:35', fechadeldia_tiraje='03-01-2018', horafin_tiraje='12:05:50', id_user=8,produccion_esperada=137,desempenio=87.537993920973 WHERE idtiraje=2925
+[03/Jan/2018:12:28:14] (saves) true
+[03/Jan/2018:12:28:14] (saves) ESTANDAR: 480
+[03/Jan/2018:12:28:14] (saves) si vale algo
+[03/Jan/2018:12:28:14] (saves) ESPERADO: 292.8
+[03/Jan/2018:12:28:14] (saves) Ultimo ID de Serigrafia2: 2914
+[03/Jan/2018:12:28:14] (saves) UPDATE tiraje set producto='', pedido='280', cantidad=300, buenos=300, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=300, tiempoTiraje='00:36:36', fechadeldia_tiraje='03-01-2018', horafin_tiraje='12:28:14', id_user=14,produccion_esperada=293,desempenio=100 WHERE idtiraje=2914
+[03/Jan/2018:12:38:03] (saves) true
+[03/Jan/2018:12:38:03] (saves) ESTANDAR: 420
+[03/Jan/2018:12:38:03] (saves) si vale algo
+[03/Jan/2018:12:38:03] (saves) ESPERADO: 120.51666666667
+[03/Jan/2018:12:38:03] (saves) Ultimo ID de Serigrafia3: 2928
+[03/Jan/2018:12:38:03] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:17:13', fechadeldia_tiraje='03-01-2018', horafin_tiraje='12:38:03', id_user=8,produccion_esperada=121,desempenio=99.57129027797 WHERE idtiraje=2928
+[03/Jan/2018:12:38:51] (saves) true
+[03/Jan/2018:12:38:51] (saves) ESTANDAR: 420
+[03/Jan/2018:12:38:51] (saves) si vale algo
+[03/Jan/2018:12:38:51] (saves) ESPERADO: 203
+[03/Jan/2018:12:38:51] (saves) Ultimo ID de Serigrafia: 2926
+[03/Jan/2018:12:38:51] (saves) UPDATE tiraje set producto='', pedido='180', cantidad=213, buenos=212, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=32, entregados=212, tiempoTiraje='00:29:00', fechadeldia_tiraje='03-01-2018', horafin_tiraje='12:38:51', id_user=16,produccion_esperada=203,desempenio=100 WHERE idtiraje=2926
+[03/Jan/2018:13:03:41] (saves) true
+[03/Jan/2018:13:03:41] (saves) ESTANDAR: 420
+[03/Jan/2018:13:03:41] (saves) si vale algo
+[03/Jan/2018:13:03:41] (saves) ESPERADO: 94.383333333333
+[03/Jan/2018:13:03:41] (saves) Ultimo ID de Serigrafia3: 2930
+[03/Jan/2018:13:03:41] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=119, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=119, tiempoTiraje='00:13:29', fechadeldia_tiraje='03-01-2018', horafin_tiraje='13:03:41', id_user=8,produccion_esperada=94,desempenio=100 WHERE idtiraje=2930
+[03/Jan/2018:13:06:58] (saves) true
+[03/Jan/2018:13:06:58] (saves) ESTANDAR: 480
+[03/Jan/2018:13:06:58] (saves) si vale algo
+[03/Jan/2018:13:06:58] (saves) ESPERADO: 76.133333333333
+[03/Jan/2018:13:06:58] (saves) Ultimo ID de Serigrafia: 2931
+[03/Jan/2018:13:06:58] (saves) UPDATE tiraje set producto='', pedido='180', cantidad=109, buenos=208, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=28, entregados=208, tiempoTiraje='00:09:31', fechadeldia_tiraje='03-01-2018', horafin_tiraje='13:06:57', id_user=16,produccion_esperada=76,desempenio=100 WHERE idtiraje=2931
+[03/Jan/2018:13:20:01] (saves) true
+[03/Jan/2018:13:20:01] (saves) ESTANDAR: 480
+[03/Jan/2018:13:20:01] (saves) si vale algo
+[03/Jan/2018:13:20:01] (saves) ESPERADO: 277.6
+[03/Jan/2018:13:20:01] (saves) Ultimo ID de Serigrafia2: 2929
+[03/Jan/2018:13:20:01] (saves) UPDATE tiraje set producto='', pedido='135', cantidad=600, buenos=150, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=15, entregados=150, tiempoTiraje='00:34:42', fechadeldia_tiraje='03-01-2018', horafin_tiraje='13:20:01', id_user=14,produccion_esperada=278,desempenio=54.034582132565 WHERE idtiraje=2929
+[03/Jan/2018:13:31:16] (saves) true
+[03/Jan/2018:13:31:16] (saves) ESTANDAR: 420
+[03/Jan/2018:13:31:16] (saves) si vale algo
+[03/Jan/2018:13:31:16] (saves) ESPERADO: 105.93333333333
+[03/Jan/2018:13:31:16] (saves) Ultimo ID de Serigrafia3: 2932
+[03/Jan/2018:13:31:16] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:15:08', fechadeldia_tiraje='03-01-2018', horafin_tiraje='13:31:16', id_user=8,produccion_esperada=106,desempenio=100 WHERE idtiraje=2932
+[03/Jan/2018:13:40:50] (saves) true
+[03/Jan/2018:13:40:50] (saves) ESTANDAR: 480
+[03/Jan/2018:13:40:50] (saves) si vale algo
+[03/Jan/2018:13:40:50] (saves) ESPERADO: 165.2
+[03/Jan/2018:13:40:50] (saves) Ultimo ID de Serigrafia: 2933
+[03/Jan/2018:13:40:50] (saves) UPDATE tiraje set producto='', pedido='275', cantidad=673, buenos=336, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=61, entregados=336, tiempoTiraje='00:20:39', fechadeldia_tiraje='03-01-2018', horafin_tiraje='13:40:50', id_user=16,produccion_esperada=165,desempenio=100 WHERE idtiraje=2933
+[03/Jan/2018:14:40:18] (saves) true
+[03/Jan/2018:14:40:18] (saves) si vale algo
+[03/Jan/2018:14:40:18] (saves) ESPERADO: 668.33333333333
+[03/Jan/2018:14:40:18] (saves) Ultimo ID de Suaje: 2927
+[03/Jan/2018:14:40:18] (saves) UPDATE tiraje set producto='', pedido='1300', cantidad=1400, buenos=1300, defectos=0, merma=0,piezas_ajuste=2, merma_entregada=098, entregados=1300, tiempoTiraje='01:06:50', fechadeldia_tiraje='03-01-2018', horafin_tiraje='14:40:18', id_user=13,produccion_esperada=668,desempenio=100 WHERE idtiraje=2927
+[03/Jan/2018:14:45:43] (saves) true
+[03/Jan/2018:14:45:43] (saves) ESTANDAR: 420
+[03/Jan/2018:14:45:43] (saves) si vale algo
+[03/Jan/2018:14:45:43] (saves) ESPERADO: 329.81666666667
+[03/Jan/2018:14:45:43] (saves) Ultimo ID de Serigrafia: 2936
+[03/Jan/2018:14:45:43] (saves) UPDATE tiraje set producto='', pedido='180', cantidad=221, buenos=220, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=40, entregados=220, tiempoTiraje='00:47:07', fechadeldia_tiraje='03-01-2018', horafin_tiraje='14:45:43', id_user=16,produccion_esperada=330,desempenio=66.703724291273 WHERE idtiraje=2936
+[03/Jan/2018:14:49:09] (saves) true
+[03/Jan/2018:14:49:09] (saves) ESTANDAR: 420
+[03/Jan/2018:14:49:09] (saves) si vale algo
+[03/Jan/2018:14:49:09] (saves) ESPERADO: 125.88333333333
+[03/Jan/2018:14:49:09] (saves) Ultimo ID de Serigrafia3: 2935
+[03/Jan/2018:14:49:09] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=119, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=119, tiempoTiraje='00:17:59', fechadeldia_tiraje='03-01-2018', horafin_tiraje='14:49:09', id_user=8,produccion_esperada=126,desempenio=94.531974050046 WHERE idtiraje=2935
+[03/Jan/2018:15:20:19] (saves) true
+[03/Jan/2018:15:20:19] (saves) ESTANDAR: 420
+[03/Jan/2018:15:20:19] (saves) si vale algo
+[03/Jan/2018:15:20:19] (saves) ESPERADO: 118.53333333333
+[03/Jan/2018:15:20:19] (saves) Ultimo ID de Serigrafia3: 2939
+[03/Jan/2018:15:20:19] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=121, buenos=120, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=20, entregados=120, tiempoTiraje='00:16:56', fechadeldia_tiraje='03-01-2018', horafin_tiraje='15:20:19', id_user=8,produccion_esperada=119,desempenio=100 WHERE idtiraje=2939
+[03/Jan/2018:15:20:41] (saves) true
+[03/Jan/2018:15:20:41] (saves) ESTANDAR: 420
+[03/Jan/2018:15:20:41] (saves) si vale algo
+[03/Jan/2018:15:20:41] (saves) ESPERADO: 69.766666666667
+[03/Jan/2018:15:20:41] (saves) Ultimo ID de Serigrafia: 2938
+[03/Jan/2018:15:20:41] (saves) UPDATE tiraje set producto='', pedido='50', cantidad=84, buenos=83, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=33, entregados=83, tiempoTiraje='00:09:58', fechadeldia_tiraje='03-01-2018', horafin_tiraje='15:20:41', id_user=16,produccion_esperada=70,desempenio=100 WHERE idtiraje=2938
+[03/Jan/2018:15:45:50] (saves) true
+[03/Jan/2018:15:45:50] (saves) ESTANDAR: 480
+[03/Jan/2018:15:45:50] (saves) si vale algo
+[03/Jan/2018:15:45:50] (saves) ESPERADO: 83.6
+[03/Jan/2018:15:45:50] (saves) Ultimo ID de Serigrafia: 2941
+[03/Jan/2018:15:45:50] (saves) UPDATE tiraje set producto='', pedido='90', cantidad=227, buenos=113, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=23, entregados=113, tiempoTiraje='00:10:27', fechadeldia_tiraje='03-01-2018', horafin_tiraje='15:45:50', id_user=16,produccion_esperada=84,desempenio=100 WHERE idtiraje=2941
+[03/Jan/2018:15:53:27] (saves) true
+[03/Jan/2018:15:53:27] (saves) ESTANDAR: 420
+[03/Jan/2018:15:53:27] (saves) si vale algo
+[03/Jan/2018:15:53:27] (saves) ESPERADO: 124.83333333333
+[03/Jan/2018:15:53:27] (saves) Ultimo ID de Serigrafia3: 2940
+[03/Jan/2018:15:53:27] (saves) UPDATE tiraje set producto='', pedido='100', cantidad=120, buenos=119, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=119, tiempoTiraje='00:17:50', fechadeldia_tiraje='03-01-2018', horafin_tiraje='15:53:27', id_user=8,produccion_esperada=125,desempenio=95.327102803738 WHERE idtiraje=2940
+[03/Jan/2018:16:17:21] (saves) true
+[03/Jan/2018:16:17:21] (saves) ESTANDAR: 480
+[03/Jan/2018:16:17:21] (saves) si vale algo
+[03/Jan/2018:16:17:21] (saves) ESPERADO: 86
+[03/Jan/2018:16:17:21] (saves) Ultimo ID de Serigrafia3: 2943
+[03/Jan/2018:16:17:21] (saves) UPDATE tiraje set producto='', pedido='15', cantidad=50, buenos=24.5, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=9.5, entregados=24.5, tiempoTiraje='00:10:45', fechadeldia_tiraje='03-01-2018', horafin_tiraje='16:17:21', id_user=8,produccion_esperada=86,desempenio=28.488372093023 WHERE idtiraje=2943
+[03/Jan/2018:16:46:48] (saves) true
+[03/Jan/2018:16:46:48] (saves) ESTANDAR: 480
+[03/Jan/2018:16:46:48] (saves) si vale algo
+[03/Jan/2018:16:46:48] (saves) ESPERADO: 126.66666666667
+[03/Jan/2018:16:46:48] (saves) Ultimo ID de Serigrafia3: 2944
+[03/Jan/2018:16:46:48] (saves) UPDATE tiraje set producto='', pedido='60', cantidad=80, buenos=79, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=19, entregados=79, tiempoTiraje='00:15:50', fechadeldia_tiraje='03-01-2018', horafin_tiraje='16:46:48', id_user=8,produccion_esperada=127,desempenio=62.368421052632 WHERE idtiraje=2944
+[03/Jan/2018:17:00:06] (saves) true
+[03/Jan/2018:17:00:06] (saves) ESTANDAR: 420
+[03/Jan/2018:17:00:06] (saves) si vale algo
+[03/Jan/2018:17:00:06] (saves) ESPERADO: 999.6
+[03/Jan/2018:17:00:06] (saves) Ultimo ID de Serigrafia2: 2934
+[03/Jan/2018:17:00:06] (saves) UPDATE tiraje set producto='', pedido='270', cantidad=295, buenos=295, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=25, entregados=295, tiempoTiraje='02:22:48', fechadeldia_tiraje='03-01-2018', horafin_tiraje='17:00:06', id_user=14,produccion_esperada=1000,desempenio=29.511804721889 WHERE idtiraje=2934
+[03/Jan/2018:17:13:33] (saves) true
+[03/Jan/2018:17:13:33] (saves) si vale algo
+[03/Jan/2018:17:13:33] (saves) ESPERADO: 763.33333333333
+[03/Jan/2018:17:13:33] (saves) Ultimo ID de Suaje: 2937
+[03/Jan/2018:17:13:33] (saves) UPDATE tiraje set producto='', pedido='1400', cantidad=1455, buenos=1400, defectos=0, merma=0,piezas_ajuste=1, merma_entregada=055, entregados=1400, tiempoTiraje='01:16:20', fechadeldia_tiraje='03-01-2018', horafin_tiraje='17:13:33', id_user=13,produccion_esperada=763,desempenio=100 WHERE idtiraje=2937

@@ -300,13 +300,13 @@ $comida_exist  = '';
 $comida_exist2 = '';
 $asa_exist     = ($asa_resss->num_rows > 0) ? true : false;
 while ($asa = mysqli_fetch_assoc($asa_resss)) {
-    if ($i == 0) {
+   /* if ($i == 0) {
         if ($asa_exist) {
             $transcur = strtotime($asa['horadeldia']) - strtotime("08:45:00");
             $sum_muerto += $transcur;
             $sum_dispon += $transcur;
         }
-    }
+    } */
 ?>
   <tr>
      <td><?= substr($asa['horadeldia'], 0, -3); ?></td>                     
@@ -317,7 +317,7 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
     <td>0</td>
     <?php
     $sum_tiraje += $asa['tiempo_asaichi'];
-    $sum_tiraje += $asa['tmuerto_asa'];
+    
 ?>
     <td><?= gmdate("H:i", $asa['dispon_asaichi']); ?></td>
    <?php
@@ -325,11 +325,13 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
 ?>
     <td><?= gmdate("H:i", $sum_dispon); ?></td>
     <?php
-    $sum_muerto += $asa['tmuerto_asa'];
+    //$sum_muerto += $asa['tmuerto_asa'];
     
 ?>
     <td><?= gmdate("H:i", $asa['tmuerto_asa']); ?></td>
-    <td><?= gmdate("H:i", $sum_muerto); ?></td>
+    <td><?= gmdate("H:i", $asa['tmuerto_asa']); 
+      $sum_muerto += $asa['tmuerto_asa'];
+    ?></td>
     <td><?= gmdate("H:i", $asa['tiempo_asaichi']); ?></td>
 
     <td><?= gmdate("H:i", $sum_tiraje) ?></td>
@@ -378,7 +380,7 @@ while ($row = mysqli_fetch_assoc($resss)):
     $sum_defectos += $row['defectos'];
     $sum_calidad += $row['calidad'];
     $comida = (!empty($row['comida_ajuste'])) ? $row['dispon_ajuste']-$row['comida_ajuste'] : $row['dispon_ajuste'];
-    $sum_dispon += $comida;
+    $sum_dispon += $comida; 
     
     $processID=($row['id_maquina']==20||$row['id_maquina']==21)? 10:(($row['id_maquina']==22)? 9 : $row['id_maquina']);
     if (is_null($row['estandar'])) {
@@ -410,7 +412,7 @@ while ($row = mysqli_fetch_assoc($resss)):
     }
 
     if (isset($alertA_Sum[$i])) {
-      $sum_muerto += array_sum($alertA_Sum[$i]);
+      //$sum_muerto += array_sum($alertA_Sum[$i]);
     }
    
     $alertaqueryTinta = $mysqli->query("SELECT TIME_TO_SEC(tiempoalertamaquina)  AS tiempotinta FROM alertageneralajuste WHERE id_tiraje=$idtiro AND radios='Preparar Tinta' ");
@@ -427,6 +429,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     
     
 ?>
+<!-- ********** Inicia TR Ajuste ********** -->
                           <tr>
      <td><?= substr($row['horadeldia_ajuste'], 0, -3); ?></td>                     
     <td><?= substr($row['horafin_ajuste'], 0, -3); ?></td>
@@ -438,13 +441,20 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
    
     <td><?= gmdate("H:i", $sum_dispon); ?></td>
     <?php
-    $sum_muerto += $row['seconds_muertos'];
+    //$sum_muerto += $row['seconds_muertos'];
+    $haytinta=(isset($PTinta[$i]))? array_sum($PTinta[$i]) : 0;
+    $tcomida=(!empty($row['comida_ajuste']))?$row['comida_ajuste']:0;
+    $formulaajuste[$i]=(($row['id_maquina']==9||$row['id_maquina']==22)? ($row['dispon_ajuste']-1500 )-$tcomida: (($row['id_maquina']==16 )? ($row['dispon_ajuste']-3600)-$tcomida : ($row['dispon_ajuste']-1200)-$tcomida));
+    $extraerMuerto[$i]=($formulaajuste[$i]<=0)? 0 : $formulaajuste[$i];
+    $sum_muerto +=$extraerMuerto[$i];
+   // gmdate("H:i", $row['seconds_muertos'] + ((isset($alertA_Sum))?array_sum($alertA_Sum[$i]) : 0)+$extraerMuerto); Asi estaba antes
 ?>
-    <td><?= gmdate("H:i", $row['seconds_muertos'] + ((isset($alertA_Sum))?array_sum($alertA_Sum[$i]) : 0)); ?></td>
+    <td><?= gmdate("H:i", $extraerMuerto[$i]); ?></td>
     <td><?= gmdate("H:i", $sum_muerto); ?></td>
-    <td><?= gmdate("H:i", $row['seconds_ajuste']); ?></td>
+    <td><?= gmdate("H:i", ($formulaajuste[$i]<=0)? $row['seconds_ajuste']+$haytinta : (($row['id_maquina']==9||$row['id_maquina']==22)? 1500 : (($row['id_maquina']==16)? 3600 : 1200))+$haytinta ); ?></td>
   <?php
-    $sum_tiraje += $row['seconds_ajuste'];
+    $sum_tiraje += ($formulaajuste[$i]<=0)? $row['seconds_ajuste'] : (($row['id_maquina']==9||$row['id_maquina']==22 )? 1500 : (($row['id_maquina']==16)? 3600 : 1200));
+     
 ?>
     <td><?= gmdate("H:i", $sum_tiraje); ?></td>
    
@@ -476,6 +486,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
    
     <td><?= round($row['desempenio'], 2); ?>%</td> -->
   </tr>
+  <!-- ********** Termina TR Ajuste ********** -->
   <?php echo $comida_exist ?>
 <?php
     //$sum_muerto+=$row['comida_tiro'];
@@ -505,6 +516,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     
     
 ?>
+<!-- ********** Inicia TR Tiro ********** -->
       <tr style=" background-color: #EBEBEB;">
      <td><?= substr($row['horadeldia_tiraje'], 0, -3); ?></td>                     
     <td><?= substr($row['horafin_tiraje'], 0, -3); ?></td>
@@ -555,6 +567,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 ?>
    
   </tr>
+  <!-- ********** Termina TR Tiro ********** -->
    <?php echo $comida_exist2 ?>          
   <?php
     $i++;
