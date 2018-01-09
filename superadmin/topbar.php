@@ -9,9 +9,15 @@
 
       <!-- <li class="nohover"><span class="labels">Bienvenido: <?=$_SESSION['logged_in']; ?></span></li> -->
       </li><li><a href="reporteindex.php">Inicio</a>
-      </li><li><a href="production.php"><span class="icon-stats-bars"></span>Producción</a>
-        </li><li><a href="repordenes.php"><span class="icon-clipboard"></span>Ordenes</a>
+      </li><li style="display: none;"><a href="production.php"><span class="icon-stats-bars"></span>Producción</a>
         </li><li class="submenu">
+          <a href="#"><span class="icon-clipboard"></span>Reportes ETE<span class="caret icon-arrow-down6"></span></a>
+          <ul class="children">
+          <li><a href="ete.php">Individuales <span class="icon-cogs"></span></a></li>
+            <li><a href="eteall.php">Todos<span class="icon-warning"></span></a></li>
+                      
+          </ul>
+</li><li class="submenu">
           <a href="#"><span class="icon-cog"></span>Maquinas<span class="caret icon-arrow-down6"></span></a>
           <ul class="children">
           <li><a href="repajustemaquina.php">Ajuste <span class="icon-cogs"></span></a></li>
@@ -45,7 +51,7 @@
         <!--<li><a href="#"><span class="icon-earth"></span>Servicios</a></li>-->
         <!--<li><a href="#"><span class="icon-mail"></span>Contacto</a></li> -->
        </li><li><a href="estandares.php">Estandares</a>
-       </li><li><a href="programacion.php">Programacion</a></li>
+       </li><li style="display: none;"><a href="programacion.php">Programacion</a></li>
        <li class="lefting ">
 
          <a class="" href="logoutadmin.php" style="color:#fff;"><span class="icon-exit"></span> Salir</a>

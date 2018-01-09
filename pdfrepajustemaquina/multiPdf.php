@@ -2,8 +2,8 @@
 error_reporting(0);
 require_once("dompdf/dompdf_config.inc.php");
 include '../saves/conexion.php';
-$numodt = $_POST['id'];
-$userid = $_POST['iduser'];
+$numodt = $_POST['fecha'];
+$users= array('0' =>14 ,'1' =>16 ,'2' =>8 ,'0' =>11 ,'0' =>13 );
 function getComida($idtiraje, $section)
 {
     include '../saves/conexion.php';
@@ -24,6 +24,9 @@ function getStandar($elem,$maquina)
     return $estandar['piezas_por_hora'];
 }
 
+ob_start();
+
+foreach ($users as $key => $userid) {
 $query = "SELECT
    t.*,
    m.nommaquina,
@@ -75,9 +78,7 @@ $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHER
 
 
 ?>
-<?php
-ob_start();
-?>
+
 <html>
 <head>
 <style>
@@ -669,6 +670,7 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
 
 
 <?php
+}
 $html = ob_get_clean();
 
 $dompdf = new DOMPDF();
