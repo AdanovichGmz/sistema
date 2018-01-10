@@ -19,7 +19,7 @@ if(@$_SESSION['logged_in'] != true){
     ?>
 
   <?php
-  function personalData($idmaquina,$maquina,$photo){
+  function personalData($idmaquina,$maquina,$photo,$iduser){
 require('../saves/conexion.php');
 $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquina;
              $processID=($idmaquina==20||$idmaquina==21)? 10:$idmaquina;
@@ -121,20 +121,22 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
     <div class="ete-num">'.$maquina.'&nbsp</div>
     </div>
     <div class="ete-stat">
+    <form method="post" action="../pdfrepajustemaquina/createPdf.php" target="_blank" >
       <table>
       <thead>
       <tr class="trh">
-        <td>Fecha: </td>
-        <td class=""><input id="'.$idmaquina.'" required="true" value="" name="id" /></td>
-        
+        <td width="50%">Fecha: </td>
+        <td width="50%" class=""><input id="'.$idmaquina.'" required="true" value="" style="width:90%;" name="id" /></td>
+        <input type="hidden" name="iduser" value="'.$iduser.'" >
         </tr></thead>
         <tbody>
-        <tr style="font-size: 10px;">
-        <td>&nbsp</td>
-        <td ><input type="submit" class="genpdf btn btn-primary" value="Generar Reporte PDF"> </td>
+        <tr style="font-size: 10px; text-align:center">
+        <td><input type="button" data-user="'.$iduser.'" data-machine="'.$idmaquina.'" class="ex-rep genpdf btn btn-success" value="Reporte Excel"> </td>
+        <td ><input type="submit" class="genpdf btn btn-primary" value="Reporte PDF"> </td>
         </tr>
         
         </tbody>
+        </form>
       </table>
     </div>';
   echo $credencial;
@@ -347,23 +349,23 @@ $( "#16" ).datepicker();
 
 <div class="prod-container">
   <div class="personal">
-    <?=personalData(10,'Serigrafia','12'); ?>
+    <?=personalData(10,'Serigrafia','12',16); ?>
   </div>
   <div class="personal">
-    <?=personalData(20,'Serigrafia','10'); ?>
+    <?=personalData(20,'Serigrafia','10',14); ?>
   </div>
   <div class="personal">
-    <?=personalData(21,'Serigrafia','15'); ?>
+    <?=personalData(21,'Serigrafia','15',8); ?>
   </div>
   
   <div class="personal">
-    <?=personalData(16,'HotStamping','7'); ?>
+    <?=personalData(16,'HotStamping','7',11); ?>
   </div>
   <div class="personal">
-    <?=personalData(9,'Suaje','default'); ?>
+    <?=personalData(9,'Suaje','default',13); ?>
   </div>
   <div class="personal" style="opacity: 0.5">
-    <?=personalData(8,'--','default'); ?>
+    <?=personalData(8,'--','default',2); ?>
   </div>
  
 </div>
@@ -377,4 +379,15 @@ $( "#16" ).datepicker();
        $( "#9" ).datepicker("option",'dateFormat', 'dd-mm-yy' );
         $( "#16" ).datepicker("option",'dateFormat', 'dd-mm-yy' );
   } );
+
+$( ".ex-rep" ).click(function() {
+  var user=this.getAttribute("data-user");
+   var mach=this.getAttribute("data-machine");
+   var fecha=$('#'+mach).val();
+ if (fecha=='') {alert('No has seleccionado una fecha')}else{
+  
+ }
+  $(location).attr('href', '../pdfrepajustemaquina/createExcel.php?fecha='+fecha+'&user='+user).attr('target','_blank');
+  });
+
   </script>

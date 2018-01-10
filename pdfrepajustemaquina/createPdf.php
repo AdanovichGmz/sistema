@@ -553,7 +553,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <?php
     if (!empty($alertTiro)||!empty($AtintaT)) {
 ?>
-    <td colspan="3"> <?= implode(' | ', $alertTiro[$i])." ". implode(' | ',$AtintaT[$i]) . " " . $comida_exist2 ?></td>
+    <td colspan="3"> <?= implode(' | ', $alertTiro[$i])." ". implode(' | ',$AtintaT[$i])  ?></td>
     <?php
 
     } else {

@@ -343,7 +343,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
 <?php include("topbar.php");  ?>
 
 <div class="prod-container">
-  <div class="personal">
+  <div class="personal" style="margin-top: 100px;">
     
 
 
@@ -354,13 +354,13 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
       <thead>
       <tr class="trh">
         <td>Fecha: </td>
-        <td class=""><input id="datepicker" required="true" value="" name="fecha" class="hasDatepicker"></td>
+        <td class=""><input id="datepicker" required="true"  name="fecha" ></td>
         
         </tr></thead>
         <tbody>
         <tr style="font-size: 10px;">
-        <td>&nbsp;</td>
-        <td><input type="submit" class="genpdf btn btn-primary" value="Generar Reporte PDF"> </td>
+        <td><input type="button" class="genpdf btn btn-primary" value="Reporte EXCEL"></td>
+        <td><input type="submit" class="genpdf btn btn-primary" value="Reporte PDF"> </td>
         </tr>
         
         </tbody>
