@@ -2,8 +2,8 @@
 error_reporting(0);
 require_once("dompdf/dompdf_config.inc.php");
 include '../saves/conexion.php';
-$numodt = $_POST['id'];
-$userid = $_POST['iduser'];
+$numodt = $_GET['fecha'];
+$userid = $_GET['user'];
 function getComida($idtiraje, $section)
 {
     include '../saves/conexion.php';
@@ -76,10 +76,12 @@ $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHER
 
 ?>
 <?php
-ob_start();
+
 ?>
 <html>
 <head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="../js/jquery.table2excel.js"></script>
 <style>
 @page {
             margin: 1.3em 1.3em;
@@ -90,21 +92,8 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
-#resumes{
-    border: 1px solid #E1E0E5;
-}
-#resumes thead{
 
-  font-size: 13px!important;
-  padding: 5px!important;
-}
-
-#resumes td{
-  border-style: dashed;
-  font-size: 10px;
-}
-
-#datos thead{
+thead{
   background: #1A1F25;
   color: #fff;
   text-transform: uppercase;
@@ -112,7 +101,7 @@ table {
   padding: 1px!important;
 }
 
- td,  th {
+td, th {
     border: 1px solid #E1E0E5;
     text-align: center;
     padding: 2px;
@@ -230,69 +219,34 @@ border:1px solid #E1E0E5!important;
 </head>
 
 <body>
-<div class="header">
-  <div class="logo"><img src="../img/logoDerecha.png">
-  </div><div class="title">REPORTE DIARIO ETE
- 
- </div> <div class="inhead">
 
-  <table >
-  <tr><th>OPERADOR</th>
-    <th>MAQUINA</th>
-    <th>TURNO</th>
-    <th>FECHA</th>
-    </tr>
-    <tr>
-      <td><?= $getuser['logged_in'] ?></td>
-      <td></td>
-      <td></td>
-      <td><?= $numodt ?></td>
-    </tr>
-  </table>
-  </div>
-</div>
 
-<table id="datos">
-<thead><tr>
-    <th colspan="2"  >Hora</th>
-    
-    <th rowspan="2"  >ODT</th>
-    <th rowspan="2" >Producto</th>
-    
-    <th rowspan="2" >STD</th>
-    <th   colspan="2">Tiempo Disponible</th>
-    <th   colspan="2">Tiempo Muerto</th>
-    <th   colspan="2">Tiempo Real</th>
-    <th   colspan="2">Produccion Esperada</th>
-    <th   colspan="2">Produccion Real</th>
-    <th  colspan="2">Merma</th>
-    <th   colspan="2">Calidad a la Primera</th>
-    <th   colspan="2">Defectos</th>
-    <th rowspan="2" >Porque no se hizo bien a la primera?</th>
-    <th rowspan="2" >Porque se hizo mas lento?</th>
-    <th rowspan="2" >Porque se perdio tiempo?</th>
-    
-  </tr>
+<table id="table2excel" style="display: none;">
+<thead>
 <tr >
-    <th class="sub-head">Inicio</th>
-    <th class="sub-head">Fin</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
+    <th class="sub-head">Hora Inicio</th>
+    <th class="sub-head">Hora Fin</th>
+    <th rowspan="" >ODT</th>
+    <th rowspan="" >Producto</th>
+    <th rowspan="" >STD</th>
+    <th class="sub-head">Tiempo Disponible</th>
+    <th class="sub-head">Tiempo Disponible Acumulado</th>
+    <th class="sub-head">Tiempo Muerto</th>
+    <th class="sub-head">Tiempo Muerto Acumulado</th>
+    <th class="sub-head">Tiempo Real</th>
+    <th class="sub-head">Tiempo Real Acumulado</th>
+    <th class="sub-head">Produccion Esperada</th>
+    <th class="sub-head">Produccion Esperada Acumulado</th>
+    <th class="sub-head">Produccion Real</th>
+    <th class="sub-head">Produccion Real Acumulada</th>
+    <th class="sub-head">Merma</th>
+    <th class="sub-head">Merma Acumulada</th>
+    <th class="sub-head">Calidad a la Primera</th>
+    <th class="sub-head">Calidad a la Primera Acumulada</th>
+    <th class="sub-head">Defectos</th>
+    <th class="sub-head">Defectos Acumulados</th>
+    <th class="sub-head">Alertas</th>
     
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
-    <th class="sub-head">REAL</th>
-    <th class="sub-head">ACUM</th>
     
   </tr>
   </thead>
@@ -360,8 +314,7 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
     <td>0</td>
     <td>0</td>
     <td>--</td>
-    <td>--</td>
-    <td>--</td>
+    
     
     <!--
    
@@ -382,7 +335,7 @@ while ($row = mysqli_fetch_assoc($resss)):
         
     }
     //$comida_exist = (!empty($row['comida_ajuste'])) ? 'Comida ' . gmdate("H:i", $row['ini_comida_ajuste']) . "-" . gmdate("H:i", $row['fin_comida_ajuste']) : '';
-    $comida_exist = (!empty($row['comida_ajuste'])) ? '<tr><td colspan="24" style="color:#fff;background:#4D4D4D;"> COMIDA ' . gmdate("H:i", $row['ini_comida_ajuste']) . "-" . gmdate("H:i", $row['fin_comida_ajuste']).' </td></tr>' : '';
+    $comida_exist = (!empty($row['comida_ajuste'])) ? '<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td style="color:#fff;background:#4D4D4D;"> COMIDA ' . gmdate("H:i", $row['ini_comida_ajuste']) . "-" . gmdate("H:i", $row['fin_comida_ajuste']).' </td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td></tr>' : '';
     //$sum_muerto+=$row['comida_ajuste'];
     $sum_esper += $row['produccion_esperada'];
     $sum_merm += $row['merma_entregada'];
@@ -488,9 +441,8 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <?php
     } else {
 ?>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>--</td>
+    
     
     <?php
     }
@@ -504,7 +456,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 <?php
     //$sum_muerto+=$row['comida_tiro'];
     //$comida_exist2 = (!empty($row['comida_tiro'])) ? 'Comida ' . gmdate("H:i", $row['ini_comida_tiro']) . "-" . gmdate("H:i", $row['fin_comida_tiro']) : '';
-    $comida_exist2 = (!empty($row['comida_tiro'])) ? '<tr><td colspan="24" style="color:#fff;background:#4D4D4D;"> COMIDA ' . gmdate("H:i", $row['ini_comida_tiro']) . "-" . gmdate("H:i", $row['fin_comida_tiro']).' </td></tr>' : '';
+    $comida_exist2 = (!empty($row['comida_tiro'])) ? '<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td tyle="color:#fff;background:#4D4D4D;"> COMIDA ' . gmdate("H:i", $row['ini_comida_tiro']) . "-" . gmdate("H:i", $row['fin_comida_tiro']).' </td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td></tr>' : '';
     
     
     while ($alertaT = mysqli_fetch_assoc($alertaTiroMuerto)) {
@@ -571,9 +523,8 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 
     } else {
 ?>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>--</td>
+  
     
     <?php
     }
@@ -585,9 +536,6 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
   <?php
     $i++;
 endwhile;
-if ($resss->num_rows==0){
-  echo "<tr ><td colspan='24' style='padding:20px;'>NO SE ENCONTRO INFORMACION PARA ESTE OPERADOR EN ESTE DIA</td></tr> ";
-}
 ?>
   
   </tbody>
@@ -598,61 +546,29 @@ $treal = $sum_tiraje;
 
 ?>
 
-<br>
-<?php
-$dispon      = $treal / $sum_dispon;
-$dispon_tope = ($dispon * 100 > 100) ? 100 : $dispon * 100;
-$desempenio  = ($sum_real + $sum_merm) / $sum_esper;
-$desemp_tope = ($desempenio * 100 > 100) ? 100 : $desempenio * 100;
-$calidad      = ($sum_calidad) / $sum_real;
-$calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
- $final=round((($dispon_tope / 100) * ($desemp_tope / 100) * ($calidad_tope / 100)) * 100);
-?>
-<table id="resumes">
-  <thead>
-    <tr>
-      <th colspan="2">DISPONIBILIDAD= <?= round($dispon_tope, 2) ?>%</th>
-      <th colspan="4">DESEMPEÑO= <?= round($desemp_tope, 2) ?>%</th>
-      <th colspan="2">CALIDAD= <?= round($calidad_tope, 2) ?>%</th>
-      <th>ETE</th>
-    </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>TIEMPO REAL</td>
-    <td><?= gmdate("H:i", $treal) ?></td>
-    <td>PRODUCCION REAL</td>
-    <td><?= $sum_real ?></td>
-    
-    <td>MERMA</td>
-    <td><?= $sum_merm ?></td>
-    <td>CALIDAD A LA PRIMERA</td>
-    <td><?= $sum_calidad ?></td>
-    <td rowspan="2" style="font-size: 30px;"><?= (is_nan($final))? '0':$final ?>%</td>
-    </tr>
-    <tr>
-      <td>TIEMPO DISPONIBLE</td>
-      <td><?= gmdate("H:i", $sum_dispon) ?></td>
-      <td colspan="2">PRODUCCION ESPERADA</td>
-      <td colspan="2"><?= $sum_esper ?></td>
-      <td>PRODUCCION REAL</td>
-      <td><?= $sum_real ?></td>
-      
-    </tr>
-  </tbody>
-</table>
+
 </body>
 </html>
 
 
 
-<?php
-$html = ob_get_clean();
+<script>
+  $("button").click(function(){
+  $("#table2excel").table2excel({
+    // exclude CSS class
+    exclude: ".noExl",
+    name: "Worksheet Name",
+    filename: "SomeFile" //do not include extension
+  }); 
+});
 
-$dompdf = new DOMPDF();
-$dompdf->load_html($html);
-$dompdf->set_paper('letter', 'landscape');
-$dompdf->render();
-$dompdf->stream("reporte_de_orden.pdf", array(
-    'Attachment' => 0
-));
+
+  $(document).ready(function() {
+     $("#table2excel").table2excel({
+    // exclude CSS class
+    exclude: ".noExl",
+    name: "Worksheet Name",
+    filename: "SomeFile" //do not include extension
+  });
+ });
+</script>

@@ -1,4 +1,5 @@
 /******************** index2.php ********************/
+var list = [];
 var sec=localStorage.getItem('segundosincio');
 var b = false;
 function checkTime(i) {
@@ -127,9 +128,24 @@ $(document).on("click", ".radio-menu-small", function () {
 
 
                                              $( "#save-ajuste").click(function() {
-                                              
+                                              var expl=$('#observaciones').val();
+                                              console.log('array: '+list);
+                                              console.log('list lenght: '+Object.keys(list).length);
                                                var tiro=$('#actual_tiro').val();
-                                              $.ajax({
+                                               if (Object.keys(list).length==0) {
+                                                $('#explain-error').show();
+                                                console.log('explicacion: '+expl);
+                                               }else{
+                                                if(list[0]=='explain'&& expl==''){
+                                                  $('#explain-error').show();
+                                               
+                                               }else{
+                                                console.log(list[0]);
+                                                list= [];
+                                                showLoad();
+                                                 derecha();
+                                                 $('#explain-error').hide();
+                                                 $.ajax({
                                                   type: 'POST',
                                                   url: 'init_tiro.php',
                                                   data: {tiraje:tiro,init:'reinit'},
@@ -140,6 +156,10 @@ $(document).on("click", ".radio-menu-small", function () {
                                                      $( "#fo4" ).submit();
                                                   }
                                               })
+                                               }
+                                                
+                                               }
+                                             
                                                       
                                                      
                                              
@@ -903,9 +923,9 @@ function createVirtualOdt(){
                 });
     }
 
-    $(".derecha").click(function () {
-     
-        if (b == false) {
+   
+    function derecha(){
+      if (b == false) {
 
             $("#panelder2").animate({ left: '+=40%' }, 200);
             $("#panelder").animate({ right: '+=75%' }, 200);
@@ -915,8 +935,14 @@ function createVirtualOdt(){
             $("#panelder2").animate({ left: '-=40%' }, 200);
             $("#panelder").animate({ right: '-=75%' }, 200);
             b = false;
-        }      
-
-
-
-    });
+        }  
+    }
+$("#observaciones").on('change keyup paste', function() {
+    list.push("explain");
+    console.log('pushed: '+list)
+});
+$(document).on("click", ".no-explain", function () {
+  list=[];
+    list.push("no-explain");
+    console.log('pushed: '+list);
+});

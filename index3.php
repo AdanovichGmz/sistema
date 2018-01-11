@@ -438,6 +438,11 @@ if (@$_SESSION['logged_in'] != true) {
     margin:0 auto;
 
   }
+  #explain-error{
+  color:red;
+  font-size: 25px;
+  font-weight: bold;
+}
 </style>
 
 </head>
@@ -640,7 +645,7 @@ if (@$_SESSION['logged_in'] != true) {
                           <img src="images/saving.png">
                         </div>
                         <?php } ?>
-                        <div class="square-button-h yellow   derecha goalert" onclick="saveoperAlert();">
+                        <div class="square-button-h yellow goalert" onclick="derecha(); saveoperAlert();">
                           <img src="images/warning.png">
                         </div><a href="index2.php">
                         <div  class="square-button-h prple" >
@@ -907,6 +912,7 @@ foreach ($orderID as $odt) {
                 <!-- Textarea -->
                 <div class="form-group" id="explanation" style="text-align: center; color:black;">
                     <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones"></textarea>
+                     <p id="explain-error" style="display: none;">Porfavor agrega una explicacion ↑</p>
                 
                 </div>
                 <div class="form-group">
@@ -915,7 +921,7 @@ foreach ($orderID as $odt) {
                         <div class="square-button-small red derecha stopalert start reset" onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
-                        <div id="savealerta" class="square-button-small derecha blue " onclick="showLoad(); saveAlert();saveOperstatus();">
+                        <div id="savealerta" class="square-button-small  blue " onclick="saveAlert();">
                           <img src="images/saving.png">
                         </div>
                         
@@ -1187,4 +1193,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=10"></script>
+  <script src="js/tiraje.js?v=11"></script>

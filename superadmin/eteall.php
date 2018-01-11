@@ -347,7 +347,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
     
 
 
-
+<p style="font-size: 30px; color: #666666;margin:10px auto;">Reporte Diario General</p>
     <div class="ete-stat">
     <form  method="post" action="../pdfrepajustemaquina/multiPdf.php" target="_blank" >
       <table>
@@ -359,7 +359,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
         </tr></thead>
         <tbody>
         <tr style="font-size: 10px;">
-        <td><input type="button" class="genpdf btn btn-primary" value="Reporte EXCEL"></td>
+        <td><input type="button" class="genpdf btn btn-success" value="Reporte EXCEL"></td>
         <td><input type="submit" class="genpdf btn btn-primary" value="Reporte PDF"> </td>
         </tr>
         

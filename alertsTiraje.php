@@ -13,7 +13,7 @@ switch ($maquina){
        $options[]= 'Faltante de Papel';
        $options[]= 'Papel Incorrecto' ;
        $options[]= 'Papel Impreso mal Registrado' ;
-       $options[]= 'Otro';
+     
         break;
 
 
@@ -25,7 +25,7 @@ switch ($maquina){
        $options[]= 'Se Movio el Registro';
        $options[]= 'Es Bolsa' ;
        $options[]= 'Fallo de la Maquina' ;
-       $options[]= 'Otro';
+     
     //echo $nommaquina;
         break;
   case '2c:f0:ee:3d:53:99':
@@ -34,7 +34,7 @@ switch ($maquina){
        $options[]= 'Se Movio el Registro';
        $options[]= 'Es Bolsa' ;
        $options[]= 'Fallo de la Maquina' ;
-       $options[]= 'Otro';
+       
        //$options5= 'Falta Matrix' ;
         break;
   case 'f0:db:f8:11:97:bc':
@@ -43,7 +43,7 @@ switch ($maquina){
        $options[]= 'Fallo de Maquina';
        $options[]= 'Se Movio el Registro' ;
        $options[]= 'Tamaño Incorrecto de la Placa' ;
-       $options[]= 'Otro';
+      
        
     //de aqui para abajo no los llene aun
         break;
@@ -54,7 +54,7 @@ switch ($maquina){
        $options[]= 'Falta Placa' ;
        $options[]= 'Falta Albanene' ;
        $options[]= 'Falta Pelicula';
-       $options[]= 'Otro';
+      
     //echo $nommaquina;
         break;
   case 'b0:34:95:01:ec:2b':
@@ -63,7 +63,7 @@ switch ($maquina){
        $options[]= 'Fallo de Maquina';
        $options[]= 'Mal Ajuste' ;
        $options[]= 'Basura en la Area' ;
-       $options[]= 'Otro';
+      
        
     //echo $nommaquina;
         break;
@@ -75,7 +75,7 @@ switch ($maquina){
        $options[]= 'Material Incompleto' ;
        $options[]= 'Ajuste de Maquina';
        $options[]= 'Laminas en Mal Estado';
-       $options[]= 'Otro';
+       
 
      //echo $nommaquina;
         break;
@@ -85,7 +85,7 @@ switch ($maquina){
        $options[]='ODT Faltante' ;
        $options[]= 'Falta Albanene';
        $options[]= 'Material Incompleto' ;
-       $options[]= 'Otro';
+   
             
 
      //echo $nommaquina;
@@ -121,12 +121,15 @@ $options[]='Material Incompleto';
                     <?php  
                     $i=0;
                     foreach ($options as $option) { ?>
-                    <div class=" radio-menu face">
+                    <div class=" radio-menu face no-explain">
                        <input type="radio" name="radios" class="alertradios" id="radios-<?php echo $i; ?>" value="<?=$option; ?>">
                        <?php echo $option; ?>
                        </div>
                    <?php $i++; } ?>
                     
-                    
+                    <div class=" radio-menu face explain">
+                       <input type="radio" name="radios" class="alertradios" id="radios-<?php echo $i+1; ?>" value="Otro">
+                       Otro
+                       </div>
                     
                

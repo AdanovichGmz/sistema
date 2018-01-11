@@ -404,6 +404,11 @@ if ( $p==1) {
  display: none;
  }
 }
+#explain-error{
+  color:red;
+  font-size: 25px;
+  font-weight: bold;
+}
     </style>
 <style>
   .panelbottom legend{
@@ -453,7 +458,7 @@ if ( $p==1) {
                         <div class="square-button green stop eatpanel goeat" onclick="saveoperComida();">
                           <img src="images/dinner2.png">
                         </div>
-                        <div class="square-button yellow derecha goalert" onclick="saveoperAlert();">
+                        <div class="square-button yellow  goalert" onclick="derecha();saveoperAlert();">
                           <img src="images/alerts.png">
                         </div>
                         
@@ -618,21 +623,21 @@ if ( $p==1) {
                
 
                 <div class="two-columns">
-                  <div class=" radio-menu face">
+                  <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-0" value="Preparar Tinta">
                     Preparar Tinta
                     </div>
-               <div class=" radio-menu face">
+               <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-5" value="Tirar basura">
                     Tirar basura
                     </div>
                 </div>
                 <div class="two-columns">
-                <div class=" radio-menu face">
+                <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-2" value="Marco mal revelado">
                     Marco mal revelado
                     </div>
-                <div class=" radio-menu face">
+                <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-3" value="Marco con poro">
                     Marco con poro
                     </div>
@@ -640,49 +645,49 @@ if ( $p==1) {
                     
                 </div>
                 <div class="two-columns">
-                  <div class=" radio-menu face">
+                  <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-4" value="ODT confusa">
                     ODT confusa
                     </div>
                     
                 </div>
                 <div class="two-columns">
-                <div class=" radio-menu face">
+                <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-8" value="No tengo Material">
                     No tengo Material
                     </div>
-                  <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-6" value="Otro">
+                  <div class=" radio-menu face explain">
+                    <input type="radio" class="other" name="radios" id="radios-6" value="Otro">
                     Otro
                     </div>
                      <div id="tiro"></div>
                 </div>
                 <?php }else{ ?>
                  <div class="two-columns">
-                  <div class=" radio-menu face">
+                  <div class=" radio-menu face no-explain">
                   <div id="tiro"></div>
                     <input type="radio" name="radios" id="radios-0" value="ODT Confusa">
                     ODT Confusa
                     </div>
-                <div class=" radio-menu face">
+                <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-1" value="ODT Faltante">
                     ODT Faltante
                     </div>
-                     <div class=" radio-menu face">
-                    <input type="radio" name="radios" id="radios-6" value="Otro">
+                     <div class=" radio-menu face explain">
+                    <input type="radio" name="radios"  id="radios-6" value="Otro">
                     Otro
                     </div>
                 </div>
                 <div class="two-columns">
-                <div class=" radio-menu face">
+                <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-2" value="Cambio de Cuchilla">
                     Cambio de Cuchilla
                     </div>
-                <div class=" radio-menu face">
+                <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-3" value="Pieza de Plancha">
                     Pieza de Plancha
                     </div>
-                <div class=" radio-menu face">
+                <div class=" radio-menu face no-explain">
                     <input type="radio" name="radios" id="radios-4" value="Exceso de Dimensiones">
                     Exceso de Dimensiones
                     </div>
@@ -693,6 +698,7 @@ if ( $p==1) {
                 <!-- Textarea -->
                 <div class="form-group" style="text-align: center; color:black;">
                     <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones"></textarea>
+                    <p id="explain-error" style="display: none;">Porfavor agrega una explicacion ↑</p>
                 
                 </div>
                 <!-- Button (Double) -->
@@ -716,7 +722,7 @@ if ( $p==1) {
                         <div style="display: none;" class="square-button-micro2 red derecha stopalert start reset" onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
-                        <div id="save-ajuste" class="square-button-micro2 derecha  blue" onclick="showLoad();saveOperstatus();">
+                        <div id="save-ajuste" class="square-button-micro2   blue" onclick="saveOperstatus();">
                           <img src="images/saving.png">
                         </div>
                         
@@ -952,4 +958,4 @@ $(document).on("click", ".qty-button", function () {
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=23"></script>
+<script src="js/ajuste.js?v=24"></script>

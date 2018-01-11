@@ -3,6 +3,7 @@
  var k=false;
  var b = false;
  var sec=parseInt($('#iniciotiro').val());
+ var list = [];
  function checkTime(i) {
     if (i < 10) {
         i = "0" + i;
@@ -301,6 +302,15 @@ timer.addEventListener('started', function (e) {
                 
         
        });
+      $("#observaciones").on('change keyup paste', function() {
+    list.push("explain");
+    console.log('pushed: '+list)
+});
+$(document).on("click", ".no-explain", function () {
+  list=[];
+    list.push("no-explain");
+    console.log('pushed: '+list);
+});
       function close_box()
       {
         $('.backdrop, .box, .boxPause, .boxmulti').animate({'opacity':'0'}, 300, 'linear', function(){
@@ -375,13 +385,23 @@ $('.radio-menu').click(function() {
                       $(this).addClass('face-osc').find('input').prop('checked', true)    
                     });
  function saveAlert(){
-  var rads=$('input:radio.alertradios:checked').lenght;
-   console.log('perrote '+rads);
-  if ($('input:radio.alertradios:checked').lenght==0) {
+  var expl=$('#observaciones').val();
+  console.log('array: '+list);
+  console.log('list lenght: '+Object.keys(list).length);
    
-$('#explanation').append('<p style="color:red;"> POR FAVOR ESCRIBE UNA EXPLICACION ↑</p>')
-  }
-  else{
+  if (Object.keys(list).length==0) {
+    $('#explain-error').show();
+    console.log('explicacion: '+expl);
+
+  }else{
+    if (list[0]=='explain'&& expl=='') {
+      $('#explain-error').show();
+    }else{
+    console.log(list[0]);
+    list= [];
+    showLoad();
+    derecha();
+    $('#explain-error').hide();
   
   if (localStorage.getItem('alertTime')) {
     var lastsecs=currentSeconds()-sec;
@@ -400,6 +420,8 @@ $('#explanation').append('<p style="color:red;"> POR FAVOR ESCRIBE UNA EXPLICACI
          timerAlertm.pause();
     $('#timealerta').val(timerAlertm.getTimeValues().toString());
     console.log(timerAlertm.getTimeValues().toString());
+    showLoad();
+    saveOperstatus();
     timerAlertm.stop();
          $.ajax({  
                       
@@ -423,6 +445,7 @@ $('#explanation').append('<p style="color:red;"> POR FAVOR ESCRIBE UNA EXPLICACI
                      }  
                 });
        }
+     }
     } 
  function saveTiro(){
       
@@ -570,23 +593,8 @@ $(document).ready(function () {
 
 
     
-    $(".derecha").click(function () {
-     
-        if (b == false) {
-
-            $("#panelder2").animate({ left: '+=40%' }, 200);
-            $("#panelder").animate({ right: '+=75%' }, 200);
-            b = true;
-        }
-        else {
-            $("#panelder2").animate({ left: '-=40%' }, 200);
-            $("#panelder").animate({ right: '-=75%' }, 200);
-            b = false;
-        }      
-
-
-
-    });
+   
+  
 
 
 
@@ -813,4 +821,19 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
                           console.log(data);
                      }  
                 });
+    }
+
+
+    function derecha(){
+      if (b == false) {
+
+            $("#panelder2").animate({ left: '+=40%' }, 200);
+            $("#panelder").animate({ right: '+=75%' }, 200);
+            b = true;
+        }
+        else {
+            $("#panelder2").animate({ left: '-=40%' }, 200);
+            $("#panelder").animate({ right: '-=75%' }, 200);
+            b = false;
+        }  
     }

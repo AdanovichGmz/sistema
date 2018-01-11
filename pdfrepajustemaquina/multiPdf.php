@@ -40,8 +40,21 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
+#resumes{
+    border: 1px solid #E1E0E5;
+}
+#resumes thead{
 
-thead{
+  font-size: 13px!important;
+  padding: 5px!important;
+}
+
+#resumes td{
+  border-style: dashed;
+  font-size: 10px;
+}
+
+#datos thead{
   background: #1A1F25;
   color: #fff;
   text-transform: uppercase;
@@ -49,7 +62,7 @@ thead{
   padding: 1px!important;
 }
 
-td, th {
+ td,  th {
     border: 1px solid #E1E0E5;
     text-align: center;
     padding: 2px;
@@ -242,7 +255,7 @@ $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHER
   </div>
 </div>
 
-<table>
+<table id="datos">
 <thead><tr>
     <th colspan="2"  >Hora</th>
     
@@ -354,9 +367,9 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
     <td>0</td>
     <td>0</td>
     <td>0</td>
-    <td>--</td>
-    <td>--</td>
-    <td>--</td>
+    <td></td>
+    <td></td>
+    <td></td>
     
     <!--
    
@@ -483,9 +496,9 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <?php
     } else {
 ?>
-    <td>--</td>
-    <td>--</td>
-    <td>--</td>
+    <td></td>
+    <td></td>
+    <td></td>
     
     <?php
     }
@@ -566,9 +579,9 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 
     } else {
 ?>
-    <td>--</td>
     <td></td>
-    <td>--</td>
+    <td></td>
+    <td></td>
     
     <?php
     }
@@ -580,6 +593,9 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
   <?php
     $i++;
 endwhile;
+if ($resss->num_rows==0){
+  echo "<tr ><td colspan='24' style='padding:20px;'>NO SE ENCONTRO INFORMACION PARA ESTE OPERADOR EN ESTE DIA</td></tr> ";
+}
 ?>
   
   </tbody>
@@ -590,87 +606,50 @@ $treal = $sum_tiraje[$key];
 
 ?>
 
-<div style="width: 103%; padding-top: 10px;margin: 0 auto!important">
-  <div class="botom-stats" style="width: 24%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
-     <?php
+
+<br>
+<?php
 $dispon      = $treal / $sum_dispon[$key];
 $dispon_tope = ($dispon * 100 > 100) ? 100 : $dispon * 100;
-?>
-      DISPONIBILIDAD= <?= round($dispon_tope, 2) ?>%
-    </div><div style="width: 100%;">
-      <table>
-        <tr>
-          <th>TIEMPO REAL</th>
-
-          <td><?= gmdate("H:i", $treal) ?></td>
-        </tr>
-        <tr>
-          <th class="extrath">TIEMPO DISPONIBLE</th>
-          <td class="extrath"><?= gmdate("H:i", $sum_dispon[$key]) ?></td>
-        </tr>
-      </table>
-    </div>
-
-  </div><div class="botom-stats" style="width: 39%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
-     <?php
 $desempenio  = ($sum_real[$key] + $sum_merm[$key]) / $sum_esper[$key];
 $desemp_tope = ($desempenio * 100 > 100) ? 100 : $desempenio * 100;
-?>
-     DESEMPEÑO= <?= round($desemp_tope, 2) ?>%
-    </div><div style="width: 100%;">
-      <table>
-        
-        <tr>
-          <td class="extra">PRODUCCION REAL</td>
-          <td class="extra"><?= $sum_real[$key] ?></td>
-           <td class="extra">MERMA</td>
-          <td><?= $sum_merm[$key] ?></td>
-        </tr>
-        <tr>
-          <th class="extrath" colspan="2" style="border-right: 1px dashed #E1E0E5!important;">PRODUCCION ESPERADA</th>
-          <th class="extrath" style="border:none!important;" colspan="2"><?= $sum_esper[$key] ?></th>
-        </tr>
-      </table>
-    </div>
-  </div><div class="botom-stats" style="width: 24%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
-    <?php
 $calidad      = ($sum_calidad[$key]) / $sum_real[$key];
 $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
+ $final=round((($dispon_tope / 100) * ($desemp_tope / 100) * ($calidad_tope / 100)) * 100);
 ?>
-      CALIDAD= <?= round($calidad_tope, 2) ?>%
-    </div><div style="width: 100%;">
-      <table>
-        <tr>
-          <th>CALIDAD A LA PRIMERA</th>
-          <td><?= $sum_calidad[$key] ?></td>
-        </tr>
-        <tr>
-          <th class="extrath">PRODUCCION REAL</th>
-          <td class="extra" style="border:none!important;"><?= $sum_real[$key] ?></td>
-        </tr>
-      </table>
-    </div>
-  </div><div class="botom-stats" style="width: 9%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #E1E0E5; line-height:23px;text-align: center; vertical-align: middle;">
-      ETE
-    </div><div style="width: 100%; position: relative;">
-      <table>
-        <tr>
-          <th style="color: #fff!important; border:none!important;">&nbsp</th>
-          
-        </tr>
-         <tr>
-          <th style="color: #fff!important; border:none!important;">&nbsp</th>
-          
-        </tr>
-      </table>
-      <div style="position: absolute;top: 0.5%;left: 20%; transform: translate(-50%, -50%);font-size: 30px;"><?= round((($dispon_tope / 100) * ($desemp_tope / 100) * ($calidad_tope / 100)) * 100) ?>%</div>
-    </div>
-  </div>
-</div>
+<table id="resumes">
+  <thead>
+    <tr>
+      <th colspan="2">DISPONIBILIDAD= <?= round($dispon_tope, 2) ?>%</th>
+      <th colspan="4">DESEMPEÑO= <?= round($desemp_tope, 2) ?>%</th>
+      <th colspan="2">CALIDAD= <?= round($calidad_tope, 2) ?>%</th>
+      <th>ETE</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>TIEMPO REAL</td>
+    <td><?= gmdate("H:i", $treal) ?></td>
+    <td>PRODUCCION REAL</td>
+    <td><?= $sum_real[$key] ?></td>
+    
+    <td>MERMA</td>
+    <td><?= $sum_merm[$key] ?></td>
+    <td>CALIDAD A LA PRIMERA</td>
+    <td><?= $sum_calidad[$key] ?></td>
+    <td rowspan="2" style="font-size: 30px;"><?= (is_nan($final))? '0':$final ?>%</td>
+    </tr>
+    <tr>
+      <td>TIEMPO DISPONIBLE</td>
+      <td><?= gmdate("H:i", $sum_dispon[$key]) ?></td>
+      <td colspan="2">PRODUCCION ESPERADA</td>
+      <td colspan="2"><?= $sum_esper[$key] ?></td>
+      <td>PRODUCCION REAL</td>
+      <td><?= $sum_real[$key] ?></td>
+      
+    </tr>
+  </tbody>
+</table>
 
 </body>
 <?php } ?>
