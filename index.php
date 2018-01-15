@@ -97,6 +97,12 @@ if (localStorage.getItem('fecha')!==currentdate) {
   console.log('se eliminaron los estorages');
 }
    });
+     $(document).keypress(function(e) {
+    if(e.which == 13) {
+      event.preventDefault();
+      $('#singlebutton').click();
+}
+});
 </script>
 </html>
 <?php } ?>

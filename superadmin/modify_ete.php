@@ -194,9 +194,9 @@ th,td{
 .editable{
   position: relative;
   
-  background: #FFD557;
+  background:#FFF8C4;
     
-    color: #55481F;
+    color: #6A6867;
     font-weight: bolder;
 }
 .editable:hover{
@@ -228,7 +228,7 @@ th,td{
     position: absolute;
     z-index: 999999;
     bottom: 100%;
-    left: 50%;
+    
     margin-left: -18px;
     border: 1px solid #ccc;
     border: 1px solid rgba(0,0,0,0.3);
@@ -260,6 +260,26 @@ th,td{
     -ms-transform:rotate(90deg);
   -ms-filter: 
 }
+.toolleft{
+  left: 50%;
+  
+
+}
+.toolleft::after{
+  
+    left: 15%;
+   
+}
+.toolright{
+  right: 50%;
+  
+
+}
+.toolright::after{
+  
+    right: 5%;
+   
+}
 .tooltiptext input{
   color: #000;
   border-radius: 3px;
@@ -279,7 +299,7 @@ th,td{
     content: "";
     position: absolute;
     top: 100%;
-    left: 15%;
+   
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
@@ -350,6 +370,47 @@ background-repeat: no-repeat;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    position: relative;
+ }
+ .successs div{
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  background-image: url(../images/palomita.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+ }
+ .successs span{
+  font-weight: bolder;
+  margin-left: 35px;
+ }
+ .fail{
+   color: #323232;
+    width: 500px;
+    background: #EF403D;
+    border:solid 1px #B32B29;
+    z-index: 51;
+    padding: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    position: relative;
+ }
+ .fail div{
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  background-image: url(../images/equis.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+ }
+ .fail span{
+  font-weight: bolder;
+  margin-left: 35px;
  }
 @media screen and (max-width:1024px) {
   th{
@@ -409,7 +470,7 @@ background-repeat: no-repeat;
   <option value="16">Armando</option>
   <option value="8">Eduardo</option>
   <option value="2">Adan</option>
-  <option value="11">El Poncho</option>
+  <option value="11">Alfonso</option>
   <option value="13">Christian</option>
 
    </select>
@@ -529,15 +590,22 @@ $("#newstandar").click(function () {
   console.log('user '+user);
   if (user=='Usuarios') {
     go=false;
+
     $('#usererror').show();
+     setTimeout(function() {   
+                  $('#usererror').hide();
+                }, 2000);
    
   }else{go=true;}
   if (fecha=='') {
-    go=false;
+    go2=false;
    $('#fechaerror').show();
-  }else{go=true;}
+   setTimeout(function() {   
+                  $('#fechaerror').hide();
+                }, 2000);
+  }else{go2=true;}
 
-  if (go) {
+  if (go && go2) {
  console.log('si paso '+user);
   $.ajax({
         url: "tableModify.php",
@@ -596,6 +664,12 @@ $("#newstandar").click(function () {
         var hour=$('#hour-'+id).val();
         var min=$('#min-'+id).val();
         var sec=$('#sec-'+id).val();
+        var value=hour+':'+min+':'+sec;
+        var datas='column='+column+'&editval='+value+'&id='+id;
+      }else if(concept=='ttime'){
+        var hour=$('#thour-'+id).val();
+        var min=$('#tmin-'+id).val();
+        var sec=$('#tsec-'+id).val();
         var value=hour+':'+min+':'+sec;
         var datas='column='+column+'&editval='+value+'&id='+id;
       }else{

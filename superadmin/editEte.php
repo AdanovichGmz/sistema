@@ -12,10 +12,11 @@ if ($prod_real) {
 	$merma=$_POST["merma"];
 	$result = $mysqli->query("UPDATE tiraje set merma_entregada =$merma, entregados= $entregados, buenos= $entregados   WHERE  idtiraje=".$_POST["id"]);
 if ($result) {
-	echo "<div class='successs'>Datos guardados!</div>";
+	echo "<div class='successs'><div></div><span>Exito: </span>Datos guardados!</div>";
 }else{
-	printf($mysqli->error);
-	echo $query;
+	//printf($mysqli->error);
+	//echo $query;
+	echo "<div class='fail'><div></div><span>Error: </span>los datos no se guardaron</div>";
 }
 
 }else{
@@ -42,9 +43,9 @@ if ($result) {
 
        $setStd=$mysqli->query("UPDATE tiraje SET produccion_esperada=".round($tiraje_estandar)." WHERE idtiraje=".$_POST["id"]);
        if ($setStd) {
-       echo "<div class='successs'>Datos guardados!</div>";
+       echo "<div class='successs'><div></div><span>Exito: </span>Datos guardados!</div>";
        }else{
-       	echo "<div class='successs'>Ocurrio un error</div>";
+       	echo "<div class='fail'><div></div><span>Error: </span>los datos no se guardaron</div>";
        }
 
 
@@ -57,12 +58,13 @@ if ($result) {
 		echo $std['piezas_por_hora'];
 	}
 }else{
-	echo "<div class='successs'>Datos guardados!</div>";
+	echo "<div class='successs'><div></div><span>Exito: </span>Datos guardados!</div>";
 }
 
 	
 }else{
-	printf($mysqli->error);
+	echo "<div class='fail'><div></div><span>Error: </span>los datos no se guardaron</div>";
+	//printf($mysqli->error);
 }
 
 }
