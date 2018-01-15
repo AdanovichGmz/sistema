@@ -90,6 +90,8 @@ if(@$_SESSION['logged_in'] != true){
 
 
 <script type="text/javascript">
+
+
 (function(document) {
   'use strict';
 
@@ -106,7 +108,7 @@ if(@$_SESSION['logged_in'] != true){
     }
 
     function _filter(row) {
-      console.log(row);
+      
       var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
       row.style.display = text.indexOf(val) === -1 ? 'none' : '';
     }
@@ -172,8 +174,18 @@ td{
     left: 1%;
     color: white;
 }
+.light-table-filter{
+  width: 90%!important;
+  margin-top: 25px;
+
+}
+#datepicker{
+  width: 90%!important;
+  margin: 0 auto;
+}
 .left-form2{
-  width: 20%!important;
+  width: 19%!important;
+  margin: 3px;
 }
 .left-form{
  width: 30%!important; 
@@ -181,7 +193,7 @@ td{
 th{
   text-transform: uppercase;
 }
-th,td{
+.lightable th,.lightable td{
   padding:5px 3px!important;
   font-size: 11px;
   text-align: center;
@@ -478,18 +490,14 @@ background-repeat: no-repeat;
    </div>
    
  
- </div>
- 
-  <div class="left-form2">
+ </div><div class="left-form2">
  
    <p style="margin-bottom: 2px!important;">Fecha</p>
    
    <input id="datepicker" class="" required="true" value="" name="id" />
   <p id="fechaerror" style="display: none;">Por favor elige una fecha</p>
  
- </div>
- <div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">TRAER REPORTE</button></div>
- <div class="left-form"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Busqueda"></div>
+ </div><div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">TRAER REPORTE</button></div><div  class="left-form2"><form action="../pdfrepajustemaquina/createPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div><div class="left-form2"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Busqueda"></div>
     
  </div>
 
@@ -576,7 +584,9 @@ background-repeat: no-repeat;
 </body>
 </html>
 <script>
-
+$(document).ready(function(){
+      document.getElementById('getPdf').style.pointerEvents = 'none';
+ });
     
      function showEdit(editableObj) {
       $('.tooltiptext').hide();
@@ -606,6 +616,11 @@ $("#newstandar").click(function () {
   }else{go2=true;}
 
   if (go && go2) {
+
+    $('#date').val(fecha);
+    $('#user').val(user);
+    document.getElementById('getPdf').style.pointerEvents = 'auto';
+    $('#getPdf').removeClass('disabled'); 
  console.log('si paso '+user);
   $.ajax({
         url: "tableModify.php",
@@ -619,6 +634,8 @@ $("#newstandar").click(function () {
     
   
 });
+
+
     /*
     function saveToDatabase(editableObj,column,id) {
 
