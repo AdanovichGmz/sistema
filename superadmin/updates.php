@@ -83,7 +83,7 @@ elseif ($whatForm=='alerta-maquina') {
          
           if ( $mysqli->query($query)) {
             $output= include("tableAlertmaq.php"); 
-            echo $output;
+          
           }else{
             printf("Errormessage: %s\n", $mysqli->error);
           }

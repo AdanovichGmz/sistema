@@ -15,7 +15,7 @@
           <ul class="children">
           <li><a href="ete.php">Individuales <span class="icon-cogs"></span></a></li>
             <li><a href="eteall.php">General<span class="icon-warning"></span></a></li>
-                      
+              <li><a href="modify_ete.php">Modificar<span class="icon-warning"></span></a></li>        
           </ul>
 </li><li class="submenu">
           <a href="#"><span class="icon-cog"></span>Maquinas<span class="caret icon-arrow-down6"></span></a>

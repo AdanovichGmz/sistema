@@ -9,10 +9,14 @@
 .lightable thead td{
   color: #545A8E;
 }
-.lightable th, .lightable td {
+ .lightable td {
   padding: 0.25rem;
-  border: 1px solid #E6E8E7!important;
+  border: 1px solid #E6E8E7;
  /* border: 1px solid black; */
+}
+.lightable th{
+	padding: 0.25rem;
+  border: 1px solid #E6E8E7!important;
 }
 .lightable tbody tr:nth-child(odd) {
   background: #F9F9F9;
@@ -433,7 +437,7 @@ position: relative;
 	
 }
 .hoverable tbody>tr:hover{
-	background:#F2EDED;
+	background:#F2EDED!important;
 }
 .tabla{
    text-align: center;
@@ -595,7 +599,7 @@ border-top: 1px solid #444444!important;
 .left-form2{
 	width: 31%;
 	background-color: #fff;
-	height: 80px;
+	min-height: 80px;
 	display:inline-block;
 	border-radius: 5px;
 	margin: 10px;
@@ -730,10 +734,10 @@ writing-mode: vertical-rl;
 .conttabla{
 	width: 98%;
 	height: 80%;
-	position: absolute;
+	margin: 0 auto;
 	overflow: auto;
 	bottom: 5px;
-	left: 1%;
+	
 	color:white;
 	
 
@@ -743,9 +747,9 @@ writing-mode: vertical-rl;
 .conttabla2{
 	width: 98%;
 	height: 95%!important;
-	position: absolute;
+	margin: 0 auto;
 	overflow: auto;
-	left: 1%;
+	
 	color:white;
 	
 
