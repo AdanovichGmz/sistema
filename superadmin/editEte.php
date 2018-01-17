@@ -1,9 +1,14 @@
 <?php
+session_start();
 require('../saves/conexion.php');
 $prod_real=(isset($_POST['prod_real']))? true : false;
 $std_change=(isset($_POST['std_change']))? true : false;
-
-
+$logged=$_SESSION['logged_in'];
+$oper=(isset($_POST['operador']))? $_POST['operador'] : 'null';
+$date_report=(isset($_POST['fecha']))? "'".$_POST['fecha']."'" : 'null';
+$concept=(isset($_POST['concepto']))? "'".$_POST['concepto']."'" : 'null';
+$time=date("H:i:s",time());
+$date=date("d-m-Y");
 
 
 if ($prod_real) {
@@ -13,6 +18,10 @@ if ($prod_real) {
 	$result = $mysqli->query("UPDATE tiraje set merma_entregada =$merma, entregados= $entregados, buenos= $entregados   WHERE  idtiraje=".$_POST["id"]);
 if ($result) {
 	echo "<div class='successs'><div></div><span>Exito: </span>Datos guardados!</div>";
+	$log=$mysqli->query("INSERT INTO `registro_modificacion` (`id_registro`, `usuario`, `fecha_registro`, `hora_registro`, `operador`, `fecha`, `concepto`, `informacion`) VALUES (NULL, '$logged', '$date', '$time', $oper, $date_report, 'produccion real', 'buenos: ".$_POST["entregados"]." merma : ".$_POST["merma"]."')");
+	if (!$log) {
+		printf($mysqli->error);
+	}
 }else{
 	//printf($mysqli->error);
 	//echo $query;
@@ -44,6 +53,10 @@ if ($result) {
        $setStd=$mysqli->query("UPDATE tiraje SET produccion_esperada=".round($tiraje_estandar)." WHERE idtiraje=".$_POST["id"]);
        if ($setStd) {
        echo "<div class='successs'><div></div><span>Exito: </span>Datos guardados!</div>";
+       $log=$mysqli->query("INSERT INTO `registro_modificacion` (`id_registro`, `usuario`, `fecha_registro`, `hora_registro`, `operador`, `fecha`, `concepto`, `informacion`) VALUES (NULL, '$logged', '$date', '$time', $oper, $date_report, '" . $_POST["column"] . "', '".$_POST["editval"]."')");
+	if (!$log) {
+		printf($mysqli->error);
+	}
        }else{
        	echo "<div class='fail'><div></div><span>Error: </span>los datos no se guardaron</div>";
        }
@@ -59,6 +72,12 @@ if ($result) {
 	}
 }else{
 	echo "<div class='successs'><div></div><span>Exito: </span>Datos guardados!</div>";
+	
+	$log=$mysqli->query("INSERT INTO `registro_modificacion` (`id_registro`, `usuario`, `fecha_registro`, `hora_registro`, `operador`, `fecha`, `concepto`, `informacion`) VALUES (NULL, '$logged', '$date', '$time', $oper, $date_report, '" . $_POST["column"] . "', '".$_POST["editval"]."')");
+	if (!$log) {
+		printf($mysqli->error);
+		
+	}
 }
 
 	

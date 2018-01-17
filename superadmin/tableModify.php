@@ -272,8 +272,8 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 <!-- ********** Inicia TR Ajuste ********** -->
 <tbody>
                           <tr>
-     <td class="editable"  onClick="showEdit(this);"><?= substr($row['horadeldia_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tinput"><input id="time-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horadeldia_ajuste']?>"></div><div class="toolbutton save" onclick="saveToDatabase('inicio','horadeldia_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div></td>                     
-    <td class="editable"  onClick="showEdit(this);"><?= substr($row['horafin_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tinput"><input id="tfin-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horafin_ajuste']?>"></div><div class="toolbutton save" onclick="saveToDatabase('fin','horafin_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div></td>
+     <td class="editable"  onClick="showEdit(this);"><?= substr($row['horadeldia_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tinput"><input id="time-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horadeldia_ajuste']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('inicio','horadeldia_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>                     
+    <td class="editable"  onClick="showEdit(this);"><?= substr($row['horafin_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tinput"><input id="tfin-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horafin_ajuste']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('fin','horafin_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
     <td> </td>
     <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?> >Ajuste </td>
     <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
@@ -300,7 +300,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     
     ?>
     <td class="editable"  onClick="showEdit(this);"><?= gmdate("H:i", ($formulaajuste[$i]<=0)? $row['seconds_ajuste']+$haytinta : (($row['id_maquina']==9||$row['id_maquina']==22)? 1500 : (($row['id_maquina']==16)? 3600 : 1200))+$haytinta ); ?>
-      <div class="tooltiptext toolleft toolcifras"><div class="tinput"><input id="hour-<?=$row['idtiraje']; ?>" type="number"  min="0" max="99" class="cifra"  value="<?=$a_hour ?>"> : </div><div class="tinput"><input id="min-<?=$row['idtiraje']; ?>" type="number" class="cifra" min="0" max="99" value="<?=$a_min ?>"> : </div><div class="tinput"><input id="sec-<?=$row['idtiraje']; ?>" type="number"  min="0" max="99" class="cifra"  value="<?=$a_sec ?>"></div><div class="toolbutton save" onclick="saveToDatabase('time','tiempo_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div>
+      <div class="tooltiptext toolleft toolcifras"><div class="tinput"><input id="hour-<?=$row['idtiraje']; ?>" type="number"  min="0" max="99" class="cifra"  value="<?=$a_hour ?>"> : </div><div class="tinput"><input id="min-<?=$row['idtiraje']; ?>" type="number" class="cifra" min="0" max="99" value="<?=$a_min ?>"> : </div><div class="tinput"><input id="sec-<?=$row['idtiraje']; ?>" type="number"  min="0" max="99" class="cifra"  value="<?=$a_sec ?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('time','tiempo_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div>
     </td>
   <?php
     $sum_tiraje += ($formulaajuste[$i]<=0)? $row['seconds_ajuste'] : (($row['id_maquina']==9||$row['id_maquina']==22 )? 1500 : (($row['id_maquina']==16)? 3600 : 1200));
@@ -367,15 +367,15 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 ?>
 <!-- ********** Inicia TR Tiro ********** -->
       <tr >
-     <td class="editable" onClick="showEdit(this);"><?= substr($row['horadeldia_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tinput"><input id="timet-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horadeldia_tiraje']?>"></div><div class="toolbutton save" onclick="saveToDatabase('iniciot','horadeldia_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div></td>                     
-    <td class="editable" onClick="showEdit(this);"><?= substr($row['horafin_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tinput"><input id="tfint-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horafin_tiraje']?>"></div><div class="toolbutton save" onclick="saveToDatabase('fint','horafin_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div></td>
+     <td class="editable" onClick="showEdit(this);"><?= substr($row['horadeldia_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tinput"><input id="timet-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horadeldia_tiraje']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('iniciot','horadeldia_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>                     
+    <td class="editable" onClick="showEdit(this);"><?= substr($row['horafin_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tinput"><input id="tfint-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horafin_tiraje']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('fint','horafin_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
 
 <?php if ($row['is_virtual'] == 'true') { ?>
-  <td class="editable" onClick="showEdit(this);"> <?= $row['odt_virtual'] ?><div class="tooltiptext toolleft"><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['odt_virtual']?>"></div><div class="toolbutton save" onclick="saveToDatabase('odt','odt_virtual','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div> </td>
+  <td class="editable" onClick="showEdit(this);"> <?= $row['odt_virtual'] ?><div class="tooltiptext toolleft"><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['odt_virtual']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('odt','odt_virtual','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div> </td>
 
 <?php }else{ ?>
 
-   <td class="editable" onClick="showEdit(this);"> <?=$row['numodt'] ?><div class="tooltiptext toolleft"><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['numodt']?>"></div><div class="toolbutton save" onclick="saveToDatabase('odt','numodt','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div>  </td> 
+   <td class="editable" onClick="showEdit(this);"> <?=$row['numodt'] ?><div class="tooltiptext toolleft"><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['numodt']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('odt','numodt','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div>  </td> 
 
 <?php } ?>
 
@@ -413,17 +413,17 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <td><?= gmdate("H:i", $sum_dispon); ?></td>
     <td><?= gmdate("H:i", ((isset($alertT_Sum))? array_sum($alertT_Sum[$i]) : 0) ); ?></td>
     <td><?= gmdate("H:i", $sum_muerto); ?></td>
-    <td class="editable"  onClick="showEdit(this);"><?= gmdate("H:i", $row['seconds_tiraje']); ?><div class="tooltiptext toolleft toolcifras"><div class="tinput"><input id="thour-<?=$row['idtiraje']; ?>" type="number"  class="cifra"  value="<?=$t_hour ?>"> : </div><div class="tinput"><input id="tmin-<?=$row['idtiraje']; ?>" type="number" class="cifra" value="<?=$t_min ?>"> : </div><div class="tinput"><input id="tsec-<?=$row['idtiraje']; ?>" type="number"  class="cifra"  value="<?=$t_sec ?>"></div><div class="toolbutton save" onclick="saveToDatabase('ttime','tiempoTiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div></td>
+    <td class="editable"  onClick="showEdit(this);"><?= gmdate("H:i", $row['seconds_tiraje']); ?><div class="tooltiptext toolleft toolcifras"><div class="tinput"><input id="thour-<?=$row['idtiraje']; ?>" type="number"  class="cifra"  value="<?=$t_hour ?>"> : </div><div class="tinput"><input id="tmin-<?=$row['idtiraje']; ?>" type="number" class="cifra" value="<?=$t_min ?>"> : </div><div class="tinput"><input id="tsec-<?=$row['idtiraje']; ?>" type="number"  class="cifra"  value="<?=$t_sec ?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('ttime','tiempoTiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
     <td><?= gmdate("H:i", $sum_tiraje); ?></td>
     <td><?= $row['produccion_esperada']; ?></td>
     <td><?= $sum_esper ?></td>
-    <td class="editable" onClick="showEdit(this);"><?= $row['entregados'] - $row['merma_entregada']; ?><div class="tooltiptext toolreal"><p>Buenos</p><div class="tinput"><input id="buen-<?=$row['idtiraje']; ?>" type="number" value="<?= $row['entregados'] - $row['merma_entregada']?>"></div><p>Merma</p><div class="tinput"><input id="merm-<?=$row['idtiraje']; ?>" type="number" value="<?=$row['merma_entregada']?>"></div><div class="toolbutton save" onclick="saveToDatabase('real','entregados','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div></td>
+    <td class="editable" onClick="showEdit(this);"><?= $row['entregados'] - $row['merma_entregada']; ?><div class="tooltiptext toolreal"><p>Buenos</p><div class="tinput"><input id="buen-<?=$row['idtiraje']; ?>" type="number" value="<?= $row['entregados'] - $row['merma_entregada']?>"></div><p>Merma</p><div class="tinput"><input id="merm-<?=$row['idtiraje']; ?>" type="number" value="<?=$row['merma_entregada']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('real','entregados','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
     <td><?= $sum_real ?></td>
     <td><?= $row['merma_entregada']; ?></td>
     <td><?= $sum_merm ?></td>
     <td><?= $row['calidad']; ?></td>
     <td><?= $sum_calidad ?></td>
-    <td class="editable" onClick="showEdit(this);"><?= $row['defectos']; ?><div class="tooltiptext toolright"><div class="tinput"><input id="def-<?=$row['idtiraje']; ?>" type="number" value="<?=$row['defectos']?>"></div><div class="toolbutton save" onclick="saveToDatabase('defectos','defectos','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel"></div></div></td>
+    <td class="editable" onClick="showEdit(this);"><?= $row['defectos']; ?><div class="tooltiptext toolright"><div class="tinput"><input id="def-<?=$row['idtiraje']; ?>" type="number" value="<?=$row['defectos']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('defectos','defectos','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
     <td><?= $sum_defectos ?></td>
     <?php
     if (!empty($alertTiro)||!empty($AtintaT)) {
@@ -506,10 +506,12 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
 
 </div>
 </div>
+<div class="overlay"></div>
 
       <script type="text/javascript">
  
-      
+      var globeerror=false;
+      var count=0;
       $(document).ready(function(){
  
         $('.lightbox').click(function(){
@@ -568,10 +570,29 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
     }
 });
 $(".cancel").click(function (e) {
+   globeerror=false;
+   count=0;
+   $('.globe-error').remove();
     e.stopPropagation()
       var div=$(this).parent('div');
       div.hide();
       console.log('cerrado');
+      $('.overlay').animate({'opacity':'0'}, 300, 'linear', function(){
+          $('.overlay').css('display', 'none');
+        });
+  
+});
+
+
+$(".overlay").click(function (e) {
+
+  globeerror=true;
+   if (globeerror&&count==0) {
+    $('.tooltiptext').append('<span class="globe-error">¿Deseas guardar los cambios?</span>');
+    count++;
+   }
+
+       
   
 });
 $(".cifra").click(function () {

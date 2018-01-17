@@ -69,7 +69,7 @@ if(@$_SESSION['logged_in'] != true){
 
     
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>ESTANDARES</title>
+    <title>REPORTE ETE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
@@ -363,7 +363,7 @@ background-repeat: no-repeat;
  .left-form2 input{
       border-radius: 3px;
     border: 1px solid #ccc;
-    padding: 4px;
+    padding: 4px 15px;
  }
  .popup{
   
@@ -424,6 +424,49 @@ background-repeat: no-repeat;
   font-weight: bolder;
   margin-left: 35px;
  }
+ .light-table-filter{
+  background-image: url('../images/search.png');
+  background-size: 32px;
+  background-repeat: no-repeat;
+  background-position: right;
+ }
+ .datagrid{
+  position: relative;
+ }
+ .overlay{
+  background: #272B34;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 999998;
+  display: none;
+ }
+ .globe-error{
+  position: absolute;
+  padding: 5px;
+  width: 100px;
+  background: #FFF8C4;
+    border: solid 1px #F7DEAE;
+  font-size: 8px;
+  color: #626461;
+  text-align: center!important;
+  border-radius: 10px;
+   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+ }
+ .globe-error:after,
+.globe-error::after {
+position: absolute;
+top: 5px;
+left: -5px;
+content: '';
+width: 0;
+height: 0;
+border-right: solid 5px rgba(255, 248, 196,1);
+border-bottom: solid 5px transparent;
+border-top: solid 5px transparent;
+}
 @media screen and (max-width:1024px) {
   th{
     font-size: 8px;
@@ -497,13 +540,12 @@ background-repeat: no-repeat;
    <input id="datepicker" class="" required="true" value="" name="id" />
   <p id="fechaerror" style="display: none;">Por favor elige una fecha</p>
  
- </div><div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">TRAER REPORTE</button></div><div  class="left-form2"><form action="../pdfrepajustemaquina/createPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div><div class="left-form2"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Busqueda"></div>
-    
- </div>
+ </div><div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">TRAER INFORMACION</button></div><div class="left-form2"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtrar"></div></div><div  class="left-form2"><form action="../pdfrepajustemaquina/createPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
 
 </div>
    
 <div class="div-tabla">
+
 </div>
 
 </div>
@@ -589,6 +631,8 @@ $(document).ready(function(){
  });
     
      function showEdit(editableObj) {
+      $('.overlay').animate({'opacity':'0.50'}, 300, 'linear');
+      $('.overlay').css('display', 'block');
       $('.tooltiptext').hide();
      $(editableObj).find( ".tooltiptext" ).show();
     } 
@@ -650,48 +694,52 @@ $("#newstandar").click(function () {
        });
     } */
     function saveToDatabase(concept,column,id) {
+       $('.overlay').hide();
       var user=$('#filterElem').val();
     var fecha=$('#datepicker').val();
+     globeerror=false;
+     count=0;
+     $('.globe-error').remove();
       //$(editableObj).removeClass('editing');
       if (concept=='inicio') {
         var value=($('#time-'+id).val().length==5)? $('#time-'+id).val()+':00':$('#time-'+id).val();
-        var datas='column='+column+'&editval='+value+'&id='+id;
+        var datas='column='+column+'&editval='+value+'&id='+id+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }
       else if (concept=='fin') {
         var value=($('#tfin-'+id).val().length==5)? $('#tfin-'+id).val()+':00':$('#tfin-'+id).val();
 
-        var datas='column='+column+'&editval='+value+'&id='+id;
+        var datas='column='+column+'&editval='+value+'&id='+id+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }else if (concept=='iniciot') {
          var value=($('#timet-'+id).val().length==5)? $('#timet-'+id).val()+':00':$('#timet-'+id).val();
-        var datas='column='+column+'&editval='+value+'&id='+id+'&std_change=true';
+        var datas='column='+column+'&editval='+value+'&id='+id+'&std_change=true'+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }else if (concept=='fint') {
          var value=($('#tfint-'+id).val().length==5)? $('#tfint-'+id).val()+':00':$('#tfint-'+id).val();
-        var datas='column='+column+'&editval='+value+'&id='+id+'&std_change=true';
+        var datas='column='+column+'&editval='+value+'&id='+id+'&std_change=true'+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }else if(concept=='real'){
         var merma=$('#merm-'+id).val();
         var entregados=$('#buen-'+id).val();
-        var datas='prod_real=true&merma='+merma+'&entregados='+entregados+'&id='+id;
+        var datas='prod_real=true&merma='+merma+'&entregados='+entregados+'&id='+id+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }else if(concept=='odt'){
         var value=$('#odt-'+id).val();
-         var datas='column='+column+'&editval='+value+'&id='+id;
+         var datas='column='+column+'&editval='+value+'&id='+id+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }else if(concept=='defectos'){
         var value=$('#def-'+id).val();
-         var datas='column='+column+'&editval='+value+'&id='+id;
+         var datas='column='+column+'&editval='+value+'&id='+id+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }else if(concept=='time'){
         var hour=$('#hour-'+id).val();
         var min=$('#min-'+id).val();
         var sec=$('#sec-'+id).val();
         var value=hour+':'+min+':'+sec;
-        var datas='column='+column+'&editval='+value+'&id='+id;
+        var datas='column='+column+'&editval='+value+'&id='+id+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }else if(concept=='ttime'){
         var hour=$('#thour-'+id).val();
         var min=$('#tmin-'+id).val();
         var sec=$('#tsec-'+id).val();
         var value=hour+':'+min+':'+sec;
-        var datas='column='+column+'&editval='+value+'&id='+id;
+        var datas='column='+column+'&editval='+value+'&id='+id+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }else{
         var value=$('#tfin-'+id).val();
-        var datas='column='+column+'&editval='+value+'&id='+id;
+        var datas='column='+column+'&editval='+value+'&id='+id+'&fecha='+fecha+'&operador='+user+'&concepto='+concept;
       }
      
       

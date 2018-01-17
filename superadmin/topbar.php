@@ -1,4 +1,4 @@
-
+<style> .ex-rep{display: none;} </style>
     <header>
     <div class="menu_bar">
       <a href="#" class="bt-menu"><span class="icon-list2"></span>Menú</a>

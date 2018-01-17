@@ -34,18 +34,15 @@ function getComida($idtiraje, $section)
 }
 
 function getStandar($elem,$maquina)
-{ include 'saves/conexion.php';
-  if (!empty($elem)) {
-   $idmaquina=($maquina==21||$maquina==20)? 10 : $maquina;
+{
+    include 'saves/conexion.php';
+    $idmaquina=($maquina==21||$maquina==20)? 10 : $maquina;
     $id_elem = mysqli_fetch_assoc($mysqli->query("SELECT id_elemento FROM elementos WHERE nombre_elemento='$elem' "));
     $elem=$id_elem['id_elemento'];
     $cuerito="SELECT piezas_por_hora FROM estandares WHERE id_elemento=$elem AND id_maquina=$idmaquina ";
     $estandar= mysqli_fetch_assoc($mysqli->query("SELECT piezas_por_hora FROM estandares WHERE id_elemento=$elem AND id_maquina=$idmaquina "));
 
     return $estandar['piezas_por_hora'];
-}
-    
-   return '';
 }
 
 $query = "SELECT
@@ -84,14 +81,14 @@ WHERE
    fechadeldia_ajuste = '$numodt' 
    AND t.id_user =$userid 
 ORDER BY
-   horadeldia_ajuste ASC";
+   idtiraje ASC";
 
 $asa_query = "SELECT *, TIME_TO_SEC(tiempo) AS tiempo_asaichi,TIME_TO_SEC(timediff(hora_fin,horadeldia)) AS dispon_asaichi, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE seccion='asaichi' AND fecha='$numodt' AND id_user=$userid) AS tmuerto_asa FROM asaichi WHERE fechadeldia='$numodt' AND id_usuario=$userid";
 
 $resss     = $mysqli->query($query);
 if (!$resss) {
   printf($mysqli->error); 
-  
+  echo $query;
 }
 $asa_resss = $mysqli->query($asa_query);
 $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHERE id=$userid"));
@@ -99,11 +96,12 @@ $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHER
 
 
 ?>
-
+<?php
+ob_start();
+?>
 <html>
 <head>
- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- reloj -->   
@@ -125,7 +123,6 @@ $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHER
     
     <script src="js/clock.js"></script>
 
-    
 <style>
 body{
   width: 100%!important;
@@ -303,34 +300,43 @@ border:1px solid #444444!important;
 .red {
     background: #E9573E;
 }
+#resumes tr{
+  border: none!important;
+}
+#resumes{
+  width: 99%;
+  margin: 0 auto;
+}
+#resumes td{
+
+    border: 1px dashed #444444!important;
+}
 </style>
 </head>
 
 <body>
 
-<div class="maintable">
-<table>
-<thead><tr>
-    <th   >Inicio</th>
-    <th   >Fin</th>
-    <th   >ODT</th>
-    <th  >Producto</th>
+<div class="maintable tcont">
+<table id="datos">
+<thead>
+<tr >
+    <th>INICIO</th>
+    <th>FIN</th>
+    <th>ODT</th>
+    <th>PRODUCTO</th>
+    <th>TIEMPO DISPONIBLE</th>
+    <th>TIEMPO MUERTO</th>
     
-    <th  >STD</th>
-    <th  >Tiempo Disponible</th>
-    <th   >Tiempo Muerto</th>
-    <th   >Tiempo Real</th>
-    <th  >Produccion Esperada</th>
-    <th  >Produccion Real</th>
-    <th >Merma</th>
-    <th  >Calidad a la Primera</th>
-    <th  >Defectos</th>
-    <th >Porque no se hizo bien a la primera?</th>
-    <th >Porque se hizo mas lento?</th>
-    <th >Porque se perdio tiempo?</th>
+    <th>TIEMPO REAL</th>
+    <th>PRODUCCION ESPERADA</th>
+    <th>PRODUCCION REAL</th>
+    <th>MERMA</th>
+    <th>CALIDAD A LA PRIMERA</th>
+    <th>DEFECTOS</th>
+    <th>ALERTAS</th>
+   
     
   </tr>
-
   </thead>
   <tbody>
   <?php
@@ -351,22 +357,22 @@ $asa_exist     = ($asa_resss->num_rows > 0) ? true : false;
 while ($asa = mysqli_fetch_assoc($asa_resss)) {
     if ($i == 0) {
         if ($asa_exist) {
-            $transcur = strtotime($asa['horadeldia']) - strtotime("08:45:00");
-            $sum_muerto += $transcur;
-            $sum_dispon += $transcur;
+            $transcur[$i] = strtotime($asa['horadeldia']) - strtotime("08:45:00");
+            $sum_muerto += $transcur[$i];
+            $sum_dispon += $transcur[$i];
         }
-    }
+    } 
 ?>
   <tr>
      <td><?= substr($asa['horadeldia'], 0, -3); ?></td>                     
     <td><?= substr($asa['hora_fin'], 0, -3); ?></td>
     <td>  </td>
     <td> Asaiichi </td>
-    <!-- <td <?= ($row['is_virtual'] == 'true') ? '"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
-    <td>0</td>
+    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
+    
     <?php
     $sum_tiraje += $asa['tiempo_asaichi'];
-    $sum_tiraje += $asa['tmuerto_asa'];
+    
 ?>
     <td><?= gmdate("H:i", $asa['dispon_asaichi']); ?></td>
    <?php
@@ -374,28 +380,29 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
 ?>
     <td><?= gmdate("H:i", $sum_dispon); ?></td>
     <?php
-    $sum_muerto += $asa['tmuerto_asa'];
+    //$sum_muerto += $asa['tmuerto_asa'];
     
 ?>
-    <td><?= gmdate("H:i", $asa['tmuerto_asa']); ?></td>
     <td><?= gmdate("H:i", $sum_muerto); ?></td>
+    <td><?= gmdate("H:i", $sum_muerto); 
+      $sum_muerto += $asa['tmuerto_asa'];
+    ?></td>
     <td><?= gmdate("H:i", $asa['tiempo_asaichi']); ?></td>
 
     <td><?= gmdate("H:i", $sum_tiraje) ?></td>
    
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
     <td>--</td>
-    <td>--</td>
-    <td>--</td>
+    
     
     <!--
    
@@ -416,7 +423,7 @@ while ($row = mysqli_fetch_assoc($resss)):
         
     }
     //$comida_exist = (!empty($row['comida_ajuste'])) ? 'Comida ' . gmdate("H:i", $row['ini_comida_ajuste']) . "-" . gmdate("H:i", $row['fin_comida_ajuste']) : '';
-    $comida_exist = (!empty($row['comida_ajuste'])) ? '<tr><td colspan="24" style="color:#fff;background:#A6A6A6;"> COMIDA ' . gmdate("H:i", $row['ini_comida_ajuste']) . "-" . gmdate("H:i", $row['fin_comida_ajuste']).' </td></tr>' : '';
+    $comida_exist = (!empty($row['comida_ajuste'])) ? '<tr><td colspan="24" style="color:#fff;background:#4D4D4D;"> COMIDA ' . gmdate("H:i", $row['ini_comida_ajuste']) . "-" . gmdate("H:i", $row['fin_comida_ajuste']).' </td></tr>' : '';
     //$sum_muerto+=$row['comida_ajuste'];
     $sum_esper += $row['produccion_esperada'];
     $sum_merm += $row['merma_entregada'];
@@ -427,9 +434,9 @@ while ($row = mysqli_fetch_assoc($resss)):
     $sum_defectos += $row['defectos'];
     $sum_calidad += $row['calidad'];
     $comida = (!empty($row['comida_ajuste'])) ? $row['dispon_ajuste']-$row['comida_ajuste'] : $row['dispon_ajuste'];
-    $sum_dispon += $comida;
+    $sum_dispon += $comida; 
     
-    $processID=($row['id_maquina']==20||$row['id_maquina']==21)? 10:(($row['id_maquina']==22)? 9 : $row['id_maquina'] );
+    $processID=($row['id_maquina']==20||$row['id_maquina']==21)? 10:(($row['id_maquina']==22)? 9 : $row['id_maquina']);
     if (is_null($row['estandar'])) {
         
         if ($processID == 10) {
@@ -441,9 +448,10 @@ while ($row = mysqli_fetch_assoc($resss)):
         $tiraje_estandar = $row['estandar'];
     }
     $idtiro      = $row['idtiraje'];
-    $alertaquery = $mysqli->query("SELECT *,TIME_TO_SEC(horadeldiaam)  AS inicio,TIME_TO_SEC(horafin_alerta) AS fin,  TIME_TO_SEC(tiempoalertamaquina) AS alert_real,TIME_TO_SEC(timediff(horafin_alerta ,horadeldiaam)) AS dispon_alertajuste FROM alertageneralajuste WHERE id_tiraje=$idtiro ");
-    $alertaquerymuerto = $mysqli->query("SELECT *,TIME_TO_SEC(horadeldiaam)  AS inicio,TIME_TO_SEC(horafin_alerta) AS fin,  TIME_TO_SEC(tiempoalertamaquina) AS alert_real,TIME_TO_SEC(timediff(horafin_alerta ,horadeldiaam)) AS dispon_alertajuste FROM alertageneralajuste WHERE id_tiraje=$idtiro AND radios NOT IN('Preparar Tinta')");
-    $alertaTiro  = $mysqli->query("SELECT *,TIME_TO_SEC(horadeldiaam)  AS inicio,TIME_TO_SEC(horafin_alerta) AS fin,  TIME_TO_SEC(tiempoalertamaquina) AS alert_real,TIME_TO_SEC(timediff(horafin_alerta ,horadeldiaam)) AS dispon_alertatiro FROM alertamaquinaoperacion WHERE id_tiraje=$idtiro");
+     $alertaquery = $mysqli->query("SELECT *,TIME_TO_SEC(horadeldiaam)  AS inicio,TIME_TO_SEC(horafin_alerta) AS fin,  TIME_TO_SEC(tiempoalertamaquina) AS alert_real,TIME_TO_SEC(timediff(horafin_alerta ,horadeldiaam)) AS dispon_alertajuste FROM alertageneralajuste WHERE id_tiraje=$idtiro AND es_tiempo_muerto='false'");
+    $alertaquerymuerto = $mysqli->query("SELECT *,TIME_TO_SEC(horadeldiaam)  AS inicio,TIME_TO_SEC(horafin_alerta) AS fin,  TIME_TO_SEC(tiempoalertamaquina) AS alert_real,TIME_TO_SEC(timediff(horafin_alerta ,horadeldiaam)) AS dispon_alertajuste FROM alertageneralajuste WHERE id_tiraje=$idtiro AND es_tiempo_muerto='true'");
+    $alertaTiroMuerto  = $mysqli->query("SELECT *,TIME_TO_SEC(horadeldiaam)  AS inicio,TIME_TO_SEC(horafin_alerta) AS fin,  TIME_TO_SEC(tiempoalertamaquina) AS alert_real,TIME_TO_SEC(timediff(horafin_alerta ,horadeldiaam)) AS dispon_alertatiro FROM alertamaquinaoperacion WHERE id_tiraje=$idtiro AND es_tiempo_muerto='true'");
+     $alertaTiro  = $mysqli->query("SELECT *,TIME_TO_SEC(horadeldiaam)  AS inicio,TIME_TO_SEC(horafin_alerta) AS fin,  TIME_TO_SEC(tiempoalertamaquina) AS alert_real,TIME_TO_SEC(timediff(horafin_alerta ,horadeldiaam)) AS dispon_alertatiro FROM alertamaquinaoperacion WHERE id_tiraje=$idtiro AND es_tiempo_muerto='false'");
     
     
     while ($alertaAjuste = mysqli_fetch_assoc($alertaquery)) {
@@ -454,10 +462,11 @@ while ($row = mysqli_fetch_assoc($resss)):
     while ($alertaAjusteM = mysqli_fetch_assoc($alertaquerymuerto)) {
         
         $alertA_Sum[$i][] = $alertaAjusteM['alert_real'];
+        $alertM[$i][]      = ($alertaAjusteM['radios'] == 'Otro') ? $alertaAjusteM['observaciones'] . " <span class='alertime'>" . gmdate("H:i", $alertaAjusteM['inicio']) . "-" . gmdate("H:i", $alertaAjusteM['fin']) . "</span>" : $alertaAjusteM['radios'] . " <span class='alertime'>" . gmdate("H:i", $alertaAjusteM['inicio']) . "-" . gmdate("H:i", $alertaAjusteM['fin']) . "</span>";
     }
 
     if (isset($alertA_Sum[$i])) {
-      $sum_muerto += array_sum($alertA_Sum[$i]);
+      //$sum_muerto += array_sum($alertA_Sum[$i]);
     }
    
     $alertaqueryTinta = $mysqli->query("SELECT TIME_TO_SEC(tiempoalertamaquina)  AS tiempotinta FROM alertageneralajuste WHERE id_tiraje=$idtiro AND radios='Preparar Tinta' ");
@@ -471,48 +480,57 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     
     
     
+    
+    
 ?>
+<!-- ********** Inicia TR Ajuste ********** -->
                           <tr>
      <td><?= substr($row['horadeldia_ajuste'], 0, -3); ?></td>                     
     <td><?= substr($row['horafin_ajuste'], 0, -3); ?></td>
     <td> </td>
-    <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?> >Ajuste </td>
-    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
-    <td></td>
+    <td <?= ($row['is_virtual'] == 'true') ? 'style="color:#7F88C1;"' : '' ?> >Ajuste </td>
+    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
+   
     <td><?= gmdate("H:i", (!empty($row['comida_ajuste'])) ? $row['dispon_ajuste'] - $row['comida_ajuste'] : $row['dispon_ajuste']); ?></td>
    
     
     <?php
-    $sum_muerto += $row['seconds_muertos'];
+    //$sum_muerto += $row['seconds_muertos'];
+    $haytinta=(isset($PTinta[$i]))? array_sum($PTinta[$i]) : 0;
+    $tcomida=(!empty($row['comida_ajuste']))?$row['comida_ajuste']:0;
+    $formulaajuste[$i]=(($row['id_maquina']==9||$row['id_maquina']==22)? ($row['dispon_ajuste']-1500 )-$tcomida: (($row['id_maquina']==16 )? ($row['dispon_ajuste']-3600)-$tcomida : ($row['dispon_ajuste']-1200)-$tcomida));
+    $extraerMuerto[$i]=($formulaajuste[$i]<=0)? 0 : $formulaajuste[$i];
+    $sum_muerto +=$extraerMuerto[$i];
+   // gmdate("H:i", $row['seconds_muertos'] + ((isset($alertA_Sum))?array_sum($alertA_Sum[$i]) : 0)+$extraerMuerto); Asi estaba antes
 ?>
-    <td><?= gmdate("H:i", $row['seconds_muertos'] + ((isset($alertA_Sum[$i]))?array_sum($alertA_Sum[$i]) : 0)); ?></td>
+    <td><?= gmdate("H:i", $extraerMuerto[$i]); ?></td>
     
-    <td><?= gmdate("H:i", $row['seconds_ajuste']); ?></td>
+    <td><?= gmdate("H:i", ($formulaajuste[$i]<=0)? $row['seconds_ajuste']+$haytinta : (($row['id_maquina']==9||$row['id_maquina']==22)? 1500 : (($row['id_maquina']==16)? 3600 : 1200))+$haytinta ); ?></td>
   <?php
-    $sum_tiraje += $row['seconds_ajuste'];
+    $sum_tiraje += ($formulaajuste[$i]<=0)? $row['seconds_ajuste'] : (($row['id_maquina']==9||$row['id_maquina']==22 )? 1500 : (($row['id_maquina']==16)? 3600 : 1200));
+     
 ?>
     
    
-    <td></td>
+    <td>0</td>
+ 
+    <td>0</td>
    
-    <td></td>
-    
-    <td></td>
-    
-    <td></td>
-    
-    <td></td>
+    <td>0</td>
    
+    <td>0</td>
+   
+    <td>0</td>
+    
     <?php
-    if (!empty($alert)) {
+    if (!empty($alert)||!empty($alertM)) {
 ?>
-    <td colspan="3"><?=(isset($alert[$i]))? implode(' | ', $alert[$i]) : '' ?></td>
+    <td ><?= implode(' | ', $alert[$i])." ".implode(' | ', $alertM[$i]) ?></td>
     <?php
     } else {
 ?>
     <td></td>
-    <td></td>
-    <td></td>
+   
     
     <?php
     }
@@ -521,34 +539,44 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
    
     <td><?= round($row['desempenio'], 2); ?>%</td> -->
   </tr>
+  <!-- ********** Termina TR Ajuste ********** -->
   <?php echo $comida_exist ?>
 <?php
     //$sum_muerto+=$row['comida_tiro'];
     //$comida_exist2 = (!empty($row['comida_tiro'])) ? 'Comida ' . gmdate("H:i", $row['ini_comida_tiro']) . "-" . gmdate("H:i", $row['fin_comida_tiro']) : '';
-    $comida_exist2 = (!empty($row['comida_tiro'])) ? '<tr><td colspan="24" style="color:#fff;background:#A6A6A6;"> COMIDA ' . gmdate("H:i", $row['ini_comida_tiro']) . "-" . gmdate("H:i", $row['fin_comida_tiro']).' </td></tr>' : '';
+    $comida_exist2 = (!empty($row['comida_tiro'])) ? '<tr><td colspan="24" style="color:#fff;background:#4D4D4D;"> COMIDA ' . gmdate("H:i", $row['ini_comida_tiro']) . "-" . gmdate("H:i", $row['fin_comida_tiro']).' </td></tr>' : '';
     
     
-    while ($alertaT = mysqli_fetch_assoc($alertaTiro)) {
-        $alertTiro[$i][] = ($alertaT['radios'] == 'Otro') ? $alertaT['observaciones'] : $alertaT['radios'];
+    while ($alertaT = mysqli_fetch_assoc($alertaTiroMuerto)) {
         
-        
+        $alertTiro[$i][]=($alertaT['radios'] == 'Otro') ? $alertaT['observaciones'] . " <span class='alertime'>" . gmdate("H:i", $alertaT['inicio']) . "-" . gmdate("H:i", $alertaT['fin']) . "</span>" : $alertaT['radios'] . " <span class='alertime'>" . gmdate("H:i", $alertaT['inicio']) . "-" . gmdate("H:i", $alertaT['fin']) . "</span>";
+          
         $alertT_Sum[$i][] = $alertaT['alert_real'];
         
     }
 
-    if (isset($alertT_Sum[$i])) {
+    if (isset($alertT_Sum)) {
       $sum_muerto += array_sum($alertT_Sum[$i]);
     }
+
+    while ($tintaT = mysqli_fetch_assoc($alertaTiro)) {
+       $AtintaT[$i][]=($tintaT['radios'] == 'Otro') ? $tintaT['observaciones'] . " <span class='alertime'>" . gmdate("H:i", $tintaT['inicio']) . "-" . gmdate("H:i", $tintaT['fin']) . "</span>" : $tintaT['radios'] . " <span class='alertime'>" . gmdate("H:i", $tintaT['inicio']) . "-" . gmdate("H:i", $tintaT['fin']) . "</span>";
+  $PTintaT[$i][]=$tintaT['alert_real'];
+}
+ if (isset($PTintaT[$i])) {
+      $sum_tiraje += array_sum($PTintaT[$i]);
+    }  
     
     
 ?>
+<!-- ********** Inicia TR Tiro ********** -->
       <tr style=" background-color: #393939;">
      <td><?= substr($row['horadeldia_tiraje'], 0, -3); ?></td>                     
     <td><?= substr($row['horafin_tiraje'], 0, -3); ?></td>
-    <td style="color: #7F88C1"> <?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?> </td>
-    <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?> ><?= ($row['is_virtual'] == 'true') ? $row['elemento_virtual'] : $row['element']; ?> </td>
-    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
-    <td><?=getStandar(($row['is_virtual'] == 'true')? $row['elemento_virtual'] : $row['element'] ,$row['id_maquina']); ?></td>
+    <td> <?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?> </td>
+    <td <?= ($row['is_virtual'] == 'true') ? 'style="color:#7F88C1;"' : '' ?> ><?= ($row['is_virtual'] == 'true') ? $row['elemento_virtual'] : $row['element']; ?> </td>
+    <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
+    
     <td><?= gmdate("H:i", (!empty($row['comida_tiro'])) ? $row['dispon_tiro'] - $row['comida_tiro'] : $row['dispon_tiro']) ?></td>
      <?php
     $comida2 = (!empty($row['comida_tiro'])) ? $row['dispon_tiro'] - $row['comida_tiro'] : $row['dispon_tiro'];
@@ -561,40 +589,43 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     $sum_tiraje += $row['seconds_tiraje'];
 ?>
     
-    <td><?= gmdate("H:i", ((isset($alertT_Sum[$i]))? array_sum($alertT_Sum[$i]) : 0) ); ?></td>
-    
+    <td><?= gmdate("H:i", ((isset($alertT_Sum))? array_sum($alertT_Sum[$i]) : 0) ); ?></td>
+
     <td><?= gmdate("H:i", $row['seconds_tiraje']); ?></td>
-    
+  
     <td><?= $row['produccion_esperada']; ?></td>
    
     <td><?= $row['entregados'] - $row['merma_entregada']; ?></td>
-   
+    
     <td><?= $row['merma_entregada']; ?></td>
-    
+ 
     <td><?= $row['calidad']; ?></td>
-    
+   
     <td><?= $row['defectos']; ?></td>
     
     <?php
-    if (!empty($alertTiro)) {
+    if (!empty($alertTiro)||!empty($AtintaT)) {
 ?>
-    <td colspan="3"> <?=(isset($alertTiro[$i]))? implode(' | ', $alertTiro[$i]):'' . " " . $comida_exist2 ?></td>
+    <td > <?= implode(' | ', $alertTiro[$i])." ". implode(' | ',$AtintaT[$i])  ?></td>
     <?php
+
     } else {
 ?>
-    <td>--</td>
     <td></td>
-    <td>--</td>
     
     <?php
     }
 ?>
    
   </tr>
+  <!-- ********** Termina TR Tiro ********** -->
    <?php echo $comida_exist2 ?>          
   <?php
     $i++;
 endwhile;
+if ($resss->num_rows==0){
+  echo "<tr ><td colspan='24' style='padding:20px;'>NO SE ENCONTRO INFORMACION PARA ESTE OPERADOR EN ESTE DIA</td></tr> ";
+}
 ?>
   
   </tbody>
@@ -604,96 +635,59 @@ $treal = $sum_tiraje;
 
 
 ?>
-<
-</div>
-<div class="bottomcontainer">
-<div style=" padding-top: 10px;margin: 0 auto!important">
-  <div class="botom-stats bottomfont" style="width: 24%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #444444; line-height:23px;text-align: center; vertical-align: middle; color: #CECECE; background: #212121;">
-     <?php
+
+<br>
+<?php
 $dispon      = $treal / $sum_dispon;
 $dispon_tope = ($dispon * 100 > 100) ? 100 : $dispon * 100;
-?>
-      DISPONIBILIDAD= <?= round($dispon_tope, 2) ?>%
-    </div><div style="width: 100%;">
-      <table>
-        <tr>
-          <th>TIEMPO REAL</th>
-
-          <td><?= gmdate("H:i", $treal) ?></td>
-        </tr>
-        <tr>
-          <th class="extrath">TIEMPO DISPONIBLE</th>
-          <td class="extrath"><?= gmdate("H:i", $sum_dispon) ?></td>
-        </tr>
-      </table>
-    </div>
-
-  </div><div class="botom-stats bottomfont" style="width: 39%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #444444; line-height:23px;text-align: center; vertical-align: middle;color: #CECECE; background: #212121;">
-     <?php
 $desempenio  = ($sum_real + $sum_merm) / $sum_esper;
 $desemp_tope = ($desempenio * 100 > 100) ? 100 : $desempenio * 100;
-?>
-     DESEMPEÑO= <?= round($desemp_tope, 2) ?>%
-    </div><div style="width: 100%;">
-      <table>
-        
-        <tr>
-          <td class="extra">PRODUCCION REAL</td>
-          <td class="extra"><?= $sum_real ?></td>
-           <td class="extra">MERMA</td>
-          <td><?= $sum_merm ?></td>
-        </tr>
-        <tr>
-          <th class="extrath" colspan="2" style="border-right: 1px dashed #444444!important;">PRODUCCION ESPERADA</th>
-          <th class="extrath" style="border:none!important;" colspan="2"><?= $sum_esper ?></th>
-        </tr>
-      </table>
-    </div>
-  </div><div class="botom-stats bottomfont" style="width: 24%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #444444; line-height:23px;text-align: center; vertical-align: middle;color: #CECECE; background: #212121;">
-    <?php
 $calidad      = ($sum_calidad) / $sum_real;
 $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
+ $final=round((($dispon_tope / 100) * ($desemp_tope / 100) * ($calidad_tope / 100)) * 100);
 ?>
-      CALIDAD= <?= round($calidad_tope, 2) ?>%
-    </div><div style="width: 100%;">
-      <table>
-        <tr>
-          <th>CALIDAD A LA PRIMERA</th>
-          <td><?= $sum_calidad ?></td>
-        </tr>
-        <tr>
-          <th class="extrath">PRODUCCION REAL</th>
-          <td class="extra" style="border:none!important;"><?= $sum_real ?></td>
-        </tr>
-      </table>
-    </div>
-  </div><div class="botom-stats bottomfont" style="width: 12.2%;">
-    <div style="width: 100%;height: 23px; border-bottom: 1px solid #444444; line-height:23px;text-align: center; vertical-align: middle;color: #CECECE; background: #212121;">
-      ETE
-    </div><div style="width: 100%; position: relative;">
-      <table>
-        <tr>
-          <th style="color: #fff!important; border:none!important;">&nbsp</th>
-          
-        </tr>
-         <tr>
-          <th style="color: #fff!important; border:none!important;">&nbsp</th>
-          
-        </tr>
-      </table>
-      <div style="position: absolute;top:50%;left: 50%; transform: translate(-50%, -50%);font-size: 30px;color: #fff;"><?= round((($dispon_tope / 100) * ($desemp_tope / 100) * ($calidad_tope / 100)) * 100) ?>%</div>
 
-    </div>
-  </div>
+</div>
+<div class="maintable">
+<table id="resumes">
+  <thead>
+    <tr>
+      <th colspan="2">DISPONIBILIDAD= <?= round($dispon_tope, 2) ?>%</th>
+      <th colspan="4">DESEMPEÑO= <?= round($desemp_tope, 2) ?>%</th>
+      <th colspan="2">CALIDAD= <?= round($calidad_tope, 2) ?>%</th>
+      <th>ETE</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>TIEMPO REAL</td>
+    <td><?= gmdate("H:i", $treal) ?></td>
+    <td>PRODUCCION REAL</td>
+    <td><?= $sum_real ?></td>
+    
+    <td>MERMA</td>
+    <td><?= $sum_merm ?></td>
+    <td>CALIDAD A LA PRIMERA</td>
+    <td><?= $sum_calidad ?></td>
+    <td rowspan="2" style="font-size: 30px;"><?= (is_nan($final))? '0':$final ?>%</td>
+    </tr>
+    <tr>
+      <td>TIEMPO DISPONIBLE</td>
+      <td><?= gmdate("H:i", $sum_dispon) ?></td>
+      <td colspan="2">PRODUCCION ESPERADA</td>
+      <td colspan="2"><?= $sum_esper ?></td>
+      <td>PRODUCCION REAL</td>
+      <td><?= $sum_real ?></td>
+      
+    </tr>
+  </tbody>
+</table>
 </div>
 <a href="logout.php">
 <div class="pause red"><div class="pauseicon"><img src="images/exit-door.png"></div><div class="pausetext">SALIR</div></div></a>
-</div>
 </body>
 </html>
+
 
 
 
@@ -707,7 +701,7 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
         localStorage.removeItem('tiroactual');
         localStorage.removeItem('segundosincio');
         var pantalla=$(window).height();
-        $('.maintable').height((60*pantalla)/100);
+        $('.tcont').height((60*pantalla)/100);
         $('.bottomcontainer').height((40*pantalla)/100);
         
 
