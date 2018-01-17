@@ -362,7 +362,7 @@ $( "#16" ).datepicker();
     <?=personalData(16,'HotStamping','7',11); ?>
   </div>
   <div class="personal">
-    <?=personalData(9,'Suaje','default',13); ?>
+    <?=personalData(9,'Suaje','Encua2',13); ?>
   </div>
   <div class="personal" style="opacity: 0.5">
     <?=personalData(8,'--','default',2); ?>
