@@ -138,10 +138,16 @@ if(@$_SESSION['logged_in'] != true){
   body {
   font: normal medium/1.4 sans-serif;
 }
+ul{
+  margin-bottom: 0!important
+}
+.top-form{
+  height: auto!important;
+}
 .lightable {
   
   background-color: #F9F9F9;
-  
+  margin-top: 20px;
 }
 .lightable tbody tr:nth-child(odd) {
   background-color: #fff;
@@ -370,6 +376,7 @@ background-repeat: no-repeat;
     position: absolute;
     bottom: 50px;
     right: 30px;
+    z-index: 999999;
   
  }
  .successs{
@@ -466,6 +473,23 @@ height: 0;
 border-right: solid 5px rgba(255, 248, 196,1);
 border-bottom: solid 5px transparent;
 border-top: solid 5px transparent;
+}
+.tagtitle{
+  background:#fff;
+  position: absolute;
+  top:-20px;
+  left: 5px;
+  border-radius: 50px;
+  color: #999999;
+  padding: 3px 8px;
+  text-align: center;
+  -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+  z-index: 999997;
+  border: solid 1px #ccc;
+}
+.tagtitle span{
+  font-weight: bolder;
 }
 @media screen and (max-width:1024px) {
   th{
