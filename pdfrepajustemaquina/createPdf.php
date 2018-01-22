@@ -112,13 +112,7 @@ table {
   padding: 1px!important;
 }
 
- td,  th {
-    border: 1px solid #E1E0E5;
-    text-align: center;
-    padding: 2px;
-    font-size: 9px;
-}
-
+ 
 
 .inhead{
   display: inline-block;
@@ -484,7 +478,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <?php
     if (!empty($alert)||!empty($alertM)) {
 ?>
-    <td colspan="3"><?= implode(' | ', $alert[$i])." ".implode(' | ', $alertM[$i]) ?></td>
+    <td colspan="3"><?= ((isset($alert[$i]))? implode(' | ', $alert[$i]):'' )." ".((isset($alertM[$i]))? implode(' | ', $alertM[$i]):'') ?></td>
     <?php
     } else {
 ?>
@@ -644,7 +638,28 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
 </body>
 </html>
 
+<?php
+if ($i>=18) { ?>
+<style>
+  td,  th {
+    border: 1px solid #E1E0E5;
+    text-align: center;
+    padding: 2px;
+    font-size: 7px;
+}
 
+</style>
+<?php } else{?>
+<style>
+  td,  th {
+    border: 1px solid #E1E0E5;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+</style>
+<?php } ?>
 
 <?php
 $html = ob_get_clean();
