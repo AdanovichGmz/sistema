@@ -309,26 +309,31 @@ $asa_exist     = ($asa_resss->num_rows > 0) ? true : false;
 while ($asa = mysqli_fetch_assoc($asa_resss)) {
     if ($i == 0) {
         if ($asa_exist) {
-            $transcur[$i] = strtotime($asa['horadeldia']) - strtotime("08:45:00");
-            $sum_muerto += $transcur[$i];
-            $sum_dispon += $transcur[$i];
+            $transcur[$i] = strtotime($asa['hora_fin'])-((strtotime($asa['horadeldia'])<strtotime("08:45:00"))? strtotime("08:45:00"): strtotime($asa['horadeldia']));
+            $exceed[$i]=strtotime($asa['hora_fin'])-strtotime("09:00:00");
+            $dispasa[$i]=strtotime($asa['hora_fin'])-strtotime("08:45:00");
+            $sum_muerto += $exceed[$i];
+            $asareal[$i]=$transcur[$i]-$exceed[$i];
+            //$sum_muerto += $transcur[$i];
+            //$sum_dispon += $transcur[$i];
         }
     } 
+    
 ?>
   <tr>
      <td><?= substr($asa['horadeldia'], 0, -3); ?></td>                     
     <td><?= substr($asa['hora_fin'], 0, -3); ?></td>
     <td>  </td>
-    <td> Asaiichi </td>
+    <td> Asaiichi</td>
     <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
     <td>0</td>
     <?php
-    $sum_tiraje += $asa['tiempo_asaichi'];
+    $sum_tiraje += $asareal[$i];
     
 ?>
-    <td><?= gmdate("H:i", $asa['dispon_asaichi']); ?></td>
+    <td><?= gmdate("H:i", $transcur[$i]); ?></td>
    <?php
-    $sum_dispon += $asa['dispon_asaichi'];
+    $sum_dispon += $dispasa[$i];
 ?>
     <td><?= gmdate("H:i", $sum_dispon); ?></td>
     <?php
@@ -337,9 +342,9 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
 ?>
     <td><?= gmdate("H:i", $sum_muerto); ?></td>
     <td><?= gmdate("H:i", $sum_muerto); 
-      $sum_muerto += $asa['tmuerto_asa'];
+      //$sum_muerto += $asa['tmuerto_asa'];
     ?></td>
-    <td><?= gmdate("H:i", $asa['tiempo_asaichi']); ?></td>
+    <td><?= gmdate("H:i", $asareal[$i]); ?></td>
 
     <td><?= gmdate("H:i", $sum_tiraje) ?></td>
    

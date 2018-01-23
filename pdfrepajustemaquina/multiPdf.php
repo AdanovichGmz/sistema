@@ -319,15 +319,19 @@ $asa_exist     = ($asa_resss->num_rows > 0) ? true : false;
 while ($asa = mysqli_fetch_assoc($asa_resss)) {
     if ($i == 0) {
         if ($asa_exist) {
-            $transcur[$key][$i] = strtotime($asa['horadeldia']) - strtotime("08:45:00");
-            $sum_muerto[$key] += $transcur[$key][$i];
-            $sum_dispon[$key] += $transcur[$key][$i];
+            
+
+            $transcur[$key][$i] = strtotime($asa['hora_fin'])-((strtotime($asa['horadeldia'])<strtotime("08:45:00"))? strtotime("08:45:00"): strtotime($asa['horadeldia']));
+            $exceed[$key][$i]=strtotime($asa['hora_fin'])-strtotime("09:00:00");
+            $dispasa[$key][$i]=strtotime($asa['hora_fin'])-strtotime("08:45:00");
+            $sum_muerto[$key] += $exceed[$key][$i];
+            $asareal[$key][$i]=strtotime($asa['hora_fin'])-((strtotime($asa['horadeldia'])<strtotime("08:45:00"))? strtotime("08:45:00"): strtotime($asa['horadeldia']))-$exceed[$key][$i];
+            //$sum_muerto += $transcur[$i];
+            //$sum_dispon += $transcur[$i];
 
         }
     }
-    $transcur[$key][$i] = strtotime($asa['horadeldia']) - strtotime("08:45:00");
-            $sum_muerto[$key] += $transcur[$key][$i];
-            $sum_dispon[$key] += $transcur[$key][$i]; 
+
 ?>
   <tr>
      <td <?=$style ?>><?=substr($asa['horadeldia'], 0, -3); ?></td>                     
@@ -337,12 +341,12 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
     <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
     <td <?=$style ?>>0</td>
     <?php
-    $sum_tiraje[$key] += $asa['tiempo_asaichi'];
+    $sum_tiraje[$key] += $asareal[$key][$i];
     
 ?>
-    <td <?=$style ?>><?= gmdate("H:i", $asa['dispon_asaichi']); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", (strtotime($asa['hora_fin'])-((strtotime($asa['horadeldia'])<strtotime("08:45:00"))? strtotime("08:45:00"): strtotime($asa['horadeldia']))) ); ?></td>
    <?php
-    $sum_dispon[$key] += $asa['dispon_asaichi'];
+    $sum_dispon[$key] += $dispasa[$key][$i];
 ?>
     <td <?=$style ?>><?= gmdate("H:i", $sum_dispon[$key]); ?></td>
     <?php
@@ -351,9 +355,9 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
 ?>
     <td <?=$style ?>><?= gmdate("H:i", $sum_muerto[$key]); ?></td>
     <td <?=$style ?>><?= gmdate("H:i", $sum_muerto[$key]); 
-      $sum_muerto[$key] += $asa['tmuerto_asa'];
+      //$sum_muerto[$key] += $asa['tmuerto_asa'];
     ?></td>
-    <td <?=$style ?>><?= gmdate("H:i", $asa['tiempo_asaichi']); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $asareal[$key][$i]); ?></td>
 
     <td <?=$style ?>><?= gmdate("H:i", $sum_tiraje[$key]) ?></td>
    
