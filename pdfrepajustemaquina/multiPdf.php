@@ -62,14 +62,13 @@ table {
   padding: 1px!important;
 }
 
- 
-  
  td,  th {
     border: 1px solid #E1E0E5;
     text-align: center;
     padding: 2px;
     font-size: 9px;
 }
+
 
 .inhead{
   display: inline-block;
@@ -229,8 +228,8 @@ if (!$resss) {
 $asa_resss = $mysqli->query($asa_query);
 $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHERE id=$userid"));
 
-$style=($resss->num_rows>16)? 'style="padding: 2px;font-size: 7px;"' :'';
 
+$style=(($resss->num_rows>16)? 'style="padding: 2px;font-size: 7px;"' :'');
 
 ?>
 <body>
@@ -247,10 +246,10 @@ $style=($resss->num_rows>16)? 'style="padding: 2px;font-size: 7px;"' :'';
     <th>FECHA</th>
     </tr>
     <tr>
-      <td  ><?= $getuser['logged_in'] ?></td>
-      <td  ></td>
-      <td  ></td>
-      <td  ><?= $numodt ?></td>
+      <td><?= $getuser['logged_in'] ?></td>
+      <td></td>
+      <td></td>
+      <td><?= $numodt ?></td>
     </tr>
   </table>
   </div>
@@ -261,7 +260,7 @@ $style=($resss->num_rows>16)? 'style="padding: 2px;font-size: 7px;"' :'';
     <th colspan="2"  >Hora</th>
     
     <th rowspan="2"  >ODT</th>
-    <th rowspan="2" ><?= $resss->num_rows?> Producto</th>
+    <th rowspan="2" >Producto</th>
     
     <th rowspan="2" >STD</th>
     <th   colspan="2">Tiempo Disponible</th>
@@ -331,55 +330,55 @@ while ($asa = mysqli_fetch_assoc($asa_resss)) {
             $sum_dispon[$key] += $transcur[$key][$i]; 
 ?>
   <tr>
-     <td <?=$style ?> ><?=substr($asa['horadeldia'], 0, -3); ?></td>                     
-    <td <?=$style ?> ><?= substr($asa['hora_fin'], 0, -3); ?></td>
-    <td <?=$style ?> >  </td>
-    <td <?=$style ?> > Asaiichi </td>
+     <td <?=$style ?>><?=substr($asa['horadeldia'], 0, -3); ?></td>                     
+    <td <?=$style ?>><?= substr($asa['hora_fin'], 0, -3); ?></td>
+    <td <?=$style ?>>  </td>
+    <td <?=$style ?>> Asaiichi </td>
     <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
-    <td <?=$style ?> >0</td>
+    <td <?=$style ?>>0</td>
     <?php
     $sum_tiraje[$key] += $asa['tiempo_asaichi'];
     
 ?>
-    <td <?=$style ?> ><?= gmdate("H:i", $asa['dispon_asaichi']); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $asa['dispon_asaichi']); ?></td>
    <?php
     $sum_dispon[$key] += $asa['dispon_asaichi'];
 ?>
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_dispon[$key]); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $sum_dispon[$key]); ?></td>
     <?php
     //$sum_muerto[$key] += $asa['tmuerto_asa'];
     
 ?>
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_muerto[$key]); ?></td>
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_muerto[$key]); 
+    <td <?=$style ?>><?= gmdate("H:i", $sum_muerto[$key]); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $sum_muerto[$key]); 
       $sum_muerto[$key] += $asa['tmuerto_asa'];
     ?></td>
-    <td <?=$style ?> ><?= gmdate("H:i", $asa['tiempo_asaichi']); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $asa['tiempo_asaichi']); ?></td>
 
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_tiraje[$key]) ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $sum_tiraje[$key]) ?></td>
    
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> ></td>
-    <td <?=$style ?> ></td>
-    <td <?=$style ?> ></td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>></td>
+    <td <?=$style ?>></td>
+    <td <?=$style ?>></td>
     
     <!--
    
-    <td <?=$style ?> ><?= round($row['desempenio'], 2); ?>%</td> -->
+    <td><?= round($row['desempenio'], 2); ?>%</td> -->
   </tr>
   <?php
 }
 ?>
-  <?php
+  <?php 
 
 while ($row = mysqli_fetch_assoc($resss)):
     if ($i == 0) {
@@ -453,15 +452,15 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 ?>
 <!-- ********** Inicia TR Ajuste ********** -->
                           <tr>
-     <td <?=$style ?> ><?= substr($row['horadeldia_ajuste'], 0, -3); ?></td>                     
-    <td <?=$style ?> ><?= substr($row['horafin_ajuste'], 0, -3); ?></td>
-    <td <?=$style ?> > </td>
-    <td <?=$style ?> <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?> >Ajuste </td>
+     <td <?=$style ?>><?= substr($row['horadeldia_ajuste'], 0, -3); ?></td>                     
+    <td <?=$style ?>><?= substr($row['horafin_ajuste'], 0, -3); ?></td>
+    <td <?=$style ?>> </td>
+    <td  <?=$style ?><?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?> >Ajuste </td>
     <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> ><?= gmdate("H:i", (!empty($row['comida_ajuste'])) ? $row['dispon_ajuste'] - $row['comida_ajuste'] : $row['dispon_ajuste']); ?></td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>><?= gmdate("H:i", (!empty($row['comida_ajuste'])) ? $row['dispon_ajuste'] - $row['comida_ajuste'] : $row['dispon_ajuste']); ?></td>
    
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_dispon[$key]); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $sum_dispon[$key]); ?></td>
     <?php
     //$sum_muerto[$key] += $row['seconds_muertos'];
     $haytinta=(isset($PTinta[$key][$i]))? array_sum($PTinta[$key][$i]) : 0;
@@ -471,42 +470,42 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     $sum_muerto[$key] +=$extraerMuerto[$key][$i];
    // gmdate("H:i", $row['seconds_muertos'] + ((isset($alertA_Sum))?array_sum($alertA_Sum[$key][$i]) : 0)+$extraerMuerto); Asi estaba antes
 ?>
-    <td <?=$style ?> ><?= gmdate("H:i", $extraerMuerto[$key][$i]); ?></td>
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_muerto[$key]); ?></td>
-    <td <?=$style ?> ><?= gmdate("H:i", ($formulaajuste[$key][$i]<=0)? $row['seconds_ajuste']+$haytinta : (($row['id_maquina']==9||$row['id_maquina']==22)? 1500 : (($row['id_maquina']==16)? 3600 : 1200))+$haytinta ); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $extraerMuerto[$key][$i]); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $sum_muerto[$key]); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", ($formulaajuste[$key][$i]<=0)? $row['seconds_ajuste']+$haytinta : (($row['id_maquina']==9||$row['id_maquina']==22)? 1500 : (($row['id_maquina']==16)? 3600 : 1200))+$haytinta ); ?></td>
   <?php
     $sum_tiraje[$key] += ($formulaajuste[$key][$i]<=0)? $row['seconds_ajuste'] : (($row['id_maquina']==9||$row['id_maquina']==22 )? 1500 : (($row['id_maquina']==16)? 3600 : 1200));
      
 ?>
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_tiraje[$key]); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $sum_tiraje[$key]); ?></td>
    
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> ><?= $sum_esper[$key] ?></td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> ><?= $sum_real[$key] ?></td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> ><?= $sum_merm[$key] ?></td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> ><?= $sum_calidad[$key] ?></td>
-    <td <?=$style ?> >0</td>
-    <td <?=$style ?> ><?= $sum_defectos[$key] ?></td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>><?= $sum_esper[$key] ?></td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>><?= $sum_real[$key] ?></td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>><?= $sum_merm[$key] ?></td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>><?= $sum_calidad[$key] ?></td>
+    <td <?=$style ?>>0</td>
+    <td <?=$style ?>><?= $sum_defectos[$key] ?></td>
     <?php
     if (!empty($alert[$key][$i])||!empty($alertM[$key][$i])) {
 ?>
-    <td colspan="3"><?= implode(' | ', $alert[$key][$i])." ".implode(' | ', $alertM[$key][$i]) ?></td>
+    <td <?=$style ?> colspan="3"><?= implode(' | ', $alert[$key][$i])." ".implode(' | ', $alertM[$key][$i]) ?></td>
     <?php
     } else {
 ?>
-    <td <?=$style ?> ></td>
-    <td <?=$style ?> ></td>
-    <td <?=$style ?> ></td>
+    <td <?=$style ?>></td>
+    <td <?=$style ?>></td>
+    <td <?=$style ?>></td>
     
     <?php
     }
 ?>
     <!--
    
-    <td <?=$style ?> ><?= round($row['desempenio'], 2); ?>%</td> -->
+    <td><?= round($row['desempenio'], 2); ?>%</td> -->
   </tr>
   <!-- ********** Termina TR Ajuste ********** -->
   <?php echo $comida_exist[$key] ?>
@@ -540,13 +539,13 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 ?>
 <!-- ********** Inicia TR Tiro ********** -->
       <tr style=" background-color: #EBEBEB;">
-     <td <?=$style ?> ><?= substr($row['horadeldia_tiraje'], 0, -3); ?></td>                     
-    <td <?=$style ?> ><?= substr($row['horafin_tiraje'], 0, -3); ?></td>
-    <td <?=$style ?> > <?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?> </td>
-    <td <?=$style ?> <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?> ><?= ($row['is_virtual'] == 'true') ? $row['elemento_virtual'] : $row['element']; ?> </td>
+     <td <?=$style ?>><?= substr($row['horadeldia_tiraje'], 0, -3); ?></td>                     
+    <td <?=$style ?>><?= substr($row['horafin_tiraje'], 0, -3); ?></td>
+    <td <?=$style ?>> <?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?> </td>
+    <td  <?=$style ?><?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?> ><?= ($row['is_virtual'] == 'true') ? $row['elemento_virtual'] : $row['element']; ?> </td>
     <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style="color:red;"' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
-    <td <?=$style ?> ><?=getStandar(($row['is_virtual'] == 'true')? $row['elemento_virtual'] : $row['element'] ,$row['id_maquina']); ?></td>
-    <td <?=$style ?> ><?= gmdate("H:i", (!empty($row['comida_tiro'])) ? $row['dispon_tiro'] - $row['comida_tiro'] : $row['dispon_tiro']) ?></td>
+    <td <?=$style ?>><?=getStandar(($row['is_virtual'] == 'true')? $row['elemento_virtual'] : $row['element'] ,$row['id_maquina']); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", (!empty($row['comida_tiro'])) ? $row['dispon_tiro'] - $row['comida_tiro'] : $row['dispon_tiro']) ?></td>
      <?php
     $comida2 = (!empty($row['comida_tiro'])) ? $row['dispon_tiro'] - $row['comida_tiro'] : $row['dispon_tiro'];
     $sum_dispon[$key] += $comida2;
@@ -557,32 +556,32 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
    <?php
     $sum_tiraje[$key] += $row['seconds_tiraje'];
 ?>
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_dispon[$key]); ?></td>
-    <td <?=$style ?> ><?= gmdate("H:i", ((isset($alertT_Sum))? array_sum($alertT_Sum[$key][$i]) : 0) ); ?></td>
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_muerto[$key]); ?></td>
-    <td <?=$style ?> ><?= gmdate("H:i", $row['seconds_tiraje']); ?></td>
-    <td <?=$style ?> ><?= gmdate("H:i", $sum_tiraje[$key]); ?></td>
-    <td <?=$style ?> ><?= $row['produccion_esperada']; ?></td>
-    <td <?=$style ?> ><?= $sum_esper[$key] ?></td>
-    <td <?=$style ?> ><?= $row['entregados'] - $row['merma_entregada']; ?></td>
-    <td <?=$style ?> ><?= $sum_real[$key] ?></td>
-    <td <?=$style ?> ><?= $row['merma_entregada']; ?></td>
-    <td <?=$style ?> ><?= $sum_merm[$key] ?></td>
-    <td <?=$style ?> ><?= $row['calidad']; ?></td>
-    <td <?=$style ?> ><?= $sum_calidad[$key] ?></td>
-    <td <?=$style ?> ><?= $row['defectos']; ?></td>
-    <td <?=$style ?> ><?= $sum_defectos[$key] ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $sum_dispon[$key]); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", ((isset($alertT_Sum))? array_sum($alertT_Sum[$key][$i]) : 0) ); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $sum_muerto[$key]); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $row['seconds_tiraje']); ?></td>
+    <td <?=$style ?>><?= gmdate("H:i", $sum_tiraje[$key]); ?></td>
+    <td <?=$style ?>><?= $row['produccion_esperada']; ?></td>
+    <td <?=$style ?>><?= $sum_esper[$key] ?></td>
+    <td <?=$style ?>><?= $row['entregados'] - $row['merma_entregada']; ?></td>
+    <td <?=$style ?>><?= $sum_real[$key] ?></td>
+    <td <?=$style ?>><?= $row['merma_entregada']; ?></td>
+    <td <?=$style ?>><?= $sum_merm[$key] ?></td>
+    <td <?=$style ?>><?= $row['calidad']; ?></td>
+    <td <?=$style ?>><?= $sum_calidad[$key] ?></td>
+    <td <?=$style ?>><?= $row['defectos']; ?></td>
+    <td <?=$style ?>><?= $sum_defectos[$key] ?></td>
     <?php
     if (!empty($alertTiro)||!empty($AtintaT)) {
 ?>
-    <td colspan="3"> <?= implode(' | ', $alertTiro[$key][$i])." ". implode(' | ',$AtintaT[$key][$i]) ?></td>
+    <td <?=$style ?> colspan="3"> <?= implode(' | ', $alertTiro[$key][$i])." ". implode(' | ',$AtintaT[$key][$i]) ?></td>
     <?php
 
     } else {
 ?>
-    <td <?=$style ?> ></td>
-    <td <?=$style ?> ></td>
-    <td <?=$style ?> ></td>
+    <td <?=$style ?>></td>
+    <td <?=$style ?>></td>
+    <td <?=$style ?>></td>
     
     <?php
     }
@@ -629,24 +628,24 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
   </thead>
   <tbody>
   <tr>
-    <td >TIEMPO REAL</td>
+    <td>TIEMPO REAL</td>
     <td><?= gmdate("H:i", $treal) ?></td>
-    <td  >PRODUCCION REAL</td>
-    <td  ><?= $sum_real[$key] ?></td>
+    <td>PRODUCCION REAL</td>
+    <td><?= $sum_real[$key] ?></td>
     
-    <td  >MERMA</td>
-    <td  ><?= $sum_merm[$key] ?></td>
-    <td  >CALIDAD A LA PRIMERA</td>
-    <td  ><?= $sum_calidad[$key] ?></td>
+    <td>MERMA</td>
+    <td><?= $sum_merm[$key] ?></td>
+    <td>CALIDAD A LA PRIMERA</td>
+    <td><?= $sum_calidad[$key] ?></td>
     <td rowspan="2" style="font-size: 30px;"><?= (is_nan($final))? '0':$final ?>%</td>
     </tr>
     <tr>
-      <td  >TIEMPO DISPONIBLE</td>
-      <td  ><?= gmdate("H:i", $sum_dispon[$key]) ?></td>
+      <td>TIEMPO DISPONIBLE</td>
+      <td><?= gmdate("H:i", $sum_dispon[$key]) ?></td>
       <td colspan="2">PRODUCCION ESPERADA</td>
       <td colspan="2"><?= $sum_esper[$key] ?></td>
-      <td  >PRODUCCION REAL</td>
-      <td  ><?= $sum_real[$key] ?></td>
+      <td>PRODUCCION REAL</td>
+      <td><?= $sum_real[$key] ?></td>
       
     </tr>
   </tbody>
