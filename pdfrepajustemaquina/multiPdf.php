@@ -3,7 +3,7 @@ error_reporting(0);
 require_once("dompdf/dompdf_config.inc.php");
 include '../saves/conexion.php';
 $numodt = $_POST['fecha'];
-$users= array('0' =>16 ,'1' =>14 ,'2' =>8 ,'3' =>11 ,'4' =>13 );
+$users= array('0' =>14 ,'1' =>16 ,'2' =>8 ,'3' =>11 ,'4' =>13 );
 function getComida($idtiraje, $section)
 {
     include '../saves/conexion.php';
