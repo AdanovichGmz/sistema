@@ -509,7 +509,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
         
     }
 
-    if (isset($alertT_Sum)) {
+    if (isset($alertT_Sum[$i])) {
       $sum_muerto += array_sum($alertT_Sum[$i]);
     }
 
@@ -543,7 +543,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     $sum_tiraje += $row['seconds_tiraje'];
 ?>
     <td><?= gmdate("H:i", $sum_dispon); ?></td>
-    <td><?= gmdate("H:i", ((isset($alertT_Sum))? array_sum($alertT_Sum[$i]) : 0) ); ?></td>
+    <td><?= gmdate("H:i", ((isset($alertT_Sum[$i]))? array_sum($alertT_Sum[$i]) : 0) ); ?></td>
     <td><?= gmdate("H:i", $sum_muerto); ?></td>
     <td><?= gmdate("H:i", $row['seconds_tiraje']); ?></td>
     <td><?= gmdate("H:i", $sum_tiraje); ?></td>
@@ -560,7 +560,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <?php
     if (!empty($alertTiro)||!empty($AtintaT)) {
 ?>
-    <td colspan="3"> <?= implode(' | ', $alertTiro[$i])." ". implode(' | ',$AtintaT[$i])  ?></td>
+    <td colspan="3"> <?=((isset($alertTiro[$i]))?implode(' | ', $alertTiro[$i]) :'' )." ".((isset($AtintaT[$i]))? implode(' | ',$AtintaT[$i]) :'')   ?></td>
     <?php
 
     } else {
@@ -635,11 +635,8 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
     </tr>
   </tbody>
 </table>
-</body>
-</html>
-
 <?php
-if ($i>=18) { ?>
+if ($i>=16) { ?>
 <style>
   td,  th {
     border: 1px solid #E1E0E5;
@@ -660,6 +657,10 @@ if ($i>=18) { ?>
 
 </style>
 <?php } ?>
+</body>
+</html>
+
+
 
 <?php
 $html = ob_get_clean();
