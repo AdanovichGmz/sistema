@@ -61,12 +61,38 @@
                     
                     $subquery="SELECT estatus FROM procesos WHERE numodt='$id_process' AND nombre_proceso='$process' ORDER BY estatus DESC";
                     $getting=$mysqli->query($subquery);
-                  $getLast = mysqli_fetch_assoc($getting);
-                  
-                  $lastId=$getLast['estatus'];
+                  //$getLast = mysqli_fetch_assoc($getting);
+                  $bars='';
+                  //$lastId=$getLast['estatus'];
+                  $divide=($getting->num_rows>0)? 100/$getting->num_rows: 100;
+                 
+                  while ( $row=mysqli_fetch_assoc($getting)) {
+                    if ($row['estatus']=='En Tiempo') {
+                      $bars.='<div style="width:'.$divide.'%" class="progressing ontime"></div>';
+                    }elseif ($row['estatus']=='Tarde') {
+                      $bars.='<div style="width:'.$divide.'%" class="progressing tolate"></div>';
+                    }elseif ($row['estatus']=='No se ha Realizado') {
+                      $bars.='<div style="width:'.$divide.'%" class="progressing norealized"></div>';
+                    }
+
+                    
+                  }
+
+                  if ($getting->num_rows==0) {
+                    $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
+                   $semaforo=$qty.' <img width="15" src="../images/blanco.png"/>';
+                   return $semaforo;
+                  }else{
+                     $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
+                   $semaforo='<div class="sem-light">'.$qty.$bars.'</div>';
+                   return $semaforo;
+                  }
+                  /*
                   if ($lastId=='En Tiempo') {
                     $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
                    $semaforo=$qty.' <img width="15" src="../images/ontime.png"/>';
+                   $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
+                   $semaforo='<div class="sem-light ontime">'.$qty.$bars.' <div/>';
                    return $semaforo;
                   }
                   elseif($lastId=='Tarde') {
@@ -84,7 +110,7 @@
                    elseif($lastId=='Programado') {
                    
                     $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo=$qty.' <img width="15" src="../images/completed.png"/>';
+                   $semaforo='<div class="sem-light programed">'.$qty.$bars.' <div/>';
                    return $semaforo;
                   }
                    elseif($lastId=='') {
@@ -93,7 +119,7 @@
                    $semaforo=$qty.' <img width="15" src="../images/blanco.png"/>';
                    return $semaforo;
                   }
-                  
+                  */
                 
 
                   }

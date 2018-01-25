@@ -32,7 +32,7 @@ if (@$_SESSION['logged_in'] != true) {
     <script src="../js/search.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
-    <link href="../css/estilosadmin.css" rel="stylesheet" />
+    <link href="../css/estilosadmin.css?v=2" rel="stylesheet" />
     <link rel="stylesheet" href="../fonts/style.css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="../js/main.js"></script>
@@ -40,6 +40,7 @@ if (@$_SESSION['logged_in'] != true) {
     
 
 <style>
+
   .bkloader{
     position: absolute;
     text-align: center;

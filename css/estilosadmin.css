@@ -1,4 +1,31 @@
-
+.sem-light{
+	width: 20px;
+	height: 20px;
+	position: relative;
+	margin:auto;
+	border-radius: 3px;
+	border:solid 1px #4D4D4D;
+	text-align: left;
+	background:#3498DB;
+	font-size: 0;
+	overflow:hidden;
+}
+.progressing{
+	display: inline-block;height: 100%;
+	vertical-align: top;
+}
+.ontime{
+	background:#67BE4B;
+}
+.tolate{
+	background:#FBD734;
+}
+.norealized{
+	background:#E9573E;
+}
+.programed div:not(.proqty){
+	background:#3498DB;
+}
    .lightable {
   border-collapse: collapse;
   text-align: center;
@@ -68,14 +95,16 @@
 }
 
 .proqty{
-	 width: 14px; height: 14px; border-radius: 64px; color: #fff;
+	  border-radius: 64px; color: #fff;
 
 	position: absolute;
 	text-align: center;
-	line-height:  14px;
+	vertical-align: middle;
+top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 	font-size: 10px; 
-	right: 13px;
-	top: 13px;
+	
 	
 }
 #semaftbl td{
