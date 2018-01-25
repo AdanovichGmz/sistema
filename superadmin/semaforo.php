@@ -3,52 +3,7 @@
         require('../saves/conexion.php');
        
       
-
-       function activeProcess($id_process){
-                    require('../saves/conexion.php');
-                    $subquery="SELECT nombre_proceso,estatus FROM procesos WHERE id_orden=$id_process";
-                  $ords=$mysqli->query($subquery);
-                  $results=array();
-                  $results2=array();
-                    $i=0;
-                    while($arr=mysqli_fetch_array($ords)) {
-                      $results[$i] = $arr;
-                      $i++;
-                    }
-                    for ($i=0; $i < count($results) ; $i++) { 
-       
-       $results2[]=$results[$i]['nombre_proceso'];
-
-       
-      } 
-      
-      echo json_encode($results);
-
-                   
-                    }
-
-                    function gequty($idpro,$nombre){
-
-                    require('../saves/conexion.php');
-                    $subquery2="SELECT nombre_proceso FROM procesos WHERE nombre_proceso LIKE '%$nombre%' AND id_orden=$idpro";
-                  $ords2=$mysqli->query($subquery2);
                   
-                  if ($ords2->num_rows>1) {
-                 echo " <div class='proqty'>".$ords2->num_rows."</div>";
-               }
-                    }
-                     function gequty2($idpro,$nombre){
-
-                    require('../saves/conexion.php');
-                    $nplaca=$nombre.'-';
-                    $subquery2="SELECT nombre_proceso FROM procesos WHERE (nombre_proceso='$nombre' OR nombre_proceso LIKE '%$nplaca%') AND id_orden=$idpro";
-                  $ords2=$mysqli->query($subquery2);
-               if ($ords2->num_rows>1) {
-                 echo " <div class='proqty'>".$ords2->num_rows."</div>";
-                 
-               }
-                  
-                    }
 
        
        ?>
@@ -87,40 +42,7 @@
                    $semaforo='<div class="sem-light">'.$qty.$bars.'</div>';
                    return $semaforo;
                   }
-                  /*
-                  if ($lastId=='En Tiempo') {
-                    $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo=$qty.' <img width="15" src="../images/ontime.png"/>';
-                   $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo='<div class="sem-light ontime">'.$qty.$bars.' <div/>';
-                   return $semaforo;
-                  }
-                  elseif($lastId=='Tarde') {
-                   
-                   $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo=$qty.' <img width="15" src="../images/late.png"/>';
-                   return $semaforo;
-                  }
-                   elseif($lastId=='No se ha Realizado') {
-                   
-                   $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo=$qty.' <img width="15" src="../images/not.png"/>';
-                   return $semaforo;
-                  }
-                   elseif($lastId=='Programado') {
-                   
-                    $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo='<div class="sem-light programed">'.$qty.$bars.' <div/>';
-                   return $semaforo;
-                  }
-                   elseif($lastId=='') {
-                   
-                   $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo=$qty.' <img width="15" src="../images/blanco.png"/>';
-                   return $semaforo;
-                  }
-                  */
-                
+                  
 
                   }
 
@@ -136,14 +58,14 @@
                   //for first time load data
                   if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
                   $start_from = ($page-1) * $limit; 
-                   $resultados=$mysqli->query("SELECT idorden,numodt,fechafin FROM ordenes WHERE entregado NOT IN('true') ORDER BY fechafin ASC LIMIT $start_from, $limit"); 
+                   $resultados=$mysqli->query("SELECT idorden,numodt,fechafin FROM ordenes WHERE entregado NOT IN('true') ORDER BY fechafin DESC LIMIT $start_from, $limit"); 
                   
                   
 
                  while ($fila = mysqli_fetch_assoc($resultados) ){
                   $orders[$fila['numodt']]=$fila;
                  }
-                 
+               
                  
 
             ?>

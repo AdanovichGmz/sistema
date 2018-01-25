@@ -8,7 +8,8 @@ $term = $_REQUEST['condition'];
 if ($term!='') {
 	$sql = "SELECT idorden,numodt FROM ordenes WHERE   numodt LIKE '%" . $term . "%' ORDER BY idorden LIMIT $start_from, $limit"; 
  } else{
- 	$sql = "SELECT idorden,numodt FROM ordenes WHERE ORDER BY idorden ASC LIMIT 0, $limit"; 
+ 	$sql = "SELECT idorden,numodt FROM ordenes WHERE entregado NOT IN('true') ORDER BY fechafin DESC LIMIT 0, $limit"; 
+  
  }
 $rs_result = $mysqli->query($sql); 
 
@@ -52,7 +53,7 @@ while ($fila = mysqli_fetch_array($rs_result) ){
                           <td > <?=getStatus($fila['numodt'],'Acabado');?> </td>
                           </tr>
                     <?php } }else{
-              echo "<p style='color:#fff;'>No hay ordenes</p>";
+              echo "<p style='color:#fff;width:835px;background:#393C41;height:37px;text-align:center;line-height:37px;'>No se encontraron resultados</p>";
              } ?>
                           </tbody>
                       </table>

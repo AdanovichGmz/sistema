@@ -1,3 +1,9 @@
+.focos-contain{
+	float: left;
+}
+.nom-contain{
+	float: right;
+}
 .sem-light{
 	width: 20px;
 	height: 20px;
@@ -9,6 +15,48 @@
 	background:#3498DB;
 	font-size: 0;
 	overflow:hidden;
+}
+#nom{
+	width: 300px;
+	margin-right: 20px;
+	margin-top: 30px;
+}
+#nom td{
+	padding: 3px 10px;
+	color: #fff;
+}
+#sear{
+	width: 100%;
+	text-align: center;
+}
+#sear td{
+	padding: 20px 2px;
+}
+#searching{
+	width: 170px;
+	padding: 5px;
+	font-size: 15px;
+	border: solid 1px #ccc;
+	border-radius: 3px;
+}
+
+.l{
+	text-align: left;
+	width: 80%;
+}
+.r{
+	text-align: right;
+	width: 20%;
+}
+.search-focos{
+	width: 300px;
+
+	background:#181820;
+	margin-right: 20px;
+	text-align: center;
+	
+	border-radius:3px;
+
 }
 .progressing{
 	display: inline-block;height: 100%;
@@ -54,9 +102,9 @@
 }
 
 .paginatorajax{
-	width: auto;
+	margin-left: 80px;
     height: 100px;
-    position: absolute;
+    position: relative;
     bottom: 0;
     z-index: 10;
 }
@@ -796,9 +844,8 @@ writing-mode: vertical-rl;
 	height: 450px;
 }
 .focos{
-	width: auto;
-	height: 70%;
-	position: absolute;
+	margin-left: 80px;
+	position: relative;
 	
 	z-index: 10;
 

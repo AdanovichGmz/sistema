@@ -40,7 +40,9 @@ if (@$_SESSION['logged_in'] != true) {
     
 
 <style>
-
+body{
+  
+}
   .bkloader{
     position: absolute;
     text-align: center;
@@ -75,6 +77,20 @@ if (@$_SESSION['logged_in'] != true) {
   border-radius: 3px;
 
 }
+@media screen and (max-width: 1294px) {
+  .focos{
+    margin-left: 10px;
+  }
+  
+  }
+@media screen and (max-width: 1219px) {
+  .nom-contain{
+    display: none;
+  }
+  .nom-contain,.focos-contain{
+    float: none;
+  }
+  }
 </style>
 
   
@@ -87,10 +103,44 @@ include("topbar.php");
 
   
  
-<div class="container">
 
-  
-      <br />
+
+<div class="nom-contain">
+<div class="search-focos">
+<form id="ajaxsearch" onsubmit="getSearch();">
+<table id="sear">
+  <tr>
+    <td style="text-align: right;width: 65%"><input  id="searching" class="light-table-filter" data-table="order-table" placeholder="Ingresa una ODT.." ></td>
+    <td style="text-align: left;width: 35%"><input class="btn btn-primary" type="submit" name="" value="BUSCAR"></td>
+  </tr>
+</table>
+   </form>
+</div>
+<table id="nom">
+  <tr>
+    <td class="l">En Tiempo</td>
+    <td class="r"><img width="15" src="../images/verde.jpg"/></td>
+  </tr>
+  <tr>
+    <td class="l">Tarde</td>
+    <td class="r"><img width="15" src="../images/amarillo.jpg"/></td>
+  </tr>
+   <tr>
+    <td class="l">No se ha Realizado</td>
+    <td class="r"><img width="15" src="../images/rojo.jpg"/></td>
+  </tr>
+   <tr>
+    <td class="l">Programado</td>
+    <td class="r"><img width="15" src="../images/azul.jpg"/></td>
+  </tr>
+   <tr>
+    <td class="l">No Aplica</td>
+    <td class="r"><img width="15" src="../images/blanco.jpg"/></td>
+  </tr>
+</table>
+
+</div>  
+<div class="focos-contain">     
       <div class="focos">
       <?php
 include 'semaforo.php';
@@ -129,36 +179,7 @@ endif;
 ?>
 </ul></nav>
 </div> 
-</div>
-<div style="width: 100%; position: relative; height: 100px">
-  <div class="derecha" id="buscar" style="float: right;"> <input  id="searching" class="light-table-filter" data-table="order-table" placeholder="Busqueda" onkeyup="getSearch();"></div>
-</div>
-<div style="width: 100%; height: 230px; position: relative;">
-  <div class="col-md-3 " style="float: right;">
-  <div class="row">
-             <div class="col-md-10 txt_tit">En Tiempo</div>
-             <div class="col-md-1"><img width="15" src="../images/verde.jpg"/></div>
-          </div>
-          <div class="row">
-             <div class="col-md-10 txt_tit">Tarde</div>
-             <div class="col-md-1"><img width="15" src="../images/amarillo.jpg"/></div>
-          </div>
-          <div class="row">
-             <div class="col-md-10 txt_tit">No se ha Realizado</div>
-             <div class="col-md-1"><img width="15" src="../images/rojo.jpg"/></div>
-          </div>
-          <div class="row">
-             <div class="col-md-10 txt_tit">Programado</div>
-             <div class="col-md-1"><img width="15" src="../images/azul.jpg"/></div>
-          </div>
-          <div class="row">
-             <div class="col-md-10 txt_tit">No Aplica</div>
-             <div class="col-md-1"><img width="15" src="../images/blanco.jpg"/></div>
-          </div>
-          <br>
-          <br>
-          <a href="#" class="lightbox addOrder" style="display: none;"> Agregar Ordenes </a>
-        </div>
+
 </div>
  <div class="backdrop"><div class="bkloader"><img src="../images/loaderw.gif"></div></div>
   <div class="big-box-large"><div class="close">x</div>
@@ -407,6 +428,11 @@ $( function() {
  <script type="text/javascript">
 function getSearch(){
        
+       
+   }
+
+   $(document).on("submit", "#ajaxsearch", function (e) {
+    e.preventDefault();
         var inputVal = $('#searching').val();
        $('.body').html('<p style="width:837px;text-align:center; color:#fff;margin-top:150px;">Cargando...</p>');
           if (inputVal.length) {
@@ -423,6 +449,5 @@ function getSearch(){
                 $('.body').html(data);  
                              }  
                         });
-       
-   }
+});
 </script>
