@@ -361,8 +361,9 @@ function logpost($post){
                   $progNump=$i3p-3;
                   $statusp='programado'.$progNump;
                 }
-             $update3p ="UPDATE personal_process SET orden_display = $i3p , status='$statusp' WHERE id_orden= $idp AND id_proceso=$idprsp";
-            $updp= $mysqli->query($update3p);
+             //$update3p ="UPDATE personal_process SET orden_display = $i3p , status='$statusp' WHERE id_orden= $idp AND id_proceso=$idprsp";
+            //$updp= $mysqli->query($update3p);
+             $updp=true;
             if ($updp) {
               $cleanquery="DELETE FROM orden_estatus WHERE proceso_actual='$machineName' AND status='actual'";
             $clean=$mysqli->query($cleanquery);

@@ -540,10 +540,10 @@ border-top: solid 5px transparent;
 
   <div class="left-form2">
  
-   <p style="margin-bottom: 2px!important;">Elige el usuario</p>
+   <p style="margin-bottom: 2px!important;">Elige el operario</p>
    <input type="hidden" name="activef" value="ok">
    <div class=""><select id="filterElem" name="dateFilter">
-   <option disabled="true" selected="true">Usuarios</option>
+   <option disabled="true" selected="true">Operarios</option>
  
   <option value="14">Arturo</option>
   <option value="16">Armando</option>

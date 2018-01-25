@@ -21,28 +21,28 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
                   <?php
                     
                      $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
-                    $q="SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
+                    $q="SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,p.reproceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
                       $query = $mysqli->query($q);
                       $i=1;
                       
                       while ($valores = mysqli_fetch_array($query)) {
                         
                       $prod=$valores['producto'];
-                      $element_query="SELECT nombre_elemento FROM elementos WHERE id_elemento=$prod";
+                      $element_query="SELECT * FROM elementos WHERE id_elemento=$prod";
                       $get_elem=mysqli_fetch_assoc($mysqli->query($element_query));
                       $element=$get_elem['nombre_elemento'];
                      ?>
-                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face    <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+                        <div id="<?=$i ?>" style="text-transform: uppercase;" data-name="<?=$get_elem['nombre_elemento'] ?>" data-element="<?=$get_elem['id_elemento'] ?>" class="rect-button-small radio-menu-small face    <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
                         
                        
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="idpro[]"  value="<?=$valores['id_proceso'] ?>"  >
-                          <p class="elem" ><?php echo  trim($element); ?></p>
+                          <p class="elem" ><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
                           <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                        
-                        <?php $i++; } ?>
+                        <?php $i++; }if($query->num_rows==0){echo '<p style="font-weight:bold;color:#005076;margin-top:20px;font-size:20px;">TRABAJO TERMINADO PARA ESTA ORDEN</p>';} ?>
                         
                           <input type='hidden' id='returning2' name="returning2" value="<?php echo  (isset($element))? trim($element) :'';; ?>">
                          
@@ -76,7 +76,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
                         
                        
                        
-                          <p class="elem" style="<?=(strlen(trim($valores['elemento_virtual']))>16)? 'font-size: 15px; line-height: 18px!important;' : ''; ?>"><?= trim($valores['elemento_virtual']); ?></p>
+                          <p class="elem" style="<?=(strlen(trim($valores['elemento_virtual']))>16)? 'font-size: 15px; line-height: 18px!important;' : ''; ?>"><?= trim($valores['elemento_virtual']); ?><br><span><?= $valores['reproceso']?></span></p>
                           <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                          <input type='hidden' id='returning' name="returning" value="<?=$valores['num_odt']; ?>">
@@ -282,9 +282,9 @@ $getodt=$odetes[0];
  $times=count($datos);
 
  $process=($maqID=='Serigrafia2'||$maqID=='Serigrafia3')?'Serigrafia':(($maqID=='Suaje2')? 'Suaje' : $maqID );
-$sql="SELECT o.*, pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso INNER JOIN ordenes o ON o.idorden=pp.id_orden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' order by orden_display asc";
+$sql="SELECT o.*, pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso INNER JOIN ordenes o ON o.idorden=pp.id_orden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND avance NOT IN('completado') order by orden_display asc";
 
-$sql2="SELECT o.idorden,o.numodt,o.orden,p.id_proceso,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS display FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt'  order by display ASC";
+$sql2="SELECT o.idorden,o.numodt,o.orden,p.id_proceso,p.reproceso,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS display FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado')  order by display ASC";
 
 $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";
                       $initial_ = mysqli_fetch_assoc($mysqli->query($initquery));
@@ -317,6 +317,7 @@ $mysqli->query($queryclean);
 
 $i2=1;
 foreach ($results as $row) {
+  $reproceso=$row['reproceso'];
 $numodt=$row['numodt'];
   $id=$row['idorden'];
  $ord=($row['orden']!=null)?$row['orden'] : $i2;
@@ -355,8 +356,9 @@ $siguientes = array_slice($results2, $times, $total);
 
 
 
-foreach ($datos as $orden) {
-  $arrayKey = searchArrayKeyVal("id_orden", $orden, $results2);
+foreach ($idpro as $orden) {
+  
+  $arrayKey = searchArrayKeyVal("id_proceso", $orden, $results2);
 if ($arrayKey!==false) {
     $theKey= $arrayKey;
      $temp[]=$results2[$theKey];
@@ -392,6 +394,7 @@ $i3++;
 }
 
 //Guardando estatus siguientes
+/*
 $i4=1;
 foreach ($results2 as $row3) {
  
@@ -410,18 +413,20 @@ foreach ($results2 as $row3) {
  $update3 = "UPDATE personal_process SET status='$status' WHERE id_orden= $id AND id_proceso=$idprs";
 $mysqli->query($update3);
 $i4++;
-}
+}*/
 //Guardando estatus actuales
 $i5=1;
 foreach ($temp as $row4) {
  
   $id=$row4['id_orden'];
   $idprs=$row4['id_proceso'];
-    
- $update3 = "UPDATE personal_process SET status='actual' WHERE id_orden= $id AND id_proceso=$idprs";
+    $plans=(isset($_POST['plans']))? $_POST['plans']:'null';
+ $update3 = "UPDATE personal_process SET status='actual',planillas_de=$plans WHERE id_orden= $id AND id_proceso=$idprs";
 $mysqli->query($update3);
 $i5++;
+
 }
+
 
     $resultado=true;
     if ( $resultado) {
@@ -432,24 +437,24 @@ $i5++;
                  <input type='hidden' id='returning' name="returning" value="<?=implode(",", $odetes); ?>">
                  
                   <?php
-                    $q="SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$machineName' AND nombre_proceso='$process' order by orden_display asc";
+                    $q="SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso,p.reproceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND avance NOT IN('completado') order by orden_display asc";
                       $query = $mysqli->query($q);
                       
                       $i=1;
                       while ($valores = mysqli_fetch_array($query)) {
                         
                       $prod=$valores['producto'];
-                      $element_query="SELECT nombre_elemento FROM elementos WHERE id_elemento=$prod";
+                      $element_query="SELECT * FROM elementos WHERE id_elemento=$prod";
                       $get_elem=mysqli_fetch_assoc($mysqli->query($element_query));
                       $element=(isset($get_elem['nombre_elemento']))? $get_elem['nombre_elemento'] : '';
                      ?>
-                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face    <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+                        <div id="<?=$i ?>" style="text-transform: uppercase;" data-name="<?=$get_elem['nombre_elemento'] ?>" data-element="<?=$get_elem['id_elemento'] ?>"  class="rect-button-small radio-menu-small face    <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
                         
                        
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="idpro[]"  value="<?=$valores['id_proceso'] ?>"  >
-                          <p class="elem" ><?php echo  trim($element); ?></p>
+                          <p class="elem" ><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
                           <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                        

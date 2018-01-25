@@ -69,12 +69,52 @@ $(document).ready(function(event) {
 });
 
 $(document).on("click", ".radio-menu-small", function () {
-   $('.face-osc').find('input').prop('checked', false);
+  var p_elem=$(this).data('element');
+  console.log(p_elem);
+var name=$(this).data("name");
+if (p_elem==17) {
+  selectElement();
+    var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
+    '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="2"><p>2</p></div>'+
+    '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="4"><p>4</p></div>';
+    $('#elems-container').html(planillas);
+  $('.face-osc').find('input').prop('checked', false);
+                                              $('.face-osc').removeClass('face-osc');
+                                              $(this).addClass('face-osc').find('input').prop('checked', true);
+   
+  }
+  else if (p_elem==84) {
+    selectElement();
+    var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
+    '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="1"><p>1</p></div>'+
+    '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="2"><p>2</p></div>';
+    $('#elems-container').html(planillas);
+      $('.face-osc').find('input').prop('checked', false);
+                                              $('.face-osc').removeClass('face-osc');
+                                              $(this).addClass('face-osc').find('input').prop('checked', true);
+   
+  }else if (p_elem==123||p_elem==124||p_elem==125) {
+    selectElement();
+    var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
+    '<div class="real-qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="1"><p>1</p></div>'+
+    '<div class="real-qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="2"><p>2</p></div>';
+    $('#elems-container').html(planillas);
+      $('.face-osc').find('input').prop('checked', false);
+                                              $('.face-osc').removeClass('face-osc');
+                                              $(this).addClass('face-osc').find('input').prop('checked', true);
+   
+  }else{
+    $('.face-osc').find('input').prop('checked', false);
                                               $('.face-osc').removeClass('face-osc');
                                               $(this).addClass('face-osc').find('input').prop('checked', true);
 
                                               sendOrder();
                                               $('#close-down').click(); 
+  }
+
+
+
+   
 });
 
    // Esta primera parte crea un loader no es necesaria

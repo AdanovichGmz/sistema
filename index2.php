@@ -266,7 +266,7 @@ if ( $p==1) {
       cursor: pointer;
       position: relative;
     }
-    .qty-button{
+    .qty-button,.real-qty-button{
       margin: 15px;
        width: 150px;
       height: 150px;
@@ -281,7 +281,7 @@ if ( $p==1) {
       cursor: pointer;
       position: relative;
     }
-    .qty-button p{
+    .qty-button p,.real-qty-button p{
       font-size: 45px!important;
        margin: 0 auto;
       width: 90%;
@@ -413,6 +413,16 @@ if ( $p==1) {
 <style>
   .panelbottom legend{
     height: 97px;
+}
+.elem span{
+  color: #305E24;
+    
+    
+    font-size: 12px;
+    
+    line-height: 14px;
+    font-weight: bold;
+    width: 140px;
 }
 </style>
 <body onload="">
@@ -556,8 +566,8 @@ if ( $p==1) {
                   <?php
                     $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
                     $getodt=(isset($getActODT))? implode(",", $getActODT) : '' ;
-                      $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$machineName' AND nombre_proceso='$process' order by orden_display asc";
-                      $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
+                      $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso,p.reproceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND avance NOT IN('completado') order by orden_display asc";
+                      $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,p.reproceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
                       $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";
                       $initial = mysqli_fetch_assoc($mysqli->query($initquery));
                       $init=$initial['conteo'];
@@ -575,17 +585,17 @@ if ( $p==1) {
                         $i=1;
                       while ($valores=mysqli_fetch_array($result)) {
                         $prod=$valores['producto'];
-                      $element_query="SELECT nombre_elemento FROM elementos WHERE id_elemento=$prod";
+                      $element_query="SELECT * FROM elementos WHERE id_elemento=$prod";
                       $get_elem=mysqli_fetch_assoc($mysqli->query($element_query));
                       $element=$get_elem['nombre_elemento'];
                      ?>
-                        <div id="<?=$i ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
+                        <div id="<?=$i ?>" data-name="<?=$get_elem['nombre_elemento'] ?>" data-element="<?=$get_elem['id_elemento'] ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
                         
                         
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="idpro[]"  value="<?=$valores['id_proceso'] ?>"  >
-                          <p class="elem" ><?php echo  trim($element); ?></p>
+                          <p class="elem" ><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
                           <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                         
@@ -935,6 +945,12 @@ $(document).on("click", ".elem-button", function () {
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="2"><p>2</p></div>';
     $('#elems-container').html(planillas);
    
+  }else if (id==123||id==124||id==125) {
+    var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="1"><p>1</p></div>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="2"><p>2</p></div>';
+    $('#elems-container').html(planillas);
+   
   }else{
      $('#virtualelem').val(name);
 $('#idelem').val(id);
@@ -944,18 +960,52 @@ $('#idelem').val(id);
  
 
 });
+$(document).on("click", ".real-qty-button", function () {
+ var id=$(this).data("id");
+  var name=$(this).data("name");
+  var plans=$(this).data("plans");
+      $('#tareas').append('<input type="hidden" name="plans" id="plans" value="'+plans+'">');
+    close_Elements();
+
+
+                                              sendOrder();
+                                              $('#close-down').click(); 
+
+$.ajax({  
+                      
+                     type:"POST",
+                     url:"mosaico.php",   
+                     data:{machineID:<?=$machineID ?>},  
+                       
+                     success:function(data){ 
+                       $('#elems-container').html(data);
+                    
+                     }  
+                });
+  });
 $(document).on("click", ".qty-button", function () {
   var id=$(this).data("id");
   var name=$(this).data("name");
   var plans=$(this).data("plans");
+   
     $('#virtualelem').val(name);
     $('#idelem').val(id);
 
     $('#virtualform').append('<input type="hidden" name="plans" id="plans" value="'+plans+'">');
     close_Elements();
-
+$.ajax({  
+                      
+                     type:"POST",
+                     url:"mosaico.php",   
+                     data:{machineID:<?=$machineID ?>},  
+                       
+                     success:function(data){ 
+                       $('#elems-container').html(data);
+                    
+                     }  
+                });
 
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=24"></script>
+<script src="js/ajuste.js?v=25"></script>
