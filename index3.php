@@ -1,6 +1,6 @@
 
 <?php
-error_reporting(0);
+
 ini_set('session.gc_maxlifetime', 30*60);
 date_default_timezone_set("America/Mexico_City");
 
@@ -17,7 +17,7 @@ if (@$_SESSION['logged_in'] != true) {
 } else {
     //echo $_SESSION['machineName'];
 
-    $mac=(isset($_SESSION['mac']))?$_SESSION['mac'] : system($cmd) ;
+    //$mac=(isset($_SESSION['mac']))?$_SESSION['mac'] : system($cmd) ;
 
     $machineName=$_SESSION['machineName'];
     $machineID = $_SESSION['machineID'];
@@ -46,17 +46,24 @@ if (@$_SESSION['logged_in'] != true) {
         } elseif ($retaking->num_rows > 0)  {
             
             //$secondspaused  = 'false';
+          $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
+             $processID=($machineID==20||$machineID==21)? 10:(($machineID==22)? 9 : $machineID );
             $recoOrden      = mysqli_fetch_assoc($retaking);
             $OrderODT   = $recoOrden['numodt'];
             $orderID[] = $recoOrden['id_orden'];
             $singleID=$recoOrden['id_orden'];
-            $getretakingTiro    = "SELECT * FROM tiraje WHERE id_orden=$singleID ORDER BY idtiraje DESC";
-            $retakingTiro       = mysqli_fetch_assoc($mysqli->query($getretakingTiro));
-            $horaAjuste     = $retakingTiro['horadeldia_ajuste'];
+            $getAjuste    = "SELECT *,TIME_TO_SEC(horadeldia_tiraje) AS iniciotiro FROM tiraje WHERE id_orden=$singleID ORDER BY idtiraje DESC";
+          
+             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
+            $horaAjuste     = $Ajuste['horadeldia_ajuste'];
+            $getid="SELECT * FROM personal_process WHERE status='actual' AND proceso_actual='$machineName'";
+
+              $id=mysqli_fetch_assoc($mysqli->query($getid));
         }else{
              $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
              $processID=($machineID==20||$machineID==21)? 10:(($machineID==22)? 9 : $machineID );
              $getid="SELECT * FROM personal_process WHERE status='actual' AND proceso_actual='$machineName'";
+
               $id=mysqli_fetch_assoc($mysqli->query($getid));
             
 
@@ -83,31 +90,31 @@ if (@$_SESSION['logged_in'] != true) {
     
     
     $_GET['mivariable'] = $machineName;
-    $query0             = "SELECT o.*,p.proceso,p.id_proceso,pp.* FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='actual'";
+    $query0             = "SELECT o.*,p.proceso,p.id_proceso,pp.* FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='actual' AND p.nombre_proceso='$process'";
     
     $resultado0 = $mysqli->query($query0);
     
-    $query01 = "SELECT o.*,p.proceso,p.id_proceso,pp.* FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='actual'";
+    $query01 = "SELECT o.*,p.proceso,p.id_proceso,pp.* FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='actual' AND p.nombre_proceso='$process'";
    
     $resultado01 = $mysqli->query($query01);
     
     
-    $query02 = "SELECT o.*,p.proceso,p.id_proceso,pp.orden_display,pp.status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND status='actual'";
+    $query02 = "SELECT o.*,p.proceso,p.id_proceso,pp.*,pp.elemento_virtual,pp.id_elemento_virtual FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND status='actual' AND p.nombre_proceso='$process'";
     
     $resultado02   = $mysqli->query($query02);
     $resultado02_5 = $mysqli->query($query02);
     
     
-    $query1 = "SELECT o.*,p.proceso,p.id_proceso,pp.*,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS nombre_elemento FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='actual'";
+    $query1 = "SELECT o.*,p.proceso,p.id_proceso,pp.*,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS nombre_elemento FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='actual' AND p.nombre_proceso='$process'";
     
     $resultado1 = $mysqli->query($query1);
     
     
-    $query2 = "SELECT o.*,p.proceso,p.id_proceso,pp.* FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='siguiente'";
+    $query2 = "SELECT o.*,p.proceso,p.id_proceso,pp.* FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='siguiente' AND p.nombre_proceso='$process'";
     
     $resultado2 = $mysqli->query($query2);
     
-    $query3 = "SELECT o.*,p.proceso,p.id_proceso,pp.* FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='preparacion'";
+    $query3 = "SELECT o.*,p.proceso,p.id_proceso,pp.* FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='preparacion' AND p.nombre_proceso='$process'";
     
     $resultado3 = $mysqli->query($query3);
 ?>
@@ -136,7 +143,7 @@ if (@$_SESSION['logged_in'] != true) {
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
 
-    $element    =($getelement['is_virtual']=='true')? $getelement['id_elem_virtual'] : $getelement['producto'];
+    $element    =($getelement['elemento_virtual']!=null)? $getelement['id_elemento_virtual'] : $getelement['producto'];
     $begin      = new DateTime('08:45');
     $current    = new DateTime(date('H:i'));
     //obtenemos el tiempo transcurrido desde el inicio del dia hasta el momento actual
@@ -170,7 +177,7 @@ if (@$_SESSION['logged_in'] != true) {
     //obtenemos el porcentaje de estandar segundos*estandar/1hora
     $estandar_prod = (($seconds-3600) * $estandar) / 3600;
     
-    $desempenio =($getEfec['prod_real']/$getEfec['prod_esperada'])*100;
+    $desempenio =($getEfec['prod_esperada']!=null)? ($getEfec['prod_real']/$getEfec['prod_esperada'])*100 : 0;
     //echo $etequery3;
     //$realtime   = ($totalTime * 1) / 3600;
     $roundDesemp=($desempenio>100)? 100 : $desempenio;
@@ -443,10 +450,14 @@ if (@$_SESSION['logged_in'] != true) {
   font-size: 25px;
   font-weight: bold;
 }
+#avancerealtime{
+  background:rgb(31, 36, 42);
+}
 </style>
 
 </head>
 <body style="">
+<input type="hidden" id="actiro" value="<?=$id['last_tiraje'] ?>">
 <input type="hidden" id="iniciotiro" value="<?=$Ajuste['iniciotiro'] ?>">
 <input type='hidden' id='pausedorder' value="<?= (isset($secondspaused)) ? $secondspaused : 'false' ?>">
  
@@ -647,10 +658,10 @@ if (@$_SESSION['logged_in'] != true) {
                         <?php } ?>
                         <div class="square-button-h yellow goalert" onclick="derecha(); saveoperAlert();">
                           <img src="images/warning.png">
-                        </div><a href="index2.php">
-                        <div  class="square-button-h prple" >
-                          <img src="images/volv.png">
-                        </div></a>
+                        </div>
+                        <div  class="square-button-h prple" onclick="pauseConfirm();">
+                          <img src="images/cantir.png">
+                        </div>
                        <div style="display: none;" class="square-button-h prple" onclick="pauseConfirm();">
                           <div class="square-text"> PAUSAR Y CONTINUAR MAÑANA</div>
                         </div>
@@ -880,7 +891,7 @@ foreach ($orderID as $odt) {
             <div id="estilo">
 
              <form id="alerta-tiro" name="alerta-tiro" method="post"  class="form-horizontal"  >
-                <input type="hidden" name="tiro" value="<?=$id['last_tiraje'] ?>">
+                <input type="hidden" id="actiro" name="tiro" value="<?=$id['last_tiraje'] ?>">
                 <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php
     echo "" . $_SESSION['logged_in'];
@@ -1178,12 +1189,12 @@ foreach ($orderID as $odt) {
 <!-- ********************** Ventana de pausar ordenes ******************** -->
 <div class="boxPause">
   <p></p>
-  <p style="font-size:26px; font-weight: bold;">Pausar tiraje</p>
-  <p><input type="number" id="pausebuenos" placeholder="Buenos"></p>
+  <p style="font-size:26px; font-weight: bold;">¿Seguro que deseas cancelar este tiro?</p>
+  <p style="display: none;"><input type="number" id="pausebuenos" placeholder="Buenos"></p>
   <p id="buenos-messaje" style="display: none;">Debes ingresar la cantidad de buenos</p>
-  <p><input type="number" id="pauseajuste" placeholder="Piezas de ajuste"></p>
+  <p style="display: none;"><input type="number" id="pauseajuste" placeholder="Piezas de ajuste"></p>
   <p id="ajuste-messaje" style="display: none;">Debes ingresar las piezas de ajuste</p>
-  <div class="confirmbutton blue" onclick="pauseOrder()">ACEPTAR</div><div class="confirmbutton red" onclick="close_box()">CANCELAR</div>
+  <div class="confirmbutton blue" onclick="cancelTiro()">SI</div><div class="confirmbutton red" onclick="close_box()">NO</div>
   
   </div>
 <!-- ********************** Termina Ventana de pausar ordenes ******************** -->
@@ -1193,4 +1204,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=11"></script>
+  <script src="js/tiraje.js?v=12"></script>

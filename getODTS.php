@@ -14,6 +14,7 @@ if (!$result) {
 ?>         
                   <!-- <input type="hidden" name="ordId" value="<?=$getAct['idorden']; ?>"> -->
                   <?php
+                 
                       if ($result->num_rows==0) {
                        echo '<p style="font-size:18pt; color:#E9573E;font-family: monse-bold; text-align:center; margin-bottom:0;">NO HAY ORDENES</p>';
                        ?>

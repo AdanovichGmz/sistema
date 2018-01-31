@@ -14,7 +14,7 @@
                   function getStatus($id_process,$process){
                     require('../saves/conexion.php');
                     
-                    $subquery="SELECT estatus FROM procesos WHERE numodt='$id_process' AND nombre_proceso='$process' ORDER BY estatus DESC";
+                    $subquery="SELECT estatus FROM procesos WHERE numodt='$id_process' AND nombre_proceso LIKE'$process' ORDER BY estatus DESC";
                     $getting=$mysqli->query($subquery);
                   //$getLast = mysqli_fetch_assoc($getting);
                   $bars='';
@@ -58,7 +58,7 @@
                   //for first time load data
                   if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
                   $start_from = ($page-1) * $limit; 
-                   $resultados=$mysqli->query("SELECT idorden,numodt,fechafin FROM ordenes WHERE entregado NOT IN('true') ORDER BY fechafin DESC LIMIT $start_from, $limit"); 
+                   $resultados=$mysqli->query("SELECT idorden,numodt,fechafin FROM ordenes  ORDER BY fechafin DESC LIMIT $start_from, $limit"); 
                   
                   
 

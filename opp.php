@@ -23,6 +23,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
                      $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
                     $q="SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,p.reproceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
                       $query = $mysqli->query($q);
+
                       $i=1;
                       
                       while ($valores = mysqli_fetch_array($query)) {
@@ -38,7 +39,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
                         
                        
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="idpro[]"  value="<?=$valores['id_proceso'] ?>"  >
-                          <p class="elem" ><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
+                          <p class="elem" <?=($element=='Desconocido')? 'style="font-size:15px;"':''; ?> ><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
                           <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                        
@@ -454,7 +455,7 @@ $i5++;
                         
                        
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="idpro[]"  value="<?=$valores['id_proceso'] ?>"  >
-                          <p class="elem" ><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
+                          <p class="elem" <?=($element=='Desconocido')? 'style="font-size:15px;"':''; ?>><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
                           <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                        

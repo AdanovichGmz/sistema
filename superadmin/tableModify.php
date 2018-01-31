@@ -433,7 +433,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 
     } else {
 ?>
-    <td>--</td>
+    <td><?=($row['cancelado']=='true')? 'TIRAJE CANCELADO' :'--' ?></td>
     
     
     <?php

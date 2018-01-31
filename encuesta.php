@@ -155,7 +155,7 @@
                            <input hidden type="text" name="odt" value="<?=$_GET['odt'] ?>"  />
                             <input hidden type="text" name="idorden" value="<?=$_GET['order'] ?>"  />
                             <input hidden type="text" name="qty" value="single"  />
-                           
+                           <input hidden type="text" name="process" value="<?=$_GET['pro'] ?>"  />
                            <?php }else{ ?>
                       <input hidden type="text" name="odt" value="<?=$_GET['odt'] ?>"  />
                       <input hidden type="text" name="idorden" value="<?=$_GET['order']; ?>"  />

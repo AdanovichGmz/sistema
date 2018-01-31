@@ -42,6 +42,7 @@ $machineID = $_SESSION['machineID'];
   }else{
 
   $retaking=$mysqli->query("SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='retomado'");
+  $perro="SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='retomado'";
     
     if ($retaking->num_rows>0) {
       $getOrder = mysqli_fetch_assoc($retaking);
@@ -52,18 +53,16 @@ $machineID = $_SESSION['machineID'];
 
     } else{
 
-      $queryOrden="SELECT * FROM odt_flujo WHERE status='actual' AND proceso='$machineName'";
-      $asoc=$mysqli->query($queryOrden);
-     
-      while($get_Act=mysqli_fetch_assoc($asoc)){
+      
        
       $getID=mysqli_fetch_assoc($mysqli->query("SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS element,(SELECT nombre_elemento FROM elementos WHERE id_elemento=element) AS nom_element FROM personal_process pp WHERE proceso_actual='$machineName' AND status='actual'"));
-        $getActODT[] = $get_Act['numodt'];
+        $getProODT=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process WHERE proceso_actual='$machineName' GROUP BY num_odt"));
         $ordenActual[] =(isset($getID['id_orden']))? $getID['id_orden'] : '';
         $parteDeOrden=(isset($getID['nom_element']))? $getID['nom_element'] : '';
+        $getActODT[] = ($getProODT['num_odt']!=null)? $getProODT['num_odt']:'--';
+        $perro="SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS element,(SELECT nombre_elemento FROM elementos WHERE id_elemento=element) AS nom_element FROM personal_process pp WHERE proceso_actual='$machineName' AND status='actual'";
 
 
-}
     echo "<script>console.log('orden normal');</script>";
 
 
@@ -448,10 +447,11 @@ if ( $p==1) {
                         <div class="modal-header">
                             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
                             <div class="text-center" style="font-size:18pt; text-transform: uppercase;">AJUSTE <?php echo (isset($machineName))? $machineName : $mrecovered ; ?></div>
-                            <?php if (!isset($getActODT)) {?>
+
+                            <?php if (!isset($getActODT)&&!empty($getActODT)) {?>
                             <div class="text-center2" id="currentOrder" style="font-size:18pt; color:#E9573E;">NO HAS SELECCIONADO UNA ORDEN</div>
                             <?php } else{ ?>
-                              <div class="text-center2" id="currentOrder" style="font-size:18pt;">EN PROCESO: <?= implode(",", $getActODT)." ".$parteDeOrden  ?></div>
+                              <div class="text-center2" id="currentOrder" style="font-size:18pt;">ODT EN PROCESO: <?= implode(",", $getActODT)." ".$parteDeOrden  ?></div>
                            <?php } ?>
                    
                     <p id="success-msj" style="display: none;">Datos guardados correctamente</p>
@@ -595,7 +595,7 @@ if ( $p==1) {
                         
                         
                         <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="idpro[]"  value="<?=$valores['id_proceso'] ?>"  >
-                          <p class="elem" ><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
+                          <p class="elem" <?=($element=='Desconocido')? 'style="font-size:15px;"':''; ?> ><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
                           <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
                         
@@ -912,7 +912,7 @@ function endOfDay(){
   var hour = now.getHours();
   var day = now.getDay();
   var minutes = now.getMinutes();
-  if(hour >= 17){
+  if(hour >= 11){
      window.location.replace("resume.php?tiro="+lastiro);
   }else{
   alert('Favor de picarle aqui despues de las 6pm');
@@ -1008,4 +1008,4 @@ $.ajax({
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=25"></script>
+<script src="js/ajuste.js?v=27"></script>

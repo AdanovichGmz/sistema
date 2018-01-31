@@ -4,6 +4,8 @@ $numodt=$_POST['numodt'];
     
 $resultados=$mysqli->query("SELECT * FROM ordenes WHERE numodt='$numodt' ORDER BY idorden");
 
+
+
  function getElement($id){
          require('../saves/conexion.php');
         $elem_query="SELECT nombre_elemento FROM elementos WHERE id_elemento=$id";
@@ -15,40 +17,30 @@ $resultados=$mysqli->query("SELECT * FROM ordenes WHERE numodt='$numodt' ORDER B
 
 function getCheckStatus($id_process,$process){
                     require('../saves/conexion.php');
+                    $qty="SELECT estatus FROM procesos WHERE id_orden=$id_process AND nombre_proceso='$process'";
                     
-                    $subquery="SELECT estatus FROM procesos WHERE id_orden=$id_process AND nombre_proceso='$process'";
-                    $getting=$mysqli->query($subquery);
-                  $getLast = mysqli_fetch_assoc($getting);
-                  $lastId=$getLast['estatus'];
-                  if ($lastId=='En Tiempo') {
-                    //$qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo='checkicon-on-green defcheck';
-                   echo $semaforo;
+                    $getqty=$mysqli->query($qty);
+                    $bars='';
+                    $divide=($getqty->num_rows>0)? 100/$getqty->num_rows: 100;
+                    while ($row=mysqli_fetch_assoc($getqty)) {
+                    if ($row['estatus']=='En Tiempo') {
+                      $bars.='<div style="width:'.$divide.'%" class="b-progressing ontime"></div>';
+                    }elseif ($row['estatus']=='Tarde') {
+                      $bars.='<div style="width:'.$divide.'%" class="b-progressing tolate"></div>';
+                    }elseif ($row['estatus']=='No se ha Realizado') {
+                      $bars.='<div style="width:'.$divide.'%" class="b-progressing norealized"></div>';
+                    }
+                    
                   }
-                  elseif($lastId=='Tarde') {
-                   
-                   //$qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo='checkicon-on-yellow defcheck';
-                   echo $semaforo;
-                  }
-                   elseif($lastId=='No se ha Realizado') {
-                   
-                   //$qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo='checkicon-on-red defcheck';
-                   echo $semaforo;
-                  }
-                   elseif($lastId=='Programado') {
-                   
-                   // $qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
-                   $semaforo=' defcheck';
-                   echo $semaforo;
-                  }
-                   elseif($lastId=='') {
-                   
-                   //$qty=(($getting->num_rows>1)?" <div class='proqty'>".$getting->num_rows."</div>" : '');
+                   if ($getqty->num_rows==0) {
                    $semaforo='';
-                   echo $semaforo;
+                   return $semaforo;
+                  }else{
+                   $semaforo='<div class="big-sem-light">'.$bars.'</div>';
+                   return $semaforo;
                   }
+                    
+                    
                   
                 
 
@@ -126,7 +118,7 @@ function getCheckStatus($id_process,$process){
       <br>
      <div class="inputs" id="inputs-<?=$fila['idorden'] ?>"> 
        <div id="Original-<?=$fila['idorden'] ?>" class="checgroup" oncontextmenu="javascript:alert('success!');return false;">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Original');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Original-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Original-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Original');?>
          <input type="checkbox" class="chk" value="Original" name=  "procesos_<?=$fila['idorden'] ?>[]"    >
          </div>
          <div class="checktext">Ori</div>
@@ -139,7 +131,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Positivo-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Positivo');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Positivo-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Positivo-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Positivo');?>
          <input type="checkbox" class="chk" value="Positivo" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Pos</div>
@@ -151,7 +143,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Placa-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Placa');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Placa-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Placa-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Placa');?>
          <input type="checkbox" class="chk" value="Placa" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Pla</div>
@@ -163,7 +155,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Placa_HS-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Placa_HS');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Placa_HS-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Placa_HS-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Placa_HS');?>
          <input type="checkbox" class="chk" value="Placa_HS" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">PHS</div>
@@ -175,7 +167,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="LaminaOff-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'LaminaOff');?>"   onclick="checking(<?=$fila['idorden'] ?>,'LaminaOff-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'LaminaOff-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'LaminaOff');?>
           <input type="checkbox" class="chk" value="LaminaOff" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Loff</div>
@@ -187,7 +179,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Corte-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Corte');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Corte-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Corte-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Corte');?>
           <input type="checkbox" class="chk" value="Corte" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Cor</div>
@@ -199,7 +191,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Revelado-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Revelado');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Revelado-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Revelado-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Revelado');?>
          <input type="checkbox" class="chk" value="Revelado" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Rev</div>
@@ -211,7 +203,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Laser-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Laser');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Laser-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Laser-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Laser');?>
           <input type="checkbox" class="chk" value="Laser" name=  "procesos_<?=$fila['idorden'] ?>[]"  >
          </div>
          <div class="checktext">Las</div>
@@ -223,7 +215,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Suaje-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Suaje');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Suaje-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Suaje-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Suaje');?>
          <input type="checkbox" class="chk" value="Suaje" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Suaj</div>
@@ -235,7 +227,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Serigrafia-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Serigrafia');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Serigrafia-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Serigrafia-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Serigrafia');?>
           <input type="checkbox" class="chk" value="Serigrafia" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Serig</div>
@@ -247,7 +239,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Offset-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Offset');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Offset-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Offset-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Offset');?>
          <input type="checkbox" class="chk" value="Offset" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Off</div>
@@ -259,7 +251,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Digital-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Digital');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Digital-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Digital-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Digital');?>
          <input type="checkbox" class="chk" value="Digital" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Dig</div>
@@ -271,7 +263,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="LetterPress-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'LetterPress');?>"   onclick="checking(<?=$fila['idorden'] ?>,'LetterPress-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'LetterPress-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'LetterPress');?>
          <input type="checkbox" class="chk" value="LetterPress" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Lpr</div>
@@ -283,7 +275,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Plastificado-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Plastificado');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Plastificado-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Plastificado-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Plastificado');?>
          <input type="checkbox" class="chk" value="Plastificado" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Plas</div>
@@ -295,7 +287,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Encuadernacion-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Encuadernacion');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Encuadernacion-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Encuadernacion-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Encuadernacion');?>
          <input type="checkbox" class="chk" value="Encuadernacion" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Enc</div>
@@ -307,7 +299,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="HotStamping-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'HotStamping');?>"   onclick="checking(<?=$fila['idorden'] ?>,'HotStamping-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'HotStamping-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'HotStamping');?>
          <input type="checkbox" class="chk" value="HotStamping" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">HS</div>
@@ -319,7 +311,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Grabado-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Grabado');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Grabado-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Grabado-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Grabado');?>
           <input type="checkbox" class="chk" value="Grabado" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Grab</div>
@@ -331,7 +323,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Pleca-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Pleca');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Pleca-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Pleca-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Pleca');?>
          <input type="checkbox" class="chk" value="Pleca" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Ple</div>
@@ -343,7 +335,7 @@ function getCheckStatus($id_process,$process){
        </div>
        </div>
        <div id="Acabado-<?=$fila['idorden'] ?>" class="checgroup">
-         <div class="checkicon <?=getCheckStatus($fila['idorden'],'Acabado');?>"   onclick="checking(<?=$fila['idorden'] ?>,'Acabado-<?=$fila['idorden'] ?>');">
+         <div class="checkicon "   onclick="checking(<?=$fila['idorden'] ?>,'Acabado-<?=$fila['idorden'] ?>');"><?=getCheckStatus($fila['idorden'],'Acabado');?>
          <input type="checkbox" class="chk" value="Acabado" name=  "procesos_<?=$fila['idorden'] ?>[]"   >
          </div>
          <div class="checktext">Acab</div>

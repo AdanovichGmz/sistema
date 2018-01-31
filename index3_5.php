@@ -455,6 +455,7 @@ if (@$_SESSION['logged_in'] != true) {
 
 </head>
 <body style="">
+<input type="hidden" id="actiro" value="<?=$id['last_tiraje'] ?>">
 <input type="hidden" id="iniciotiro" value="<?=$Ajuste['iniciotiro'] ?>">
 <input type='hidden' id='pausedorder' value="<?= (isset($secondspaused)) ? $secondspaused : 'false' ?>">
  
@@ -649,10 +650,13 @@ if (@$_SESSION['logged_in'] != true) {
                         <?php } ?>
                         <div class="square-button-h yellow    goalert" onclick="derecha();saveoperAlert();">
                           <img src="images/warning.png">
-                        </div><a href="index2.php">
+                        </div>
+                        <div  class="square-button-h prple" onclick="pauseConfirm();">
+                          <img src="images/cantir.png">
+                        </div>
                         <div style="display: none;"  class="square-button-h prple" >
                           <img src="images/volv.png">
-                        </div></a>
+                        </div>
                        <div style="display: none;" class="square-button-h prple" onclick="pauseConfirm();">
                           <div class="square-text"> PAUSAR Y CONTINUAR MAÑANA</div>
                         </div>
@@ -1179,12 +1183,12 @@ foreach ($orderID as $odt) {
 <!-- ********************** Ventana de pausar ordenes ******************** -->
 <div class="boxPause">
   <p></p>
-  <p style="font-size:26px; font-weight: bold;">Pausar tiraje</p>
-  <p><input type="number" id="pausebuenos" placeholder="Buenos"></p>
+  <p style="font-size:26px; font-weight: bold;">¿Seguro que deseas cancelar este tiro?</p>
+  <p style="display: none;"><input type="number" id="pausebuenos" placeholder="Buenos"></p>
   <p id="buenos-messaje" style="display: none;">Debes ingresar la cantidad de buenos</p>
-  <p><input type="number" id="pauseajuste" placeholder="Piezas de ajuste"></p>
+  <p style="display: none;"><input type="number" id="pauseajuste" placeholder="Piezas de ajuste"></p>
   <p id="ajuste-messaje" style="display: none;">Debes ingresar las piezas de ajuste</p>
-  <div class="confirmbutton blue" onclick="pauseOrder()">ACEPTAR</div><div class="confirmbutton red" onclick="close_box()">CANCELAR</div>
+  <div class="confirmbutton blue" onclick="cancelTiro()">SI</div><div class="confirmbutton red" onclick="close_box()">NO</div>
   
   </div>
 <!-- ********************** Termina Ventana de pausar ordenes ******************** -->
@@ -1194,4 +1198,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=11"></script>
+  <script src="js/tiraje.js?v=13"></script>

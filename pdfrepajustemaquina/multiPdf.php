@@ -578,17 +578,24 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <?php
     if (!empty($alertTiro)||!empty($AtintaT)) {
 ?>
-    <td <?=$style ?> colspan="3"> <?= implode(' | ', $alertTiro[$key][$i])." ". implode(' | ',$AtintaT[$key][$i]) ?></td>
+    <td <?=$style ?> colspan="3"> <?= implode(' | ', $alertTiro[$key][$i])." ". implode(' | ',$AtintaT[$key][$i]).(($row['cancelado']=='true')? 'TIRAJE CANCELADO':'') ?></td>
     <?php
 
     } else {
+      if ($row['cancelado']=='true') {
+      
 ?>
-    <td <?=$style ?>></td>
-    <td <?=$style ?>></td>
-    <td <?=$style ?>></td>
-    
+    <td colspan="3">TIRAJE CANCELADO</td>
+        
     <?php
-    }
+    }else{?>
+
+    <td></td>
+    <td></td>
+    <td></td>
+
+ <?php   }
+}
 ?>
    
   </tr>

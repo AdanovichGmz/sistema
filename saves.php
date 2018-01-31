@@ -63,6 +63,7 @@ function logpost($post){
      /*********** Guardando Ajuste ***********/
      elseif ($section=='ajuste') {
       print_r($_POST);
+      
        $tiempo      = $_POST['tiempo'];
        $ontime      = $_POST['ontime'];
         $nommaquina  = $_SESSION['machineName'];
@@ -124,6 +125,7 @@ function logpost($post){
             }
             }
          } else{
+
         $actuals_query="SELECT  os.status, o.idorden,o.numodt, os.proceso_actual FROM personal_process os INNER JOIN ordenes o on os.id_orden=o.idorden WHERE status='actual' AND proceso_actual='$machineName'";
         $resultodt=$mysqli->query($actuals_query);
 
@@ -142,7 +144,7 @@ function logpost($post){
           }
             $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', horadeldia_tiraje='$horafinajuste', id_orden=$odt WHERE idtiraje=$tirajeActual";
            
-
+ 
             $resultado = $mysqli->query($query);
              
              $setTiraje=$mysqli->query("UPDATE personal_process SET last_tiraje=$tirajeActual WHERE status='actual' AND proceso_actual='$machineName' ");
@@ -266,6 +268,19 @@ function logpost($post){
            $log->lclose();
 
             $resultado=$mysqli->query($query);
+             if ($machineID==1) {
+            $recib_query="UPDATE ordenes SET cantrecibida=$entregados WHERE idorden=$numodt";
+            $exec=$mysqli->query($recib_query);
+            if ($exec) {
+              $log->lwrite("Cant Recibida ".$entregados." para orden ".$numodt,'CORTE_HECHO');
+           $log->lclose();
+            }else{
+              $log->lwrite("error al cortar ".$recib_query,'CORTE_HECHO');
+           $log->lclose();
+            }
+
+           
+           }
             if (!$resultado) {
               
               $log->lwrite(printf($mysqli->error),'UPDATING');
@@ -316,15 +331,29 @@ function logpost($post){
            $getLast=$LastT['last_tiraje'];
 
             $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horafin_tiraje='$horafintiraje',id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
-            print_r($mysqli);
+           // print_r($mysqli);
             $log->lwrite("Ultimo ID de ".$machineName.": ".$getLast,'LAST_ID');
            $log->lclose();
+
+           if ($machineID==1) {
+            $recib_query="UPDATE ordenes SET cantrecibida=$entregados WHERE idorden=$numodt";
+            $exec=$mysqli->query($recib_query);
+            if ($exec) {
+              $log->lwrite("Cant Recibida ".$entregados." para orden ".$numodt,'CORTE_HECHO');
+           $log->lclose();
+            }else{
+              $log->lwrite("error al cortar ".$recib_query,'CORTE_HECHO');
+           $log->lclose();
+            }
+
+           
+           }
 
             $resultado=$mysqli->query($query);
             $querymerma="UPDATE ordenes SET merma_entregada=$merma_entregada, merma_recibida=$passmerma WHERE idorden=$numodt";
             $mysqli->query($querymerma);
             if ( $resultado) {
-            $mysqli->query("UPDATE ordenes SET proceso_completado='true' WHERE idorden=$numodt");  
+            //$mysqli->query("UPDATE ordenes SET proceso_completado='true' WHERE idorden=$numodt");  
             $_GET['mivariable'] = $nombremaquina;
 
             //include("encuesta.php");
@@ -363,51 +392,12 @@ function logpost($post){
                 }
              //$update3p ="UPDATE personal_process SET orden_display = $i3p , status='$statusp' WHERE id_orden= $idp AND id_proceso=$idprsp";
             //$updp= $mysqli->query($update3p);
+
              $updp=true;
             if ($updp) {
               $cleanquery="DELETE FROM orden_estatus WHERE proceso_actual='$machineName' AND status='actual'";
             $clean=$mysqli->query($cleanquery);
-            if ($clean) {
-             $sql="SELECT * FROM orden_estatus WHERE proceso_actual='$machineName' order by orden_display asc";
-            $ords=$mysqli->query($sql);
-            }
-            $i=1;
-            while($arr=mysqli_fetch_array($ords)) {
-              $results[$i] = $arr;
-              $i++;
-            }
-            $i3=1;
-            foreach ($results as $row2) {
-              $id=$row2['id_orden'];
-              $old_status=$row2['status'];
-              $idprs=$row2['id_proceso'];
-                if ($old_status=='siguiente') {
-                 $status='actual';
-                }
-                 elseif ($old_status=='preparacion') {
-                  $status='siguiente';
-                }
-                elseif ($old_status=='programado1') {
-                  $status='preparacion';
-                }
-                else{ 
-                  $progNum=$i3-3;
-                  $status='programado'.$progNum;
-                }
-             $update3 = "UPDATE orden_estatus SET orden_display = $i3 , status='$status' WHERE id_orden= $id AND id_proceso=$idprs";
-            $upd= $mysqli->query($update3);
-            if ($upd) {
-            }else{
-              prinf($mysqli->error);
-              $log->lwrite('tiraje','multi-error');
-             $log->lwrite('error al establecer estatus','multi-error');
-             $log->lwrite('orden'.$id,'multi-error');
-              $log->lwrite(printf($mysqli->error),'multi-error');
-              $log->lwrite($update3,'multi-error');
-              $log->lclose();
-            }
-            $i3++;
-            }
+           
             }else{
               prinf($mysqli->error);
               $log->lwrite('tiraje','multi-error');
@@ -421,10 +411,7 @@ function logpost($post){
             $i3p++;
             }
           }else{ //si no hay mas partes pendientes para esta orden, la marcamos como completada
-            $completed=$mysqli->query("UPDATE ordenes SET entregado='true' WHERE numodt='$odt'"); 
-             $log->lwrite('no se pudo actualizar orden'.$odt,'ENTREGADO');
-             $log->lwrite(printf($mysqli->error),'ENTREGADO');
-              $log->lclose();
+
               //ahora actualizamos el flujo
               $quitFlow=$mysqli->query("DELETE FROM odt_flujo WHERE proceso='$machineName' AND status='actual' ");
               if ($quitFlow) {
@@ -650,6 +637,7 @@ function logpost($post){
 
             return false;
         }
+
           if ($_POST['qty']=='multi') {
             $arr_odetes=explode(',', $odt);
             foreach (explode(',',$lastOrder) as $key => $order) {
@@ -691,8 +679,8 @@ function logpost($post){
         }
         else{
             $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
-             
-        $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_orden=$lastOrder AND nombre_proceso='$process'";
+           $pro=$_POST['process'];  
+        $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_proceso=$pro ";
         $mysqli->query($queryavance);
 
         $query_deliv="SELECT avance FROM procesos WHERE numodt='$odt' AND id_orden=$lastOrder ";
@@ -718,12 +706,30 @@ function logpost($post){
         echo $query_deliv;
 
         $is_complete=is_in_array($b, $deliver);
-       
+        $log->lwrite('------------------------------------------','COMPLETANDO');
+        $log->lwrite('maquina: '.$machineName.' orden: '.$lastOrder.' numodt: '.$odt,'COMPLETANDO');
+        $log->lwrite('faltantes: '.implode('|', $deliver),'COMPLETANDO');
+        $log->lclose();
         if ($is_complete==false) {
+          $log->lwrite('ya no hay pendientes, se ha completado la orden '.$lastOrder,'COMPLETANDO');
+        $log->lclose();
           $querydeliv="UPDATE ordenes SET entregado='true' WHERE idorden=$lastOrder";
         $mysqli->query($querydeliv);
         }
+        $checforODT=$mysqli->query("SELECT entregado FROM ordenes WHERE numodt='$odt' AND entregado='false'");
+        if ($checforODT->num_rows==0) {
+         $compquery ="INSERT INTO `ordenes_completadas` (`id_complete_orden`, `odt`, `fecha_completado`, `hora_completado`) VALUES (NULL, '$odt', '".date("d-m-Y")."', '".date(" H:i:s", time())."')";
+          $completeODT=$mysqli->query($compquery);
+          if (!$completeODT) {
+           $log->lwrite(printf($mysqli->error()),'COMPLETANDO');
+           $log->lwrite($compquery,'COMPLETANDO');
+        $log->lclose();
+          }
 
+         $log->lwrite('********************************','COMPLETANDO');
+        $log->lwrite('se completaron todas ordenes de la ODT: '.$odt,'COMPLETANDO');
+        $log->lclose();
+        }
 
         $queryOrden="SELECT o.*,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' HAVING status='actual'";
         $asoc=($mysqli->query($queryOrden));

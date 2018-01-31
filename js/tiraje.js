@@ -230,7 +230,9 @@ timer.addEventListener('started', function (e) {
 });
 });  
 
-   
+   $('#columnchart').click(function () {
+    alert('hola');
+});
 
    $('.stopeat').click(function () {
     timer.start();
@@ -453,6 +455,7 @@ $('.radio-menu').click(function() {
          var id=$('#numodt').val();
           var odt=$('#odt').val();
           var qty=$('#qty').val();
+          var pro=$('#numproceso').val();
          $.ajax({  
                       
                      type:"POST",
@@ -463,8 +466,8 @@ $('.radio-menu').click(function() {
                         
                        
                           //$('#update-form')[0].reset();  
-                          //$('.close').click(); 
-                       window.location.replace("encuesta.php?order="+id+"&odt="+odt+"&qty="+qty);
+                          //$('.close').click(); numproceso
+                      window.location.replace("encuesta.php?order="+id+"&odt="+odt+"&qty="+qty+"&pro="+pro);
                           console.log(data);
                      }  
                 });
@@ -837,3 +840,32 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             b = false;
         }  
     }
+    function cancelTiro(){
+      var tiro= $('#actiro').val();
+      timer.pause();
+      var time=timer.getTimeValues().toString();
+      console.log(time);
+        $.ajax({  
+                             type:"POST",
+                             url:"pauseOrder.php",   
+                             data:{action:'cancel',tiro:tiro,time:time}, 
+                             dataType:"json",
+                             success:function(data){
+                              if (data.redirect=='true') {
+                                location.href = 'index2.php';
+                              }else{
+
+                               //location.href = 'index2.php';
+                                 console.log(data);
+                              }
+                                  
+                             }  
+                        });
+    }
+
+   $(document).ready(function() {
+        function disableBack() { window.history.forward() }
+        console.log('a donde crees que vas?');
+        window.onload = disableBack();
+        window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+    });
