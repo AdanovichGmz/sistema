@@ -1,6 +1,7 @@
 
 
 <?php
+error_reporting(0);
 ini_set('session.gc_maxlifetime', 30*60); 
 date_default_timezone_set("America/Mexico_City");
  if( !session_id())
@@ -912,7 +913,7 @@ function endOfDay(){
   var hour = now.getHours();
   var day = now.getDay();
   var minutes = now.getMinutes();
-  if(hour >= 11){
+  if(hour >= 17){
      window.location.replace("resume.php?tiro="+lastiro);
   }else{
   alert('Favor de picarle aqui despues de las 6pm');
