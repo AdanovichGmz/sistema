@@ -216,7 +216,7 @@ WHERE
    fechadeldia_ajuste = '$numodt' 
    AND t.id_user =$userid 
 ORDER BY
-   idtiraje ASC";
+   horadeldia_ajuste ASC";
 
 $asa_query = "SELECT *, TIME_TO_SEC(tiempo) AS tiempo_asaichi,TIME_TO_SEC(timediff(hora_fin,horadeldia)) AS dispon_asaichi, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE seccion='asaichi' AND fecha='$numodt' AND id_user=$userid) AS tmuerto_asa FROM asaichi WHERE fechadeldia='$numodt' AND id_usuario=$userid";
 
