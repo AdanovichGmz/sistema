@@ -108,7 +108,12 @@ elseif ($whatForm=='encuesta') {
           }else{
             printf("Errormessage: %s\n", $mysqli->error);
           }
-}        
+} elseif ($whatForm=='delete-tiro') {
+  $query="DELETE FROM tiraje WHERE idtiraje=".$_POST['id'];
+
+  $deleted=$mysqli->query($query);
+
+}       
              
          
  }

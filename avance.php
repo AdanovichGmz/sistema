@@ -48,11 +48,11 @@ if ($table_mac==2) {
              $prodEsperada=($tiraje_estandar>0)? round($tiraje_estandar):'<label style="color:red; font-size:11px;">Indefinido</label>';
  ?>
 
- <span>Produccion Esperada: <?=$prodEsperada?></span>
+ <div class="live-indicator">Produccion Esperada: <?=$prodEsperada?></div>
  <?php 
 }else{
  ?>
-<span>Produccion Esperada: 0</span>
+<div class="live-indicator">Produccion Esperada: 0</div>
  <?php
 }
 ?>

@@ -34,32 +34,32 @@
   <style>
   @font-face {
   font-family: 'monse';
-  src:  url('fonts/Montserrat-Regular.otf');
+  src:  url('../fonts/Montserrat-Regular.otf');
  
 }
 @font-face {
-  font-family: 'monse-black';
+  font-family../: 'monse-black';
   src:  url('fonts/Montserrat-Black.otf');
  
 }
 @font-face {
   font-family: 'monse-bold';
-  src:  url('fonts/Montserrat-Bold.otf');
+  src:  url('../fonts/Montserrat-Bold.otf');
  
 }
 @font-face {
   font-family: 'monse-medium';
-  src:  url('fonts/Montserrat-Medium.otf');
+  src:  url('../fonts/Montserrat-Medium.otf');
  
 }
     @font-face {
   font-family: 'aharon';
-  src:  url('fonts/ahronbd.ttf');
+  src:  url('../fonts/ahronbd.ttf');
  
 }
 @font-face {
   font-family: 'monlight';
-  src:  url('fonts/MontseLight.otf');
+  src:  url('../fonts/MontseLight.otf');
  
 }
 .machinename{
@@ -262,7 +262,7 @@
 </html>
 <script>
 <?php 
-require('saves/conexion.php');
+require('../saves/conexion.php');
 $today=date("d-m-Y");
  
   $turn_on=$mysqli->query("SELECT e.maquina,(SELECT nommaquina FROM maquina WHERE idmaquina=e.maquina) AS nom_maquina FROM operacion_estatus e WHERE fecha='$today'");

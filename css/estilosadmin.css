@@ -158,7 +158,7 @@ vertical-align: top;
 
 .proqty{
 	  border-radius: 64px; color: #fff;
-
+text-shadow: 1px 1px 4px #000000;
 	position: absolute;
 	text-align: center;
 	vertical-align: middle;

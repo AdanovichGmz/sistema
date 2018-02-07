@@ -57,6 +57,11 @@ if(@$_SESSION['logged_in'] != true){
     $maq_filter="SELECT idmaquina,nommaquina FROM maquina";
     $filter2=$mysqli->query($maq_filter);
 
+
+    $prods=$mysqli->query("SELECT * FROM elementos ORDER BY nombre_elemento ASC");
+
+  $procs=$mysqli->query("SELECT * FROM maquina ORDER BY nommaquina ASC");
+  $ops=$mysqli->query("SELECT * FROM login ORDER BY logged_in ASC");
     ?>
 
 
@@ -77,7 +82,7 @@ if(@$_SESSION['logged_in'] != true){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-
+<link rel="stylesheet" href="../css/choosen.css">
 
     <link href="../css/estilosadmin.css" rel="stylesheet" />
 
@@ -85,7 +90,10 @@ if(@$_SESSION['logged_in'] != true){
       <link rel="stylesheet" href="../fonts/style.css">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="../js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js"></script>
 
+<script src="../js/choosen.js"></script>
 
 
 
@@ -186,8 +194,10 @@ td{
 
 }
 #datepicker{
-  width: 90%!important;
-  margin: 0 auto;
+  width: 100px!important;
+  margin: 5px auto;
+  padding: 4.5px 3px!important;
+  text-align: center;
 }
 .left-form2{
   width: 19%!important;
@@ -491,6 +501,116 @@ border-top: solid 5px transparent;
 .tagtitle span{
   font-weight: bolder;
 }
+.delete-tiro{
+  cursor: pointer;
+  margin: 0 auto;
+  width: 25px;
+  height: 25px;
+  border-radius: 3px;
+  background-color: #E9573E;
+  background-image: url(../images/trash2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.delete-td{
+  z-index:  999997;
+}
+#usererror,#fechaerror{
+  color: red!important;
+}
+#filterElem{
+  width: 100px!important;
+    padding: 6px 2px!important;
+}
+.form-stuff{
+  width: 480px;
+  background:#fff;
+  padding: 20px;
+  height: 500px;
+  
+  border-radius: 4px;
+ 
+  
+}
+.ui-datepicker{
+  position: absolute!important;
+  z-index: 99999;
+}
+.newtiro-modal{
+ z-index: 9999;
+  opacity: 0;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    background:#fff;
+    border-radius: 4px;
+    moz-box-shadow: 0px 0px 5px #444444;
+    -webkit-box-shadow: 0px 0px 5px #444444;
+    box-shadow: 0px 0px 5px #444444;
+}
+.form-stuff input[type=text],.form-stuff input[type=time],.form-stuff input[type=number]{
+  padding: 4px;
+  width: 100%;
+  border-radius: 3px;
+  background: #fff;
+  border: solid 1px #ccc;
+  
+
+}
+.close{
+  opacity: 1!important;
+  width: 25px;
+  height: 25px;
+  background-color:#000!important;
+  background-image: url(../images/ex2.png);
+  background-size: contain;
+  color: #fff!important;
+  border-radius: 60px;
+  right: -17px!important;
+  top: -12px!important;
+  line-height: 25px;
+  text-align: center;
+  position: absolute;
+  border:solid 2px #fff;
+  -moz-box-shadow:0px 0px 5px #444444;
+      -webkit-box-shadow:0px 0px 5px #444444;
+      box-shadow:0px 0px 5px #444444;
+}
+.form-stuff input[type=submit]{
+  width: 100%;
+  border: none;border-radius: 3px;
+  padding: 4px;
+  margin-top:18px;
+  background:#05BDE3;
+  color:#fff;
+  font-weight: bold;
+ 
+
+}
+.form-stuff p{
+  margin-bottom: 2px;
+}
+.form-stuff select{
+  padding: 4px!important;
+
+
+}
+.in-line{
+  width: 50%;
+  display: inline-block;
+}
+.in-line input[type=text],.in-line input[type=time],.in-line input[type=number]{
+  width: 95%!important;
+}
+.rig{
+  text-align: right;
+}
+.rig p{
+  padding-left: 10px;
+  text-align: left;
+}
 @media screen and (max-width:1024px) {
   th{
     font-size: 8px;
@@ -499,35 +619,7 @@ border-top: solid 5px transparent;
 
   </style>
   <link rel="stylesheet" type="text/css" href="../css/jquery-ui-1.7.2.custom.css" />
-   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
-  <script type="text/javascript">
-   jQuery(function($){
-  $.datepicker.regional['es'] = {
-    closeText: 'Cerrar',
-    prevText: '&#x3c;Ant',
-    nextText: 'Sig&#x3e;',
-    currentText: 'Hoy',
-    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
-    'Jul','Ago','Sep','Oct','Nov','Dic'],
-    dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
-    dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
-    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
-    weekHeader: 'Sm',
-    dateFormat: 'dd/mm/yy',
-    firstDay: 1,
-    isRTL: false,
-    showMonthAfterYear: false,
-    yearSuffix: ''};
-  $.datepicker.setDefaults($.datepicker.regional['es']);
-});    
 
-        $(document).ready(function() {
-           $("#datepicker").datepicker();
-        });
-   </script>
 
 </head>
 <body style=";">
@@ -540,7 +632,7 @@ border-top: solid 5px transparent;
 
   <div class="left-form2">
  
-   <p style="margin-bottom: 2px!important;">Elige el operario</p>
+   <p style="margin-bottom: 2px!important;">Elige operario y fecha</p>
    <input type="hidden" name="activef" value="ok">
    <div class=""><select id="filterElem" name="dateFilter">
    <option disabled="true" selected="true">Operarios</option>
@@ -554,24 +646,103 @@ border-top: solid 5px transparent;
 
    </select>
 <p id="usererror" style="display: none;">Por favor elige un usuario</p>
+ <input id="datepicker" class="" placeholder="Fecha.." required="true" value="" name="id" />
+  <p id="fechaerror" style="display: none;">Por favor elige una fecha</p>
    </div>
    
  
- </div><div class="left-form2">
+ </div><div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">TRAER INFORMACION</button></div><div class="left-form2"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtrar"></div></div><div class="left-form2">
  
-   <p style="margin-bottom: 2px!important;">Fecha</p>
+   <button style="margin-top: 25px;" type="button" id="addtiro"  class="btn btn-info new-modal disabled">AGREGAR TIRO</button>
    
-   <input id="datepicker" class="" required="true" value="" name="id" />
-  <p id="fechaerror" style="display: none;">Por favor elige una fecha</p>
+  
  
- </div><div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">TRAER INFORMACION</button></div><div class="left-form2"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtrar"></div></div><div  class="left-form2"><form action="../pdfrepajustemaquina/createPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
+ </div><div  class="left-form2"><form action="../pdfrepajustemaquina/createPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
 
 </div>
    
 <div class="div-tabla">
 
 </div>
+<div class="newtiro-modal">
+<div class="close"></div>
+  <div class="form-stuff">
 
+<form id="newTiro" method="POST" >
+<p>ODT:</p>
+  <input type="text" required id="odt" name="odt">
+  <div style="">
+  
+   <input type="hidden" id="operario" readonly name="odt">
+
+  <p>Producto:</p>
+  
+  <select class="chosen" required id="producto" name="producto">
+  <option disabled selected>Elije un producto</option>
+    <?php while ($row4=mysqli_fetch_assoc($prods)) { ?>
+<option value="<?=$row4['id_elemento'] ?>"><?=$row4['nombre_elemento'] ?></option>
+    <?php } ?>
+  </select>
+  </div>
+<p>Fecha:</p>
+  <input readonly type="text" id="fecha" name="fecha">
+<div class="in-line entorno">
+     <label for="mesa">Mesa:</label>
+  <input type="radio" id="mesa" value="mesa"  class="entorno" name="entorno">
+  </div><div class="in-line rig entorno">
+     
+  <input type="radio" id="maqui" checked value="maquina" class="entorno" name="entorno">
+  <label for="maqui">Maquina:</label>
+  </div>
+
+  <div class="in-line">
+     <p>Inicio ajuste:</p>
+  <input type="time" required step="2" id="in-ajuste" name="in-ajuste">
+  </div><div class="in-line rig">
+     <p>Fin ajuste:</p>
+  <input type="time" required step="2" id="fin-ajuste" name="fin-ajuste">
+  </div>
+
+  <div class="in-line">
+     <p>Pedido:</p>
+  <input type="number" required id="pedido" name="pedido">
+  </div><div class="in-line rig">
+     <p>Recibidos:</p>
+  <input type="number" required id="recibido" name="recibido">
+  </div>
+  
+<div class="in-line">
+     <p>Buenos:</p>
+  <input type="number" required id="buenos" name="buenos">
+  </div><div class="in-line rig">
+     <p>Piezas de ajuste:</p>
+  <input type="number" required id="piezas" name="piezas">
+  </div>
+
+
+
+  
+
+  <div class="in-line">
+     <p>Inicio tiraje:</p>
+  <input type="time" step="2" required id="in-tiro" name="in-tiro">
+  </div><div class="in-line rig">
+     <p>Fin tiraje:</p>
+  <input type="time" step="2" required id="fin-tiro" name="fin-tiro">
+  </div>
+ 
+  
+  <input type="submit" name="" value="GUARDAR">
+  </form>
+</div>
+</div>
+
+<div class="backdrop"></div>
+<div class="box"><div class="close"></div>
+
+
+
+  </div>
 </div>
 
 
@@ -581,39 +752,11 @@ border-top: solid 5px transparent;
 
 
  
-  <div class="backdrop"></div>
-  <div class="box"><div class="close">x</div>
-  <div class="modal-form">
-  <p id="order" style="text-align: center; font-weight: bold;"></p>
-    <form id="update_form" method="post" onsubmit="updateRow();">
-    <input type="hidden" value="edit" id="form" name="form" >
-   <input type="hidden" id="fi" name="idstandard" >
-    
-    
-    <select  name="nommaquina" id="fm">
-      <option disabled="true" selected="true" value="none">Proceso</option>
-     <?php while($rowf=mysqli_fetch_assoc($n_maquinas)){ ?>
-     <option value="<?=$rowf['idmaquina']?>"><?php echo $rowf['nommaquina']; ?></option>
-     <?php } ?>
-   </select>
-    </select>
-    <input type="text" id="fp" name="ajuste" placeholder="Tiempo Estandar de Ajuste">
-    <input type="text" id="fo" name="piezas" placeholder="Piezas por Minuto">
-    <select  name="elemento" id="fu">
-      <option disabled="true" >Elemento</option>
-     
-   </select>
   
-    <input type="submit" value="Guardar">
-  </form>
-  </div>
+  
 
 
-
-  </div>
-
-
-   <div class="box2"><div class="close2">x</div>
+   <div class="box2"><div class="close2"></div>
   <div class="modal-form">
   <p id="orderdelete" style="text-align: center; font-weight: bold;"></p>
     <form id="delete_form" method="post" onsubmit="deleteRow();">
@@ -627,7 +770,7 @@ border-top: solid 5px transparent;
   </div>
   </div>
 
-  <div class="box3"><div class="close">x</div>
+  <div class="box3"><div class="close"></div>
   <div class="modal-form">
   <p id="orderupdate" style="text-align: center; font-weight: bold;"></p>
     <form id="update_form2" method="post" onsubmit="updateRow2();">
@@ -639,7 +782,7 @@ border-top: solid 5px transparent;
     <input type="text" id="fou" name="piezas" placeholder="Piezas por Minuto">
     <input type="text" id="elem" name="elemento" readonly="true">
   
-    <input type="submit" value="Guardar">
+    <input type="submit" value="Comer">
   </form>
   </div>
 
@@ -649,11 +792,38 @@ border-top: solid 5px transparent;
   <div class="popup"></div>
 </body>
 </html>
+
 <script>
+  
+
+  $(".chosen").chosen();
+  
+  </script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+<script>
+$('.new-modal').click(function(){
+   $('.backdrop').animate({'opacity':'.50'}, 300, 'linear');
+$('.backdrop, ').css('display', 'block');
+    $('.newtiro-modal').show();
+    $('.newtiro-modal').css('opacity','1');
+    
+   });
+$('.close').click(function(){
+    $('.newtiro-modal').hide();
+       $('.backdrop').css('display', 'none');
+    
+   });
+$('.backdrop').click(function(){
+  $('.newtiro-modal').hide();
+       $('.backdrop').css('display', 'none');
+});
 $(document).ready(function(){
       document.getElementById('getPdf').style.pointerEvents = 'none';
+      document.getElementById('addtiro').style.pointerEvents = 'none';
  });
-    
+     $('.newtiro-modal').hide();
      function showEdit(editableObj) {
       $('.overlay').animate({'opacity':'0.50'}, 300, 'linear');
       $('.overlay').css('display', 'block');
@@ -665,8 +835,10 @@ $("#newstandar").click(function () {
   var user=$('#filterElem').val();
   var fecha=$('#datepicker').val();
   var go;
+  $('#fecha').val(fecha);
+  $('#operario').val(user);
   console.log('user '+user);
-  if (user=='Usuarios') {
+  if (user=='Operarios') {
     go=false;
 
     $('#usererror').show();
@@ -689,6 +861,8 @@ $("#newstandar").click(function () {
     $('#user').val(user);
     document.getElementById('getPdf').style.pointerEvents = 'auto';
     $('#getPdf').removeClass('disabled'); 
+    document.getElementById('addtiro').style.pointerEvents = 'auto';
+    $('#addtiro').removeClass('disabled');
  console.log('si paso '+user);
   $.ajax({
         url: "tableModify.php",
@@ -804,7 +978,75 @@ $("#newstandar").click(function () {
        });
     }
 
-  $( function() {
-    $( "#datepicker" ).datepicker("option",'dateFormat', 'dd-mm-yy' );
-  } );
+   (function($) {  
+
+            $(function(){
+                  $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
+                  $( "#datepicker2" ).datepicker({ dateFormat: 'dd-mm-yy' });
+            })
+  })(jQuery);
+
+
+   (function($){
+  $.datepicker.regional['es'] = {
+    closeText: 'Cerrar',
+    prevText: '&#x3c;Ant',
+    nextText: 'Sig&#x3e;',
+    currentText: 'Hoy',
+    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+    'Jul','Ago','Sep','Oct','Nov','Dic'],
+    dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+    dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+    weekHeader: 'Sm',
+    dateFormat: 'dd/mm/yy',
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: ''};
+  $.datepicker.setDefaults($.datepicker.regional['es']);
+})(jQuery);
+
+
+
+$('#newTiro').submit(function(){
+  event.preventDefault();
+
+var odt=$('#odt').val();
+var operario=$('#operario').val();
+var producto=$('#producto').val();
+var fecha=$('#fecha').val();
+var entorno=$('.entorno').val();
+var in_ajuste=$('#in-ajuste').val();
+var fin_ajuste=$('#fin-ajuste').val();
+var pedido=$('#pedido').val();
+var recibido=$('#recibido').val();
+var buenos=$('#buenos').val();
+var piezas=$('#piezas').val();
+var in_tiro=$('#in-tiro').val();
+var fin_tiro=$('#fin-tiro').val();
+
+
+  console.log('se trato de enviar');
+   $.ajax({
+        url: "newTiro.php",
+        type: "POST",
+
+        data:{odt:odt,operario:operario,producto:producto,fecha:fecha,entorno:entorno,in_ajuste:in_ajuste,fin_ajuste:fin_ajuste,pedido:pedido,recibido:recibido,buenos:buenos,piezas:piezas,in_tiro:in_tiro,fin_tiro:fin_tiro},
+        success: function(data){
+          $('.close').click();
+          $('#newTiro')[0].reset();
+          $.ajax({
+        url: "tableModify.php",
+        type: "POST",
+        data:{iduser:operario,fecha:fecha},
+        success: function(data){
+        $('.div-tabla').html(data);
+        }        
+       });
+        }        
+       });
+});
     </script>

@@ -297,7 +297,7 @@ if (@$_SESSION['logged_in'] != true) {
 <link rel="stylesheet" href="css/3.3.6/bootstrap.min.css" />
 
     
-  <link href="css/corte.css" rel="stylesheet" />
+  <link href="css/corte.css?v=2" rel="stylesheet" />
     <link href="css/estiloshome.css" rel="stylesheet" />
     <link href="css/general-styles.css" rel="stylesheet" />
    
@@ -486,11 +486,9 @@ if (@$_SESSION['logged_in'] != true) {
       <ul>
   <!-- <li> <div id="divPHOTO" class="user-photo"></div></li> -->
   <li><span style="color: #CECECE; font-size:20px;"><?php
-    echo "Bienvenido: " . $_SESSION['logged_in'];
+    echo $_SESSION['logged_in'].' | '.$machineName;
 ?></span></li>
-  <li><span style="color: #CECECE; font-size:20px;">Area: <?php
-    echo $machineName;
-?></span></li>
+  <li><div class="live-indicator">Tiros: <?=$getEfec['prod_real'] ?></div></li>
 
     <input type="hidden" id="realtime">
     <input type="hidden" id="mach" value="<?=$machineID ?>"> 

@@ -1,11 +1,12 @@
 <?php 
+
 require('../saves/conexion.php');
 
-$in_ajuste=(strlen($_POST['in-ajuste'])==5)? $_POST['in-ajuste'].':00':$_POST['in-ajuste'];
-$fin_ajuste=(strlen($_POST['fin-ajuste'])==5)? $_POST['fin-ajuste'].':00':$_POST['fin-ajuste'];
+$in_ajuste=(strlen($_POST['in_ajuste'])==5)? $_POST['in_ajuste'].':00':$_POST['in_ajuste'];
+$fin_ajuste=(strlen($_POST['fin_ajuste'])==5)? $_POST['fin_ajuste'].':00':$_POST['fin_ajuste'];
 
-$in_tiro=(strlen($_POST['in-tiro'])==5)? $_POST['in-tiro'].':00':$_POST['in-tiro'];
-$fin_tiro=(strlen($_POST['fin-tiro'])==5)? $_POST['fin-tiro'].':00':$_POST['fin-tiro'];
+$in_tiro=(strlen($_POST['in_tiro'])==5)? $_POST['in_tiro'].':00':$_POST['in_tiro'];
+$fin_tiro=(strlen($_POST['fin_tiro'])==5)? $_POST['fin_tiro'].':00':$_POST['fin_tiro'];
 
 $oper=(isset($_POST['operario']))?$_POST['operario']:0;
 $producto=(isset($_POST['producto']))? "'".$_POST['producto']."'":'null';
@@ -91,9 +92,7 @@ $standar_query = "SELECT * FROM estandares WHERE id_maquina=$maquina AND id_elem
 $n_prod=mysqli_fetch_assoc($mysqli->query("SELECT nombre_elemento FROM elementos WHERE id_elemento=$producto"));
 $nombre=$n_prod['nombre_elemento'];
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+
 
 $ajuste= gmdate("H:i:s", $tiempoA);
 $tiraje= gmdate("H:i:s", $tiempoT);

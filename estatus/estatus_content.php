@@ -9,7 +9,7 @@ error_reporting(0);
 
   <?php
    function isActive($machineID){
-    require('saves/conexion.php');
+    require('../saves/conexion.php');
     $today=date("d-m-Y");
     $check=$mysqli->query("SELECT * FROM operacion_estatus WHERE fecha='$today' AND maquina=$machineID");
  
@@ -22,7 +22,7 @@ if ($check->num_rows==0) {
   }
   function personalData($idmaquina,$maquina,$photo){
     date_default_timezone_set("America/Mexico_City");
-require('saves/conexion.php');
+require('../saves/conexion.php');
  $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
              $processID=($machineID==20||$machineID==21)? 10:(($machineID==22)? 9 : $machineID );
     $query1 = "SELECT o.*,p.proceso,p.id_proceso,pp.*,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS nombre_elemento FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$maquina' AND nombre_proceso='$process' AND status='actual' ";
@@ -187,7 +187,7 @@ console.log("real time '.$maquina.' '.gmdate("H:i",$gettotalTime['tiempo_real'])
   //console.log("total time '.$maquina.' '.gmdate("H:i",$totalTime) .' seconds '.$seconds .'");
     $outtime=($actividad['en_tiempo']=='false')? 'outtime':'';
     $credencial=' '.$grafica.'
-    <div class='.$outtime.'></div> <div class="ete-photo '.$actividad['actividad_actual'].'"><div class="person-photo" style=background:url("images/'.$photo.'.jpg")></div><div class="santa"></div>
+    <div class='.$outtime.'></div> <div class="ete-photo '.$actividad['actividad_actual'].'"><div class="person-photo" style=background:url("../images/'.$photo.'.jpg")></div><div class="santa"></div>
     <div class="ete-num">'.round($getEte).'%</div>
 
     </div>

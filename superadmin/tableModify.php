@@ -82,6 +82,7 @@ $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHER
     <div class="datagrid">
 <table id="datos" class="order-table table hoverable lightable">
 <thead><tr>
+
     <th colspan="2"  >Hora</th>
     
     <th rowspan="2"  >ODT</th>
@@ -97,7 +98,7 @@ $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHER
     <th   colspan="2">Calidad a la Primera</th>
     <th   colspan="2">Defectos</th>
     <th rowspan="2">Alertas</th>
-    
+    <th rowspan="2"></th>
     
   </tr>
 <tr >
@@ -272,8 +273,8 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 <!-- ********** Inicia TR Ajuste ********** -->
 <tbody>
                           <tr>
-     <td class="editable"  onClick="showEdit(this);"><?= substr($row['horadeldia_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="time-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horadeldia_ajuste']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('inicio','horadeldia_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>                     
-    <td class="editable"  onClick="showEdit(this);"><?= substr($row['horafin_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="tfin-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horafin_ajuste']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('fin','horafin_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
+     <td class="editable"  onClick="showEdit(this);"><?= substr($row['horadeldia_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="time-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=preg_replace('/\s+/', '', $row['horadeldia_ajuste'])?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('inicio','horadeldia_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>                     
+    <td class="editable"  onClick="showEdit(this);"><?= substr($row['horafin_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="tfin-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=preg_replace('/\s+/', '', $row['horafin_ajuste'])?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('fin','horafin_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
     <td> </td>
     <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?> >Ajuste </td>
     <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
@@ -331,6 +332,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <?php
     }
 ?>
+<td class="delete-td" rowspan="<?=($comida_exist!=''||$comida_exist2!='')? '3' : '2' ?>"><div  class="delete-tiro" data-tiroid="<?=$row['idtiraje'] ?>" onclick="deleteTiro(<?=$row['idtiraje'] ?>)"></div></td>
     <!--
    
     <td><?= round($row['desempenio'], 2); ?>%</td> -->
@@ -367,8 +369,8 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 ?>
 <!-- ********** Inicia TR Tiro ********** -->
       <tr >
-     <td class="editable" onClick="showEdit(this);"><?= substr($row['horadeldia_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="timet-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horadeldia_tiraje']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('iniciot','horadeldia_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>                     
-    <td class="editable" onClick="showEdit(this);"><?= substr($row['horafin_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="tfint-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=$row['horafin_tiraje']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('fint','horafin_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
+     <td class="editable" onClick="showEdit(this);"><?= substr($row['horadeldia_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="timet-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?= preg_replace('/\s+/', '', $row['horadeldia_tiraje']) ?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('iniciot','horadeldia_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>                     
+    <td class="editable" onClick="showEdit(this);"><?= substr($row['horafin_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="tfint-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=preg_replace('/\s+/', '', $row['horafin_tiraje'])?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('fint','horafin_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
 
 <?php if ($row['is_virtual'] == 'true') { ?>
   <td class="editable" onClick="showEdit(this);"> <?= $row['odt_virtual'] ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?= $row['odt_virtual'] ?></div><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['odt_virtual']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('odt','odt_virtual','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div> </td>
@@ -513,14 +515,14 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
       var globeerror=false;
       var count=0;
       $(document).ready(function(){
- 
+
         $('.lightbox').click(function(){
           $('.backdrop').animate({'opacity':'.50'}, 300, 'linear');
-          $('.box').animate({'opacity':'1.00'}, 300, 'linear');
-          $('.backdrop, .box').css('display', 'block');
+          $('.newtiro-modal').animate({'opacity':'1.00'}, 300, 'linear');
+          $('.backdrop, ').css('display', 'block');
         });
  
-        $('.close').click(function(){
+        $('.close3').click(function(){
           close_box();
           close_box3();
         });
@@ -551,7 +553,7 @@ $calidad_tope = ($calidad * 100 > 100) ? 100 : $calidad * 100;
       function close_box()
       {
         
-        $('.backdrop, .box').css('display', 'none');
+        $('.backdrop, .box,.newtiro-modal').css('display', 'none');
       }
   function close_box2()
       {
@@ -635,6 +637,55 @@ $(".cifra").change(function (e) {
   
 });
 
+
+function deleteTiro(id){
+  console.log(id);
+}
+
+function deleteTiro(id){
+  var user=$('#filterElem').val();
+  var fecha=$('#datepicker').val();
+    $('<div></div>').appendTo('body')
+                    .html('<div><h6>Estas seguro de querer borrar este tiro?</h6></div>')
+                    .dialog({
+                        modal: true, title: 'Eliminar tiro', zIndex: 10000, autoOpen: true,
+                        width: 'auto', resizable: false,
+                        buttons: {
+                            Si: function () {
+                                // $(obj).removeAttr('onclick');                                
+                                // $(obj).parents('.Parent').remove();
+                                
+                                $.ajax({
+                                    url: "updates.php",
+                                    type: "POST",
+                                    data:{form:'delete-tiro',id:id},
+                                    success: function(data){
+                                     $.ajax({
+                                        url: "tableModify.php",
+                                        type: "POST",
+                                        data:{iduser:user,fecha:fecha},
+                                        success: function(data){
+                                        $('.div-tabla').html(data);
+                                        
+                                        }        
+                                       });
+
+
+                                    }        
+                                   });
+                                
+                                $(this).dialog("close");
+                            },
+                            No: function () {                                                             
+                            
+                                $(this).dialog("close");
+                            }
+                        },
+                        close: function (event, ui) {
+                            $(this).remove();
+                        }
+                    });
+    };
     </script>
     </div>
 

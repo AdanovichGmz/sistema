@@ -3,6 +3,18 @@
 
         }
 
+
+    .live-indicator{
+      padding: 10px;
+      background:#343434;
+      border: 1px solid #5C5C5C;
+      color: #CCCCCC;
+      font-weight: bolder;
+      border-radius: 3px;
+      margin: 7px 15px;
+      font-size: 20px;
+    }
+
     #slideDer {
       position: absolute;
       height: 100%;
