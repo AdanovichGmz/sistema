@@ -233,6 +233,14 @@ $('.tv-body:odd').css('background-color', '#333333');
 
 
       $(document).ready(function(){
+        setInterval(function () {
+    $(".norealized").css("background", function () {
+        this.switch = !this.switch
+        return this.switch ? "#C62127" : ""
+    });
+}, 500)
+
+
         $('.backdrop').click(function() {
         while(i > 2) {
         $('.field:last').remove();

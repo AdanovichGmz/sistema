@@ -32,7 +32,7 @@ if($f3=mysqli_fetch_assoc($sql3)){
         $_SESSION['rol']=$f3['rol'];
 
         
-        echo "<script>location.href='superadmin/reporteindex.php'</script>";
+        echo "<script>location.href='superadmin/'</script>";
 
     }
 }

@@ -486,7 +486,7 @@ if (@$_SESSION['logged_in'] != true) {
   <li><span style="color: #CECECE; font-size:20px;"><?php
     echo $_SESSION['logged_in'].' | '.$machineName;
 ?></span></li>
-  <li><div class="live-indicator">Tiros: <?=$getEfec['prod_real'] ?></div></li>
+  <li><div class="live-indicator">Tiros Realizados: <?=$getEfec['prod_real'] ?></div></li>
 
     <input type="hidden" id="realtime">
 
@@ -1196,4 +1196,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=13"></script>
+  <script src="js/tiraje.js?v=14"></script>

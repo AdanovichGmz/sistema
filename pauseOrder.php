@@ -31,6 +31,7 @@ if ($paused) {
 	printf($mysqli->error);
 }
 }else if($action=='cancel'){
+	
 	$query="UPDATE tiraje SET pedido=0,buenos=0,piezas_ajuste=0,defectos=0,merma=0,merma_entregada=0,entregados=0,produccion_esperada=0,desempenio=0,tiempoTiraje='".$_POST['time']."', cancelado=1, horafin_tiraje='".date(" H:i:s", time())."',fechadeldia_tiraje='".date("d-m-Y")."' WHERE idtiraje=".$_POST['tiro'];
 	$del['post']=json_encode($_POST);
 	$del['query']=$query;

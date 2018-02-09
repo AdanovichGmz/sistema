@@ -55,7 +55,7 @@ if (@$_SESSION['logged_in'] != true) {
             $getAjuste    = "SELECT *,TIME_TO_SEC(horadeldia_tiraje) AS iniciotiro FROM tiraje WHERE id_orden=$singleID ORDER BY idtiraje DESC";
           
              $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
-            $horaAjuste     = $Ajuste['horadeldia_ajuste'];
+            $hora_Ajuste     = $Ajuste['horadeldia_ajuste'].'-'.$recoOrden['id_orden'];
             $getid="SELECT * FROM personal_process WHERE status='actual' AND proceso_actual='$machineName'";
 
               $id=mysqli_fetch_assoc($mysqli->query($getid));
@@ -75,7 +75,7 @@ if (@$_SESSION['logged_in'] != true) {
             $getAjuste    = "SELECT horadeldia_ajuste,elemento_virtual,TIME_TO_SEC(horadeldia_tiraje) AS iniciotiro FROM tiraje WHERE idtiraje=$idtiro";
 
             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
-            $horaAjuste     = $Ajuste['horadeldia_ajuste'];
+            $hora_Ajuste     = $Ajuste['horadeldia_ajuste'];
             foreach ($orderID as $order) {
               $getOdt="SELECT numodt FROM ordenes WHERE idorden=$order";
               $odt=mysqli_fetch_assoc($mysqli->query($getOdt));
@@ -298,7 +298,7 @@ if (@$_SESSION['logged_in'] != true) {
 
     
   <link href="css/corte.css?v=2" rel="stylesheet" />
-    <link href="css/estiloshome.css" rel="stylesheet" />
+    <link href="css/estiloshome.css?v=2" rel="stylesheet" />
     <link href="css/general-styles.css" rel="stylesheet" />
    
    
@@ -488,7 +488,7 @@ if (@$_SESSION['logged_in'] != true) {
   <li><span style="color: #CECECE; font-size:20px;"><?php
     echo $_SESSION['logged_in'].' | '.$machineName;
 ?></span></li>
-  <li><div class="live-indicator">Tiros: <?=$getEfec['prod_real'] ?></div></li>
+  <li><div class="live-indicator">Tiros Realizados: <?=$getEfec['prod_real'] ?></div></li>
 
     <input type="hidden" id="realtime">
     <input type="hidden" id="mach" value="<?=$machineID ?>"> 
@@ -618,7 +618,7 @@ if (@$_SESSION['logged_in'] != true) {
  <input type="hidden" name="element" value="<?=$element ?>">
  <input type="hidden" id="table-machine" name="table-machine" value="<?=(isset($_REQUEST['mm']))? $_REQUEST['mm'] : 1 ?>">
   <input type="hidden" name="section" value="tiraje">
- <input type="hidden" name="hour" value="<?= (isset($_POST['horadeldia'])) ? $_POST['horadeldia'] : $horaAjuste; ?>"> 
+ <input type="hidden" name="hour" value="<?= $hora_Ajuste; ?>"> 
  <input type="hidden" name="horainiciotiro" value="<?=date(" H:i:s", time()); ?>">
 <div class="statistics">
   <div class="left-sec" style="position: relative;">
@@ -880,10 +880,11 @@ foreach ($orderID as $odt) {
 <!-- ********************** Termina Ventanita loader ******************** -->
 
 <!-- ********************** Panel Alerta Maquina ******************** -->
-   <div id="panelizqui">
+  
+   <div id="panelder">
+    <div id="panelizqui">
        
    </div>
-   <div id="panelder">
       <div class="container">
           
             <div id="estilo">
@@ -927,7 +928,7 @@ foreach ($orderID as $odt) {
                 <div class="form-group">
                   <div class="button-panel-small">
                        
-                        <div class="square-button-small red derecha stopalert start reset" onclick="saveOperstatus()">
+                        <div style="display: none;" class="square-button-small red derecha stopalert start reset" onclick="saveOperstatus()">
                           <img src="images/ex.png">
                         </div>
                         <div id="savealerta" class="square-button-small  blue " onclick="saveAlert();">
@@ -1202,4 +1203,4 @@ foreach ($orderID as $odt) {
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=12"></script>
+  <script src="js/tiraje.js?v=13"></script>

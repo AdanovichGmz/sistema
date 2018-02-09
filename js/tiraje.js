@@ -231,7 +231,7 @@ timer.addEventListener('started', function (e) {
 });  
 
    $('#columnchart').click(function () {
-    alert('hola');
+  
 });
 
    $('.stopeat').click(function () {
@@ -592,17 +592,7 @@ $(document).ready(function () {
 
 
     });
-
-
-
-    
-   
-  
-
-
-
-
-    
+ 
     
     $(".eatpanel").click(function () {
       
@@ -623,9 +613,6 @@ $(document).ready(function () {
     });
 
     
-
-    
-
      var nob = false;
     $(".nobien").click(function () {
         if (nob == false) {
@@ -690,12 +677,12 @@ $("#close-down").click(function () {
         if (a == false) {
 
             $("#btniz").animate({ left: '+=60%' }, 200);
-            $("#panelizqui").animate({ left: '+=60%' }, 200);
+            $("#panelizqui").animate({ right: '+=60%' }, 200);
             a = true;
         }
         else {
             $("#btniz").animate({ left: '-=60%' }, 200);
-            $("#panelizqui").animate({ left: '-=60%' }, 200);
+            $("#panelizqui").animate({ right: '-=60%' }, 200);
             a = false;
         }
 
@@ -841,16 +828,17 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
         }  
     }
     function cancelTiro(){
-      var tiro= $('#actiro').val();
+      var tiro= ($('#actiro').val()!='')? $('#actiro').val() : '1';
       timer.pause();
       var time=timer.getTimeValues().toString();
-      console.log(time);
+      console.log(time+' tiro: '+tiro);
         $.ajax({  
                              type:"POST",
                              url:"pauseOrder.php",   
                              data:{action:'cancel',tiro:tiro,time:time}, 
                              dataType:"json",
                              success:function(data){
+                              console.log('volvio');
                               if (data.redirect=='true') {
                                 location.href = 'index2.php';
                               }else{

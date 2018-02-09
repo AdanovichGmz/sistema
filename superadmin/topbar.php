@@ -8,7 +8,7 @@
       <li class="nohover" style=""><span class="button-labels"><div class="logo-ul"><img  src="../images/white-logo.png"></div></span>
 
       <!-- <li class="nohover"><span class="labels">Bienvenido: <?=$_SESSION['logged_in']; ?></span></li> -->
-      </li><li><a href="reporteindex.php">Inicio</a>
+      </li><li><a href="index.php">Inicio</a>
       </li><li style="display: none;"><a href="production.php"><span class="icon-stats-bars"></span>Producción</a>
         </li><li class="submenu">
           <a href="#"><span class="icon-clipboard"></span>Reportes ETE<span class="caret icon-arrow-down6"></span></a>
