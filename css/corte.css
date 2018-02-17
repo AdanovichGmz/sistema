@@ -6,8 +6,8 @@
 
     .live-indicator{
       padding: 10px;
-      background:#343434;
-      border: 1px solid #5C5C5C;
+      background:#262626;
+      border: 1px solid #404040;
       color: #CCCCCC;
       font-weight: bolder;
       border-radius: 3px;
@@ -85,12 +85,12 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
   
   width: 32%;
   height: 300px;
-  background: #343434;
+  background: #262626;
   display: block;
  display: inline-block;
  border-radius: 2px;
  position: relative;
- border:1px solid #5C5C5C;
+ 
 }
 .left-panel{
   margin:0 5px;
@@ -156,8 +156,8 @@ ul {
     overflow: hidden;
     height: 65px;
     /* background-color: #002D44; */
-    background-color:#212121;
-    border-bottom: 1px solid #5C5C5C;
+    background-color:#1A1A1A;
+    
    
 }
 
@@ -186,14 +186,14 @@ li span:not(.span-button) {
     width: 96%;px;
     margin: 0 auto;
     text-align: center;
-    background:#F3F5F7;
+   
     margin-top: 5px;
 
 }
 
 .gree{
-  background:#262626;
-  border:1px solid #5C5C5C;
+  
+  border:1px solid #404040;
 }
 .oran{
   background:#D35400;
@@ -210,14 +210,14 @@ li span:not(.span-button) {
     text-align: center;
     padding: 1px;
     font-size: 21px;
-    color:#606062;
+    color:#fff;
 
 }
 .orders-td2 {
     text-align: center;
     padding: 1px;
     font-size: 21px;
-    color:#fff;
+    color:#525252;
 }
 .purp tr{
   border:1px solid #8E44AD;
@@ -227,9 +227,9 @@ li span:not(.span-button) {
 }
 .gree tr{
 
-  border:1px solid #16A085;
+  border:1px solid #404040;
 }
-.orders tr:nth-child(even){background-color: #fff;
+.orders tr:nth-child(even){
 
 
 }
@@ -252,7 +252,8 @@ li span:not(.span-button) {
   position: relative;
   border-top-left-radius: 2px;
    border-top-right-radius: 2px;
-       border-bottom: 1px solid #5C5C5C;
+   border-bottom: solid 1px #212121!important;
+     
 }
 .stat-head2{
   width: 100%;
@@ -386,19 +387,29 @@ li span:not(.span-button) {
   text-align: center;
  
   border-radius: 3px;
-  border: 1px solid #B2BDC8;
-  background:#F3F5F7;
+  
+  
   font-size: 40px!important;
    -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
 -moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.31);
 box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+}
+.inactive{
+background:#353535;
+color: #fff;
+border:1px solid #404040;
+}
+.active{
+background:#fff!important;
+color: #1A1A1A!important;
+border:1px solid #404040!important;
 }
 #former th {
     background-color: #4CAF50;
     color: #606062;
 }
 .title-form{
-  color: #fff;
+  color: #CECECE;
 }
 #piechart{
     text-align: center!important;

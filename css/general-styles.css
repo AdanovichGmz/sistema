@@ -103,11 +103,11 @@
 }
 #timersmall{
     width: 440px;
-    background: #343434;
+    background:#353535;
     height: 110px;
     margin-left: 15px !important;
     border-radius: 3px;
-    border: solid 1px #5C5C5C;
+    border: 1px solid #404040;
 }
 #timersmall span{
     line-height: 110px;
@@ -135,7 +135,7 @@
 }
        
 body {
-    background:#1D1A1D!important;
+    background:#212121!important;
      width: 100%;
     height: 100%;
     background-repeat: repeat-y repeat-x ;
@@ -291,9 +291,9 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.31);
     background: black;
     display: block;
  display: inline-block;
-    margin:3px;
+    margin: 10px 3px;
     border-radius: 3px;
-    border:1px solid #fff;
+   
     cursor: pointer;
     position: relative;
     -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
@@ -350,7 +350,7 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.31);
 }
 .button-panel{
     width: 100%;
-    margin-top: -5px;
+    margin-top: 10px;
     position: relative;
    
 }
@@ -579,8 +579,10 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
     background: #373B43;
 } 
 .comments{
-    width: 600px;
+    width: 98%;
     height: 80px;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 .comments-small{
     width: 280px;
@@ -589,15 +591,13 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
 .radio-menu{
     width: 300px;
     height: 60px;
-    border-radius: 3px;
+    
      margin-bottom:10px !important;
     cursor: pointer;
     position: relative;
-    -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
-    -moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.31);
-    box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+    
     text-align: center;
-    font-weight: bold;
+    
     line-height: 60px;
     color:#fff;
     display:inline-block;
@@ -658,7 +658,7 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
     background: #BB1B1B;
 }
 .face{
- background:#67BE4B;
+ background:#84b547;
 }
 .face-osc{
 background:#3C752B;

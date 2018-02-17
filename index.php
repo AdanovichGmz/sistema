@@ -4,7 +4,12 @@ if( !session_id() )
     session_start();
 }
 if(@$_SESSION['logged_in'] == true){
-   header('Location:http:'.dirname($_SERVER['PHP_SELF']).'/index2.php');
+  if ($_SESSION['rol']==3) {
+   header('Location:http:'.dirname($_SERVER['PHP_SELF']).'/superadmin');
+  }else{
+    header('Location:http:'.dirname($_SERVER['PHP_SELF']).'/index2.php');
+  }
+   
 }else{
     ?>
 

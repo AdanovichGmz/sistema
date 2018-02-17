@@ -299,7 +299,7 @@ if (@$_SESSION['logged_in'] != true) {
 
     
   <link href="css/corte.css?v=2" rel="stylesheet" />
-    <link href="css/estiloshome.css" rel="stylesheet" />
+    <link href="css/estiloshome.css?v=3" rel="stylesheet" />
     <link href="css/general-styles.css" rel="stylesheet" />
    
    
@@ -451,6 +451,13 @@ if (@$_SESSION['logged_in'] != true) {
   font-size: 25px;
   font-weight: bold;
 }
+legend{
+  padding:10px;
+  color:#CECECE;
+  border:none;
+  text-align: center; 
+}
+
 </style>
 
 </head>
@@ -917,7 +924,7 @@ foreach ($orderID as $odt) {
                
 
                 <!-- Textarea -->
-                <div class="form-group" id="explanation" style="text-align: center; color:black;">
+                <div class="form-group" id="explanation" style="width:81%;margin:30px auto;text-align: center; color:black;">
                     <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones"></textarea>
                 <p id="explain-error" style="display: none;">Porfavor agrega una explicacion ↑</p>
                 </div>
@@ -987,7 +994,7 @@ foreach ($orderID as $odt) {
     echo $valorQuePasa2;
 ?>"  />         
                   <!-- Form Name -->
-                 <legend>Comida</legend>
+                
                 
                    <input type="hidden" id="timeeat" name="breaktime">
                
@@ -1009,15 +1016,7 @@ foreach ($orderID as $odt) {
                    </br>
                    </br>
                    </br>
-                <div class="form-group">
-                  <div class="button-panel-small">
-                       
-                        <div style="display: none;"  class="square-button-small red eatpanel stopeat start reseteat2 " onclick="saveOperstatus()">
-                          <img src="images/ex.png">
-                        </div>
-                        </div>
                
-                </div>
                </fieldset>    
                 
              </form>

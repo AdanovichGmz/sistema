@@ -1,7 +1,7 @@
 
 
 <?php
-error_reporting(0);
+
 ini_set('session.gc_maxlifetime', 30*60); 
 date_default_timezone_set("America/Mexico_City");
  if( !session_id())
@@ -19,12 +19,7 @@ date_default_timezone_set("America/Mexico_City");
 require('saves/conexion.php');
 
 
-//cuando cierran sesion
-$ip=getenv("REMOTE_ADDR"); 
-$cmd = "arp  $ip | grep $ip | awk '{ print $3 }'"; 
 $recoverSession=(!empty($_POST))? 'false' : 'true' ;
-
-$mac=(isset($_SESSION['mac']))?$_SESSION['mac'] : system($cmd) ;
 
 $machineName=$_SESSION['machineName'];
 $machineID = $_SESSION['machineID'];
@@ -42,19 +37,17 @@ $machineID = $_SESSION['machineID'];
 
   }else{
 
-  $retaking=$mysqli->query("SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='retomado'");
-  $perro="SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='retomado'";
+    $retaking=$mysqli->query("SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='retomado'");
+ 
     
     if ($retaking->num_rows>0) {
-      $getOrder = mysqli_fetch_assoc($retaking);
+    $getOrder = mysqli_fetch_assoc($retaking);
     $getActODT[] = $getOrder['numodt'];
     $ordenActual[] = $getOrder['id_orden'];
     echo "<script>console.log('orden retomada');</script>";
 
-
     } else{
-
-      
+   
        
       $getID=mysqli_fetch_assoc($mysqli->query("SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS element,(SELECT nombre_elemento FROM elementos WHERE id_elemento=element) AS nom_element FROM personal_process pp WHERE proceso_actual='$machineName' AND status='actual'"));
         $getProODT=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process WHERE proceso_actual='$machineName' GROUP BY num_odt"));
@@ -345,6 +338,11 @@ if ( $p==1) {
 .other{
   background:#1D1C21!important;
 }
+legend{
+  padding:10px;
+  color:#CECECE;
+  border:none; 
+}
         
 @media only screen and (min-width:481px) and (max-width:768px) and (orientation: portrait) {
     .contegral{
@@ -427,7 +425,7 @@ if ( $p==1) {
 </style>
 <body onload="">
 <div id="formulario"></div>
-    <input type="hidden" id="mac" value="<?=$mac ?>">
+    
      <input type="hidden" id="idmachine" value="<?=$machineID ?>">
     <input type="hidden" id="order" value="<?= (isset($ordenActual))? implode(",", $ordenActual)  : ((isset($stoppedOrderID))? $stoppedOrderID : '') ;?>">
     <div class="msj">
@@ -494,13 +492,9 @@ if ( $p==1) {
                                 </div>
                                 </div>
                         
-                          <?php
-                          $valorQuePasa3 = (isset($mac))? $mac : $recoverMac; // variable que viene de otra pagina por el metodo get
-                           $valorQuePasa4 = (isset($mac))? $mac : $mrecoveredId;
-                            $valorQuePasa5 = (isset($mac))? $mac : $mrecoveredId;
-                          ?>                
+                                         
 
-                         <input hidden name="nommaquina" id="nommaquina" value="<?php echo $valorQuePasa3; ?>"  />
+                       
 
 </form>
 
@@ -624,10 +618,10 @@ if ( $p==1) {
                 <input hidden  name="horadeldiaam" id="horadeldiaam" value="<?=date(" H:i:s",time()); ?>" />
                 <input hidden   id="segundosdeldia" value="<?= strtotime(date(" H:i:s",time())) - strtotime('TODAY'); ?>" />
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php echo date("d-m-Y"); ?>" />
-                <input  hidden name="maquina" id="maquina" value="<?php echo $valorQuePasa4; ?>"  />
+                <input  hidden name="maquina" id="maquina" value=""  />
                  <!-- Form Name -->
                 <legend style="font-size:18pt; font-family: 'monse-bold';">ALERTA AJUSTE</legend>
-               <div class="form-group" style="width:80% ;margin:0 auto;">
+               <div class="form-group" style="width:81% ;margin:0 auto;">
                <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
                 <?php if ($_SESSION['machineName']=='Serigrafia'||$_SESSION['machineName']=='Serigrafia2'||$_SESSION['machineName']=='Serigrafia3') { ?>
@@ -707,7 +701,7 @@ if ( $p==1) {
                 <?php } ?>
                 </div>
                 <!-- Textarea -->
-                <div class="form-group" style="text-align: center; color:black;">
+                <div class="form-group" style="width:81%;margin:0 auto; text-align: center; color:black;">
                     <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones"></textarea>
                     <p id="explain-error" style="display: none;">Porfavor agrega una explicacion ↑</p>
                 
@@ -726,7 +720,7 @@ if ( $p==1) {
                                 </div>
     </div>
     
-    </div><div  style="width: 40%; display: inline-block;vertical-align: top">
+    </div><div  style="width: 20%; display: inline-block;vertical-align: top">
       <div class="form-group">
                   <div class="button-panel-small">
                        
@@ -757,13 +751,13 @@ if ( $p==1) {
                 <input hidden name="horadeldiaam" id="horadeldiaeat" value="<?php echo date(" H:i:s",time()); ?>" />
                  <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php echo date("d-m-Y"); ?>" />
-                <input hidden name="maquina" id="maquina" value="<?php echo $valorQuePasa5; ?>"  />
+                <input hidden name="maquina" id="maquina" value="<?=$machineName?>"  />
                   <!-- Form Name -->
-                 <legend style="font-size:18pt; font-family: 'monse-bold';">Comida</legend>
+                 <legend style="font-size:18pt; font-family: 'monse-bold';"></legend>
                 
                    <input type="hidden" id="timeeat" name="breaktime">
                    <!-- Multiple Radios (inline) -->
-                   <div class="form-group" style="width:80% ;margin:0 auto;">
+                   <div class="form-group" style="width:80% ;margin:60px auto;">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
                 <input type="hidden" id="s-radios" name="radios">
               <div class="radio-menu face eatpanel" onclick="submitEat('Comida');showLoad();saveOperstatus();">
@@ -787,13 +781,7 @@ if ( $p==1) {
                    </br>
                    </br>
                 <!-- Button (Double) -->
-                <div class="form-group">
-                  <div class="button-panel-small" >
-                        <div style="display: none;"  class="square-button-small red eatpanel stopeat start reseteat2 " onclick="saveOperstatus()">
-                          <img src="images/ex.png">
-                        </div>
-                        </div>
-                </div>
+                
                </fieldset>    
                 
              </form>

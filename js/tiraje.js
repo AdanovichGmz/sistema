@@ -666,6 +666,7 @@ $(document).ready(function () {
 
 
 $("#close-down").click(function () {
+  $('.active').removeClass('active');
    $("#panelkeyboard").animate({ left: '-=60%' }, 200);     
   r=false;
 
@@ -698,6 +699,7 @@ $("#close-down").click(function () {
       
 function getKeys(id,name) {
       $('#'+id).focus();
+      
       jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
         if (r == false) {
 
@@ -857,3 +859,8 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
         window.onload = disableBack();
         window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
     });
+
+   $('.inactive').on('click', function () {
+    $('.active').removeClass('active');
+  $(this).toggleClass('active');
+});

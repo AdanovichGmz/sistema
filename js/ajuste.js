@@ -236,16 +236,7 @@ if (p_elem==17) {
                                                  
 
                                               });
-                                            var element = document.getElementById('nommaquina');
-    
- element.addEventListener("change", function(){ 
-    var maquina = document.getElementById('maquina');
-      
-     
-     maquina.value = this.options[this.selectedIndex].text;
-    
-     
- });
+                                          
 
  $('.backdrop').click(function(){
           close_box();
@@ -306,7 +297,7 @@ if (p_elem==17) {
                 $('.savesucces').show();
                  setTimeout(function() {   
                    close_box();
-                }, 1000); 
+                }, 500); 
             }
         })
        
@@ -326,7 +317,7 @@ $(document).ready(function(){
       if (localStorage.getItem('alertTime')) {
          console.log('existia una alerta: '+localStorage.getItem('alertTime'));
          $('#fo4').append('<input type="hidden" name="actual_tiro" id="actual_tiro_alert" value="'+localStorage.getItem('tiroactual')+'">');
-        $("#panelder2").animate({ left: '+=40%' }, 200);
+        $("#panelder2").animate({ left: '+=26%' }, 200);
         $("#panelder").animate({ right: '+=75%' }, 200);
         b = true;
         alertsecs=currentSeconds()-localStorage.getItem('alertTime');
@@ -360,7 +351,7 @@ $(document).ready(function(){
       if (localStorage.getItem('alertTime')) {
          console.log('existia una alerta: '+localStorage.getItem('alertTime'));
          $('#fo4').append('<input type="hidden" name="actual_tiro" id="actual_tiro_alert" value="'+localStorage.getItem('tiroactual')+'">');
-        $("#panelder2").animate({ left: '+=40%' }, 200);
+        $("#panelder2").animate({ left: '+=26%' }, 200);
         $("#panelder").animate({ right: '+=75%' }, 200);
         b = true;
         alertsecs=currentSeconds()-localStorage.getItem('alertTime');
@@ -392,7 +383,7 @@ $(document).ready(function(){
       if (localStorage.getItem('alertTime')) {
          console.log('existia una alerta: '+localStorage.getItem('alertTime'));
          $('#fo4').append('<input type="hidden" name="actual_tiro" id="actual_tiro_alert" value="'+localStorage.getItem('tiroactual')+'">');
-        $("#panelder2").animate({ left: '+=40%' }, 200);
+        $("#panelder2").animate({ left: '+=26%' }, 200);
         $("#panelder").animate({ right: '+=75%' }, 200);
         b = true;
         alertsecs=currentSeconds()-localStorage.getItem('alertTime');
@@ -967,12 +958,12 @@ function createVirtualOdt(){
     function derecha(){
       if (b == false) {
 
-            $("#panelder2").animate({ left: '+=40%' }, 200);
+            $("#panelder2").animate({ left: '+=26%' }, 200);
             $("#panelder").animate({ right: '+=75%' }, 200);
             b = true;
         }
         else {
-            $("#panelder2").animate({ left: '-=40%' }, 200);
+            $("#panelder2").animate({ left: '-=26%' }, 200);
             $("#panelder").animate({ right: '-=75%' }, 200);
             b = false;
         }  

@@ -124,7 +124,7 @@ if (@$_SESSION['logged_in'] != true) {
 
 <html lang="en" dir="ltr" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
-
+<meta name="mobile-web-app-capable" content="yes">
     <?php
     $today     = date("d-m-Y");
     //obtenemos el tiempo real sumando tiempoTiraje + tiempo_ajuste +tiempoalertamaquina + tiempoajuste
@@ -138,7 +138,7 @@ if (@$_SESSION['logged_in'] != true) {
     //obtenemos la calidad a la primera operando entregados-defectos*100/cantidadpedida  
     $etequery3 = "SELECT COALESCE(((SELECT SUM(entregados)-SUM(merma_entregada) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')-(SELECT SUM(defectos) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))/(SELECT SUM(entregados)-SUM(merma_entregada) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today'))*100 as calidad_primera";
     //obtenemos desempeño operando entregados+merma
-    $etequery4 = "SELECT SUM(produccion_esperada) AS prod_esperada, SUM(buenos) AS prod_real  ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
+    $etequery4 = "SELECT SUM(produccion_esperada) AS prod_esperada,SUM(merma_entregada) AS merma, SUM(buenos) AS prod_real  ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
     $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
@@ -215,7 +215,7 @@ if (@$_SESSION['logged_in'] != true) {
                     pieSliceText: 'label',
                        is3D:false,                                               
                       // enableInteractivity: false,
-                       colors: ['#05BDE3','#1F242A' ],
+                       colors: ['#84b547','#2d2d2d' ],
                                            
                        backgroundColor: 'transparent'
         };
@@ -298,8 +298,8 @@ if (@$_SESSION['logged_in'] != true) {
 
     
   <link href="css/corte.css?v=2" rel="stylesheet" />
-    <link href="css/estiloshome.css?v=2" rel="stylesheet" />
-    <link href="css/general-styles.css" rel="stylesheet" />
+    <link href="css/estiloshome.css?v=3" rel="stylesheet" />
+    <link href="css/general-styles.css?v=2" rel="stylesheet" />
    
    
    
@@ -450,9 +450,13 @@ if (@$_SESSION['logged_in'] != true) {
   font-size: 25px;
   font-weight: bold;
 }
-#avancerealtime{
-  background:rgb(31, 36, 42);
+legend{
+  padding:10px;
+  color:#CECECE;
+  border:none; 
+  text-align: center; 
 }
+  
 </style>
 
 </head>
@@ -488,8 +492,8 @@ if (@$_SESSION['logged_in'] != true) {
   <li><span style="color: #CECECE; font-size:20px;"><?php
     echo $_SESSION['logged_in'].' | '.$machineName;
 ?></span></li>
-  <li><div class="live-indicator">Tiros Realizados: <?=$getEfec['prod_real'] ?></div></li>
-
+  <li><div class="live-indicator">Tiros: <?=$getEfec['prod_real']-$getEfec['merma'] ?></div></li>
+<li><div class="live-indicator">Merma: <?=$getEfec['merma'] ?></div></li>
     <input type="hidden" id="realtime">
     <input type="hidden" id="mach" value="<?=$machineID ?>"> 
      <input type="hidden" id="el" value="<?=$element ?>">         
@@ -508,12 +512,12 @@ if (@$_SESSION['logged_in'] != true) {
     <table class="orders gree">
  
   <tr class="trhead">
-    <td class="orders-td2">ACTUAL:</td>
+    <td class="orders-td2" >ACTUAL:</td>
     
   </tr>
   <tr>
     
-    <td class="orders-td"> <?php if (count($orderID) > 1) {
+    <td class="orders-td" style="color:#2c97de"> <?php if (count($orderID) > 1) {
         echo $odetes;
    
      } else{
@@ -521,7 +525,7 @@ if (@$_SESSION['logged_in'] != true) {
         
         $actelement    = $row->nombre_elemento;
         $size=(strlen($actelement)>17)?'font-size: 17px;':'';
-        echo $row->numodt . " <span style='color:#2FE3BF; ".$size."'>" . $actelement . "</span>";
+        echo $row->numodt . " <span style='color:#fff; ".$size."'>" . $actelement . "</span>";
     } else {
         echo "--";
     }
@@ -746,10 +750,10 @@ foreach ($orderID as $odt) {
                 $merm = ($row->merma_recibida != null) ? $cantrecib - $cpedido : $cantrecib - $cpedido;
             }
 ?>
-    <td class=""><input type="number" class="getkeyboard"  id="pedido"  name="pedido" value="<?=$cpedido ?>" readonly onclick="getKeys(this.id,'pedido')" onkeyup="opera();"  ></td>
+    <td class=""><input type="number" class="getkeyboard inactive"  id="pedido"  name="pedido" value="<?=$cpedido ?>" readonly onclick="getKeys(this.id,'pedido')" onkeyup="opera();"  ></td>
    
    
-   <td class=""><input id="buenos" class="getkeyboard" onclick="getKeys(this.id,'buenos')"  name="buenos" type="number"  name="" onkeyup="opera();" readonly style="margin-right: 10px;" required="required"></td>
+   <td class=""><input id="buenos" class="getkeyboard inactive" onclick="getKeys(this.id,'buenos')"  name="buenos" type="number"  name="" onkeyup="opera();" readonly style="margin-right: 10px;" required="required"></td>
     
     
   </tr>
@@ -758,17 +762,17 @@ foreach ($orderID as $odt) {
     <td class="title-form">PIEZAS DE AJUSTE</td>
   </tr>
   <tr>
-    <td class=""> <input type="number" id="cantidad" readonly onclick="getKeys(this.id,'cantidad')"  class="getkeyboard" name="cantidad" value="<?= $cantrecib ?>"  onkeyup="opera();">
+    <td class=""> <input type="number" id="cantidad" readonly onclick="getKeys(this.id,'cantidad')"  class="getkeyboard inactive" name="cantidad" value="<?= $cantrecib ?>"  onkeyup="opera();">
     <!-- <input id="merma" class="" name="merma" type="number"   value="<?= $merm ?>"  style="width: 75px;margin-right: 10px;" required="required"> --> </td>
-    <td class=""><input  id="piezas-ajuste" readonly class="getkeyboard" name="piezas-ajuste" type="number"  onclick="getKeys(this.id,'piezas-ajuste')"  style="margin-right: 10px;" onkeyup="GetDefectos()" > </td>
+    <td class=""><input  id="piezas-ajuste" readonly class="getkeyboard inactive" name="piezas-ajuste" type="number"  onclick="getKeys(this.id,'piezas-ajuste')"  style="margin-right: 10px;" onkeyup="GetDefectos()" > </td>
   </tr>
   <tr>
     <td class="title-form">MERMA</td>
     <td class="title-form">DEFECTOS</td>
   </tr>
   <tr>
-    <td class=""><input class="" value="" readonly id="merma-entregada" onclick="getKeys(this.id,'merma-entregada')" name="merma-entregada" type="number"    style="margin-right: 10px;"></td>
-      <td class=""><input id="defectos"  onclick="getKeys(this.id,'defectos')" readonly class="getkeyboard" name="defectos" type="number" value=""    ><!--<input id="entregados" name="entregados" type="number" value="" required="true"  style="">--></td>
+    <td class=""><input class="inactive" value="" readonly id="merma-entregada" onclick="getKeys(this.id,'merma-entregada')" name="merma-entregada" type="number"    style="margin-right: 10px;"></td>
+      <td class=""><input id="defectos"  onclick="getKeys(this.id,'defectos')" readonly class="getkeyboard inactive" name="defectos" type="number" value=""    ><!--<input id="entregados" name="entregados" type="number" value="" required="true"  style="">--></td>
   </tr>
 </table>
 
@@ -920,7 +924,7 @@ foreach ($orderID as $odt) {
                
 
                 <!-- Textarea -->
-                <div class="form-group" id="explanation" style="text-align: center; color:black;">
+                <div class="form-group" id="explanation" style="width:81%;margin:30px auto;text-align: center; color:black;">
                     <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones"></textarea>
                      <p id="explain-error" style="display: none;">Porfavor agrega una explicacion ↑</p>
                 
@@ -990,8 +994,7 @@ foreach ($orderID as $odt) {
                 <input hidden name="maquina" id="maquina" value="<?php
     echo $valorQuePasa2;
 ?>"  />         
-                  <!-- Form Name -->
-                 <legend>Comida</legend>
+                  
                 
                    <input type="hidden" id="timeeat" name="breaktime">
                
@@ -1013,15 +1016,7 @@ foreach ($orderID as $odt) {
                    </br>
                    </br>
                    </br>
-                <div class="form-group">
-                  <div class="button-panel-small">
-                       
-                        <div  class="square-button-small red eatpanel stopeat start reseteat2 " onclick="saveOperstatus()">
-                          <img src="images/ex.png">
-                        </div>
-                        </div>
-               
-                </div>
+                
                </fieldset>    
                 
              </form>
@@ -1169,7 +1164,8 @@ foreach ($orderID as $odt) {
                              }  
                         });
   }
-  }                   
+  }  
+
     </script>
  
 </body>

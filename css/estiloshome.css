@@ -478,7 +478,7 @@ z-index:10;
     position:fixed;
     z-index:700;
     top:0;
-    background-image: url('../images/dots.png');
+    background:#262626;
      
      -moz-box-shadow: -2px 3px 10px -2px #000;
 -webkit-box-shadow: -2px 3px 10px -2px #000;
@@ -513,14 +513,15 @@ box-shadow: -2px 3px 10px -2px #000; */
 box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61); */
 }
 #panelder2{
-    width:40%;
+    width:26%;
     height:100%;
-    left:-40%;
-     
+    left:-26%;
+     background:#262626;
+     opacity: 0.5;
     position:fixed;
     z-index:700;
     top:0;
-    background-color:transparent;
+    
 }
 #leftbuttons{
     text-align: left;
@@ -611,10 +612,8 @@ width:100%;
     position:fixed;
     z-index:700;
     top:0;
-    background-image: url('../images/dots.png');
-     -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.61);
--moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.61);
-box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
+    background:#262626;
+    
 }
 #panelbrake2{
     width:40%;
@@ -624,7 +623,8 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
     position:fixed;
     z-index:700;
     top:0;
-    background-color:transparent;
+    background:#262626;
+    opacity: 0.5
 }
 #panelkeyboard{
     width:60%;
