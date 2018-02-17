@@ -1038,6 +1038,7 @@ var fin_tiro=$('#fin-tiro').val();
         success: function(data){
           $('.close').click();
           $('#newTiro')[0].reset();
+          console.log(data);
           $.ajax({
         url: "tableModify.php",
         type: "POST",

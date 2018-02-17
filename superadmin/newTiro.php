@@ -103,7 +103,7 @@ $insert=$mysqli->query($query);
 if ($insert) {
 	echo "Todo bien!!<br><br><br>";
 echo $query;
-}else{
+}else{	print_r($_POST);
 		printf($mysqli->error);
 	}
 
