@@ -1,7 +1,7 @@
 
 
 <?php
-
+error_reporting(0);
 ini_set('session.gc_maxlifetime', 30*60); 
 date_default_timezone_set("America/Mexico_City");
  if( !session_id())
@@ -81,8 +81,8 @@ if ( $p==1) {
     <title>AJUSTE <?php echo (isset($machineName))? $machineName : $mrecovered ; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <?php include 'head.php'; ?>
-    <link href="css/estiloshome.css" rel="stylesheet" />
-    <link href="css/ajuste.css" rel="stylesheet" />
+    <link href="css/estiloshome.css?v=2" rel="stylesheet" />
+    <link href="css/ajuste.css?v=2" rel="stylesheet" />
     <link rel="stylesheet" href="css/softkeys-small.css">
 </head>
 
@@ -1021,4 +1021,4 @@ $.ajax({
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=28"></script>
+<script src="js/ajuste.js?v=29"></script>

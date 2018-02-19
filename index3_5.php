@@ -298,9 +298,9 @@ if (@$_SESSION['logged_in'] != true) {
 <link rel="stylesheet" href="css/3.3.6/bootstrap.min.css" />
 
     
-  <link href="css/corte.css?v=2" rel="stylesheet" />
-    <link href="css/estiloshome.css?v=3" rel="stylesheet" />
-    <link href="css/general-styles.css" rel="stylesheet" />
+  <link href="css/corte.css?v=3" rel="stylesheet" />
+    <link href="css/estiloshome.css?v=4" rel="stylesheet" />
+    <link href="css/general-styles.css?v=2" rel="stylesheet" />
    
    
    
