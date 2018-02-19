@@ -999,7 +999,7 @@ foreach ($orderID as $odt) {
                    <input type="hidden" id="timeeat" name="breaktime">
                
                    <!-- Multiple Radios (inline) -->
-                   <div class="form-group" style="width:80% ;margin:0 auto;">
+                   <div class="form-group" style="width:80% ;margin:200px auto 40px auto;">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
 
               <div class=" radio-menu face  eatpanel" onclick="showLoad();submitEat();saveOperstatus();">

@@ -923,21 +923,45 @@ $(document).on("click", ".elem-button", function () {
   var name=$(this).data("name");
   if (id==17) {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="1"><p>1</p></div>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="2"><p>2</p></div>'+
-    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="4"><p>4</p></div>';
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="3"><p>3</p></div>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="4"><p>4</p></div>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="5"><p>5</p></div>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="6"><p>6</p></div>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="7"><p>7</p></div>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="8"><p>8</p></div>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="9"><p>9</p></div>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="10"><p>10</p></div>';
     $('#elems-container').html(planillas);
    
   }
   else if (id==84) {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="1"><p>1</p></div>'+
-    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="2"><p>2</p></div>';
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="2"><p>2</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="3"><p>3</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="4"><p>4</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="5"><p>5</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="6"><p>6</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="7"><p>7</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="8"><p>8</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="9"><p>9</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="10"><p>10</p></div>';
     $('#elems-container').html(planillas);
    
   }else if (id==123||id==124||id==125) {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="1"><p>1</p></div>'+
-    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="2"><p>2</p></div>';
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="2"><p>2</p></div>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="3"><p>3</p></div>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="4"><p>4</p></div>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="5"><p>5</p></div>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="6"><p>6</p></div>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="7"><p>7</p></div>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="8"><p>8</p></div>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="9"><p>9</p></div>'+
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="10"><p>10</p></div>';
     $('#elems-container').html(planillas);
    
   }else{
@@ -997,4 +1021,4 @@ $.ajax({
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=27"></script>
+<script src="js/ajuste.js?v=28"></script>

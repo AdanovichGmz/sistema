@@ -748,10 +748,10 @@ foreach ($orderID as $odt) {
                 $merm = ($row->merma_recibida != null) ? $cantrecib - $cpedido : $cantrecib - $cpedido;
             }
 ?>
-    <td class=""><input type="number" class="getkeyboard"  id="pedido"  name="pedido" value="" readonly onclick="getKeys(this.id,'pedido')" onkeyup="opera();"  ></td>
+    <td class=""><input type="number" class="getkeyboard inactive"  id="pedido"  name="pedido" value="" readonly onclick="getKeys(this.id,'pedido')" onkeyup="opera();"  ></td>
    
    
-   <td class=""><input id="buenos" class="getkeyboard" onclick="getKeys(this.id,'buenos')"  name="buenos" type="number"  name="" onkeyup="opera();" readonly style="margin-right: 10px;" required="required"></td>
+   <td class=""><input id="buenos" class="getkeyboard inactive" onclick="getKeys(this.id,'buenos')"  name="buenos" type="number"  name="" onkeyup="opera();" readonly style="margin-right: 10px;" required="required"></td>
     
     
   </tr>
@@ -760,17 +760,17 @@ foreach ($orderID as $odt) {
     <td class="title-form">PIEZAS DE AJUSTE</td>
   </tr>
   <tr>
-    <td class=""> <input type="number" id="cantidad" readonly onclick="getKeys(this.id,'cantidad')"  class="getkeyboard" name="cantidad" value=""  onkeyup="opera();">
+    <td class=""> <input type="number" id="cantidad" readonly onclick="getKeys(this.id,'cantidad')"  class="getkeyboard inactive" name="cantidad" value=""  onkeyup="opera();">
     <!-- <input id="merma" class="" name="merma" type="number"   value="<?= $merm ?>"  style="width: 75px;margin-right: 10px;" required="required"> --> </td>
-    <td class=""><input  id="piezas-ajuste" readonly class="getkeyboard" name="piezas-ajuste" type="number"  onclick="getKeys(this.id,'piezas-ajuste')"  style="margin-right: 10px;" onkeyup="GetDefectos()" > </td>
+    <td class=""><input  id="piezas-ajuste" readonly class="getkeyboard inactive" name="piezas-ajuste" type="number"  onclick="getKeys(this.id,'piezas-ajuste')"  style="margin-right: 10px;" onkeyup="GetDefectos()" > </td>
   </tr>
   <tr>
     <td class="title-form">MERMA</td>
     <td class="title-form">DEFECTOS</td>
   </tr>
   <tr>
-    <td class=""><input class="" value="" readonly id="merma-entregada" onclick="getKeys(this.id,'merma-entregada')" name="merma-entregada" type="number"    style="margin-right: 10px;"></td>
-      <td class=""><input id="defectos"  onclick="getKeys(this.id,'defectos')" readonly class="getkeyboard" name="defectos" type="number" value=""    ><!--<input id="entregados" name="entregados" type="number" value="" required="true"  style="">--></td>
+    <td class=""><input class=" inactive" value="" readonly id="merma-entregada" onclick="getKeys(this.id,'merma-entregada')" name="merma-entregada" type="number"    style="margin-right: 10px;"></td>
+      <td class=""><input id="defectos"  onclick="getKeys(this.id,'defectos')" readonly class="getkeyboard inactive" name="defectos" type="number" value=""    ><!--<input id="entregados" name="entregados" type="number" value="" required="true"  style="">--></td>
   </tr>
 </table>
 
@@ -914,7 +914,7 @@ foreach ($orderID as $odt) {
                  <!-- Form Name -->
                 <legend>ALERTA MAQUINA</legend>
                  <!-- Multiple Radios -->
-                <div class="form-group" style="width:80% ;margin:0 auto;">
+                <div class="form-group" style="width:80% ;margin:margin:200px auto 40px auto;">
                 <?php
     include "alertsTiraje.php";
 ?>
