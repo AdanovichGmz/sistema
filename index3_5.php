@@ -137,7 +137,7 @@ if (@$_SESSION['logged_in'] != true) {
     //SELECT COALESCE((SELECT SUM( entregados ) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')/ (SELECT SUM(cantidad) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))*100 as calidad_primera 
     $etequery3 = "SELECT COALESCE(((SELECT SUM(entregados)-SUM(merma_entregada) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today')-(SELECT SUM(defectos) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL))/(SELECT SUM(entregados)-SUM(merma_entregada) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today'))*100 as calidad_primera";
     //obtenemos desempeño operando entregados+merma
-    $etequery4 = "SELECT SUM(produccion_esperada) AS prod_esperada, SUM(buenos) AS prod_real  ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
+    $etequery4 = "SELECT SUM(produccion_esperada) AS prod_esperada,SUM(merma_entregada) AS merma, SUM(buenos) AS prod_real  ,COUNT(desempenio) AS tirajes,SUM(produccion_esperada) AS esper FROM `tiraje` WHERE fechadeldia_tiraje='$today' AND id_maquina=$machineID AND tiempoTiraje IS NOT NULL";
     $etequery5 = "SELECT COALESCE((SELECT SUM(entregados) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' AND tiempoTiraje IS NOT NULL)) as desempenio";
     //obtenemos el elemento o producto
     $getelement = mysqli_fetch_assoc($resultado02_5);
@@ -493,8 +493,8 @@ legend{
   <li><span style="color: #CECECE; font-size:20px;"><?php
     echo $_SESSION['logged_in'].' | '.$machineName;
 ?></span></li>
-  <li><div class="live-indicator">Tiros Realizados: <?=$getEfec['prod_real'] ?></div></li>
-
+  <li><div class="live-indicator">Tiros: <?=$getEfec['prod_real']-$getEfec['merma'] ?></div></li>
+<li><div class="live-indicator">Merma: <?=$getEfec['merma'] ?></div></li>
     <input type="hidden" id="realtime">
 
     <input type="hidden" id="mach" value="<?=$machineID ?>"> 
