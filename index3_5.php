@@ -313,7 +313,7 @@ if (@$_SESSION['logged_in'] != true) {
 
 // ]]></script>
  
-<link rel="stylesheet" href="css/softkeys-0.0.1.css">
+<link rel="stylesheet" href="css/softkeys-0.0.1.css?v=2">
 <script language="javascript">
          function limpiar() {
            setTimeout('document.fo3.reset()',20);
