@@ -377,7 +377,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 
 <?php }else{ ?>
 
-   <td class="editable" onClick="showEdit(this);"> <?=$row['numodt'] ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?= $row['numodt'] ?></div><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['numodt']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('odt','numodt','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div>  </td> 
+   <td class="" > <?=$row['numodt'] ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?= $row['numodt'] ?></div><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['numodt']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('odt','numodt','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div>  </td> 
 
 <?php } ?>
 
