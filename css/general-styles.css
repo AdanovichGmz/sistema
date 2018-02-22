@@ -304,7 +304,7 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.31);
     background: #447D9B;
 }
 #tirajeTime{
-    margin-bottom: 20px;
+    margin: 10px 0;
 }
 .square-button-h img{
     position: absolute;
@@ -591,7 +591,7 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
 .radio-menu{
     width: 300px;
     height: 60px;
-    
+    border-radius: 4px;
      margin-bottom:10px !important;
     cursor: pointer;
     position: relative;

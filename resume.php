@@ -436,7 +436,7 @@ while ($row = mysqli_fetch_assoc($resss)):
     $comida = (!empty($row['comida_ajuste'])) ? $row['dispon_ajuste']-$row['comida_ajuste'] : $row['dispon_ajuste'];
     $sum_dispon += $comida; 
     
-    $processID=($row['id_maquina']==20||$row['id_maquina']==21)? 10:(($row['id_maquina']==22)? 9 : $row['id_maquina']);
+    $processID=($row['id_maquina']==20||$row['id_maquina']==21)? 10:(($row['id_maquina']==22)? 9 : (($row['id_maquina']==23)? 16 : $row['id_maquina']));
     if (is_null($row['estandar'])) {
         
         if ($processID == 10) {

@@ -61,7 +61,7 @@ if (@$_SESSION['logged_in'] != true) {
             $horaAjuste     = $retakingTiro['horadeldia_ajuste'];
         }else{
               $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
-             $processID=($machineID==20||$machineID==21)? 10:(($machineID==22)? 9 : $machineID );
+             $processID=($machineID==20||$machineID==21)? 10:(($machineID==23)? 16 : (($machineID==22)? 9 : $machineID) );
              $getid="SELECT * FROM personal_process WHERE status='actual' AND proceso_actual='$machineName'";
               $id=mysqli_fetch_assoc($mysqli->query($getid));
             

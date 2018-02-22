@@ -15,16 +15,21 @@ if (@$_SESSION['logged_in'] != true) {
         self.location.replace("index.php");
     </script>';
 } else {
-    //echo $_SESSION['machineName'];
-
-    //$mac=(isset($_SESSION['mac']))?$_SESSION['mac'] : system($cmd) ;
+   
 
     $machineName=$_SESSION['machineName'];
     $machineID = $_SESSION['machineID'];
+/*
+    $userID      = $_SESSION['id'];
+    $today=date("d-m-Y");
+
+    $getOperation="SELECT * FROM operacion_estatus WHERE operador=$userID AND maquina=$machineID AND fecha='$today'";
+    $operation=mysqli_fetch_assoc($mysqli->query($getOperation));
+*/
+
     $pause_exist = false;
     $getPaused = "SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='en pausa'";
     $getretaking       = "SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='retomado'";
-
     $paused = $mysqli->query($getPaused);
     $retaking       = $mysqli->query($getretaking);
         if ($paused->num_rows > 0) {
@@ -46,8 +51,8 @@ if (@$_SESSION['logged_in'] != true) {
         } elseif ($retaking->num_rows > 0)  {
             
             //$secondspaused  = 'false';
-          $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
-             $processID=($machineID==20||$machineID==21)? 10:(($machineID==22)? 9 : $machineID );
+          $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : (($machineName=='HotStamping2')? 'HotStamping' : $machineName ) );
+             $processID=($machineID==20||$machineID==21)? 10:(($machineID==23)? 16 : (($machineID==22)? 9 : $machineID) );
             $recoOrden      = mysqli_fetch_assoc($retaking);
             $OrderODT   = $recoOrden['numodt'];
             $orderID[] = $recoOrden['id_orden'];
@@ -60,8 +65,8 @@ if (@$_SESSION['logged_in'] != true) {
 
               $id=mysqli_fetch_assoc($mysqli->query($getid));
         }else{
-             $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
-             $processID=($machineID==20||$machineID==21)? 10:(($machineID==22)? 9 : $machineID );
+             $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : (($machineName=='HotStamping2')? 'HotStamping' : $machineName ) );
+             $processID=($machineID==20||$machineID==21)? 10:(($machineID==23)? 16 : (($machineID==22)? 9 : $machineID) );
              $getid="SELECT * FROM personal_process WHERE status='actual' AND proceso_actual='$machineName'";
 
               $id=mysqli_fetch_assoc($mysqli->query($getid));

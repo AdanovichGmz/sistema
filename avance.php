@@ -6,7 +6,7 @@ $element=$_POST['elemento'];
 $table_mac=(isset($_POST['tabm']))? $_POST['tabm'] : 1;
 
 
-$processID=($machineID==20||$machineID==21)? 10:(($machineID==22)? 9 : $machineID );
+$processID=($machineID==20||$machineID==21)? 10:(($machineID==23)? 16 : (($machineID==22)? 9 : $machineID ) );
 $tiempoTiraje=(isset($_POST['tiempo']))? $_POST['tiempo'] :'00:00:00';
 $seconds = strtotime("1970-01-01 $tiempoTiraje UTC");
 if ($table_mac==2) {

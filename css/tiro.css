@@ -1,0 +1,182 @@
+body{
+    padding: 0;
+    margin: 0;
+    background:#212121;
+}
+a{
+    text-decoration: none;
+    margin:0;
+    padding: 0;
+}
+
+#topbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #1A1A1A;
+}
+
+#topbar li {
+    float: left;
+    
+}
+
+#topbar li span {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color:#CECECE;
+}
+.main-container{
+    width: 98%;
+    margin: 0 auto;
+}
+.section{
+    width: 100%;
+    position: relative;
+    margin: 10px auto 5px auto;
+    text-align: center;
+}
+.section2{
+     width: 100%;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+.graphics{
+    width: 32.6%;
+    height: 300px;
+    border-radius: 4px;
+    background:#262626;
+    display: inline-block;
+    
+}
+.g-center{
+    margin: 0 10px;
+}
+.middle{
+    margin:0 5px;
+}
+.clock-buttons{
+width: 65%;
+display: inline-block;
+
+
+}
+.inputs{
+width: 35%;
+display: inline-block;
+vertical-align: top;
+
+}
+.square-button{
+    width: 150px;
+    height: 150px;
+    background: black;
+    display: block;
+ display: inline-block;
+    
+    cursor: pointer;
+    position: relative;
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+-moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+}
+
+.square-button img{
+    position: absolute;
+    width: 70%;
+     top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.square-button-h{
+    width: 120px;
+    height: 120px;
+    background: black;
+    display: block;
+ display: inline-block;
+    
+    border-radius: 3px;
+   
+    cursor: pointer;
+    position: relative;
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+-moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+}
+.prple{
+    background: #447D9B;
+}
+.square-button-h img{
+    position: absolute;
+    width: 60%;
+     top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.yellow{
+    background:#F6BB43; 
+}
+.yellow:hover{
+    background: #ECA10C;
+}
+.green{
+    background: #35BC9B;
+}
+.green:hover{
+   background:#27856D;
+} 
+.blue{
+    background: #4C89DC;
+}
+.blue:hover{
+  background: #2666C0;  
+}
+.purple{
+    background: #434A54;
+}
+.purple:hover{
+    background: #373B43;
+} 
+.red{
+    background: #E9573E;
+}
+.red:hover{
+    background: #CC3018;
+     -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.61);
+-moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.61);
+box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
+
+}
+#tirajeTime{
+    background:#262626;
+    width: 100%;
+    border-radius: 4px;
+    margin: 0 auto 10px auto;
+
+    
+}
+#timersmall {
+    width: 100%;
+    background: #353535;
+    height: 110px;
+   
+    border-radius: 3px;
+    border: 1px solid #404040;
+}
+#timersmall span {
+    line-height: 110px;
+    font-size: 100px;
+    font-weight: bold;
+    color: #CECECE;
+}
+.button-panel{
+    text-align: left!important;
+}

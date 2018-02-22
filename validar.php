@@ -71,8 +71,14 @@ $datas=mysqli_fetch_assoc($check);
 //echo '<script>alert("'.$datas['actividad_actual'].'")</script> ';
 if ($check->num_rows>0) {
    if ($datas['actividad_actual']=='ajuste'){
+    if ($f['id']==15) {
+        header("Location: options.php");
+    }else{
+        header("Location: index2.php");
+    }
 
-    header("Location: index2.php");
+    
+
 }
 
 elseif ($datas['actividad_actual']=='tiro'){
@@ -86,7 +92,12 @@ elseif ($datas['actividad_actual']=='tiro'){
     }
     else{
        
-header("Location: index2.php"); 
+if ($f['id']==15) {
+        header("Location: options.php");
+    }else{
+        header("Location: index2.php");
+    }
+
        
     } 
 }
@@ -109,7 +120,12 @@ else{
          $logged_in=$_SESSION['id'];
     $op_query=$mysqli->query("INSERT INTO operacion_estatus(operador,maquina,actividad_actual,en_tiempo,asaichi_cumplido,fecha) VALUES($logged_in,$mac_id,2,1,1,'$today')");
     if ($op_query) {
-       header("Location: index2.php");
+      if ($f['id']==15) {
+        header("Location: options.php");
+    }else{
+        header("Location: index2.php");
+    }
+
     }else{
         printf($mysqli->error);
     }

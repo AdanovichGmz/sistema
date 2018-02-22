@@ -4,7 +4,7 @@ require('saves/conexion.php');
 $numodt=$_POST['numodt'];
 $machineName=$_SESSION['machineName'];
 if ($numodt!=null) {
-$process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
+$process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : (($machineName=='HotStamping2')? 'HotStamping' : $machineName) );
 $query="SELECT o.numodt FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE p.nombre_proceso='$process' AND o.numodt LIKE '%" . $numodt . "%' AND entregado NOT IN('true') GROUP BY o.numodt";
 $result=$mysqli->query($query);
 if (!$result) {

@@ -65,7 +65,7 @@ $machineID = $_SESSION['machineID'];
 
 
 
-$actualMachine=($machineID==20||$machineID==21)? 10 : $machineID;
+$actualMachine=($machineID==20||$machineID==21)? 10 : (($machineID==23)? 16 :(($machineID==22)? 9 : $machineID));
 $getElementStandar=$mysqli->query("SELECT * FROM estandares e INNER JOIN elementos el ON e.id_elemento=el.id_elemento WHERE e.id_maquina=$actualMachine ORDER BY nombre_elemento ASC");
 
 $p=1;
@@ -559,7 +559,7 @@ legend{
                   <input type="hidden" name="init" value="false">
                  
                   <?php
-                    $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
+                    $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : (($machineName=='HotStamping2')? 'HotStamping' : $machineName) );
                     $getodt=(isset($getActODT))? implode(",", $getActODT) : '' ;
                       $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso,p.reproceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND avance NOT IN('completado') order by orden_display asc";
                       $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,p.reproceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";

@@ -1,139 +1,81 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+<title>TIRAJE</title>
+ <link href="css/tiro.css" rel="stylesheet" />
+</head>
+<body>
 
-require('saves/conexion.php');
-
-
-$nombremaquina=$_POST['nombremaquina'];
-$logged_in=$_POST['logged_in'];
-$horadeldia=$_POST['horadeldia'];
-$fechadeldia=$_POST['fechadeldia'];
-$desempeno=$_POST['desempeno'];
-$problema= (isset($_POST['problema'])) ?$_POST['problema'] : '';
-$calidad=$_POST['calidad'];
-$problema2=(isset($_POST['problema2'])) ?$_POST['problema2'] : '';
-
-$observaciones=$_POST['observaciones'];
-
-
-$query2="SELECT id FROM login WHERE logged_in='$logged_in'";
-$query4="SELECT idmaquina FROM maquina WHERE mac='$nombremaquina'";
-$getID = mysqli_fetch_assoc($mysqli->query($query2));
-$userID = $getID['id'];
-$getMachine = mysqli_fetch_assoc($mysqli->query($query4));
-$machineID = $getMachine['idmaquina'];
-
-$query="INSERT INTO encuesta (id_usuario, id_maquina, horadeldia, fechadeldia, desempeno, problema, calidad, problema2, observaciones) VALUES ('$userID','$machineID','$horadeldia','$fechadeldia','$desempeno','$problema','$calidad','$problema2','$observaciones')";
-
-
-$resultado=$mysqli->query($query);
-
-//echo $query;
-
-//$_GET['mivariable'] = $nombremaquina;
-//header('Location: areas/maquinas/corte/ajustecorte.php');
-//include("areas/maquinas/corte/ajustecorte.php");
-if ( $resultado) {
-
-
-
-
-switch ($_GET['mivariable']= $nombremaquina){
-	case 'corte':
-  	include("areas/maquinas/corte/ajustecorte.php");
-	//header('Location: home.php');
-    //echo $nommaquina;
-		break;
-  case '5c:f5:da:2f:33:5e':
-  		$query5="SELECT * FROM maquina WHERE mac='90:b9:31:ed:0f:6b'";
-  		$getMachineNew = mysqli_fetch_assoc($mysqli->query($query5));
-		$machineIDNew = $getMachineNew['idmaquina'];
-		$machineNameNew = $getMachineNew['nommaquina'];
-  		$mac=$getMachineNew['mac'];
-		//include("areas/maquinas/suaje/ajustesuaje.php");
-    //echo $nommaquina;
-		break;
-  case '90:b9:31:ed:0f:6b':
-  	$query5="SELECT * FROM maquina WHERE mac='2c:f0:ee:3d:53:99'";
-  		$getMachineNew = mysqli_fetch_assoc($mysqli->query($query5));
-		$machineIDNew = $getMachineNew['idmaquina'];
-		$machineNameNew = $getMachineNew['nommaquina'];
-  		$mac=$getMachineNew['mac'];
-		//include("areas/maquinas/suajegrande/ajustesuajegrande.php");
-    //echo $nommaquina;
-		break;
-  case '2c:f0:ee:3d:53:99':
-  	$query5="SELECT * FROM maquina WHERE mac='f0:db:f8:11:97:bc'";
-  		$getMachineNew = mysqli_fetch_assoc($mysqli->query($query5));
-		$machineIDNew = $getMachineNew['idmaquina'];
-		$machineNameNew = $getMachineNew['nommaquina'];
-  		$mac=$getMachineNew['mac'];
-		//include("areas/maquinas/timbradora/ajustetimbradora.php");
-    //echo $nommaquina;
-		break;
-  case 'f0:db:f8:11:97:bc':
-  	$query5="SELECT * FROM maquina WHERE mac='f0:db:f8:11:97:bc'";
-  		$getMachineNew = mysqli_fetch_assoc($mysqli->query($query5));
-		$machineIDNew = $getMachineNew['idmaquina'];
-		$machineNameNew = $getMachineNew['nommaquina'];
-  		$mac=$getMachineNew['mac'];
-		//include("areas/maquinas/hotstamping/ajustehotstamping.php");
-    //echo $nommaquina;
-		break;
-  case 'Hot Stamping 2':
-		include("areas/maquinas/hotstamping2/ajustehotstamping2.php");
-    //echo $nommaquina;
-		break;
-  case 'b0:34:95:01:ec:2b':
-		include("areas/maquinas/laminadora/ajustelaminadora.php");
-    //echo $nommaquina;
-		break;
-	case 'Offset':
-			include("areas/maquinas/offset/ajusteoffset.php");
-     //echo $nommaquina;
-		break;
-  case 'Placa':
-			include("areas/maquinas/placa/ajusteplaca.php");
-     //echo $nommaquina;
-		break;
-    ////// cambio de area
-  case '34:e2:fd:dd:d0:7b':
-			include("areas/serigrafia/serigrafia1/ajusteserigrafia1.php");
-     //echo $nommaquina;
-		break;
-  case 'Serigrafia 2':
-			include("areas/serigrafia/serigrafia2/ajusteserigrafia2.php");
-     //echo $nommaquina;
-		break;
-  case 'Serigrafia 3':
-				include("areas/serigrafia/serigrafia3/ajusteserigrafia3.php");
-     //echo $nommaquina;
-		break;
-  case 'Mesa 1':
-				include("areas/serigrafia/mesa1/ajustemesa1.php");
-     //echo $nommaquina;
-		break;
-  case 'Mesa 2':
-			include("areas/serigrafia/mesa2/ajustemesa2.php");
-     //echo $nommaquina;
-		break;
-}
-if( !session_id() )
-{
-    session_start();
+<ul id="topbar">
+  <li><span>Arturo | Serigrafia</span></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+<div class="main-container">
+  <div class="section">
+  <div class="graphics">
+   </div><div class="graphics g-center">
+    </div><div class="graphics"></div>
+</div>
+<div class="section2">
+  <div class="clock-buttons">
+  <div id="tirajeTime">
+          <div id="timersmall"><span class="valuesTiraje">00:53:55</span></div>
+          </div>
+  <div class="button-panel" >
+                        <a href="#" onclick="endSesion()"> <img src="" href="#" class="img-responsive">
+                        <div class="square-button-h red">
+                          <img src="images/sal.png">
+                        </div></a><div class="square-button-h middle green stop eatpanel goeat" onclick="saveoperComida()">
+                          <img src="images/dinner2.png">
+                        </div><div class="square-button-h blue " id="saving">
+                          <img src="images/saving.png">
+                        </div><div class="square-button-h middle yellow goalert" onclick="derecha(); saveoperAlert();">
+                          <img src="images/warning.png">
+                        </div><div class="square-button-h prple" onclick="pauseConfirm();">
+                          <img src="images/cantir.png">
+                        </div>
+                      
+                        
+                        </div>  
+  </div><div class="inputs">
+    <table id="former">
+  <input type="hidden" id="qty" name="qty" value="single">
+  <tbody><tr>
+    <td class="title-form">CANTIDAD DE PEDIDO</td>
+    <td class="title-form">BUENOS</td>
+  </tr>
+  <tr>
+        <td class=""><input type="number" class="getkeyboard inactive" id="pedido" name="pedido" value="150" readonly="" onclick="getKeys(this.id,'pedido')" onkeyup="opera();"></td>
+   
+   
+   <td class=""><input id="buenos" class="getkeyboard inactive" onclick="getKeys(this.id,'buenos')" name="buenos" type="number" onkeyup="opera();" readonly="" style="margin-right: 10px;" required="required"></td>
     
+    
+  </tr>
+  <tr>
+    <td class="title-form">CANTIDAD RECIBIDA</td>
+    <td class="title-form">PIEZAS DE AJUSTE</td>
+  </tr>
+  <tr>
+    <td class=""> <input type="number" id="cantidad" readonly="" onclick="getKeys(this.id,'cantidad')" class="getkeyboard inactive" name="cantidad" value="" onkeyup="opera();">
+    </td>
+    <td class=""><input id="piezas-ajuste" readonly="" class="getkeyboard inactive" name="piezas-ajuste" type="number" onclick="getKeys(this.id,'piezas-ajuste')" style="margin-right: 10px;" onkeyup="GetDefectos()"> </td>
+  </tr>
+  <tr>
+    <td class="title-form">MERMA</td>
+    <td class="title-form">DEFECTOS</td>
+  </tr>
+  <tr>
+    <td class=""><input class="inactive" value="" readonly="" id="merma-entregada" onclick="getKeys(this.id,'merma-entregada')" name="merma-entregada" type="number" style="margin-right: 10px;"></td>
+      <td class=""><input id="defectos" onclick="getKeys(this.id,'defectos')" readonly="" class="getkeyboard inactive" name="defectos" type="number" value=""></td>
+  </tr>
+</tbody></table>
+  </div>
+</div>
 
-}
-if(@$_SESSION['logged_in'] != true){
-    echo '
-    <script>
-        alert("tu no estas autorizado para entrar a esta pagina");
-        self.location.replace("index.php");
-    </script>';
-}else{
-//echo $_SERVER['HTTP_HOST'];
-header("Location: http://{$_SERVER['SERVER_NAME']}/unify/index2.php");
-}
- }else{
-            printf("Errormessage: %s\n", $mysqli->error);
-          }
-?>
+</div>
+
+</body>
+</html>

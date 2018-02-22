@@ -20,7 +20,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
                  
                   <?php
                     
-                     $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
+                     $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : (($machineName=='HotStamping2')? 'HotStamping' : $machineName) );
                     $q="SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,p.reproceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
                       $query = $mysqli->query($q);
 
@@ -58,7 +58,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
  $plans=(isset($_POST['plans']))? $_POST['plans']:'null';
  $machineName=$_POST['machine'];
  
-  $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : $machineName );
+  $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : (($machineName=='HotStamping2')? 'HotStamping' : $machineName) );
  
  $clean=$mysqli->query("DELETE FROM personal_process WHERE proceso_actual='$machineName'");
  if ($clean) {
@@ -126,7 +126,7 @@ $getodtflow=$odetesflow[0];
 
 //$processID=($maqID==20||$maqID==21)?10:$maqID;
 
- $process=($maqID=='Serigrafia2'||$maqID=='Serigrafia3')?'Serigrafia':(($maqID=='Suaje2')? 'Suaje' : $maqID );
+ $process=($maqID=='Serigrafia2'||$maqID=='Serigrafia3')?'Serigrafia':(($maqID=='Suaje2')? 'Suaje' : (($maqID=='HotStamping2')? 'HotStamping' : $maqID) );
 
 $sqlflow="SELECT o.numodt FROM ordenes o INNER JOIN procesos p WHERE p.nombre_proceso='$process'  GROUP BY o.numodt";
 $sql2flow="SELECT * FROM odt_flujo WHERE proceso='$process' order by orden_display ASC";
@@ -282,7 +282,7 @@ foreach ($datos as $dato) {
 $getodt=$odetes[0];
  $times=count($datos);
 
- $process=($maqID=='Serigrafia2'||$maqID=='Serigrafia3')?'Serigrafia':(($maqID=='Suaje2')? 'Suaje' : $maqID );
+ $process=($maqID=='Serigrafia2'||$maqID=='Serigrafia3')?'Serigrafia':(($maqID=='Suaje2')? 'Suaje' : (($maqID=='HotStamping2')? 'HotStamping' : $maqID) );
 $sql="SELECT o.*, pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso INNER JOIN ordenes o ON o.idorden=pp.id_orden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND avance NOT IN('completado') order by orden_display asc";
 
 $sql2="SELECT o.idorden,o.numodt,o.orden,p.id_proceso,p.reproceso,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS display FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado')  order by display ASC";

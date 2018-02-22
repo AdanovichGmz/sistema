@@ -86,7 +86,7 @@ function logpost($post){
           $virtOdt=$_POST['odtvirtual'];
           $virtElem=$_POST['elemvirtual'];
             if ($ontime=='false') {
-              if ($machineID==16) {
+              if ($machineID==16||$machineID==23) {
                $tiempoajuste='"01:00:00.000000"';
               }else{
 
@@ -95,7 +95,7 @@ function logpost($post){
            
             
           }else{
-            if ($machineID==16) {
+            if ($machineID==16||$machineID==23) {
                 $tiempoajuste= ' TIMEDIFF("01:00:00.000000","'.$tiempo.'")';
               }else{
                 
@@ -222,7 +222,7 @@ function logpost($post){
             $machineName = $_SESSION['machineName'];
            
 
-             $processID=($machineID==20||$machineID==21)? 10:(($machineID==22)? 9 : $machineID );
+             $processID=($machineID==20||$machineID==21)? 10:(($machineID==23)? 16 : (($machineID==22)? 9 : $machineID) );
             $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$processID AND id_elemento= $element";
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
             $estandar       = $getstandar['piezas_por_hora'];

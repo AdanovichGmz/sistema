@@ -16,7 +16,7 @@ function getComida($idtiraje, $section)
 function getStandar($elem,$maquina)
 {
     include '../saves/conexion.php';
-    $idmaquina=($maquina==21||$maquina==20)? 10 : $maquina;
+    $idmaquina=($maquina==21||$maquina==20)? 10 : (($maquina==23)? 16 : $maquina);
     $id_elem = mysqli_fetch_assoc($mysqli->query("SELECT id_elemento FROM elementos WHERE nombre_elemento='$elem' "));
     $elem=$id_elem['id_elemento'];
     $cuerito="SELECT piezas_por_hora FROM estandares WHERE id_elemento=$elem AND id_maquina=$idmaquina ";
@@ -223,7 +223,7 @@ while ($row = mysqli_fetch_assoc($resss)):
     $comida = (!empty($row['comida_ajuste'])) ? $row['dispon_ajuste']-$row['comida_ajuste'] : $row['dispon_ajuste'];
     $sum_dispon += $comida; 
     
-    $processID=($row['id_maquina']==20||$row['id_maquina']==21)? 10:(($row['id_maquina']==22)? 9 : $row['id_maquina']);
+    $processID=($row['id_maquina']==20||$row['id_maquina']==21)? 10:(($row['id_maquina']==22)? 9 : (($row['id_maquina']==23)? 16 : $row['id_maquina']));
     if (is_null($row['estandar'])) {
         
         if ($processID == 10) {
