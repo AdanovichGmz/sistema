@@ -230,11 +230,11 @@ console.log("real time '.$maquina.' '.gmdate("H:i",$gettotalTime['tiempo_real'])
   <div class="personal <?=(!isActive(9))? 'disabled' : '' ?>">
     <?=personalData(9,'Suaje','Encua2'); ?>
   </div>
-  <div class="personal <?=(!isActive(15))? 'disabled' : '' ?>">
-    <?=personalData(15,'Suaje2','5'); ?>
-  </div>
   <div class="personal <?=(!isActive(22))? 'disabled' : '' ?>">
-    <?=personalData(22,'HotStamping','7'); ?>
+    <?=personalData(22,'Suaje2','5'); ?>
+  </div>
+  <div class="personal <?=(!isActive(16))? 'disabled' : '' ?>">
+    <?=personalData(16,'HotStamping','7'); ?>
   </div>
  
 </div>
