@@ -29,7 +29,7 @@ switch ($oper) {
 		case '16':
 		$maquina=10;
 		break;
-		case '18':
+		case '8':
 		$maquina=10;
 		break;
 		case '11':
