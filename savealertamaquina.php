@@ -18,7 +18,7 @@ $tiro=$_POST['tiro'];
 //foreach ($_POST['opcion'] as $opcion); 
 $inicioAlerta=$_POST['inicioAlerta'];
 $tiempoalertamaquina=$_POST['tiempoalertamaquina'];
-$nombremaquinaajuste=$_POST['nombremaquinaajuste'];
+
 
 $horafin=date(" H:i:s", time());
 $horadeldiaam=$_POST['horadeldiaam'];

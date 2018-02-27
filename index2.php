@@ -105,11 +105,7 @@ if ( $p==1) {
             height: 100%;
 
         }
- .cont2{
-           
-          
-            
-        }
+
         .vform{
           width: 40%;
           display: inline-block;
@@ -536,7 +532,7 @@ legend{
   while ($e_row=mysqli_fetch_assoc($getElementStandar)) { ?>
     <div class="elem-button <?='c'.$c ?>" data-name="<?=$e_row['nombre_elemento'] ?>" data-id="<?=$e_row['id_elemento'] ?>"><p><?=$e_row['nombre_elemento'] ?></p></div>
   <?php $c++; } ?>
-  <div style="display: none;" class="elem-button other"><p>Otro</p></div>
+  <div  class="elem-button other"><p>Otro</p></div>
   </div>
     
   </div>
@@ -908,16 +904,18 @@ function endOfDay(){
 }
       
 }
-<?php if ($machineID==20||$machineID==21||$machineID==10) {?>
+
 $(document).on("click", "#virtualelem", function () {
     selectElement();
 });
 
-<?php }else{ ?>
-$(document).on("click", "#virtualelem", function () {
+
+
+$(document).on("click", ".other", function () {
+  $("#virtualelem").attr("placeholder", "Escribe la parte..");
     getKeys('virtualelem','cosa');
 });
-<?php } ?>
+
 $(document).on("click", ".elem-button", function () {
   var id=$(this).data("id");
   var name=$(this).data("name");
@@ -925,12 +923,13 @@ $(document).on("click", ".elem-button", function () {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="1"><p>1</p></div>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="2"><p>2</p></div>'+
-    
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="3"><p>3</p></div>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="4"><p>4</p></div>'+
-    
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="5"><p>5</p></div>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="6"><p>6</p></div>'+
-
+'<div class="qty-button" data-id="17" data-name="Boleto" data-plans="7"><p>7</p></div>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="8"><p>8</p></div>'+
+    '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="9"><p>9</p></div>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="10"><p>10</p></div>'+
     '<div class="qty-button" data-id="17" data-name="Boleto" data-plans="12"><p>12</p></div>';
     $('#elems-container').html(planillas);
@@ -940,27 +939,31 @@ $(document).on("click", ".elem-button", function () {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="1"><p>1</p></div>'+
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="2"><p>2</p></div>'+
-    
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="3"><p>3</p></div>'+
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="4"><p>4</p></div>'+
-    
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="5"><p>5</p></div>'+
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="6"><p>6</p></div>'+
-   
+   '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="7"><p>7</p></div>'+
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="8"><p>8</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="9"><p>9</p></div>'+
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="10"><p>10</p></div>'+
+    '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="11"><p>11</p></div>'+
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="12"><p>12</p></div>';
     $('#elems-container').html(planillas);
    
-  }else if (id==123||id==124||id==125) {
+  }else if (id==123||id==124||id==125||id==4||id==8) {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="1"><p>1</p></div>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="2"><p>2</p></div>'+
-    
+     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="3"><p>3</p></div>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="4"><p>4</p></div>'+
-   
+    '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="5"><p>5</p></div>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="6"><p>6</p></div>'+
-    
+     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="7"><p>7</p></div>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="8"><p>8</p></div>'+
+     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="9"><p>9</p></div>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="10"><p>10</p></div>'+
+     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="11"><p>11</p></div>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="12"><p>12</p></div>';
     $('#elems-container').html(planillas);
    
@@ -974,9 +977,13 @@ $('#idelem').val(id);
 
 });
 $(document).on("click", ".real-qty-button", function () {
+
  var id=$(this).data("id");
+
   var name=$(this).data("name");
   var plans=$(this).data("plans");
+   console.log('hola: '+plans);
+  $('#plans').remove();
       $('#tareas').append('<input type="hidden" name="plans" id="plans" value="'+plans+'">');
     close_Elements();
 
@@ -1003,7 +1010,7 @@ $(document).on("click", ".qty-button", function () {
    
     $('#virtualelem').val(name);
     $('#idelem').val(id);
-
+    $('#plans').remove();
     $('#virtualform').append('<input type="hidden" name="plans" id="plans" value="'+plans+'">');
     close_Elements();
 $.ajax({  
@@ -1021,4 +1028,4 @@ $.ajax({
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=30"></script>
+<script src="js/ajuste.js?v=31"></script>
