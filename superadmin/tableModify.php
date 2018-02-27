@@ -310,15 +310,15 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <td><?= gmdate("H:i", $sum_tiraje); ?></td>
    
     <td>0</td>
-    <td><?= $sum_esper ?></td>
+    <td><?= round($sum_esper,2) ?></td>
     <td>0</td>
-    <td><?= $sum_real ?></td>
+    <td><?= round($sum_real,2) ?></td>
     <td>0</td>
-    <td><?= $sum_merm ?></td>
+    <td><?= round($sum_merm,2) ?></td>
     <td>0</td>
-    <td><?= $sum_calidad ?></td>
+    <td><?= round($sum_calidad,2) ?></td>
     <td>0</td>
-    <td><?= $sum_defectos ?></td>
+    <td><?= round($sum_defectos,2) ?></td>
     <?php
     if (!empty($alert)||!empty($alertM)) {
 ?>
@@ -417,14 +417,14 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     <td><?= gmdate("H:i", $sum_muerto); ?></td>
     <td class="editable"  onClick="showEdit(this);"><?= gmdate("H:i", $row['seconds_tiraje']); ?><div class="tooltiptext toolleft toolcifras"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="thour-<?=$row['idtiraje']; ?>" type="number"  class="cifra"  value="<?=$t_hour ?>"> : </div><div class="tinput"><input id="tmin-<?=$row['idtiraje']; ?>" type="number" class="cifra" value="<?=$t_min ?>"> : </div><div class="tinput"><input id="tsec-<?=$row['idtiraje']; ?>" type="number"  class="cifra"  value="<?=$t_sec ?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('ttime','tiempoTiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
     <td><?= gmdate("H:i", $sum_tiraje); ?></td>
-    <td><?= $row['produccion_esperada']; ?></td>
-    <td><?= $sum_esper ?></td>
-    <td class="editable" onClick="showEdit(this);"><?= $row['entregados'] - $row['merma_entregada']; ?><div class="tooltiptext toolreal"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><p>Buenos</p><div class="tinput"><input id="buen-<?=$row['idtiraje']; ?>" type="number" value="<?= $row['entregados'] - $row['merma_entregada']?>"></div><p>Merma</p><div class="tinput"><input id="merm-<?=$row['idtiraje']; ?>" type="number" value="<?=$row['merma_entregada']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('real','entregados','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
-    <td><?= $sum_real ?></td>
-    <td><?= $row['merma_entregada']; ?></td>
-    <td><?= $sum_merm ?></td>
-    <td><?= $row['calidad']; ?></td>
-    <td><?= $sum_calidad ?></td>
+    <td><?= round($row['produccion_esperada'],2); ?></td>
+    <td><?= round($sum_esper,2) ?></td>
+    <td class="editable" onClick="showEdit(this);"><?= round($row['entregados'] - $row['merma_entregada'],2); ?><div class="tooltiptext toolreal"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><p>Buenos</p><div class="tinput"><input id="buen-<?=$row['idtiraje']; ?>" type="number" value="<?= $row['entregados'] - $row['merma_entregada']?>"></div><p>Merma</p><div class="tinput"><input id="merm-<?=$row['idtiraje']; ?>" type="number" value="<?=$row['merma_entregada']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('real','entregados','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
+    <td><?= round($sum_real,2) ?></td>
+    <td><?= round($row['merma_entregada'],2); ?></td>
+    <td><?= round($sum_merm,2) ?></td>
+    <td><?= round($row['calidad'],2); ?></td>
+    <td><?= round($sum_calidad,2) ?></td>
     <td class="editable" onClick="showEdit(this);"><?= $row['defectos']; ?><div class="tooltiptext toolright"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="def-<?=$row['idtiraje']; ?>" type="number" value="<?=$row['defectos']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('defectos','defectos','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
     <td><?= $sum_defectos ?></td>
     <?php

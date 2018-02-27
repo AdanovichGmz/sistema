@@ -204,6 +204,7 @@ $process=($maquina=='Serigrafia2'||$maquina=='Serigrafia3')?'Serigrafia':$maquin
         $(document).ready(function() {
            $("#datepicker").datepicker();
             $( "#21" ).datepicker();
+            $( "#22" ).datepicker();
 $( "#20" ).datepicker();
 $( "#10" ).datepicker();
 $( "#9" ).datepicker();
@@ -364,8 +365,8 @@ $( "#16" ).datepicker();
   <div class="personal">
     <?=personalData(9,'Suaje','Encua2',13); ?>
   </div>
-  <div class="personal" style="opacity: 0.5">
-    <?=personalData(8,'--','default',2); ?>
+  <div class="personal" >
+    <?=personalData(22,'Suaje2','5',15); ?>
   </div>
  
 </div>
@@ -377,6 +378,7 @@ $( "#16" ).datepicker();
      $( "#20" ).datepicker("option",'dateFormat', 'dd-mm-yy' );
       $( "#10" ).datepicker("option",'dateFormat', 'dd-mm-yy' );
        $( "#9" ).datepicker("option",'dateFormat', 'dd-mm-yy' );
+       $( "#22" ).datepicker("option",'dateFormat', 'dd-mm-yy' );
         $( "#16" ).datepicker("option",'dateFormat', 'dd-mm-yy' );
   } );
 

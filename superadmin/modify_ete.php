@@ -636,13 +636,15 @@ border-top: solid 5px transparent;
    <input type="hidden" name="activef" value="ok">
    <div class=""><select id="filterElem" name="dateFilter">
    <option disabled="true" selected="true">Operarios</option>
- 
+ <option value="11">Alfonso</option>
+ <option value="16">Armando</option>
   <option value="14">Arturo</option>
-  <option value="16">Armando</option>
-  <option value="8">Eduardo</option>
-  <option value="2">Adan</option>
-  <option value="11">Alfonso</option>
   <option value="13">Christian</option>
+  <option value="8">Eduardo</option>
+  <option value="2" style="display: none;">Adan</option>
+  
+<option value="15">Ramon</option>
+  
 
    </select>
 <p id="usererror" style="display: none;">Por favor elige un usuario</p>
