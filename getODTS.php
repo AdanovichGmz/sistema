@@ -2,9 +2,10 @@
 session_start();
 require('saves/conexion.php');
 $numodt=$_POST['numodt'];
-$machineName=$_SESSION['machineName'];
+$stationName=$_SESSION['stationName'];
+$process=$_SESSION['processName'];
 if ($numodt!=null) {
-$process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : (($machineName=='HotStamping2')? 'HotStamping' : $machineName) );
+
 $query="SELECT o.numodt FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE p.nombre_proceso='$process' AND o.numodt LIKE '%" . $numodt . "%' AND entregado NOT IN('true') GROUP BY o.numodt";
 $result=$mysqli->query($query);
 if (!$result) {
@@ -27,7 +28,7 @@ if (!$result) {
                       else{
                       while ($valores=mysqli_fetch_array($result)) {
                      ?>
-                        <div id="<?=$valores['numodt'] ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small2 face" onclick=" sendODT('<?=$valores['numodt'] ?>','<?=$machineName?>'); ">
+                        <div id="<?=$valores['numodt'] ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small2 face" onclick=" sendODT('<?=$valores['numodt'] ?>','<?=$stationName?>'); ">
                           <?php echo  $valores['numodt']; ?>
                           <p class="product" ></p>
                         </div>

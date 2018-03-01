@@ -14,7 +14,7 @@ function logpost($post){
 session_start();
 
 
-$userID = $_SESSION['id'];
+$userID = $_SESSION['idUser'];
 date_default_timezone_set("America/Mexico_City"); 
 $radios=(isset($_POST['radios']))? $_POST['radios'] : 'Otro';
 $observaciones=$_POST['observaciones'];
@@ -40,12 +40,12 @@ $isdead=($totalT<=1200)? 2 : 1;
 //$getID = mysqli_fetch_assoc($mysqli->query($query2));
 //$userID = $getID['id'];
 //$getMachine = mysqli_fetch_assoc($mysqli->query($query4));
-$machineID = $_SESSION['machineID'];
+$stationID = $_SESSION['stationID'];
 $horafin=date(" H:i:s", time());
 if ($radios=='Preparar Tinta') {
-	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$machineID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,2)";
+	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,2)";
 }else{
-	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$machineID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,$isdead)";
+	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,$isdead)";
 }
 
  $log->lwrite($_POST['logged_in'].": ".logpost($_POST),'ALERTAS_AJUSTE_'.date("d-m-Y"));

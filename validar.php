@@ -9,12 +9,12 @@ date_default_timezone_set("America/Mexico_City");
 $username=$_POST['usuario'];
 $pass=$_POST['pass'];
 //$nmac=$_POST['maquina'];
+$time=date("H:i:s",time());
 
-
-$sql2=mysqli_query($mysqli,"SELECT * FROM login WHERE usuario='$username'");
+$sql2=mysqli_query($mysqli,"SELECT * FROM usuarios WHERE usuario='$username'");
 if($f2=mysqli_fetch_assoc($sql2)){
     if($pass==$f2['pasadmin']){
-        $_SESSION['id']=$f2['id'];
+        $_SESSION['idUser']=$f2['id'];
         $_SESSION['logged_in']=$f2['id'];
         $_SESSION['rol']=$f2['rol'];
 
@@ -24,10 +24,10 @@ if($f2=mysqli_fetch_assoc($sql2)){
     }
 }
 
-$sql3=mysqli_query($mysqli,"SELECT * FROM login WHERE usuario='$username'");
+$sql3=mysqli_query($mysqli,"SELECT * FROM usuarios WHERE usuario='$username'");
 if($f3=mysqli_fetch_assoc($sql3)){
     if($pass==$f3['sudopass']){
-        $_SESSION['id']=$f3['id'];
+        $_SESSION['idUser']=$f3['id'];
         $_SESSION['logged_in']=$f3['logged_in'];
         $_SESSION['rol']=$f3['rol'];
 
@@ -38,103 +38,123 @@ if($f3=mysqli_fetch_assoc($sql3)){
 }
 
 
-$sql=mysqli_query($mysqli,"SELECT * FROM login WHERE usuario='$username'");
+$sql=mysqli_query($mysqli,"SELECT * FROM usuarios WHERE usuario='$username'");
 if($f=mysqli_fetch_assoc($sql)){
     if($pass==$f['password']){
-        $_SESSION['id']=$f['id'];
+        $_SESSION['idUser']=$f['id'];
         $_SESSION['logged_in']=$f['logged_in'];
         $_SESSION['rol']=$f['rol'];
         $_SESSION['MM_Foto_user'] = $f['foto'];
        
-        //$_SESSION['nommaquina'] = $nmac;
-            
-        $ip=getenv("REMOTE_ADDR"); 
-        $cmd = "arp  $ip | grep $ip | awk '{ print $3 }'"; 
-        $recoverSession=(!empty($_POST))? 'false' : 'true' ;
-        //$mac=system($cmd);
-       // $mac='5c:f5:da:2f:33:5e';
-        $mac=$f['area'];
-        $machine = mysqli_fetch_assoc($mysqli->query("SELECT * FROM maquina WHERE idmaquina='$mac'"));
-        
-        $_SESSION['machineID']=$f['area'];
-        $_SESSION['machineName']=$machine['nommaquina'];
-        if ($machine['nommaquina']=='Serigrafia1'||$machine['nommaquina']=='Serigrafia2'||$machine['nommaquina']=='Serigrafia3') {
-            $pseudomachine = mysqli_fetch_assoc($mysqli->query("SELECT * FROM maquina WHERE idmaquina=10"));
-            $_SESSION['pseudoID']=$pseudomachine['idmaquina'];
-            $_SESSION['pseudoName']=$pseudomachine['nommaquina'];
-        }
-     $mac_id=$machine['idmaquina'];   
-    
- $today=date("d-m-Y");
-$check=$mysqli->query("SELECT * FROM operacion_estatus WHERE fecha='$today' AND maquina=$mac_id");
-$datas=mysqli_fetch_assoc($check);
-//echo '<script>alert("'.$datas['actividad_actual'].'")</script> ';
-if ($check->num_rows>0) {
-   if ($datas['actividad_actual']=='ajuste'){
-    if ($f['id']==15) {
+        $getStations=$mysqli->query("SELECT * FROM usuarios_estaciones WHERE id_usuario=".$f['id']);
+        $station = mysqli_fetch_assoc($getStations);
+
+        if ($getStations->num_rows>1) {
+
+        $_SESSION['stationID']=$f['id_estacion'];
+        $_SESSION['stationName']=$machine['nombre_estacion']; 
         header("Location: options.php");
-    }else{
-        header("Location: index2.php");
-    }
 
-    
-
-}
-
-elseif ($datas['actividad_actual']=='tiro'){
-    $machineName=$_SESSION['machineName'];
-    $isVirtual=mysqli_fetch_assoc( $mysqli->query("SELECT elemento_virtual FROM personal_process WHERE status='actual' AND proceso_actual='$machineName' "));
-    if ($isVirtual['elemento_virtual']!=null) {
-       header("Location: index3_5.php");
-    }else{
-        header("Location: index3.php");
-    }
-    }
-    else{
-       
-if ($f['id']==15) {
-        header("Location: options.php");
-    }else{
-        header("Location: index2.php");
-    }
-
-       
-    } 
-}
-else{
-    if(date("w")==1||date("w")==3||date("w")==5){
-        $hora_actual=date(" H:i:s", time());
-        if ( strtotime($hora_actual)>=strtotime('09:00:00')) {
-             $logged_in=$_SESSION['id'];
-        $op_query=$mysqli->query("INSERT INTO operacion_estatus(operador,maquina,actividad_actual,en_tiempo,asaichi_cumplido,fecha) VALUES($logged_in,$mac_id,2,1,1,'$today')");
-        if ($op_query) {
-        header("Location: index2.php");
-    }else{
-        printf($mysqli->error);
-    }
         }else{
-            header("Location: asaichii.php");
+
+         $getMyProcess=$mysqli->query("SELECT * FROM estaciones_procesos WHERE id_estacion=".$station['id_estacion']);
+        $myProcess = mysqli_fetch_assoc($getMyProcess); 
+
+        if ($getMyProcess->num_rows>1) {
+              header("Location: options.php");
+           } else{
+
+                $getProcess=$mysqli->query("SELECT * FROM procesos_catalogo WHERE id_proceso=".$myProcess['id_proceso']);
+                $process = mysqli_fetch_assoc($getMyProcess); 
+
+                $_SESSION['stationID']=$f['id_estacion'];
+                $_SESSION['stationName']=$machine['nombre_estacion'];
+                $_SESSION['processName']=$process['nombre_proceso'];
+                $_SESSION['processID']=$process['id_proceso']; 
+                $today=date("d-m-Y");
+                $check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND proceso=".$process['id_proceso']);
+                $datas=mysqli_fetch_assoc($check);
+               
+                if ($check->num_rows>0) {
+                           if ($datas['actividad_actual']=='ajuste'){
+                            
+                                header("Location: index2.php");
+                            
+                        }
+
+                        elseif ($datas['actividad_actual']=='tiro'){
+                            
+                            $isVirtual=mysqli_fetch_assoc( $mysqli->query("SELECT elemento_virtual FROM personal_process WHERE status='actual' AND estacion=".$f['id_estacion']." "));
+                            if ($isVirtual['elemento_virtual']!=null) {
+                               header("Location: index3_5.php");
+                            }else{
+                                header("Location: index3.php");
+                            }
+                            }
+                            else{
+
+                                header("Location: index2.php");
+                                                     
+                            } 
+                        }
+                        else{
+                            if(date("w")==1||date("w")==3||date("w")==5){
+                                $hora_actual=date(" H:i:s", time());
+                                if (strtotime($hora_actual)>=strtotime('09:00:00')) {
+                                $logged_in=$_SESSION['idUser'];
+                                     $pro_id=$process['id_proceso'];
+                                     $station_id=$f['id_estacion'];
+                                $op_query=$mysqli->query("INSERT INTO sesiones(operador,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha,inicio_ajuste) VALUES($logged_in,$station_id,$pro_id,2,1,1,1,'$today','$time')");
+                                if ($op_query) {
+                                header("Location: index2.php");
+                            }else{
+                                printf($mysqli->error);
+                            }
+                                }else{
+                                    header("Location: asaichii.php");
+                                }
+                                
+                            }else{
+                                  $logged_in=$_SESSION['idUser'];
+                                     $pro_id=$process['id_proceso'];
+                                     $station_id=$f['id_estacion'];
+                            $op_query=$mysqli->query("INSERT INTO sesiones(operador,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha,inicio_ajuste) VALUES($logged_in,$station_id,$pro_id,2,1,1,1,'$today','$time')");
+                            if ($op_query) {
+                              header("Location: index2.php");
+
+                            }else{
+                                printf($mysqli->error);
+                            }
+
+                                
+                            }
+
+                            
+                        } 
+
+
+
+
+
+                header("Location: index2.php");
+
+
+           }  
+
+      
+
         }
-        
-    }else{
-         $logged_in=$_SESSION['id'];
-    $op_query=$mysqli->query("INSERT INTO operacion_estatus(operador,maquina,actividad_actual,en_tiempo,asaichi_cumplido,fecha) VALUES($logged_in,$mac_id,2,1,1,'$today')");
-    if ($op_query) {
-      if ($f['id']==15) {
-        header("Location: options.php");
-    }else{
-        header("Location: index2.php");
-    }
 
-    }else{
-        printf($mysqli->error);
-    }
+
+
 
         
-    }
 
+        
+     
     
-} 
+ 
+
         //header("Location: asaichii.php");
         }else{
         echo '<script>alert("CONTRASEÑA INCORRECTA")</script> ';
