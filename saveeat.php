@@ -35,7 +35,7 @@ else{
  $log->lwrite($_POST['logged_in'].": ".logpost($_POST),'COMIDAS_'.date("d-m-Y"));
  
 
-$maquina=$_POST['maquina'];
+$maquina=$_SESSION['machineID'];
 $specific=(isset($_POST['specific']))? $_POST['specific']:'';
 $logged_in=$_POST['logged_in'];
 $horadeldiaam=$_POST['inicioAlertaEat'];

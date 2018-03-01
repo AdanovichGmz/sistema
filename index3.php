@@ -17,10 +17,12 @@ if ($_SESSION['logged_in'] != true) {
    
     $machineName=$_SESSION['machineName'];
     $machineID = $_SESSION['machineID'];
+
     $userID      = $_SESSION['id'];
     $today=date("d-m-Y");
     $getOperation="SELECT * FROM operacion_estatus WHERE operador=$userID AND maquina=$machineID AND fecha='$today'";
     $operation=mysqli_fetch_assoc($mysqli->query($getOperation));
+
     $getretaking       = "SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='retomado'";
   
     $retaking       = $mysqli->query($getretaking);
@@ -61,10 +63,11 @@ if ($_SESSION['logged_in'] != true) {
             $odetes=implode(",", $odetesArr);
             
         }
-    
+
     
     
     $query0             = "SELECT o.*,p.proceso,p.id_proceso,pp.*,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS nombre_elemento FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='actual' AND p.nombre_proceso='$process'";
+
     
     $resultado0 = mysqli_fetch_assoc($mysqli->query($query0));
     
@@ -91,6 +94,7 @@ if ($_SESSION['logged_in'] != true) {
     $today     = date("d-m-Y");
     //obtenemos el tiempo real sumando tiempoTiraje + tiempo_ajuste +tiempoalertamaquina + tiempoajuste
     $etequery1 = "SELECT COALESCE((SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoTiraje) ),0)  FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_tiraje = '$today' )+(SELECT  IFNULL(SUM( TIME_TO_SEC( tiempo_ajuste)),0) FROM tiraje WHERE id_maquina=$machineID AND fechadeldia_ajuste = '$today' )) as tiempo_real";
+
     //obtenemos el tiempo muerto sumando las idas al sanitario
     $etequery2 = "SELECT  IFNULL(SUM( TIME_TO_SEC( breaktime)),0)+(SELECT IFNULL(SUM(TIME_TO_SEC(tiempo_muerto)),0) FROM tiempo_muerto WHERE id_maquina=$machineID AND fecha = '$today') AS tiempo_muerto  FROM breaktime WHERE id_maquina=$machineID AND radios='Sanitario' AND fechadeldiaam = '$today'";
     $tmuerto_alertas=mysqli_fetch_assoc($mysqli->query("SELECT (SELECT  IFNULL(SUM( TIME_TO_SEC( tiempoalertamaquina) ),0)  FROM alertamaquinaoperacion WHERE id_maquina=$machineID AND fechadeldiaam = '$today' AND es_tiempo_muerto NOT IN('false')) + (SELECT  IFNULL(SUM( TIME_TO_SEC(tiempoalertamaquina) ),0) FROM alertageneralajuste WHERE id_maquina=$machineID AND fechadeldiaam = '$today' AND es_tiempo_muerto NOT IN('false')) AS tmuerto_alert"));

@@ -26,17 +26,21 @@ if ($check->num_rows==0) {
 }
 }
 elseif ($section=='ajuste') {
+
 	$check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND estacion=".$_SESSION['stationID']);
 
 if ($check->num_rows==0) {
 	$op_query=$mysqli->query("INSERT INTO sesiones(operador,estacion,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha) VALUES($logged_in,$stationID,$pro_id,2,1,1,1,'$today')");
+
 	if ($op_query) {
 		echo "se inserto el operstatus ".$section;
 	}else{
 		printf($mysqli->error);
 	}
 }else{
+
 	$changestatus=$mysqli->query("UPDATE sesiones SET actividad_actual=2 WHERE fecha='$today' AND estacion=".$_SESSION['stationID']);
+
 	if ($changestatus) {
 		echo "estatus cambiado a ajuste";
 	}else{
@@ -84,7 +88,9 @@ elseif ($section=='paro') {
 }
 elseif ($section=='alerta') {
 
+
 	$changestatus=$mysqli->query("UPDATE operacion_estatus SET actividad_actual=4 WHERE fecha='$today' AND maquina=$stationID ");
+
 
 	if ($changestatus) {
 		echo "estatus cambiado a alerta";

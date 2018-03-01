@@ -30,8 +30,6 @@ function startTime() {
     m = checkTime(m);
     s = checkTime(s);
     document.getElementById('inicioAlerta').value = h + ":" + m + ":" + s;
-
-    
 }
 function currentSeconds() {
      var today = new Date();
@@ -76,14 +74,15 @@ if (p_elem==17) {
   selectElement();
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="2"><p>2</p></div>'+
-   
+   '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="3"><p>3</p></div>'+
     '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="4"><p>4</p></div>'+
-    
+    '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="5"><p>5</p></div>'+
     '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="6"><p>6</p></div>'+
-  
+  '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="7"><p>7</p></div>'+
     '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="8"><p>8</p></div>'+
+    '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="9"><p>9</p></div>'+
     '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="10"><p>10</p></div>'+
- 
+ '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="11"><p>11</p></div>'+
     '<div class="real-qty-button" data-id="17" data-name="Boleto" data-plans="12"><p>12</p></div>';
     $('#elems-container').html(planillas);
   $('.face-osc').find('input').prop('checked', false);
@@ -96,32 +95,37 @@ if (p_elem==17) {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="1"><p>1</p></div>'+
     '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="2"><p>2</p></div>'+
-    
+    '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="3"><p>3</p></div>'+
     '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="4"><p>4</p></div>'+
-    
+    '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="5"><p>5</p></div>'+
     '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="6"><p>6</p></div>'+
-   
+   '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="7"><p>7</p></div>'+
     '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="8"><p>8</p></div>'+
+    '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="9"><p>9</p></div>'+
     '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="10"><p>10</p></div>'+
+    '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="11"><p>11</p></div>'+
     '<div class="real-qty-button" data-id="84" data-name="Mapa" data-plans="12"><p>12</p></div>';
     $('#elems-container').html(planillas);
       $('.face-osc').find('input').prop('checked', false);
                                               $('.face-osc').removeClass('face-osc');
                                               $(this).addClass('face-osc').find('input').prop('checked', true);
    
-  }else if (p_elem==123||p_elem==124||p_elem==125) {
+  }else if (p_elem==123||p_elem==124||p_elem==125||p_elem==136) {
     selectElement();
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
-    '<div class="real-qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="1"><p>1</p></div>'+
-    '<div class="real-qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="2"><p>2</p></div>'+
-   
-    '<div class="real-qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="4"><p>4</p></div>'+
-   
-    '<div class="real-qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="6"><p>6</p></div>'+
-    
-    '<div class="real-qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="8"><p>8</p></div>'+
-    '<div class="real-qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="10"><p>10</p></div>'+
-    '<div class="real-qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="12"><p>12</p></div>';
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="1"><p>1</p></div>'+
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="2"><p>2</p></div>'+
+   '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="3"><p>3</p></div>'+
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="4"><p>4</p></div>'+
+   '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="5"><p>5</p></div>'+
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="6"><p>6</p></div>'+
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="7"><p>7</p></div>'+
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="8"><p>8</p></div>'+
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="9"><p>9</p></div>'+
+
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="10"><p>10</p></div>'+
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="11"><p>11</p></div>'+
+    '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="12"><p>12</p></div>';
     $('#elems-container').html(planillas);
       $('.face-osc').find('input').prop('checked', false);
                                               $('.face-osc').removeClass('face-osc');
@@ -857,34 +861,7 @@ function getKeys(id,name) {
 
                     id:'softkeys'
                 });
-                /*
-
-                jQuery214('.letras').softkeys({
-                    target : jQuery214('.letras').data('target'),
-                    layout : [
-                       
-                        [
-                            'q','w','e','r','t','y','u','i','o'
-                            
-                        ],
-                        [
-                            
-                            'p','a','s','d','f','g','h','j','k'
-                            
-                            
-                            
-                        ],
-                        [
-                            
-                            'l','z','x','c','v','b','n','m','BORRAR'
-                            
-                           
-                            
-                            
-                        ]
-                    ],
-                    id:'letras'
-                }); */ 
+              
                 jQuery214('#hidekey').parent('.softkeys__btn').addClass('hidder'); 
     jQuery214('#savekey').parent('.softkeys__btn').addClass('saver').attr('id', 'saver');;            
 jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
@@ -930,12 +907,12 @@ function createVirtualOdt(){
 
  function saveOperstatus(){
         
-    
+      var horadeldia=$('#horadeldia').val();
          $.ajax({  
                       
                      type:"POST",
                      url:"operstatus.php",   
-                     data:{section:'ajuste'},  
+                     data:{section:'ajuste',hour:horadeldia},  
                        
                      success:function(data){ 
                           console.log(data);
@@ -944,6 +921,7 @@ function createVirtualOdt(){
     } 
 
      function saveoperAlert(){
+      var ini_alert=GetstartTime();
         localStorage.setItem('alertTime', currentSeconds());
         localStorage.setItem('inicioAlert', GetstartTime());
         console.log('alerta iniciada: '+GetstartTime());
@@ -952,7 +930,7 @@ function createVirtualOdt(){
                       
                      type:"POST",
                      url:"operstatus.php",   
-                     data:{section:'alerta'},  
+                     data:{section:'alerta',hour:ini_alert},  
                        
                      success:function(data){ 
                           console.log(data);
