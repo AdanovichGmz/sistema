@@ -41,16 +41,16 @@ $logged_in=$_POST['logged_in'];
 $horadeldiaam=$_POST['inicioAlertaEat'];
 $fechadeldiaam=$_POST['fechadeldiaam'];
 
-$userID = $_SESSION['id'];
+$userID = $_SESSION['idUser'];
 $seccion=$_POST['curr-section'];
-$machineID = $_SESSION['machineID'];
+$stationID = $_SESSION['stationID'];
 $tiraje=$_POST['act_tiro'];
 $horafin=date(" H:i:s", time());
 $log->lwrite("Hora fin comida: ".$horafin,'COMIDAS_'.date("d-m-Y"));
 $log->lwrite("---------------------------",'COMIDAS_'.date("d-m-Y"));
 $log->lclose();
 echo "hora fin: ".$horafin;
-$query="INSERT INTO breaktime (radios,otra_actividad, breaktime, id_maquina, id_usuario,id_tiraje,seccion, horadeldiaam, hora_fin_comida, fechadeldiaam, vdate) VALUES ('$radios','$specific','$breaktime',$machineID,$userID,$tiraje,'$seccion', '$horadeldiaam','$horafin', '$fechadeldiaam',now())";
+$query="INSERT INTO breaktime (radios,otra_actividad, breaktime, id_maquina, id_usuario,id_tiraje,seccion, horadeldiaam, hora_fin_comida, fechadeldiaam, vdate) VALUES ('$radios','$specific','$breaktime',$stationID,$userID,$tiraje,'$seccion', '$horadeldiaam','$horafin', '$fechadeldiaam',now())";
 
 
 $resultado=$mysqli->query($query);

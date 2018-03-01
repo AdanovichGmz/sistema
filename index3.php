@@ -3,7 +3,6 @@
 //error_reporting(0);
 ini_set('session.gc_maxlifetime', 30*60);
 date_default_timezone_set("America/Mexico_City");
-
 require('saves/conexion.php');
 if (!session_id()) {
     session_start();
@@ -16,13 +15,11 @@ if ($_SESSION['logged_in'] != true) {
     </script>';
 } else {
    
-
     $machineName=$_SESSION['machineName'];
     $machineID = $_SESSION['machineID'];
 
     $userID      = $_SESSION['id'];
     $today=date("d-m-Y");
-
     $getOperation="SELECT * FROM operacion_estatus WHERE operador=$userID AND maquina=$machineID AND fecha='$today'";
     $operation=mysqli_fetch_assoc($mysqli->query($getOperation));
 
@@ -43,23 +40,19 @@ if ($_SESSION['logged_in'] != true) {
              $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
             $hora_Ajuste     = $Ajuste['horadeldia_ajuste'].'-'.$recoOrden['id_orden'];
             $getid="SELECT * FROM personal_process WHERE status='actual' AND proceso_actual='$machineName'";
-
               $id=mysqli_fetch_assoc($mysqli->query($getid));
         }else{
              $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : (($machineName=='HotStamping2')? 'HotStamping' : $machineName ) );
              $processID=($machineID==20||$machineID==21)? 10:(($machineID==23)? 16 : (($machineID==22)? 9 : $machineID) );
              $getid="SELECT * FROM personal_process WHERE status='actual' AND proceso_actual='$machineName'";
-
               $id=mysqli_fetch_assoc($mysqli->query($getid));
             
-
             $orderID = (isset($_GET['order']))? explode(",", $_GET['order'] ) : explode(",", $id['id_orden']);
             $idtiro=$id['last_tiraje'];
            $today=date("d-m-Y");
             $singleID=$orderID[0];
             $userID      = $_SESSION['id'];
             $getAjuste    = "SELECT horadeldia_ajuste,elemento_virtual,TIME_TO_SEC(horadeldia_tiraje) AS iniciotiro FROM tiraje WHERE idtiraje=$idtiro";
-
             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
             $hora_Ajuste     = $Ajuste['horadeldia_ajuste'];
             foreach ($orderID as $order) {
@@ -69,11 +62,8 @@ if ($_SESSION['logged_in'] != true) {
             }
             $odetes=implode(",", $odetesArr);
             
-
         }
 
-
-    
     
     
     $query0             = "SELECT o.*,p.proceso,p.id_proceso,pp.*,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS nombre_elemento FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND status='actual' AND p.nombre_proceso='$process'";
@@ -189,12 +179,9 @@ if ($_SESSION['logged_in'] != true) {
                                            
                        backgroundColor: 'transparent'
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
         chart.draw(data, options);
       }
-
     </script>
     <script type="text/javascript">
     google.load("visualization", "1", {packages:["corechart"]});
@@ -231,7 +218,6 @@ if ($_SESSION['logged_in'] != true) {
               min:0
             }
         },
-
             colors: ['#05BDE3'],    
             backgroundColor: 'transparent'
         };
@@ -277,7 +263,6 @@ if ($_SESSION['logged_in'] != true) {
     <script src="js/clock.js"></script>
 
     <script language="javascript">// <![CDATA[
-
 // ]]></script>
  
 <link rel="stylesheet" href="css/softkeys-0.0.1.css?v=2">
@@ -308,7 +293,6 @@ if ($_SESSION['logged_in'] != true) {
         font-size: 14px;
    text-align: left;
     font-family: "monse-bold";
-
   }
   #cantpedido input{
     width: 160px;
@@ -318,7 +302,6 @@ if ($_SESSION['logged_in'] != true) {
     border: 1px solid #B2BDC8;
     background: #F3F5F7;
     font-size: 40px!important;
-
     color: #606062;
     font-family: "monse-bold";
   }
@@ -343,8 +326,6 @@ if ($_SESSION['logged_in'] != true) {
     position: relative;
     border-top-left-radius:4px;
     border-bottom-left-radius:4px;
-
-
   }
   .diferentbutton div:first-child img{
     width: 50px;
@@ -352,7 +333,6 @@ if ($_SESSION['logged_in'] != true) {
     top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   }
   .diferentbutton div:last-child{
     width: 170px;
@@ -370,9 +350,7 @@ if ($_SESSION['logged_in'] != true) {
     position: absolute;
     font-family: "monse-bold";
     font-size: 20px;
-
   }
-
   .orderform{
     width: 200px;
     height: 300px;
@@ -411,7 +389,6 @@ if ($_SESSION['logged_in'] != true) {
     width: 90%;
     position: relative;
     margin:0 auto;
-
   }
   #explain-error{
   color:red;
@@ -923,7 +900,6 @@ foreach ($orderID as $odt) {
                                 </div>
     </div>
                                     <script>
-
                        
                                 </script>
 
@@ -953,7 +929,6 @@ foreach ($orderID as $odt) {
   $(this).addClass('face-osc').find('input').prop('checked', true)    
 });                         
                          $( "#saving").click(function() {
-
                           var buenos=$('#buenos').val();
                           var merma=$('#merma').val();
                           var entre=$('#entregados').val();
@@ -964,7 +939,6 @@ foreach ($orderID as $odt) {
                           else{
                            <?php
     if (count($orderID) > 1) {
-
 ?>                           tiempoTiraje
                             timer.pause();
                             $('#tiempoTiraje').val(timer.getTimeValues().toString());   
@@ -982,11 +956,9 @@ foreach ($orderID as $odt) {
                            }else{
                             if (buenos==''){
                               $('#buenos').addClass("errror").attr("placeholder", "?").effect( "shake" );
-
                             }
                             if (ajuste==''){
                               $('#piezas-ajuste').addClass("errror").attr("placeholder", "?").effect( "shake" );
-
                             }
                            }
                             <?php
@@ -996,7 +968,6 @@ foreach ($orderID as $odt) {
                          }
                                              
                                             });
-
                          
                     </script>
 
@@ -1053,7 +1024,6 @@ foreach ($orderID as $odt) {
                         });
   }
   }  
-
     </script>
  
 </body>
@@ -1065,8 +1035,6 @@ foreach ($orderID as $odt) {
 <?php
     
 }
-
-
 ?>
 
 <!-- ********************** Ventana de pausar ordenes ******************** -->
@@ -1088,3 +1056,15 @@ foreach ($orderID as $odt) {
 <script src="js/softkeys-0.0.1.js"></script>
 
   <script src="js/tiraje.js?v=13"></script>
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About

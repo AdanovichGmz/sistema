@@ -248,18 +248,13 @@ if (p_elem==17) {
 
                                               });
 
-                                             function selectOrders(id){
-                                              
-                                             }
                                              
                                              
                                             
 
                                             $( document ).ajaxStop(function() {
 
-                                              $('.radio-menu-small').click(function() {
-                                               
-                                            });
+                                              
 
                                                  
 
@@ -304,7 +299,7 @@ if (p_elem==17) {
           $('.setElement').css('display', 'none');
         });
       }
-      function sendOrder(id){
+      function sendOrder(){
         
        $.ajax({
             type: 'POST',
@@ -312,6 +307,7 @@ if (p_elem==17) {
             data: $('#tareas').serialize(),
             // Mostramos un mensaje con la respuesta de PHP
             success: function(data) {
+
                 $('#tareas').html(data);
                var curorder= $('#returning').val();
                var curid= $('#returning2').val();

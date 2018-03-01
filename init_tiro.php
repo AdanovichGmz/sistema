@@ -3,23 +3,26 @@ date_default_timezone_set("America/Mexico_City");
 session_start();
 require('saves/conexion.php');
 require('classes/functions.class.php');
-
+$today=date("d-m-Y");
 
 $log = new Functions();
 $init=$_POST['init'];
 if ($init=='init') {
 	$hora=$_POST['hora'];
 $fecha=$_POST['fecha'];
-$userID = $_SESSION['id'];
-$machineID = $_SESSION['machineID'];
+$userID = $_SESSION['idUser'];
+$stationID = $_SESSION['stationID'];
 
 
-$query     = "INSERT INTO tiraje (id_maquina,horadeldia_ajuste, fechadeldia_ajuste,id_user) VALUES ($machineID,'$hora','$fecha', $userID)";
+$query     = "INSERT INTO tiraje(id_estacion,horadeldia_ajuste, fechadeldia_ajuste,id_user) VALUES ($stationID,'$hora','$fecha', $userID)";
             
 $resultado = $mysqli->query($query);
-//echo "Tus datos fueron enviados correctamente <b>".$_POST['logged_in']."</b>";
+
  $lastTiraje=$mysqli->insert_id;
-//print_r($_POST) ;
+
+$mysqli->query("UPDATE sesiones SET tiro_actual=$lastTiraje WHERE fecha='$today' AND estacion=".$_SESSION['stationID']);
+
+
  $log->lwrite('Tiraje recien insertado: '.$lastTiraje.' usuario: '.$userID,'INIT_TIRO');
  
  $log->lwrite(implode(' | ', $_POST),'INIT_TIRO');

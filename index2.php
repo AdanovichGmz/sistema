@@ -1,7 +1,7 @@
 
 
 <?php
-error_reporting(0);
+
 ini_set('session.gc_maxlifetime', 30*60); 
 date_default_timezone_set("America/Mexico_City");
  if( !session_id())
@@ -18,55 +18,22 @@ date_default_timezone_set("America/Mexico_City");
               
 require('saves/conexion.php');
 
+$stationName=$_SESSION['stationName'];
+$stationID = $_SESSION['stationID'];
 
-$recoverSession=(!empty($_POST))? 'false' : 'true' ;
+$processName=$_SESSION['processName'];
+$processID = $_SESSION['processID'];
+$today=date("d-m-Y");
 
-$machineName=$_SESSION['machineName'];
-$machineID = $_SESSION['machineID'];
-
-
-  
-  $pausedOrder=$mysqli->query("SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='en pausa'");
-  //verificar si hay una orden en pausa 
-  if ($pausedOrder->num_rows>0) {
-     $getOrder = mysqli_fetch_assoc($pausedOrder);
-    $getActODT[] = $getOrder['numodt'];
-    $ordenActual[] = $getOrder['id_orden'];
-    header('Location:http:'.dirname($_SERVER['PHP_SELF']).'/index3.php');
-    echo "<script>console.log('orden pausa');</script>";
-
-  }else{
-
-    $retaking=$mysqli->query("SELECT *,TIME_TO_SEC(tiempo_pausa) AS seconds FROM procesos WHERE  nombre_proceso='$machineName' AND avance='retomado'");
- 
+$getActivity=$mysqli->query("SELECT * FROM sesiones WHERE estacion=$stationID AND fecha='$today' ");
     
-    if ($retaking->num_rows>0) {
-    $getOrder = mysqli_fetch_assoc($retaking);
-    $getActODT[] = $getOrder['numodt'];
-    $ordenActual[] = $getOrder['id_orden'];
-    echo "<script>console.log('orden retomada');</script>";
-
-    } else{
-   
-       
-      $getID=mysqli_fetch_assoc($mysqli->query("SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS element,(SELECT nombre_elemento FROM elementos WHERE id_elemento=element) AS nom_element FROM personal_process pp WHERE proceso_actual='$machineName' AND status='actual'"));
-        $getProODT=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process WHERE proceso_actual='$machineName' GROUP BY num_odt"));
-        $ordenActual[] =(isset($getID['id_orden']))? $getID['id_orden'] : '';
-        $parteDeOrden=(isset($getID['nom_element']))? $getID['nom_element'] : '';
-        $getActODT[] = ($getProODT['num_odt']!=null)? $getProODT['num_odt']:'--';
-        $perro="SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS element,(SELECT nombre_elemento FROM elementos WHERE id_elemento=element) AS nom_element FROM personal_process pp WHERE proceso_actual='$machineName' AND status='actual'";
-
-
-    echo "<script>console.log('orden normal');</script>";
-
-
-    }
-  }
+$activity=mysqli_fetch_assoc($getActivity);   
+  
 
 
 
-$actualMachine=($machineID==20||$machineID==21)? 10 : (($machineID==23)? 16 :(($machineID==22)? 9 : $machineID));
-$getElementStandar=$mysqli->query("SELECT * FROM estandares e INNER JOIN elementos el ON e.id_elemento=el.id_elemento WHERE e.id_maquina=$actualMachine ORDER BY nombre_elemento ASC");
+
+$getElementStandar=$mysqli->query("SELECT * FROM estandares e INNER JOIN elementos el ON e.id_elemento=el.id_elemento WHERE e.id_proceso=$processID ORDER BY nombre_elemento ASC");
 
 $p=1;
 if ( $p==1) {
@@ -78,7 +45,7 @@ if ( $p==1) {
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AJUSTE <?php echo (isset($machineName))? $machineName : $mrecovered ; ?></title>
+    <title>AJUSTE <?=$processName ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <?php include 'head.php'; ?>
     <link href="css/estiloshome.css?v=2" rel="stylesheet" />
@@ -422,7 +389,7 @@ legend{
 <body onload="">
 <div id="formulario"></div>
     
-     <input type="hidden" id="idmachine" value="<?=$machineID ?>">
+     <input type="hidden" id="idmachine" value="<?=$stationID ?>">
     <input type="hidden" id="order" value="<?= (isset($ordenActual))? implode(",", $ordenActual)  : ((isset($stoppedOrderID))? $stoppedOrderID : '') ;?>">
     <div class="msj">
         <img src="images/msj.fw.png" />
@@ -436,17 +403,17 @@ legend{
                 <input type="hidden" id="orderODT" name="orderodts" class=" diseños" value="<?= (isset($getActODT))? implode(",", $getActODT)  : '' ;?>"/>
                  <input hidden type="text" name="horadeldia" id="horadeldia" value="<?php echo date("H:i:s",time()); ?>" />
                  <input hidden type="text" name="fechadeldia" id="fechadeldia" value="<?php echo date("d-m-Y"); ?>" />
-                     <input hidden type="text" name="recover" value="<?php echo $recoverSession; ?>" />  
+                      
                     <div class="modal-content" style="">
                     <div id="actual_tiraje" style="display: none;"></div>
                         <div class="modal-header">
                             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                            <div class="text-center" style="font-size:18pt; text-transform: uppercase;">AJUSTE <?php echo (isset($machineName))? $machineName : $mrecovered ; ?></div>
+                            <div class="text-center" style="font-size:18pt; text-transform: uppercase;">AJUSTE <?=$processName ?></div>
 
                             <?php if (!isset($getActODT)&&!empty($getActODT)) {?>
                             <div class="text-center2" id="currentOrder" style="font-size:18pt; color:#E9573E;">NO HAS SELECCIONADO UNA ORDEN</div>
                             <?php } else{ ?>
-                              <div class="text-center2" id="currentOrder" style="font-size:18pt;">ODT EN PROCESO: <?= implode(",", $getActODT)." ".$parteDeOrden  ?></div>
+                              <div class="text-center2" id="currentOrder" style="font-size:18pt;">ODT EN PROCESO: <?= $activity['orden_actual']." ".$activity['parte']  ?></div>
                            <?php } ?>
                    
                     <p id="success-msj" style="display: none;">Datos guardados correctamente</p>
@@ -456,7 +423,7 @@ legend{
                         <div id="parts" class="square-button purple abajo">
                           <img src="images/elegir.png">
                         </div>
-                        <div id="stop" class="square-button blue " onclick="<?=($machineID==20||$machineID==21||$machineID==10)? 'saveAjusteSerigrafia()' : 'saveAjuste()' ?>" >
+                        <div id="stop" class="square-button blue " onclick="<?=($processID==10)? 'saveAjusteSerigrafia()' : 'saveAjuste()' ?>" >
                           <img src="images/guard.png">
                         </div>
                         
@@ -551,15 +518,15 @@ legend{
                    <div class="form-group" id="tareasdiv">
                   <div class="button-panel-small2" >
                   <form id="tareas" action="opp.php" method="post" >
-                  <input type="hidden" name="machine" value="<?=$machineName; ?>">
+                  <input type="hidden" name="machine" value="<?=$stationName; ?>">
                   <input type="hidden" name="init" value="false">
                  
                   <?php
-                    $process=($machineName=='Serigrafia2'||$machineName=='Serigrafia3')?'Serigrafia':(($machineName=='Suaje2')? 'Suaje' : (($machineName=='HotStamping2')? 'HotStamping' : $machineName) );
+                    
                     $getodt=(isset($getActODT))? implode(",", $getActODT) : '' ;
-                      $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso,p.reproceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$machineName' AND nombre_proceso='$process' AND avance NOT IN('completado') order by orden_display asc";
-                      $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,p.reproceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$process' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
-                      $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$machineName'";
+                      $query = "  SELECT pp.*,(SELECT producto FROM ordenes WHERE idorden=pp.id_orden) AS producto,p.nombre_proceso,p.reproceso FROM personal_process pp INNER JOIN procesos p ON pp.id_proceso=p.id_proceso WHERE proceso_actual='$stationName' AND nombre_proceso='$processName' AND avance NOT IN('completado') order by orden_display asc";
+                      $query2 = "  SELECT  o.idorden AS id_orden,o.numodt AS num_odt,o.fechafin,o.fechareg,o.producto,p.id_proceso,p.avance,p.reproceso,(SELECT orden_display FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM personal_process WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o LEFT JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$processName' AND o.numodt='$getodt' AND avance NOT IN('completado') order by fechafin asc LIMIT 12";
+                      $initquery="SELECT COUNT(*) AS conteo FROM personal_process WHERE proceso_actual='$stationName'";
                       $initial = mysqli_fetch_assoc($mysqli->query($initquery));
                       $init=$initial['conteo'];
                       
@@ -580,12 +547,18 @@ legend{
                       $get_elem=mysqli_fetch_assoc($mysqli->query($element_query));
                       $element=$get_elem['nombre_elemento'];
                      ?>
-                        <div id="<?=$i ?>" data-name="<?=$get_elem['nombre_elemento'] ?>" data-element="<?=$get_elem['id_elemento'] ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad(); selectOrders(this.id,'<?=$valores['num_odt'] ?>')">
-                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="odetes[]" value="<?=$valores['num_odt']; ?>">
-                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="datos[]"  value="<?=$valores['id_orden'] ?>"  >
-                        
-                        
-                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="idpro[]"  value="<?=$valores['id_proceso'] ?>"  >
+                        <div id="<?=$i ?>" data-name="<?=$get_elem['nombre_elemento'] ?>" data-element="<?=$get_elem['id_elemento'] ?>" style="text-transform: uppercase;"  class="rect-button-small radio-menu-small face   <?=($valores['status']=='actual')? 'face-osc': '' ; ?>" onclick="showLoad();">
+                       
+
+
+                        <input type="checkbox" <?=($valores['status']=='actual')? 'checked': '' ; ?> name="chosen" value="<?=$valores['id_proceso']; ?>">
+                        <input type="hidden" name="products[<?=$valores['id_proceso'] ?>]" value="<?=$valores['producto']; ?>">
+                        <input type="hidden" name="odetes[<?=$valores['id_proceso'] ?>]" value="<?=$valores['num_odt']; ?>">
+                       <input type="hidden" name="ordenes[<?=$valores['id_proceso'] ?>]"  value="<?=$valores['id_orden'] ?>">
+                       <input type="hidden" name="procesos[<?=$valores['id_proceso'] ?>]"  value="<?=$valores['id_proceso'] ?>">
+
+
+
                           <p class="elem" <?=($element=='Desconocido')? 'style="font-size:15px;"':''; ?> ><?php echo  trim($element); ?><br><span><?= $valores['reproceso']?></span></p>
                           <p class="product" style="display: none;"><?= $valores['num_odt']?></p>
                         </div>
@@ -620,7 +593,7 @@ legend{
                <div class="form-group" style="width:81% ;margin:0 auto;">
                <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
-                <?php if ($_SESSION['machineName']=='Serigrafia'||$_SESSION['machineName']=='Serigrafia2'||$_SESSION['machineName']=='Serigrafia3') { ?>
+                <?php if ($_SESSION['processID']==10) { ?>
                
 
                 <div class="two-columns">
@@ -747,7 +720,7 @@ legend{
                 <input hidden name="horadeldiaam" id="horadeldiaeat" value="<?php echo date(" H:i:s",time()); ?>" />
                  <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <input hidden name="fechadeldiaam" id="fechadeldiaam" value="<?php echo date("d-m-Y"); ?>" />
-                <input hidden name="maquina" id="maquina" value="<?=$machineName?>"  />
+                <input hidden name="maquina" id="maquina" value="<?=$stationName?>"  />
                   <!-- Form Name -->
                  <legend style="font-size:18pt; font-family: 'monse-bold';"></legend>
                 
@@ -840,7 +813,7 @@ if (!empty($update)) {
  // kb=false;
   var form='<form id="virtualform"><div class="vform"><p>Numero de ODT:</p>'+
   ' <input type="hidden" name="entorno" value="virtual">'+
-  ' <input type="hidden" name="machine" value="<?=$machineName; ?>">'+
+  ' <input type="hidden" name="machine" value="<?=$stationName; ?>">'+
   ' <input type="text" readonly required="true" name="virtualodt" id="virtualodt" >'+
   '<p id="podt" style="display:none">Rellena este campo</p></div>'+
   '<div class="vform"><p>Parte:</p>'+
@@ -877,6 +850,7 @@ var segundosdeldia=$('#segundosdeldia').val();
                      success:function(data){ 
                        $('#actual_tiraje').html(data);
                        $('#tiro').html(data);
+                       console.log(data);
                         var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
                        var tiroactual=$('#actual_tiro').val();
                        localStorage.setItem('fecha', utc);
@@ -995,7 +969,7 @@ $.ajax({
                       
                      type:"POST",
                      url:"mosaico.php",   
-                     data:{machineID:<?=$machineID ?>},  
+                     data:{processID:<?=$processID ?>},  
                        
                      success:function(data){ 
                        $('#elems-container').html(data);
@@ -1017,7 +991,7 @@ $.ajax({
                       
                      type:"POST",
                      url:"mosaico.php",   
-                     data:{machineID:<?=$machineID ?>},  
+                     data:{processID:<?=$processID ?>},  
                        
                      success:function(data){ 
                        $('#elems-container').html(data);
