@@ -17,7 +17,7 @@ $response['post']=$_POST['station_name'];
 
 
 $today=date("d-m-Y");
-                $check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND proceso=".$_POST['option']);
+                $check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND proceso=".$_POST['option']." AND estacion=".$_SESSION['stationID']);
                 $datas=mysqli_fetch_assoc($check);
                
                 if ($check->num_rows>0) {

@@ -25,11 +25,11 @@ $processName=$_SESSION['processName'];
 $processID = $_SESSION['processID'];
 $today=date("d-m-Y");
 
-$getActivity=$mysqli->query("SELECT * FROM sesiones WHERE estacion=$stationID AND fecha='$today' ");
+$getActivity=$mysqli->query("SELECT *,TIME_TO_SEC(inicio_ajuste) AS segundos_incio FROM sesiones WHERE estacion=$stationID AND fecha='$today' AND proceso=".$_SESSION['processID']);
     
 $activity=mysqli_fetch_assoc($getActivity);   
   
-
+$e_ajuste=mysqli_fetch_assoc($mysqli->query("SELECT ajuste_standard FROM estandares WHERE id_elemento=144 AND id_proceso=".$processID));
 
 
 
@@ -437,9 +437,10 @@ legend{
                         
                         </div>
                         </div>
+
                         <div class="timer-container">
                                     <div id="chronoExample">
-                                    <div id="timer"><span class="values">00:00:00</span></div>
+                                    <div id="timer" data-inicio="<?=(strtotime(date("H:i:s",time()))-strtotime($activity['inicio_ajuste']))-(((empty($activity['tiempo_alert_ajuste']))? 0: $activity['tiempo_alert_ajuste'])+((empty($activity['tiempo_comida']))? 0: $activity['tiempo_comida']))  ?>" data-estandar="<?=$e_ajuste['ajuste_standard'] ?>"><span class="values">00:00:00</span></div>
                                     <input type="hidden" id="elemvirtual" name="elemvirtual">
                                      <input type="hidden" id="idelemvirtual" name="idelemvirtual">
                                     <input type="hidden" id="odtvirtual" name="odtvirtual">
@@ -1002,4 +1003,4 @@ $.ajax({
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=31"></script>
+<script src="js/ajuste.js?v=33"></script>

@@ -43,10 +43,26 @@ $isdead=($totalT<=1200)? 2 : 1;
 $stationID = $_SESSION['stationID'];
 $horafin=date(" H:i:s", time());
 if ($radios=='Preparar Tinta') {
-	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,2)";
+	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_estacion, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,2)";
 }else{
-	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_maquina, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,$isdead)";
+	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_estacion, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,$isdead)";
 }
+
+
+$acum_alert=mysqli_fetch_assoc($mysqli->query("SELECT tiempo_alert_ajuste FROM sesiones WHERE operador=$userID AND fecha='$fechadeldiaam' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']));
+
+$tiempo_alert=$acum_alert['tiempo_alert_ajuste']+strtotime("1970-01-01 $tiempoalertamaquina UTC");
+
+$changestatus=$mysqli->query("UPDATE sesiones SET tiempo_alert_ajuste='$tiempo_alert' WHERE operador=$userID AND fecha='$fechadeldiaam' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
+
+
+	if ($changestatus) {
+		echo "tiempo alerta guardado";
+	}else{
+		printf($mysqli->error);
+	}
+
+
 
  $log->lwrite($_POST['logged_in'].": ".logpost($_POST),'ALERTAS_AJUSTE_'.date("d-m-Y"));
 $log->lwrite("Hora fin alerta: ".$horafin,'ALERTAS_AJUSTE_'.date("d-m-Y"));

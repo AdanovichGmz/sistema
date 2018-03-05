@@ -64,15 +64,18 @@ if($f=mysqli_fetch_assoc($sql)){
               header("Location: options.php");
            } else{
 
-                $getProcess=$mysqli->query("SELECT * FROM procesos_catalogo WHERE id_proceso=".$myProcess['id_proceso']);
-                $process = mysqli_fetch_assoc($getMyProcess); 
+                $getProcess="SELECT * FROM procesos_catalogo WHERE id_proceso=".$myProcess['id_proceso'];
+                $personal_proces=mysqli_fetch_assoc($mysqli->query($getProcess));
 
-                $_SESSION['stationID']=$f['id_estacion'];
-                $_SESSION['stationName']=$machine['nombre_estacion'];
-                $_SESSION['processName']=$process['nombre_proceso'];
-                $_SESSION['processID']=$process['id_proceso']; 
+                $process = mysqli_fetch_assoc($getMyProcess); 
+                $mystation=mysqli_fetch_assoc($mysqli->query("SELECT * FROM estaciones WHERE id_estacion=".$station['id_estacion']));
+
+                $_SESSION['stationID']=$station['id_estacion'];
+                $_SESSION['stationName']=$mystation['nombre_estacion'];
+                $_SESSION['processName']=$personal_proces['nombre_proceso'];
+                $_SESSION['processID']=$personal_proces['id_proceso']; 
                 $today=date("d-m-Y");
-                $check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND proceso=".$process['id_proceso']);
+                $check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND estacion=".$station['id_estacion']." AND proceso=".$personal_process['id_proceso']);
                 $datas=mysqli_fetch_assoc($check);
                
                 if ($check->num_rows>0) {
@@ -84,7 +87,7 @@ if($f=mysqli_fetch_assoc($sql)){
 
                         elseif ($datas['actividad_actual']=='tiro'){
                             
-                            $isVirtual=mysqli_fetch_assoc( $mysqli->query("SELECT elemento_virtual FROM personal_process WHERE status='actual' AND estacion=".$f['id_estacion']." "));
+                            $isVirtual=mysqli_fetch_assoc( $mysqli->query("SELECT elemento_virtual FROM personal_process WHERE status='actual' AND estacion=".$station['id_estacion']." "));
                             if ($isVirtual['elemento_virtual']!=null) {
                                header("Location: index3_5.php");
                             }else{
@@ -102,13 +105,15 @@ if($f=mysqli_fetch_assoc($sql)){
                                 $hora_actual=date(" H:i:s", time());
                                 if (strtotime($hora_actual)>=strtotime('09:00:00')) {
                                 $logged_in=$_SESSION['idUser'];
+                                 
                                      $pro_id=$process['id_proceso'];
-                                     $station_id=$f['id_estacion'];
-                                $op_query=$mysqli->query("INSERT INTO sesiones(operador,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha,inicio_ajuste) VALUES($logged_in,$station_id,$pro_id,2,1,1,1,'$today','$time')");
+                                     $station_id=$station['id_estacion'];
+                                $op_query=$mysqli->query("INSERT INTO sesiones(operador,estacion,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha,inicio_ajuste) VALUES($logged_in,$station_id,".$myProcess['id_proceso'].",2,1,1,1,'$today','$time')");
                                 if ($op_query) {
                                 header("Location: index2.php");
                             }else{
                                 printf($mysqli->error);
+                                
                             }
                                 }else{
                                     header("Location: asaichii.php");
@@ -116,14 +121,16 @@ if($f=mysqli_fetch_assoc($sql)){
                                 
                             }else{
                                   $logged_in=$_SESSION['idUser'];
-                                     $pro_id=$process['id_proceso'];
-                                     $station_id=$f['id_estacion'];
-                            $op_query=$mysqli->query("INSERT INTO sesiones(operador,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha,inicio_ajuste) VALUES($logged_in,$station_id,$pro_id,2,1,1,1,'$today','$time')");
+                                  
+                                     $station_id=$station['id_estacion'];
+                                     $in_query="INSERT INTO sesiones(operador,estacion,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha,inicio_ajuste) VALUES($logged_in,$station_id,".$myProcess['id_proceso'].",2,1,1,1,'$today','$time')";
+                            $op_query=$mysqli->query($in_query);
                             if ($op_query) {
                               header("Location: index2.php");
 
                             }else{
                                 printf($mysqli->error);
+                                echo $in_query;
                             }
 
                                 
@@ -136,7 +143,7 @@ if($f=mysqli_fetch_assoc($sql)){
 
 
 
-                header("Location: index2.php");
+                //header("Location: index2.php");
 
 
            }  
@@ -155,7 +162,7 @@ if($f=mysqli_fetch_assoc($sql)){
     
  
 
-        //header("Location: asaichii.php");
+        ////header("Location: asaichii.php");
         }else{
         echo '<script>alert("CONTRASEÑA INCORRECTA")</script> ';
 

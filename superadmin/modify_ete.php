@@ -638,7 +638,7 @@ border-top: solid 5px transparent;
    <option disabled="true" selected="true">Operarios</option>
  <option value="11">Alfonso</option>
  <option value="16">Armando</option>
-  <option value="14">Arturo</option>
+  <option value="17">Christian Acevedo</option>
   <option value="13">Christian</option>
   <option value="8">Eduardo</option>
   <option value="2" style="display: none;">Adan</option>

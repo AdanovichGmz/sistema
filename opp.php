@@ -106,7 +106,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
 
 $p_actual=$_SESSION['stationName'];
 
-
+$plans=(isset($_POST['plans']))? $_POST['plans']:'null';
 $ordenes=$_POST['ordenes'];
 $odetes=$_POST['odetes'];
 $procesos=$_POST['procesos'];
@@ -123,10 +123,11 @@ unset($procesos[$chosen]);
 $clean="DELETE FROM personal_process WHERE proceso_actual='$p_actual' ";
 $mysqli->query($clean);
 
-$query_chosen="INSERT INTO personal_process(id_pp,id_orden,num_odt,proceso_actual, id_proceso,status,orden_display) VALUES(null,$o_chosen,'$odt_chosen','$p_actual',$p_chosen, 'actual',1)";
+$query_chosen="INSERT INTO personal_process(id_pp,id_orden,num_odt,proceso_actual, id_proceso,status,orden_display,planillas_de) VALUES(null,$o_chosen,'$odt_chosen','$p_actual',$p_chosen, 'actual',1,$plans)";
+
 $insert_chosen=$mysqli->query($query_chosen);
 if ($insert_chosen) {
-  $query_session="UPDATE sesiones SET orden_actual='$odt_chosen',parte=$prod_chosen,id_orden=$o_chosen WHERE fecha='$today' AND estacion=$stationID ";
+  $query_session="UPDATE sesiones SET orden_actual='$odt_chosen',parte=$prod_chosen,id_orden=$o_chosen WHERE fecha='$today' AND estacion=$stationID AND proceso=".$_SESSION['processID'];
 $set_session=$mysqli->query($query_session);
 }else{
   printf($mysqli->error);
@@ -187,7 +188,7 @@ $i++;
 }
 ?>
 <script>
-  var message='hola perro';
+  
 </script>
 <?php
 

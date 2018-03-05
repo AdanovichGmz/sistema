@@ -143,8 +143,8 @@ var timer = new Timer();
  var timerEat = new Timer();
  var timerAlertm = new Timer();
 $(document).ready(function(){
-  if (localStorage.getItem('myTime')) {
-    if (localStorage.getItem('alertTime')) {
+ if (localStorage.getItem('alertTime')) {
+    
       $("#panelder2").animate({ left: '+=40%' }, 200);
       $("#panelder").animate({ right: '+=75%' }, 200);
       b = true;
@@ -159,16 +159,13 @@ $(document).ready(function(){
     $('#inicioAlerta').val(localStorage.getItem('inicioAlert'));
       console.log('horaalerta: '+alertsecs);
      console.log('alertie: '+localStorage.getItem('inicioAlert'));
-    }else{
-    var lastsecs=currentSeconds()-sec;
-    console.log();
+    }
+  else{
 
-    timer.start({startValues: {seconds: lastsecs}});
-    localStorage.setItem('myTime', lastsecs); 
-    }  
-  }else{
-    timer.start();
-    localStorage.setItem('myTime', sec); 
+    var starting=$('#tirajeTime').data('inicio');
+    console.log(starting);
+    timer.start({startValues: {seconds: starting}});
+    //localStorage.setItem('myTime', sec); 
 
 
   }
@@ -279,11 +276,12 @@ timer.addEventListener('started', function (e) {
           var mach=$('#mach').val();
           var elem=$('#el').val();
           var tm=$('#table-machine').val();
+         
                    $.ajax({  
                       
                      type:"POST",
                      url:"avance.php",   
-                     data:{tiempo:tiem,maquina:mach,elemento:elem,tabm:tm},  
+                     data:{tiempo:tiem,proceso:mach,elemento:elem,tabm:tm},  
                        
                      success:function(data){ 
                        
@@ -419,7 +417,7 @@ $('.radio-menu').click(function() {
   
          event.preventDefault();
          //var mac=$('#mac').val();
-         timerAlertm.pause();
+    timerAlertm.pause();
     $('#timealerta').val(timerAlertm.getTimeValues().toString());
     console.log(timerAlertm.getTimeValues().toString());
     showLoad();

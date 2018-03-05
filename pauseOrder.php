@@ -1,5 +1,6 @@
 <?php 
 date_default_timezone_set("America/Mexico_City");  
+session_start();
 require('saves/conexion.php');
 require('classes/functions.class.php');
 $log = new Functions();
@@ -51,6 +52,12 @@ if ($paused) {
 		$del['query']=$query;
 		echo json_encode($del);
 	}
+	$userID=$_SESSION['idUser'];
+	$today=date("d-m-Y");
+	$mysqli->query("UPDATE sesiones SET tiro_actual=NULL, tiempo_alerta=NULL,tiempo_comida=NULL, inicio_ajuste='".date(" H:i:s", time())."' WHERE operador=$userID AND fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
+
+
+  
 	
 }else{
 	$querytiraje="UPDATE tiraje SET pedido=$cantpedido, cantidad=$cantrecib, buenos=$buenos, piezas_ajuste=$ajuste, defectos=$defectos, merma=$merma, entregados=$entregados, tiempoTiraje='$tpausa', horadeldia_tiraje='$hora', fechadeldia_tiraje='$fecha', producto='$producto' WHERE id_orden=$idorden AND fechadeldia_ajuste='$fecha'";

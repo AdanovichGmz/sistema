@@ -20,7 +20,7 @@ $resultado = $mysqli->query($query);
 
  $lastTiraje=$mysqli->insert_id;
 
-$mysqli->query("UPDATE sesiones SET tiro_actual=$lastTiraje WHERE fecha='$today' AND estacion=".$_SESSION['stationID']);
+$mysqli->query("UPDATE sesiones SET tiro_actual=$lastTiraje WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
 
 
  $log->lwrite('Tiraje recien insertado: '.$lastTiraje.' usuario: '.$userID,'INIT_TIRO');

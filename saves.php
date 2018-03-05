@@ -67,6 +67,7 @@ function logpost($post){
        $tiempo      = $_POST['tiempo'];
        $ontime      = $_POST['ontime'];
         $nommaquina  = $_SESSION['stationName'];
+        $stationID  = $_SESSION['stationID'];
         $userID   = $_SESSION['idUser'];
         $orderodts=$_POST['orderodts'];
         $horadeldia  = $_POST['horadeldia'];
@@ -76,7 +77,7 @@ function logpost($post){
         $tirajeActual=$_POST['actual_tiro'];
         $horafinajuste=date("H:i:s",time());
         $today=date("d-m-Y");
-        $changestatus=$mysqli->query("UPDATE operacion_estatus SET en_tiempo=1 WHERE fecha='$today' AND maquina=$machineID ");
+        $changestatus=$mysqli->query("UPDATE sesiones SET en_tiempo=1,tiempo_alert_ajuste=NULL, tiempo_comida=NULL WHERE fecha='$today' AND estacion=$stationID AND proceso=".$_SESSION['processID']);
         //$odetes= explode(',',$_POST['orderodts'])
         $log->lwrite(logpost($_POST),'AJUSTES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
         $log->lwrite('hora_fin_ajuste: '.$horafinajuste,'AJUSTES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
@@ -171,7 +172,7 @@ function logpost($post){
         }
         }
 
-        $init_tiro=$mysqli->query("UPDATE sesiones SET inicio_tiro='$horafinajuste' WHERE fecha='$today' AND estacion=".$_SESSION['stationID']);
+        $init_tiro=$mysqli->query("UPDATE sesiones SET inicio_tiro='$horafinajuste' WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
       }
        
      } 
@@ -180,18 +181,13 @@ function logpost($post){
      /*********** Guardando Tiraje ***********/
       elseif ($section=='tiraje') {
                 $log->lwrite($_SESSION['logged_in']." ".logpost($_POST),'TIRAJES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
-            
-
-            //$log->lwrite(json_encode($_POST),'UPDATING');
-              
-            if ($_POST['qty']=='single') {
-
+          
             $planillas=(!empty($_POST['planillas']))? $_POST['planillas'] : 'null';  
             $isvirtual=(isset($_POST['isvirtual'])? $_POST['isvirtual'] :'false');
             $producto=(isset($_POST['producto'])) ?$_POST['producto'] : '';
             $numodt=(isset($_POST['numodt'])) ?$_POST['numodt'] : '';
             $logged_in=$_POST['logged_in'];
-            $nombremaquina=$_POST['nombremaquina'];
+            
             $table_mac=(isset($_POST['table-machine']))? $_POST['table-machine'] : 1;
             $odt=(isset($_POST['odt']))? $_POST['odt'] : '';
             $pedido=(isset($_POST['pedido'])) ?(($planillas=='null')? $_POST['pedido'] : $_POST['pedido']/$planillas) : '';
@@ -215,17 +211,17 @@ function logpost($post){
 
       $log->lwrite( $isvirtual,'UPDATING');
            $horaTiraje     = date(" H:i:s", time());
-            $userID = $_SESSION['id'];
+            $userID = $_SESSION['idUser'];
             
             $seconds = strtotime("1970-01-01 $tiempoTiraje UTC");
             
            
-            $machineID = $_SESSION['machineID'];
+            $machineID = $_SESSION['stationID'];
             $stationName = $_SESSION['stationName'];
            
 
-             $processID=($machineID==20||$machineID==21)? 10:(($machineID==23)? 16 : (($machineID==22)? 9 : $machineID) );
-            $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$processID AND id_elemento= $element";
+             $processID=$_SESSION['processID'];
+            $standar_query2 = "SELECT * FROM estandares WHERE id_proceso=$processID AND id_elemento= $element";
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
             $estandar       = $getstandar['piezas_por_hora'];
             
@@ -291,9 +287,7 @@ function logpost($post){
              $log->lwrite($query,'UPDATING');
               $log->lclose();
             $cleanPersonal=$mysqli->query("DELETE FROM personal_process WHERE proceso_actual='$stationName'");
-             $cleanall=$mysqli->query("DELETE FROM odt_flujo WHERE proceso='$stationName'");
-             if (!$cleanall) {
-               printf($mysqli->error);             }
+            
                if (!$cleanPersonal) {
                printf($mysqli->error);             }
                if (!$resultado) {
@@ -356,7 +350,7 @@ function logpost($post){
             $mysqli->query($querymerma);
             if ( $resultado) {
             //$mysqli->query("UPDATE ordenes SET proceso_completado='true' WHERE idorden=$numodt");  
-            $_GET['mivariable'] = $nombremaquina;
+           
 
             //include("encuesta.php");
             //guardando personal******************************************************
@@ -413,41 +407,9 @@ function logpost($post){
             $i3p++;
             }
           }else{ //si no hay mas partes pendientes para esta orden, la marcamos como completada
-
-              //ahora actualizamos el flujo
-              $quitFlow=$mysqli->query("DELETE FROM odt_flujo WHERE proceso='$stationName' AND status='actual' ");
-              if ($quitFlow) {
-                 $sqlpf="SELECT * FROM odt_flujo WHERE proceso='$stationName' order by orden_display asc";
-            $ordspf=$mysqli->query($sqlpf);
-            $ipf=1;
-            while($arrpf=mysqli_fetch_array($ordspf)) {
-              $resultspf[$ipf] = $arrpf;
-              $ipf++;
-            }
-            $i3pf=1;
-            foreach ($resultspf as $row2pf) {
-              $idpf=$row2pf['id_flujo'];
-              $old_statuspf=$row2pf['status'];
-              
-                if ($old_statuspf=='siguiente') {
-                 $statuspf='actual';
-                }
-                 elseif ($old_statuspf=='preparacion') {
-                  $statuspf='siguiente';
-                }
-                elseif ($old_statuspf=='programado1') {
-                  $statuspf='preparacion';
-                }
-                else{ 
-                  $progNumpf=$i3pf-3;
-                  $statuspf='programado'.$progNumpf;
-                }
-             $update3pf ="UPDATE odt_flujo SET orden_display = $i3pf , status='$statuspf' WHERE id_flujo= $idpf";
-            $updpf= $mysqli->query($update3pf);
-          
-            $i3pf++;
-            }
-               } 
+            $userID=$_SESSION['idUser'];
+        $today=date("d-m-Y");
+        $mysqli->query("UPDATE sesiones SET orden_actual='--' WHERE operador =$userID AND fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
               
 
 
@@ -455,7 +417,6 @@ function logpost($post){
 
             //termina guardando personal******************************************************
 
-            
 
 
             }else{
@@ -469,127 +430,7 @@ function logpost($post){
                         $log->lclose();
                       }
             }
-            } elseif ($_POST['qty']=='multi') {
-              print_r($_POST);
-              $hora=$_POST['hour'];
-              $buenos=$_POST['buenos'];
-              $defectos=$_POST['defectos'];
-              $ajuste=$_POST['ajuste'];
-              $productos=$_POST['productos'];
-              $odetes=$_POST['odetes'];
-              $mermasrecib=$_POST['mermasrecib'];
-              $mermasent=$_POST['mermasent'];
-              $recibidos=$_POST['recibidos'];
-              $pedidos=$_POST['pedidos'];
-              $tiempotiraje=$_POST['tiempoTiraje'];
-              $logged=$_SESSION['id'];
-              $fecha=$_POST['fechadeldia'];
-              $mac_maquina=$_POST['nombremaquina'];
-              $horasdeldia=$_POST['horadeldia'];
-              $numodt=$_POST['numodt'];
-              $odt=$_POST['odt'];
-                 $seconds = strtotime("1970-01-01 $tiempotiraje UTC");          
-              $log->lwrite('Ordenes guardadas','multi');
-              $log->lwrite($odetes,'multi');
-              $log->lclose();
-
-              foreach ($buenos as $key =>$bueno) {
-
-                $producto=$productos[$key];
-                $pedido=$pedidos[$key];
-                $cantidad=$recibidos[$key];
-                $buenoss=$buenos[$key];
-                $defecto= $defectos[$key];
-                $merma= $mermasrecib[$key];
-                $ajust= $ajuste[$key];
-                $merma_entregada= $mermasent[$key];
-                $entregados= $buenos[$key];
-                
-                
-               
-                
-                $machineID = $_SESSION['machineID'];
-                $stationName = $_SESSION['stationName'];
-                
-                 $standar_query2 = "SELECT * FROM estandares WHERE id_maquina=$machineID AND id_elemento= $producto";
-            
-            $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
-            $estandar       = $getstandar['piezas_por_hora'];
-            //calculando desempeño para pieza actual
-            $tiraje_estandar=($seconds*$estandar)/3600;
-            
-            $tiraje_desemp=($entregados*100)/$tiraje_estandar;
-            echo $standar_query2;
-                $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenoss, defectos=$defecto, merma=$merma,piezas_ajuste=$ajust, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempotiraje', fechadeldia_tiraje='$fecha', horadeldia_tiraje='$horasdeldia',desempenio=$tiraje_desemp, id_user=$logged WHERE horadeldia_ajuste='$hora'  AND id_maquina=$machineID AND id_orden=$key";
-                $inserted=$mysqli->query($query);
-                  if ($inserted) {
-                    
-                  }
-                  else{
-                    printf($mysqli->error);
-                    echo "<pre>";
-                    print_r($_POST);
-                    echo "</pre>";
-                    echo $query;
-                    $log->lwrite('tiraje multi','multi-error');
-                       $log->lwrite('error al completar ajustes con tirajes','multi-error');
-                       $log->lwrite('orden'.$key,'multi-error');
-                        $log->lwrite(printf($mysqli->error),'multi-error');
-                        $log->lwrite($query,'multi-error');
-                        $log->lclose();
-
-                  }
-              }
-                //include("encuesta.php");
-
-                    $cleanquery="DELETE FROM orden_estatus WHERE proceso_actual='$stationName' AND status='actual'";
-                    $clean=$mysqli->query($cleanquery);
-                    if ($clean) {
-                     $sql="SELECT * FROM orden_estatus WHERE proceso_actual='$stationName' ORDER BY orden_display ASC";
-                     $ords=$mysqli->query($sql);
-                    }
-
-                    $i=1;
-
-
-                    while($arr=mysqli_fetch_array($ords)) {
-                      
-                      $results[$i] = $arr;
-                      $i++;
-                    }
-
-                    $i3=1;
-                    
-                    foreach ($results as $row2) {
-                     
-                      $id=$row2['id_orden'];
-                      $old_status=$row2['status'];
-                      $idprs=$row2['id_proceso'];
-                        if ($old_status=='siguiente') {
-                         $status='actual';
-                        }
-                         elseif ($old_status=='preparacion') {
-                          $status='siguiente';
-                        }
-                        elseif ($old_status=='programado1') {
-                          $status='preparacion';
-                        }
-                        else{ 
-                          $progNum=$i3-3;
-                          $status='programado'.$progNum;
-                        }
-                     $update3 = "UPDATE orden_estatus SET orden_display = $i3 , status='$status' WHERE id_orden= $id AND id_proceso=$idprs";
-                    $upd= $mysqli->query($update3);
-                    if ($upd) {
-                     echo "todo bien";
-                    }else{
-                      prinf($mysqli->error);
-                    }
-                    $i3++;
-                    }
-
-             
-            }
+           
 
 
 
@@ -601,6 +442,7 @@ function logpost($post){
       elseif ($section=='encuesta') {
 
         print_r($_POST);
+       
         
         $horadeldia=$_POST['horadeldia'];
         $fechadeldia=$_POST['fechadeldia'];
@@ -613,12 +455,19 @@ function logpost($post){
         $lastOrder=$_POST['idorden'];
 
         
-        $userID = $_SESSION['id'];
+        $userID = $_SESSION['idUser'];
         
-        $machineID = $_SESSION['machineID'];
+        $machineID = $_SESSION['stationID'];
         $stationName = $_SESSION['stationName'];
 
-        $query="INSERT INTO encuesta (id_usuario, id_maquina, horadeldia, fechadeldia, desempeno, problema, calidad, problema2, observaciones) VALUES ('$userID','$machineID','$horadeldia','$fechadeldia','$desempeno','$problema','$calidad','$problema2','$observaciones')";
+        $today=date("d-m-Y");
+        $next=date(" H:i:s", time());
+        $setNext="UPDATE sesiones SET inicio_ajuste='$next',parte='--',tiempo_alert=null,tiempo_comida=null WHERE operador =$userID AND fecha='$today' AND estacion=".$machineID." AND proceso=".$_SESSION['processID']." AND proceso=".$_SESSION['processID'];
+
+        $mysqli->query($setNext);
+
+
+        $query="INSERT INTO encuesta (id_usuario, id_estacion, horadeldia, fechadeldia, desempeno, problema, calidad, problema2, observaciones) VALUES ('$userID','$machineID','$horadeldia','$fechadeldia','$desempeno','$problema','$calidad','$problema2','$observaciones')";
 
 
         $resultado=$mysqli->query($query);
@@ -640,47 +489,7 @@ function logpost($post){
             return false;
         }
 
-          if ($_POST['qty']=='multi') {
-            $arr_odetes=explode(',', $odt);
-            foreach (explode(',',$lastOrder) as $key => $order) {
-              $arr_odt=$arr_odetes[$key];
-              
-               $process=($stationName=='Serigrafia2'||$stationName=='Serigrafia3')?'Serigrafia':(($stationName=='Suaje2')? 'Suaje' : $stationName );
-             
-          $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_orden=$order AND nombre_proceso='$process'";
-        $mysqli->query($queryavance);
-        $query_deliv="SELECT avance FROM procesos WHERE numodt='$arr_odt' AND id_orden=$order ";
-
-        $deliv=$mysqli->query($query_deliv);
-        while($arrd=mysqli_fetch_array($deliv)) { $deliver[] = $arrd['avance']; }
-        $b = array('inicio','en pausa','retomado');
-
-        $is_complete=is_in_array($b, $deliver);
-        
-        if ($is_complete==false) {
-          $querydeliv="UPDATE ordenes SET entregado='true' WHERE idorden=$lastOrder";
-        $mysqli->query($querydeliv);
-        }
-        }
-        $queryOrden="SELECT o.*,p.id_proceso,(SELECT orden_display FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS orden_display,(SELECT status FROM orden_estatus WHERE id_orden=o.idorden AND id_proceso=p.id_proceso) AS status FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden WHERE nombre_proceso='$stationName' HAVING status='actual'";
-        $asoc=($mysqli->query($queryOrden));
-        while($getAct=mysqli_fetch_assoc($asoc)){
-          $getActODT[] = $getAct['numodt'];
-          $ordenActual[] = $getAct['idorden'];
-          
-        }
-        if( !session_id() ){ session_start(); }
-        if(@$_SESSION['logged_in'] != true){
-            echo '
-            <script>
-                alert("La sesion se cerro inseperadamente, favor de iniciar sesion otra vez");
-                self.location.replace("index.php");
-            </script>';
-        }
-
-        }
-        else{
-            $process=($stationName=='Serigrafia2'||$stationName=='Serigrafia3')?'Serigrafia':(($stationName=='Suaje2')? 'Suaje' : $stationName );
+        $process=$_SESSION['processName'];
            $pro=$_POST['process'];  
         $queryavance="UPDATE procesos SET estatus=1, avance=4 WHERE id_proceso=$pro ";
         $mysqli->query($queryavance);
@@ -760,7 +569,7 @@ function logpost($post){
         //header("Location: http://{$_SERVER['SERVER_NAME']}/unify/index2.php");
         }
 
-        }
+        
 
          }else{
                     printf("Errormessage: %s\n", $mysqli->error);

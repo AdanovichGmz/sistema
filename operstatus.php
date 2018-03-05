@@ -27,7 +27,7 @@ if ($check->num_rows==0) {
 }
 elseif ($section=='ajuste') {
 
-	$check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND estacion=".$_SESSION['stationID']);
+	$check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
 
 if ($check->num_rows==0) {
 	$op_query=$mysqli->query("INSERT INTO sesiones(operador,estacion,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha) VALUES($logged_in,$stationID,$pro_id,2,1,1,1,'$today')");
@@ -39,7 +39,7 @@ if ($check->num_rows==0) {
 	}
 }else{
 
-	$changestatus=$mysqli->query("UPDATE sesiones SET actividad_actual=2 WHERE fecha='$today' AND estacion=".$_SESSION['stationID']);
+	$changestatus=$mysqli->query("UPDATE sesiones SET actividad_actual=2 WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
 
 	if ($changestatus) {
 		echo "estatus cambiado a ajuste";
@@ -50,7 +50,7 @@ if ($check->num_rows==0) {
 	
 }
 elseif ($section=='tiro') {
-	$check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today'AND estacion=".$_SESSION['stationID']);
+	$check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today'AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
 
 if ($check->num_rows==0) {
 	$op_query=$mysqli->query("INSERT INTO operacion_estatus(operador,maquina,actividad_actual,en_tiempo,fecha) VALUES($logged_in,$stationID,1,1,'$today')");
@@ -61,7 +61,7 @@ if ($check->num_rows==0) {
 	}
 
 }else{
-	$changestatus=$mysqli->query("UPDATE sesiones SET actividad_actual=3 WHERE fecha='$today' AND estacion=".$_SESSION['stationID']);
+	$changestatus=$mysqli->query("UPDATE sesiones SET actividad_actual=3 WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
 	if ($changestatus) {
 		echo "estatus cambiado a tiro";
 	}else{
@@ -72,7 +72,7 @@ if ($check->num_rows==0) {
 }
 elseif ($section=='comida') {
 	
-	$changestatus=$mysqli->query("UPDATE operacion_estatus SET actividad_actual=6 WHERE fecha='$today' AND maquina=$stationID ");
+	$changestatus=$mysqli->query("UPDATE sesiones SET actividad_actual=6 WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
 	if ($changestatus) {
 		echo "estatus cambiado a comida";
 	}else{
@@ -89,7 +89,7 @@ elseif ($section=='paro') {
 elseif ($section=='alerta') {
 
 
-	$changestatus=$mysqli->query("UPDATE operacion_estatus SET actividad_actual=4 WHERE fecha='$today' AND maquina=$stationID ");
+	$changestatus=$mysqli->query("UPDATE sesiones SET actividad_actual=4 WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
 
 
 	if ($changestatus) {
@@ -100,7 +100,7 @@ elseif ($section=='alerta') {
 }
 elseif ($section=='outtime') {
 
-	$changestatus=$mysqli->query("UPDATE operacion_estatus SET en_tiempo=2 WHERE fecha='$today' AND maquina=$stationID ");
+	$changestatus=$mysqli->query("UPDATE sesiones SET en_tiempo=2 WHERE fecha='$today' AND estacion=$stationID AND proceso=".$_SESSION['processID']);
 
 	if ($changestatus) {
 		echo "estatus cambiado a no en tiempo";

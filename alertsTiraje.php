@@ -1,6 +1,6 @@
 <?php
 
-$maquina=($_SESSION['machineID']==20||$_SESSION['machineID']==21)? 10 :( ($_SESSION['machineID']==22)? 9 : $_SESSION['machineID']);
+$maquina=$_SESSION['processID'];
 switch ($maquina){
     case 'corte':
     include("areas/maquinas/corte/ajustecorte.php");
@@ -79,11 +79,11 @@ switch ($maquina){
 
      //echo $nommaquina;
         break;
-  case 'Placa':
+  case 9:
             
         $options[]='ODT Confusa';
        $options[]='ODT Faltante' ;
-       $options[]= 'Falta Albanene';
+       $options[]= 'No tengo material';
        $options[]= 'Material Incompleto' ;
    
             
