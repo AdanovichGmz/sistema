@@ -14,7 +14,7 @@ $userID = $_SESSION['idUser'];
 $stationID = $_SESSION['stationID'];
 
 
-$query     = "INSERT INTO tiraje(id_estacion,horadeldia_ajuste, fechadeldia_ajuste,id_user) VALUES ($stationID,'$hora','$fecha', $userID)";
+$query     = "INSERT INTO tiraje(id_estacion,horadeldia_ajuste, fechadeldia_ajuste,id_user,id_sesion) VALUES ($stationID,'$hora','$fecha', $userID, ".$_SESSION['stat_session'].")";
             
 $resultado = $mysqli->query($query);
 

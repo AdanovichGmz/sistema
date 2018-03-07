@@ -110,7 +110,22 @@ if($f=mysqli_fetch_assoc($sql)){
                                      $station_id=$station['id_estacion'];
                                 $op_query=$mysqli->query("INSERT INTO sesiones(operador,estacion,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha,inicio_ajuste) VALUES($logged_in,$station_id,".$myProcess['id_proceso'].",2,1,1,1,'$today','$time')");
                                 if ($op_query) {
+                                    $_SESSION['stat_session']=$mysqli->insert_id;
+                                    $init_tiraje     = "INSERT INTO tiraje(id_estacion,horadeldia_ajuste, fechadeldia_ajuste,id_user,id_sesion) VALUES ($station_id,'$hora_actual','$today', $logged_in, ".$_SESSION['stat_session'].")";
+            
+                                $resultado = $mysqli->query($init_tiraje);
+                                if ($resultado) {
+                                   $lastTiraje=$mysqli->insert_id;
+
+                                $mysqli->query("UPDATE sesiones SET tiro_actual=$lastTiraje WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
+
                                 header("Location: index2.php");
+                                }else{
+                                    printf($mysqli->error);
+                                    echo "No se inserto el tiraje";
+                                }
+
+                                 
                             }else{
                                 printf($mysqli->error);
                                 
@@ -126,6 +141,20 @@ if($f=mysqli_fetch_assoc($sql)){
                                      $in_query="INSERT INTO sesiones(operador,estacion,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha,inicio_ajuste) VALUES($logged_in,$station_id,".$myProcess['id_proceso'].",2,1,1,1,'$today','$time')";
                             $op_query=$mysqli->query($in_query);
                             if ($op_query) {
+                                $_SESSION['stat_session']=$mysqli->insert_id;
+                                    $init_tiraje     = "INSERT INTO tiraje(id_estacion,horadeldia_ajuste, fechadeldia_ajuste,id_user,id_sesion) VALUES ($station_id,'$hora_actual','$today', $logged_in, ".$_SESSION['stat_session'].")";
+            
+                                $resultado = $mysqli->query($init_tiraje);
+                                if ($resultado) {
+                                   $lastTiraje=$mysqli->insert_id;
+
+                                $mysqli->query("UPDATE sesiones SET tiro_actual=$lastTiraje WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
+
+                                header("Location: index2.php");
+                                }else{
+                                    printf($mysqli->error);
+                                    echo "No se inserto el tiraje";
+                                }
                               header("Location: index2.php");
 
                             }else{

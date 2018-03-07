@@ -30,7 +30,7 @@ $getActivity=$mysqli->query("SELECT *,TIME_TO_SEC(inicio_ajuste) AS segundos_inc
 $activity=mysqli_fetch_assoc($getActivity);   
   
 $e_ajuste=mysqli_fetch_assoc($mysqli->query("SELECT ajuste_standard FROM estandares WHERE id_elemento=144 AND id_proceso=".$processID));
-
+$_SESSION['ajusteStandard']=$e_ajuste['ajuste_standard'];
 
 
 $getElementStandar=$mysqli->query("SELECT * FROM estandares e INNER JOIN elementos el ON e.id_elemento=el.id_elemento WHERE e.id_proceso=$processID ORDER BY nombre_elemento ASC");
@@ -390,6 +390,7 @@ legend{
 <div id="formulario"></div>
     
      <input type="hidden" id="idmachine" value="<?=$stationID ?>">
+     <input type="hidden" id="idproces" value="<?=$processID ?>">
     <input type="hidden" id="order" value="<?= (isset($ordenActual))? implode(",", $ordenActual)  : ((isset($stoppedOrderID))? $stoppedOrderID : '') ;?>">
     <div class="msj">
         <img src="images/msj.fw.png" />
@@ -440,10 +441,11 @@ legend{
 
                         <div class="timer-container">
                                     <div id="chronoExample">
-                                    <div id="timer" data-inicio="<?=(strtotime(date("H:i:s",time()))-strtotime($activity['inicio_ajuste']))-(((empty($activity['tiempo_alert_ajuste']))? 0: $activity['tiempo_alert_ajuste'])+((empty($activity['tiempo_comida']))? 0: $activity['tiempo_comida']))  ?>" data-estandar="<?=$e_ajuste['ajuste_standard'] ?>"><span class="values">00:00:00</span></div>
+                                    <div id="timer" data-inicio="<?=(strtotime(date("H:i:s",time()))-strtotime($activity['inicio_ajuste']))-(((empty($activity['tiempo_alert_ajuste']))? 0: $activity['tiempo_alert_ajuste'])+((empty($activity['tiempo_comida']))? 0: $activity['tiempo_comida']))  ?>" data-estandar="<?=$e_ajuste['ajuste_standard'] ?>" data-perro="<?=gmdate("H:i:s",$e_ajuste['ajuste_standard']) ?>"><span class="values">00:00:00</span></div>
                                     <input type="hidden" id="elemvirtual" name="elemvirtual">
                                      <input type="hidden" id="idelemvirtual" name="idelemvirtual">
                                     <input type="hidden" id="odtvirtual" name="odtvirtual">
+                                    <input type="hidden" name="actual_tiro" value="<?=$activity['tiro_actual'] ?>">
                                     <input type="hidden" id="timee" name="tiempo">
                                     <input type="hidden" id="ontime" name="ontime" value="true">
                                 </div>
@@ -471,7 +473,7 @@ legend{
                         </form>
                         
                             <div class="row "> <a href="logout.php" > 
-                                 <div class="pause red"><div class="pauseicon"><img src="images/exit-door.png"></div><div class="pausetext">SALIR</div></div></a>
+                                 <div class="pause red"><div class="pauseicon"><img src="images/exit-door.png"></div><div class="pausetext  exit-session">SALIR</div></div></a>
                                  
                                  <div class="endOfDay blue" onclick="endOfDay()"><div class="pauseicon"><img src="images/reloj.png"></div><div class="pausetext">FIN DEL DIA</div></div>
                             </div>
@@ -714,7 +716,7 @@ legend{
           <div id="estilo">
              <form id="fo3" name="fo3" action="saveeat.php" method="post" class="form-horizontal" onSubmit=" return limpiar();" >
                 <fieldset style="position: relative;left: -15px;"> 
-                <input type="hidden" id="act_tiro" name="act_tiro">
+                <input type="hidden" id="act_tiro" name="act_tiro" value="<?=$activity['tiro_actual'] ?>">
                 <input type="hidden" name="curr-section" value="ajuste">  
                 <input type="hidden" id="inicioAlertaEat" name="inicioAlertaEat">             
                 <input hidden type="text"  name="logged_in" id="logged_in" value="<?php echo "". $_SESSION['logged_in'] ?>" />
@@ -829,13 +831,14 @@ if (!empty($update)) {
    $('#odtresult').html(form);
    $('#virtualodt').focus();
 }
+/*
 $(document).ready(function() { 
 var hora=$('#horadeldia').val();
 var fecha=$('#fechadeldia').val();
 var segundosdeldia=$('#segundosdeldia').val();
 
 
-  if (localStorage.getItem('horaincio')) {
+  if (localStorage.getItem('horaincio')&&localStorage.getItem('station')==$('#idmachine').val()&&localStorage.getItem('process')==$('#idproces').val()) {
    
     console.log('No se insertara un nuevo tiro porque ya existe');
     var tiroactual='<input type="hidden" name="actual_tiro" id="actual_tiro" value="'+localStorage.getItem('tiroactual')+'">';
@@ -855,17 +858,18 @@ var segundosdeldia=$('#segundosdeldia').val();
                         var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
                        var tiroactual=$('#actual_tiro').val();
                        localStorage.setItem('fecha', utc);
-                       localStorage.setItem('horaincio', hora);
+                       
+                       
                        localStorage.setItem('segundosincio', segundosdeldia);  
                        localStorage.setItem('tiroactual', tiroactual); 
                        $('#act_tiro').val(tiroactual);
                      }  
                 });
-  }
+  } 
 
 
 
- });
+ });*/
 function endOfDay(){
   var lastiro=$('#actual_tiro').val();
   var now = new Date();
@@ -890,6 +894,9 @@ $(document).on("click", ".other", function () {
   $("#virtualelem").attr("placeholder", "Escribe la parte..");
     getKeys('virtualelem','cosa');
 });
+
+
+
 
 $(document).on("click", ".elem-button", function () {
   var id=$(this).data("id");
@@ -1003,4 +1010,4 @@ $.ajax({
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=33"></script>
+<script src="js/ajuste.js?v=34"></script>

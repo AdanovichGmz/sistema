@@ -87,21 +87,11 @@ function logpost($post){
           $virtOdt=$_POST['odtvirtual'];
           $virtElem=$_POST['elemvirtual'];
             if ($ontime=='false') {
-              if ($machineID==16||$machineID==23) {
-               $tiempoajuste='"01:00:00.000000"';
-              }else{
-
-                $tiempoajuste='"00:20:00.000000"';
-              }
-           
+                $tiempoajuste=gmdate("H:i:s",$_SESSION['ajusteStandard']);
             
-          }else{
-            if ($machineID==16||$machineID==23) {
-                $tiempoajuste= ' TIMEDIFF("01:00:00.000000","'.$tiempo.'")';
-              }else{
-                
-                 $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
-              }
+            }else{
+            
+                 $tiempoajuste= ' TIMEDIFF("'.gmdate("H:i:s",$_SESSION['ajusteStandard']).'.000000","'.$tiempo.'")';
            
           }
             
@@ -138,10 +128,10 @@ function logpost($post){
         $odetes=implode(",", $odt);
         foreach ($numodt as $odt) {
           if ($ontime=='false') {
+                $tiempoajuste=gmdate("H:i:s",$_SESSION['ajusteStandard']);
             
-            $tiempoajuste='"00:20:00.000000"';
-          }else{
-            $tiempoajuste= ' TIMEDIFF("00:20:00.000000","'.$tiempo.'")';
+            }else{
+                 $tiempoajuste= ' TIMEDIFF("'.gmdate("H:i:s",$_SESSION['ajusteStandard']).'.000000","'.$tiempo.'")';
           }
             $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', horadeldia_tiraje='$horafinajuste', id_orden=$odt WHERE idtiraje=$tirajeActual";
            
@@ -462,12 +452,35 @@ function logpost($post){
 
         $today=date("d-m-Y");
         $next=date(" H:i:s", time());
-        $setNext="UPDATE sesiones SET inicio_ajuste='$next',parte='--',tiempo_alert=null,tiempo_comida=null WHERE operador =$userID AND fecha='$today' AND estacion=".$machineID." AND proceso=".$_SESSION['processID']." AND proceso=".$_SESSION['processID'];
 
-        $mysqli->query($setNext);
+
+
+        /************* Siguiente tiraje ************/
+         $init_tiraje     = "INSERT INTO tiraje(id_estacion,horadeldia_ajuste, fechadeldia_ajuste,id_user,id_sesion) VALUES (".$_SESSION['stationID'].",'$next','$today', ".$_SESSION['idUser'].", ".$_SESSION['stat_session'].")";
+            
+                                $next_tiraje = $mysqli->query($init_tiraje);
+                                if ($next_tiraje) {
+                                   $nTiraje=$mysqli->insert_id;
+
+                               $setNext="UPDATE sesiones SET inicio_ajuste='$next',parte='--',tiro_actual=$nTiraje, tiempo_alert=null,tiempo_comida=null WHERE operador =$userID AND fecha='$today' AND estacion=".$machineID." AND proceso=".$_SESSION['processID'];
+
+                              $mysqli->query($setNext);
+
+                               
+                                }else{
+                                    printf($mysqli->error);
+                                    echo "no se inserto el siguiente tiro";
+                                } 
+      /************* Termina Siguiente tiraje ************/   
+
+
+
+        
 
 
         $query="INSERT INTO encuesta (id_usuario, id_estacion, horadeldia, fechadeldia, desempeno, problema, calidad, problema2, observaciones) VALUES ('$userID','$machineID','$horadeldia','$fechadeldia','$desempeno','$problema','$calidad','$problema2','$observaciones')";
+
+       
 
 
         $resultado=$mysqli->query($query);
@@ -574,6 +587,8 @@ function logpost($post){
          }else{
                     printf("Errormessage: %s\n", $mysqli->error);
                   }
+
+        
        
      }
      /*********** Termina Guardando Encuesta ***********/

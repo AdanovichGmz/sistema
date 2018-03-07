@@ -1,9 +1,14 @@
 <?php
       require('../saves/conexion.php');
-     error_reporting(0);
      
- $numodt = $_POST['fecha'];
+     
+ $fecha = $_POST['fecha'];
 $userid = $_POST['iduser'];
+
+$get_session=$mysqli->query("SELECT * FROM sesiones WHERE operador=$userid AND fecha='$fecha' ");
+
+$op_session=mysqli_fetch_assoc($get_session);
+
 
 function getComida($idtiraje, $section)
 {
@@ -13,58 +18,22 @@ function getComida($idtiraje, $section)
     return $tiempo_comida['real_comida'];
 }
 
-function getStandar($elem,$maquina)
+function getStandar($elem,$proceso)
 {
     include '../saves/conexion.php';
-    $idmaquina=($maquina==21||$maquina==20)? 10 : (($maquina==23)? 16 : $maquina);
+   
     $id_elem = mysqli_fetch_assoc($mysqli->query("SELECT id_elemento FROM elementos WHERE nombre_elemento='$elem' "));
     $elem=$id_elem['id_elemento'];
-    $cuerito="SELECT piezas_por_hora FROM estandares WHERE id_elemento=$elem AND id_maquina=$idmaquina ";
-    $estandar= mysqli_fetch_assoc($mysqli->query("SELECT piezas_por_hora FROM estandares WHERE id_elemento=$elem AND id_maquina=$idmaquina "));
+    $cuerito="SELECT piezas_por_hora FROM estandares WHERE id_elemento=$elem AND id_proceso=$proceso ";
+    $estandar= mysqli_fetch_assoc($mysqli->query("SELECT piezas_por_hora FROM estandares WHERE id_elemento=$elem AND id_proceso=$proceso "));
 
     return $estandar['piezas_por_hora'];
 }
 
+$query = "SELECT t.*,s.operador,s.estacion, s.proceso, o.numodt, o.producto,(SELECT nombre_elemento FROM elementos WHERE id_elemento = t.producto) AS element,((t.entregados - t.merma_entregada) - t.defectos) AS calidad,(SELECT piezas_por_hora FROM estandares WHERE id_elemento = t.producto AND id_proceso = s.proceso) AS estandar,TIME_TO_SEC(timediff(t.horafin_tiraje, t.horadeldia_tiraje)) AS dispon_tiro, TIME_TO_SEC(timediff(t.horafin_ajuste, t.horadeldia_ajuste)) AS dispon_ajuste, (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS comida_ajuste, (SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS ini_comida_ajuste, (SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='ajuste' AND radios='Comida' AND id_usuario =s.operador) AS fin_comida_ajuste, (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario =s.operador) AS comida_tiro, (SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=s.operador) AS ini_comida_tiro, (SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=s.operador) AS fin_comida_tiro, TIME_TO_SEC(t.tiempo_ajuste) AS seconds_ajuste, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,(SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=s.proceso) AS nom_proceso, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro ,TIME_TO_SEC(t.tiempoTiraje) AS seconds_tiraje FROM tiraje t INNER JOIN sesiones s ON t.id_sesion = s.id_sesion INNER JOIN ordenes o ON o.idorden = t.id_orden   WHERE fechadeldia_ajuste = '$fecha' AND t.id_user =$userid ORDER BY horadeldia_ajuste ASC";
 
-$query = "SELECT
-   t.*,
-   m.nommaquina,
-   o.numodt,
-   o.producto,
-   u.logged_in,
-   (SELECT nombre_elemento FROM elementos WHERE id_elemento = o.producto) AS element,
-   ((t.entregados - t.merma_entregada) - t.defectos) AS calidad,
-   (SELECT piezas_por_hora FROM estandares WHERE id_elemento = o.producto AND id_maquina = 10) AS estandar,
-   TIME_TO_SEC(tiempoTiraje) AS seconds_tiraje,
-   TIME_TO_SEC(timediff(horafin_tiraje, horadeldia_tiraje)) AS dispon_tiro,
-   TIME_TO_SEC(timediff(horafin_ajuste, horadeldia_ajuste)) AS dispon_ajuste,
-   (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS comida_ajuste,
-   (SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS ini_comida_ajuste,
-   (SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='ajuste' AND radios='Comida' AND id_usuario =$userid) AS fin_comida_ajuste,
-   (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario =$userid) AS comida_tiro,
-   (SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=$userid) AS ini_comida_tiro,
-   (SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=$userid) AS fin_comida_tiro,
-   TIME_TO_SEC(tiempo_ajuste) AS seconds_ajuste,
-   (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,
-   (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro 
-FROM
-   tiraje t 
-   LEFT JOIN
-      maquina m 
-      ON m.idmaquina = t.id_maquina 
-   LEFT JOIN
-      login u 
-      ON u.id = t.id_user 
-   LEFT JOIN
-      ordenes o 
-      ON o.idorden = t.id_orden 
-WHERE
-   fechadeldia_ajuste = '$numodt' 
-   AND t.id_user =$userid 
-ORDER BY
-   horadeldia_ajuste ASC";
 
-$asa_query = "SELECT *, TIME_TO_SEC(tiempo) AS tiempo_asaichi,TIME_TO_SEC(timediff(hora_fin,horadeldia)) AS dispon_asaichi, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE seccion='asaichi' AND fecha='$numodt' AND id_user=$userid) AS tmuerto_asa FROM asaichi WHERE fechadeldia='$numodt' AND id_usuario=$userid";
+$asa_query = "SELECT *, TIME_TO_SEC(tiempo) AS tiempo_asaichi,TIME_TO_SEC(timediff(hora_fin,horadeldia)) AS dispon_asaichi, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE seccion='asaichi' AND fecha='$fecha' AND id_user=$userid) AS tmuerto_asa FROM asaichi WHERE fechadeldia='$fecha' AND id_usuario=$userid";
 
 $resss     = $mysqli->query($query);
 if (!$resss) {
@@ -86,6 +55,7 @@ $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHER
     <th colspan="2"  >Hora</th>
     
     <th rowspan="2"  >ODT</th>
+    <th rowspan="2"  >Proceso</th>
     <th rowspan="2" >Producto</th>
     
     <th rowspan="2" >STD</th>
@@ -223,7 +193,7 @@ while ($row = mysqli_fetch_assoc($resss)):
     $comida = (!empty($row['comida_ajuste'])) ? $row['dispon_ajuste']-$row['comida_ajuste'] : $row['dispon_ajuste'];
     $sum_dispon += $comida; 
     
-    $processID=($row['id_maquina']==20||$row['id_maquina']==21)? 10:(($row['id_maquina']==22)? 9 : (($row['id_maquina']==23)? 16 : $row['id_maquina']));
+    $processID=$row['proceso'];
     if (is_null($row['estandar'])) {
         
         if ($processID == 10) {
@@ -275,7 +245,15 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
                           <tr>
      <td class="editable"  onClick="showEdit(this);"><?= substr($row['horadeldia_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="time-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=preg_replace('/\s+/', '', $row['horadeldia_ajuste'])?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('inicio','horadeldia_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>                     
     <td class="editable"  onClick="showEdit(this);"><?= substr($row['horafin_ajuste'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="tfin-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=preg_replace('/\s+/', '', $row['horafin_ajuste'])?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('fin','horafin_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
-    <td> </td>
+    <?php if ($row['is_virtual'] == 'true') { ?>
+  <td class="editable" onClick="showEdit(this);" rowspan="2"> <?= $row['odt_virtual'] ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?= $row['odt_virtual'] ?></div><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['odt_virtual']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('odt','odt_virtual','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div> </td>
+
+<?php }else{ ?>
+
+   <td class=""  rowspan="2"> <?=$row['numodt'] ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?= $row['numodt'] ?></div><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['numodt']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('odt','numodt','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div>  </td> 
+
+<?php } ?>
+    <td rowspan="2"><?= $row['nom_proceso'] ?></td>
     <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?> >Ajuste </td>
     <!-- <td <?= ($row['is_virtual'] == 'true') ? 'style=""' : '' ?>><?= ($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt']; ?> </td> -->
     <td>0</td>
@@ -286,7 +264,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     //$sum_muerto += $row['seconds_muertos'];
     $haytinta=(isset($PTinta[$i]))? array_sum($PTinta[$i]) : 0;
     $tcomida=(!empty($row['comida_ajuste']))?$row['comida_ajuste']:0;
-    $formulaajuste[$i]=(($row['id_maquina']==9||$row['id_maquina']==22)? ($row['dispon_ajuste']-1500 )-$tcomida: (($row['id_maquina']==16 )? ($row['dispon_ajuste']-3600)-$tcomida : ($row['dispon_ajuste']-1200)-$tcomida));
+    $formulaajuste[$i]=(($row['proceso']==9)? ($row['dispon_ajuste']-1500 )-$tcomida: (($row['proceso']==16 )? ($row['dispon_ajuste']-3600)-$tcomida : ($row['dispon_ajuste']-1200)-$tcomida));
     $extraerMuerto[$i]=($formulaajuste[$i]<=0)? 0 : $formulaajuste[$i];
     $sum_muerto +=$extraerMuerto[$i];
    // gmdate("H:i", $row['seconds_muertos'] + ((isset($alertA_Sum))?array_sum($alertA_Sum[$i]) : 0)+$extraerMuerto); Asi estaba antes
@@ -300,11 +278,11 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
     $a_sec=substr($ajus_time[$i][2], 0, -7);
     
     ?>
-    <td class="editable"  onClick="showEdit(this);"><?= gmdate("H:i", ($formulaajuste[$i]<=0)? $row['seconds_ajuste']+$haytinta : (($row['id_maquina']==9||$row['id_maquina']==22)? 1500 : (($row['id_maquina']==16)? 3600 : 1200))+$haytinta ); ?>
+    <td class="editable"  onClick="showEdit(this);"><?= gmdate("H:i", ($formulaajuste[$i]<=0)? $row['seconds_ajuste']+$haytinta : (($row['proceso']==9)? 1500 : (($row['proceso']==16)? 3600 : 1200))+$haytinta ); ?>
       <div class="tooltiptext toolleft toolcifras"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="hour-<?=$row['idtiraje']; ?>" type="number"  min="0" max="99" class="cifra"  value="<?=$a_hour ?>"> : </div><div class="tinput"><input id="min-<?=$row['idtiraje']; ?>" type="number" class="cifra" min="0" max="99" value="<?=$a_min ?>"> : </div><div class="tinput"><input id="sec-<?=$row['idtiraje']; ?>" type="number"  min="0" max="99" class="cifra"  value="<?=$a_sec ?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('time','tiempo_ajuste','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div>
     </td>
   <?php
-    $sum_tiraje += ($formulaajuste[$i]<=0)? $row['seconds_ajuste'] : (($row['id_maquina']==9||$row['id_maquina']==22 )? 1500 : (($row['id_maquina']==16)? 3600 : 1200));
+    $sum_tiraje += ($formulaajuste[$i]<=0)? $row['seconds_ajuste'] : (($row['proceso']==9)? 1500 : (($row['proceso']==16)? 3600 : 1200));
      
 ?>
     <td><?= gmdate("H:i", $sum_tiraje); ?></td>
@@ -372,14 +350,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
      <td class="editable" onClick="showEdit(this);"><?= substr($row['horadeldia_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="timet-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?= preg_replace('/\s+/', '', $row['horadeldia_tiraje']) ?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('iniciot','horadeldia_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>                     
     <td class="editable" onClick="showEdit(this);"><?= substr($row['horafin_tiraje'], 0, -3); ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?=($row['is_virtual'] == 'true') ? $row['odt_virtual'] : $row['numodt'] ?></div><div class="tinput"><input id="tfint-<?=$row['idtiraje']; ?>" type="time" step="2"  name="" value="<?=preg_replace('/\s+/', '', $row['horafin_tiraje'])?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('fint','horafin_tiraje','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
 
-<?php if ($row['is_virtual'] == 'true') { ?>
-  <td class="editable" onClick="showEdit(this);"> <?= $row['odt_virtual'] ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?= $row['odt_virtual'] ?></div><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['odt_virtual']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('odt','odt_virtual','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div> </td>
 
-<?php }else{ ?>
-
-   <td class="" > <?=$row['numodt'] ?><div class="tooltiptext toolleft"><div class="tagtitle"><span>ODT:</span> <?= $row['numodt'] ?></div><div class="tinput"><input id="odt-<?=$row['idtiraje']; ?>" type="text" value="<?=$row['numodt']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('odt','numodt','<?=$row['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div>  </td> 
-
-<?php } ?>
 
     
    
@@ -395,7 +366,7 @@ while ($tinta = mysqli_fetch_assoc($alertaqueryTinta)) {
 
 
 
-    <td><?=getStandar(($row['is_virtual'] == 'true')? $row['elemento_virtual'] : $row['element'] ,$row['id_maquina']); ?></td>
+    <td><?=getStandar(($row['is_virtual'] == 'true')? $row['elemento_virtual'] : $row['element'] ,$row['proceso']); ?></td>
     <td><?= gmdate("H:i", (!empty($row['comida_tiro'])) ? $row['dispon_tiro'] - $row['comida_tiro'] : $row['dispon_tiro']) ?></td>
      <?php
     $comida2 = (!empty($row['comida_tiro'])) ? $row['dispon_tiro'] - $row['comida_tiro'] : $row['dispon_tiro'];

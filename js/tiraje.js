@@ -366,6 +366,7 @@ $(document).on("click", ".no-explain", function () {
   }
 
    function endSesion(){
+   
     var idord=$('#numodt').val();
     var proceso=$('#numproceso').val();
     $.ajax({  

@@ -353,10 +353,10 @@ $( "#16" ).datepicker();
     <?=personalData(10,'Serigrafia','12',16); ?>
   </div>
   <div class="personal">
-    <?=personalData(20,'Serigrafia','10',14); ?>
+    <?=personalData(21,'Serigrafia','default',17); ?>
   </div>
   <div class="personal">
-    <?=personalData(21,'Serigrafia','15',8); ?>
+    <?=personalData(20,'Serigrafia','15',8); ?>
   </div>
   
   <div class="personal">

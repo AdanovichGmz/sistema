@@ -35,7 +35,7 @@ if ($_SESSION['logged_in'] != true) {
             $singleID=$orderID[0];
             $userID      = $_SESSION['idUser'];
             $getAjuste    = "SELECT horadeldia_ajuste,elemento_virtual,TIME_TO_SEC(horadeldia_tiraje) AS iniciotiro FROM tiraje WHERE idtiraje=$idtiro";
-
+            
             $Ajuste       = mysqli_fetch_assoc($mysqli->query($getAjuste));
             $hora_Ajuste     = $Ajuste['horadeldia_ajuste'];
            
@@ -206,7 +206,7 @@ if ($_SESSION['logged_in'] != true) {
   </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php
-    echo $stationName;
+    echo $processName;
 ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     
@@ -400,7 +400,7 @@ legend{
       <ul>
   <!-- <li> <div id="divPHOTO" class="user-photo"></div></li> -->
   <li><span style="color: #CECECE; font-size:20px;"><?php
-    echo $_SESSION['logged_in'].' | '.$stationName;
+    echo $_SESSION['logged_in'].' | '.$processName;
 ?></span></li>
   <li><div class="live-indicator">Tiros: <?=round($getEfec['prod_real']-$getEfec['merma'],2 )?></div></li>
 <li><div class="live-indicator">Merma: <?=round($getEfec['merma'],2) ?></div></li>
@@ -991,6 +991,8 @@ foreach ($orderID as $odt) {
                         });
   }
   }  
+
+  
     </script>
  
 </body>
