@@ -5,11 +5,6 @@
  $fecha = $_POST['fecha'];
 $userid = $_POST['iduser'];
 
-$get_session=$mysqli->query("SELECT * FROM sesiones WHERE operador=$userid AND fecha='$fecha' ");
-
-$op_session=mysqli_fetch_assoc($get_session);
-
-
 function getComida($idtiraje, $section)
 {
     include '../saves/conexion.php';

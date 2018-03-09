@@ -62,7 +62,7 @@ function logpost($post){
 
      /*********** Guardando Ajuste ***********/
      elseif ($section=='ajuste') {
-      print_r($_POST);
+     
       
        $tiempo      = $_POST['tiempo'];
        $ontime      = $_POST['ontime'];
