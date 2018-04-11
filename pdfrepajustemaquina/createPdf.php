@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-require_once("dompdf/dompdf_config.inc.php");
+require_once("dompdf2/autoload.inc.php");
 include '../saves/conexion.php';
 $fecha = $_POST['id'];
 $userid = $_POST['iduser'];
@@ -24,7 +24,33 @@ function getStandar($elem,$maquina)
     return $estandar['piezas_por_hora'];
 }
 
-$query = "SELECT t.*,s.operador,s.estacion, s.proceso, o.numodt, o.producto,(SELECT nombre_elemento FROM elementos WHERE id_elemento = t.producto) AS element,((t.entregados - t.merma_entregada) - t.defectos) AS calidad,(SELECT piezas_por_hora FROM estandares WHERE id_elemento = t.producto AND id_proceso = s.proceso) AS estandar,(SELECT ajuste_standard FROM estandares WHERE id_elemento = t.producto AND id_proceso = s.proceso) AS estandar_ajuste,(SELECT ajuste_standard FROM estandares WHERE id_elemento = 144 AND id_proceso = s.proceso) AS estandar_ajuste_default,TIME_TO_SEC(timediff(t.horafin_tiraje, t.horadeldia_tiraje)) AS dispon_tiro, TIME_TO_SEC(timediff(t.horafin_ajuste, t.horadeldia_ajuste)) AS dispon_ajuste, (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS comida_ajuste, (SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS ini_comida_ajuste, (SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='ajuste' AND radios='Comida' AND id_usuario =s.operador) AS fin_comida_ajuste, (SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario =s.operador) AS comida_tiro, (SELECT TIME_TO_SEC(horadeldiaam) FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=s.operador) AS ini_comida_tiro, (SELECT TIME_TO_SEC(hora_fin_comida) FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=s.operador) AS fin_comida_tiro, TIME_TO_SEC(t.tiempo_ajuste) AS seconds_ajuste, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos,(SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=s.proceso) AS nom_proceso, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='tiraje') AS seconds_muertos_tiro ,TIME_TO_SEC(t.tiempoTiraje) AS seconds_tiraje FROM tiraje t INNER JOIN sesiones s ON t.id_sesion = s.id_sesion INNER JOIN ordenes o ON o.idorden = t.id_orden   WHERE fechadeldia_ajuste = '$fecha' AND t.id_user =$userid ORDER BY horadeldia_ajuste ASC";
+$query = "SELECT ep.id_proceso,
+t.horadeldia_ajuste AS inicio_ajuste,
+t.horafin_ajuste AS fin_ajuste,
+t.horadeldia_tiraje AS fiinicio_tiraje,
+t.horafin_tiraje AS fin_tiraje,
+(SELECT nombre_elemento FROM elementos WHERE id_elemento=t.producto )AS nombre_producto,
+t.odt_virtual,
+(SELECT numodt FROM ordenes WHERE idorden=t.id_orden )AS real_odt,
+(SELECT piezas_por_hora FROM estandares WHERE id_elemento=t.producto AND id_proceso=ep.id_proceso)AS estandar_real,
+(SELECT piezas_por_hora FROM estandares WHERE id_elemento=t.id_elem_virtual AND id_proceso=ep.id_proceso)AS estandar_virtual,
+timediff(t.horafin_tiraje, t.horadeldia_tiraje) AS tiempo_disponible_tiro,
+timediff(t.horafin_ajuste, t.horadeldia_ajuste) AS tiempo_disponible_ajuste,
+t.tiempoTiraje AS tiempo_real_tiraje,
+t.tiempo_ajuste AS tiempo_real_ajuste,
+t.produccion_esperada,
+t.buenos AS produccion_real,
+t.merma_entregada AS merma,
+t.defectos,
+(SELECT breaktime FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS comida_ajuste, 
+(SELECT horadeldiaam FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS ini_comida_ajuste, 
+(SELECT hora_fin_comida FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='ajuste' AND radios='Comida' AND id_usuario =t.id_user) AS fin_comida_ajuste, 
+(SELECT breaktime FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario =t.id_user) AS comida_tiro, 
+(SELECT horadeldiaam FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=t.id_user) AS ini_comida_tiro, 
+(SELECT hora_fin_comida FROM breaktime WHERE id_tiraje=t.idtiraje AND seccion='tiro' AND radios='Comida' AND id_usuario=t.id_user) AS fin_comida_tiro, 
+
+(SELECT tiempo_muerto FROM tiempo_muerto WHERE id_tiraje=t.idtiraje AND seccion='ajuste') AS seconds_muertos
+FROM tiraje t INNER JOIN estaciones_procesos ep ON t.id_estacion = ep.id_estacion WHERE fechadeldia_ajuste = '$fecha' AND t.id_user =$userid ORDER BY ISNULL(t.horadeldia_ajuste) ASC";
 
 $asa_query = "SELECT *, TIME_TO_SEC(tiempo) AS tiempo_asaichi,TIME_TO_SEC(timediff(hora_fin,horadeldia)) AS dispon_asaichi, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE seccion='asaichi' AND fecha='$fecha' AND id_user=$userid) AS tmuerto_asa FROM asaichi WHERE fechadeldia='$fecha' AND id_usuario=$userid";
 
@@ -40,7 +66,7 @@ $getuser   = mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM login WHER
 
 ?>
 <?php
-ob_start();
+// ob_start(); empieza objeto
 ?>
 <html>
 <head>
@@ -188,7 +214,7 @@ border:1px solid #E1E0E5!important;
 </head>
 
 <body>
-<div class="header">
+<div class="header" style="display: none;">
   <div class="logo"><img src="../img/logoDerecha.png">
   </div><div class="title">REPORTE DIARIO ETE
  
@@ -214,11 +240,11 @@ border:1px solid #E1E0E5!important;
 <thead><tr>
     <th colspan="2"  >Hora</th>
     
-    <th rowspan="2"  >ODT</th>
+    <th  >ODT</th>
     <th rowspan="2"  >Proceso</th>
-    <th rowspan="2" >Producto</th>
+    <th>Producto</th>
     
-    <th rowspan="2" >STD</th>
+    <th  >STD</th>
     <th   colspan="2">Tiempo Disponible</th>
     <th   colspan="2">Tiempo Muerto</th>
     <th   colspan="2">Tiempo Real</th>
@@ -228,13 +254,13 @@ border:1px solid #E1E0E5!important;
     <th   colspan="2">Calidad a la Primera</th>
     <th   colspan="2">Defectos</th>
     <th rowspan="2" >Porque no se hizo bien a la primera?</th>
-    <th rowspan="2" >Porque se hizo mas lento?</th>
-    <th rowspan="2" >Porque se perdio tiempo?</th>
+   
     
   </tr>
 <tr >
     <th class="sub-head">Inicio</th>
     <th class="sub-head">Fin</th>
+
     <th class="sub-head">REAL</th>
     <th class="sub-head">ACUM</th>
     <th class="sub-head">REAL</th>
@@ -642,7 +668,7 @@ if ($i>=16) { ?>
 
 <?php
 
-
+/*
 $html = ob_get_clean();
 
 $dompdf = new DOMPDF();
@@ -651,4 +677,4 @@ $dompdf->set_paper('letter', 'landscape');
 $dompdf->render();
 $dompdf->stream("reporte_de_orden.pdf", array(
     'Attachment' => 0
-));
+)); */

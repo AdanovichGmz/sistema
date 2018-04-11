@@ -9,10 +9,13 @@ $stationID=$_SESSION['stationID'];
 $maqID=$_SESSION["processID"]; 
 $processName=$_SESSION["processName"]; 
 $today=date("d-m-Y");
+
 if ($entorno=='general') {
   $datos=(isset($_POST["odt"]))? explode(",",$_POST["odt"] ):''; 
 
 $getodt=$_POST["odt"];
+
+
 
 $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process WHERE proceso_actual='$maqID' AND status='actual' "));
 
@@ -64,14 +67,24 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
  $videlem=(!empty($_POST['idelem']))? $_POST['idelem']:'null';
  $plans=(isset($_POST['plans']))? $_POST['plans']:'null';
  $stationName=$_POST['machine'];
+ $_SESSION['is_virtual']='true';
+  $process=$_SESSION['processName'];
  
-  $process=($stationName=='Serigrafia2'||$stationName=='Serigrafia3')?'Serigrafia':(($stationName=='Suaje2')? 'Suaje' : (($stationName=='HotStamping2')? 'HotStamping' : $stationName) );
+ $clean=$mysqli->query("DELETE FROM personal_process WHERE proceso_actual='$stationName' ");
  
- $clean=$mysqli->query("DELETE FROM personal_process WHERE proceso_actual='$stationName'");
  if ($clean) {
+  $tiro=mysqli_fetch_assoc($mysqli->query("SELECT tiro_actual FROM sesiones WHERE id_sesion=".$_SESSION['stat_session']));
+  $set_plans=$mysqli->query("UPDATE tiraje SET planillas=$plans,id_elem_virtual=$videlem WHERE idtiraje=".$tiro['tiro_actual']);
+
    $addvirtual=$mysqli->query("INSERT INTO `personal_process` (`id_pp`, `id_orden`, `num_odt`, `proceso_actual`, `id_proceso`, `status`, `orden_display`, `elemento_virtual`,id_elemento_virtual,planillas_de) VALUES (NULL, NULL, '$vodt', '$stationName', NULL, 'actual', 1, '$velem',$videlem,$plans)");
-   //$inquery="INSERT INTO `personal_process` (`id_pp`, `id_orden`, `num_odt`, `proceso_actual`, `id_proceso`, `status`, `orden_display`, `elemento_virtual`,id_elemento_virtual) VALUES (NULL, NULL, '$vodt', '$stationName', NULL, 'actual', 1, '$velem',$videlem)";
+  
    if ($addvirtual) {
+
+    $updateSession=$mysqli->query("UPDATE sesiones SET orden_actual='$vodt',parte=$videlem,id_orden=NULL WHERE id_sesion=".$_SESSION['stat_session']);
+
+    if (!$updateSession) {
+      printf($mysqli->error);
+    }
     $getvirtual=$mysqli->query("SELECT * FROM personal_process WHERE proceso_actual='$stationName' ORDER BY orden_display ASC");
     while ($valores = mysqli_fetch_array($getvirtual)) {
      
@@ -105,7 +118,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
 }else{
 
 $p_actual=$_SESSION['stationName'];
-
+$_SESSION['is_virtual']='false';
 $plans=(isset($_POST['plans']))? $_POST['plans']:'null';
 $ordenes=$_POST['ordenes'];
 $odetes=$_POST['odetes'];
@@ -124,6 +137,9 @@ $clean="DELETE FROM personal_process WHERE proceso_actual='$p_actual' ";
 $mysqli->query($clean);
 
 $query_chosen="INSERT INTO personal_process(id_pp,id_orden,num_odt,proceso_actual, id_proceso,status,orden_display,planillas_de) VALUES(null,$o_chosen,'$odt_chosen','$p_actual',$p_chosen, 'actual',1,$plans)";
+
+$tiro=mysqli_fetch_assoc($mysqli->query("SELECT tiro_actual FROM sesiones WHERE id_sesion=".$_SESSION['stat_session']));
+  $set_plans=$mysqli->query("UPDATE tiraje SET planillas=$plans WHERE idtiraje=".$tiro['tiro_actual']);
 
 $insert_chosen=$mysqli->query($query_chosen);
 if ($insert_chosen) {

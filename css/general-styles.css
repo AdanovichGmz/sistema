@@ -583,6 +583,11 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
     height: 80px;
     margin-top: 10px;
     margin-bottom: 30px;
+    border-radius: 4px;
+    text-indent: 8px;
+    background: #353535;
+    color: #fff;
+    border: 1px solid #404040;
 }
 .comments-small{
     width: 280px;

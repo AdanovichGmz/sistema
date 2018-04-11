@@ -22,10 +22,10 @@ if(@$_SESSION['logged_in'] != true){
         function getProcess($id){
           if (!empty($id)) {
             require('../saves/conexion.php');
-        $maq_query="SELECT nommaquina FROM maquina WHERE idmaquina=$id";
+        $maq_query="SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=$id";
         
         $getmaq=mysqli_fetch_assoc($mysqli->query($maq_query));
-        $maq=$getmaq['nommaquina'];
+        $maq=$getmaq['nombre_proceso'];
         return $maq;
           }else{
             return '';

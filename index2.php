@@ -1,7 +1,5 @@
-
-
 <?php
-
+error_reporting(0);
 ini_set('session.gc_maxlifetime', 30*60); 
 date_default_timezone_set("America/Mexico_City");
  if( !session_id())
@@ -20,12 +18,11 @@ require('saves/conexion.php');
 
 $stationName=$_SESSION['stationName'];
 $stationID = $_SESSION['stationID'];
-
 $processName=$_SESSION['processName'];
 $processID = $_SESSION['processID'];
 $today=date("d-m-Y");
 
-$getActivity=$mysqli->query("SELECT *,TIME_TO_SEC(inicio_ajuste) AS segundos_incio FROM sesiones WHERE estacion=$stationID AND fecha='$today' AND proceso=".$_SESSION['processID']);
+$getActivity=$mysqli->query("SELECT *,TIME_TO_SEC(inicio_ajuste) AS segundos_incio FROM sesiones WHERE estacion=$stationID AND fecha='$today' AND proceso=".$_SESSION['processID']." AND operador=".$_SESSION['idUser']);
     
 $activity=mysqli_fetch_assoc($getActivity);   
   
@@ -502,7 +499,7 @@ legend{
   while ($e_row=mysqli_fetch_assoc($getElementStandar)) { ?>
     <div class="elem-button <?='c'.$c ?>" data-name="<?=$e_row['nombre_elemento'] ?>" data-id="<?=$e_row['id_elemento'] ?>"><p><?=$e_row['nombre_elemento'] ?></p></div>
   <?php $c++; } ?>
-  <div  class="elem-button other"><p>Otro</p></div>
+  <div  class="elem-button other" data-id="144"><p>Otro</p></div>
   </div>
     
   </div>
@@ -510,6 +507,10 @@ legend{
        <div id="panelbottom2"></div> 
        <div class="row ">
                 <legend style="font-size:18pt; font-family: 'monse-bold';"><div class="odtsearch">
+                <div id="" style="text-transform: uppercase;line-height: 65px;width: 185px;position: absolute;left: 15px;top: 3px;"   class="rect-button-small radio-menu-small2 face" onclick="addOrder();getKeys('virtualodt','pedido')">
+                          REGISTRAR 
+                          <p class="suborder" >ORDEN</p>
+                        </div>
   <input type="text" id="getodt" name="getodt" readonly="true" onclick="getKeys(this.id,'pedido')" onkeyup="gatODT()" placeholder="Buscar ODT"> 
 </div><div id="close-down"  class="square-button-micro red abajo ">
                           <img src="images/ex.png">
@@ -876,7 +877,7 @@ function endOfDay(){
   var hour = now.getHours();
   var day = now.getDay();
   var minutes = now.getMinutes();
-  if(hour >= 17){
+  if(hour >= 10){
      window.location.replace("resume.php?tiro="+lastiro);
   }else{
   alert('Favor de picarle aqui despues de las 6pm');
@@ -892,6 +893,7 @@ $(document).on("click", "#virtualelem", function () {
 
 $(document).on("click", ".other", function () {
   $("#virtualelem").attr("placeholder", "Escribe la parte..");
+  $("#idelem").val('144');
     getKeys('virtualelem','cosa');
 });
 
@@ -933,7 +935,7 @@ $(document).on("click", ".elem-button", function () {
     '<div class="qty-button" data-id="84" data-name="Mapa" data-plans="12"><p>12</p></div>';
     $('#elems-container').html(planillas);
    
-  }else if (id==123||id==124||id==125||id==4||id==8) {
+  }else if (id==123||id==124||id==125||id==4||id==8||id==25) {
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="1"><p>1</p></div>'+
     '<div class="qty-button" data-id="'+id+'" data-name="'+name+'" data-plans="2"><p>2</p></div>'+
@@ -1010,4 +1012,4 @@ $.ajax({
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=34"></script>
+<script src="js/ajuste.js?v=35"></script>

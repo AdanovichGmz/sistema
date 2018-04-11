@@ -3,7 +3,7 @@ ini_set("session.gc_maxlifetime","7200");
 session_start();
 date_default_timezone_set("America/Mexico_City");     
         
-
+ $virtual   = $_SESSION['is_virtual'];
 require('saves/conexion.php');
 require('classes/functions.class.php');
 
@@ -20,7 +20,7 @@ function logpost($post){
   $section=$_POST['section'];
   /*********** Guardando Asaichi ***********/
    if ($section=='asaichi') {
-    $log->lwrite(implode(' | ', $_POST),'ASAICHIS_'.date("d-m-Y"));
+    $log->lwrite(implode(' | ', $_POST),date("d-m-Y").'_ASAICHIS');
             $log->lclose();
    
        $tiempo=$_POST['tiempo'];
@@ -37,22 +37,22 @@ function logpost($post){
            
             $tiempoasa='"00:15:00.000000"';
              
-             $mysqli->query("INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID',$logged_in,null,null,1,'$horadeldia',null)");
+             $mysqli->query("INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia',null,$logged_in,null,null,1,'$horadeldia',null)");
           }else{
             $tiempoasa= ' TIMEDIFF("00:15:00.000000","'.$tiempo.'")';
           }
           $log->lwrite('tiempo: '.$tiempo,'ASA');
           $log->lwrite('tiempo asa: '.$tiempoasa,'ASA');
           $log->lwrite(printf($mysqli->error),'ASA');
-        $query="INSERT INTO asaichi (tiempo, id_maquina, id_usuario, horadeldia,hora_fin, fechadeldia) VALUES ($tiempoasa,$machineID,$logged_in,'$horadeldia','$horafin','$fechadeldia')";
+        $query="INSERT INTO asaichi (tiempo, id_maquina, id_usuario, horadeldia,hora_fin, fechadeldia) VALUES ($tiempoasa,null,".$_SESSION['idUser'].",'$horadeldia','$horafin','$fechadeldia')";
         $resultado=$mysqli->query($query);
         if ($resultado) {
-          echo "Todo bien";
+         $mysqli->query("UPDATE sesiones SET inicio_ajuste='$horadeldia' WHERE id_sesion=".$_SESSION['stat_session']);
         }else{
           
-          $log->lwrite('asaichi','multi-error');
-          $log->lwrite(printf($mysqli->error),'multi-error');
-          $log->lwrite($query,'multi-error');
+          $log->lwrite('asaichi',date("d-m-Y").'_ERRORES_ASAICHI');
+          $log->lwrite(printf($mysqli->error),date("d-m-Y").'_ERRORES_ASAICHI');
+          $log->lwrite($query,date("d-m-Y").'_ERRORES_ASAICHI');
           $log->lclose();
         }
         $change_status=$mysqli->query("UPDATE operacion_estatus SET asaichi_cumplido=1 WHERE fecha='$today' AND maquina=$machineID ");
@@ -69,6 +69,7 @@ function logpost($post){
         $nommaquina  = $_SESSION['stationName'];
         $stationID  = $_SESSION['stationID'];
         $userID   = $_SESSION['idUser'];
+       
         $orderodts=$_POST['orderodts'];
         $horadeldia  = $_POST['horadeldia'];
         $fechadeldia = $_POST['fechadeldia'];
@@ -77,100 +78,132 @@ function logpost($post){
         $tirajeActual=$_POST['actual_tiro'];
         $horafinajuste=date("H:i:s",time());
         $today=date("d-m-Y");
-        $changestatus=$mysqli->query("UPDATE sesiones SET en_tiempo=1,tiempo_alert_ajuste=NULL, tiempo_comida=NULL WHERE fecha='$today' AND estacion=$stationID AND proceso=".$_SESSION['processID']);
+        $changestatus=$mysqli->query("UPDATE sesiones SET en_tiempo=1,tiempo_alert_ajuste=NULL, tiempo_comida=NULL WHERE fecha='$today' AND estacion=$stationID AND proceso=".$_SESSION['processID']." AND operador=".$_SESSION['idUser']);
         //$odetes= explode(',',$_POST['orderodts'])
-        $log->lwrite(logpost($_POST),'AJUSTES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
-        $log->lwrite('hora_fin_ajuste: '.$horafinajuste,'AJUSTES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
-        $log->lwrite('--------------------------------','AJUSTES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
+        $log->lwrite(logpost($_POST),date("d-m-Y").'_AJUSTES_'.$_SESSION['logged_in']);
+        $log->lwrite('hora_fin_ajuste: '.$horafinajuste,date("d-m-Y").'_AJUSTES_'.$_SESSION['logged_in']);
+        $log->lwrite('--------------------------------',date("d-m-Y").'_AJUSTES_'.$_SESSION['logged_in']);
         $log->lclose();
-        if ($_POST['numodt']=='virtual') {
-          $virtOdt=$_POST['odtvirtual'];
-          $virtElem=$_POST['elemvirtual'];
-            if ($ontime=='false') {
-                $tiempoajuste=gmdate("H:i:s",$_SESSION['ajusteStandard']);
-            
-            }else{
-            
-                 $tiempoajuste= ' TIMEDIFF("'.gmdate("H:i:s",$_SESSION['ajusteStandard']).'.000000","'.$tiempo.'")';
-           
-          }
-            
-            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', horadeldia_tiraje='$horafinajuste',  is_virtual=1,odt_virtual='$virtOdt',elemento_virtual='$virtElem' WHERE idtiraje=$tirajeActual";
-            
-            $resultado = $mysqli->query($query);
-                       
-             $setTiraje=$mysqli->query("UPDATE personal_process SET last_tiraje=$tirajeActual WHERE status='actual' AND proceso_actual='$stationName' ");
-            if ($resultado) {
-              echo "tiraje virtual insertado";
-            }else{
-              printf($mysqli->error);
-            }
-             if ($ontime=='false') {
-               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID',$userID,'$orderodts',null,'ajuste','$horadeldia',$tirajeActual)";
-            $log->lwrite($deadquery,'TIEMPO_MUERTO');
+        $numodt=$_POST['numodt'];
+       
+        
+          if ($ontime=='false') {
+              $getAlerts=$mysqli->query("SELECT SUM(TIME_TO_SEC(tiempoalertamaquina)) AS total_ajuste FROM alertageneralajuste WHERE id_tiraje=".$tirajeActual);
+              $alerts=mysqli_fetch_assoc($getAlerts);
+
+              $seconds_reg = strtotime("1970-01-01 $tiempo UTC");
+              $total_muerto=($seconds_reg+$alerts['total_ajuste'])-$_SESSION['ajusteStandard'];
+
+              $muerto_format=gmdate("H:i:s",$total_muerto);
+ $log->lwrite('--------------',$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+               $log->lwrite('no On Time, tmuerto: '.$total_muerto,$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+                $log->lwrite('--------------',$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+               $log->lwrite('tiempo alerts: '.$alerts['total_ajuste'],$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+               $log->lclose();
+            $tiempoajuste="'".gmdate("H:i:s",$_SESSION['ajusteStandard'])."'";
+                 $log->lwrite($tiempoajuste,date("d-m-Y").'_ONTIME_FALSE_'.$_SESSION['logged_in']);
+            $log->lclose();
+             $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_estacion,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje,id_sesion) VALUES (null,'$tiempo','$fechadeldia','$machineID',$userID,null,null,'ajuste','$horadeldia',$tirajeActual,".$_SESSION['stat_session'].")";
+            $log->lwrite($deadquery,date("d-m-Y").'_TIEMPO_MUERTO');
             $deadresultado = $mysqli->query($deadquery);
-            if ($deadresultado) {
-              $log->lwrite('se registro un tiempo muerto','TIEMPO_MUERTO');
+            if (!$deadresultado) {
+              $log->lwrite(printf($mysqli->error),date("d-m-Y").'_ERROR_TIEMPO_MUERTO'.$_SESSION['logged_in']);
+              $log->lwrite($deadquery,date("d-m-Y").'_ERROR_TIEMPO_MUERTO'.$_SESSION['logged_in']);
+              $log->lwrite('--------------',date("d-m-Y").'_ERROR_TIEMPO_MUERTO'.$_SESSION['logged_in']);
               
               $log->lclose();
             }
-            }
-         } else{
-
-        $actuals_query="SELECT  os.status, o.idorden,o.numodt, os.proceso_actual FROM personal_process os INNER JOIN ordenes o on os.id_orden=o.idorden WHERE status='actual' AND proceso_actual='$stationName'";
-        $resultodt=$mysqli->query($actuals_query);
-
-        //$numodt      = (isset($_POST['numodt'])) ? explode(',', substr($_POST['numodt'], 0, -1)) : '';
-        while($arr=mysqli_fetch_assoc($resultodt)){
-          $numodt[] = $arr['idorden'];
-          $odt[]=$arr['numodt'];
-        }
-        $odetes=implode(",", $odt);
-        foreach ($numodt as $odt) {
-          if ($ontime=='false') {
-                $tiempoajuste=gmdate("H:i:s",$_SESSION['ajusteStandard']);
             
             }else{
-                 $tiempoajuste= ' TIMEDIFF("'.gmdate("H:i:s",$_SESSION['ajusteStandard']).'.000000","'.$tiempo.'")';
+
+              $getAlerts=$mysqli->query("SELECT SUM(TIME_TO_SEC(tiempoalertamaquina)) AS total_ajuste FROM alertageneralajuste WHERE id_tiraje=".$tirajeActual);
+              $alerts=mysqli_fetch_assoc($getAlerts);
+              $time_negative = strtotime("1970-01-01 $tiempo UTC");
+              $time_positive=$_SESSION['ajusteStandard']-$time_negative;
+              
+              $total_tiempo=($time_positive+$alerts['total_ajuste']);
+
+               $log->lwrite('--------------',$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+               $log->lwrite('tiempo positivo: '.$time_positive,$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+                 $log->lwrite('tiempo total: '.$total_tiempo,$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+                  $log->lclose();
+
+              if ($total_tiempo>$_SESSION['ajusteStandard']) {
+ 
+                $filter_time=$total_tiempo-$_SESSION['ajusteStandard'];
+                $muerto_format=gmdate("H:i:s",$filter_time);
+$log->lwrite('Se paso de muerto: '.$muerto_format,$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+                  $log->lclose();
+                $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_estacion,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje,id_sesion) VALUES (null,'$muerto_format','$fechadeldia','$machineID',$userID,null,null,'ajuste','$horadeldia',$tirajeActual,".$_SESSION['stat_session'].")";
+                $dead_saved= $mysqli->query($deadquery);
+                if (!$dead_saved) { 
+                 $log->lwrite('--------------',$fechadeldia.'_ERROR_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+                 $log->lwrite($deadquery,$fechadeldia.'_ERROR_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
+                  $log->lclose();
+               }
+                
+                $tiempoajuste=  "'".gmdate("H:i:s",$_SESSION['ajusteStandard'])."'";
+
+              }else{
+
+                $tiempoajuste= "'".gmdate("H:i:s",$total_tiempo)."'";
+              }
+
+              
+
           }
-            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', horadeldia_tiraje='$horafinajuste', id_orden=$odt WHERE idtiraje=$tirajeActual";
+
+          $timeA=date("H:i:s",time()); 
+
+          if ($virtual=='true') {
+            $virtOdt=$_POST['odtvirtual'];
+          $virtElem=$_POST['elemvirtual'];
+            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', horadeldia_tiraje='$horafinajuste',  is_virtual=1,odt_virtual='$virtOdt',elemento_virtual='$virtElem' WHERE idtiraje=$tirajeActual";
+          }else{
+            $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$timeA', horadeldia_tiraje='$timeA', id_orden=$numodt WHERE idtiraje=$tirajeActual";
+          }
+
+
+
+           
+
+            
            
  
-            $resultado = $mysqli->query($query);
+            $resultadoA = $mysqli->query($query);
+            
+            
              
              $setTiraje=$mysqli->query("UPDATE personal_process SET last_tiraje=$tirajeActual WHERE status='actual' AND proceso_actual='$stationName' ");
-              if ($ontime=='false') {
-               $deadquery     = "INSERT INTO tiempo_muerto (id_tiempo_muerto, tiempo_muerto,fecha,id_maquina,id_user,numodt,id_orden, seccion,hora_del_dia,id_tiraje) VALUES (null,'$tiempo','$fechadeldia','$machineID',$userID,'$orderodts',null,'ajuste','$horadeldia',$tirajeActual)";
-            $log->lwrite($deadquery,'TIEMPO_MUERTO');
-            $deadresultado = $mysqli->query($deadquery);
-            if ($deadresultado) {
-              $log->lwrite('se registro un tiempo muerto','TIEMPO_MUERTO');
               
-              $log->lclose();
-            }
-            }
-            
-            if ($resultado) {
-        } else {
-            printf($mysqli->error);
-             $log->lwrite('ajuste','multi-error');
-             $log->lwrite('error al insertar ajuste','multi-error');
-             $log->lwrite('orden'.$odt,'multi-error');
-              $log->lwrite(printf($mysqli->error),'multi-error');
-              $log->lwrite($query,'multi-error');
-              $log->lclose();
+            if (!$resultadoA) {
+             $log->lwrite(printf($mysqli->error),date("d-m-Y").'_ERROR_TIRO_AJUSTE'.$_SESSION['logged_in']);
+              $log->lwrite($query,date("d-m-Y").'_ERROR_TIRO_AJUSTE'.$_SESSION['logged_in']);
+               $log->lwrite(json_encode($_POST),date("d-m-Y").'_ERROR_TIRO_AJUSTE'.$_SESSION['logged_in']);
+              $log->lwrite('--------------',date("d-m-Y").'_ERROR_TIRO_AJUSTE'.$_SESSION['logged_in']);
+           
+            $log->lclose();
         }
-        }
+       
 
-        $init_tiro=$mysqli->query("UPDATE sesiones SET inicio_tiro='$horafinajuste' WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
-      }
+        $init_query="UPDATE sesiones SET inicio_tiro='$horafinajuste' WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']." AND operador=".$_SESSION['idUser'];
+        $init_tiro=$mysqli->query($init_query);
+
+        if (!$init_tiro) {
+            $log->lwrite('-------------error iniciar siguiente tiro',date("d-m-Y").'_INIT_TIRO_ERROR_'.$_SESSION['logged_in']);
+            $log->lwrite(printf($mysqli->error),date("d-m-Y").'_INIT_TIRO_ERROR_'.$_SESSION['logged_in']);
+            $log->lwrite($init_query,date("d-m-Y").'_INIT_TIRO_ERROR_'.$_SESSION['logged_in']);
+            
+            $log->lclose();
+        } 
+      
        
      } 
      /*********** Termina Guardando Ajuste ***********/
 
      /*********** Guardando Tiraje ***********/
       elseif ($section=='tiraje') {
-                $log->lwrite($_SESSION['logged_in']." ".logpost($_POST),'TIRAJES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
+                $log->lwrite($_SESSION['logged_in']." ".logpost($_POST),date("d-m-Y").'_TIRAJES_'.$_SESSION['logged_in']);
           
             $planillas=(!empty($_POST['planillas']))? $_POST['planillas'] : 'null';  
             $isvirtual=(isset($_POST['isvirtual'])? $_POST['isvirtual'] :'false');
@@ -182,9 +215,9 @@ function logpost($post){
             $odt=(isset($_POST['odt']))? $_POST['odt'] : '';
             $pedido=(isset($_POST['pedido'])) ?(($planillas=='null')? $_POST['pedido'] : $_POST['pedido']/$planillas) : '';
             $cantidad=(isset($_POST['cantidad'])) ?$_POST['cantidad'] : '';
-            $buenos=(isset($_POST['buenos'])) ? (($planillas=='null')? $_POST['buenos'] : $_POST['buenos']/$planillas) : '';
+            $buenos=(isset($_POST['buenos']))? (($planillas=='null')? $_POST['buenos']-$_POST['merma-entregada'] : ($_POST['buenos']-$_POST['merma-entregada'])/$planillas) : '';
             $defectos=(isset($_POST['defectos'])) ?$_POST['defectos'] : '';
-            $merma=(isset($_POST['merma']))? $_POST['merma'] : 0;
+            $merma=(isset($_POST['merma']))? (($planillas=='null')? $_POST['merma'] : $_POST['merma']/$planillas) : 0;
             $ajuste=$_POST['piezas-ajuste'];
             $entregados=(isset($_POST['entregados']))? (($planillas=='null')? $_POST['entregados'] : $_POST['entregados']/$planillas) : (($planillas=='null')? $_POST['buenos'] : $_POST['buenos']/$planillas);
             $tiempoTiraje=$_POST['tiempoTiraje'];
@@ -195,10 +228,9 @@ function logpost($post){
             $element=$_POST['element'];
             $horainiciotiro=$_POST['horainiciotiro'];
             $horafintiraje=date("H:i:s",time());
-            $log->lwrite('horafin_tiraje: '.$horafintiraje,'TIRAJES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
-            $log->lwrite('--------------------------------','TIRAJES_'.$_SESSION['logged_in']."_".date("d-m-Y"));
-            $log->lclose();
-
+            $log->lwrite('horafin_tiraje: '.$horafintiraje,date("d-m-Y").'_TIRAJES_'.$_SESSION['logged_in']);
+            
+            $today=date("d-m-Y");
       $log->lwrite( $isvirtual,'UPDATING');
            $horaTiraje     = date(" H:i:s", time());
             $userID = $_SESSION['idUser'];
@@ -212,88 +244,15 @@ function logpost($post){
 
              $processID=$_SESSION['processID'];
             $standar_query2 = "SELECT * FROM estandares WHERE id_proceso=$processID AND id_elemento= $element";
-            $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
-            $estandar       = $getstandar['piezas_por_hora'];
             
-                if($isvirtual=='true'){
-                  $elem_v=$_POST['element_v'];
-                  if ($table_mac==2) {
-                    $tiraje_estandar=($seconds*300)/3600;
-                    $log->lwrite( "IMPRESION EN MESA",'UPDATING');
-                  }
-                  else{
-                  if (!empty($estandar)) {
-                    $tiraje_estandar=($seconds*$estandar)/3600;
-                    $log->lwrite( "ESTANDAR: ".$estandar,'UPDATING');
-                  }
-                  else{
-                   if ($processID==10) {
-                    $tiraje_estandar=($seconds*480)/3600;
-                  }else{
-                    $tiraje_estandar=($seconds*600)/3600;
-                  } }
-                }
 
 
-                  if ($tiraje_estandar>0) {
-                    $predesemp=($entregados*100)/$tiraje_estandar;
-                   $tiraje_desemp=($predesemp>100)? 100 : $predesemp;
-                   $log->lwrite('si vale algo','desemp');
-                  }else{
-                    $tiraje_desemp=0;
-                    $log->lwrite('no vale nada','desemp');
-                  }
-
-                    $log->lwrite(  "ESPERADO: ".$tiraje_estandar,'UPDATING');
-                  $prodEsperada=round($tiraje_estandar);
-                  
-                  $hora=$_POST['hour'];
-                   $LastT=mysqli_fetch_assoc( $mysqli->query("SELECT last_tiraje FROM personal_process WHERE status='actual' AND proceso_actual='$stationName' "));
-                  $getLast=$LastT['last_tiraje'];
-
-                  $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horafin_tiraje='$horafintiraje', id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
-                  $log->lwrite("Ultimo ID de ".$stationName.": ".$getLast,'LAST_ID');
-           $log->lclose();
-
-            $resultado=$mysqli->query($query);
-             if ($machineID==1) {
-            $recib_query="UPDATE ordenes SET cantrecibida=$entregados WHERE idorden=$numodt";
-            $exec=$mysqli->query($recib_query);
-            if ($exec) {
-              $log->lwrite("Cant Recibida ".$entregados." para orden ".$numodt,'CORTE_HECHO');
-           $log->lclose();
-            }else{
-              $log->lwrite("error al cortar ".$recib_query,'CORTE_HECHO');
-           $log->lclose();
-            }
-
-           
-           }
-            if (!$resultado) {
-              
-              $log->lwrite(printf($mysqli->error),'UPDATING');
-
-            }
-             $log->lwrite($query,'UPDATING');
-              $log->lclose();
-            $cleanPersonal=$mysqli->query("DELETE FROM personal_process WHERE proceso_actual='$stationName'");
-            
-               if (!$cleanPersonal) {
-               printf($mysqli->error);             }
-               if (!$resultado) {
-               printf($mysqli->error);             }
-                    
-                }else{
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query2));
             $estandar       = $getstandar['piezas_por_hora'];
             //calculando desempeño para pieza actual
             if (is_null($estandar)) {
-              
-              if ($processID==10) {
-                    $tiraje_estandar=($seconds*420)/3600;
-                  }else{
-                    $tiraje_estandar=($seconds*600)/3600;
-                  }
+              $getstandar     = mysqli_fetch_assoc($mysqli->query("SELECT * FROM estandares WHERE id_proceso=$processID AND id_elemento=144"));
+              $tiraje_estandar=($seconds*$getstandar['piezas_por_hora'])/3600;
             }else{
               $tiraje_estandar=($seconds*$estandar)/3600;
             }
@@ -307,21 +266,26 @@ function logpost($post){
               $log->lwrite('no vale nada','desemp');
             }
             $log->lwrite('$tiraje_estandar '.$tiraje_estandar,'desemp');
-              $log->lwrite($standar_query2,'desemp');
-              $log->lclose();
+            $log->lwrite($standar_query2,'desemp');
+            $log->lclose();
             $prodEsperada=round($tiraje_estandar);
             
             $hora=$_POST['hour'];
-            
-           $LastT=mysqli_fetch_assoc( $mysqli->query("SELECT last_tiraje FROM personal_process WHERE status='actual' AND proceso_actual='$stationName' "));
-           $getLast=$LastT['last_tiraje'];
+            $tiro_query="SELECT tiro_actual FROM sesiones WHERE fecha='$today' AND operador='".$_SESSION['idUser']."' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID'];
+           $LastT=mysqli_fetch_assoc( $mysqli->query($tiro_query));
+           $getLast=$LastT['tiro_actual'];
+
+           
 
             $query="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$cantidad, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma_entregada, entregados=$entregados, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$fechadeldia', horafin_tiraje='$horafintiraje',id_user=$logged_in,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$getLast";
-           // print_r($mysqli);
-            $log->lwrite("Ultimo ID de ".$stationName.": ".$getLast,'LAST_ID');
-           $log->lclose();
 
-           if ($machineID==1) {
+           
+           // print_r($mysqli);
+            $log->lwrite($query,date("d-m-Y").'_TIRAJES_'.$_SESSION['logged_in']);
+            $log->lwrite('--------------------------------',date("d-m-Y").'_TIRAJES_'.$_SESSION['logged_in']);
+            $log->lclose();
+
+           if ($_SESSION['processID']==1) {
             $recib_query="UPDATE ordenes SET cantrecibida=$entregados WHERE idorden=$numodt";
             $exec=$mysqli->query($recib_query);
             if ($exec) {
@@ -336,90 +300,38 @@ function logpost($post){
            }
 
             $resultado=$mysqli->query($query);
-            $querymerma="UPDATE ordenes SET merma_entregada=$merma_entregada, merma_recibida=$passmerma WHERE idorden=$numodt";
-            $mysqli->query($querymerma);
-            if ( $resultado) {
-            //$mysqli->query("UPDATE ordenes SET proceso_completado='true' WHERE idorden=$numodt");  
            
-
-            //include("encuesta.php");
-            //guardando personal******************************************************
+            if ($resultado) {
+           
             $cleanqueryp="DELETE FROM personal_process WHERE proceso_actual='$stationName' AND status='actual'";
             $cleanp=$mysqli->query($cleanqueryp);
             if ($cleanp) {
              $sqlp="SELECT * FROM personal_process WHERE proceso_actual='$stationName' order by orden_display asc";
             $ordsp=$mysqli->query($sqlp);
             }
-            //checamos si hay aun partes pendientes a completar para esta ODT
-            if ($ordsp->num_rows>0) {
-              
-            $ip=1;
-            while($arrp=mysqli_fetch_array($ordsp)) {
-              $resultsp[$ip] = $arrp;
-              $ip++;
-            }
-            $i3p=1;
-            foreach ($resultsp as $row2p) {
-              $idp=$row2p['id_orden'];
-              $old_statusp=$row2p['status'];
-              $idprsp=$row2p['id_proceso'];
-                if ($old_statusp=='siguiente') {
-                 $statusp='actual';
-                }
-                 elseif ($old_statusp=='preparacion') {
-                  $statusp='siguiente';
-                }
-                elseif ($old_statusp=='programado1') {
-                  $statusp='preparacion';
-                }
-                else{ 
-                  $progNump=$i3p-3;
-                  $statusp='programado'.$progNump;
-                }
-             //$update3p ="UPDATE personal_process SET orden_display = $i3p , status='$statusp' WHERE id_orden= $idp AND id_proceso=$idprsp";
-            //$updp= $mysqli->query($update3p);
-
-             $updp=true;
-            if ($updp) {
-              $cleanquery="DELETE FROM orden_estatus WHERE proceso_actual='$stationName' AND status='actual'";
-            $clean=$mysqli->query($cleanquery);
            
-            }else{
-              prinf($mysqli->error);
-              $log->lwrite('tiraje','multi-error');
-             $log->lwrite('error al establecer estatus','multi-error');
-             $log->lwrite('orden'.$idp,'multi-error');
-              $log->lwrite(printf($mysqli->error),'multi-error');
-              $log->lwrite($update3p,'multi-error');
-              $log->lclose();
-
-            }
-            $i3p++;
-            }
-          }else{ //si no hay mas partes pendientes para esta orden, la marcamos como completada
             $userID=$_SESSION['idUser'];
-        $today=date("d-m-Y");
+        
         $mysqli->query("UPDATE sesiones SET orden_actual='--' WHERE operador =$userID AND fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
               
 
 
-          }
+          
 
             //termina guardando personal******************************************************
 
-
-
             }else{
-                        printf($mysqli->error);
-                        echo $query;
-                        $log->lwrite('tiraje single','multi-error');
-                       $log->lwrite('error al completar ajustes con tirajes','multi-error');
-                       $log->lwrite('orden'.$numodt,'multi-error');
-                        $log->lwrite(printf($mysqli->error),'multi-error');
-                        $log->lwrite($query,'multi-error');
+                                              
+                       $log->lwrite('error al completar tiraje',date("d-m-Y").'_ERROR_TIRO_'.$_SESSION['logged_in']);
+
+                       $log->lwrite('tiro actual: '.$getLast,date("d-m-Y").'_ERROR_TIRO_'.$_SESSION['logged_in']);
+                       $log->lwrite('orden'.$numodt,date("d-m-Y").'_ERROR_TIRO_'.$_SESSION['idUser']);
+                        $log->lwrite(printf($mysqli->error),date("d-m-Y").'_ERROR_TIRO_'.$_SESSION['logged_in']);
+                        $log->lwrite($query,date("d-m-Y").'_ERROR_TIRO_'.$_SESSION['idUser']);
+                        $log->lwrite('-------------------',date("d-m-Y").'_ERROR_TIRO_'.$_SESSION['logged_in']);
                         $log->lclose();
                       }
-            }
+           
            
 
 
@@ -456,20 +368,29 @@ function logpost($post){
 
 
         /************* Siguiente tiraje ************/
-         $init_tiraje     = "INSERT INTO tiraje(id_estacion,horadeldia_ajuste, fechadeldia_ajuste,id_user,id_sesion) VALUES (".$_SESSION['stationID'].",'$next','$today', ".$_SESSION['idUser'].", ".$_SESSION['stat_session'].")";
+         $init_tiraje     = "INSERT INTO tiraje(id_estacion,id_proceso,horadeldia_ajuste, fechadeldia_ajuste,id_user,id_sesion) VALUES (".$_SESSION['stationID'].",".$_SESSION['processID'].",'$next','$today', ".$_SESSION['idUser'].", ".$_SESSION['stat_session'].")";
             
                                 $next_tiraje = $mysqli->query($init_tiraje);
                                 if ($next_tiraje) {
-                                   $nTiraje=$mysqli->insert_id;
+                              $nTiraje=$mysqli->insert_id;
 
                                $setNext="UPDATE sesiones SET inicio_ajuste='$next',parte='--',tiro_actual=$nTiraje, tiempo_alert=null,tiempo_comida=null WHERE operador =$userID AND fecha='$today' AND estacion=".$machineID." AND proceso=".$_SESSION['processID'];
 
                               $mysqli->query($setNext);
-
+                              $log->lwrite('next tiraje'.$nTiraje,date("d-m-Y").'_NEXT_TIRO_'.$_SESSION['logged_in']);
+                              $log->lwrite($setNext,date("d-m-Y").'_NEXT_TIRO_'.$_SESSION['logged_in']);
+                              $log->lwrite('-------------------',date("d-m-Y").'_NEXT_TIRO_'.$_SESSION['logged_in']);
+                                      $log->lclose();
                                
                                 }else{
-                                    printf($mysqli->error);
-                                    echo "no se inserto el siguiente tiro";
+                                     $log->lwrite('error al insertar sig tiraje',date("d-m-Y").'_ERROR_NEXT_TIRO_'.$_SESSION['logged_in']);
+
+                                      $log->lwrite('tiro next: '.$nTiraje,date("d-m-Y").'_ERROR_NEXT_TIRO_'.$_SESSION['logged_in']);
+                                     
+                                      $log->lwrite(printf($mysqli->error),date("d-m-Y").'_ERROR_NEXT_TIRO_'.$_SESSION['logged_in']);
+                                      $log->lwrite($init_tiraje,date("d-m-Y").'_ERROR_NEXT_TIRO_'.$_SESSION['idUser']);
+                                      $log->lwrite('-------------------',date("d-m-Y").'_ERROR_NEXT_TIRO_'.$_SESSION['logged_in']);
+                                      $log->lclose();
                                 } 
       /************* Termina Siguiente tiraje ************/   
 
@@ -490,6 +411,8 @@ function logpost($post){
             foreach ($needle as $stack) {if (in_array($stack, $haystack)) { return true;} }
             return false;
         } */
+        if ($_SESSION['is_virtual']=='false') {
+         
         function is_in_array($needle, $haystack) {
 
             foreach ($needle as $stack) {
@@ -571,18 +494,9 @@ function logpost($post){
             
 
         }
-        if(@$_SESSION['logged_in'] != true){
-            echo '
-            <script>
-                alert("La sesion se cerro inseperadamente, favor de iniciar sesion otra vez");
-                self.location.replace("index.php");
-            </script>';
-        }else{
-        //echo $_SERVER['HTTP_HOST'];
-        //header("Location: http://{$_SERVER['SERVER_NAME']}/unify/index2.php");
-        }
-
         
+
+        }
 
          }else{
                     printf("Errormessage: %s\n", $mysqli->error);

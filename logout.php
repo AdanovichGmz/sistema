@@ -1,10 +1,21 @@
 <?php 
+error_reporting(0);
+require('classes/functions.class.php');
+$log = new Functions();
 
-if( !session_id() )
-{
+require("saves/conexion.php");
+
     session_start();
-}
 
+$query="UPDATE sesiones SET active=2 WHERE id_sesion=".$_SESSION['stat_session'];
+$inactive=$mysqli->query($query);
+
+
+if (!$inactive) {
+    $error=printf($mysqli->error);
+   $log->lwrite($error,date("d-m-Y").'_ERROR_INACTIVAR_'.$_SESSION['logged_in']);
+            $log->lclose();
+}
 session_destroy();
 
 ?>
@@ -15,7 +26,7 @@ session_destroy();
 
     setTimeout(function() {   
  	self.location.replace("index.php");
-                                                  }, 1000);
+                                                  }, 800);
    
 </script>
 

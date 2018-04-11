@@ -110,7 +110,7 @@ if (p_elem==17) {
                                               $('.face-osc').removeClass('face-osc');
                                               $(this).addClass('face-osc').find('input').prop('checked', true);
    
-  }else if (p_elem==123||p_elem==124||p_elem==125||p_elem==136) {
+  }else if (p_elem==123||p_elem==124||p_elem==125||p_elem==136||p_elem==25) {
     selectElement();
     var planillas='<br><br><br><br><br><br><p style="font-size:25px;font-weight: bold;">PLANILLAS DE:</p>'+
     '<div class="real-qty-button" data-id="'+p_elem+'" data-name="'+name+'" data-plans="1"><p>1</p></div>'+
@@ -621,7 +621,7 @@ setInterval(animacion, 550);
       $('#elementerror').show();
       setTimeout(function() {   
                    $('#elementerror').hide();
-                }, 5000);
+                }, 3000);
     }else{
       if (ontime=='true') {
         timer.pause();
@@ -650,12 +650,9 @@ setInterval(animacion, 550);
                           selectElement(); 
                           $(document).on("click", ".maquinamesa", function () {
                              var maquinamesa=$(this).data('maq');
-                            if ($('#orderID').val()=='virtual') {
-                            window.location.replace("index3_5.php?elem="+elem+"&mac="+mac+"&order="+order+"&mm="+maquinamesa);
-                          }
-                            else{
+                            
                                window.location.replace("index3.php?mac="+mac+"&order="+order+"&mm="+maquinamesa);
-                            }
+                            
 });
                           
                          
@@ -680,7 +677,7 @@ function saveAjuste(){
       $('#elementerror').show();
       setTimeout(function() {   
                    $('#elementerror').hide();
-                }, 5000);
+                }, 3000);
     }else{
       if (ontime=='true') {
         timer.pause();
@@ -700,12 +697,9 @@ function saveAjuste(){
                        
                           //$('#update-form')[0].reset();  
                           //$('.close').click(); 
-                          if ($('#orderID').val()=='virtual') {
-                            window.location.replace("index3_5.php?elem="+elem+"&mac="+mac+"&order="+order);
-                          }
-                            else{
+                          
                                window.location.replace("index3.php?mac="+mac+"&order="+order);
-                            }
+                            
                          
                           console.log(data);
                      }  

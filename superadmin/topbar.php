@@ -18,6 +18,12 @@
               <li><a href="modify_ete.php">Modificar<span class="icon-pencil"></span></a></li>        
           </ul>
 </li><li class="submenu">
+          <a href="#"><span class="icon-clipboard"></span>Operarios<span class="caret icon-arrow-down6"></span></a>
+          <ul class="children">
+          <li><a href="operators.php">Administrar operarios <span class="icon-user"></span></a></li>
+                    
+          </ul>
+</li><li class="submenu">
           <a href="#"><span class="icon-cog"></span>Maquinas<span class="caret icon-arrow-down6"></span></a>
           <ul class="children">
           <li><a href="repajustemaquina.php">Ajuste <span class="icon-cogs"></span></a></li>

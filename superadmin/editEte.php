@@ -34,9 +34,9 @@ if ($result) {
 if ($result) {
 	if ($std_change) {
 
-	$calcstd=mysqli_fetch_assoc($mysqli->query("SELECT *,TIME_TO_SEC(timediff(horafin_tiraje, horadeldia_tiraje)) AS dispon_tiro FROM tiraje WHERE idtiraje=".$_POST["id"]));
+	$calcstd=mysqli_fetch_assoc($mysqli->query("SELECT t.*,(SELECT proceso FROM sesiones WHERE id_sesion=t.id_sesion) AS proceso,TIME_TO_SEC(timediff(horafin_tiraje, horadeldia_tiraje)) AS dispon_tiro FROM tiraje t WHERE idtiraje=".$_POST["id"]));
 	if($calcstd['is_virtual'] == 'true'){
-		$processID=($calcstd["id_maquina"]==20||$calcstd["id_maquina"]==21)? 10:(($calcstd["id_maquina"]==22)? 9 : $calcstd["id_maquina"] );
+		$processID=$calcstd["proceso"];
 		$std=mysqli_fetch_assoc($mysqli->query("SELECT piezas_por_hora FROM estandares WHERE id_elemento=(SELECT id_elemento FROM elementos WHERE nombre_elemento= '".$calcstd["elemento_virtual"]."') AND id_maquina=".$processID));
 
 		
@@ -66,9 +66,10 @@ if ($result) {
 		echo $std['piezas_por_hora'];
 	}else{
 		$el=(isset($calcstd["element"]))? $calcstd["element"] :0;
-		$processID=($calcstd["id_maquina"]==20||$calcstd["id_maquina"]==21)? 10:(($calcstd["id_maquina"]==22)? 9 : $calcstd["id_maquina"] );
-		$std=mysqli_fetch_assoc($mysqli->query("SELECT piezas_por_hora FROM estandares WHERE id_elemento=(SELECT id_elemento FROM elementos WHERE nombre_elemento= '".$el."') AND id_maquina=".$processID));
-		echo $std['piezas_por_hora'];
+		$processID=$calcstd["proceso"];
+		$std=mysqli_fetch_assoc($mysqli->query("SELECT piezas_por_hora FROM estandares WHERE id_elemento=(SELECT id_elemento FROM elementos WHERE nombre_elemento= '".$el."') AND id_proceso=".$processID));
+		
+		
 	}
 }else{
 	echo "<div class='successs'><div></div><span>Exito: </span>Datos guardados!</div>";

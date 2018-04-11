@@ -638,7 +638,7 @@ border-top: solid 5px transparent;
    <option disabled="true" selected="true">Operarios</option>
  <option value="11">Alfonso</option>
  <option value="16">Armando</option>
-  <option value="17">Christian Acevedo</option>
+  <option value="14">Christian Acevedo</option>
   <option value="13">Christian</option>
   <option value="8">Eduardo</option>
   <option value="2" style="display: none;">Adan</option>
@@ -659,7 +659,7 @@ border-top: solid 5px transparent;
    
   
  
- </div><div  class="left-form2"><form action="../pdfrepajustemaquina/createPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
+ </div><div  class="left-form2"><form action="../pdfrepajustemaquina/createReport.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
 
 </div>
    
@@ -696,6 +696,7 @@ border-top: solid 5px transparent;
   <input type="radio" id="maqui" checked value="maquina" class="entorno" name="entorno">
   <label for="maqui">Maquina:</label>
   </div>
+  <div id="procesosradio"></div>
 
   <div class="in-line">
      <p>Inicio ajuste:</p>
@@ -806,6 +807,18 @@ border-top: solid 5px transparent;
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
 <script>
 $('.new-modal').click(function(){
+
+user=$('#filterElem').val();
+$.ajax({
+        url: "getProcesos.php",
+        type: "POST",
+        data:{oper:user},
+        success: function(data){
+        $('#procesosradio').append(data);
+        }        
+       });
+
+
    $('.backdrop').animate({'opacity':'.50'}, 300, 'linear');
 $('.backdrop, ').css('display', 'block');
     $('.newtiro-modal').show();
@@ -1015,7 +1028,8 @@ $("#newstandar").click(function () {
 
 $('#newTiro').submit(function(){
   event.preventDefault();
-
+var sesion=$('#sesion').val();
+var estacion=$('#estacion').val();
 var odt=$('#odt').val();
 var operario=$('#operario').val();
 var producto=$('#producto').val();
@@ -1036,7 +1050,7 @@ var fin_tiro=$('#fin-tiro').val();
         url: "newTiro.php",
         type: "POST",
 
-        data:{odt:odt,operario:operario,producto:producto,fecha:fecha,entorno:entorno,in_ajuste:in_ajuste,fin_ajuste:fin_ajuste,pedido:pedido,recibido:recibido,buenos:buenos,piezas:piezas,in_tiro:in_tiro,fin_tiro:fin_tiro},
+        data:{odt:odt,operario:operario,producto:producto,fecha:fecha,entorno:entorno,in_ajuste:in_ajuste,fin_ajuste:fin_ajuste,pedido:pedido,recibido:recibido,buenos:buenos,piezas:piezas,in_tiro:in_tiro,fin_tiro:fin_tiro,sesion:sesion,estacion:estacion},
         success: function(data){
           $('.close').click();
           $('#newTiro')[0].reset();

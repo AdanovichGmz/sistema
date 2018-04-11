@@ -12,13 +12,14 @@ function logpost($post){
 
 }  
 session_start();
-
+$today=date("d-m-Y");
 
 $userID = $_SESSION['idUser'];
 date_default_timezone_set("America/Mexico_City"); 
 $radios=(isset($_POST['radios']))? $_POST['radios'] : 'Otro';
 $observaciones=$_POST['observaciones'];
-$tiro=$_POST['actual_tiro'];
+$getTiro=mysqli_fetch_assoc($mysqli->query("SELECT tiro_actual FROM sesiones WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']." AND operador=".$_SESSION['idUser']));
+$tiro=$getTiro['tiro_actual'];
 $inicioAlerta=$_POST['inicioAlerta'];
 //foreach ($_POST['opcion'] as $opcion); 
 
@@ -43,9 +44,9 @@ $isdead=($totalT<=1200)? 2 : 1;
 $stationID = $_SESSION['stationID'];
 $horafin=date(" H:i:s", time());
 if ($radios=='Preparar Tinta') {
-	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_estacion, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,2)";
+	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_estacion, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,3)";
 }else{
-	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_estacion, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,$isdead)";
+	$query="INSERT INTO alertageneralajuste (radios, observaciones, tiempoalertamaquina, id_estacion, id_usuario, horadeldiaam,horafin_alerta, fechadeldiaam,id_tiraje,es_tiempo_muerto) VALUES ('$radios','$observaciones','$tiempoalertamaquina','$stationID','$userID','$inicioAlerta', '$horafin', '$fechadeldiaam',$tiro,3)";
 }
 
 

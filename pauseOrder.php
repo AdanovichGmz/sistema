@@ -1,4 +1,5 @@
 <?php 
+
 date_default_timezone_set("America/Mexico_City");  
 session_start();
 require('saves/conexion.php');
@@ -32,6 +33,9 @@ if ($paused) {
 	printf($mysqli->error);
 }
 }else if($action=='cancel'){
+
+	$log->lwrite('cancelando un tiro',date("d-m-Y").'_CANCELANDRO_'.$_SESSION['logged_in']);
+            
 	
 	$query="UPDATE tiraje SET pedido=0,buenos=0,piezas_ajuste=0,defectos=0,merma=0,merma_entregada=0,entregados=0,produccion_esperada=0,desempenio=0,tiempoTiraje='".$_POST['time']."', cancelado=1, horafin_tiraje='".date(" H:i:s", time())."',fechadeldia_tiraje='".date("d-m-Y")."' WHERE idtiraje=".$_POST['tiro'];
 	$del['post']=json_encode($_POST);
@@ -54,9 +58,27 @@ if ($paused) {
 	}
 	$userID=$_SESSION['idUser'];
 	$today=date("d-m-Y");
-	$mysqli->query("UPDATE sesiones SET tiro_actual=NULL, tiempo_alerta=NULL,tiempo_comida=NULL, inicio_ajuste='".date(" H:i:s", time())."' WHERE operador=$userID AND fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
+	$next=date(" H:i:s", time());
+
+    /************* Siguiente tiraje ************/
+         $init_tiraje     = "INSERT INTO tiraje(id_estacion,id_proceso,horadeldia_ajuste, fechadeldia_ajuste,id_user,id_sesion) VALUES (".$_SESSION['stationID'].",".$_SESSION['processID'].",'$next','$today', ".$_SESSION['idUser'].", ".$_SESSION['stat_session'].")";
+            
+         $next_tiraje = $mysqli->query($init_tiraje);
+                                
+         $nTiraje=$mysqli->insert_id;
+
+                               
+         
+                             
+      /************* Termina Siguiente tiraje ************/   
 
 
+
+	$updateSession="UPDATE sesiones SET tiro_actual=$nTiraje,parte='--', tiempo_alert=NULL,tiempo_comida=NULL, inicio_ajuste='".date(" H:i:s", time())."' WHERE operador=$userID AND fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID'];
+	$mysqli->query($updateSession);
+
+$log->lwrite($updateSession,date("d-m-Y").'_CANCELANDRO_'.$_SESSION['logged_in']);
+            $log->lclose();
   
 	
 }else{

@@ -12,45 +12,23 @@ $oper=(isset($_POST['operario']))?$_POST['operario']:0;
 $producto=(isset($_POST['producto']))? "'".$_POST['producto']."'":'null';
 $odt=(isset($_POST['odt']))? "'".$_POST['odt']."'":'null';
 $fecha=(isset($_POST['fecha']))? "'".$_POST['fecha']."'":'null';
+
 $pedido=(isset($_POST['pedido']))? $_POST['pedido']:0;
 $recibido=(isset($_POST['recibido']))? $_POST['recibido']:0;
 $buenos=(isset($_POST['buenos']))? $_POST['buenos']:0;
 $piezas=(isset($_POST['piezas']))? $_POST['piezas']:0;
 $defectos=($piezas>2)? $piezas-2:0;
 $merma=$buenos-$pedido;
-
-
+$station=(isset($_POST['estacion']))? "'".$_POST['estacion']."'":'null';
+$session=(isset($_POST['sesion']))? "'".$_POST['sesion']."'":'null';
 $entorno=(isset($_POST['entorno']))?$_POST['entorno']:'maquina';
-
-switch ($oper) {
-	case '14':
-		$maquina=10;
-		break;
-		case '16':
-		$maquina=10;
-		break;
-		case '8':
-		$maquina=10;
-		break;
-		case '11':
-		$maquina=16;
-		break;
-		case '13':
-		$maquina=9;
-		break;
-		case '2':
-		$maquina=9;
-		break;
-	
-	default:
-		$maquina=0;
-		break;
-}
+$maquina=$_POST['proceso'];
+$proceso=$_POST['proceso'];
 
 $tiempoT=strtotime($fin_tiro) - strtotime($in_tiro);
 $tiempoA=strtotime($fin_ajuste) - strtotime($in_ajuste);
 
-$standar_query = "SELECT * FROM estandares WHERE id_maquina=$maquina AND id_elemento=$producto";
+$standar_query = "SELECT * FROM estandares WHERE id_proceso=$proceso AND id_elemento=$producto";
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query));
             $estandar       = $getstandar['piezas_por_hora'];
 
@@ -97,7 +75,7 @@ $nombre=$n_prod['nombre_elemento'];
 $ajuste= gmdate("H:i:s", $tiempoA);
 $tiraje= gmdate("H:i:s", $tiempoT);
 
-$query="INSERT INTO `tiraje` (`idtiraje`, `producto`, `id_maquina`, `pedido`, `cantidad`, `buenos`, `piezas_ajuste`, `defectos`, `merma`, `merma_entregada`, `entregados`, `produccion_esperada`, `desempenio`, `tiempoTiraje`, `tiempo_ajuste`, `horadeldia_ajuste`, `horafin_ajuste`, `fechadeldia_ajuste`, `horadeldia_tiraje`, `horafin_tiraje`, `fechadeldia_tiraje`, `id_orden`, `id_user`, `is_virtual`, `odt_virtual`, `elemento_virtual`, `id_elem_virtual`, `cancelado`) VALUES (NULL, $producto, $maquina, $pedido, $recibido, $buenos, $piezas, $defectos, $merma, $merma, $buenos, $tiraje_estandar, $tiraje_desemp, '$tiraje', '$ajuste', '$in_ajuste', '$fin_ajuste', $fecha, '$in_tiro', '$fin_tiro', $fecha, NULL, $oper, 'true', $odt, '$nombre', $producto, 'false')";
+$query="INSERT INTO `tiraje` (`idtiraje`, `producto`, `id_estacion`, `pedido`, `cantidad`, `buenos`, `piezas_ajuste`, `defectos`, `merma`, `merma_entregada`, `entregados`, `produccion_esperada`, `desempenio`, `tiempoTiraje`, `tiempo_ajuste`, `horadeldia_ajuste`, `horafin_ajuste`, `fechadeldia_ajuste`, `horadeldia_tiraje`, `horafin_tiraje`, `fechadeldia_tiraje`, `id_orden`, `id_user`, `is_virtual`, `odt_virtual`, `elemento_virtual`, `id_elem_virtual`, `cancelado`, `id_sesion`) VALUES (NULL, $producto, $station, $pedido, $recibido, $buenos, $piezas, $defectos, $merma, $merma, $buenos, $tiraje_estandar, $tiraje_desemp, '$tiraje', '$ajuste', '$in_ajuste', '$fin_ajuste', $fecha, '$in_tiro', '$fin_tiro', $fecha, NULL, $oper, 'true', $odt, '$nombre', $producto, 'false',$session)";
 $insert=$mysqli->query($query);
 
 if ($insert) {
@@ -105,6 +83,7 @@ if ($insert) {
 echo $query;
 }else{	print_r($_POST);
 		printf($mysqli->error);
+echo $query;
 	}
 
 
