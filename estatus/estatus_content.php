@@ -32,7 +32,7 @@ $disponible=mysqli_fetch_assoc($mysqli->query("SELECT TIME_FORMAT(SEC_TO_TIME(((
 
  
 
-$sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)-SUM(merma_entregada)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(produccion_esperada)AS sum_prod_esperada, (SUM(buenos)-SUM(merma_entregada))-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$today' AND id_user =$userID"));
+$sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(produccion_esperada)AS sum_prod_esperada, SUM(buenos)-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$today' AND id_user =$userID"));
  
 $dispon=(($disponible['sec_disponible']<=0)? 0: ($real['sec_t_real']/$disponible['sec_disponible'])*100);
 $dispon_tope= ($dispon>100)?100:$dispon;

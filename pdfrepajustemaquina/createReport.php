@@ -95,7 +95,7 @@ $disponible=mysqli_fetch_assoc($mysqli->query("SELECT TIME_FORMAT(SEC_TO_TIME(((
 
 
 
-$sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)-SUM(merma_entregada)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(produccion_esperada)AS sum_prod_esperada, (SUM(buenos)-SUM(merma_entregada))-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid"));
+$sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(produccion_esperada)AS sum_prod_esperada, SUM(buenos)-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid"));
 
 $asa_query = "SELECT *, TIME_TO_SEC(tiempo) AS tiempo_asaichi,TIME_TO_SEC(timediff(hora_fin,horadeldia)) AS dispon_asaichi,TIME_FORMAT(horadeldia, '%H:%i') AS inicio_asa,TIME_FORMAT(hora_fin, '%H:%i') AS fin_asa,TIME_FORMAT(tiempo, '%H:%i') AS tiempo_real_asa,(SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE seccion='asaichi' AND fecha='$fecha' AND id_user=$userid) AS tmuerto_asa FROM asaichi WHERE fechadeldia='$fecha' AND id_usuario=$userid";
 $getAsa=$mysqli->query($asa_query);

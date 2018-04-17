@@ -61,7 +61,7 @@ if(@$_SESSION['logged_in'] != true){
     $prods=$mysqli->query("SELECT * FROM elementos ORDER BY nombre_elemento ASC");
 
   $procs=$mysqli->query("SELECT * FROM maquina ORDER BY nommaquina ASC");
-  $ops=$mysqli->query("SELECT * FROM usuarios ORDER BY logged_in ASC");
+  $ops=$mysqli->query("SELECT * FROM usuarios WHERE app_active='true' ORDER BY logged_in ASC");
     ?>
 
 
@@ -90,7 +90,7 @@ if(@$_SESSION['logged_in'] != true){
       <link rel="stylesheet" href="../fonts/style.css">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="../js/main.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js"></script>
 
 <script src="../js/choosen.js"></script>

@@ -25,7 +25,7 @@ function getStandar($elem,$proceso)
     return $estandar['piezas_por_hora'];
 }
 
-$query = "SELECT * FROM usuarios WHERE rol=2";
+$query = "SELECT * FROM usuarios WHERE rol=2 AND app_active='true'";
 
 
 
@@ -59,7 +59,7 @@ $resss     = $mysqli->query($query);
   </thead>
   <?php while ( $row=mysqli_fetch_assoc($resss)) { ?>
     <tbody>
-    <td><img class="user-photo" src="../<?=$row['foto'] ?>"></td>
+    <td><img class="user-photo" src="../<?=(empty($row['foto']))? 'images/default.jpg' :$row['foto'] ?>"></td>
     <td><?=$row['logged_in'] ?></td>
     <td><?=$row['usuario'] ?></td>
     <td><?=$row['password'] ?></td>  

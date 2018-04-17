@@ -60,7 +60,7 @@ $today=date("d-m-Y");
                            
 
                           
-                            if(date("w")==1||date("w")==3||date("w")==5){
+                            if(date("w")==1||date("w")==4){
                                
                                 if (strtotime($time)>=strtotime('09:00:00')) {
                                      $logged_in=$_SESSION['idUser'];

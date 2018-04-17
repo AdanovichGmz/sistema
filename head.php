@@ -6,7 +6,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/libs/bootstrap.min.js"></script>
   
-      <link href="css/general-styles.css" rel="stylesheet" />
+      <link href="css/general-styles.css?v=2" rel="stylesheet" />
     <!-- LOADER -->
     <link rel="stylesheet" href="css/normalize.min.css">
     <link href="css/style.css" rel="stylesheet" />

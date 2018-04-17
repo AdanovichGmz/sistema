@@ -156,10 +156,23 @@ $log->lwrite('Se paso de muerto: '.$muerto_format,$fechadeldia.'_SUMATORIA_MUERT
           $timeA=date("H:i:s",time()); 
 
           if ($virtual=='true') {
+             $log->lwrite('entro a virtual= true ',$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
+             $log->lwrite('virtual: '.$virtual,$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
+              $log->lwrite(json_encode($_POST),$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
+
+               $log->lwrite('------------------',$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
+                  $log->lclose();
             $virtOdt=$_POST['odtvirtual'];
           $virtElem=$_POST['elemvirtual'];
             $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$horafinajuste', horadeldia_tiraje='$horafinajuste',  is_virtual=1,odt_virtual='$virtOdt',elemento_virtual='$virtElem' WHERE idtiraje=$tirajeActual";
           }else{
+
+            $log->lwrite('entro a virtual= false ',$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
+            $log->lwrite('virtual: '.$virtual,$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
+              $log->lwrite(json_encode($_POST),$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
+              
+               $log->lwrite('------------------',$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
+                  $log->lclose();
             $query     = "UPDATE tiraje SET tiempo_ajuste=$tiempoajuste, horafin_ajuste='$timeA', horadeldia_tiraje='$timeA', id_orden=$numodt WHERE idtiraje=$tirajeActual";
           }
 

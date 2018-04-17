@@ -1,7 +1,8 @@
  <?php
 require('../saves/conexion.php');
 $target=$_POST['target'];
-
+print_r($_POST);
+ print_r($_FILES);
 if ($target=='info') {
  $nombre=(isset($_POST['nombre']))? "'".$_POST['nombre']."'" : 'null';
 $usuario=(isset($_POST['usuario']))? "'".$_POST['usuario']."'" : 'null';
@@ -12,6 +13,18 @@ $mysqli->query("UPDATE login SET logged_in=$nombre, usuario=$usuario, password=$
 // unlink($Your_file_path);
   print_r($_POST);
   print_r($_FILES);
+}elseif ($target=='procesos') {
+	
+	foreach ($_POST['estaciones'] as $key => $station) {
+		$processes=$_POST['procesos-'.$station];
+		$mysqli->query("DELETE FROM estaciones_procesos WHERE id_estacion=".$station);
+		foreach ($processes as $key => $process) {
+			$resultado=$mysqli->query("INSERT INTO estaciones_procesos(id_estacion,id_proceso) VALUES($station,$process)");
+			if (!$resultado) {
+				printf($mysqli->error);
+			}
+		}
+	}
 }
 
 

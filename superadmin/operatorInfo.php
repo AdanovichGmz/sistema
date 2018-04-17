@@ -174,13 +174,13 @@ background:#E51C23;
   vertical-align: middle;
 
 }
-#sending{
+#sending,#sending2{
   width: 100%;
   height: 449px;
   position: relative;
   display: none;
 }
-#sending img{
+#sending img,#sending2 img{
   width: 130px;
   position: absolute;
    top: 50%;
@@ -250,7 +250,7 @@ background:#E51C23;
     </div>
     <div class="image-loader"></div>
     <div class="backdrop-photo"></div>
-    <form method="POST" enctype="multipart/form-data" id="photo-form">
+    <form  id="photo-form">
       <input type="file" id="foto" name="foto" style="display: none;">
       <input type="hidden" name="target" value="photo">
     </form>
@@ -303,32 +303,32 @@ background:#E51C23;
       </div>
     </div>
     <div class="sections " id="estaciones">
-    <form method="POST" >
+    <form method="POST" id="est-proc">
+    <input type="hidden" name="target" value="procesos">
+
     <div class="section-title">Estaciones y Procesos
     <div class="right-action">+ Asignar Nueva Estación</div>
     </div>
                <?php while ($row=mysqli_fetch_assoc($getStations)) { 
             $estation=mysqli_fetch_assoc($mysqli->query("SELECT * FROM estaciones WHERE id_estacion=".$row['id_estacion']));
-            $getProcess=$mysqli->query("SELECT * FROM estaciones_procesos ep INNER JOIN procesos_catalogo pc ON ep.id_proceso=pc.id_proceso WHERE id_estacion=".$row['id_estacion'])
+            $getProcess=$mysqli->query("SELECT * FROM estaciones_procesos ep INNER JOIN procesos_catalogo pc ON ep.id_proceso=pc.id_proceso WHERE id_estacion=".$row['id_estacion']);
 
             ?>
             <div id="stations-cont">
             <div class="station"> 
             <div class="station-title"><?=$estation['nombre_estacion'] ?></div>
+              <input type="hidden" value="<?=$estation['id_estacion'] ?>" name="estaciones[]">
         <table class="stations">
         <thead>
         <tr>
-            <th colspan="2">Procesos</th>
-            
-            
+          <th colspan="2">Procesos</th>
           </tr>
           </thead>
           <tbody id="proceses">
         <?php while ($process=mysqli_fetch_assoc($getProcess)) { ?>
           
           <tr>
-            <td><?=$process['nombre_proceso'] ?></td>
-            
+            <td><?=$process['nombre_proceso'] ?><input type="hidden" value="<?=$process['id_proceso'] ?>" name="procesos-<?=$estation['id_estacion'] ?>[]"></td>            
             <td style="text-align: right;"><a href="#" class="remove-row">Eliminar</a></td>
           </tr>
         <?php } ?>
@@ -337,16 +337,15 @@ background:#E51C23;
           <tr>
             <td></td>
             
-            <td style="text-align: right;"><button id="add-dinam" type="button">+ Agregar proceso</button></td>
+            <td style="text-align: right;"><button id="add-dinam" data-station="<?=$estation['id_estacion'] ?>" type="button">+ Agregar proceso</button></td>
           </tr>
         </tbody>
         </table>
         
         </div>
-
+</div>
         <?php } ?>
-
-</div><div id="station-controls">
+<div id="station-controls">
   <table>
     <tr>
       <td>
@@ -360,7 +359,12 @@ background:#E51C23;
     </tr>
   </table>
 </div>
+
        </form>
+       <div id="sending2">
+        <img src="../images/loader.gif">
+      </div>
+      
     </div>
     <div class="sections " id="estadisticas">
       <div class="section-title">Estadisticas del operario</div>
@@ -433,9 +437,13 @@ $('#photo-form').submit(function (e) {
   $.ajax({
         url: "editOperator.php",
         type: "POST",
-        data:$(this).serialize(),
+       data:  $(this).serializeArray(),
+        
+        
+        
         success: function(data){
-          console.log(data);
+        console.log(data);
+          /*
         $.ajax({
         url: "operatorInfo.php",
         type: "POST",
@@ -444,6 +452,7 @@ $('#photo-form').submit(function (e) {
         $('#operator-info').html(data);
         }        
        });
+        */
         }        
        });  
 
@@ -473,12 +482,43 @@ $('#user-info').submit(function (e) {
 
 });
 
+$('#est-proc').submit(function (e) {
+  $(this).hide();
+  console.log('picandole');
+  $('#sending2').show();
+    e.preventDefault();
+    var iduser=$('#iduser').val();
+  $.ajax({
+        url: "editOperator.php",
+        type: "POST",
+        data:$(this).serialize(),
+        success: function(data){
+          console.log('contesto ajax');
+           
+          
+        $.ajax({
+        
+        url: "operatorInfo.php",
+        type: "POST",
+        data:{id_user:iduser},
+        success: function(data){
+        $('#operator-info').html(data);
+        $('div[data-target="estaciones"]').click();
+        } 
+
+       }); 
+        }        
+       });  
+
+});
+
 $("#add-dinam").click(function () {
+  var station=$(this).attr('data-station');
     var options='<option selected disabled>Elige un proceso</option><?php while ($row4=mysqli_fetch_assoc($procesos)) { 
 echo '<option class="new-proces" value="'.$row4['id_proceso'].'">'.$row4['nombre_proceso'].'</option>';
      }; ?>';
    
-    var row='<tr><td><select  required  id="procesmenu" name="procesos[]">'+options+'</select></td><td style="text-align:right;"><a href="#" class="remove-row">Eliminar</a></td></tr>' 
+    var row='<tr><td><select  required  id="procesmenu" name="procesos-'+station+'[]">'+options+'</select></td><td style="text-align:right;"><a href="#" class="remove-row">Eliminar</a></td></tr>' 
 
     $('#proceses').append(row);
 

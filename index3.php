@@ -85,7 +85,7 @@ $disponible=mysqli_fetch_assoc($mysqli->query("SELECT TIME_FORMAT(SEC_TO_TIME(((
  $element    =($resultado0['elemento_virtual']!=null)? $resultado0['id_elemento_virtual'] : $operation['parte'];
 
 
-$sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)-SUM(merma_entregada)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(produccion_esperada)AS sum_prod_esperada, (SUM(buenos)-SUM(merma_entregada))-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$today' AND id_user =$userID"));
+$sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(produccion_esperada)AS sum_prod_esperada, (SUM(buenos)-SUM(merma_entregada))-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$today' AND id_user =$userID"));
  
 
 $disponibilidad=($real['sec_t_real']/$disponible['sec_disponible'])*100;
@@ -195,9 +195,9 @@ $showpercent=100-$final;
 <link rel="stylesheet" href="css/3.3.6/bootstrap.min.css" />
 
     
-  <link href="css/corte.css?v=3" rel="stylesheet" />
+  <link href="css/corte.css?v=4" rel="stylesheet" />
     <link href="css/estiloshome.css?v=4" rel="stylesheet" />
-    <link href="css/general-styles.css?v=3" rel="stylesheet" />
+    <link href="css/tiraje.css" rel="stylesheet" />
    
    
    
@@ -219,133 +219,7 @@ $showpercent=100-$final;
 </script> 
 
 <style type="text/css">
-.prple img{
-  width: 80%!important;
-}
-  #cantpedido{
-    width: 170px;
-    height: 82px;
-  text-align: left;
-    position: absolute;
-    right: 15px;
-    top: 0;
-  
-  }
-  #cantpedido div{
-    width: 100%;
-    color: #fff;
-        font-size: 14px;
-   text-align: left;
-    font-family: "monse-bold";
-  }
-  #cantpedido input{
-    width: 160px;
-    padding: 2px;
-    text-align: center;
-    border-radius: 3px;
-    border: 1px solid #B2BDC8;
-    background: #F3F5F7;
-    font-size: 40px!important;
-    color: #606062;
-    font-family: "monse-bold";
-  }
-  .darkinput{
-    background: #343434!important;
-    color: #fff!important;
-        border: 1px solid #5C5C5C!important;
-  }
-  .diferentbutton{
-    cursor: pointer;
-    margin-top: 80px;
-  }
-  .diferentbutton div{
-    display: inline-block;
-    padding: 0!important;
-    margin: 0!important;
-  }
-  .diferentbutton div:first-child{
-    width: 80px;
-    height: 80px;
-    background: #B05326;
-    position: relative;
-    border-top-left-radius:4px;
-    border-bottom-left-radius:4px;
-  }
-  .diferentbutton div:first-child img{
-    width: 50px;
-    position: absolute;
-    top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  }
-  .diferentbutton div:last-child{
-    width: 170px;
-    height: 80px;
-    background: #FC7736;
-    color: #fff;
-     border-top-right-radius:4px;
-    border-bottom-right-radius:4px;
-    position: relative;
-  }
-  .diferentbutton div:last-child p{
-    top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-    position: absolute;
-    font-family: "monse-bold";
-    font-size: 20px;
-  }
-  .orderform{
-    width: 200px;
-    height: 300px;
-    display: inline-block;
-    margin: 10px;
-    text-align: center;
-    border-radius:6px;
-    
-    border: 1px solid #CCCCCC;
-  }
-  .orderform input{
-    width: 100%;
-    padding: 6px 12px;
-    margin: 4px 0;
-    display: inline-block;
-    border: 1px solid #ccc!important;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 24px;
-  }
-  .headbar{
-    width: 100%;
-    background: #ccc;
-    height: 50px;
-    line-height: 50px;
-    color: #fff;
-    font-family: "monse-bold";
-    font-size: 22px;
-    border-top-left-radius:4px;
-    border-top-right-radius:4px;
-  }
-  .orderform p{
-    margin: 0!important;
-  }
-  .formbody{
-    width: 90%;
-    position: relative;
-    margin:0 auto;
-  }
-  #explain-error{
-  color:red;
-  font-size: 25px;
-  font-weight: bold;
-}
-legend{
-  padding:10px;
-  color:#CECECE;
-  border:none; 
-  text-align: center; 
-}
-  
+
 </style>
 
 </head>
@@ -364,7 +238,7 @@ legend{
    
       <ul>
   <!-- <li> <div id="divPHOTO" class="user-photo"></div></li> -->
-  <li><span style="color: #CECECE; font-size:20px;"><?php
+  <li><span class="person-title" style="font-size:20px;"><?php
     echo $_SESSION['logged_in'].' | '.$processName;
 ?></span></li>
 
@@ -401,7 +275,7 @@ legend{
         
         $displayElement=($_SESSION['is_virtual']=='false')? $resultado0['nombre_elemento'] : $Ajuste['elemento_virtual'];
         $size=(strlen($displayElement)>17)?'font-size: 17px;':'';
-        echo $operation['orden_actual'] . " <span style='color:#fff; ".$size."'>" . $displayElement . "</span>";
+        echo $operation['orden_actual'] . " <span  ".$size."'>" . $displayElement . "</span>";
     } else {
         echo "--";
     }
