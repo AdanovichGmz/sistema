@@ -100,6 +100,8 @@ $sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_rea
 $asa_query = "SELECT *, TIME_TO_SEC(tiempo) AS tiempo_asaichi,TIME_TO_SEC(timediff(hora_fin,horadeldia)) AS dispon_asaichi, (SELECT TIME_TO_SEC(tiempo_muerto) FROM tiempo_muerto WHERE seccion='asaichi' AND fecha='$fecha' AND id_user=$userid) AS tmuerto_asa FROM asaichi WHERE fechadeldia='$fecha' AND id_usuario=$userid";
 
 $resultado= $mysqli->query($query);
+
+
 if (!$resultado) {
   printf($mysqli->error);
 }
@@ -159,7 +161,10 @@ $comida_exist='';
   </tr>
   </thead>
 
-  <?php foreach ($tiros as $key => $tiro) {
+  <?php 
+    
+    if($resultado->num_rows>0){
+    foreach ($tiros as $key => $tiro) {
             if ($key=='0') {
                    
               $sum_disponible+=$tiro['desface'];
@@ -243,13 +248,22 @@ $comida_exist='';
     <td><?=gmdate("H:i", $sum_tiempo_real) ?></td>
     <td><?=round($tiro['produccion_esperada']); ?></td>
     <td><?=round($tiro['sum_esperada']); ?></td>
-    <td><?=$tiro['produccion_real']; ?></td>
+
+    
+
+    <td class="editable" onClick="showEdit(this);"><?= round($tiro['produccion_real'],2); ?><div class="tooltiptext toolreal"><div class="tagtitle"><span>ODT:</span> <?=($tiro['is_virtual'] == 'true') ? $tiro['odt_virtual'] : $tiro['real_odt'] ?></div><p>Buenos</p><div class="tinput"><input id="buen-<?=$tiro['idtiraje']; ?>" type="number" value="<?= $tiro['buenos'] ?>"></div><p>Merma</p><div class="tinput"><input id="merm-<?=$tiro['idtiraje']; ?>" type="number" value="<?=$tiro['merma_entregada']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('real','entregados','<?=$tiro['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
+
+
     <td><?=$tiro['sum_prod_real']; ?></td>
     <td><?=$tiro['merma']; ?></td>
     <td><?=$tiro['sum_merma']; ?></td>
     <td><?=$tiro['calidad']; ?></td>
     <td><?=$tiro['sum_calidad']; ?></td>
-    <td><?=$tiro['defectos']; ?></td>
+    
+
+
+     <td class="editable" onClick="showEdit(this);"><?= $tiro['defectos']; ?><div class="tooltiptext toolright"><div class="tagtitle"><span>ODT:</span> <?=($tiro['is_virtual'] == 'true') ? $tiro['odt_virtual'] : $tiro['real_odt'] ?></div><div class="tinput"><input id="def-<?=$tiro['idtiraje']; ?>" type="number" value="<?=$tiro['defectos']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('defectos','defectos','<?=$tiro['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
+
     <td><?=$tiro['sum_defectos']; ?></td>
     <td><?=($tiro['cancelado']=='true')? 'TIRAJE CANCELADO':getTiroAlerts($tiro['idtiraje']) ?></td>
     
@@ -260,7 +274,9 @@ $comida_exist='';
   </tr>
   <?php } ?>
   </tbody>
- <?php } 
+ <?php } }else{
+   echo "<tbody><tr><td colspan='24'>No se encontro informacion para este operario en el dia seleccionado</td></tr></tbody>";     
+    }
 $dispon=(($disponible['sec_disponible']<=0)? 0: ($real['sec_t_real']/$disponible['sec_disponible'])*100);
 $dispon_tope= ($dispon>100)?100:$dispon;
 $desemp=( ($sumatorias['sum_prod_esperada']<=0)? 0: (($sumatorias['sum_prod_real']+$sumatorias['sum_merma'])/$sumatorias['sum_prod_esperada'])*100);

@@ -396,6 +396,7 @@ legend{
             <div class="cont2 center-block">
                 <form name="nuevo_registro" id="nuevo_registro" method="POST">
                   <input type="hidden" name="section" value="ajuste">
+                  <input type="hidden" id="is_virtual" name="is_virtual">
                  <input hidden type="text" name="logged_in" id="logged_in" value="<?php echo "". $_SESSION['logged_in'] ?>" />
                 <input type="hidden" id="orderID" name="numodt" class=" diseños" value="<?= (isset($ordenActual))? implode(",", $ordenActual)  : ((isset($stoppedOrderID))? $stoppedOrderID : '') ;?>"/>
                 <input type="hidden" id="orderODT" name="orderodts" class=" diseños" value="<?= (isset($getActODT))? implode(",", $getActODT)  : '' ;?>"/>
@@ -960,6 +961,10 @@ $('#idelem').val(id);
  
 
 });
+
+
+
+
 $(document).on("click", ".real-qty-button", function () {
 
  var id=$(this).data("id");
@@ -970,10 +975,8 @@ $(document).on("click", ".real-qty-button", function () {
   $('#plans').remove();
       $('#tareas').append('<input type="hidden" name="plans" id="plans" value="'+plans+'">');
     close_Elements();
-
-
-                                              sendOrder();
-                                              $('#close-down').click(); 
+    sendOrder();
+    $('#close-down').click(); 
 
 $.ajax({  
                       
@@ -1012,4 +1015,4 @@ $.ajax({
 });
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=35"></script>
+<script src="js/ajuste.js?v=36"></script>

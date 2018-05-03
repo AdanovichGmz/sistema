@@ -85,8 +85,9 @@ $disponible=mysqli_fetch_assoc($mysqli->query("SELECT TIME_FORMAT(SEC_TO_TIME(((
  $element    =($resultado0['elemento_virtual']!=null)? $resultado0['id_elemento_virtual'] : $operation['parte'];
 
 
-$sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(produccion_esperada)AS sum_prod_esperada, (SUM(buenos)-SUM(merma_entregada))-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$today' AND id_user =$userID"));
+$sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(produccion_esperada)AS sum_prod_esperada, SUM(buenos)-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$today' AND id_user =$userID"));
  
+
 
 $disponibilidad=($real['sec_t_real']/$disponible['sec_disponible'])*100;
 $dispon_tope= ($disponibilidad>100)?100:$disponibilidad;
@@ -242,8 +243,8 @@ $showpercent=100-$final;
     echo $_SESSION['logged_in'].' | '.$processName;
 ?></span></li>
 
-  <li><div class="live-indicator">Tiros: <?=$sumatorias['sum_prod_real'] ?></div></li>
-<li><div class="live-indicator">Merma: <?=$sumatorias['sum_merma'] ?></div></li>
+  <li><div class="live-indicator">Tiros: <?=round($sumatorias['sum_prod_real'],1) ?></div></li>
+<li><div class="live-indicator">Merma: <?=round($sumatorias['sum_merma'],1) ?></div></li>
     <input type="hidden" id="realtime">
     <input type="hidden" id="mach" value="<?=$processID ?>"> 
      <input type="hidden" id="el" value="<?=$element ?>">         

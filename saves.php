@@ -69,7 +69,7 @@ function logpost($post){
         $nommaquina  = $_SESSION['stationName'];
         $stationID  = $_SESSION['stationID'];
         $userID   = $_SESSION['idUser'];
-       
+       $is_virtual=$_POST['is_virtual'];
         $orderodts=$_POST['orderodts'];
         $horadeldia  = $_POST['horadeldia'];
         $fechadeldia = $_POST['fechadeldia'];
@@ -155,7 +155,7 @@ $log->lwrite('Se paso de muerto: '.$muerto_format,$fechadeldia.'_SUMATORIA_MUERT
 
           $timeA=date("H:i:s",time()); 
 
-          if ($virtual=='true') {
+          if ($is_virtual=='virtual') {
              $log->lwrite('entro a virtual= true ',$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
              $log->lwrite('virtual: '.$virtual,$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
               $log->lwrite(json_encode($_POST),$fechadeldia.'_RASTREANDO_ERROR_'.$_SESSION['logged_in']);
@@ -226,7 +226,7 @@ $log->lwrite('Se paso de muerto: '.$muerto_format,$fechadeldia.'_SUMATORIA_MUERT
             
             $table_mac=(isset($_POST['table-machine']))? $_POST['table-machine'] : 1;
             $odt=(isset($_POST['odt']))? $_POST['odt'] : '';
-            $pedido=(isset($_POST['pedido'])) ?(($planillas=='null')? $_POST['pedido'] : $_POST['pedido']/$planillas) : '';
+            $pedido=(isset($_POST['pedido'])) ?(($planillas=='null')? $_POST['pedido'] : $_POST['pedido']) : '';
             $cantidad=(isset($_POST['cantidad'])) ?$_POST['cantidad'] : '';
             $buenos=(isset($_POST['buenos']))? (($planillas=='null')? $_POST['buenos']-$_POST['merma-entregada'] : ($_POST['buenos']-$_POST['merma-entregada'])/$planillas) : '';
             $defectos=(isset($_POST['defectos'])) ?$_POST['defectos'] : '';

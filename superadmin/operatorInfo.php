@@ -21,13 +21,13 @@ $procesos=$mysqli->query("SELECT * FROM procesos_catalogo");
     display: inline-block;
     vertical-align: top;
     width: 20%;
-    height: 500px;
+    height: 550px;
   }
 .user-content{
   display: inline-block;
   vertical-align: top;
   width: 80%;
-  height: 500px;
+  height: 550px;
 }
 .left-bar{
   border:1px solid #E6E8E7
@@ -271,23 +271,30 @@ background:#E51C23;
       <table class="form-table">
         <tr>
           <td class="title-field">Nombre:</td>
-          <td class="input-field"><input type="text" class="changed" name="nombre" value="<?=$userData['logged_in'] ?>"><input type="hidden" id="iduser" name="iduser" value="<?=$userData['id'] ?>"><input type="hidden" name="target" value="info"></td>
+          <td class="input-field" style="width:170px"><input type="text" class="changed" name="nombre" value="<?=$userData['logged_in'] ?>"><input type="hidden" id="iduser" name="iduser" value="<?=$userData['id'] ?>"><input type="hidden" name="target" value="info"></td>
+          <td class="title-field">Apellido:</td>
+          <td class="input-field" style="width:170px"><input type="text" class="changed" name="apellido" value="<?=$userData['apellido'] ?>"></td>
         </tr>
+        
         <tr>
           <td class="title-field">Usuario:</td>
-          <td class="input-field"><input type="text" class="changed" name="usuario" value="<?=$userData['usuario'] ?>"></td>
+          <td class="input-field" colspan="3"><input type="text" class="changed" name="usuario" value="<?=$userData['usuario'] ?>"></td>
         </tr>
         <tr>
           <td class="title-field">Contraseña:</td>
-          <td class="input-field"><input type="text" class="changed" name="password" value="<?=$userData['password'] ?>"></td>
+          <td class="input-field" colspan="3"><input type="text" class="changed" name="password" value="<?=$userData['password'] ?>"></td>
         </tr>
         <tr>
           <td class="title-field">Hora de entrada:</td>
-          <td class="input-field"><input type="time" class="changed" name="entrada" value=""></td>
+          <td class="input-field" colspan="3"><input type="time" class="changed" name="entrada" value=""></td>
         </tr>
         <tr>
           <td class="title-field">Hora de salida:</td>
-          <td class="input-field"><input type="time" class="changed" name="salida" value=""></td>
+          <td class="input-field" colspan="3"><input type="time" class="changed" name="salida" value=""></td>
+        </tr>
+        <tr>
+          <td class="title-field">Sueldo: $</td>
+          <td class="input-field" colspan="3"><input type="text" class="changed" name="sueldo" value="<?=$userData['sueldo'] ?>"></td>
         </tr>
 
       </table>      

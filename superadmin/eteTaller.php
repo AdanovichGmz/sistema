@@ -3,6 +3,8 @@
 if( !session_id() )
 {
     session_start();
+    
+
 }
 if(@$_SESSION['logged_in'] != true){
     echo '
@@ -15,50 +17,10 @@ if(@$_SESSION['logged_in'] != true){
 }
     ?>
 
+
      <?php
      require('../saves/conexion.php');
-        function getProcess($id){
-          if (!empty($id)) {
-            require('../saves/conexion.php');
-        $maq_query="SELECT nommaquina FROM maquina WHERE idmaquina=$id";
         
-        $getmaq=mysqli_fetch_assoc($mysqli->query($maq_query));
-        $maq=$getmaq['nommaquina'];
-        return $maq;
-          }else{
-            return '';
-          }
-        
-      }
-      function getElement($id){
-         require('../saves/conexion.php');
-        $elem_query="SELECT nombre_elemento FROM elementos WHERE id_elemento=$id";
-        
-        $getelem=mysqli_fetch_assoc($mysqli->query($elem_query));
-        $elem=$getelem['nombre_elemento'];
-        return $elem;
-      }
-      function getMinutes($seconds){
-
-      } 
-  
-     $maquinas="SELECT nommaquina, idmaquina FROM maquina";
-    $n_maquinas=$mysqli->query($maquinas);
-    $usuarios="SELECT * FROM elementos ORDER BY nombre_elemento ASC";
-      $n_usuarios=$mysqli->query($usuarios);
-
-
-    $elem_filter="SELECT * FROM elementos ORDER BY nombre_elemento ASC";
-    $filter=$mysqli->query($elem_filter);
-
-    $maq_filter="SELECT idmaquina,nommaquina FROM maquina";
-    $filter2=$mysqli->query($maq_filter);
-
-
-    $prods=$mysqli->query("SELECT * FROM elementos ORDER BY nombre_elemento ASC");
-
-  $procs=$mysqli->query("SELECT * FROM maquina ORDER BY nommaquina ASC");
-  $ops=$mysqli->query("SELECT * FROM login ORDER BY logged_in ASC");
     ?>
 
 
@@ -87,10 +49,9 @@ if(@$_SESSION['logged_in'] != true){
 
 
 
-
 <script type="text/javascript">
 
-
+    
 (function(document) {
   'use strict';
 
@@ -206,16 +167,39 @@ if(@$_SESSION['logged_in'] != true){
   <input type="hidden" id="dia4" name="dias[]">
   <input type="hidden" id="dia5" name="dias[]">
   <input type="hidden" id="fin" name="dias[]">
-     <button>Generar Reporte PDF</button>
+     <button name="pdf">Reporte PDF</button>
+      <button name="xlsx">Reporte EXCEL</button>
   </form>
 </div>
+ 
 </div>
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+ 
+  
+  
+
+  
 </body>
 </html>
+
+
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
+
     function noSunday(date){ 
           var day = date.getDay(); 
                       return [(day > 0), '']; 

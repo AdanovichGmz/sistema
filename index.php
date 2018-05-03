@@ -25,11 +25,11 @@ if(@$_SESSION['logged_in'] == true){
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
 <link rel="stylesheet" href="css/3.3.6/bootstrap.min.css" />
     <link href="css/estilos.css" rel="stylesheet" />
-
+<link href="css/estiloshome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="text/javascript" src="./main.js"></script>
     <script type="text/javascript" src="./llqrcode.js"></script>
-
+<link rel="stylesheet" href="css/softkeys-small.css">
     
 </head>
 <body>
@@ -48,6 +48,9 @@ if(@$_SESSION['logged_in'] == true){
     font-family: "monse-medium";
     }
     */
+    body{
+      position: relative!important;
+    }
     p{
         color: red;
         font-size: 20px;
@@ -89,8 +92,8 @@ if(@$_SESSION['logged_in'] == true){
         </div>
         
         
-            <input id="usuario" name="usuario" type="text" placeholder="USUARIO" class="login-input" required="" />
-            <input id="password" name="pass" type="password" placeholder="CONTRASEÑA" class="login-input" required="" />
+            <input id="usuario" name="usuario" type="text" readonly onclick="getKeys(this.id,'pedido')" placeholder="USUARIO" class="login-input" required="" />
+            <input id="password" name="pass" type="password" placeholder="CONTRASEÑA" class="login-input" readonly onclick="getKeys(this.id,'pedido')" required="" />
             <input type="button" id="singlebutton" value="ENTRAR" name="singlebutton" class="login-button">
             </form>
         </div>
@@ -98,10 +101,22 @@ if(@$_SESSION['logged_in'] == true){
         </div>
 
     </div> 
-   
+   <div id="panelkeyboard3">
+    
+    <div class="keycontainer">
+      <div id="softk" class="softkeys" data-target="input[name='getodt']"></div>
+    </div>
+    
+      <div id="close-down-key" class="square-button-micro red " style="display: none;">
+                          <img src="images/ex.png">
+                        </div>
+    
+    
+</div>
     <script src="./jquery-1.11.2.min.js"></script>
 </body>
 <script type="text/javascript">
+var kb=false;
     $(document).ready(function(event) {
         $( "#singlebutton").click(function() {
                                           
@@ -129,6 +144,64 @@ if (localStorage.getItem('fecha')!==currentdate) {
       $('#singlebutton').click();
 }
 });
+
+
+function getKeys(id,name) {
+      $('#'+id).select();
+      
+      $('#softk').attr('data-target', 'input[name="'+name+'"]');
+        if (kb == false) {
+          
+          $(".login-box").animate({ top: '-=30%' }, 200);
+            $("#panelkeyboard3").animate({ bottom: '+=50%' }, 200);
+            kb = true;
+        }
+        var bguardar;
+        
+        $('#softk').empty();     
+         $('.softkeys').softkeys({
+                    target :  $('#'+id),
+                    layout : [
+                        [
+                            
+                            ['1','!'],
+                            ['2','@'],
+                            ['3','#'],
+                            ['4','$'],
+                            ['5','%'],
+                            ['6','^'],
+                            ['7','&amp;'],
+                            ['8','*'],
+                            ['9','('],
+                            ['0',')']
+                        ],
+                    [
+                            'q','w','e','r','t','y','u','i','o','p'
+                            
+                        ],
+                        [
+                            
+                            'a','s','d','f','g','h','j','k','l','ñ'
+                            
+                            
+                            
+                        ],[
+                            
+                            'z','x','c','v','b','n','m','←']
+                            
+                            ],
+
+                    id:'softkeys'
+                });
+              
+                $('#hidekey').parent('.softkeys__btn').addClass('hidder'); 
+    $('#savekey').parent('.softkeys__btn').addClass('saver').attr('id', 'saver');;            
+$('#borrar-letras').parent('.softkeys__btn').addClass('large');
+            $('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
+            if (id=='virtualodt'||id=='virtualelem') { $('.savebutton').show();}else{$('.savebutton').hide();}
+    }    
 </script>
 </html>
 <?php } ?>
+
+<script src="js/softkeys-0.0.1.js"></script>

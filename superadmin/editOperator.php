@@ -7,8 +7,9 @@ if ($target=='info') {
  $nombre=(isset($_POST['nombre']))? "'".$_POST['nombre']."'" : 'null';
 $usuario=(isset($_POST['usuario']))? "'".$_POST['usuario']."'" : 'null';
 $password=(isset($_POST['password']))? "'".$_POST['password']."'" : 'null';
-
-$mysqli->query("UPDATE login SET logged_in=$nombre, usuario=$usuario, password=$password WHERE id=".$_POST['iduser']);
+$sueldo=(isset($_POST['sueldo']))? "'".$_POST['sueldo']."'" : 'null';
+$apellido=(isset($_POST['apellido']))? "'".$_POST['apellido']."'" : 'null';
+$mysqli->query("UPDATE usuarios SET logged_in=$nombre, usuario=$usuario, sueldo=$sueldo,apellido=$apellido, password=$password WHERE id=".$_POST['iduser']);
 }elseif ($target=='photo') {
 // unlink($Your_file_path);
   print_r($_POST);

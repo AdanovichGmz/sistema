@@ -315,6 +315,7 @@ if (p_elem==17) {
                $('#orderID').val(orid);
               $('#order').val(orid);
                
+              $('#is_virtual').val(orid);
                
                $('#currentOrder').html('EN PROCESO: '+curorder+" "+curid);
                 $('.saveloader').hide();
@@ -821,6 +822,7 @@ function createVirtualOdt(){
                var elemid=$('#returning4').val();
                $('#orderID').val(orid);
               $('#order').val(orid);
+              $('#is_virtual').val(orid);
               $('#elemvirtual').val(curid);
               $('#idelemvirtual').val(elemid);
               $('#odtvirtual').val(curorder);

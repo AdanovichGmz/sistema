@@ -9,13 +9,14 @@ $date_report=(isset($_POST['fecha']))? "'".$_POST['fecha']."'" : 'null';
 $concept=(isset($_POST['concepto']))? "'".$_POST['concepto']."'" : 'null';
 $time=date("H:i:s",time());
 $date=date("d-m-Y");
-
+print_r($_POST);
 
 if ($prod_real) {
 	$entregados=$_POST["entregados"]+$_POST["merma"];
+	$buenos=$_POST["entregados"];
 	$query="UPDATE tiraje set merma_entregada = '".$_POST["merma"]."', entregados= $entregados, buenos= $entregados,   WHERE  idtiraje=".$_POST["id"];
 	$merma=$_POST["merma"];
-	$result = $mysqli->query("UPDATE tiraje set merma_entregada =$merma, entregados= $entregados, buenos= $entregados   WHERE  idtiraje=".$_POST["id"]);
+	$result = $mysqli->query("UPDATE tiraje set merma_entregada =$merma, entregados= $entregados, buenos= $buenos  WHERE  idtiraje=".$_POST["id"]);
 if ($result) {
 	echo "<div class='successs'><div></div><span>Exito: </span>Datos guardados!</div>";
 	$log=$mysqli->query("INSERT INTO `registro_modificacion` (`id_registro`, `usuario`, `fecha_registro`, `hora_registro`, `operador`, `fecha`, `concepto`, `informacion`) VALUES (NULL, '$logged', '$date', '$time', $oper, $date_report, 'produccion real', 'buenos: ".$_POST["entregados"]." merma : ".$_POST["merma"]."')");

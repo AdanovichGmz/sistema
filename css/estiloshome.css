@@ -650,6 +650,19 @@ box-shadow:         1px -1px 5px 0px rgba(50, 50, 50, 0.52);
     background:#D5D9DC;
     
 }
+#panelkeyboard3{
+    width:100%;
+    height:50%;
+    bottom:-50%;
+    -webkit-box-shadow: 1px -1px 5px 0px rgba(50, 50, 50, 0.52);
+-moz-box-shadow:    1px -1px 5px 0px rgba(50, 50, 50, 0.52);
+box-shadow:         1px -1px 5px 0px rgba(50, 50, 50, 0.52);
+    position:fixed;
+    z-index:999999999!important;
+    
+    background:#D5D9DC;
+    
+}
 .cerrarkey{
     position: relative;
     width: 100%;

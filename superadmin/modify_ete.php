@@ -20,48 +20,12 @@ if(@$_SESSION['logged_in'] != true){
 
      <?php
      require('../saves/conexion.php');
-        function getProcess($id){
-          if (!empty($id)) {
-            require('../saves/conexion.php');
-        $maq_query="SELECT nommaquina FROM maquina WHERE idmaquina=$id";
-        
-        $getmaq=mysqli_fetch_assoc($mysqli->query($maq_query));
-        $maq=$getmaq['nommaquina'];
-        return $maq;
-          }else{
-            return '';
-          }
-        
-      }
-      function getElement($id){
-         require('../saves/conexion.php');
-        $elem_query="SELECT nombre_elemento FROM elementos WHERE id_elemento=$id";
-        
-        $getelem=mysqli_fetch_assoc($mysqli->query($elem_query));
-        $elem=$getelem['nombre_elemento'];
-        return $elem;
-      }
-      function getMinutes($seconds){
-
-      } 
   
-     $maquinas="SELECT nommaquina, idmaquina FROM maquina";
-    $n_maquinas=$mysqli->query($maquinas);
-    $usuarios="SELECT * FROM elementos ORDER BY nombre_elemento ASC";
-      $n_usuarios=$mysqli->query($usuarios);
-
-
-    $elem_filter="SELECT * FROM elementos ORDER BY nombre_elemento ASC";
-    $filter=$mysqli->query($elem_filter);
-
-    $maq_filter="SELECT idmaquina,nommaquina FROM maquina";
-    $filter2=$mysqli->query($maq_filter);
-
 
     $prods=$mysqli->query("SELECT * FROM elementos ORDER BY nombre_elemento ASC");
 
-  $procs=$mysqli->query("SELECT * FROM maquina ORDER BY nommaquina ASC");
-  $ops=$mysqli->query("SELECT * FROM login ORDER BY logged_in ASC");
+  
+  $ops=$mysqli->query("SELECT * FROM usuarios WHERE app_active='true' ORDER BY logged_in ASC");
     ?>
 
 
@@ -526,7 +490,7 @@ border-top: solid 5px transparent;
   width: 480px;
   background:#fff;
   padding: 20px;
-  height: 500px;
+  height: 550px;
   
   border-radius: 4px;
  
@@ -611,6 +575,15 @@ border-top: solid 5px transparent;
   padding-left: 10px;
   text-align: left;
 }
+.w-message{
+  width: 300px;
+  text-align: center;
+  color: #999999;
+  position: absolute;
+  top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 @media screen and (max-width:1024px) {
   th{
     font-size: 8px;
@@ -620,13 +593,10 @@ border-top: solid 5px transparent;
   </style>
   <link rel="stylesheet" type="text/css" href="../css/jquery-ui-1.7.2.custom.css" />
 
-
 </head>
 <body style=";">
 
 <?php include("topbar.php");  ?>
-
-
 
  <div class="top-form">
 
@@ -635,36 +605,29 @@ border-top: solid 5px transparent;
    <p style="margin-bottom: 2px!important;">Elige operario y fecha</p>
    <input type="hidden" name="activef" value="ok">
    <div class=""><select id="filterElem" name="dateFilter">
-   <option disabled="true" selected="true">Operarios</option>
- <option value="11">Alfonso</option>
- <option value="16">Armando</option>
-  <option value="14">Christian Acevedo</option>
-  <option value="13">Christian</option>
-  <option value="8">Eduardo</option>
-  <option value="2" style="display: none;">Adan</option>
-  
-<option value="15">Ramon</option>
-  
+  <option disabled="true" selected="true">Operarios</option>
+   <?php while ($op=mysqli_fetch_assoc($ops)) {?>
+    <option value="<?=$op['id'] ?>"><?=$op['logged_in'].' '.$op['apellido'] ?></option>
+  <?php } ?>
 
    </select>
 <p id="usererror" style="display: none;">Por favor elige un usuario</p>
  <input id="datepicker" class="" placeholder="Fecha.." required="true" value="" name="id" />
   <p id="fechaerror" style="display: none;">Por favor elige una fecha</p>
    </div>
-   
- 
+  
  </div><div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">TRAER INFORMACION</button></div><div class="left-form2"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtrar"></div></div><div class="left-form2">
  
-   <button style="margin-top: 25px;" type="button" id="addtiro"  class="btn btn-info new-modal disabled">AGREGAR TIRO</button>
-   
+   <button style="margin-top: 25px;" type="button" id="addtiro"  class="btn btn-info new-modal disabled">AGREGAR CAMBIO</button>
   
- 
  </div><div  class="left-form2"><form action="../pdfrepajustemaquina/createReport.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
 
 </div>
    
 <div class="div-tabla">
-
+<div class="w-message">
+  Por favor selecciona un operario y una fecha, luego haz click en <strong>TRAER INFORMACION</strong>
+</div>
 </div>
 <div class="newtiro-modal">
 <div class="close"></div>
@@ -722,10 +685,6 @@ border-top: solid 5px transparent;
   <input type="number" required id="piezas" name="piezas">
   </div>
 
-
-
-  
-
   <div class="in-line">
      <p>Inicio tiraje:</p>
   <input type="time" step="2" required id="in-tiro" name="in-tiro">
@@ -743,21 +702,8 @@ border-top: solid 5px transparent;
 <div class="backdrop"></div>
 <div class="box"><div class="close"></div>
 
-
-
   </div>
 </div>
-
-
-
-
-
-
-
- 
-  
-  
-
 
    <div class="box2"><div class="close2"></div>
   <div class="modal-form">
@@ -765,8 +711,7 @@ border-top: solid 5px transparent;
     <form id="delete_form" method="post" onsubmit="deleteRow();">
     <input type="hidden" value="delete" name="form" >
    <input type="hidden" id="dfi" name="idstandard" >
-    
-    
+   
     <input type="submit" value="BORRAR">
     <input type="button" value="CANCELAR" class="close2">
   </form>
@@ -789,16 +734,13 @@ border-top: solid 5px transparent;
   </form>
   </div>
 
-
-
   </div>
   <div class="popup"></div>
 </body>
 </html>
 
 <script>
-  
-
+ 
   $(".chosen").chosen();
   
   </script>
@@ -1023,8 +965,6 @@ $("#newstandar").click(function () {
     yearSuffix: ''};
   $.datepicker.setDefaults($.datepicker.regional['es']);
 })(jQuery);
-
-
 
 $('#newTiro').submit(function(){
   event.preventDefault();

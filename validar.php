@@ -115,7 +115,7 @@ if($f=mysqli_fetch_assoc($sql2)){
 
                                 $mysqli->query("UPDATE sesiones SET tiro_actual=$lastTiraje WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']." AND operador=$logged_in");
 
-                                $deadtime="INSERT INTO `tiempo_muerto` (`id_tiempo_muerto`, `tiempo_muerto`, `fecha`, `id_estacion`, `id_user`, `numodt`, `id_orden`, `seccion`, `hora_del_dia`, `id_tiraje`, `id_sesion`) VALUES (NULL, '$diference', '$today', $station_id, $logged_in, NULL, NULL, NULL, '$time', $lastTiraje, ".$_SESSION['stat_session'].")";
+                                $deadtime="INSERT INTO `tiempo_muerto` (`id_tiempo_muerto`, `tiempo_muerto`, `fecha`, `id_estacion`, `id_user`, `numodt`, `id_orden`, `seccion`, `hora_del_dia`, `id_tiraje`, `id_sesion`) VALUES (NULL, '$diference', '$today', $station_id, $logged_in, NULL, NULL, 4, '$time', $lastTiraje, ".$_SESSION['stat_session'].")";
                                 $guardandoAlMuerto=$mysqli->query($deadtime);
                                 if (!$guardandoAlMuerto) {
                                    $log->lwrite($deadtime,$today.'_'.$_SESSION['logged_in'].'ERROR_ICHI');

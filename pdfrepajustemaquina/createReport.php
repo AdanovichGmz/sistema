@@ -5,7 +5,7 @@ include '../saves/conexion.php';
 use Dompdf\Dompdf;
 $fecha = $_POST['id'];
 $userid = $_POST['iduser'];
-
+$apell=($userid==14)? 'Acevedo':(($userid==13)?'Izquierdo':'');
 function getAjusteAlerts($idtiro){
   include '../saves/conexion.php';
   $query="SELECT * FROM alertageneralajuste WHERE id_tiraje=".$idtiro;
@@ -64,14 +64,14 @@ TIME_TO_SEC(timediff(t.horadeldia_ajuste, '08:45:00.000000'))AS desfase,
 (@s := @s + t.produccion_esperada) AS sum_esperada,
 (@e := @e + t.buenos) AS sum_prod_real,
 (@f := @f + t.merma_entregada) AS sum_merma,
-(@g := @g + (t.buenos-t.merma_entregada)-t.defectos) AS sum_calidad,
+(@g := @g + (t.buenos)-t.defectos) AS sum_calidad,
 (@h := @h + t.defectos) AS sum_defectos,
 TIME_TO_SEC(t.horadeldia_ajuste)AS sorting,
 TIME_TO_SEC(timediff(t.horafin_tiraje, t.horadeldia_tiraje))-IFNULL((SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje=t.idtiraje AND radios='Comida' AND seccion='tiro'),0)AS segundos_tiro,
 TIME_TO_SEC(timediff(t.horafin_ajuste, t.horadeldia_ajuste))-IFNULL((SELECT TIME_TO_SEC(breaktime) FROM breaktime WHERE id_tiraje=t.idtiraje AND radios='Comida' AND seccion='ajuste' ),0)AS segundos_ajuste,
 TIME_TO_SEC(t.tiempoTiraje)AS segundos_reales_tiro,
 TIME_TO_SEC(t.tiempo_ajuste)AS segundos_reales_ajuste,
-(t.buenos-t.merma_entregada)-t.defectos AS calidad,
+(t.buenos)-t.defectos AS calidad,
 (SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=t.id_proceso)AS proceso,
 (SELECT breaktime FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS comida_ajuste, 
 (SELECT horadeldiaam FROM breaktime WHERE id_tiraje = t.idtiraje AND seccion = 'ajuste' AND radios = 'Comida') AS ini_comida_ajuste, 
@@ -195,7 +195,7 @@ ob_start();
 </tr>
  <?php $getUser=mysqli_fetch_assoc($mysqli->query("SELECT logged_in FROM usuarios WHERE id=".$userid)) ?>
   <tr>
-   <td><?=$getUser['logged_in'] ?></td>
+   <td><?=$getUser['logged_in'].' '.$apell ?></td>
    <td></td>
    <td></td>
    <td><?=$fecha ?></td>
@@ -331,12 +331,12 @@ ob_start();
     <td><?=gmdate("H:i", $sum_tiempo_real) ?></td>
     <td><?=round($tiro['produccion_esperada']); ?></td>
     <td><?=round($tiro['sum_esperada']); ?></td>
-    <td><?=$tiro['produccion_real']; ?></td>
-    <td><?=$tiro['sum_prod_real']; ?></td>
-    <td><?=$tiro['merma']; ?></td>
-    <td><?=$tiro['sum_merma']; ?></td>
-    <td><?=$tiro['calidad']; ?></td>
-    <td><?=$tiro['sum_calidad']; ?></td>
+    <td><?=round($tiro['produccion_real'],1); ?></td>
+    <td><?=round($tiro['sum_prod_real'],1); ?></td>
+    <td><?=round($tiro['merma'],1); ?></td>
+    <td><?=round($tiro['sum_merma'],1); ?></td>
+    <td><?=round($tiro['calidad'],1); ?></td>
+    <td><?=round($tiro['sum_calidad'],1); ?></td>
     <td><?=$tiro['defectos']; ?></td>
     <td><?=$tiro['sum_defectos']; ?></td>
     <td><?=($tiro['cancelado']=='true')? 'TIRAJE CANCELADO':getTiroAlerts($tiro['idtiraje']) ?></td>
