@@ -2,6 +2,8 @@
 
  session_start();
 date_default_timezone_set("America/Mexico_City"); 
+require('classes/functions.class.php');
+$log = new Functions();
 require('saves/conexion.php');
  $stationID=$_SESSION['stationID'];
  $stationName=$_SESSION['stationName'];
@@ -27,9 +29,13 @@ if ($check->num_rows==0) {
 }
 elseif ($section=='ajuste') {
 
-	$check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID']);
+	$check=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND operador=".$logged_in);
 
 if ($check->num_rows==0) {
+
+	//$log->lwrite('aca es donde se inserto','AQUI_FUE');
+ 
+    //$log->lclose();
 	$op_query=$mysqli->query("INSERT INTO sesiones(operador,estacion,proceso,actividad_actual,active,en_tiempo,asaichi_cumplido,fecha) VALUES($logged_in,$stationID,$pro_id,2,1,1,1,'$today')");
 
 	if ($op_query) {

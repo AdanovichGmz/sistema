@@ -379,6 +379,9 @@ $log->lwrite('Se paso de muerto: '.$muerto_format,$fechadeldia.'_SUMATORIA_MUERT
         $next=date(" H:i:s", time());
 
 
+        $log->lwrite(json_encode($_POST),date("d-m-Y").'_RASTREO_'.$_SESSION['logged_in']);
+         $log->lwrite('-------------------',date("d-m-Y").'_RASTREO_'.$_SESSION['logged_in']);
+                                      $log->lclose();
 
         /************* Siguiente tiraje ************/
          $init_tiraje     = "INSERT INTO tiraje(id_estacion,id_proceso,horadeldia_ajuste, fechadeldia_ajuste,id_user,id_sesion) VALUES (".$_SESSION['stationID'].",".$_SESSION['processID'].",'$next','$today', ".$_SESSION['idUser'].", ".$_SESSION['stat_session'].")";
@@ -390,6 +393,9 @@ $log->lwrite('Se paso de muerto: '.$muerto_format,$fechadeldia.'_SUMATORIA_MUERT
                                $setNext="UPDATE sesiones SET inicio_ajuste='$next',parte='--',tiro_actual=$nTiraje, tiempo_alert=null,tiempo_comida=null WHERE operador =$userID AND fecha='$today' AND estacion=".$machineID." AND proceso=".$_SESSION['processID'];
 
                               $mysqli->query($setNext);
+
+
+                              $log->lwrite($setNext,date("d-m-Y").'_NEXT_TIRO_'.$_SESSION['logged_in']);
                               $log->lwrite('next tiraje'.$nTiraje,date("d-m-Y").'_NEXT_TIRO_'.$_SESSION['logged_in']);
                               $log->lwrite($setNext,date("d-m-Y").'_NEXT_TIRO_'.$_SESSION['logged_in']);
                               $log->lwrite('-------------------',date("d-m-Y").'_NEXT_TIRO_'.$_SESSION['logged_in']);

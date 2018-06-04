@@ -76,7 +76,7 @@ $tbody.='<tr class="theader">';
     
     $tbody.='<td>TOTAL DEF</td>';
     
-      foreach ($workProc as $key => $workDef){
+      foreach ($workProc as $key => $workDef) {
         $tbody.="<td> DEF ".substr($workDef['nombre_proceso'], 0, 4)."</td>";
       }
 
@@ -120,7 +120,7 @@ $tbody.='<tbody>';
   $fecha=$dia;
 
 
-  $getTiros=$mysqli->query("SELECT * FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND cancelado='false' AND buenos IS NOT NULL AND id_user=".$userid);
+  $getTiros=$mysqli->query("SELECT * FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND entregados<500 AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$userid);
   $tiroInfo=mysqli_fetch_assoc($getTiros);
   $cuero="SELECT TIME_FORMAT(SEC_TO_TIME(MIN((TIME_TO_SEC(horadeldia_ajuste)))), '%H:%i') AS inicial,TIME_FORMAT(SEC_TO_TIME(MAX((TIME_TO_SEC(horafin_tiraje)))), '%H:%i') AS final FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND id_user=".$userid;
 
@@ -134,10 +134,10 @@ $tbody.='<tbody>';
 (SELECT SUM(TIME_TO_SEC(breaktime)) FROM breaktime WHERE fechadeldiaam = '$fecha' AND id_usuario =$userid),0))+IFNULL((SELECT SUM(TIME_TO_SEC(tiempo_muerto)) FROM tiempo_muerto WHERE fecha= '$fecha' AND id_user =$userid AND seccion='desfase'),0)), '%H:%i') AS disponible, ((SUM(TIME_TO_SEC(horafin_tiraje) - TIME_TO_SEC(horadeldia_tiraje))+SUM(TIME_TO_SEC(horafin_ajuste)-TIME_TO_SEC(horadeldia_ajuste)))-IFNULL(
 (SELECT SUM(TIME_TO_SEC(breaktime)) FROM breaktime WHERE fechadeldiaam = '$fecha' AND id_usuario =$userid),0))+IFNULL((SELECT SUM(TIME_TO_SEC(tiempo_muerto)) FROM tiempo_muerto WHERE fecha='$fecha' AND id_user=$userid AND seccion='desfase'),0) AS sec_disponible FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid"));
 
-  $sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(buenos)+SUM(merma_entregada)AS sum_entregados,SUM(produccion_esperada)AS sum_prod_esperada,SUM(defectos)AS sum_defectos, SUM(buenos)-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$fecha'  AND id_user =$userid"));
+  $sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(buenos)+SUM(merma_entregada)AS sum_entregados,SUM(produccion_esperada)AS sum_prod_esperada,SUM(defectos)AS sum_defectos, SUM(buenos)-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid "));
   $dispon=(($disponible['sec_disponible']<=0)? 0: ($real['sec_t_real']/$disponible['sec_disponible'])*100);
   $dispon_tope= ($dispon>100)?100:$dispon;
-  $desemp=(($sumatorias['sum_prod_esperada']<=0)? 0: (($sumatorias['sum_prod_real']+$sumatorias['sum_merma'])/$sumatorias['sum_prod_esperada'])*100);
+  $desemp=( ($sumatorias['sum_prod_esperada']<=0)? 0: (($sumatorias['sum_prod_real']+$sumatorias['sum_merma'])/$sumatorias['sum_prod_esperada'])*100);
   $desemp_tope=($desemp>100)?100:$desemp;
   $calidad=(($sumatorias['sum_prod_real']<=0)? 0: ($sumatorias['sum_calidad_primera']/$sumatorias['sum_prod_real'])*100);
   $calidad_tope=($calidad>100)?100:$calidad;
@@ -184,15 +184,18 @@ $tbody.='<tbody>';
   $tbody.='<td>'.$minMax['inicial'].'</td>';
   $tbody.='<td>'.$minMax['final'].'</td>';
   $tbody.='<td>'.round($sumatorias['sum_prod_real'],1).'</td>';
-
+  
   foreach ($workProc as $key => $tdSum1) {
-    $getByProcess=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum1['id_proceso']." GROUP BY id_proceso"));
-    $getChanges=$mysqli->query("SELECT buenos FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']." AND cancelado='false'  AND id_proceso=".$tdSum1['id_proceso']);
+    $getByProcess=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios, id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND entregados<500 AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$user['id']."  AND id_proceso=".$tdSum1['id_proceso']." GROUP BY id_proceso"));
+   
 
-        $subtd.="<td> ".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? $getChanges->num_rows:'')."</td><td>".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? round($getByProcess['total_buenos'],1):'').'</td>';
+        $subtd.="<td> ".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? $getByProcess['cambios']:'')."</td><td>".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? round($getByProcess['total_buenos'],1):'').'</td>';
+
       }
 
   $tbody.=$subtd;
+
+  
 
   $tbody.='<td>'.$sumatorias['sum_defectos'].'</td>';
   
@@ -238,7 +241,7 @@ $tbody.="<td> ".round(($getDefs['total_buenos']-$getDefs['total_defectos']),1)."
   $tbody.=$subtd4;
 
   foreach ($workProc as $key => $tdSum5) {
-     $getByProcess5=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)+SUM(merma_entregada)AS total_buenos,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum5['id_proceso']." GROUP BY id_proceso"));
+     $getByProcess5=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND entregados<500 AND buenos NOT IN (0) AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum5['id_proceso']." GROUP BY id_proceso"));
 
         $subtd5.="<td> ".(($getByProcess5['id_proceso']==$tdSum5['id_proceso'])? '$'.round((($getByProcess5['total_buenos']-$getByProcess5['total_defectos'])*$tdSum5['precio']),1):'')."</td>";
       }
@@ -246,7 +249,7 @@ $tbody.="<td> ".round(($getDefs['total_buenos']-$getDefs['total_defectos']),1)."
   $tbody.=$subtd5;
 
   $tbody.='<td>'.(($tirosLargos['largos']>0)? '$0.20': '').'</td>';
-  $tbody.='<td>'.$rell.'</td>';
+  $tbody.='<td>'.(($tirosLargos['largos']>0)? '$'.$tirosLargos['largos']*0.20: '').'</td>';
 
   $tbody.='<td>'.$rell.'</td>';
   $tbody.='<td>'.$rell.'</td>';
@@ -274,7 +277,11 @@ $tbody.="<td> ".round(($getDefs['total_buenos']-$getDefs['total_defectos']),1)."
   $tbody.='<td>'.round($total_prod,1).'</td>';
 
 foreach ($workProc as $key => $tdSum6) {
-        $subtd6.="<td>".(($tiroInfo['id_proceso']==$tdSum6['id_proceso'])? $total_cambios:'')."</td><td>".(($tiroInfo['id_proceso']==$tdSum6['id_proceso'])? $total_prod:'')."</td>";
+      
+        $getTotalChanges=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios,  id_proceso FROM tiraje WHERE fechadeldia_ajuste BETWEEN '$inicio' AND '$fin'  AND cancelado=2 AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$user['id']."  AND id_proceso=".$tdSum6['id_proceso']." GROUP BY id_proceso"));
+
+        $subtd6.="<td>". (($getTotalChanges['id_proceso']==$tdSum6['id_proceso'])?$getTotalChanges['cambios'] :'' )."</td><td>".(($getTotalChanges['id_proceso']==$tdSum6['id_proceso'])?$getTotalChanges['total_buenos'] :'')."</td>";
+
       }
 
   $tbody.=$subtd6;
@@ -307,7 +314,8 @@ foreach ($workProc as $key => $tdSum9) {
  $precios=0;
 foreach ($workProc as $key => $tdSum10) {
        
-        $getByProcess10=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)+SUM(merma_entregada)AS total_buenos,(SELECT precio FROM procesos_catalogo WHERE id_proceso=".$tdSum10['id_proceso'].")AS s_price,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste BETWEEN '$inicio' AND '$fin' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum10['id_proceso']." GROUP BY id_proceso"));
+        $getByProcess10=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos,(SELECT precio FROM procesos_catalogo WHERE id_proceso=".$tdSum10['id_proceso'].")AS s_price,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste BETWEEN '$inicio' AND '$fin' AND buenos IS NOT NULL AND id_user=".$user['id']." AND entregados<500
+AND buenos NOT IN (0) AND id_proceso=".$tdSum10['id_proceso']." GROUP BY id_proceso"));
 
         $subtd10.="<td> ".(($getByProcess10['id_proceso']==$tdSum10['id_proceso'])? '$'.round((($getByProcess10['total_buenos']-$getByProcess10['total_defectos'])*$tdSum10['precio']),1):'')."</td>";
         $precios+=($getByProcess10['total_buenos']-$getByProcess10['total_defectos'])*$tdSum10['precio'];
@@ -335,7 +343,6 @@ $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
 
 }//termina foreach users
 
-
 ?>
 <?php
 ob_start();
@@ -358,7 +365,6 @@ ob_start();
 
 <?php
 
-  
   
   $html = ob_get_clean();
 
@@ -384,10 +390,11 @@ while ($procs=mysqli_fetch_assoc($workProcess)) {
   $workProc[$it]['precio']=$procs['precio'];
   $it++;
 }
-$rowspan=25+(count($workProc)*6);
+$rowspan=27+(count($workProc)*6);
 
 foreach ($users as $key => $user) {
   $dias=$_POST['dias'];
+  $sum_largos=0;
   $tbody='<tbody>';
   $total_dispon=0;
   $total_desemp=0;
@@ -413,7 +420,7 @@ foreach ($users as $key => $user) {
   $userid= $user['id']; 
   $fecha=$dia;
 
-  $getTiros=$mysqli->query("SELECT * FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND cancelado='false' AND buenos IS NOT NULL AND id_user=".$userid);
+  $getTiros=$mysqli->query("SELECT * FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND cancelado='false' AND entregados<500 AND buenos IS NOT NULL AND buenos IS NOT NULL AND id_user=".$userid);
   $tiroInfo=mysqli_fetch_assoc($getTiros);
   $cuero="SELECT TIME_FORMAT(MIN(horadeldia_tiraje), '%H:%i') AS inicial,TIME_FORMAT(MAX(horafin_tiraje), '%H:%i') AS final FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND id_user=".$userid;
 
@@ -480,10 +487,10 @@ foreach ($users as $key => $user) {
   $tbody.='<td>'.round($sumatorias['sum_prod_real'],1).'</td>';
 
   foreach ($workProc as $key => $tdSum1) {
-    $getByProcess=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum1['id_proceso']." GROUP BY id_proceso"));
-    $getChanges=$mysqli->query("SELECT buenos FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']." AND cancelado='false'  AND id_proceso=".$tdSum1['id_proceso']);
+     $getByProcess=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios, id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND entregados<500 AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$user['id']."  AND id_proceso=".$tdSum1['id_proceso']." GROUP BY id_proceso"));
+   
 
-        $subtd.="<td> ".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? $getChanges->num_rows:'')."</td><td>".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? round($getByProcess['total_buenos'],1):'').'</td>';
+        $subtd.="<td> ".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? $getByProcess['cambios']:'')."</td><td>".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? round($getByProcess['total_buenos'],1):'').'</td>';
       }
 
   $tbody.=$subtd;
@@ -495,12 +502,16 @@ foreach ($users as $key => $user) {
    foreach ($workProc as $key => $tdSum2) {
     $getByProcess2=mysqli_fetch_assoc($mysqli->query("SELECT SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum2['id_proceso']." GROUP BY id_proceso"));
    
-        $subtd2.="<td> ".(($getByProcess2['id_proceso']==$tdSum2['id_proceso'])? $getByProcess2['total_defectos']:'')."</td>";
+      $subtd2.="<td> ".(($getByProcess2['id_proceso']==$tdSum2['id_proceso'])? $getByProcess2['total_defectos']:'')."</td>";
       }
 
   $tbody.=$subtd2;
 
+  $tirosLargos=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)-SUM(defectos)AS largos FROM tiraje WHERE buenos>=500 AND fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']));
+  $sum_largos+=$tirosLargos['largos'];
+
   $tbody.='<td>'.$getTiros->num_rows.'</td>';
+  $tbody.='<td>'.round($tirosLargos['largos'],1).'</td>';
   $tbody.='<td>'.round($sumatorias['sum_prod_real'],1).'</td>';
   $tbody.='<td>'.round($sumatorias['sum_merma'],1).'</td>';
   $tbody.='<td>'.round($sumatorias['sum_entregados'],1).'</td>';
@@ -515,10 +526,11 @@ foreach ($users as $key => $user) {
 
   foreach ($workProc as $key => $tdSum4) {
 
-       
+    
      $getByProcess4=mysqli_fetch_assoc($mysqli->query("SELECT id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum4['id_proceso']." GROUP BY id_proceso"));
 
      $subtd4.="<td> ".(($getByProcess4['id_proceso']==$tdSum4['id_proceso'])? '$'.round($tdSum4['precio'],2):'')."</td>";
+
 
       }
 
@@ -532,7 +544,7 @@ foreach ($users as $key => $user) {
 
   foreach ($workProc as $key => $tdSum5) {
     
-     $getByProcess5=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)+SUM(merma_entregada)AS total_buenos,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum5['id_proceso']." GROUP BY id_proceso"));
+     $getByProcess5=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND entregados<500 AND buenos NOT IN (0) AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum5['id_proceso']." GROUP BY id_proceso"));
 
         $subtd5.="<td> ".(($getByProcess5['id_proceso']==$tdSum5['id_proceso'])? '$'.round((($getByProcess5['total_buenos']-$getByProcess5['total_defectos'])*$tdSum5['precio']),1):'')."</td>";
       }
@@ -563,7 +575,10 @@ foreach ($users as $key => $user) {
   $tbody.='<td>'.round($total_prod,1).'</td>';
 
 foreach ($workProc as $key => $tdSum6) {
-        $subtd6.="<td>".(($tiroInfo['id_proceso']==$tdSum6['id_proceso'])? $total_cambios:'')."</td><td>".(($tiroInfo['id_proceso']==$tdSum6['id_proceso'])? $total_prod:'')."</td>";
+         $getTotalChanges=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios,  id_proceso FROM tiraje WHERE fechadeldia_ajuste BETWEEN '$inicio' AND '$fin' AND entregados<500 AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$user['id']."  AND id_proceso=".$tdSum6['id_proceso']." GROUP BY id_proceso"));
+
+        $subtd6.="<td>". (($getTotalChanges['id_proceso']==$tdSum6['id_proceso'])? $getTotalChanges['cambios'] :'' )."</td><td>".(($getTotalChanges['id_proceso']==$tdSum6['id_proceso'])? $getTotalChanges['total_buenos'] :'')."</td>";
+
       }
 
   $tbody.=$subtd6;
@@ -573,6 +588,7 @@ foreach ($workProc as $key => $tdSum7) {
       }
   $tbody.=$subtd7;
   $tbody.='<td>'.round($total_cambios,1).'</td>';
+  $tbody.='<td>'.round($sum_largos,1).'</td>';
   $tbody.='<td>'.round($total_prod,1).'</td>';
   $tbody.='<td>'.round($total_merma,1).'</td>';
   $tbody.='<td>'.round($gran_total,1).'</td>';
@@ -590,30 +606,29 @@ foreach ($workProc as $key => $tdSum9) {
   $tbody.='<td>'.$rell.'</td>';
   $precios=0;
 foreach ($workProc as $key => $tdSum10) {
-        $getByProcess10=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)+SUM(merma_entregada)AS total_buenos,(SELECT precio FROM procesos_catalogo WHERE id_proceso=".$tdSum10['id_proceso'].")AS s_price,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste BETWEEN '$inicio' AND '$fin' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum10['id_proceso']." GROUP BY id_proceso"));
+       
+          $getByProcess10=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos,(SELECT precio FROM procesos_catalogo WHERE id_proceso=".$tdSum10['id_proceso'].")AS s_price,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste BETWEEN '$inicio' AND '$fin' AND buenos IS NOT NULL AND id_user=".$user['id']." AND entregados<500
+AND buenos NOT IN (0) AND id_proceso=".$tdSum10['id_proceso']." GROUP BY id_proceso"));
 
         $subtd10.="<td> ".(($getByProcess10['id_proceso']==$tdSum10['id_proceso'])? '$'.round((($getByProcess10['total_buenos']-$getByProcess10['total_defectos'])*$tdSum10['precio']),1):'')."</td>";
         $precios+=($getByProcess10['total_buenos']-$getByProcess10['total_defectos'])*$tdSum10['precio'];
+
+
       }
   $tbody.=$subtd10;
 
-$getWorked="SELECT t.id_proceso FROM tiraje t WHERE id_proceso IS NOT NULL AND fechadeldia_ajuste BETWEEN '$inicio' AND '$fin' AND id_user=".$user['id']." GROUP BY id_proceso";
 
-$workeds=$mysqli->query($getWorked);
+  $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
+  $renum_tiros=(count($workProc)==1)? (($workProc[0]['id_proceso']==10)? (($total_def>7500)? $diferencia:'0.00'):(($diferencia>0)? $diferencia:'0.00')):(($diferencia>0)? $diferencia:'0.00');
 
-$works=array();
-while ($wrow=mysqli_fetch_assoc($workeds)) {
-  $works[]=$wrow;
-}
+  
+  $tbody.='<td>$'.round($sum_largos*0.20,1).'</td>';
 
-
-  $diferencia=$precios-$user['sueldo'];
-  $renum_tiros=(count($works)==1)? (($works[0]['id_proceso']==10)? (($total_prod-$total_defec>7500)? $diferencia:'0.00'):(($diferencia>0)? $diferencia:'0.00')):(($diferencia>0)? $diferencia:'0.00');
-
-
-  $tbody.='<td>$'.round($precios,1).'</td>';
+  $tbody.='<td>$'.round($precios+($sum_largos*0.20),1).'</td>';
   $tbody.='<td>$'.$user['sueldo'].'</td>';
   $tbody.='<td>$'.round($diferencia,1).'</td>';
+ 
+  
   $tbody.='<td>'.round($renum_tiros,1).'</td>';
   $tbody.='<td>'.$rell.'</td>';
   $tbody.='<td>'.$rell.'</td>';
@@ -622,6 +637,9 @@ while ($wrow=mysqli_fetch_assoc($workeds)) {
   $tbody.='<tr><td colspan="'.$rowspan.'"></td></tr>';
   $tbody.='</tbody>';
   $table.=$tbody;
+
+
+
 
 }//termina foreach users
 
@@ -641,9 +659,32 @@ ob_start();
     position: relative;
     font: normal medium/1.4 sans-serif;
    }
+  
    #info{
-    display: none;
-   }
+    font-family:Arial,Helvetica,sans-serif;
+    border-collapse:collapse;
+    width:100%;
+    text-align:center;
+   font-size:7px;
+   display: none;
+}
+ #info td{
+    border:1px solid #ccc;
+    padding:1px
+
+}
+ #info tbody:nth-child(even){
+    background-color:#EBEBEB
+}
+
+
+.theader{
+    text-transform:uppercase;
+    text-align:center;
+    background-color:#000;
+    color:#fff;
+    font-size:5px
+}
    .message{
    width: 300px;
     text-align: center;
@@ -655,7 +696,7 @@ ob_start();
    }
  </style>
  <div class="message">
-   <p><strong>¡EXITO!</strong></p> tu reporte se ha generado en unos segundos comenzara a descargarse
+   <p><strong>¡FELICIDADES!</strong></p> tu reporte se ha generado en unos segundos comenzara a descargarse
  </div>
 <table id="info" >
 
@@ -688,6 +729,7 @@ ob_start();
 
     ?>
     <td>total de cambios</td>
+    <td>TIROS LARGOS</td>
     <td>tiros</td>
     <td>merma</td>
     <td>gran total</td>
@@ -712,6 +754,7 @@ ob_start();
         echo "<td>".substr($work4['nombre_proceso'], 0, 4)."</td>";
       }
     ?>
+    <td>TOTAL TIROS LARGOS</td>
     <td>total</td>
    <td>sueldo</td>
     <td>diferencia</td>

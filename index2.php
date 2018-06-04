@@ -2,10 +2,9 @@
 error_reporting(0);
 ini_set('session.gc_maxlifetime', 30*60); 
 date_default_timezone_set("America/Mexico_City");
- if( !session_id())
-    {
-        session_start();
-    }
+
+session_start();
+   
     if(@$_SESSION['logged_in'] != true){
       echo '
      <script>

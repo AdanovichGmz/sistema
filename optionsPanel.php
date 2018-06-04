@@ -78,7 +78,7 @@ while ($row = mysqli_fetch_assoc($getProcess)) {
 
 
                                     }        
-          });                                      
+                                   });                                      
                                              
     });
     $( ".process").click(function() {
@@ -87,9 +87,10 @@ while ($row = mysqli_fetch_assoc($getProcess)) {
          var station=$(this).data('station'); 
          var station_name=$(this).data('sname'); 
          var pro_name=$(this).data('pname');
-         console.log('picadillo');                                              
+         
+                                                             
           $.ajax({
-                                    url: "setMachine.php",
+                                    url: "setLiveMachine.php",
                                     type: "POST",
                                     data:{option:option,choose:'process',station:station,station_name:station_name,pro_name:pro_name},
                                     dataType:"json",

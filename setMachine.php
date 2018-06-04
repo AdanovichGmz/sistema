@@ -10,7 +10,7 @@ if ($_POST['choose']=='station') {
 
 }elseif ($_POST['choose']=='process') {
 
-	$time=date("H:i:s",time());  
+ $time=date("H:i:s",time());  
  $_SESSION['stationID']=$_POST['station'];
  $_SESSION['stationName']=$_POST['station_name'];
  $_SESSION['processName']=$_POST['pro_name'];
@@ -20,15 +20,39 @@ $response['post']=$_POST['station_name'];
 
 
 $today=date("d-m-Y");
-                $check_session=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND proceso=".$_POST['option']." AND estacion=".$_SESSION['stationID']." AND operador=".$_SESSION['idUser']);
+                $check_session=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND operador=".$_SESSION['idUser']);
                 $datas=mysqli_fetch_assoc($check_session);
                
                 if ($check_session->num_rows>0) {
-                   $_SESSION['stat_session']=$datas['id_sesion'];
-                   $mysqli->query("UPDATE sesiones SET active=1 WHERE id_sesion=".$datas['id_sesion']);
-                   $virtual=mysqli_fetch_assoc($mysqli->query("SELECT is_virtual FROM tiraje WHERE idtiraje=".$datas['tiro_actual']));
-                    $_SESSION['is_virtual']= $virtual['is_virtual'];
-                           if ($datas['actividad_actual']=='ajuste'){
+                  $log->lwrite('si existe sesion ','QUE_PASA_1');
+                  $log->lwrite('active: '.$datas['active'],'QUE_PASA_2');
+                  $log->lclose();
+
+                  if ($datas['active']=='true') {
+                    
+                  $_SESSION['stat_session']=$datas['id_sesion'];
+                  $mysqli->query("UPDATE sesiones SET active=1 WHERE id_sesion=".$datas['id_sesion']);
+
+                  $pname=$_POST['pro_name'];
+                            
+                             
+                  $response['page']='index2.php';
+                  $response['proceed']='true';
+                            
+
+                  }else{
+
+                     $_SESSION['stat_session']=$datas['id_sesion'];
+                  
+                   $mysqli->query("UPDATE sesiones SET active=1, proceso=".$_POST['option']." WHERE id_sesion=".$datas['id_sesion']);
+                  $mysqli->query("UPDATE tiraje SET id_proceso=".$_POST['option']." WHERE idtiraje=".$datas['tiro_actual']);
+
+                   $log->lwrite('se activo la sesion ','QUE_PASA');
+                  $log->lwrite('actividad_actual: '.$datas['actividad_actual'],'QUE_PASA');
+                  $log->lclose();
+                  
+                    
+                    if ($datas['actividad_actual']=='ajuste'){
                             
                                 $response['page']='index2.php';
                                  $response['proceed']='true';
@@ -38,16 +62,11 @@ $today=date("d-m-Y");
                         elseif ($datas['actividad_actual']=='tiro'){
                           $pname=$_POST['pro_name'];
                             
-                            $isVirtual=mysqli_fetch_assoc($mysqli->query("SELECT elemento_virtual FROM personal_process WHERE status='actual' AND proceso_actual='$pname' "));
-                            if ($isVirtual['elemento_virtual']!=null) {
-                               
-                               $response['page']='index3_5.php';
-                               $response['proceed']='true';
-                            }else{
+                           
                                 
                                 $response['page']='index3.php';
                                 $response['proceed']='true';
-                            }
+                            
                             }
                             else{
                                 
@@ -55,10 +74,15 @@ $today=date("d-m-Y");
                                 $response['proceed']='true';
                                                      
                             } 
+
+                  }
+                  
                         }
                         else{
-                           
-
+                           $log->lwrite('ni existe sesion ','QUE_PASA_2');
+                  $log->lwrite('active: '.$datas['active'],'QUE_PASA_2');
+                  $log->lclose();
+                          
                           
                             if(date("w")==1||date("w")==4){
                                

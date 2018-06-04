@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php ini_set("session.gc_maxlifetime","7200");   ?>
+<?php ini_set("session.gc_maxlifetime","7200");   
+
+
+?>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -130,6 +133,8 @@
     }else{
         echo '';
     }
+
+    $getMyProcess=$mysqli->query("SELECT * FROM estaciones_procesos WHERE id_estacion=".$_SESSION['stationID']);
     ?>
 
   
@@ -141,7 +146,7 @@
         <img src="images/msj.fw.png" />
     </div>
     
-         
+       <input type="hidden" id="multi_estaciones" value="<?=$getMyProcess->num_rows ?>">  
 
     <div class="congral">               
         <div class="cont center-block">
@@ -487,11 +492,17 @@ $(".finish").click(function () {
                        
                      success:function(data){ 
                         
+                        if ($('#multi_estaciones').val()>1) {
+                            window.location.replace("optionsPanel.php");
+                          console.log(data);
+                          }else{
+                            window.location.replace("index2.php");
+                          console.log(data);
+                          }
                        
                           //$('#update-form')[0].reset();  
                           //$('.close').click(); 
-                          window.location.replace("index2.php");
-                          console.log(data);
+                          
                      }  
                 });
     } 

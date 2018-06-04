@@ -4,9 +4,9 @@ error_reporting(0);
 ini_set('session.gc_maxlifetime', 30*60);
 date_default_timezone_set("America/Mexico_City");
 require('saves/conexion.php');
-if (!session_id()) {
+
     session_start();
-}
+
 if ($_SESSION['logged_in'] != true) {
     echo '
     <script>
@@ -26,9 +26,6 @@ if ($_SESSION['logged_in'] != true) {
      $operation=mysqli_fetch_assoc($mysqli->query($getOperation));
  
 
-    
-             
-            
             $orderID = $operation['id_orden'];
 
             $idtiro=$operation['tiro_actual'];
@@ -227,6 +224,8 @@ $showpercent=100-$final;
 <body style="">
 <input type="hidden" id="actiro" value="<?=$operation['tiro_actual'] ?>">
 <input type="hidden" id="iniciotiro" value="<?=$Ajuste['iniciotiro'] ?>">
+
+
 <input type='hidden' id='pausedorder' value="<?= (isset($secondspaused)) ? $secondspaused : 'false' ?>">
  
  
@@ -789,4 +788,4 @@ $showpercent=100-$final;
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=15"></script>
+  <script src="js/tiraje.js?v=16"></script>

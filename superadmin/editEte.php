@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 require('../saves/conexion.php');
 $prod_real=(isset($_POST['prod_real']))? true : false;
@@ -9,7 +10,7 @@ $date_report=(isset($_POST['fecha']))? "'".$_POST['fecha']."'" : 'null';
 $concept=(isset($_POST['concepto']))? "'".$_POST['concepto']."'" : 'null';
 $time=date("H:i:s",time());
 $date=date("d-m-Y");
-print_r($_POST);
+
 
 if ($prod_real) {
 	$entregados=$_POST["entregados"]+$_POST["merma"];

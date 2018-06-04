@@ -367,14 +367,12 @@ $(document).ready(function(){
         alerttime();
         $('#ontime').val('false');
         $.ajax({      
-                     type:"POST",
-                     url:"operstatus.php",   
-                     data:{section:'outtime'},  
-                       
-                     success:function(data){ 
-
-                          console.log(data);
-                     }  
+                  type:"POST",
+                  url:"operstatus.php",   
+                  data:{section:'outtime'}, 
+                  success:function(data){
+                  console.log(data);
+                  }  
                 });
       }else{
         starting=estandar-inicio;
