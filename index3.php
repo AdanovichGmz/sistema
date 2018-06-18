@@ -39,7 +39,8 @@ if ($_SESSION['logged_in'] != true) {
            
             $odetes=$operation['orden_actual'];
     
-
+$responsable=mysqli_fetch_assoc($mysqli->query("SELECT responsable_5s FROM usuarios u WHERE id=".$_SESSION['idUser']));
+$cumplido=mysqli_fetch_assoc($mysqli->query("SELECT lista_diaria FROM sesiones WHERE id_sesion=".$_SESSION['stat_session']));
     
     
     $query0 = "SELECT o.*,p.proceso,p.id_proceso,pp.*,(SELECT nombre_elemento FROM elementos WHERE id_elemento=o.producto) AS nombre_elemento FROM ordenes o INNER JOIN procesos p ON p.id_orden=o.idorden INNER JOIN personal_process pp ON pp.id_orden=o.idorden WHERE proceso_actual='$stationName' AND nombre_proceso='$processName' AND status='actual' AND p.nombre_proceso='$processName'";
@@ -174,11 +175,11 @@ $showpercent=100-$final;
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     
     <!-- reloj -->   
-    <link href="compiled/flipclock.css" rel="stylesheet" />
+ 
      <script src="js/libs/jquery.min.js"></script>
      
-<script src="js/libs/kendo.all.min.js"></script>
-    <script src="compiled/flipclock.js"></script>
+
+    
     <script src="js/easytimer.min.js"></script>
      <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- Optional theme -->
@@ -194,15 +195,15 @@ $showpercent=100-$final;
 
     
   <link href="css/corte.css?v=4" rel="stylesheet" />
-    <link href="css/estiloshome.css?v=4" rel="stylesheet" />
+    <link href="css/estiloshome.css?v=6" rel="stylesheet" />
     <link href="css/tiraje.css" rel="stylesheet" />
    
    
    
    
-    <script src="js/test.js"></script>
+  
     
-    <script src="js/clock.js"></script>
+    
 
     <script language="javascript">// <![CDATA[
 // ]]></script>
@@ -256,8 +257,7 @@ $showpercent=100-$final;
         
 <div class="statistics">
   <div class="stat-panel">
-  <div class="stat-head"><div class="efectivity"><?php
-    echo round($final);
+  <div class="stat-head"><div class="efectivity"><?=(is_nan(round($final)))? '0': round($final);
 ?>%</div></div>
     <table class="orders gree">
  
@@ -486,6 +486,26 @@ $showpercent=100-$final;
     
     </div>
 <div class="backdrop"></div>
+<?php 
+     
+        if ($responsable['responsable_5s']=='true') {
+          include '5s.php';
+          ?>
+          <script>
+            var intervalHandle = setInterval(function () {
+    var date = new Date();
+    var cumplido='<?=$cumplido['lista_diaria'] ?>';
+    console.log('date: '+cumplido);
+    if ((date.getHours() >= 17 && date.getMinutes() >= 30&&cumplido=='false') ) {
+      console.log('ya es tiempo');
+      $('.quiz-container').show();
+      clearInterval(intervalHandle);          
+    } 
+}, 1000);
+          </script>
+
+      <?php   }
+       ?>
 <!-- ********************** Ventanita loader ******************** -->
 <div class="box">
   <div class="saveloader">
@@ -703,6 +723,15 @@ $showpercent=100-$final;
                     </script>
 
 <script type="text/javascript">
+
+$(document).ready(function() { 
+  window.ParentFunction = function ParentFunction(){
+       
+    setTimeout(function(){$('.quiz-container').hide(); }, 1000);
+       console.log('se llamaba');
+    } 
+  
+});
  
   function pauseOrder(){
     var input_buenos=$('#pausebuenos').val();
@@ -788,4 +817,4 @@ $showpercent=100-$final;
 </script>
 <script src="js/softkeys-0.0.1.js"></script>
 
-  <script src="js/tiraje.js?v=16"></script>
+  <script src="js/tiraje.js?v=17"></script>

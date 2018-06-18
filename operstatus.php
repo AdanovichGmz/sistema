@@ -124,5 +124,14 @@ elseif ($section=='intime') {
 		printf($mysqli->error);
 	}
 }
+elseif ($section=='5s') {
 
+	$changestatus=$mysqli->query("UPDATE sesiones SET lista_diaria='true' WHERE id_sesion=".$_SESSION['stat_session']);
+
+	if ($changestatus) {
+		echo "estatus cambiado a en tiempo";
+	}else{
+		printf($mysqli->error);
+	}
+}
 ?>

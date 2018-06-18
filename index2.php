@@ -28,6 +28,9 @@ $activity=mysqli_fetch_assoc($getActivity);
 $e_ajuste=mysqli_fetch_assoc($mysqli->query("SELECT ajuste_standard FROM estandares WHERE id_elemento=144 AND id_proceso=".$processID));
 $_SESSION['ajusteStandard']=$e_ajuste['ajuste_standard'];
 
+$responsable=mysqli_fetch_assoc($mysqli->query("SELECT responsable_5s FROM usuarios u WHERE id=".$_SESSION['idUser']));
+$cumplido=mysqli_fetch_assoc($mysqli->query("SELECT lista_diaria FROM sesiones WHERE id_sesion=".$_SESSION['stat_session']));
+
 
 $getElementStandar=$mysqli->query("SELECT * FROM estandares e INNER JOIN elementos el ON e.id_elemento=el.id_elemento WHERE e.id_proceso=$processID ORDER BY nombre_elemento ASC");
 
@@ -44,7 +47,7 @@ if ( $p==1) {
     <title>AJUSTE <?=$processName ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <?php include 'head.php'; ?>
-    <link href="css/estiloshome.css?v=2" rel="stylesheet" />
+    <link href="css/estiloshome.css?v=3" rel="stylesheet" />
     <link href="css/ajuste.css?v=2" rel="stylesheet" />
     <link rel="stylesheet" href="css/softkeys-small.css">
 </head>
@@ -479,6 +482,26 @@ legend{
             </div>
         </div>
        <div class="backdrop"></div>
+       <?php 
+     
+        if ($responsable['responsable_5s']=='true') {
+          include '5s.php';
+          ?>
+          <script>
+            var intervalHandle = setInterval(function () {
+    var date = new Date();
+    var cumplido='<?=$cumplido['lista_diaria'] ?>';
+    console.log('date: '+cumplido);
+    if ((date.getHours() >= 17 && date.getMinutes() >= 30&&cumplido=='false') ) {
+      console.log('ya es tiempo');
+      $('.quiz-container').show();
+      clearInterval(intervalHandle);          
+    } 
+}, 1000);
+          </script>
+
+      <?php   }
+       ?>
 
 <div class="box">
   <div class="saveloader">
@@ -768,7 +791,7 @@ legend{
     </div>
    </div>
 </div>
-    
+   
   <!-- ********************** Inicia Panel teclado ******************** -->
    <div id="panelkeyboard2">
     
@@ -871,6 +894,29 @@ var segundosdeldia=$('#segundosdeldia').val();
 
 
  });*/
+ 
+
+ $(document).ready(function() { 
+  window.ParentFunction = function ParentFunction(){
+    $.ajax({  
+                      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'5s'},  
+                       
+                     success:function(data){ 
+                       //$('#elems-container').html(data);
+                    
+                     }  
+                });
+       
+    setTimeout(function(){$('.quiz-container').hide(); }, 1500);
+    
+    } 
+  
+});
+
+
 function endOfDay(){
   var lastiro=$('#actual_tiro').val();
   var now = new Date();
