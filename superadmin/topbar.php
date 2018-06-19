@@ -14,7 +14,7 @@
           <a href="#"><span class="icon-clipboard"></span>Reportes ETE<span class="caret icon-arrow-down6"></span></a>
           <ul class="children">
           <li><a href="eteTaller.php">Reporte de taller <span class="icon-user"></span></a></li>
-          <li><a href="reporteLean.php">Reporte moana <span class="icon-user"></span></a></li>
+          <li><a href="reporteLean.php">Reporte 5s <span class="icon-user"></span></a></li>
           <li><a href="ete.php">Individuales <span class="icon-user"></span></a></li>
             <li><a href="eteall.php">General<span class="icon-users"></span></a></li>
               <li><a href="modify_ete.php">Modificar<span class="icon-pencil"></span></a></li>        
