@@ -354,13 +354,27 @@ $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
    $tbody.='<td>$'.round($renum_tiros,1).'</td>';
     }else{
 
-      if ($total_cambios>20) {
-        $cambio_21=$total_cambios-20;
-
-        $renum_cambios=$cambio_21*30;
+      
+        if ($user['id']==15) {
+         
+        if ($total_cambios>30) {
+          $cambio_21=$total_cambios-30;
+          $renum_cambios=$cambio_21*40;
       }else{
         $renum_cambios=0;
       }
+        }else{
+          if ($total_cambios>20) {
+          $cambio_21=$total_cambios-20;
+          $renum_cambios=$cambio_21*40;
+      }else{
+        $renum_cambios=0;
+      }
+           
+        }
+       
+
+      
 
     $tbody.='<td>$'.round($renum_cambios,1).'</td>';
     }
