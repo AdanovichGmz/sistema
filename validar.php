@@ -257,15 +257,29 @@ if($f=mysqli_fetch_assoc($sql2)){
 
         ////header("Location: asaichii.php");
         }else{
-        echo '<script>alert("CONTRASEÑA INCORRECTA")</script> ';
+            if (isset($_POST['adminlogin'])) {
+               echo '<script>alert("CONTRASEÑA INCORRECTA")</script> ';
 
-        echo "<script>location.href='index.php'</script>";
+        echo "<script>location.href='admin'</script>";
+            }else{
+               echo '<script>alert("CONTRASEÑA INCORRECTA")</script> ';
+
+        echo "<script>location.href='index.php'</script>"; 
+            }
+        
         }
 }else{
+ 
 
-        echo '<script>alert("ESTE USUARIO NO EXISTE, VERIFIQUE CON SU ADMINISTRADOR DE USUARIOS")</script> ';
+     if (isset($_POST['adminlogin'])) {
+              echo '<script>alert("ESTE USUARIO NO EXISTE, VERIFIQUE CON SU ADMINISTRADOR DE USUARIOS")</script> ';
 
-    echo "<script>location.href='index.php'</script>";
+        echo "<script>location.href='admin'</script>";
+            }else{
+               echo '<script>alert("ESTE USUARIO NO EXISTE, VERIFIQUE CON SU ADMINISTRADOR DE USUARIOS")</script> ';
+
+        echo "<script>location.href='index.php'</script>"; 
+            }
 
 }
 

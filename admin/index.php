@@ -90,7 +90,7 @@ if(@$_SESSION['logged_in'] == true){
         <div class="login-logo">
              <img src="../images/logo-blanco.png" >
         </div>
-        
+        <input type="hidden" name="adminlogin" value="true">
         
             <input id="usuario" name="usuario" type="text"   placeholder="USUARIO" class="login-input" required="" />
             <input id="password" name="pass" type="password" placeholder="CONTRASEÑA" class="login-input"  required="" />
