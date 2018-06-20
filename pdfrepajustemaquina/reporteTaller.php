@@ -107,8 +107,14 @@ $tbody.='<tr class="theader">';
     $tbody.='<td style="display:none">TOTAL</td>';
     $tbody.='<td style="display:none">SUELDO</td>';
     $tbody.='<td style="display:none">DIFERENCIA</td>';
-    $tbody.='<td style="display:none">RENUM POR TIROS</td>';
-    $tbody.='<td>RENUM POR CAMBIOS</td>';
+    if ($user['id']==16||$user['id']==14||$user['id']==8) {
+    $tbody.='<td>remun POR TIROS</td>';
+    }else{
+    $tbody.='<td>remun POR CAMBIOS</td>';
+    }
+
+    
+   
     $tbody.='<td>POR DEFECTOS</td>';
     $tbody.='<td>A PAGAR</td>';
     
@@ -328,13 +334,13 @@ foreach ($workProc as $key => $tdSum10) {
         $getByProcess10=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos,(SELECT precio FROM procesos_catalogo WHERE id_proceso=".$tdSum10['id_proceso'].")AS s_price,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste BETWEEN '$inicio' AND '$fin' AND buenos IS NOT NULL AND id_user=".$user['id']." AND entregados<500
 AND buenos NOT IN (0) AND id_proceso=".$tdSum10['id_proceso']." GROUP BY id_proceso"));
 
-        $subtd10.="<td style='display:none'> ".(($getByProcess10['id_proceso']==$tdSum10['id_proceso'])? '$'.round((($getByProcess10['total_buenos']-$getByProcess10['total_defectos'])*$tdSum10['precio']),1):'')."</td>";
+        $subtd10.="<td style='display:none'> ".(($getByProcess10['id_proceso']==$tdSum10['id_proceso'])? '$'.round((($getByProcess10['total_buenos']-$getByProcess10['total_defectos'])*$getByProcess10['s_price']),1):'')."</td>";
         $precios+=($getByProcess10['total_buenos']-$getByProcess10['total_defectos'])*$tdSum10['precio'];
       }
 
   $tbody.=$subtd10;
 $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
-  $renum_tiros=(count($workProc)==1)? (($workProc[0]['id_proceso']==10)? (($total_def>7500)? $diferencia:'0.00'):(($diferencia>0)? $diferencia:'0.00')):(($diferencia>0)? $diferencia:'0.00');
+ 
 
   $tbody.='<td style="display:none">'.$rell.'</td>';
   $tbody.='<td style="display:none">$'.round($sum_largos*0.20,1).'</td>';
@@ -342,7 +348,21 @@ $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
   $tbody.='<td style="display:none">$'.round($precios+($sum_largos*0.20),1).'</td>';
   $tbody.='<td style="display:none">$'.$user['sueldo'].'</td>';
   $tbody.='<td style="display:none">$'.round($diferencia,1).'</td>';
-  $tbody.='<td>$'.round($renum_tiros,1).'</td>';
+  if ($user['id']==16||$user['id']==14||$user['id']==8) {
+     $renum_tiros=(count($workProc)==1)? (($workProc[0]['id_proceso']==10)? (($total_def>7500)? $diferencia:'0.00'):(($diferencia>0)? $diferencia:'0.00')):(($diferencia>0)? $diferencia:'0.00');
+
+   $tbody.='<td>$'.round($renum_tiros,1).'</td>';
+    }else{
+
+      if ($total_cambios>20) {
+        $cambio_21=$total_cambios-20;
+
+        $renum_cambios=$cambio_21*30;
+      }
+
+    $tbody.='<td>$'.round($renum_cambios,1).'</td>';
+    }
+  
   $tbody.='<td>'.$rell.'</td>';
   $tbody.='<td>'.$rell.'</td>';
   $tbody.='<td style="display:none">'.$rell.'</td>';
@@ -820,8 +840,8 @@ ob_start();
     <td>total</td>
    <td>sueldo</td>
     <td>diferencia</td>
-    <td>renum por tiros</td>
-    <td>renum por cambios</td>
+    <td>remun por tiros</td>
+    <td>remun por cambios</td>
     <td>por defectos</td>
     <td>a pagar</td>
    </tr>
