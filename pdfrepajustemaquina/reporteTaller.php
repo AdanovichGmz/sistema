@@ -331,7 +331,7 @@ foreach ($workProc as $key => $tdSum9) {
  $precios=0;
 foreach ($workProc as $key => $tdSum10) {
        
-        $getByProcess10=mysqli_fetch_assoc($mysqli->query("SELECT SUM(entregados)AS total_buenos,(SELECT precio FROM procesos_catalogo WHERE id_proceso=".$tdSum10['id_proceso'].")AS s_price,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE STR_TO_DATE(fechadeldia_ajuste , '%d-%m-%Y') BETWEEN STR_TO_DATE('$inicio' , '%d-%m-%Y') AND STR_TO_DATE('$fin' , '%d-%m-%Y') AND buenos IS NOT NULL AND id_user=".$user['id']." AND entregados<500
+        $getByProcess10=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos,(SELECT precio FROM procesos_catalogo WHERE id_proceso=".$tdSum10['id_proceso'].")AS s_price,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE STR_TO_DATE(fechadeldia_ajuste , '%d-%m-%Y') BETWEEN STR_TO_DATE('$inicio' , '%d-%m-%Y') AND STR_TO_DATE('$fin' , '%d-%m-%Y') AND buenos IS NOT NULL AND id_user=".$user['id']." AND entregados<500
 AND buenos NOT IN (0) AND id_proceso=".$tdSum10['id_proceso']." GROUP BY id_proceso"));
 
         $subtd10.="<td style='display:none'> ".(($getByProcess10['id_proceso']==$tdSum10['id_proceso'])? '$'.round((($getByProcess10['total_buenos']-$getByProcess10['total_defectos'])*$getByProcess10['s_price']),1):'')."</td>";
@@ -364,7 +364,7 @@ $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
         $renum_cambios=0;
       }
         }else{
-          if ($total_cambios>20) {
+        if ($total_cambios>20) {
           $cambio_21=$total_cambios-20;
           $renum_cambios=$cambio_21*40;
       }else{
@@ -814,52 +814,55 @@ ob_start();
     <td>Fin</td>
     <td>Prod</td>
     <?php 
-      foreach ($workProc as $key => $work) {
+      foreach ($workProc as $key => $work){
         echo "<td colspan='2'>".substr($work['nombre_proceso'], 0, 4)."</td>";
       }
 
     ?>
-    <td>Total Def</td>
+    <td>TIROS LARGOS</td>
+    <td>M2 LAMINADO</td>
+    <td>TOTAL DEFECTOS</td>
    <?php 
-      foreach ($workProc as $key => $workDef) {
+      foreach ($workProc as $key => $workDef){
         echo "<td> Def. ".substr($workDef['nombre_proceso'], 0, 4)."</td>";
       }
 
     ?>
-    <td>total de cambios</td>
+    <td>DEFECTOS LAMINADO</td>
+    <td>DEFECTOS M2 LAMINADO</td>
+    <td>TOTAL DE CAMBIOS</td>
+    <td>TIROS</td>
+    
+    <td>MERMA</td>
+    <td>GRAN TOTAL</td>
+    <?php 
+      foreach ($workProc as $key => $work3){
+        echo "<td>".$work3['nombre_proceso']."</td>";
+      }
+
+    ?>
+    
     <td>TIROS LARGOS</td>
-    <td>tiros</td>
-    <td>merma</td>
-    <td>gran total</td>
+    <td>M2 LAMINADO</td>
     <?php 
-      foreach ($workProc as $key => $work3) {
-        echo "<td>".substr($work3['nombre_proceso'], 0, 4)."</td>";
-      }
-
-    ?>
-    <?php 
-      foreach ($workProc as $key => $workPrice) {
-        echo "<td> Precio ".substr($workPrice['nombre_proceso'], 0, 4)."</td>";
-      }
-
-    ?>
-    <td>cambio grabado</td>
-    <td>cambio hs</td>
-    <td>cambio sua</td>
-    <td>cambio ple</td>
-    <?php 
-      foreach ($workProc as $key => $work4) {
-        echo "<td>".substr($work4['nombre_proceso'], 0, 4)."</td>";
+      foreach ($workProc as $key => $work4){
+        echo "<td>CAMBIO ".$work4['nombre_proceso']."</td>";
       }
     ?>
-    <td>TOTAL TIROS LARGOS</td>
-    <td>total</td>
-   <td>sueldo</td>
-    <td>diferencia</td>
-    <td>remun por tiros</td>
-    <td>remun por cambios</td>
-    <td>por defectos</td>
-    <td>a pagar</td>
+    <?php 
+      foreach ($workProc as $key => $work4){
+        echo "<td>".$work4['nombre_proceso']."</td>";
+      }
+    ?>
+    <td>TIROS LARGOS</td>
+    <td>M2 LANINADO</td>
+    <td>TOTAL</td>
+   <td>SUELDO</td>
+    <td>DIFERENCIA</td>
+    <td>REMUN POR TIROS</td>
+    <td>REMUN POR CAMBIOS</td>
+    <td>POR DEFECTOS</td>
+    <td>A PAGAR</td>
    </tr>
   </thead>
 
