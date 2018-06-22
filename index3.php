@@ -726,7 +726,17 @@ $showpercent=100-$final;
 
 $(document).ready(function() { 
   window.ParentFunction = function ParentFunction(){
-       
+    $.ajax({  
+                      
+                     type:"POST",
+                     url:"operstatus.php",   
+                     data:{section:'5s'},  
+                       
+                     success:function(data){ 
+                       //$('#elems-container').html(data);
+                    
+                     }  
+                }); 
     setTimeout(function(){$('.quiz-container').hide(); }, 1000);
        console.log('se llamaba');
     } 
