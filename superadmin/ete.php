@@ -231,7 +231,7 @@ $getIds=$mysqli->query('SELECT id FROM usuarios WHERE app_active=1');
     <div class="ete-num"><?=$row['logged_in'] ?>&nbsp</div>
     </div>
     <div class="ete-stat">
-    <form method="post" action="../pdfrepajustemaquina/createPdf.php" target="_blank" >
+    <form method="post" action="../pdfrepajustemaquina/createReport.php" target="_blank" >
       <table>
       <thead>
       <tr class="trh">
