@@ -104,6 +104,7 @@ ul{
 }
 .top-form{
   height: auto!important;
+  display: none;
 }
 .lightable {
   
