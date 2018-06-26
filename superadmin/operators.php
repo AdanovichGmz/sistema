@@ -784,7 +784,7 @@ p{
 <?php include("tableOperators.php");  ?>
 </div>
 <div class="newtiro-modal" id="operator-info">
-<div class="close"></div>
+<div class="close" id="closer"></div>
   <div class="form-stuff">
 
 <form id="newTiro" method="POST" >
@@ -949,7 +949,8 @@ $('.backdrop, ').css('display', 'block');
     $('.newtiro-modal').css('opacity','1');
     
    });
-$('.close').click(function(){
+$('#closer').click(function(){
+  console.log('picado');
     $('.newtiro-modal').hide();
        $('.backdrop').css('display', 'none');
     
