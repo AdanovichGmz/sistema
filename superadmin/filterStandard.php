@@ -27,7 +27,7 @@ require('../saves/conexion.php');
       $resultado=$mysqli->query($filter_query);
     }
     elseif ($filterby=='process') {
-      $filter_query="SELECT * FROM estandares WHERE id_maquina=$value ORDER BY id_estandard DESC";
+      $filter_query="SELECT * FROM estandares WHERE id_proceso=$value ORDER BY id_estandard DESC";
       $resultado=$mysqli->query($filter_query);
     }
              
@@ -76,8 +76,8 @@ require('../saves/conexion.php');
    <td  class="tabla"><?=getElement($row['id_elemento'])?>
       <input type="hidden" id="t-<?php echo $i;?>" value="<?=$row['id_elemento'] ?>" >
    </td>
-   <td  class="tabla"><?=getProcess($row['id_maquina']);?>
-      <input type="hidden" id="n-<?php echo $i;?>" value="<?=$row['id_maquina'] ?>" >
+   <td  class="tabla"><?=getProcess($row['id_proceso']);?>
+      <input type="hidden" id="n-<?php echo $i;?>" value="<?=$row['id_proceso'] ?>" >
    </td>
    
 
