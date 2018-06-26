@@ -77,6 +77,10 @@ if(@$_SESSION['logged_in'] != true){
     <title>REPORTE ETE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <!-- Latest compiled and minified CSS -->
+    <script src="../js/jquery.min2_1_4.js"></script>
+    <script>
+    var jQuery214=$.noConflict(true);
+  </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
@@ -950,7 +954,7 @@ $('.backdrop, ').css('display', 'block');
     
    });
 
-$(document).on("click", "#closer", function () {
+jQuery214(document).on("click", "#closer", function () {
   console.log('picado');
     $('.newtiro-modal').hide();
        $('.backdrop').css('display', 'none');
