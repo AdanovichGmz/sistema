@@ -949,12 +949,12 @@ $('.backdrop, ').css('display', 'block');
     $('.newtiro-modal').css('opacity','1');
     
    });
-$('#closer').click(function(){
+
+$(document).on("click", "#closer", function () {
   console.log('picado');
     $('.newtiro-modal').hide();
        $('.backdrop').css('display', 'none');
-    
-   });
+});
 $('.backdrop').click(function(){
   $('.newtiro-modal').hide();
        $('.backdrop').css('display', 'none');

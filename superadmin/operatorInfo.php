@@ -238,7 +238,7 @@ background:#E51C23;
 }
 
 </style>
-<div class="close"></div>
+<div class="close" id="closer"></div>
 
 <div class="edit-user">
 <div class="user-control">
