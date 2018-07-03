@@ -254,18 +254,18 @@ $comida_exist='';
     <td class="editable" onClick="showEdit(this);"><?= round($tiro['produccion_real'],2); ?><div class="tooltiptext toolreal"><div class="tagtitle"><span>ODT:</span> <?=($tiro['is_virtual'] == 'true') ? $tiro['odt_virtual'] : $tiro['real_odt'] ?></div><p>Buenos</p><div class="tinput"><input id="buen-<?=$tiro['idtiraje']; ?>" type="number" value="<?= $tiro['buenos'] ?>"></div><p>Merma</p><div class="tinput"><input id="merm-<?=$tiro['idtiraje']; ?>" type="number" value="<?=$tiro['merma_entregada']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('real','entregados','<?=$tiro['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
 
 
-    <td><?=$tiro['sum_prod_real']; ?></td>
-    <td><?=$tiro['merma']; ?></td>
-    <td><?=$tiro['sum_merma']; ?></td>
-    <td><?=$tiro['calidad']; ?></td>
-    <td><?=$tiro['sum_calidad']; ?></td>
+    <td><?=round($tiro['sum_prod_real'],2); ?></td>
+    <td><?=round($tiro['merma'],2); ?></td>
+    <td><?=round($tiro['sum_merma'],2); ?></td>
+    <td><?=round($tiro['calidad'],2); ?></td>
+    <td><?=round($tiro['sum_calidad'],2); ?></td>
     
 
 
      <td class="editable" onClick="showEdit(this);"><?= $tiro['defectos']; ?><div class="tooltiptext toolright"><div class="tagtitle"><span>ODT:</span> <?=($tiro['is_virtual'] == 'true') ? $tiro['odt_virtual'] : $tiro['real_odt'] ?></div><div class="tinput"><input id="def-<?=$tiro['idtiraje']; ?>" type="number" value="<?=$tiro['defectos']?>"></div><div class="toolbutton save" title="Guardar" onclick="saveToDatabase('defectos','defectos','<?=$tiro['idtiraje']; ?>')"></div><div class="toolbutton cancel" title="Cancelar"></div></div></td>
 
     <td><?=$tiro['sum_defectos']; ?></td>
-    <td><?=($tiro['cancelado']=='true')? 'TIRAJE CANCELADO':getTiroAlerts($tiro['idtiraje']) ?></td>
+    <td><?=($tiro['cancelado']=='true')? 'TIRAJE CANCELADO':(($tiro['tipo_ejecucion']=='pendiente')? 'EL CAMBIO QUEDO PENDIENTE':(($tiro['tipo_ejecucion']=='retomado')? 'EL CAMBIO FUE RETOMADO':getTiroAlerts($tiro['idtiraje']))) ?></td>
     
   </tr>
   <?php if(!empty($tiro['comida_ajuste'])||!empty($tiro['comida_tiro'])){ ?>
@@ -301,11 +301,11 @@ $final=(($calidad_tope/100)*($desemp_tope/100)*($dispon_tope/100))*100;
     <td>TIEMPO REAL</td>
     <td><?= $real['t_real'] ?></td>
     <td>PRODUCCION REAL</td>
-    <td><?= $sumatorias['sum_prod_real'] ?></td>
+    <td><?= round($sumatorias['sum_prod_real'],2) ?></td>
     <td>MERMA</td>
-    <td><?=$sumatorias['sum_merma'] ?></td>
+    <td><?=round($sumatorias['sum_merma'],2) ?></td>
     <td>CALIDAD A LA PRIMERA</td>
-    <td><?= $sumatorias['sum_calidad_primera'] ?></td>
+    <td><?= round($sumatorias['sum_calidad_primera'],2) ?></td>
     <td rowspan="2" style="font-size: 30px;"><?= (is_nan($final))? '0':round($final,2) ?>%</td>
     </tr>
     <tr>
@@ -314,7 +314,7 @@ $final=(($calidad_tope/100)*($desemp_tope/100)*($dispon_tope/100))*100;
       <td colspan="2">PRODUCCION ESPERADA</td>
       <td colspan="2"><?= round($sumatorias['sum_prod_esperada']) ?></td>
       <td>PRODUCCION REAL</td>
-      <td><?= $sumatorias['sum_prod_real'] ?></td>
+      <td><?= round($sumatorias['sum_prod_real'],2) ?></td>
     </tr>
   </tbody>
 </table>
