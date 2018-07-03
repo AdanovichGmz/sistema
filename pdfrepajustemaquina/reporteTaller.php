@@ -83,14 +83,16 @@ $tbody.='<tr class="theader">';
       }
 
     
-    $tbody.='<td>TOTAL DE CAMBIOS</td>';
+    
     $tbody.='<td>CAMBIOS LARGOS</td>';
     $tbody.='<td>TIROS LARGOS</td>';
-    $tbody.='<td>TIROS</td>';
-    $tbody.='<td>MERMA</td>';
+    $tbody.='<td style="display:none">TIROS</td>';
+    
     $tbody.='<td>GRAN TOTAL</td>';
     $tbody.='<td>TOTAL DEFECTOS</td>';
+    $tbody.='<td>TOTAL DE CAMBIOS</td>';
     $tbody.='<td>TOTAL MENOS DEFECTOS</td>';
+    $tbody.='<td>MERMA</td>';
     
      
     
@@ -131,7 +133,7 @@ $clargos=0;
   $fecha=$dia;
 
 
-  $getTiros=$mysqli->query("SELECT * FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND entregados<500 AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$userid);
+  $getTiros=$mysqli->query("SELECT * FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$userid);
   $tiroInfo=mysqli_fetch_assoc($getTiros);
   $cuero="SELECT TIME_FORMAT(SEC_TO_TIME(MIN((TIME_TO_SEC(horadeldia_ajuste)))), '%H:%i') AS inicial,TIME_FORMAT(SEC_TO_TIME(MAX((TIME_TO_SEC(horafin_tiraje)))), '%H:%i') AS final FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND id_user=".$userid;
 
@@ -145,7 +147,7 @@ $clargos=0;
 (SELECT SUM(TIME_TO_SEC(breaktime)) FROM breaktime WHERE fechadeldiaam = '$fecha' AND id_usuario =$userid),0))+IFNULL((SELECT SUM(TIME_TO_SEC(tiempo_muerto)) FROM tiempo_muerto WHERE fecha= '$fecha' AND id_user =$userid AND seccion='desfase'),0)), '%H:%i') AS disponible, ((SUM(TIME_TO_SEC(horafin_tiraje) - TIME_TO_SEC(horadeldia_tiraje))+SUM(TIME_TO_SEC(horafin_ajuste)-TIME_TO_SEC(horadeldia_ajuste)))-IFNULL(
 (SELECT SUM(TIME_TO_SEC(breaktime)) FROM breaktime WHERE fechadeldiaam = '$fecha' AND id_usuario =$userid),0))+IFNULL((SELECT SUM(TIME_TO_SEC(tiempo_muerto)) FROM tiempo_muerto WHERE fecha='$fecha' AND id_user=$userid AND seccion='desfase'),0) AS sec_disponible FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid"));
 
-  $sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(buenos)+SUM(merma_entregada)AS sum_entregados,SUM(produccion_esperada)AS sum_prod_esperada,SUM(defectos)AS sum_defectos, SUM(buenos)-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid AND buenos IS NOT NULL AND buenos NOT IN (0) AND entregados<500"));
+  $sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(buenos)+SUM(merma_entregada)AS sum_entregados,SUM(produccion_esperada)AS sum_prod_esperada,SUM(defectos)AS sum_defectos, SUM(buenos)-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid AND buenos IS NOT NULL AND buenos NOT IN (0)"));
   $dispon=(($disponible['sec_disponible']<=0)? 0: ($real['sec_t_real']/$disponible['sec_disponible'])*100);
   $dispon_tope= ($dispon>100)?100:$dispon;
   $desemp=( ($sumatorias['sum_prod_esperada']<=0)? 0: (($sumatorias['sum_prod_real']+$sumatorias['sum_merma'])/$sumatorias['sum_prod_esperada'])*100);
@@ -198,7 +200,7 @@ $clargos=0;
   $tbody.='<td style="background:#ccc">'.round($sumatorias['sum_prod_real'],1).'</td>';
   
   foreach ($workProc as $key => $tdSum1) {
-    $getByProcess=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios, id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND entregados<500 AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$user['id']."  AND id_proceso=".$tdSum1['id_proceso']." GROUP BY id_proceso"));
+    $getByProcess=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios, id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND buenos NOT IN (0) AND entregados<500 AND id_user=".$user['id']."  AND id_proceso=".$tdSum1['id_proceso']." GROUP BY id_proceso"));
    
 
         $subtd.="<td> ".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? $getByProcess['cambios']:'')."</td><td style='background:#ccc;border-right:solid 1px #000;'>".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? round($getByProcess['total_buenos'],1):'').'</td>';
@@ -220,7 +222,7 @@ $clargos=0;
 
   $tbody.=$subtd2;
 
-  $l_query="SELECT SUM(entregados)-SUM(defectos)AS largos FROM tiraje WHERE entregados>=500 AND fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id'];
+  $l_query="SELECT SUM(buenos) AS largos FROM tiraje WHERE entregados>=500 AND fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id'];
   $tlargos=$mysqli->query($l_query);
   $tirosLargos=mysqli_fetch_assoc($tlargos);
   $sum_largos+=$tirosLargos['largos'];
@@ -228,18 +230,19 @@ $clargos=0;
     $clargos+=$tlargos->num_rows;
   }
 
-  $tbody.='<td>'.$getTiros->num_rows.'</td>';
+  
    $tbody.='<td>'.((!empty($tirosLargos['largos']))? $tlargos->num_rows: '0').'</td>';
   $tbody.='<td style="background:#ccc;border-right:solid 1px #000;">'.round($tirosLargos['largos'],1).'</td>';
-  $tbody.='<td style="background:#ccc;">'.round($sumatorias['sum_prod_real'],1).'</td>';
-  $tbody.='<td>'.round($sumatorias['sum_merma'],1).'</td>';
+  $tbody.='<td style="background:#ccc;display:none;">'.round($sumatorias['sum_prod_real'],1).'</td>';
+  
   $tbody.='<td>'.round($sumatorias['sum_entregados'],1).'</td>';
 
 
 $getDefs=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)+SUM(merma_entregada)AS total_buenos,SUM(defectos)AS total_defectos FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']." GROUP BY id_proceso"));
 $tbody.='<td>'.$sumatorias['sum_defectos'].'</td>';
+$tbody.='<td>'.$getTiros->num_rows.'</td>';
 $tbody.="<td> ".round(($getDefs['total_buenos']-$getDefs['total_defectos']),1)."</td>";
-
+$tbody.='<td>'.round($sumatorias['sum_merma'],1).'</td>';
 
 
   $tbody.=$subtd3;
@@ -296,7 +299,7 @@ foreach ($workProc as $key => $tdSum6) {
       $tch="SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios,  id_proceso FROM tiraje WHERE STR_TO_DATE(fechadeldia_ajuste , '%d-%m-%Y') BETWEEN STR_TO_DATE('$inicio' , '%d-%m-%Y') AND STR_TO_DATE('$fin' , '%d-%m-%Y')  AND cancelado=2 AND buenos IS NOT NULL AND buenos NOT IN (0) AND entregados<500 AND id_user=".$user['id']."  AND id_proceso=".$tdSum6['id_proceso']." GROUP BY id_proceso";
         $getTotalChanges=mysqli_fetch_assoc($mysqli->query($tch));
 
-        $subtd6.="<td>". (($getTotalChanges['id_proceso']==$tdSum6['id_proceso'])?$getTotalChanges['cambios'] :'' )."</td><td>".(($getTotalChanges['id_proceso']==$tdSum6['id_proceso'])?$getTotalChanges['total_buenos'] :'')."</td>";
+        $subtd6.="<td>". (($getTotalChanges['id_proceso']==$tdSum6['id_proceso'])?$getTotalChanges['cambios'] :'' )."</td><td>".(($getTotalChanges['id_proceso']==$tdSum6['id_proceso'])?round($getTotalChanges['total_buenos'],2) :'')."</td>";
 
       }
 
@@ -309,18 +312,19 @@ foreach ($workProc as $key => $tdSum7) {
       }
 
   $tbody.=$subtd7;
-  $tbody.='<td>'.round($total_cambios,1).'</td>';
+  
   $tbody.='<td>'.$clargos.'</td>';
    $tbody.='<td>'.round($sum_largos,1).'</td>';
-  $tbody.='<td>'.round($total_prod,1).'</td>';
-  $tbody.='<td>'.round($total_merma,1).'</td>';
+  $tbody.='<td style="display:none">'.round($total_prod,1).'</td>';
+  
   $tbody.='<td>'.round($gran_total,1).'</td>';
 
 
 $total_def=($total_prod+$total_merma)-$total_defec;
  $tbody.='<td>'.$total_defec.'</td>';
+ $tbody.='<td>'.round($total_cambios,1).'</td>';
   $tbody.="<td>".$total_def."</td>";
-
+$tbody.='<td>'.round($total_merma,1).'</td>';
   $tbody.=$subtd8;
 foreach ($workProc as $key => $tdSum9) {
         $subtd9.="<td style='display:none'>".(($tiroInfo['id_proceso']==$tdSum9['id_proceso'])? '$'.round($tdSum9['precio'],2):'')."</td>";
@@ -478,6 +482,7 @@ $dompdf->stream("reporte_de_orden.pdf", array(
 
 }
 elseif (isset($_POST['xlsx'])) { 
+  $workProc=array();
   $workQuery="SELECT t.id_proceso,(SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=t.id_proceso) AS nom_proceso,(SELECT precio FROM procesos_catalogo WHERE id_proceso=t.id_proceso) AS precio FROM tiraje t WHERE id_proceso IS NOT NULL AND STR_TO_DATE(fechadeldia_ajuste , '%d-%m-%Y') BETWEEN STR_TO_DATE('$inicio' , '%d-%m-%Y') AND STR_TO_DATE('$fin' , '%d-%m-%Y')  GROUP BY id_proceso";
 
  $workProcess=$mysqli->query($workQuery);
@@ -518,7 +523,7 @@ foreach ($users as $key => $user) {
   $userid= $user['id']; 
   $fecha=$dia;
 
-  $getTiros=$mysqli->query("SELECT * FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND cancelado='false' AND entregados<500 AND buenos IS NOT NULL AND buenos IS NOT NULL AND id_user=".$userid);
+  $getTiros=$mysqli->query("SELECT * FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND cancelado='false' AND buenos IS NOT NULL AND buenos IS NOT NULL AND id_user=".$userid);
   $tiroInfo=mysqli_fetch_assoc($getTiros);
   $cuero="SELECT TIME_FORMAT(MIN(horadeldia_tiraje), '%H:%i') AS inicial,TIME_FORMAT(MAX(horafin_tiraje), '%H:%i') AS final FROM tiraje WHERE fechadeldia_ajuste='$fecha' AND id_user=".$userid;
 
@@ -532,7 +537,7 @@ $real=mysqli_fetch_assoc($mysqli->query("SELECT TIME_FORMAT(SEC_TO_TIME((SUM(TIM
 (SELECT SUM(TIME_TO_SEC(breaktime)) FROM breaktime WHERE fechadeldiaam = '$fecha' AND id_usuario =$userid),0))+IFNULL((SELECT SUM(TIME_TO_SEC(tiempo_muerto)) FROM tiempo_muerto WHERE fecha= '$fecha' AND id_user =$userid AND seccion='desfase'),0)), '%H:%i') AS disponible, ((SUM(TIME_TO_SEC(horafin_tiraje) - TIME_TO_SEC(horadeldia_tiraje))+SUM(TIME_TO_SEC(horafin_ajuste)-TIME_TO_SEC(horadeldia_ajuste)))-IFNULL(
 (SELECT SUM(TIME_TO_SEC(breaktime)) FROM breaktime WHERE fechadeldiaam = '$fecha' AND id_usuario =$userid),0))+IFNULL((SELECT SUM(TIME_TO_SEC(tiempo_muerto)) FROM tiempo_muerto WHERE fecha='$fecha' AND id_user=$userid AND seccion='desfase'),0) AS sec_disponible FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid"));
 
-  $sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(buenos)+SUM(merma_entregada)AS sum_entregados,SUM(produccion_esperada)AS sum_prod_esperada,SUM(defectos)AS sum_defectos, SUM(buenos)-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid AND buenos IS NOT NULL AND buenos NOT IN (0) AND entregados<500"));
+  $sumatorias=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS sum_prod_real,SUM(merma_entregada)AS sum_merma,SUM(buenos)+SUM(merma_entregada)AS sum_entregados,SUM(produccion_esperada)AS sum_prod_esperada,SUM(defectos)AS sum_defectos, SUM(buenos)-SUM(defectos)AS sum_calidad_primera FROM tiraje WHERE fechadeldia_ajuste = '$fecha' AND id_user =$userid AND buenos IS NOT NULL AND buenos NOT IN (0)"));
   $dispon=(($disponible['sec_disponible']<=0)? 0: ($real['sec_t_real']/$disponible['sec_disponible'])*100);
   $dispon_tope= ($dispon>100)?100:$dispon;
   $desemp=( ($sumatorias['sum_prod_esperada']<=0)? 0: (($sumatorias['sum_prod_real']+$sumatorias['sum_merma'])/$sumatorias['sum_prod_esperada'])*100);
@@ -587,7 +592,7 @@ $real=mysqli_fetch_assoc($mysqli->query("SELECT TIME_FORMAT(SEC_TO_TIME((SUM(TIM
   $tbody.='<td>'.round($sumatorias['sum_prod_real'],1).'</td>';
 
   foreach ($workProc as $key => $tdSum1) {
-     $getByProcess=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios, id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND entregados<500 AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$user['id']."  AND id_proceso=".$tdSum1['id_proceso']." GROUP BY id_proceso"));
+     $getByProcess=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios, id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND buenos NOT IN (0) AND id_user=".$user['id']."  AND id_proceso=".$tdSum1['id_proceso']." GROUP BY id_proceso"));
    
 
         $subtd.="<td> ".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? $getByProcess['cambios']:'')."</td><td>".(($getByProcess['id_proceso']==$tdSum1['id_proceso'])? round($getByProcess['total_buenos'],1):'').'</td>';
@@ -609,7 +614,7 @@ $tbody.='<td>'.$rell.'</td>';
 
   $tbody.=$subtd2;
 
-  $l_query="SELECT SUM(entregados)-SUM(defectos)AS largos,SUM(defectos)AS defectos_largos,(SUM(entregados)-SUM(defectos))*0.20 AS precio_largos FROM tiraje WHERE entregados>=500 AND fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id'];
+  $l_query="SELECT SUM(buenos)AS largos,SUM(defectos)AS defectos_largos,(SUM(entregados)-SUM(defectos))*0.20 AS precio_largos FROM tiraje WHERE entregados>=500 AND fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id'];
   $tlargos=$mysqli->query($l_query);
   $tirosLargos=mysqli_fetch_assoc($tlargos);
   $sum_largos+=$tirosLargos['largos'];
