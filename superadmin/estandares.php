@@ -44,7 +44,7 @@ if(@$_SESSION['logged_in'] != true){
 
       } 
   
-     $maquinas="SELECT nommaquina, idmaquina FROM maquina";
+     $maquinas="SELECT nombre_proceso, id_proceso FROM procesos_catalogo";
     $n_maquinas=$mysqli->query($maquinas);
     $usuarios="SELECT * FROM elementos ORDER BY nombre_elemento ASC";
       $n_usuarios=$mysqli->query($usuarios);
@@ -244,7 +244,7 @@ td{
     <select  name="nommaquina" id="fm">
       <option disabled="true" selected="true" value="none">Proceso</option>
      <?php while($rowf=mysqli_fetch_assoc($n_maquinas)){ ?>
-     <option value="<?=$rowf['idmaquina']?>"><?php echo $rowf['nommaquina']; ?></option>
+     <option value="<?=$rowf['id_proceso']?>"><?php echo $rowf['nombre_proceso']; ?></option>
      <?php } ?>
    </select>
     </select>
