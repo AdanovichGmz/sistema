@@ -45,7 +45,7 @@ function getProcess($id){
  		$piezas=$_POST['piezas'];
  		$elemento=$_POST['elemento'];
  		$proceso=$_POST['nommaquina'];
- 		$insert_query="INSERT INTO estandares(ajuste_standard,piezas_por_hora,id_elemento,id_maquina) VALUES($ajuste,$piezas,$elemento,$proceso)";
+ 		$insert_query="INSERT INTO estandares(ajuste_standard,piezas_por_hora,id_elemento,id_proceso) VALUES($ajuste,$piezas,$elemento,$proceso)";
  		$result=$mysqli->query($insert_query);
 
  		if ($result) {
