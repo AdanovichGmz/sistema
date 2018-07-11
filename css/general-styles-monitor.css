@@ -49,7 +49,7 @@
     padding: 10px;
     text-align: center;
     border-radius: 4px;
-    border:1px solid #D2D3D5;
+    border:1px solid #727376;
     margin-top: 15px;
     margin-bottom: 10px;
 }
@@ -95,32 +95,33 @@
 
 #timer{
     width: 470px;
-    background: #22242A;
+    background: #fff;
     height: 140px;
     margin: 0 auto;
     border-radius: 3px;
-    border: solid 2px #868686;
+    border: solid 1px #ccc;
+
 }
 #timer span{
     line-height: 140px;
     font-size: 110px;
     font-weight: bold;
-    color: #fff;
+    color: #404c5b;
     
 }
 #timersmall{
     width: 440px;
-    background:#353535;
+    background:#fff;
     height: 110px;
     margin-left: 15px !important;
     border-radius: 3px;
-    border: 1px solid #404040;
+    border: 1px solid #ccc;
 }
 #timersmall span{
     line-height: 110px;
     font-size: 100px;
     font-weight: bold;
-    color: #CECECE;
+    color: #404c5b;
 }
 #timersmall2{
     width: 440px;
@@ -142,7 +143,7 @@
 }
        
 body {
-    background:#212121!important;
+    background:#ededed!important;
      width: 100%;
     height: 100%;
     background-repeat: repeat-y repeat-x ;
@@ -167,13 +168,32 @@ body {
     text-align: center!important;
 }
 .modal-content{
-    background:#EDF7F9 !important;
+    background:none !important;
+    border:none!important;
+}
+.modal-header{
+    border-bottom:solid 1px #fff!important;
+}
+.modal-footer{
+  border-top:solid 1px #fff!important;
+    margin-top: 100px;
+}
+#panelder,#panelbrake{
+  background: #ededed!important;
+}
+.elem-button{
+
+    height: 90px!important;
+}
+.endOfDay,.pause{
+    border:solid 1px #fff;
 }
 .watch-container{
     width: 100%; text-align: center; position: relative; height:200px;
 }
 .timer-container{
     width: 100%; text-align: center; position: relative; margin-bottom: 20px;
+    margin-top: 50px;
 }
 .timer-container-small{
     width: 100%; text-align: center; position: relative; margin-bottom: 20px;
@@ -279,9 +299,8 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
     border-radius: 3px;
     cursor: pointer;
     position: relative;
-    -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
--moz-box-shadow:    2px 2px 3px 0px rgba(50, 50, 50, 0.31);
-box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+    border:solid 1px #fff;
+   
 }
 
 .square-button img{
@@ -595,9 +614,9 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
     margin-bottom: 30px;
     border-radius: 4px;
     text-indent: 8px;
-    background: #353535;
-    color: #fff;
-    border: 1px solid #404040;
+    background: #fff;
+    color: #404040;
+    border: 1px solid #ccc;
 }
 .comments-small{
     width: 280px;
@@ -734,4 +753,53 @@ background-color: #CC3018;
  .msj {
  display: none;
  }
+}
+
+.modal-content{
+        box-shadow:none!important;
+}
+
+#panelkeyboard2{
+  background: rgba(44,151,222, 0.90)!important;
+  box-shadow:none!important;
+}
+.softkeys__btn{
+  border-color: #fff!important;
+  background: transparent!important;
+}
+.softkeys__btn:hover{
+background: #fff!important;
+
+}
+.softkeys__btn:hover span{
+
+color:#4C89DC!important;
+}
+#panelbottom{
+   box-shadow:none!important;
+}
+#softk{
+    margin-top: 50px;
+}
+#virtualodt,#virtualelem{
+    border-color: #727376!important;
+}
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+input[type=text], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+ 
+  
+}
+
+.comments{
+    border-color: #727376!important;
 }

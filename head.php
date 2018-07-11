@@ -6,10 +6,10 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/libs/bootstrap.min.js"></script>
   
-      <link href="css/general-styles.css?v=2" rel="stylesheet" />
+      <link id="styles2" href="css/general-styles.css?v=3" rel="stylesheet" />
     <!-- LOADER -->
     <link rel="stylesheet" href="css/normalize.min.css">
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.css?v=2" rel="stylesheet" />
 
     <script src="js/easytimer.min.js"></script>
 

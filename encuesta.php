@@ -18,13 +18,13 @@
     
     <!-- LOADER -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.css?v=2" rel="stylesheet" />
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="js/divdespegable.js"></script>
-    <link href="css/general-styles.css" rel="stylesheet" />
-    <link href="css/estiloshome.css" rel="stylesheet" />
+    <link href="css/general-styles.css?v=2" rel="stylesheet" />
+    <link href="css/estiloshome.css?v=3" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>-->

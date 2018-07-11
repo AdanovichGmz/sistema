@@ -49,6 +49,8 @@ if(@$_SESSION['logged_in'] == true){
     }
     */
     body{
+      background: #ededed;
+      background-image: none!important;
       position: relative!important;
     }
     p{
@@ -75,6 +77,27 @@ if(@$_SESSION['logged_in'] == true){
   .login-logo img{
     padding-top: 35px;
   }
+}
+.active{
+  background: #FFF8C4!important;
+  color: #6A6867!important;
+  border:2px solid #6A6867;
+}
+.desktopkey{
+  background: rgba(44, 151, 222, 0.9)!important;
+  box-shadow: none!important;
+}
+.desktopkey .softkeys__btn{
+  background: none!important;
+  border-color: #fff!important;
+}
+.desktopkey .softkeys__btn:hover{
+  background: #fff!important;
+  color: #579DFF!important;
+}
+.desktopkey .softkeys__btn:hover span{
+
+  color: #579DFF!important;
 }
 </style>
 
@@ -148,7 +171,8 @@ if (localStorage.getItem('fecha')!==currentdate) {
 
 function getKeys(id,name) {
       $('#'+id).select();
-      
+      $('.active').removeClass('active');
+      $('#'+id).addClass('active');
       $('#softk').attr('data-target', 'input[name="'+name+'"]');
         if (kb == false) {
           
@@ -199,7 +223,26 @@ function getKeys(id,name) {
 $('#borrar-letras').parent('.softkeys__btn').addClass('large');
             $('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
             if (id=='virtualodt'||id=='virtualelem') { $('.savebutton').show();}else{$('.savebutton').hide();}
-    }    
+    }  
+
+  
+$(document).ready(function () {
+  var ismobile= isMobileDevice();
+    var link = document.getElementById('panelkeyboard3');
+    if (ismobile==false) {
+      
+      $('#panelkeyboard3').addClass('desktopkey');
+      
+    }
+
+});
+
+    
+
+
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}  
 </script>
 </html>
 <?php } ?>

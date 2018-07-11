@@ -55,6 +55,7 @@ function startEat(){
     
 }
 var jQuery214=$.noConflict(true);
+desk_alert=false;
 var kb=false;
 $(document).ready(function(event) {
  $(document).on("click", "#virtualodt", function () {
@@ -62,8 +63,28 @@ $(document).ready(function(event) {
 });
  
  $(document).on("click", "#saving", function () {
-    createVirtualOdt();
+  var elem=$('#virtualelem').val();
+   var vodt=$('#virtualodt').val();
+   if (elem!=''&&vodt!='') {
+     createVirtualOdt();
     $('#close-down').click();
+   }
+   else{
+    if (vodt=='') {
+      $('#podt').show();
+    }
+    else{
+      $('#podt').hide();
+    }
+    if (elem=='') {
+      $('#pelem').show();
+    }
+    else{
+      $('#pelem').hide();
+    }
+    
+   }
+   
 });
 
 $(document).on("click", ".radio-menu-small", function () {
@@ -196,18 +217,26 @@ if (p_elem==17) {
 
 
                                              $( "#save-ajuste").click(function() {
+                                              
+                                                var leng=$("input:radio[name='radios']").is(":checked");
+                                               
                                               var expl=$('#observaciones').val();
-                                              console.log('array: '+list);
-                                              console.log('list lenght: '+Object.keys(list).length);
+                                            
+                                              
                                                var tiro=$('#actual_tiro').val();
-                                               if (Object.keys(list).length==0) {
+                                               if (leng==false&&expl=='') {
                                                 $('#explain-error').show();
                                                 console.log('explicacion: '+expl);
                                                }else{
-                                                if(list[0]=='explain'&& expl==''){
-                                                  $('#explain-error').show();
                                                
-                                               }else{
+                                                if (isMobileDevice()==false&&kb==true&&desk_alert==true) {
+                                                 $('#panelder').animate({ top: '0' }, 200);
+                                                 console.log('se bajo');
+                                                 $("#panelkeyboard2").animate({ bottom: '-=60%' }, 200);     
+                                                kb=false;
+                                                desk_alert=false;
+                                              }
+
                                                 console.log(list[0]);
                                                 list= [];
                                                 showLoad();
@@ -224,7 +253,7 @@ if (p_elem==17) {
                                                      $( "#fo4" ).submit();
                                                   }
                                               })
-                                               }
+                                               
                                                 
                                                }
                                              
@@ -298,6 +327,9 @@ if (p_elem==17) {
         $('.setElement').animate({'opacity':'0'}, 300, 'linear', function(){
           $('.setElement').css('display', 'none');
         });
+        
+        getKeys('virtualelem','cosa');
+
       }
       function sendOrder(){
         
@@ -560,8 +592,13 @@ setInterval(animacion, 550);
       if (kb==true) {
         $("#panelkeyboard2").animate({ bottom: '-=60%' }, 200);     
   kb=false;
+  
       }
-   
+ if (isMobileDevice()==false&&desk_alert==true) {
+    $('#panelder').animate({ top: '0' }, 200);
+    console.log('se bajo');
+    desk_alert=false;
+  }  
 
     });
     
@@ -749,6 +786,11 @@ function getKeys(id,name) {
         if (kb == false) {
             $("#panelkeyboard2").animate({ bottom: '+=60%' }, 200);
             kb = true;
+            if (isMobileDevice()==false&&desk_alert==false) {
+               $('#panelder').animate({ top: '-=200px' }, 200);
+               console.log('se subio');
+               desk_alert=true;
+                           }
         }
         var bguardar;
         
@@ -805,7 +847,13 @@ function createVirtualOdt(){
   }
   else{
      $("#panelkeyboard2").animate({ bottom: '-=60%' }, 200);     
-  kb=false;
+  
+    if (isMobileDevice()==false&&kb==true&&desk_alert==true) {
+                                                 $('#panelder').animate({ top: '0' }, 200);
+                                                 console.log('se bajo');
+ desk_alert=false;
+ }
+ kb=false;
     $.ajax({  
                       
                      type:"POST",
@@ -893,12 +941,19 @@ function createVirtualOdt(){
             b = false;
         }  
     }
+
+ /*   
 $("#observaciones").on('change keyup paste', function() {
     list.push("explain");
     console.log('pushed: '+list)
+});
+$("#observaciones").keyup(function() {
+    list.push("explain");
+    console.log('repushed: '+list)
 });
 $(document).on("click", ".no-explain", function () {
   list=[];
     list.push("no-explain");
     console.log('pushed: '+list);
 });
+*/

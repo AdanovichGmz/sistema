@@ -74,8 +74,10 @@ if ($paused) {
 
 
 
-	$updateSession="UPDATE sesiones SET tiro_actual=$nTiraje,parte='--', tiempo_alert=NULL,tiempo_comida=NULL, inicio_ajuste='".date(" H:i:s", time())."' WHERE operador=$userID AND fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID'];
+	$updateSession="UPDATE sesiones SET tiro_actual=$nTiraje,parte='--', orden_actual='', tiempo_alert=NULL,tiempo_comida=NULL, inicio_ajuste='".date(" H:i:s", time())."' WHERE operador=$userID AND fecha='$today' AND estacion=".$_SESSION['stationID']." AND proceso=".$_SESSION['processID'];
 	$mysqli->query($updateSession);
+
+	$mysqli->query("DELETE FROM personal_process WHERE sesion=".$_SESSION['stat_session']);
 
 $log->lwrite($updateSession,date("d-m-Y").'_CANCELANDRO_'.$_SESSION['logged_in']);
             $log->lclose();

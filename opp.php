@@ -9,7 +9,7 @@ $stationID=$_SESSION['stationID'];
 $maqID=$_SESSION["processID"]; 
 $processName=$_SESSION["processName"]; 
 $today=date("d-m-Y");
-
+$sesion=$_SESSION["stat_session"]; 
 if ($entorno=='general') {
   $datos=(isset($_POST["odt"]))? explode(",",$_POST["odt"] ):''; 
 
@@ -76,7 +76,7 @@ $old_odt=mysqli_fetch_assoc($mysqli->query("SELECT num_odt FROM personal_process
   $tiro=mysqli_fetch_assoc($mysqli->query("SELECT tiro_actual FROM sesiones WHERE id_sesion=".$_SESSION['stat_session']));
   $set_plans=$mysqli->query("UPDATE tiraje SET planillas=$plans,id_elem_virtual=$videlem WHERE idtiraje=".$tiro['tiro_actual']);
 
-   $addvirtual=$mysqli->query("INSERT INTO `personal_process` (`id_pp`, `id_orden`, `num_odt`, `proceso_actual`, `id_proceso`, `status`, `orden_display`, `elemento_virtual`,id_elemento_virtual,planillas_de) VALUES (NULL, NULL, '$vodt', '$stationName', NULL, 'actual', 1, '$velem',$videlem,$plans)");
+   $addvirtual=$mysqli->query("INSERT INTO `personal_process` (`id_pp`, `id_orden`, `num_odt`, `proceso_actual`, `id_proceso`, `status`, `orden_display`, `elemento_virtual`,id_elemento_virtual,planillas_de,sesion) VALUES (NULL, NULL, '$vodt', '$stationName', NULL, 'actual', 1, '$velem',$videlem,$plans,$sesion)");
   
    if ($addvirtual) {
 
@@ -136,7 +136,7 @@ unset($procesos[$chosen]);
 $clean="DELETE FROM personal_process WHERE proceso_actual='$p_actual' ";
 $mysqli->query($clean);
 
-$query_chosen="INSERT INTO personal_process(id_pp,id_orden,num_odt,proceso_actual, id_proceso,status,orden_display,planillas_de) VALUES(null,$o_chosen,'$odt_chosen','$p_actual',$p_chosen, 'actual',1,$plans)";
+$query_chosen="INSERT INTO personal_process(id_pp,id_orden,num_odt,proceso_actual, id_proceso,status,orden_display,planillas_de,sesion) VALUES(null,$o_chosen,'$odt_chosen','$p_actual',$p_chosen, 'actual',1,$plans,$sesion)";
 
 $tiro=mysqli_fetch_assoc($mysqli->query("SELECT tiro_actual FROM sesiones WHERE id_sesion=".$_SESSION['stat_session']));
   $set_plans=$mysqli->query("UPDATE tiraje SET planillas=$plans WHERE idtiraje=".$tiro['tiro_actual']);
@@ -155,7 +155,7 @@ foreach ($procesos as $key => $proceso) {
   $numodt=$odetes[$proceso];
 
 
- $queryst="INSERT INTO personal_process(id_pp,id_orden,num_odt,proceso_actual, id_proceso,status,orden_display) VALUES(null,$id,'$numodt','$p_actual',$proceso, 'programado',$i2)";
+ $queryst="INSERT INTO personal_process(id_pp,id_orden,num_odt,proceso_actual, id_proceso,status,orden_display,sesion) VALUES(null,$id,'$numodt','$p_actual',$proceso, 'programado',$i2,$sesion)";
  $i2++;
  $insert=$mysqli->query($queryst);
 if (!$insert) {

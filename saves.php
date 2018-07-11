@@ -86,6 +86,14 @@ function logpost($post){
         $log->lclose();
         $numodt=$_POST['numodt'];
        
+       
+       if ($_SESSION['pending_exist']=='true'&& $_SESSION['processID']==$_SESSION['proceso_cola']) {
+          $tiempo_cola=$_SESSION['tiempo_cola'];
+         
+          $mysqli->query("UPDATE tiraje SET tipo_ejecucion='retomado' WHERE idtiraje=".$tirajeActual);
+        }else{
+          $tiempo_cola=0;
+        }
         
           if ($ontime=='false') {
               $getAlerts=$mysqli->query("SELECT SUM(TIME_TO_SEC(tiempoalertamaquina)) AS total_ajuste FROM alertageneralajuste WHERE id_tiraje=".$tirajeActual);
@@ -121,7 +129,7 @@ function logpost($post){
               $time_negative = strtotime("1970-01-01 $tiempo UTC");
               $time_positive=$_SESSION['ajusteStandard']-$time_negative;
               
-              $total_tiempo=($time_positive+$alerts['total_ajuste']);
+              $total_tiempo=($time_positive+$alerts['total_ajuste'])-$tiempo_cola;
 
                $log->lwrite('--------------',$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
                $log->lwrite('tiempo positivo: '.$time_positive,$fechadeldia.'_SUMATORIA_MUERTO'.$_SESSION['logged_in']);
@@ -400,6 +408,21 @@ $log->lwrite('Se paso de muerto: '.$muerto_format,$fechadeldia.'_SUMATORIA_MUERT
                               $log->lwrite($setNext,date("d-m-Y").'_NEXT_TIRO_'.$_SESSION['logged_in']);
                               $log->lwrite('-------------------',date("d-m-Y").'_NEXT_TIRO_'.$_SESSION['logged_in']);
                                       $log->lclose();
+
+
+                              if ($_SESSION['pending_exist']=='true') {
+                                $log->lwrite('si existe una cola','_BORRANDO_COLA_'.$_SESSION['logged_in']);
+                                
+                                if (isset($_SESSION['pendingID'])) {
+                                 $mysqli->query("DELETE FROM en_cola WHERE id_cola=".$_SESSION['pendingID']);
+                                 $log->lwrite('tambien existe id','_BORRANDO_COLA_'.$_SESSION['logged_in']);
+                                  unset($_SESSION['pendingID']);
+                                }else{
+                                  $log->lwrite('pero no existe un id','_BORRANDO_COLA_'.$_SESSION['logged_in']);
+                                }
+                                $_SESSION['pending_exist']='false';
+                                $log->lclose();
+                              }
                                
                                 }else{
                                      $log->lwrite('error al insertar sig tiraje',date("d-m-Y").'_ERROR_NEXT_TIRO_'.$_SESSION['logged_in']);

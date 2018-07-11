@@ -21,16 +21,31 @@ $processName=$_SESSION['processName'];
 $processID = $_SESSION['processID'];
 $today=date("d-m-Y");
 
-$getActivity=$mysqli->query("SELECT *,TIME_TO_SEC(inicio_ajuste) AS segundos_incio FROM sesiones WHERE estacion=$stationID AND fecha='$today' AND proceso=".$_SESSION['processID']." AND operador=".$_SESSION['idUser']);
+$getActivity=$mysqli->query("SELECT s.*,(SELECT nombre_elemento FROM elementos WHERE id_elemento=s.parte)AS nombre_elemento,TIME_TO_SEC(inicio_ajuste) AS segundos_incio FROM sesiones s WHERE s.estacion=$stationID AND s.fecha='$today' AND s.proceso=".$_SESSION['processID']." AND s.operador=".$_SESSION['idUser']);
     
-$activity=mysqli_fetch_assoc($getActivity);   
+$activity=mysqli_fetch_assoc($getActivity); 
+ $getMyProcess=$mysqli->query("SELECT * FROM estaciones_procesos WHERE id_estacion=".$_SESSION['stationID']);
+
+
+
+
+    
+$orderSet=mysqli_fetch_assoc($mysqli->query("SELECT * FROM personal_process WHERE status='actual' AND sesion=".$_SESSION['stat_session']));     
   
 $e_ajuste=mysqli_fetch_assoc($mysqli->query("SELECT ajuste_standard FROM estandares WHERE id_elemento=144 AND id_proceso=".$processID));
 $_SESSION['ajusteStandard']=$e_ajuste['ajuste_standard'];
 
 $responsable=mysqli_fetch_assoc($mysqli->query("SELECT responsable_5s FROM usuarios u WHERE id=".$_SESSION['idUser']));
 $cumplido=mysqli_fetch_assoc($mysqli->query("SELECT lista_diaria FROM sesiones WHERE id_sesion=".$_SESSION['stat_session']));
-
+if (isset($_SESSION['pending_exist'])) {
+  if ($_SESSION['pending_exist']=='true'&& $processID==$_SESSION['proceso_cola']) {
+  $tiempo_cola=$_SESSION['tiempo_cola'];
+}else{
+  $tiempo_cola=0;
+}
+}else{
+  $tiempo_cola=0;
+}
 
 $getElementStandar=$mysqli->query("SELECT * FROM estandares e INNER JOIN elementos el ON e.id_elemento=el.id_elemento WHERE e.id_proceso=$processID ORDER BY nombre_elemento ASC");
 
@@ -47,9 +62,9 @@ if ( $p==1) {
     <title>AJUSTE <?=$processName ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <?php include 'head.php'; ?>
-    <link href="css/estiloshome.css?v=3" rel="stylesheet" />
-    <link href="css/ajuste.css?v=2" rel="stylesheet" />
-    <link rel="stylesheet" href="css/softkeys-small.css">
+    <link href="css/estiloshome.css?v=4" rel="stylesheet" />
+    <link href="css/ajuste.css?v=3" rel="stylesheet" />
+    <link rel="stylesheet" href="css/softkeys-small.css?v=2">
 </head>
 
 <style type="text/css">
@@ -78,6 +93,11 @@ if ( $p==1) {
           text-align: center;
           vertical-align: top;
         }
+
+   .disabled{
+    opacity: 0.1;
+    cursor: not-allowed;
+   }     
 
   #virtualodt{
     text-transform:uppercase;
@@ -110,7 +130,7 @@ if ( $p==1) {
   }
 
 
-        #result {
+#result {
   width:280px;
   padding:10px;
   border:1px solid #bfcddb;
@@ -124,7 +144,7 @@ if ( $p==1) {
     font-family: "monse-medium"!important;
 
 }   
-.backdrop
+.backdrop,.backdrop-change
     {
       position:absolute;
       top:0px;
@@ -158,6 +178,50 @@ if ( $p==1) {
       -webkit-box-shadow:0px 0px 5px #444444;
       box-shadow:0px 0px 5px #444444;
       display:none;
+    }
+    .change-confirm{
+      position:absolute;
+      top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      width:550px;
+      background:#ffffff;
+      z-index:51;
+      padding:10px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 3px;
+      -moz-box-shadow:0px 0px 5px #444444;
+      -webkit-box-shadow:0px 0px 5px #444444;
+      box-shadow:0px 0px 5px #444444;
+       display:none;
+    }
+    .change-cont{
+      width: 90%;
+      margin: 0 auto;
+    }
+    .change-confirm p{
+      font-size: 30px;
+      margin: 30px auto;
+    }
+    .change-confirm table{
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .change-confirm td{
+      padding: 5px;
+    }
+    .change-confirm button{
+      border:none;
+      width: 150px;
+      padding: 20px 0;
+      font-size: 20px;
+      
+      border-radius: 3px;
+    }
+    .change-confirm button:hover{
+      background: #4C89DC;
+      color: #fff;
     }
   .setElement
     {
@@ -398,10 +462,10 @@ legend{
             <div class="cont2 center-block">
                 <form name="nuevo_registro" id="nuevo_registro" method="POST">
                   <input type="hidden" name="section" value="ajuste">
-                  <input type="hidden" id="is_virtual" name="is_virtual">
+                  <input type="hidden" id="is_virtual" name="is_virtual" value="<?= (!empty($orderSet['id_elemento_virtual']))? 'virtual': ((!empty($orderSet['id_orden']))? $orderSet['id_orden'] : '') ;?>">
                  <input hidden type="text" name="logged_in" id="logged_in" value="<?php echo "". $_SESSION['logged_in'] ?>" />
-                <input type="hidden" id="orderID" name="numodt" class=" diseños" value="<?= (isset($ordenActual))? implode(",", $ordenActual)  : ((isset($stoppedOrderID))? $stoppedOrderID : '') ;?>"/>
-                <input type="hidden" id="orderODT" name="orderodts" class=" diseños" value="<?= (isset($getActODT))? implode(",", $getActODT)  : '' ;?>"/>
+                <input type="hidden" id="orderID" name="numodt" class=" diseños" value="<?= (!empty($orderSet['id_elemento_virtual']))? 'virtual': ((!empty($orderSet['id_orden']))? $orderSet['id_orden'] : '') ;?>"  />
+                <input type="hidden" id="orderODT" name="orderodts" class=" diseños" value="<?= (isset($activity['orden_actual']))? $activity['orden_actual']  : '' ;?>"/>
                  <input hidden type="text" name="horadeldia" id="horadeldia" value="<?php echo date("H:i:s",time()); ?>" />
                  <input hidden type="text" name="fechadeldia" id="fechadeldia" value="<?php echo date("d-m-Y"); ?>" />
                       
@@ -414,7 +478,7 @@ legend{
                             <?php if (!isset($getActODT)&&!empty($getActODT)) {?>
                             <div class="text-center2" id="currentOrder" style="font-size:18pt; color:#E9573E;">NO HAS SELECCIONADO UNA ORDEN</div>
                             <?php } else{ ?>
-                              <div class="text-center2" id="currentOrder" style="font-size:18pt;">ODT EN PROCESO: <?= $activity['orden_actual']." ".$activity['parte']  ?></div>
+                              <div class="text-center2" id="currentOrder" style="font-size:18pt;">ODT EN PROCESO: <?= $activity['orden_actual']." ".$activity['nombre_elemento']  ?></div>
                            <?php } ?>
                    
                     <p id="success-msj" style="display: none;">Datos guardados correctamente</p>
@@ -434,17 +498,19 @@ legend{
                         <div class="square-button yellow  goalert" onclick="derecha();saveoperAlert();">
                           <img src="images/alerts.png">
                         </div>
-                        
+                        <div class="square-button violet <?=($_SESSION['pending_exist']=='true'&& $processID==$_SESSION['proceso_cola'])? 'disabled':'' ?>" <?=($_SESSION['pending_exist']=='true'&& $processID==$_SESSION['proceso_cola'])? '':'id="change"' ?> <?=($getMyProcess->num_rows>1)? (($_SESSION['pending_exist']=='true'&& $processID==$_SESSION['proceso_cola'])? '':''):'style="display:none;"' ?> >
+                          <img src="images/change.png">
+                        </div>
                         
                         </div>
                         </div>
 
                         <div class="timer-container">
                                     <div id="chronoExample">
-                                    <div id="timer" data-inicio="<?=(strtotime(date("H:i:s",time()))-strtotime($activity['inicio_ajuste']))-(((empty($activity['tiempo_alert_ajuste']))? 0: $activity['tiempo_alert_ajuste'])+((empty($activity['tiempo_comida']))? 0: $activity['tiempo_comida']))  ?>" data-estandar="<?=$e_ajuste['ajuste_standard'] ?>" data-perro="<?=gmdate("H:i:s",$e_ajuste['ajuste_standard']) ?>"><span class="values">00:00:00</span></div>
-                                    <input type="hidden" id="elemvirtual" name="elemvirtual">
-                                     <input type="hidden" id="idelemvirtual" name="idelemvirtual">
-                                    <input type="hidden" id="odtvirtual" name="odtvirtual">
+                                    <div id="timer" data-inicio="<?=((strtotime(date("H:i:s",time()))-strtotime($activity['inicio_ajuste']))-(((empty($activity['tiempo_alert_ajuste']))? 0: $activity['tiempo_alert_ajuste'])+((empty($activity['tiempo_comida']))? 0: $activity['tiempo_comida'])))+$tiempo_cola  ?>" data-estandar="<?=$e_ajuste['ajuste_standard'] ?>" data-perro="<?=gmdate("H:i:s",$tiempo_cola) ?>"><span class="values">00:00:00</span></div>
+                                    <input type="hidden" id="elemvirtual" name="elemvirtual" value="<?= (isset($activity['nombre_elemento']))? $activity['nombre_elemento'] : '' ;?>">
+                                     <input type="hidden" id="idelemvirtual" name="idelemvirtual" value="<?= (isset($activity['parte']))? $activity['parte'] : '' ;?>">
+                                    <input type="hidden" id="odtvirtual" name="odtvirtual" value="<?= (isset($activity['orden_actual']))? $activity['orden_actual']  : '' ;?>">
                                     <input type="hidden" name="actual_tiro" value="<?=$activity['tiro_actual'] ?>">
                                     <input type="hidden" id="timee" name="tiempo">
                                     <input type="hidden" id="ontime" name="ontime" value="true">
@@ -482,6 +548,7 @@ legend{
             </div>
         </div>
        <div class="backdrop"></div>
+       <div class="backdrop-change"></div>
        <?php 
      
         if ($responsable['responsable_5s']=='true') {
@@ -514,6 +581,25 @@ legend{
     <img src="images/success.png">
     <p style="text-align: center; font-weight: bold;">Listo!</p>
   </div>
+  </div>
+  <div class="change-confirm">
+  <div class="change-cont">
+    <p>¿Deseas continuar este cambio mas tarde?</p>
+    <table>
+      <tr>
+        <td>
+          <button class="save">SI</button>
+        </td>
+        <td>
+          <button class="not-save">NO</button>
+        </td>
+        <td>
+          <button onclick="close_change();">CANCELAR</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
   </div>
   <div class="setElement">
   <div id="elems-container" style="width: 100%;margin:0 auto; height: 100%; overflow: auto;">
@@ -1007,8 +1093,21 @@ $('#idelem').val(id);
 
 });
 
+$(document).ready(function () {
+  var ismobile= isMobileDevice();
+    var link = document.getElementById('styles2');
+    if (ismobile==false) {
+      link.setAttribute('href', 'css/general-styles-monitor.css');
+    }
+
+});
+
+    
 
 
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
 
 $(document).on("click", ".real-qty-button", function () {
 
@@ -1058,6 +1157,80 @@ $.ajax({
                 });
 
 });
+
+$(document).on("click", "#observaciones", function () {
+  if (isMobileDevice()==false) {
+    getKeys(this.id,'observaciones');
+  }
+
+});
+
+
+function close_change()
+      {
+        $('.backdrop-change, .change-confirm').animate({'opacity':'0'}, 300, 'linear', function(){
+          $('.backdrop-change, .change-confirm').css('display', 'none');
+        });
+      }
+
+$(document).on("click", ".save", function () {
+    var ontime=$('#ontime').val();
+
+  if (ontime=='true') {
+        timer.pause();
+    $('#timee').val(timer.getTimeValues().toString());
+    var tiempo=$('#timee').val();
+  }else{
+    deadTimer.pause();
+    $('#timee').val(deadTimer.getTimeValues().toString());
+    var tiempo=$('#timee').val();
+  }
+
+  $.ajax({        
+                     type:"POST",
+                     url:"changeActivity.php",   
+                     data:{save_change:"true",ontime:ontime,tiempo:tiempo,tiro:<?=$activity['tiro_actual'] ?>,section:'ajuste',},  
+                       
+                     success:function(data){ 
+                      console.log(data);
+                     window.location.replace("optionsPanel.php");
+                     }  
+  });
+  
+});
+$(document).on("click", ".not-save", function () {
+    var ontime=$('#ontime').val();
+
+  if (ontime=='true') {
+        timer.pause();
+    $('#timee').val(timer.getTimeValues().toString());
+    var tiempo=$('#timee').val();
+  }else{
+    deadTimer.pause();
+    $('#timee').val(deadTimer.getTimeValues().toString());
+    var tiempo=$('#timee').val();
+  }
+
+  $.ajax({        
+                     type:"POST",
+                     url:"changeActivity.php",   
+                     data:{save_change:"false",ontime:ontime,tiempo:tiempo,tiro:<?=$activity['tiro_actual'] ?>,section:'ajuste',},  
+                       
+                     success:function(data){ 
+                      console.log(data);
+                     window.location.replace("optionsPanel.php");
+                     }  
+  });
+  
+});
+
+       
+$(document).on("click", "#change", function () {
+  $('.backdrop-change, .change-confirm').animate({'opacity':'.50'}, 300, 'linear');
+  $('.change-confirm').animate({'opacity':'1.00'}, 300, 'linear');
+  $('.backdrop-change, .change-confirm').css('display', 'block');
+});
+
 </script>
-<script src="js/softkeys-0.0.1.js"></script>
-<script src="js/ajuste.js?v=36"></script>
+<script src="js/softkeys-0.0.1.js?v=2"></script>
+<script src="js/ajuste.js?v=37"></script>

@@ -1,7 +1,9 @@
  var jQuery214=$.noConflict(true);
  var r = false;
  var k=false;
+ var kb=false;
  var b = false;
+ var desk_alert=false;
  var sec=parseInt($('#iniciotiro').val());
  var list = [];
  function checkTime(i) {
@@ -303,14 +305,10 @@ timer.addEventListener('started', function (e) {
         
        });
       $("#observaciones").on('change keyup paste', function() {
-    list.push("explain");
-    console.log('pushed: '+list)
+   
+    
 });
-$(document).on("click", ".no-explain", function () {
-  list=[];
-    list.push("no-explain");
-    console.log('pushed: '+list);
-});
+
       function close_box()
       {
         $('.backdrop, .box, .boxPause, .boxmulti').animate({'opacity':'0'}, 300, 'linear', function(){
@@ -342,7 +340,7 @@ $(document).on("click", ".no-explain", function () {
                      data:$('#fo4').serialize(),  
                        
                      success:function(data){ 
-                       
+                       $('input[name="radios"]').prop('checked', false);
                           //$('#update-form')[0].reset();  
                           //$('.close').click(); 
                           $('.saveloader').hide();
@@ -387,19 +385,14 @@ $('.radio-menu').click(function() {
                     });
  function saveAlert(){
   var expl=$('#observaciones').val();
-  console.log('array: '+list);
-  console.log('list lenght: '+Object.keys(list).length);
+  var leng=$("input:radio[name='radios']").is(":checked");
    
-  if (Object.keys(list).length==0) {
+  if (leng==false&&expl=='') {
     $('#explain-error').show();
     console.log('explicacion: '+expl);
 
   }else{
-    if (list[0]=='explain'&& expl=='') {
-      $('#explain-error').show();
-    }else{
-    console.log(list[0]);
-    list= [];
+    
     showLoad();
     derecha();
     $('#explain-error').hide();
@@ -431,7 +424,7 @@ $('.radio-menu').click(function() {
                      data:$('#alerta-tiro').serialize(),  
                        
                      success:function(data){ 
-                        
+                        $('#close-down-bottom').click();
                         $('.saveloader').hide();
                         $('.savesucces').show();
                         setTimeout(function() {   
@@ -445,7 +438,7 @@ $('.radio-menu').click(function() {
                           console.log(data);
                      }  
                 });
-       }
+       
      }
     } 
  function saveTiro(){
@@ -712,6 +705,70 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
     }
 
+    function getKeysBottom(id,name){
+        console.log('aca esta la cosa esa: '+id);
+       if (kb == false) {
+            $("#panelkeyboard-bottom").animate({ bottom: '+=60%' }, 200);
+            kb = true;
+            $('#softk2').empty(); 
+            if (isMobileDevice()==false&&desk_alert==false) {
+               $('#panelder').animate({ top: '-=200px' }, 200);
+               console.log('se subio');
+               desk_alert=true;
+                           }
+
+                           jQuery214('.softkeys').softkeys({
+                    target :  $('#'+id),
+                    layout : [
+                        [
+                            
+                            ['1','!'],
+                            ['2','@'],
+                            ['3','#'],
+                            ['4','$'],
+                            ['5','%'],
+                            ['6','^'],
+                            ['7','&amp;'],
+                            ['8','*'],
+                            ['9','('],
+                            ['0',')']
+                        ],
+                    [
+                            'q','w','e','r','t','y','u','i','o','p'
+                            
+                        ],
+                        [
+                            
+                            'a','s','d','f','g','h','j','k','l','ñ'
+                            
+                            
+                            
+                        ],[
+                            
+                            'z','x','c','v','b','n','m','←'],
+                            ['__']
+                            ],
+
+                    id:'softkeys2'
+                });
+        }
+       
+    }
+
+  $("#close-down-bottom").click(function () {
+      if (kb==true) {
+        $("#panelkeyboard-bottom").animate({ bottom: '-=60%' }, 200);     
+  kb=false;
+  
+      }
+ if (isMobileDevice()==false&&desk_alert==true) {
+    $('#panelder').animate({ top: '0' }, 200);
+    console.log('se bajo');
+    desk_alert=false;
+  }  
+
+    });
+
   function saveOperstatus(){
         
     
@@ -785,7 +842,7 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
                              success:function(data){
                               console.log('volvio');
                               if (data.redirect=='true') {
-                                location.href = 'index2.php';
+                                location.href = 'optionsPanel.php';
                               }else{
 
                                //location.href = 'index2.php';
@@ -798,7 +855,7 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
 
    $(document).ready(function() {
         function disableBack() { window.history.forward() }
-        console.log('a donde crees que vas?');
+        
         window.onload = disableBack();
         window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
     });

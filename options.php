@@ -1,7 +1,14 @@
 <?php 
 
   require('saves/conexion.php');
- session_start();
+session_start();
+if(@$_SESSION['logged_in'] != true){
+      echo '
+     <script>
+        alert("No has iniciado sesion");
+        self.location.replace("index.php");
+    </script>';
+    }else{
 
  $getStations=$mysqli->query("SELECT ue.*,e.nombre_estacion FROM usuarios_estaciones ue INNER JOIN estaciones e ON ue.id_estacion=e.id_estacion WHERE id_usuario=".$_SESSION['idUser']);
  
@@ -15,9 +22,13 @@
        body{
         padding: 0;
         margin: 0;
-        background:#ccc;
-       
+        background:rgba(44,151,222, 0.90);
+       font-family: "Helvetica";
        }
+       p{
+        color: #fff;
+       }
+
        .options{
          position: absolute;
     width: 100%;
@@ -32,13 +43,24 @@ font-size: 25px;
         height: 200px;
         text-align: center;
         color: #fff;
-        background:#000;
+        position: relative;
         border-radius: 4px;
         margin: 20px;
-        line-height: 200px;
+        
         display: inline-block;
         font-size: 25px;
+        border:solid 1px #fff;
+        vertical-align: top;
       } 
+      .option span,.process span{
+        position: absolute;
+top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+      }
+       .process:hover{
+        background: #1B4DA5;
+      }
    </style>
 </head>
 <body>
@@ -58,7 +80,7 @@ $station=mysqli_fetch_assoc($getStations);
     $getProcess=$mysqli->query("SELECT ep.*,p.nombre_proceso FROM estaciones_procesos ep INNER JOIN procesos_catalogo p ON ep.id_proceso=p.id_proceso WHERE ep.id_estacion=".$station['id_estacion']);
 while ($row = mysqli_fetch_assoc($getProcess)) {
     ?>
-<div data-option="<?=$row['id_proceso'] ?>" data-sname="<?=$station['nombre_estacion'] ?>" data-pname="<?=$row['nombre_proceso'] ?>" data-station="<?=$row['id_estacion'] ?>" class="process"><?=$row['nombre_proceso'] ?></div>
+<div data-option="<?=$row['id_proceso'] ?>" data-sname="<?=$station['nombre_estacion'] ?>" data-pname="<?=$row['nombre_proceso'] ?>" data-station="<?=$row['id_estacion'] ?>" class="process"><span><?=$row['nombre_proceso'] ?></span></div>
 
     <?php } } ?>
 </div>
@@ -113,3 +135,6 @@ while ($row = mysqli_fetch_assoc($getProcess)) {
                                              
     });
 </script>
+<?php
+}
+?>

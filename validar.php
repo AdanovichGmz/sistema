@@ -61,7 +61,8 @@ if($f=mysqli_fetch_assoc($sql2)){
                 $_SESSION['stationID']=$station['id_estacion'];
                 $_SESSION['stationName']=$mystation['nombre_estacion'];
                 $_SESSION['processName']=$catalog_process['nombre_proceso'];
-                $_SESSION['processID']=$catalog_process['id_proceso']; 
+                $_SESSION['processID']=$catalog_process['id_proceso'];
+                $_SESSION['pending_exist']='false';   
                 $today=date("d-m-Y");
                 $check_session=$mysqli->query("SELECT * FROM sesiones WHERE fecha='$today' AND estacion=".$station['id_estacion']." AND proceso=".$catalog_process['id_proceso']." AND operador=".$f['id']);
                 $datas=mysqli_fetch_assoc($check_session);
@@ -257,29 +258,15 @@ if($f=mysqli_fetch_assoc($sql2)){
 
         ////header("Location: asaichii.php");
         }else{
-            if (isset($_POST['adminlogin'])) {
-               echo '<script>alert("CONTRASEÑA INCORRECTA")</script> ';
+        echo '<script>alert("CONTRASEÑA INCORRECTA")</script> ';
 
-        echo "<script>location.href='admin'</script>";
-            }else{
-               echo '<script>alert("CONTRASEÑA INCORRECTA")</script> ';
-
-        echo "<script>location.href='index.php'</script>"; 
-            }
-        
+        echo "<script>location.href='index.php'</script>";
         }
 }else{
- 
 
-     if (isset($_POST['adminlogin'])) {
-              echo '<script>alert("ESTE USUARIO NO EXISTE, VERIFIQUE CON SU ADMINISTRADOR DE USUARIOS")</script> ';
+        echo '<script>alert("ESTE USUARIO NO EXISTE, VERIFIQUE CON SU ADMINISTRADOR DE USUARIOS")</script> ';
 
-        echo "<script>location.href='admin'</script>";
-            }else{
-               echo '<script>alert("ESTE USUARIO NO EXISTE, VERIFIQUE CON SU ADMINISTRADOR DE USUARIOS")</script> ';
-
-        echo "<script>location.href='index.php'</script>"; 
-            }
+    echo "<script>location.href='index.php'</script>";
 
 }
 

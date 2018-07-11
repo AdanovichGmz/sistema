@@ -64,8 +64,6 @@ $today=date("d-m-Y");
                         elseif ($datas['actividad_actual']=='tiro'){
                           $pname=$_POST['pro_name'];
                             
-                           
-                                
                                 $response['page']='index3.php';
                                 $response['proceed']='true';
                             
@@ -79,6 +77,47 @@ $today=date("d-m-Y");
 
                   }
                   
+                        
+
+
+
+
+
+echo json_encode($response);
+
+
+
+
+
+}elseif ($_POST['choose']=='pending') {
+
+  $time=date("H:i:s",time());
+  $response['post']=$_POST['station_name'];
+  $today=date("d-m-Y");
+
+  $getPending=mysqli_fetch_assoc($mysqli->query("SELECT *,TIME_TO_SEC(tiempo)AS tiempo_cola FROM en_cola WHERE id_cola=".$_POST['cola']));
+  $getActivity=$mysqli->query("SELECT * FROM sesiones WHERE id_sesion=".$getPending['sesion']);
+    
+$activity=mysqli_fetch_assoc($getActivity); 
+                  
+ $_SESSION['stationID']=$_POST['station'];
+ $_SESSION['stationName']=$_POST['station_name'];
+ $_SESSION['processName']=$_POST['pro_name'];
+ $_SESSION['processID']=$_POST['option'];
+ $_SESSION['stat_session']=$getPending['sesion'];               
+ $_SESSION['pending_exist']='true';
+ $_SESSION['pendingID']=$_POST['cola'];                 
+ $_SESSION['tiempo_cola']=$getPending['tiempo_cola'];
+ $_SESSION['proceso_cola']=$_POST['option'];
+
+ $mysqli->query("UPDATE sesiones SET proceso=".$_POST['option']." WHERE id_sesion=".$getPending['sesion']);
+$mysqli->query("UPDATE tiraje SET id_proceso=".$_POST['option']." WHERE idtiraje=".$activity['tiro_actual']);             
+  $response['page']='index2.php';
+  $response['proceed']='true';
+   $log->lwrite('option: '.$_POST['option'],'COLA');
+   $log->lwrite('proceso_cola: '.$_SESSION['proceso_cola'],'COLA');
+                  $log->lclose();                         
+
                         
 
 

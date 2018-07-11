@@ -110,6 +110,12 @@ $showpercent=100-$final;
 ?>],['<?="MUDA ".round(($showpercent<0)? 0 : $showpercent)."%" ?>', <?=($showpercent<0)? 0 : $showpercent;
      
 ?>] ]);
+      var muda_color;
+      if (isMobileDevice()==false) {
+        muda_color='#ededed';
+      }else{
+        muda_color='#2d2d2d';
+      }
         var options = {chartArea: {width: '90%',  height: '90%'},
                        
                        pieSliceTextStyle: {color: 'white', fontSize: 16},
@@ -118,7 +124,7 @@ $showpercent=100-$final;
                     pieSliceText: 'label',
                        is3D:false,                                               
                       // enableInteractivity: false,
-                       colors: ['#84b547','#2d2d2d' ],
+                       colors: ['#84b547',muda_color ],
                                            
                        backgroundColor: 'transparent'
         };
@@ -138,6 +144,12 @@ $showpercent=100-$final;
     echo "['CALIDAD'," . round($calidad_tope,2) . "],";
     
 ?> ]);
+      var nomen_color;
+      if (isMobileDevice()==false) {
+        nomen_color='#00927B';
+      }else{
+        nomen_color='#ffffff';
+      }
         var options = { // api de google chats, son estilos css puestos desde js
             chartArea: {width: '100%', height: '90%'},
             width: "100%", 
@@ -148,12 +160,12 @@ $showpercent=100-$final;
             fontSize: 11,
             hAxis: {
                     textStyle: {
-                      color: '#ffffff'
+                      color: nomen_color
                     }
                   },
             vAxis: {
                 textStyle: {
-                      color: '#ffffff'
+                      color: nomen_color
                     },
             viewWindowMode:'explicit',
             viewWindow: {
@@ -187,18 +199,22 @@ $showpercent=100-$final;
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/libs/bootstrap.min.js"></script>
   
-      <link href="css/general-styles.css" rel="stylesheet" />
+      <link href="css/general-styles.css?v=38" rel="stylesheet" />
     <!-- LOADER -->
     <link rel="stylesheet" href="css/normalize.min.css">
 
 <link rel="stylesheet" href="css/3.3.6/bootstrap.min.css" />
 
     
-  <link href="css/corte.css?v=4" rel="stylesheet" />
-    <link href="css/estiloshome.css?v=6" rel="stylesheet" />
-    <link href="css/tiraje.css" rel="stylesheet" />
+  <link href="css/corte.css?v=5" rel="stylesheet" />
+    <link href="css/estiloshome.css?v=7" rel="stylesheet" />
+    <link id="styles" href="css/tiraje.css?v=2" rel="stylesheet" />
    
-   
+   <style>
+     #close-down-bottom{
+      display: none;
+     }
+   </style>
    
    
   
@@ -208,7 +224,7 @@ $showpercent=100-$final;
     <script language="javascript">// <![CDATA[
 // ]]></script>
  
-<link rel="stylesheet" href="css/softkeys-0.0.1.css?v=2">
+<link rel="stylesheet" href="css/softkeys-0.0.1.css?v=3">
 <script language="javascript">
          function limpiar() {
            setTimeout('document.fo3.reset()',20);
@@ -374,7 +390,7 @@ $showpercent=100-$final;
   <input type="hidden" name="section" value="tiraje">
  <input type="hidden" name="hour" value="<?= $hora_Ajuste; ?>"> 
  <input type="hidden" name="horainiciotiro" value="<?=date(" H:i:s", time()); ?>">
-<div class="statistics">
+<div class="statistics bottom-section">
   <div class="left-sec" style="position: relative;">
       <div class="timersmall">
           <div id="tirajeTime" data-inicio="<?=(strtotime(date("H:i:s",time()))-strtotime($operation['inicio_tiro']))-(((empty($operation['tiempo_alert']))? 0: $operation['tiempo_alert'])+((empty($operation['tiempo_comida']))? 0: $operation['tiempo_comida']))  ?>">
@@ -547,7 +563,7 @@ $showpercent=100-$final;
                  <!-- Form Name -->
                 <legend>ALERTA MAQUINA</legend>
                  <!-- Multiple Radios -->
-                <div class="form-group" style="width:80% ;margin:0 auto;">
+                <div class="form-group alertoptions" style="width:80% ;margin:0 auto;">
                 <?php
     include "alertsTiraje.php";
 ?>
@@ -557,25 +573,13 @@ $showpercent=100-$final;
                
 
                 <!-- Textarea -->
-                <div class="form-group" id="explanation" style="width:81%;margin:30px auto;text-align: center; color:black;">
+                <div class="form-group" id="explanation" style="width:81%;margin:0 auto;text-align: center; color:black;">
                     <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones"></textarea>
                      <p id="explain-error" style="display: none;">Porfavor agrega una explicacion ↑</p>
                 
                 </div>
-                <div class="form-group">
-                  <div class="button-panel-small">
-                       
-                        <div style="display: none;" class="square-button-small red derecha stopalert start reset" onclick="saveOperstatus()">
-                          <img src="images/ex.png">
-                        </div>
-                        <div id="savealerta" class="square-button-small  blue " onclick="saveAlert();">
-                          <img src="images/saving.png">
-                        </div>
-                        
-                          
-                        </div>
-                </div>
-                <!-- reloj -->
+                <div class="form-group" style="text-align: center;">
+                    <!-- reloj -->
                 
                  <div class="reloj-container2">  
         <div class="timersmall">
@@ -587,6 +591,20 @@ $showpercent=100-$final;
                                 </div>
                                 </div>
     </div>
+          
+                  <div class="button-panel-small">
+                       
+                        <div style="display: none;" class="square-button-small red derecha stopalert start reset" onclick="saveOperstatus()">
+                          <img src="images/ex.png">
+                        </div>
+                        <div id="savealerta" class="square-button-small  blue " onclick="saveAlert();">
+                          <img src="images/saving.png">
+                        </div>
+                        
+                          
+                        </div>
+                            </div>
+              
                 <input id="eviar" type="image" name="eviar" value="Guardar" src="images/btnguardar.fw.png" class="img-responsive derecha stopalert start reset2 " style="display: none;">
 
                </fieldset>    
@@ -685,8 +703,37 @@ $showpercent=100-$final;
 </div>
 
 <!-- ********************** Termina Panel teclado ******************** -->
+ <!-- ********************** Inicia Panel teclado abajo ******************** -->
+   <div id="panelkeyboard-bottom">
+    
+      <div id="close-down-bottom" class="square-button-micro red  ">
+                          <img src="images/ex.png">
+                        </div>
+    
+    <div class="keycontainer">
+      <div id="softk2" style="" class="softkeys" data-target="input[name='observaciones']"></div>
+    </div>
+    
+</div>
+
+<!-- ********************** Termina Panel teclado abajo******************** -->
   <script src="js/libs/jquery-ui.js"></script>
  <script>
+ $(document).ready(function () {
+  var ismobile= isMobileDevice();
+    var link = document.getElementById('styles');
+    if (ismobile==false) {
+      link.setAttribute('href', 'css/styles_monitor.css');
+    }
+
+});
+
+    
+
+
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
  $('.radio-menu').click(function() {
   $('.face-osc').removeClass('face-osc');
   $(this).addClass('face-osc').find('input').prop('checked', true)    
@@ -695,13 +742,16 @@ $showpercent=100-$final;
                           var buenos=$('#buenos').val();
                           var merma=$('#merma').val();
                           var entre=$('#entregados').val();
+                          var cantidad=$('#cantidad').val();
+                          var entre=$('#pedido').val();
                           var ajuste=$('#piezas-ajuste').val();
+                          var pedido=$('#pedido').val();
                           var defectos=$('#defectos').val();
                          if (parseInt(entre)<0||parseInt(ajuste)<0||parseInt(defectos)<0) { alert('No puedes enviar valores negativos');}
                          
                           else{
 
-                              if (buenos!=''&&ajuste!='') {
+                              if (buenos!=''&&ajuste!=''&&cantidad!=''&&pedido!='') {
                                     timer.pause();
                             $('#tiempoTiraje').val(timer.getTimeValues().toString()); 
                             $('#close-down').click(); 
@@ -714,6 +764,15 @@ $showpercent=100-$final;
                             if (ajuste==''){
                               $('#piezas-ajuste').addClass("errror").attr("placeholder", "?").effect( "shake" );
                             }
+                              if (cantidad==''){
+                              $('#cantidad').addClass("errror").attr("placeholder", "?").effect( "shake" );
+                            }
+                            if (pedido==''){
+                              $('#pedido').addClass("errror").attr("placeholder", "?").effect( "shake" );
+                            }
+
+                            
+
                            }
                                                 
                          }
@@ -740,6 +799,11 @@ $(document).ready(function() {
     setTimeout(function(){$('.quiz-container').hide(); }, 1000);
        console.log('se llamaba');
     } 
+
+    if (isMobileDevice()==true) {
+      $('#panelkeyboard-bottom').remove();
+      console.log('se removio');
+    }
   
 });
  
@@ -794,7 +858,15 @@ $(document).ready(function() {
                         });
   }
   }  
+$("#observaciones").click( function () {
+ 
+  if (isMobileDevice()==false) {
+     console.log('le estas picando: '+$(this).id);
+    getKeysBottom('observaciones','observaciones');
 
+  }
+
+});
   
     </script>
  
@@ -825,6 +897,6 @@ $(document).ready(function() {
 <script>
   
 </script>
-<script src="js/softkeys-0.0.1.js"></script>
+<script src="js/softkeys-0.0.1.js?v=2"></script>
 
-  <script src="js/tiraje.js?v=17"></script>
+  <script src="js/tiraje.js?v=18"></script>
