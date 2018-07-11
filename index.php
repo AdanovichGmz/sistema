@@ -57,27 +57,7 @@ if(@$_SESSION['logged_in'] == true){
         color: red;
         font-size: 20px;
     }
-    @media screen and (min-width:1025px) {
-  .login-box{
-    width: 400px;
-    min-height: 310px;
-    font-size: 13px;
-  }
-  .login-logo{
-    width: 80%;
-    height: 150px;
-    margin:0 auto;
-  }
-  .login-input{
-    font-size: 13px;
-  }
-  .login-button{
-    font-size: 13px;
-  }
-  .login-logo img{
-    padding-top: 35px;
-  }
-}
+    
 .active{
   background: #FFF8C4!important;
   color: #6A6867!important;
