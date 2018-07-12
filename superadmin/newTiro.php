@@ -21,7 +21,7 @@ $defectos=($piezas>2)? $piezas-2:0;
 $merma=$buenos-$pedido;
 
 $entorno=(isset($_POST['entorno']))?$_POST['entorno']:'maquina';
-$getInfo='SELECT * FROM sesiones WHERE operador=$oper AND fecha=$fecha';
+$getInfo='SELECT * FROM sesiones WHERE operador='.$_POST['operario'].' AND fecha="'.$_POST['fecha'].' " ';
 $sesionInfo=mysqli_fetch_assoc($mysqli->query($getInfo));
 if (!$sesionInfo) {
   echo $getInfo;
