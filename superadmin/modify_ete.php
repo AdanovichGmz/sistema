@@ -1034,7 +1034,12 @@ console.log('el proceso es: '+proceso);
         success: function(data){
           $('.close').click();
           $('#newTiro')[0].reset();
-          console.log(data);
+           $('.popup').show().fadeIn( "slow" );
+          $('.popup').html('<div class="successs"><div></div><span>Exito: </span>El cambio se guardo correctamente!</div>');
+        setTimeout(function() {   
+                  $('.popup').fadeOut( "slow" );
+                }, 2000);
+        
           $.ajax({
         url: "tableModify.php",
         type: "POST",
