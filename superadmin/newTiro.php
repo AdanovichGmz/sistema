@@ -21,8 +21,12 @@ $defectos=($piezas>2)? $piezas-2:0;
 $merma=$buenos-$pedido;
 
 $entorno=(isset($_POST['entorno']))?$_POST['entorno']:'maquina';
+$getInfo='SELECT * FROM sesiones WHERE operador=$oper AND fecha=$fecha';
+$sesionInfo=mysqli_fetch_assoc($mysqli->query($getInfo));
+if (!$sesionInfo) {
+  echo $getInfo;
+}
 
-$sesionInfo=mysqli_fetch_assoc($mysqli->query('SELECT * FROM sesiones WHERE operador=$oper AND fecha=$fecha'));
 $station=$sesionInfo['estacion'];
 $session=$sesionInfo['id_sesion'];
 $maquina=$sesionInfo['estacion'];

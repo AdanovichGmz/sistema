@@ -982,7 +982,7 @@ var buenos=$('#buenos').val();
 var piezas=$('#piezas').val();
 var in_tiro=$('#in-tiro').val();
 var fin_tiro=$('#fin-tiro').val();
-var proceso=$('#newTiro input[type="proceso"]:checked').val();
+var proceso=$('#newTiro input[name="proceso"]:checked').val();
 console.log('el proceso es: '+proceso);
 
   console.log('se trato de enviar');
