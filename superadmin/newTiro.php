@@ -26,7 +26,7 @@ $sesionInfo=mysqli_fetch_assoc($mysqli->query($getInfo));
 if (!$sesionInfo) {
   echo $getInfo;
 }
-
+$process=$_POST['proceso'];
 $station=$sesionInfo['estacion'];
 $session=$sesionInfo['id_sesion'];
 $maquina=$sesionInfo['estacion'];
@@ -82,7 +82,7 @@ $nombre=$n_prod['nombre_elemento'];
 $ajuste= gmdate("H:i:s", $tiempoA);
 $tiraje= gmdate("H:i:s", $tiempoT);
 
-$query="INSERT INTO `tiraje` (`idtiraje`, `producto`, `id_estacion`, `pedido`, `cantidad`, `buenos`, `piezas_ajuste`, `defectos`, `merma`, `merma_entregada`, `entregados`, `produccion_esperada`, `desempenio`, `tiempoTiraje`, `tiempo_ajuste`, `horadeldia_ajuste`, `horafin_ajuste`, `fechadeldia_ajuste`, `horadeldia_tiraje`, `horafin_tiraje`, `fechadeldia_tiraje`, `id_orden`, `id_user`, `is_virtual`, `odt_virtual`, `elemento_virtual`, `id_elem_virtual`, `cancelado`, `id_sesion`) VALUES (NULL, $producto, $station, $pedido, $recibido, $buenos, $piezas, $defectos, $merma, $merma, $buenos, $tiraje_estandar, $tiraje_desemp, '$tiraje', '$ajuste', '$in_ajuste', '$fin_ajuste', $fecha, '$in_tiro', '$fin_tiro', $fecha, NULL, $oper, 'true', $odt, '$nombre', $producto, 'false',$session)";
+$query="INSERT INTO `tiraje` (`idtiraje`, `producto`, `id_estacion`, `id_proceso`, `pedido`, `cantidad`, `buenos`, `piezas_ajuste`, `defectos`, `merma`, `merma_entregada`, `entregados`, `produccion_esperada`, `desempenio`, `tiempoTiraje`, `tiempo_ajuste`, `horadeldia_ajuste`, `horafin_ajuste`, `fechadeldia_ajuste`, `horadeldia_tiraje`, `horafin_tiraje`, `fechadeldia_tiraje`, `id_orden`, `id_user`, `is_virtual`, `odt_virtual`, `elemento_virtual`, `id_elem_virtual`, `cancelado`, `id_sesion`) VALUES (NULL, $producto, $station,$process, $pedido, $recibido, $buenos, $piezas, $defectos, $merma, $merma, $buenos, $tiraje_estandar, $tiraje_desemp, '$tiraje', '$ajuste', '$in_ajuste', '$fin_ajuste', $fecha, '$in_tiro', '$fin_tiro', $fecha, NULL, $oper, 'true', $odt, '$nombre', $producto, 'false',$session)";
 $insert=$mysqli->query($query);
 
 if ($insert) {
