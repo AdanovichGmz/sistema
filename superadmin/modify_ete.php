@@ -702,11 +702,10 @@ border-top: solid 5px transparent;
   </div>
 
   <div class="in-line">
-     <p>Inicio tiraje:</p>
-  <input type="time" step="2" required id="in-tiro" name="in-tiro">
-  </div><div class="in-line rig">
      <p>Fin tiraje:</p>
   <input type="time" step="2" required id="fin-tiro" name="fin-tiro">
+  </div><div class="in-line rig">
+     
   </div>
 
   <div class="in-line">
@@ -783,6 +782,9 @@ border-top: solid 5px transparent;
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
 <script>
 $('.new-modal').click(function(){
+
+  
+  $('#fecha').val($('#datepicker').val());
 
 user=$('#filterElem').val();
 $.ajax({
