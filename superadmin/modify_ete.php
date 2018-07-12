@@ -983,14 +983,15 @@ var buenos=$('#buenos').val();
 var piezas=$('#piezas').val();
 var in_tiro=$('#in-tiro').val();
 var fin_tiro=$('#fin-tiro').val();
-
+var proceso=$('input[nsme="proceso"]').val();
+console.log('el proceso es: '+proceso);
 
   console.log('se trato de enviar');
    $.ajax({
         url: "newTiro.php",
         type: "POST",
 
-        data:{odt:odt,operario:operario,producto:producto,fecha:fecha,entorno:entorno,in_ajuste:in_ajuste,fin_ajuste:fin_ajuste,pedido:pedido,recibido:recibido,buenos:buenos,piezas:piezas,in_tiro:in_tiro,fin_tiro:fin_tiro,sesion:sesion,estacion:estacion},
+        data:{odt:odt,operario:operario,producto:producto,fecha:fecha,entorno:entorno,in_ajuste:in_ajuste,fin_ajuste:fin_ajuste,pedido:pedido,recibido:recibido,buenos:buenos,piezas:piezas,in_tiro:in_tiro,fin_tiro:fin_tiro,sesion:sesion,estacion:estacion,proceso:proceso},
         success: function(data){
           $('.close').click();
           $('#newTiro')[0].reset();
