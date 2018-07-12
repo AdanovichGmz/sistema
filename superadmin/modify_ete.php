@@ -968,8 +968,7 @@ $("#newstandar").click(function () {
 
 $('#newTiro').submit(function(){
   event.preventDefault();
-var sesion=$('#sesion').val();
-var estacion=$('#estacion').val();
+
 var odt=$('#odt').val();
 var operario=$('#operario').val();
 var producto=$('#producto').val();
@@ -983,7 +982,7 @@ var buenos=$('#buenos').val();
 var piezas=$('#piezas').val();
 var in_tiro=$('#in-tiro').val();
 var fin_tiro=$('#fin-tiro').val();
-var proceso=$('input[nsme="proceso"]').val();
+var proceso=$('#newTiro input[type="proceso"]:checked').val();
 console.log('el proceso es: '+proceso);
 
   console.log('se trato de enviar');
@@ -991,7 +990,7 @@ console.log('el proceso es: '+proceso);
         url: "newTiro.php",
         type: "POST",
 
-        data:{odt:odt,operario:operario,producto:producto,fecha:fecha,entorno:entorno,in_ajuste:in_ajuste,fin_ajuste:fin_ajuste,pedido:pedido,recibido:recibido,buenos:buenos,piezas:piezas,in_tiro:in_tiro,fin_tiro:fin_tiro,sesion:sesion,estacion:estacion,proceso:proceso},
+        data:{odt:odt,operario:operario,producto:producto,fecha:fecha,entorno:entorno,in_ajuste:in_ajuste,fin_ajuste:fin_ajuste,pedido:pedido,recibido:recibido,buenos:buenos,piezas:piezas,in_tiro:in_tiro,fin_tiro:fin_tiro,proceso:proceso},
         success: function(data){
           $('.close').click();
           $('#newTiro')[0].reset();

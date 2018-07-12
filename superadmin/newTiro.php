@@ -19,11 +19,14 @@ $buenos=(isset($_POST['buenos']))? $_POST['buenos']:0;
 $piezas=(isset($_POST['piezas']))? $_POST['piezas']:0;
 $defectos=($piezas>2)? $piezas-2:0;
 $merma=$buenos-$pedido;
-$station=(isset($_POST['estacion']))? "'".$_POST['estacion']."'":'null';
-$session=(isset($_POST['sesion']))? "'".$_POST['sesion']."'":'null';
+
 $entorno=(isset($_POST['entorno']))?$_POST['entorno']:'maquina';
-$maquina=$_POST['proceso'];
-$proceso=$_POST['proceso'];
+
+$sesionInfo=mysqli_fetch_assoc($mysqli->query('SELECT * FROM sesiones WHERE operador=$oper AND fecha=$fecha'));
+$station=$sesionInfo['estacion'];
+$session=$sesionInfo['id_sesion'];
+$maquina=$sesionInfo['estacion'];
+$proceso=$sesionInfo['proceso'];
 
 $tiempoT=strtotime($fin_tiro) - strtotime($in_tiro);
 $tiempoA=strtotime($fin_ajuste) - strtotime($in_ajuste);
