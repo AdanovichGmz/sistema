@@ -40,6 +40,10 @@ if(@$_SESSION['logged_in'] != true){
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>REPORTE ETE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <script src="../js/jquery.min2_1_4.js"></script>
+    <script>
+    var jQuery214=$.noConflict(true);
+  </script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <!-- Optional theme -->
@@ -490,7 +494,7 @@ border-top: solid 5px transparent;
   width: 480px;
   background:#fff;
   padding: 20px;
-  height: 550px;
+  
   
   border-radius: 4px;
  
@@ -507,7 +511,7 @@ border-top: solid 5px transparent;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 15px;
+   
     background:#fff;
     border-radius: 4px;
     moz-box-shadow: 0px 0px 5px #444444;
@@ -584,6 +588,33 @@ border-top: solid 5px transparent;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+#procesosradio{
+  
+}
+.formradio{
+  display: inline-block;
+  vertical-align: top;
+  margin:5px 10px 5px 0;
+}
+.formradio input{
+  display: none;
+}
+.formradio label{
+  padding: 8px;
+  border:solid 1px #ccc;
+  cursor: pointer;
+  border-radius: 3px;
+  color:#ccc;
+  font-weight: normal;
+}
+.selected{
+  background: #E9573E;
+  color:#fff!important;
+  border-color: #E9573E!important;
+}
+.entorno{
+  display: none;
+}
 @media screen and (max-width:1024px) {
   th{
     font-size: 8px;
@@ -612,7 +643,7 @@ border-top: solid 5px transparent;
 
    </select>
 <p id="usererror" style="display: none;">Por favor elige un usuario</p>
- <input id="datepicker" class="" placeholder="Fecha.." required="true" value="" name="id" />
+ <input id="datepicker" class="" placeholder="Fecha.." autocomplete="off" required="true" value="" name="id" />
   <p id="fechaerror" style="display: none;">Por favor elige una fecha</p>
    </div>
   
@@ -659,6 +690,7 @@ border-top: solid 5px transparent;
   <input type="radio" id="maqui" checked value="maquina" class="entorno" name="entorno">
   <label for="maqui">Maquina:</label>
   </div>
+
   <div id="procesosradio"></div>
 
   <div class="in-line">
@@ -667,6 +699,14 @@ border-top: solid 5px transparent;
   </div><div class="in-line rig">
      <p>Fin ajuste:</p>
   <input type="time" required step="2" id="fin-ajuste" name="fin-ajuste">
+  </div>
+
+  <div class="in-line">
+     <p>Inicio tiraje:</p>
+  <input type="time" step="2" required id="in-tiro" name="in-tiro">
+  </div><div class="in-line rig">
+     <p>Fin tiraje:</p>
+  <input type="time" step="2" required id="fin-tiro" name="fin-tiro">
   </div>
 
   <div class="in-line">
@@ -685,13 +725,7 @@ border-top: solid 5px transparent;
   <input type="number" required id="piezas" name="piezas">
   </div>
 
-  <div class="in-line">
-     <p>Inicio tiraje:</p>
-  <input type="time" step="2" required id="in-tiro" name="in-tiro">
-  </div><div class="in-line rig">
-     <p>Fin tiraje:</p>
-  <input type="time" step="2" required id="fin-tiro" name="fin-tiro">
-  </div>
+  
  
   
   <input type="submit" name="" value="GUARDAR">
@@ -770,11 +804,13 @@ $('.backdrop, ').css('display', 'block');
 $('.close').click(function(){
     $('.newtiro-modal').hide();
        $('.backdrop').css('display', 'none');
+       $('#procesosradio').empty();
     
    });
 $('.backdrop').click(function(){
   $('.newtiro-modal').hide();
        $('.backdrop').css('display', 'none');
+       $('#procesosradio').empty();
 });
 $(document).ready(function(){
       document.getElementById('getPdf').style.pointerEvents = 'none';
@@ -834,6 +870,10 @@ $("#newstandar").click(function () {
   
 });
 
+jQuery214(document).on("click", ".formradio", function () {
+   $('.selected').removeClass('selected');
+  $(this).find('label').addClass('selected');
+});
 
     /*
     function saveToDatabase(editableObj,column,id) {
@@ -1001,6 +1041,7 @@ console.log('el proceso es: '+proceso);
         data:{iduser:operario,fecha:fecha},
         success: function(data){
         $('.div-tabla').html(data);
+        $('#procesosradio').empty();
         }        
        });
         }        
