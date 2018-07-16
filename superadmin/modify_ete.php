@@ -485,6 +485,13 @@ border-top: solid 5px transparent;
 }
 #usererror,#fechaerror{
   color: red!important;
+  position: absolute;
+  background: #FFF8C4;
+  padding: 10px;
+  border-radius: 3px;
+  moz-box-shadow: 0px 0px 2px #444444;
+  -webkit-box-shadow: 0px 0px 2px #444444;
+  box-shadow: 0px 0px 2px #444444;
 }
 #filterElem{
   width: 100px!important;
@@ -494,11 +501,7 @@ border-top: solid 5px transparent;
   width: 480px;
   background:#fff;
   padding: 20px;
-  
-  
   border-radius: 4px;
- 
-  
 }
 .ui-datepicker{
   position: absolute!important;
@@ -512,6 +515,20 @@ border-top: solid 5px transparent;
     left: 50%;
     transform: translate(-50%, -50%);
    
+    background:#fff;
+    border-radius: 4px;
+    moz-box-shadow: 0px 0px 5px #444444;
+    -webkit-box-shadow: 0px 0px 5px #444444;
+    box-shadow: 0px 0px 5px #444444;
+}
+.reporte-semanal{
+ z-index: 9999;
+  opacity: 0;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   display: none;
     background:#fff;
     border-radius: 4px;
     moz-box-shadow: 0px 0px 5px #444444;
@@ -615,6 +632,12 @@ border-top: solid 5px transparent;
 .entorno{
   display: none;
 }
+iframe{
+  width: 100%;
+  height: 540px;
+  border:none;
+}
+
 @media screen and (max-width:1024px) {
   th{
     font-size: 8px;
@@ -622,6 +645,7 @@ border-top: solid 5px transparent;
 }
 
   </style>
+
   <link rel="stylesheet" type="text/css" href="../css/jquery-ui-1.7.2.custom.css" />
 
 </head>
@@ -647,11 +671,11 @@ border-top: solid 5px transparent;
   <p id="fechaerror" style="display: none;">Por favor elige una fecha</p>
    </div>
   
- </div><div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">TRAER INFORMACION</button></div><div class="left-form2"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtrar"></div></div><div class="left-form2">
+ </div><div class="left-form2"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtrar"></div></div><div class="left-form2">
  
    <button style="margin-top: 25px;" type="button" id="addtiro"  class="btn btn-info new-modal disabled">AGREGAR CAMBIO</button>
   
- </div><div  class="left-form2"><form action="../pdfrepajustemaquina/createReport.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
+ </div><div  class="left-form2"><form action="../pdfrepajustemaquina/createReport.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div><div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">REPORTE ETE TALLER</button></div>
 
 </div>
    
@@ -732,6 +756,16 @@ border-top: solid 5px transparent;
 </div>
 </div>
 
+<div class="reporte-semanal">
+  <div class="close"></div>
+  <div class="form-stuff">
+  <iframe src="calendar.php">
+    
+  </iframe>
+    
+  </div>
+</div>
+
 <div class="backdrop"></div>
 <div class="box"><div class="close"></div>
 
@@ -781,6 +815,19 @@ border-top: solid 5px transparent;
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
 <script>
+$('#newstandar').click(function(){
+
+
+   $('.backdrop').animate({'opacity':'.50'}, 300, 'linear');
+$('.backdrop, ').css('display', 'block');
+    $('.reporte-semanal').show();
+    $('.reporte-semanal').css('opacity','1');
+
+
+    
+   });
+
+
 $('.new-modal').click(function(){
 
   
@@ -805,12 +852,14 @@ $('.backdrop, ').css('display', 'block');
    });
 $('.close').click(function(){
     $('.newtiro-modal').hide();
+    $('.reporte-semanal').hide();
        $('.backdrop').css('display', 'none');
        $('#procesosradio').empty();
     
    });
 $('.backdrop').click(function(){
   $('.newtiro-modal').hide();
+  $('.reporte-semanal').hide();
        $('.backdrop').css('display', 'none');
        $('#procesosradio').empty();
 });
@@ -825,11 +874,11 @@ $(document).ready(function(){
       $('.tooltiptext').hide();
      $(editableObj).find( ".tooltiptext" ).show();
     } 
-
-$("#newstandar").click(function () {
+var go;
+$("#datepicker").change(function () {
   var user=$('#filterElem').val();
   var fecha=$('#datepicker').val();
-  var go;
+  
   $('#fecha').val(fecha);
   $('#operario').val(user);
   console.log('user '+user);
@@ -851,8 +900,23 @@ $("#newstandar").click(function () {
   }else{go2=true;}
 
   if (go && go2) {
+      getInfo(user, fecha)
+   
+  }
+    
+  
+});
 
-    $('#date').val(fecha);
+$("#filterElem").change(function () {
+  var user=$('#filterElem').val();
+  var fecha=$('#datepicker').val();
+  if (fecha!='') {
+getInfo(user, fecha);
+  }
+});
+
+function getInfo(user, fecha){
+   $('#date').val(fecha);
     $('#user').val(user);
     document.getElementById('getPdf').style.pointerEvents = 'auto';
     $('#getPdf').removeClass('disabled'); 
@@ -867,15 +931,13 @@ $("#newstandar").click(function () {
         $('.div-tabla').html(data);
         }        
        });
-  }
-    
-  
-});
+}
 
 jQuery214(document).on("click", ".formradio", function () {
    $('.selected').removeClass('selected');
   $(this).find('label').addClass('selected');
 });
+
 
     /*
     function saveToDatabase(editableObj,column,id) {
@@ -980,8 +1042,10 @@ jQuery214(document).on("click", ".formradio", function () {
    (function($) {  
 
             $(function(){
-                  $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
-                  $( "#datepicker2" ).datepicker({ dateFormat: 'dd-mm-yy' });
+                  $( "#datepicker" ).datepicker({ dateFormat: 'dd-mm-yy',onSelect: function() {
+    $(this).change();
+  } });
+                 
             })
   })(jQuery);
 
@@ -1054,4 +1118,6 @@ console.log('el proceso es: '+proceso);
         }        
        });
 });
+
+
     </script>

@@ -49,55 +49,14 @@ if(@$_SESSION['logged_in'] != true){
 
 
 
-<script type="text/javascript">
-
-    
-(function(document) {
-  'use strict';
-
-  var LightTableFilter = (function(Arr) {
-
-    var _input;
-
-    function _onInputEvent(e) {
-      _input = e.target;
-      var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-      Arr.forEach.call(tables, function(table) {
-        Arr.forEach.call(table.tBodies,  _filter);
-      });
-    }
-
-    function _filter(row) {
-      
-      var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-      row.style.display = text.indexOf(val) === -1 ? 'none' : '';
-    }
-
-    return {
-      init: function() {
-        var inputs = document.getElementsByClassName('light-table-filter');
-        Arr.forEach.call(inputs, function(input) {
-          input.oninput = _onInputEvent;
-        });
-      }
-    };
-  })(Array.prototype);
-
-  document.addEventListener('readystatechange', function() {
-    if (document.readyState === 'complete') {
-      LightTableFilter.init();
-    }
-  });
-
-})(document);
-</script>
-
-
 
 <style type="text/css">
 
 
-
+body{
+  padding: 0!important;
+  background: #fff!important;
+}
 .ui-datepicker-header a{
   color: #fff!important;
 }
@@ -110,7 +69,7 @@ if(@$_SESSION['logged_in'] != true){
   background:#fff;
   position: relative;
   height: 530px;
-  margin: 30px auto;
+  margin: 0 auto;
   box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
   border-radius: 4px;
   overflow:hidden;
@@ -150,9 +109,9 @@ if(@$_SESSION['logged_in'] != true){
 
 
 </head>
-<body style=";">
 
-<?php include("topbar.php");  ?>
+
+
 
 
  <div class="div-tabla">
@@ -191,8 +150,7 @@ if(@$_SESSION['logged_in'] != true){
   
   
 
-  
-</body>
+
 </html>
 
 
