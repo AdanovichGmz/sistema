@@ -681,7 +681,7 @@ iframe{
    
 <div class="div-tabla">
 <div class="w-message">
-  Por favor selecciona un operario y una fecha, luego haz click en <strong>TRAER INFORMACION</strong>
+  Por favor selecciona un <strong>operario</strong> y una <strong>fecha</strong>
 </div>
 </div>
 <div class="newtiro-modal">
