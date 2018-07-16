@@ -9,7 +9,7 @@ $in_tiro=(strlen($_POST['in_tiro'])==5)? $_POST['in_tiro'].':00':$_POST['in_tiro
 $fin_tiro=(strlen($_POST['fin_tiro'])==5)? $_POST['fin_tiro'].':00':$_POST['fin_tiro'];
 
 $oper=(isset($_POST['operario']))?$_POST['operario']:0;
-$producto=(isset($_POST['producto']))? "'".$_POST['producto']."'":'null';
+$producto=(isset($_POST['producto']))? "'".((is_string($_POST['producto']))? 144:$_POST['producto'])."'":'144';
 $odt=(isset($_POST['odt']))? "'".$_POST['odt']."'":'null';
 $fecha=(isset($_POST['fecha']))? "'".$_POST['fecha']."'":'null';
 
@@ -32,35 +32,26 @@ $session=$sesionInfo['id_sesion'];
 $maquina=$sesionInfo['estacion'];
 $proceso=$sesionInfo['proceso'];
 
-$tiempoT=strtotime($fin_tiro) - strtotime($in_tiro);
+$tiempoT=strtotime($fin_tiro) - strtotime($fin_ajuste);
 $tiempoA=strtotime($fin_ajuste) - strtotime($in_ajuste);
+$ajuste= gmdate("H:i:s", $tiempoA);
+$tiraje= gmdate("H:i:s", $tiempoT);
+$seconds=strtotime("1970-01-01 $tiraje UTC");
 
 $standar_query = "SELECT * FROM estandares WHERE id_proceso=$proceso AND id_elemento=$producto";
             $getstandar     = mysqli_fetch_assoc($mysqli->query($standar_query));
             $estandar       = $getstandar['piezas_por_hora'];
 
 
-            if ($maquina==10) {
-            	if ($entorno=='mesa') {
-                    $tiraje_estandar=($tiempoT*300)/3600;
-                    
-                  }else{
-                  	if (!empty($estandar)) {
-                    $tiraje_estandar=($tiempoT*$estandar)/3600;
-                    
-                  }
-                  else{
-                    $tiraje_estandar=($tiempoT*600)/3600;
-              		}
-                  }
+            //calculando desempeño para pieza actual
+            if (is_null($estandar)) {
+              $getstandar     = mysqli_fetch_assoc($mysqli->query("SELECT * FROM estandares WHERE id_proceso=$proceso AND id_elemento=144"));
+              $tiraje_estandar=($seconds*$getstandar['piezas_por_hora'])/3600;
             }else{
-
-				if ($maquina==10) {
-                    $tiraje_estandar=($tiempoT*480)/3600;
-                  }else{
-                    $tiraje_estandar=($tiempoT*600)/3600;
-                  } 
+              $tiraje_estandar=($seconds*$estandar)/3600;
             }
+
+            echo "secondos: ".$seconds;
 
 
                 
@@ -79,8 +70,7 @@ $nombre=$n_prod['nombre_elemento'];
 
 
 
-$ajuste= gmdate("H:i:s", $tiempoA);
-$tiraje= gmdate("H:i:s", $tiempoT);
+
 
 $query="INSERT INTO `tiraje` (`idtiraje`, `producto`, `id_estacion`, `id_proceso`, `pedido`, `cantidad`, `buenos`, `piezas_ajuste`, `defectos`, `merma`, `merma_entregada`, `entregados`, `produccion_esperada`, `desempenio`, `tiempoTiraje`, `tiempo_ajuste`, `horadeldia_ajuste`, `horafin_ajuste`, `fechadeldia_ajuste`, `horadeldia_tiraje`, `horafin_tiraje`, `fechadeldia_tiraje`, `id_orden`, `id_user`, `is_virtual`, `odt_virtual`, `elemento_virtual`, `id_elem_virtual`, `cancelado`, `id_sesion`) VALUES (NULL, $producto, $station,$process, $pedido, $recibido, $buenos, $piezas, $defectos, $merma, $merma, $buenos, $tiraje_estandar, $tiraje_desemp, '$tiraje', '$ajuste', '$in_ajuste', '$fin_ajuste', $fecha, '$fin_ajuste', '$fin_tiro', $fecha, NULL, $oper, 'true', $odt, '$nombre', $producto, 'false',$session)";
 $insert=$mysqli->query($query);

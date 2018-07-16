@@ -608,6 +608,10 @@ border-top: solid 5px transparent;
 #procesosradio{
   
 }
+.error-procesos-radio{
+  color: red;
+  display: none;
+}
 .formradio{
   display: inline-block;
   vertical-align: top;
@@ -715,8 +719,10 @@ iframe{
   <label for="maqui">Maquina:</label>
   </div>
 
-  <div id="procesosradio"></div>
-
+  <div id="procesosradio">
+    
+  </div>
+<p class="error-procesos-radio">Por favor selecciona un proceso ↑</p>
   <div class="in-line">
      <p>Inicio ajuste:</p>
   <input type="time" required step="2" id="in-ajuste" name="in-ajuste">
@@ -726,10 +732,11 @@ iframe{
   </div>
 
   <div class="in-line">
+     <p>Inicio tiraje:</p>
+  <input type="time" step="2"  id="in-tiro" name="in-tiro" readonly>
+  </div><div class="in-line rig">
      <p>Fin tiraje:</p>
   <input type="time" step="2" required id="fin-tiro" name="fin-tiro">
-  </div><div class="in-line rig">
-     
   </div>
 
   <div class="in-line">
@@ -937,6 +944,11 @@ jQuery214(document).on("click", ".formradio", function () {
    $('.selected').removeClass('selected');
   $(this).find('label').addClass('selected');
 });
+jQuery214(document).on("keyup", "#fin-ajuste", function () {
+   $('#in-tiro').val($(this).val());
+  
+});
+
 
 
     /*
@@ -1075,6 +1087,8 @@ jQuery214(document).on("click", ".formradio", function () {
 $('#newTiro').submit(function(){
   event.preventDefault();
 
+
+
 var odt=$('#odt').val();
 var operario=$('#operario').val();
 var producto=$('#producto').val();
@@ -1091,6 +1105,9 @@ var fin_tiro=$('#fin-tiro').val();
 var proceso=$('#newTiro input[name="proceso"]:checked').val();
 console.log('el proceso es: '+proceso);
 
+ if (proceso == null){
+    $('.error-procesos-radio').show();
+}else{
   console.log('se trato de enviar');
    $.ajax({
         url: "newTiro.php",
@@ -1098,6 +1115,8 @@ console.log('el proceso es: '+proceso);
 
         data:{odt:odt,operario:operario,producto:producto,fecha:fecha,entorno:entorno,in_ajuste:in_ajuste,fin_ajuste:fin_ajuste,pedido:pedido,recibido:recibido,buenos:buenos,piezas:piezas,in_tiro:in_tiro,fin_tiro:fin_tiro,proceso:proceso},
         success: function(data){
+          console.log(data);
+          $('.error-procesos-radio').hide();
           $('.close').click();
           $('#newTiro')[0].reset();
            $('.popup').show().fadeIn( "slow" );
@@ -1117,6 +1136,9 @@ console.log('el proceso es: '+proceso);
        });
         }        
        });
+}
+
+  
 });
 
 
