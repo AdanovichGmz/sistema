@@ -359,18 +359,27 @@ $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
     }else{
 
       
-        if ($user['id']==15||$user['id']==14){
+        if ($user['id']==15){
          
         if ($total_cambios>30) {
           $cambio_21=$total_cambios-30;
-          $renum_cambios=$cambio_21*40;
+          $renum_cambios=$cambio_21*20;
       }else{
         $renum_cambios=0;
       }
-        }else{
-        if ($total_cambios>20) {
-          $cambio_21=$total_cambios-20;
-          $renum_cambios=$cambio_21*40;
+        }elseif($user['id']==14){
+        if ($total_cambios>23) {
+          $cambio_21=$total_cambios-23;
+          $renum_cambios=$cambio_21*35;
+      }else{
+        $renum_cambios=0;
+      }
+           
+        }
+        else{
+        if ($total_cambios>28) {
+          $cambio_21=$total_cambios-28;
+          $renum_cambios=$cambio_21*30;
       }else{
         $renum_cambios=0;
       }
