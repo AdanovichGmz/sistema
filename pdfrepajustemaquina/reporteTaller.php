@@ -109,7 +109,7 @@ $tbody.='<tr class="theader">';
     $tbody.='<td style="display:none">TOTAL</td>';
     $tbody.='<td style="display:none">SUELDO</td>';
     $tbody.='<td style="display:none">DIFERENCIA</td>';
-    if ($user['id']==16||$user['id']==14||$user['id']==8) {
+    if ($user['id']==16||$user['id']==8) {
     $tbody.='<td>remun POR TIROS</td>';
     }else{
     $tbody.='<td>remun POR CAMBIOS</td>';
