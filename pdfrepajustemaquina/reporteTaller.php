@@ -352,14 +352,14 @@ $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
   $tbody.='<td style="display:none">$'.round($precios+($sum_largos*0.20),1).'</td>';
   $tbody.='<td style="display:none">$'.$user['sueldo'].'</td>';
   $tbody.='<td style="display:none">$'.round($diferencia,1).'</td>';
-  if ($user['id']==16||$user['id']==14||$user['id']==8) {
+  if ($user['id']==16||$user['id']==8) {
      $renum_tiros=(count($workProc)==1)? (($workProc[0]['id_proceso']==10)? (($total_def>7500)? $diferencia:'0.00'):(($diferencia>0)? $diferencia:'0.00')):(($diferencia>0)? $diferencia:'0.00');
 
    $tbody.='<td>$'.round($renum_tiros,1).'</td>';
     }else{
 
       
-        if ($user['id']==15) {
+        if ($user['id']==15||$user['id']==14){
          
         if ($total_cambios>30) {
           $cambio_21=$total_cambios-30;
