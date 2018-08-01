@@ -109,7 +109,7 @@ $tbody.='<tr class="theader">';
     $tbody.='<td style="display:none">TOTAL</td>';
     $tbody.='<td style="display:none">SUELDO</td>';
     $tbody.='<td style="display:none">DIFERENCIA</td>';
-    if ($user['id']==16||$user['id']==8) {
+    if ($user['remuneracion']=='tiros') {
     $tbody.='<td>remun POR TIROS</td>';
     }else{
     $tbody.='<td>remun POR CAMBIOS</td>';
@@ -323,7 +323,7 @@ foreach ($workProc as $key => $tdSum7) {
 $total_def=($total_prod+$total_merma)-$total_defec;
  $tbody.='<td>'.$total_defec.'</td>';
  $tbody.='<td>'.round($total_cambios,1).'</td>';
-  $tbody.="<td>".$total_def."</td>";
+  $tbody.="<td>".round($total_def,1)."</td>";
 $tbody.='<td>'.round($total_merma,1).'</td>';
   $tbody.=$subtd8;
 foreach ($workProc as $key => $tdSum9) {
@@ -352,7 +352,7 @@ $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
   $tbody.='<td style="display:none">$'.round($precios+($sum_largos*0.20),1).'</td>';
   $tbody.='<td style="display:none">$'.$user['sueldo'].'</td>';
   $tbody.='<td style="display:none">$'.round($diferencia,1).'</td>';
-  if ($user['id']==16||$user['id']==8) {
+  /* if ($user['id']==16||$user['id']==8) {
      $renum_tiros=(count($workProc)==1)? (($workProc[0]['id_proceso']==10)? (($total_def>7500)? $diferencia:'0.00'):(($diferencia>0)? $diferencia:'0.00')):(($diferencia>0)? $diferencia:'0.00');
 
    $tbody.='<td>$'.round($renum_tiros,1).'</td>';
@@ -391,6 +391,44 @@ $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
 
     $tbody.='<td>$'.round($renum_cambios,1).'</td>';
     }
+*/
+if ($user['remuneracion']=='tiros') {
+  $renum_tiros=(count($workProc)==1)? (($workProc[0]['id_proceso']==10)? (($total_def>7500)? $diferencia:'0.00'):(($diferencia>0)? $diferencia:'0.00')):(($diferencia>0)? $diferencia:'0.00');
+
+   $tbody.='<td>$'.round($renum_tiros,1).'</td>';
+}elseif($user['remuneracion']=='cambios'){
+
+  if ($user['id']==15){
+         
+        if ($total_cambios>30) {
+          $cambio_21=$total_cambios-30;
+          $renum_cambios=$cambio_21*20;
+      }else{
+        $renum_cambios=0;
+      }
+        }elseif($user['id']==14){
+        if ($total_cambios>23) {
+          $cambio_21=$total_cambios-23;
+          $renum_cambios=$cambio_21*35;
+      }else{
+        $renum_cambios=0;
+      }
+           
+        }
+        else{
+        if ($total_cambios>28) {
+          $cambio_21=$total_cambios-28;
+          $renum_cambios=$cambio_21*30;
+      }else{
+        $renum_cambios=0;
+      }
+           
+        }
+     
+    $tbody.='<td>$'.round($renum_cambios,1).'</td>';
+
+}
+
   
   $tbody.='<td>'.$rell.'</td>';
   $tbody.='<td>'.$rell.'</td>';
