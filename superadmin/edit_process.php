@@ -24,17 +24,19 @@ $resss     = $mysqli->query($query2);
 
 ?>
 <div class="mini-table">
+<input type="hidden" name="add-new" value="modify">
+<input type="hidden" name="proceso" value="<?=$info['id_proceso'] ?>">
 <div class="table-controls">
 	<table>
 		<tr>
 			<th style="text-align: left;"><a href="#" id="selectAll">Seleccionar Todos</a></th>
 			<th></th>
 			<th>Acciones:</th>
-			<th><select name="action">
+			<th><select id="actions" name="action">
 				<option value="edit">Editar</option>
 				<option value="delete">Eliminar</option>
 			</select></th>
-			<th><button type="button" class="btn">Enviar</button></th>
+			<th><button type="button" id="submit-actions" data-id="<?=$info['id_proceso'] ?>" class="btn">Enviar</button></th>
 		</tr>
 	</table>
 </div>

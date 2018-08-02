@@ -223,7 +223,7 @@ $def=mysqli_fetch_assoc($default);
   <div style="">
   <input type="hidden" id="ajuste-h" name="ajuste">
   <input type="hidden" id="piezas-h" name="piezas">
-   <input type="hidden"  name="add-new" value="true">
+   <input type="hidden"  name="add-new" value="insert">
     <input type="hidden"  name="proceso" value="<?=$_GET['process'] ?>">
   <p>Elige uno o mas productos:</p>
   <table class="filter-table">
@@ -546,5 +546,75 @@ $('#cssmenu > ul > li > a').click(function() {
 
 });
 } )( jQuery );
+
+
+jQuery214(document).on("click", "#submit-actions", function (e){
+
+  if (jQuery214('#actions').val()=='delete') {
+
+
+     $('<div></div>').appendTo('body')
+                    .html('<div><h6>Estas seguro de querer borrar estos estandares?</h6></div>')
+                    .dialog({
+                        modal: true, title: 'Eliminar Estandares', zIndex: 10000, autoOpen: true,
+                        width: 'auto', resizable: false,
+                        buttons: {
+                            Si: function () {
+                                // $(obj).removeAttr('onclick'); 
+                                // $(obj).parents('.Parent').remove();
+                                $.ajax({
+                                  url: "dispon_prods.php",
+                                  type: "POST",
+                                  data:$('#main-form').serialize(),
+                                  success: function(data){
+                                    console.log(data);
+                                  $("#cssmenu").find("[data-target='estandares']").click();
+                                  }        
+                                 });
+                                
+                                $(this).dialog("close");
+                            },
+                            No: function () {                                                             
+                            
+                                $(this).dialog("close");
+                            }
+                        },
+                        close: function (event, ui) {
+                            $(this).remove();
+                        }
+                    });
+
+
+
+  }else if (jQuery214('#actions').val()=='edit'){
+
+      var proceso=jQuery214(this).data('id');
+
+      $('.backdrop').animate({'opacity':'.50'}, 300, 'linear');
+      $('.backdrop, ').css('display', 'block');
+       $.ajax({
+              url: "dispon_prods.php",
+              type: "POST",
+              data:$('#main-form').serialize(),
+              success: function(data){
+               $('.products').html(data);
+
+      $('.newtiro-modal').show();
+    
+
+        }        
+       });
+
+     
+
+  }
+
+     
+
+    
+    
+
+   
+});
 
     </script>
