@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <?php ini_set("session.gc_maxlifetime","7200");   
+require('saves/conexion.php');
+session_start();
+$bien=$mysqli->query("SELECT * FROM opciones WHERE tipo_opcion='encuesta_bien' AND id_proceso=".$_SESSION['processID']);
+$lento=$mysqli->query("SELECT * FROM opciones WHERE tipo_opcion='encuesta_lento' AND id_proceso=".$_SESSION['processID']);
 
 
 ?>
@@ -322,16 +326,11 @@
     <div class="form-group" style="width:100%;margin:0 auto;">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
                 <br> 
+                <?php while ($row=mysqli_fetch_assoc($lento)) { ?>
               <div class="lento radio-menu face quest next">
-                <input type="radio" class="" name="problema" id="radios-0" value="Papel Grande"  >
-                   PAPEL GRANDE</div>
-               <div class="lento radio-menu face quest next">
-               <input type="radio" name="problema" id="radios-1" value="Detalles Finos">
-                   DETALLES FINOS</div>
-                   <div class="lento radio-menu face quest next">
-               <input type="radio" name="problema" id="radios-1" value="Es a Registro">
-                   ES A REGISTRO</div>
-                
+                <input type="radio" class="" name="problema" id="radios-<?=$row['id_opcion'] ?>" value="<?=$row['valor'] ?>">
+                   <?=$row['valor'] ?></div>
+                <?php } ?>
                 </div>
  </div>
 
@@ -344,21 +343,13 @@
   <p>¿Porque razon?</p>
             <div class="form-group" style="width:100% ;margin:0 auto; z-index: 701;">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
+          <?php while ($row2=mysqli_fetch_assoc($bien)) {
+                  ?>
                
               <div class="nobien radio-menu face2 quest finish">
-                <input type="radio" class="" name="problema2" id="radios-0" value="Se Movio la Escuadra" >
-                    SE MOVIO LA ESCUADRA</div>
-               <div class="nobien radio-menu face2 quest finish">
-               <input type="radio" name="problema2" id="radios-1" value="Mal Ajuste">
-                   MAL AJUSTE</div>
-                   <div class="nobien radio-menu face2 quest finish">
-               <input type="radio" name="problema2" id="radios-1" value="Se Movio el Cuadratin">
-                   SE MOVIO EL CUADRATIN</div>
-                <div class="nobien radio-menu face2 quest  finish">
-               <input type="radio" name="problema2" id="radios-1" value="Se Afloja la Tabla">
-                   SE AFLOJA LA TABLA</div>
-                </div>
-
+                <input type="radio" class="" name="problema2" id="radios-<?=$row2['id_opcion'] ?>" value="Se Movio la Escuadra" >
+                    <?=$row2['valor'] ?></div>
+          <?php } ?>
 
      </div>
                         </form>

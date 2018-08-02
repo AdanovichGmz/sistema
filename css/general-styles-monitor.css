@@ -626,7 +626,8 @@ box-shadow:         2px 2px 3px 0px rgba(50, 50, 50, 0.61);
     width: 300px;
     height: 60px;
     border-radius: 4px;
-     margin-bottom:10px !important;
+    margin:5px !important;
+
     cursor: pointer;
     position: relative;
     

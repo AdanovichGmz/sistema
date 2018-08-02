@@ -37,7 +37,10 @@ if($f=mysqli_fetch_assoc($sql2)){
         $_SESSION['MM_Foto_user'] = $f['foto'];
        
         $getStations=$mysqli->query("SELECT * FROM usuarios_estaciones WHERE id_usuario=".$f['id']);
-        
+        if($f['is_team']=='true'){
+        header("Location: encuadernacion/");
+        }
+        else{
         if ($getStations->num_rows>1) {
 
         header("Location: options.php");
@@ -245,7 +248,7 @@ if($f=mysqli_fetch_assoc($sql2)){
       
 
         }
-
+    }
 
 
 

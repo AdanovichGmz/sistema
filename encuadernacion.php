@@ -448,6 +448,11 @@ legend{
     font-weight: bold;
     width: 140px;
 }
+.topbar{
+  width: 100%;
+  height: 80px;
+  background: #202938;
+}
 </style>
 <body onload="">
 <div id="formulario"></div>
@@ -458,7 +463,8 @@ legend{
     <div class="msj">
         <img src="images/msj.fw.png" />
     </div>
-         <div class="congral2">               
+         <div class="congral2">   
+         <div class="topbar"> </div>            
             <div class="cont2 center-block">
                 <form name="nuevo_registro" id="nuevo_registro" method="POST">
                   <input type="hidden" name="section" value="ajuste">
@@ -706,8 +712,81 @@ legend{
                <div class="form-group" style="width:81% ;margin:0 auto;">
                <input type="hidden" id="inicioAlerta" name="inicioAlerta">
                 <label class="col-md-4 control-label" for="radios" style="display: none;"></label>
-                <?php include 'ajuste_options.php' ?>
+                <?php if ($_SESSION['processID']==10) { ?>
                
+
+                <div class="two-columns">
+                  <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-0" value="Preparar Tinta">
+                    Preparar Tinta
+                    </div>
+               <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-5" value="Tirar basura">
+                    Tirar basura
+                    </div>
+                </div>
+                <div class="two-columns">
+                <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-2" value="Marco mal revelado">
+                    Marco mal revelado
+                    </div>
+                <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-3" value="Marco con poro">
+                    Marco con poro
+                    </div>
+                
+                    
+                </div>
+                <div class="two-columns">
+                  <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-4" value="ODT confusa">
+                    ODT confusa
+                    </div>
+                    
+                </div>
+                <div class="two-columns">
+                <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-8" value="No tengo Material">
+                    No tengo Material
+                    </div>
+                  <div class=" radio-menu face explain">
+                    <input type="radio" class="other" name="radios" id="radios-6" value="Otro">
+                    Otro
+                    </div>
+                     <div id="tiro"></div>
+                </div>
+                <?php }else{ ?>
+                 <div class="two-columns">
+                  <div class=" radio-menu face no-explain">
+                  <div id="tiro"></div>
+                    <input type="radio" name="radios" id="radios-0" value="ODT Confusa">
+                    ODT Confusa
+                    </div>
+                <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-1" value="ODT Faltante">
+                    ODT Faltante
+                    </div>
+                     <div class=" radio-menu face explain">
+                    <input type="radio" name="radios"  id="radios-6" value="Otro">
+                    Otro
+                    </div>
+                </div>
+                <div class="two-columns">
+                <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-2" value="Cambio de Cuchilla">
+                    Cambio de Cuchilla
+                    </div>
+                <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-3" value="Pieza de Plancha">
+                    Pieza de Plancha
+                    </div>
+                <div class=" radio-menu face no-explain">
+                    <input type="radio" name="radios" id="radios-4" value="Exceso de Dimensiones">
+                    Exceso de Dimensiones
+                    </div>
+
+                </div>
+                <?php } ?>
                 </div>
                 <!-- Textarea -->
                 <div class="form-group" style="width:81%;margin:0 auto; text-align: center; color:black;">

@@ -565,7 +565,7 @@ $showpercent=100-$final;
                  <!-- Multiple Radios -->
                 <div class="form-group alertoptions" style="width:80% ;margin:0 auto;">
                 <?php
-    include "alertsTiraje.php";
+    include "tiro_options.php";
 ?>
                 
                 </div>

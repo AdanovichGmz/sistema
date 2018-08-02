@@ -52,6 +52,7 @@ $procesos=$mysqli->query("SELECT * FROM procesos_catalogo");
   width: 100%;
   position:relative;
   cursor: pointer;
+
   
 }
 .user-photo img{
@@ -296,7 +297,13 @@ background:#E51C23;
           <td class="title-field">Sueldo: $</td>
           <td class="input-field" colspan="3"><input type="text" class="changed" name="sueldo" value="<?=$userData['sueldo'] ?>"></td>
         </tr>
-
+        <tr>
+          <td class="title-field">Remuneracion por:</td>
+          <td class="input-field" colspan="3"><select  class="changed" name="remun">
+          <option <?=($userData['remuneracion']=='tiros')? 'selected':'' ?> value="tiros">Tiros</option>
+          <option <?=($userData['remuneracion']=='cambios')? 'selected':'' ?> value="cambios">Cambios</option>
+          </select></td>
+        </tr>
       </table>      
       <table style="width: 400px;margin: 15px auto;text-align: center;">
         <tr id="personal-info">
@@ -416,7 +423,11 @@ $(".changed").keyup(function () {
     
 
 });
+$(".changed").change(function () {   
+    $('#personal-info').show();
+    
 
+});
 
 $(".change-photo").click(function () {   
     $('#foto').click();

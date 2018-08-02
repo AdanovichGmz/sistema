@@ -64,7 +64,9 @@
         
         <!--<li><a href="#"><span class="icon-earth"></span>Servicios</a></li>-->
         <!--<li><a href="#"><span class="icon-mail"></span>Contacto</a></li> -->
-       </li><li><a href="estandares.php">Estandares</a>
+       </li><li style="display: none;"><a href="estandares.php">Estandares</a>
+       </li><li><a href="procesos.php">Procesos</a>
+       </li><li style="display: none;"><a href="opciones.php">Alertas</a>
        </li><li style="display: none;"><a href="programacion.php">Programacion</a></li>
        <li class="lefting ">
 
