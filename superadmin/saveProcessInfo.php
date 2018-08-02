@@ -27,7 +27,7 @@ if (!$update) { $fails++; }
 }
 ?>
 <input id="tipo" type="hidden" name="tipo_opcion" value="" <?=$datas; ?> >
-<p>hola</p>
+
 
 <?php
 
@@ -55,7 +55,8 @@ foreach ($processes as $key => $process) {
   
 }
 if ($errors>0) {
-  $datas='data-clas="fail" data-type="Error:" data-message="No pudimos guardar algunos datos" ';
+  $datas='data-clas="fail" data-type="Error:" data-message="No pudimos guardar algunos datos" data-error="<?=printf($mysqli->error) ?>" ';
+
 }else{
   $datas='data-clas="successs" data-type="Exito:" data-message="Datos guardados correctamente!" ';
 }
@@ -65,7 +66,7 @@ $procesos=$mysqli->query("SELECT * FROM procesos_catalogo ORDER BY nombre_proces
 
   ?>
  <input id="tipo" type="hidden" name="tipo_opcion" value="" <?=$datas; ?> >
-<p>adios perro</p>
+
 
 
 <?php 
