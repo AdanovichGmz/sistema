@@ -55,7 +55,7 @@ foreach ($processes as $key => $process) {
   
 }
 if ($errors>0) {
-  $datas='data-clas="fail" data-type="Error:" data-message="No pudimos guardar algunos datos" data-error="<?=printf($mysqli->error) ?>" ';
+  $datas='data-clas="fail" data-type="Error:" data-message="No pudimos guardar algunos datos" data-error="'.printf($mysqli->error).' " ';
 
 }else{
   $datas='data-clas="successs" data-type="Exito:" data-message="Datos guardados correctamente!" ';
