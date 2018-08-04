@@ -304,6 +304,20 @@ background:#E51C23;
           <option <?=($userData['remuneracion']=='cambios')? 'selected':'' ?> value="cambios">Cambios</option>
           </select></td>
         </tr>
+        <?php if ($userData['remuneracion']=='cambios') {
+         
+         ?>
+
+        <tr>
+          <td class="title-field">Cambios minimos:</td>
+          <td class="input-field" colspan="3"><input type="text" class="changed" name="cambios_minimos" value="<?=$userData['cambios_minimos'] ?>"></td>
+        </tr>
+         <tr>
+          <td class="title-field">Costo por cambio: $</td>
+          <td class="input-field" colspan="3"><input type="text" class="changed" name="precio_cambio" value="<?=$userData['precio_cambio'] ?>"></td>
+        </tr>
+
+        <?php } ?>
       </table>      
       <table style="width: 400px;margin: 15px auto;text-align: center;">
         <tr id="personal-info">

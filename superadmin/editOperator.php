@@ -10,7 +10,10 @@ $usuario=(isset($_POST['usuario']))? "'".$_POST['usuario']."'" : 'null';
 $password=(isset($_POST['password']))? "'".$_POST['password']."'" : 'null';
 $sueldo=(isset($_POST['sueldo']))? "'".$_POST['sueldo']."'" : 'null';
 $apellido=(isset($_POST['apellido']))? "'".$_POST['apellido']."'" : 'null';
-$mysqli->query("UPDATE usuarios SET logged_in=$nombre, usuario=$usuario,remuneracion=$remun, sueldo=$sueldo,apellido=$apellido, password=$password WHERE id=".$_POST['iduser']);
+$c_min=(isset($_POST['cambios_minimos']))? "'".$_POST['cambios_minimos']."'" : 'null';
+$precio_cambio=(isset($_POST['precio_cambio']))? "'".$_POST['precio_cambio']."'" : 'null';
+
+$mysqli->query("UPDATE usuarios SET logged_in=$nombre, usuario=$usuario,remuneracion=$remun, sueldo=$sueldo,apellido=$apellido, password=$password,cambios_minimos=$c_min, precio_cambio=$precio_cambio WHERE id=".$_POST['iduser']);
 }elseif ($target=='photo') {
 // unlink($Your_file_path);
   print_r($_POST);

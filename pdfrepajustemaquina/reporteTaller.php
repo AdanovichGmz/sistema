@@ -401,7 +401,7 @@ if ($user['remuneracion']=='tiros') {
 
 
   if ($user['id']==15){
-         
+         /*
         if ($total_cambios>30) {
           $cambio_21=$total_cambios-30;
           $renum_cambios=$cambio_21*20;
@@ -434,15 +434,16 @@ if ($user['remuneracion']=='tiros') {
       }
            
         }
-/*
+        */
     
     if ($total_cambios>$user['cambios_minimos']) {
+      $procesInfo=mysqli_fetch_assoc($mysqli->query("SELECT precio_cambio FROM procesos_catalogo WHERE id_proceso="))
 
           $cambio_21=$total_cambios-$user['cambios_minimos'];
-          $renum_cambios=$cambio_21*$user['cambios_minimos'];
+          $renum_cambios=$cambio_21*$user['precio_cambio'];
       }else{
         $renum_cambios=0;
-      } */
+      } 
      
     $tbody.='<td>$'.round($renum_cambios,1).'</td>';
 
