@@ -285,6 +285,7 @@ background:#E51C23;
           <td class="title-field">Contraseña:</td>
           <td class="input-field" colspan="3"><input type="text" class="changed" name="password" value="<?=$userData['password'] ?>"></td>
         </tr>
+        <!--
         <tr>
           <td class="title-field">Hora de entrada:</td>
           <td class="input-field" colspan="3"><input type="time" class="changed" name="entrada" value=""></td>
@@ -292,7 +293,7 @@ background:#E51C23;
         <tr>
           <td class="title-field">Hora de salida:</td>
           <td class="input-field" colspan="3"><input type="time" class="changed" name="salida" value=""></td>
-        </tr>
+        </tr> -->
         <tr>
           <td class="title-field">Sueldo: $</td>
           <td class="input-field" colspan="3"><input type="text" class="changed" name="sueldo" value="<?=$userData['sueldo'] ?>"></td>
