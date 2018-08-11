@@ -5,7 +5,7 @@ include '../saves/conexion5s.php';
 
 
 
-$query = "SELECT ch.*,u.nombre AS n_usuario,r.nombre AS n_responsable,a.nombre_area AS n_area FROM checklist ch INNER JOIN usuarios u ON u.id_usuario=ch.id_usuario INNER JOIN responsables r ON r.area=u.id_area INNER JOIN areas a ON a.id_area=u.id_area";
+$query = "SELECT ch.*,u.nombre AS n_usuario,r.nombre AS n_responsable,a.nombre_area AS n_area FROM checklist ch INNER JOIN usuarios u ON u.id_usuario=ch.id_usuario INNER JOIN responsables r ON r.area=u.id_area INNER JOIN areas a ON a.id_area=u.id_area ORDER BY id_checklist DESC";
 
 $res=$mysqli->query($query);
 if (!$res) {

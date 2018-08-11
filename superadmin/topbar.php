@@ -13,17 +13,17 @@
         </li><li class="submenu">
           <a href="#"><span class="icon-clipboard"></span>Reportes ETE<span class="caret icon-arrow-down6"></span></a>
           <ul class="children">
-          <li><a href="eteTaller.php">Reporte de taller <span class="icon-user"></span></a></li>
-          <li><a href="reporteLean.php">Reporte 5s <span class="icon-user"></span></a></li>
-          <li><a href="ete.php">Individuales <span class="icon-user"></span></a></li>
+          <li><a href="eteTaller.php">Reporte ETE de taller <span class="icon-user"></span></a></li>
+          
+          <li style="display: none;"><a href="ete.php">Individuales <span class="icon-user"></span></a></li>
             <!-- <li><a href="eteall.php">General<span class="icon-users"></span></a></li> -->
-              <li><a href="modify_ete.php">Modificar<span class="icon-pencil"></span></a></li>        
+              <li><a href="modify_ete.php">Reporte ETE por Operario<span class="icon-pencil"></span></a></li>        
           </ul>
 </li><li class="submenu">
           <a href="#"><span class="icon-clipboard"></span>Reportes 5'S<span class="caret icon-arrow-down6"></span></a>
           <ul class="children">
           <li><a href="listaDiaria.php">Lista diaria de Verificacion<span class="icon-user"></span></a></li>
-                 
+           <li><a href="reporteLean.php">Rreporte Objetivo/Diferencia<span class="icon-user"></span></a></li>      
           </ul>
 </li><li class="submenu">
           <a href="#"><span class="icon-clipboard"></span>Operarios<span class="caret icon-arrow-down6"></span></a>

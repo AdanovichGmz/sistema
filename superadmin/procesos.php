@@ -129,7 +129,7 @@ if(@$_SESSION['logged_in'] != true){
  
   </div>
     <div class="r-head-control">
-      <button id="main-submit" class="btn btn-info">Agregar Proceso</button>
+      <button id="main-submit" class="btn btn-info" style="display: none;">Agregar Proceso</button>
     </div>
   </div>
   
@@ -154,8 +154,9 @@ if(@$_SESSION['logged_in'] != true){
     <th style="text-align: left;">NOMBRE DEL PROCESO</th>
     <th>PRECIO POR TIROS</th>
     <th>PRECIO POR CAMBIOS</th>
-    <th style="width:100px"></th>
     <th style="width:180px"></th>
+    <th style="width:100px"></th>
+    
 
   </tr>
 
@@ -166,8 +167,9 @@ if(@$_SESSION['logged_in'] != true){
     <td  style="text-align: left;"><?=$pr['nombre_proceso'] ?></td>
     <td>$<?=(!empty($pr['precio']))? $pr['precio']:'0.0' ?></td>
     <td>$<?=(!empty($pr['precio_cambio']))? $pr['precio_cambio']:'0.0' ?></td>
-    <td><a href="#" class="quit-option">Eliminar</a></td>
     <td><a href="modify_process.php?process=<?=$pr['id_proceso'] ?>"  class="edit-option">Editar Propiedades</a></td>  
+    <td><a href="#" class="quit-option">Eliminar</a></td>
+    
     <input type="hidden" name="options-<?=$pr['id_proceso'] ?>[]" value="<?=$pr['nombre_proceso'] ?>"> 
    </tr>
   

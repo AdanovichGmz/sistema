@@ -167,8 +167,8 @@ if(@$_SESSION['logged_in'] != true){
   <input type="hidden" id="dia4" name="dias[]">
   <input type="hidden" id="dia5" name="dias[]">
   <input type="hidden" id="fin" name="dias[]">
-     <button name="pdf">Reporte PDF</button>
-      <button name="xlsx">Reporte EXCEL</button>
+     <button name="pdf">Generar Reporte PDF</button>
+      <button name="xlsx" style="display: none;">Reporte EXCEL</button>
   </form>
 </div>
  

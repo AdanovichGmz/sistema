@@ -270,6 +270,7 @@ $def=mysqli_fetch_assoc($default);
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
 <script>
+var section;
 
  $(document).ready(function () {
 
@@ -282,6 +283,7 @@ $def=mysqli_fetch_assoc($default);
 
 jQuery214(document).on("click", ".ajax-link", function () {
   var target=jQuery214(this).data('target');
+  section=jQuery214(this);
   if (target=='alerts') {
     var type_option=jQuery214(this).data('tipo');
   }else{
@@ -341,7 +343,7 @@ $('#main-form').submit(function(e){
         success: function(data){
         
         $('#main-form').html(data);
-        
+        section.click();
         var message=jQuery214('#tipo').data('message');
         var tipo=jQuery214('#tipo').data('type');
         var clas=jQuery214('#tipo').data('clas');

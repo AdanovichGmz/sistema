@@ -612,7 +612,7 @@ border-top: solid 5px transparent;
  <!--
    <button style="margin-top: 25px;" type="button" id="addtiro"  class="btn btn-info new-modal disabled">AGREGAR CAMBIO</button> -->
   
- </div><div  class="left-form2"><form action="../pdfrepajustemaquina/reporteLeanPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
+ </div><div  class="left-form2"><form action="../pdfrepajustemaquina/reporteLeanPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px; display: none;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
 
 </div>
    
