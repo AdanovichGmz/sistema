@@ -506,8 +506,23 @@ $showpercent=100-$final;
      
         if ($responsable['responsable_5s']=='true') {
           include '5s.php';
+          if ($_SESSION['idUser']=='16') {
           ?>
           <script>
+            var intervalHandle = setInterval(function () {
+    var date = new Date();
+    var cumplido='<?=$cumplido['lista_diaria'] ?>';
+    console.log('date: '+cumplido);
+    if ((date.getHours() >= 17 && date.getMinutes() >= 00&&cumplido=='false') ) {
+      console.log('ya es tiempo');
+      $('.quiz-container').show();
+      clearInterval(intervalHandle);          
+    } 
+}, 1000);
+          </script>
+
+      <?php }else{ ?>
+<script>
             var intervalHandle = setInterval(function () {
     var date = new Date();
     var cumplido='<?=$cumplido['lista_diaria'] ?>';
@@ -519,8 +534,7 @@ $showpercent=100-$final;
     } 
 }, 1000);
           </script>
-
-      <?php   }
+      <?php }  }
        ?>
 <!-- ********************** Ventanita loader ******************** -->
 <div class="box">

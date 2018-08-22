@@ -451,7 +451,7 @@ legend{
 </style>
 <body onload="">
 <div id="formulario"></div>
-    
+    <input type="hidden" id="operario" value="<?=$_SESSION['idUser'] ?>">
      <input type="hidden" id="idmachine" value="<?=$stationID ?>">
      <input type="hidden" id="idproces" value="<?=$processID ?>">
     <input type="hidden" id="order" value="<?= (isset($ordenActual))? implode(",", $ordenActual)  : ((isset($stoppedOrderID))? $stoppedOrderID : '') ;?>">
@@ -553,8 +553,26 @@ legend{
      
         if ($responsable['responsable_5s']=='true') {
           include '5s.php';
+          if ($_SESSION['idUser']=='16') {
+            
           ?>
           <script>
+            var intervalHandle = setInterval(function () {
+    var date = new Date();
+    var cumplido='<?=$cumplido['lista_diaria'] ?>';
+    console.log('date: '+cumplido);
+    if ((date.getHours() >= 17 && date.getMinutes() >= 00&&cumplido=='false') ) {
+      console.log('ya es tiempo');
+      $('.quiz-container').show();
+      clearInterval(intervalHandle);          
+    } 
+}, 1000);
+          </script>
+
+      <?php }
+      else{ ?>
+
+<script>
             var intervalHandle = setInterval(function () {
     var date = new Date();
     var cumplido='<?=$cumplido['lista_diaria'] ?>';
@@ -566,8 +584,7 @@ legend{
     } 
 }, 1000);
           </script>
-
-      <?php   }
+    <?php  }   }
        ?>
 
 <div class="box">
