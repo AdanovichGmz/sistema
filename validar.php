@@ -37,8 +37,20 @@ if($f=mysqli_fetch_assoc($sql2)){
         $_SESSION['MM_Foto_user'] = $f['foto'];
        
         $getStations=$mysqli->query("SELECT * FROM usuarios_estaciones WHERE id_usuario=".$f['id']);
-        if($f['is_team']=='true'){
+        if($f['is_team']=='true'){           
+        $station = mysqli_fetch_assoc($getStations);
+       $mystation=mysqli_fetch_assoc($mysqli->query("SELECT * FROM estaciones WHERE id_estacion=".$station['id_estacion']));
+        $_SESSION['stationID']=$station['id_estacion'];
+        $_SESSION['stationName']=$mystation['nombre_estacion'];
+        $getMyProcess=$mysqli->query("SELECT * FROM team_leaders WHERE id_usuario=".$f['id']);
+        $myProcess = mysqli_fetch_assoc($getMyProcess); 
+        $_SESSION['processID']=$myProcess['id_proceso'];
+        $getProcess="SELECT * FROM procesos_catalogo WHERE id_proceso=".$myProcess['id_proceso'];
+                $catalog_process=mysqli_fetch_assoc($mysqli->query($getProcess));
+            $_SESSION['processName']=$catalog_process['nombre_proceso'];
+
         header("Location: encuadernacion/");
+
         }
         else{
         if ($getStations->num_rows>1) {

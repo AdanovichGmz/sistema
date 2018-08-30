@@ -23,7 +23,7 @@ if(@$_SESSION['logged_in'] != true){
   
 
   $prods=$mysqli->query("SELECT * FROM elementos ORDER BY nombre_elemento ASC");
-  $procesos=$mysqli->query("SELECT * FROM procesos_catalogo ORDER BY nombre_proceso ASC");
+  $procesos=$mysqli->query("SELECT * FROM procesos_catalogo ORDER BY id_proceso DESC");
   
   $ops=$mysqli->query("SELECT * FROM usuarios WHERE app_active='true' ORDER BY logged_in ASC");
 
@@ -135,7 +135,7 @@ if(@$_SESSION['logged_in'] != true){
   
     <div class="r-wraper">
    
-   <?php $procesos=$mysqli->query("SELECT * FROM procesos_catalogo ORDER BY nombre_proceso ASC");
+   <?php $procesos=$mysqli->query("SELECT * FROM procesos_catalogo ORDER BY id_proceso ASC");
 
   ?>
 

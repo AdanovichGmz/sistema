@@ -1,8 +1,9 @@
 <?php
-session_start();
-echo "<pre>";
-print_r($_SESSION);
-echo "<pre>";
-echo "encuadernacion";
 
-?>
+
+require 'application/config/config.php';
+require 'application/libs/application.php';
+require 'application/libs/controller.php';
+
+
+$app = new Application();
