@@ -5,7 +5,7 @@ include '../saves/conexion.php';
 use Dompdf\Dompdf;
 $fecha = $_POST['id'];
 $userid = $_POST['iduser'];
-$apell=($userid==14)? 'Acevedo':(($userid==13)?'Izquierdo':'');
+$apell=($userid==14)? '':(($userid==13)?'':'');
 function getAjusteAlerts($idtiro){
   include '../saves/conexion.php';
   $query="SELECT * FROM alertageneralajuste WHERE id_tiraje=".$idtiro;
