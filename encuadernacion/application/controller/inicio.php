@@ -30,7 +30,7 @@ if(isset($_SESSION['logged_in'])){
              }
              
           }else{
-            echo "<script>alert('No estas asignado a una estacion');location.href = '".URL."inicio/';</script>";
+            echo "<script>alert('No estas asignado a una estacion');location.href = '".BASE_URL."logout.php';</script>";
           }
 
         }else{
