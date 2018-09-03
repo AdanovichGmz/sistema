@@ -29,6 +29,8 @@ if(isset($_SESSION['logged_in'])){
                 
              }
              
+          }else{
+            echo "<script>alert('No estas asignado a una estacion');location.href = '".URL."inicio/';</script>";
           }
 
         }else{
