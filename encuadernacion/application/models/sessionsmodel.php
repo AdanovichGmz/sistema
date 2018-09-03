@@ -47,8 +47,9 @@ class SessionsModel
   
   }
   public function newSession(){
-        
-        $operador=$_SESSION['idUser'];
+
+        if (isset($_SESSION['stationID'])) {
+           $operador=$_SESSION['idUser'];
         $estacion=$_SESSION['stationID'];
         $processID=$_SESSION['processID'];
         $today=TODAY;
@@ -65,6 +66,11 @@ class SessionsModel
         }else{
           return false;
             }
+        }else{
+            return false;
+        }
+        
+        
   
   }
    public function getTeamMembers(){
