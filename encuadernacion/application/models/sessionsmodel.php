@@ -25,7 +25,8 @@ class SessionsModel
 
     public function checkForSession($stationId,$userId,$date){
 
-        $sql = "SELECT * FROM sesiones WHERE estacion=$stationId AND operador=$userId AND fecha='$date' ";
+        if ($stationId!=null) {
+          $sql = "SELECT * FROM sesiones WHERE estacion=$stationId AND operador=$userId AND fecha='$date' ";
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -37,6 +38,11 @@ class SessionsModel
 
             return false;
         }
+        }else{
+            return false;
+        }
+
+        
   
   
   }
