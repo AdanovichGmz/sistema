@@ -496,6 +496,7 @@ margin:0 -2px;
     font-size: 30px;
     border:solid 1px #ccc;
     border-radius: 3px;
+    text-align: center;
 }
 .button-container{
     margin: 10px 15px;
@@ -673,7 +674,7 @@ margin:0 -2px;
     position: relative;
 }
 
-.closer-alert{
+.closer-alert,.closer-lunch{
     width: 60px;
     height: 60px;
     background-color: #C09C00; 
@@ -1169,4 +1170,8 @@ box-shadow: 0 0 7px #C8E0EF;
     transform: translate(-50%, -50%);
         z-index: 99;
         display: none;
+}
+
+.not_pass{
+  background:yellow;
 }

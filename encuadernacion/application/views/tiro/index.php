@@ -248,6 +248,7 @@ elseif ($currentActivity=='comida') {
     
 </div>
 <div class="loader"></div>
+<script src="<?php echo URL; ?>public/js/libs/jquery-ui.js"></script>
  <script>  
  /*  
 $( ".member-content" ).click(function() {
@@ -446,6 +447,38 @@ jQuery214(document).on("click", "#alert", function () {
           });
 });
 
+function getDefectos(){
+  
+                  var defect;
+                  var ajuste=$('#ajuste').val();
+                  console.log('ajuste: '+ajuste);
+                  if (parseInt(ajuste)>2) {
+                               defect=parseInt(ajuste)-2;
+                              $('#defectos').val(defect);
+                  } else if(ajuste==0){
+                    $('#defectos').val(0);
+                  }
+
+}
+function getMerma(){
+  
+                  var defect;
+                  var pedido=$('#pedido').val();
+                  var buenos=$('#buenos').val();
+                  console.log('ajuste: '+ajuste);
+
+                  var merma=parseInt(buenos)-parseInt(pedido);
+
+                  if (merma>0) {
+                    $('#merma').val(merma);
+                  }else{
+                    $('#merma').val(0);
+                  }
+                 
+
+}
+
+
 jQuery214(document).on("click", "#return", function () {
   location.reload();
 });
@@ -461,6 +494,12 @@ jQuery214(document).on("click", ".op-close-modal", function () {
 
 jQuery214(document).on("click", ".closer-alert", function () {
 timerAlert.stop();
+closeModal();
+
+
+});
+jQuery214(document).on("click", ".closer-lunch", function () {
+timerLunch.stop();
 closeModal();
 
 
@@ -502,16 +541,25 @@ $("#teclado").animate({ left: '-=60%' }, 200);
   r=false;
 });
 
+
+
 jQuery214(document).on("click", "#save-tiro", function () {
- var user= jQuery214('#user').val();
-timer.pause();
-$('#tiempo-tiraje').val(timer.getTimeValues().toString());
-$('#member-'+user+' .member-content').removeClass('tiro');
-var stopFunction='stop'+user;
-var startFunction='start'+user;
-eval(stopFunction + "()");
-timer.stop();
-$.ajax({  
+
+    var  buenos=jQuery214('#buenos').val();
+    var  ajuste=jQuery214('#ajuste').val();
+    var  recibidos=jQuery214('#recibidos').val();
+    var  pedido=jQuery214('#pedido').val();
+
+        if (buenos!=''&&ajuste!=''&&recibidos!=''&&pedido!='') {
+          var user= jQuery214('#user').val();
+          timer.pause();
+          $('#tiempo-tiraje').val(timer.getTimeValues().toString());
+          $('#member-'+user+' .member-content').removeClass('tiro');
+          var stopFunction='stop'+user;
+          var startFunction='start'+user;
+          eval(stopFunction + "()");
+          timer.stop();
+          $.ajax({  
                       
           type:"POST",
           url:"<?php echo URL; ?>tiro/finishTiro/",   
@@ -523,6 +571,28 @@ $.ajax({
                     }
 
           });
+        }else{
+                if (buenos==''){
+                    $('#buenos').addClass("not_pass").attr("placeholder", "?").effect( "shake" );
+                }
+                if (ajuste==''){
+                    $('#ajuste').addClass("not_pass").attr("placeholder", "?").effect( "shake" );
+                }
+                if (recibidos==''){
+                    $('#recibidos').addClass("not_pass").attr("placeholder", "?").effect( "shake" );
+                }
+                if (pedido==''){
+                    $('#pedido').addClass("not_pass").attr("placeholder", "?").effect( "shake" );
+                }
+
+                            
+
+  }
+
+  
+ 
+
+
 
 });
 jQuery214(document).on("click", ".radio-menu", function () {
@@ -645,12 +715,15 @@ $.ajax({
 
 jQuery214(document).on("click", "#finish-change", function () {
 var tiros=jQuery214('.tiro').length;
+var comida=jQuery214('.comida').length;
+var alerta=jQuery214('.alerta').length;
 console.log('tiradores: '+tiros);
 var qty;
-if (tiros>0) {
-  if (tiros>1) {qty='s'}else{qty=''}
+var actives=tiros+comida+alerta;
+if (actives>0) {
+  if (actives>1) {qty='s'}else{qty=''}
   
-  alert('Todavia hay '+tiros+' operario'+qty+' tirando');
+  alert('Todavia hay '+actives+' operario'+qty+' tirando');
 }else{
   $.ajax({  
                       

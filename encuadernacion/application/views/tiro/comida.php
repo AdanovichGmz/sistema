@@ -13,7 +13,7 @@ echo "</pre>";
   
 </style>
           <div class="container">
-          <div class="closer-alert"></div>
+          <div class="closer-lunch"></div>
           <h1 class="alert-title">HORA DE COMER</h1>
           
           

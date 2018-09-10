@@ -131,6 +131,10 @@ if ($resss->num_rows==0){
        <td>Precio por Cambios:</td>
        <td><input type="text" name="precio_cambio" value="<?=$info['precio_cambio'] ?>"></td>
      </tr>
+     <tr>
+       <td>Cambios Minimos</td>
+       <td><input type="text" name="cambios_minimos" value="<?=$info['cambios_minimos'] ?>"></td>
+     </tr>
       <tr>
        <td>Tiempo de ajuste predeterminado</td>
        <td><input type="text" name="ajuste" value="<?=$def['ajuste_standard']/60 ?>"></td>

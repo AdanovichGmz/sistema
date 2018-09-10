@@ -9,12 +9,13 @@ if ($section=='info') {
   $nombre=(!empty($_POST['name']))? "'".$_POST['name']."'":'NULL';
 $precio_tiros=(!empty($_POST['precio_tiros']))? $_POST['precio_tiros']:'NULL';
 $precio_cambio=(!empty($_POST['precio_cambio']))? $_POST['precio_cambio']:'NULL';
+$cambios_minimos=(!empty($_POST['cambios_minimos']))? $_POST['cambios_minimos']:'NULL';
 $ajuste=(!empty($_POST['ajuste']))? $_POST['ajuste']*60:'0';
 
 $piezas=(!empty($_POST['piezas']))? $_POST['piezas']:'0';
 $proceso=(!empty($_POST['proceso']))? $_POST['proceso']:'NULL';
   $fails=0;
-  $update=$mysqli->query("UPDATE procesos_catalogo SET nombre_proceso=$nombre, precio=$precio_tiros, precio_cambio=$precio_cambio WHERE id_proceso=".$proceso);
+  $update=$mysqli->query("UPDATE procesos_catalogo SET nombre_proceso=$nombre, precio=$precio_tiros, precio_cambio=$precio_cambio, cambios_minimos=$cambios_minimos WHERE id_proceso=".$proceso);
 $mysqli->query("DELETE FROM estandares WHERE id_elemento=144 AND id_proceso=".$proceso);
 if (!$update) { $fails++; }
   $default=$mysqli->query("INSERT INTO `estandares` (`id_estandard`, `ajuste_standard`, `piezas_por_hora`, `id_elemento`, `id_proceso`) VALUES (NULL, $ajuste, $piezas, 144, $proceso)");

@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 require_once("dompdf2/autoload.inc.php");
 include '../saves/conexion.php';
 use Dompdf\Dompdf;
@@ -21,22 +21,23 @@ $u=0;
 if (isset($_POST['pdf'])) {
 foreach ($users as $key => $user){
 
-    $workQuery="SELECT t.id_proceso,(SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=t.id_proceso) AS nom_proceso,(SELECT precio FROM procesos_catalogo WHERE id_proceso=t.id_proceso) AS precio FROM tiraje t WHERE id_proceso IS NOT NULL AND STR_TO_DATE(fechadeldia_ajuste , '%d-%m-%Y') BETWEEN STR_TO_DATE('$inicio' , '%d-%m-%Y') AND STR_TO_DATE('$fin' , '%d-%m-%Y') AND id_user=".$user['id']."  GROUP BY id_proceso";
+    $workQuery="SELECT t.id_proceso,(SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=t.id_proceso) AS nom_proceso,(SELECT precio FROM procesos_catalogo WHERE id_proceso=t.id_proceso) AS precio,(SELECT cambios_minimos FROM procesos_catalogo WHERE id_proceso=t.id_proceso) AS cambios_minimos,(SELECT precio_cambio FROM procesos_catalogo WHERE id_proceso=t.id_proceso) AS precio_cambio FROM tiraje t WHERE id_proceso IS NOT NULL AND STR_TO_DATE(fechadeldia_ajuste , '%d-%m-%Y') BETWEEN STR_TO_DATE('$inicio' , '%d-%m-%Y') AND STR_TO_DATE('$fin' , '%d-%m-%Y') AND id_user=".$user['id']."  GROUP BY id_proceso";
 
 $workProc=array();
 
 $workProcess=$mysqli->query($workQuery);
 $it=0;
 while ($procs=mysqli_fetch_assoc($workProcess)) {
-  $workProc[$it]['nombre_proceso']=$procs['nom_proceso'];
-  $workProc[$it]['id_proceso']=$procs['id_proceso'];
-  $workProc[$it]['precio']=$procs['precio'];
-  
+  $workProc[$user['id']][$it]['nombre_proceso']=$procs['nom_proceso'];
+  $workProc[$user['id']][$it]['id_proceso']=$procs['id_proceso'];
+  $workProc[$user['id']][$it]['precio']=$procs['precio'];
+  $workProc[$user['id']][$it]['cambios_minimos']=$procs['cambios_minimos'];
+  $workProc[$user['id']][$it]['precio_cambio']=$procs['precio_cambio'];
   
   $it++;
 }
 
-$rowspan=23+(count($workProc)*6);
+$rowspan=23+(count($workProc[$user['id']])*6);
 
 
   $dias=$_POST['dias'];
@@ -70,7 +71,7 @@ $tbody.='<tr class="theader">';
     $tbody.='<td>FIN</td>';
     $tbody.='<td>PROD</td>';
    
-      foreach ($workProc as $key => $work) {
+      foreach ($workProc[$user['id']] as $key => $work) {
         $tbody.="<td>Cambios ".$work['nombre_proceso']."</td>";
         $tbody.="<td>Tiros ".$work['nombre_proceso']."</td>";
       }
@@ -78,7 +79,7 @@ $tbody.='<tr class="theader">';
     
     
     
-      foreach ($workProc as $key => $workDef) {
+      foreach ($workProc[$user['id']] as $key => $workDef) {
         $tbody.="<td style='display:none'> DEFECTOS ".$workDef['nombre_proceso']."</td>";
       }
 
@@ -97,11 +98,11 @@ $tbody.='<tr class="theader">';
      
     
    
-      foreach ($workProc as $key => $workPrice) {
+      foreach ($workProc[$user['id']] as $key => $workPrice) {
         $tbody.="<td style='display:none'> COSTO ".substr($workPrice['nombre_proceso'], 0, 4)."</td>";
       }
 
-      foreach ($workProc as $key => $work4) {
+      foreach ($workProc[$user['id']] as $key => $work4) {
         $tbody.="<td style='display:none'>TOTAL COSTO ".substr($work4['nombre_proceso'], 0, 4)."</td>";
       }
     $tbody.='<td style="display:none">COSTO TIROS LARGOS</td>';
@@ -199,7 +200,7 @@ $clargos=0;
   $tbody.='<td>'.$minMax['final'].'</td>';
   $tbody.='<td style="background:#ccc">'.round($sumatorias['sum_prod_real'],1).'</td>';
   
-  foreach ($workProc as $key => $tdSum1) {
+  foreach ($workProc[$user['id']] as $key => $tdSum1) {
     $getByProcess=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios, id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND buenos NOT IN (0) AND buenos<500 AND id_user=".$user['id']."  AND id_proceso=".$tdSum1['id_proceso']." GROUP BY id_proceso"));
    
 
@@ -213,7 +214,7 @@ $clargos=0;
 
   
   
-   foreach ($workProc as $key => $tdSum2) {
+   foreach ($workProc[$user['id']] as $key => $tdSum2) {
      $getByProcess2=mysqli_fetch_assoc($mysqli->query("SELECT SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum2['id_proceso']." GROUP BY id_proceso"));
    
 
@@ -247,7 +248,7 @@ $tbody.='<td>'.round($sumatorias['sum_merma'],1).'</td>';
 
   $tbody.=$subtd3;
 
-  foreach ($workProc as $key => $tdSum4) {
+  foreach ($workProc[$user['id']] as $key => $tdSum4) {
 
   
      $getByProcess4=mysqli_fetch_assoc($mysqli->query("SELECT id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum4['id_proceso']." GROUP BY id_proceso"));
@@ -259,7 +260,7 @@ $tbody.='<td>'.round($sumatorias['sum_merma'],1).'</td>';
 
   $tbody.=$subtd4;
 
-  foreach ($workProc as $key => $tdSum5) {
+  foreach ($workProc[$user['id']] as $key => $tdSum5) {
      $getByProcess5=mysqli_fetch_assoc($mysqli->query("SELECT SUM(entregados)AS total_buenos,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE fechadeldia_ajuste='$dia' AND buenos<500 AND buenos NOT IN (0) AND buenos IS NOT NULL AND id_user=".$user['id']."  AND id_proceso=".$tdSum5['id_proceso']." GROUP BY id_proceso"));
 
         $subtd5.="<td style='display:none'> ".(($getByProcess5['id_proceso']==$tdSum5['id_proceso'])? '$'.round((($getByProcess5['total_buenos']-$getByProcess5['total_defectos'])*$tdSum5['precio']),1):'')."</td>";
@@ -295,7 +296,7 @@ $tbody.='<td>'.round($sumatorias['sum_merma'],1).'</td>';
   $tbody.='<td>'.$rell.'</td>';
   $tbody.='<td>'.round($total_prod,1).'</td>';
 
-foreach ($workProc as $key => $tdSum6) {
+foreach ($workProc[$user['id']] as $key => $tdSum6) {
       $tch="SELECT SUM(buenos)AS total_buenos, COUNT(*)AS cambios,  id_proceso FROM tiraje WHERE STR_TO_DATE(fechadeldia_ajuste , '%d-%m-%Y') BETWEEN STR_TO_DATE('$inicio' , '%d-%m-%Y') AND STR_TO_DATE('$fin' , '%d-%m-%Y')  AND cancelado=2 AND buenos IS NOT NULL AND buenos NOT IN (0) AND buenos<500 AND id_user=".$user['id']."  AND id_proceso=".$tdSum6['id_proceso']." GROUP BY id_proceso";
         $getTotalChanges=mysqli_fetch_assoc($mysqli->query($tch));
 
@@ -307,7 +308,7 @@ foreach ($workProc as $key => $tdSum6) {
   
 
   
-foreach ($workProc as $key => $tdSum7) {
+foreach ($workProc[$user['id']] as $key => $tdSum7) {
         $subtd7.="<td style='display:none'>".(($tiroInfo['id_proceso']==$tdSum7['id_proceso'])? '':'')."</td>";
       }
 
@@ -326,14 +327,14 @@ $total_def=($total_prod+$total_merma)-$total_defec;
   $tbody.="<td>".round($total_def,1)."</td>";
 $tbody.='<td>'.round($total_merma,1).'</td>';
   $tbody.=$subtd8;
-foreach ($workProc as $key => $tdSum9) {
+foreach ($workProc[$user['id']] as $key => $tdSum9) {
         $subtd9.="<td style='display:none'>".(($tiroInfo['id_proceso']==$tdSum9['id_proceso'])? '$'.round($tdSum9['precio'],2):'')."</td>";
       }
 
   $tbody.=$subtd9;
 
  $precios=0;
-foreach ($workProc as $key => $tdSum10) {
+foreach ($workProc[$user['id']] as $key => $tdSum10) {
        
         $getByProcess10=mysqli_fetch_assoc($mysqli->query("SELECT SUM(buenos)AS total_buenos,(SELECT precio FROM procesos_catalogo WHERE id_proceso=".$tdSum10['id_proceso'].")AS s_price,SUM(defectos)AS total_defectos,  id_proceso FROM tiraje WHERE STR_TO_DATE(fechadeldia_ajuste , '%d-%m-%Y') BETWEEN STR_TO_DATE('$inicio' , '%d-%m-%Y') AND STR_TO_DATE('$fin' , '%d-%m-%Y') AND buenos IS NOT NULL AND id_user=".$user['id']." AND buenos<500
 AND buenos NOT IN (0) AND id_proceso=".$tdSum10['id_proceso']." GROUP BY id_proceso"));
@@ -393,7 +394,7 @@ $diferencia=($precios+($sum_largos*0.20))-$user['sueldo'];
     }
 */
 if ($user['remuneracion']=='tiros') {
-  $renum_tiros=(count($workProc)==1)? (($workProc[0]['id_proceso']==10)? (($total_def>7500)? $diferencia:'0.00'):(($diferencia>0)? $diferencia:'0.00')):(($diferencia>0)? $diferencia:'0.00');
+  $renum_tiros=(count($workProc[$user['id']])==1)?(($workProc[$user['id']][0]['id_proceso']==10)? (($total_def>7500)? $diferencia:'0.00'):(($diferencia>0)? $diferencia:'0.00')):(($diferencia>0)? $diferencia:'0.00');
 
    $tbody.='<td>$'.round($renum_tiros,1).'</td>';
 }elseif($user['remuneracion']=='cambios'){
@@ -426,10 +427,24 @@ if ($user['remuneracion']=='tiros') {
         }
 
         */
-        if ($total_cambios>$user['cambios_minimos']) {
-     
-          $cambio_21=$total_cambios-$user['cambios_minimos'];
-          $renum_cambios=$cambio_21*$user['precio_cambio'];
+      
+        if (count($workProc[$user['id']])>1) {
+
+          $cambios_minimos=max(array_column($workProc[$user['id']], 'cambios_minimos'));
+          $precio_cambio=max(array_column($workProc[$user['id']], 'precio_cambio'));
+
+
+        }else{
+
+          $cambios_minimos=$workProc[$user['id']][0]['cambios_minimos'];
+          $precio_cambio=$workProc[$user['id']][0]['precio_cambio'];
+        }
+
+         
+        $cambio_21=0;
+      if ($total_cambios>$cambios_minimos) {
+         $cambio_21=$total_cambios-$cambios_minimos;
+          $renum_cambios=$cambio_21*$precio_cambio;
       }else{
         $renum_cambios=0;
       } 
@@ -448,7 +463,7 @@ if ($user['remuneracion']=='tiros') {
   $tbody.='</tbody></table></div>';
   
   $table.=$tbody;
-
+  
   $u++;
 
 }//termina foreach users
@@ -524,7 +539,7 @@ ob_start();
 <?php
 
   
-  $html = ob_get_clean();
+$html = ob_get_clean();
 
 
 $dompdf = new Dompdf();

@@ -12,7 +12,9 @@ class Ajuste extends Controller
         $ete_model = $this->loadModel('EteModel');
 
         $seccion=$sessions_model->getSessionStatus();
-
+//echo '<pre>';
+//print_r($_SESSION);
+//echo '</pre>';
 if ($seccion['actividad_actual']=='ajuste') {
    if (isset($_SESSION['ajusteStarted'])) {
            
