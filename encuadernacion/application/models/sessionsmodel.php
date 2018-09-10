@@ -122,7 +122,7 @@ class SessionsModel
 
 
     }
-    public function newMemberSession($userId,$process){
+    public function newMemberSession($userId,$process,$section){
         
         $operador=$_SESSION['idUser'];
         $sesion=$_SESSION['sessionID'];
@@ -130,7 +130,7 @@ class SessionsModel
         $today=TODAY;
         $time=date("H:i:s", time());
 
-        $sql = "INSERT INTO `sesion_equipo` (`id_sesion_equipo`, `miembro`, `proceso`, `actividad_actual`, `active`, `inicio_tiro`, `tiempo_alert`, `tiempo_comida`, `id_sesion`) VALUES (NULL, $userId, $process, 'tiro', 'true', '$time', NULL, NULL, $sesion)";
+        $sql = "INSERT INTO `sesion_equipo` (`id_sesion_equipo`, `miembro`, `proceso`, `actividad_actual`, `active`, `inicio_tiro`, `tiempo_alert`, `tiempo_comida`, `id_sesion`,`fecha`) VALUES (NULL, $userId, $process, '$section', 'true', '$time', NULL, NULL, $sesion,'$today')";
 
         $query = $this->db->prepare($sql);
         $inserted=$query->execute();
@@ -262,6 +262,21 @@ class SessionsModel
                 }
         
     }
+    public function putTeamMembersOnAlert($section){
+
+        
+        $time=date("H:i:s", time());
+        $sql = "UPDATE sesion_equipo SET inicio_alert='$time', actividad_actual='alerta' WHERE id_sesion=".$_SESSION['sessionID'];
+        $query = $this->db->prepare($sql);
+        
+        $updated=$query->execute();
+         if ($updated) {
+            return true;
+         }else{
+                    return false;
+                }
+        
+    }
     public function putTeamOnAjuste(){
 
         $time=date("H:i:s", time());
@@ -365,10 +380,10 @@ class SessionsModel
         
     }
     
-    public function putMemberOnTiro($sessionId){
+    public function putMemberOnTiro($sessionId,$member){
 
         $time=date("H:i:s", time());
-        $sql = "UPDATE sesion_equipo SET inicio_alert='$time', actividad_actual='tiro' WHERE id_sesion_equipo=".$sessionId;
+        $sql = "UPDATE sesion_equipo SET inicio_alert='$time', actividad_actual='tiro' WHERE miembro=$member AND id_sesion_equipo=".$sessionId;
         $query = $this->db->prepare($sql);
         
         $updated=$query->execute();

@@ -66,24 +66,24 @@ $proceso=$_SESSION['teamSession'][$_POST['user']]['memberProcessID'];
      <td>BUENOS</td>
    </tr>
    <tr>
-     <td><input type="number" name="pedido" id="pedido" onclick="getKeys(this.id,'pedido')"></td>
-     <td><input type="number" name="buenos" id="buenos" onclick="getKeys(this.id,'buenos')"></td>
+     <td><input type="number" name="pedido" id="pedido" onclick="getNumKeys(this.id,'pedido')"></td>
+     <td><input type="number" name="buenos" id="buenos" onclick="getNumKeys(this.id,'buenos')"></td>
    </tr>
    <tr>
      <td>CANTIDAD RECIBIDA</td>
      <td>PIEZAS DE AJUSTE</td>
    </tr>
    <tr>
-     <td><input type="number" name="recibidos" id="recibidos" onclick="getKeys(this.id,'recibidos')"></td>
-     <td><input type="number" name="ajuste" id="ajuste" onclick="getKeys(this.id,'ajuste')"></td>
+     <td><input type="number" name="recibidos" id="recibidos" onclick="getNumKeys(this.id,'recibidos')"></td>
+     <td><input type="number" name="ajuste" id="ajuste" onclick="getNumKeys(this.id,'ajuste')"></td>
    </tr>
    <tr>
      <td>MERMA</td>
      <td>DEFECTOS</td>
    </tr>
    <tr>
-     <td><input type="number" name="merma" id="merma" onclick="getKeys(this.id,'merma')"></td>
-     <td><input type="number" name="defectos" id="defectos" onclick="getKeys(this.id,'defectos')"></td>
+     <td><input type="number" name="merma" id="merma" onclick="getNumKeys(this.id,'merma')"></td>
+     <td><input type="number" name="defectos" id="defectos" onclick="getNumKeys(this.id,'defectos')"></td>
    </tr>
  </table>
 </form>

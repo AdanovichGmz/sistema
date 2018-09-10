@@ -81,14 +81,14 @@ if(isset($_SESSION['logged_in'])){
             
             if ($restart) {
                 $_SESSION['teamSession'][$_POST['user']]['memberProcessID']=$processID;
-                $sessions_model->putMemberOnTiro($sessionId);
+                $sessions_model->putMemberOnTiro($sessionId,$_POST['user']);
                require 'application/views/tiro/userInterface.php';
             }else{
               echo "<p style='padding:30px;color:red;'>No se pudo guardar la informacion por favor hablale a los de sistemas</p>";  }
              
             
         }else{
-          $initMember=$sessions_model->newMemberSession($userID,$processID);
+          $initMember=$sessions_model->newMemberSession($userID,$processID,'ajuste');
           if ($initMember){
             $memberSessionID=$_SESSION['teamSession'][$userID]['memberSessionID'];
             $memberProcessID=$_SESSION['teamSession'][$userID]['memberProcessID'];
@@ -111,6 +111,7 @@ if(isset($_SESSION['logged_in'])){
     
     public function initTeam(){
         session_start();
+        
         $sessions_model = $this->loadModel('SessionsModel');
         $process_model=$this->loadModel('ProcessModel');
         $cambio_model = $this->loadModel('CambioModel');
@@ -134,14 +135,14 @@ if(isset($_SESSION['logged_in'])){
             
             if ($restart) {
                 $_SESSION['teamSession'][$_POST['user']]['memberProcessID']=$processID;
-                $sessions_model->putMemberOnTiro($sessionId);
+                $sessions_model->putMemberOnTiro($sessionId,$_POST['user']);
                require 'application/views/tiro/userInterface.php';
             }else{
               echo "<p style='padding:30px;color:red;'>No se pudo guardar la informacion por favor hablale a los de sistemas</p>";  }
              
             
         }else{
-          $initMember=$sessions_model->newMemberSession($userID,$processID);
+          $initMember=$sessions_model->newMemberSession($userID,$processID,'ajuste');
           if ($initMember){
             $memberSessionID=$_SESSION['teamSession'][$userID]['memberSessionID'];
             $memberProcessID=$_SESSION['teamSession'][$userID]['memberProcessID'];

@@ -1,26 +1,26 @@
-
-
 <?php
-
-error_reporting(0);
  
-   function isActive($machineID){
+function isActive($machineID){
     require('../saves/conexion.php');
     $today=date("d-m-Y");
-    $check=$mysqli->query("SELECT * FROM operacion_estatus WHERE fecha='$today' AND maquina=$machineID");
- 
-  
+    $check=$mysqli->query("SELECT * FROM operacion_estatus WHERE fecha='$today' AND maquina=$machineID");  
 if ($check->num_rows==0) {
  return false;
 }else{
   return true;
 }
   }
-  function personalData($estacion,$userID){
+function personalData($estacion,$userID,$userName,$isMember){
     date_default_timezone_set("America/Mexico_City");
 require('../saves/conexion.php');
 $today     = date("d-m-Y");
+
+if ($isMember=='true') {
+  $stationInfo=mysqli_fetch_assoc($mysqli->query("SELECT s.*,(SELECT orden_actual FROM sesiones WHERE id_sesion=s.id_sesion_equipo)AS orden_actual FROM sesion_equipo s WHERE miembro=$userID AND fecha='$today'"));
+}else{
 $stationInfo=mysqli_fetch_assoc($mysqli->query("SELECT * FROM sesiones WHERE estacion=$estacion AND fecha='$today' "));
+}
+
 $userInfo=mysqli_fetch_assoc($mysqli->query("SELECT * FROM usuarios WHERE id=".$userID)); 
  $real=mysqli_fetch_assoc($mysqli->query("SELECT TIME_FORMAT(SEC_TO_TIME((SUM(TIME_TO_SEC(tiempoTiraje))+SUM(TIME_TO_SEC(tiempo_ajuste))+IFNULL((SELECT SUM(TIME_TO_SEC(tiempoalertamaquina)) FROM alertageneralajuste WHERE fechadeldiaam = '$today' AND id_usuario =$userID AND es_tiempo_muerto='false'),0)+IFNULL((SELECT SUM(TIME_TO_SEC(tiempo)) FROM asaichi WHERE fechadeldia = '$today' AND id_usuario=$userID),0)-IFNULL(
 (SELECT SUM(TIME_TO_SEC(breaktime)) FROM breaktime WHERE fechadeldiaam = '$today' AND id_usuario =$userID AND radios='Sanitario'),0))), '%H:%i') AS t_real,(SUM(TIME_TO_SEC(tiempoTiraje))+SUM(TIME_TO_SEC(tiempo_ajuste))+IFNULL((SELECT SUM(TIME_TO_SEC(tiempoalertamaquina)) FROM alertageneralajuste WHERE fechadeldiaam = '$today' AND id_usuario =$userID AND es_tiempo_muerto='false'),0)-IFNULL(
@@ -44,67 +44,18 @@ $final=(($calidad_tope/100)*($desemp_tope/100)*($dispon_tope/100))*100;
 
   
   
-      $grafica='<script type="text/javascript">
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(draw'.$estacion.'Chart);
-    function draw'.$estacion.'Chart() {
-      var data = google.visualization.arrayToDataTable([
-          ["valor", "porcentaje",{ role: "style" }, { role: "annotation"}],
-         
-    ["DISPONIBILIDAD",'. $dispon_tope .',"#1F487C",'.round($dispon_tope,1).' ],
-     ["DESEMPEÑO",'. $desemp_tope  .',"#C0504E",'.round($desemp_tope,1).' ],
-     ["CALIDAD", '.$calidad_tope.',"#F79647",'.round($calidad_tope,1).' ]]);
-    
-
-        var options = { // '. $estacion .'
-            chartArea: {width: "100%", height: "90%"},
-            width: "100%", 
-            height: "100%",
-            chartArea: {left: 25, top: 10, width: "100%", height: "70%"},
-            annotations: {
-            
-            textStyle: {
-                fontSize: 20,
-                 bold:true
-            }},
-            enableInteractivity: true,                                               
-            fontSize: 11,
-            hAxis: {
-                    textStyle: {
-                      color: "#272B34"
-                    }
-                  },
-            vAxis: {
-                textStyle: {
-                      color: "#272B34"
-                    },
-            viewWindowMode:"explicit",
-            viewWindow: {
-              max:100,
-              min:0
-            }
-        },
-
-            colors: ["#4B5161"],    
-            backgroundColor: "transparent"
-        };
-
-      var chart = new google.visualization.ColumnChart(document.getElementById("'.$estacion.'"));
-      chart.draw(data,options);
-  }
-
+      $grafica='<script type="text/javascript">var userid=document.getElementById('.$userID.');drawChart(userid,'.$dispon_tope.','.$desemp_tope.','.$calidad_tope.');
   </script>';
   $foto=(empty($userInfo['foto']))? 'images/default.jpg':$userInfo['foto'];  
  $active=($stationInfo['active']=='false'||empty($stationInfo['active']))? 'disabled':'';
     $outtime=($stationInfo['en_tiempo']=='false')? 'outtime':'';
-    $credencial=' '.$grafica.'
-    <div class="personal '.$active.'">
+    $credencial='<div class="personal '.$active.'" data-name="'.$userName.'">
     <div class='.$outtime.'></div> <div class="ete-photo '.$stationInfo['actividad_actual'].'"><div class="person-photo" style=background:url("../'.$foto.'")></div><div class="santa"></div>
     <div class="ete-num">'.round($final).'%</div>
 
     </div>
     <div class="machinename">'.(($stationInfo['actividad_actual']=='comida')? "comida/wc" : $stationInfo['actividad_actual']).'</div>
-    <div class="ete-stat ">
+    <div class="ete-stat " style="position:relative;">
       <table>
       <thead>
       <tr class="trh">
@@ -119,20 +70,32 @@ $final=(($calidad_tope/100)*($desemp_tope/100)*($dispon_tope/100))*100;
         
         </tbody>
       </table>
-      <div id="'.$estacion.'" style="bottom:0;width: 97%; height: 80%; position:absolute; "></div>
-    </div></div>';
+      <div id="'.$userID.'" style="position:absolute;bottom:0;width: 97%; height: 100%;"></div>
+    </div></div>'.$grafica.'';
   echo $credencial;
 }
 require('../saves/conexion.php');
-$getUsers=$mysqli->query("SELECT * FROM usuarios_estaciones");
-
-
+$getUsers=$mysqli->query("SELECT u.*,(SELECT id_estacion FROM usuarios_estaciones WHERE id_usuario=u.id)AS id_estacion FROM usuarios u WHERE u.app_active='true' OR team_member='true' ");
+if (!$getUsers) {
+  printf($mysqli->error);
+}
+$x =$getUsers->num_rows;
+$i=0;
   ?>
 
 
 <div class="prod-container">
+
+  
 <?php while ($row=mysqli_fetch_assoc($getUsers)) {
-  personalData($row['id_estacion'],$row['id_usuario']);
+  if ( ($i % 6) == 0 ){
+echo '<div class="carousel-page" '.((isset($_POST['display'])&&$i==0)? 'style="display:block"':'').'>';
+}           
+  personalData($row['id_estacion'],$row['id'],$row['logged_in'],$row['team_member']);
+  if (((($i +1) % 6) == 0) || (($i+1)==$x)){
+echo '</div>';
+}
+  $i++;
 } ?>
  
    
@@ -143,4 +106,7 @@ $getUsers=$mysqli->query("SELECT * FROM usuarios_estaciones");
 $('.personal').height((wind/2)-25);
 var grafics=((wind/2)-25)-140;
 $('.ete-stat').height(grafics);
+
+
+
 </script>

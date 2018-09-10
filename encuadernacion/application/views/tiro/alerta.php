@@ -33,7 +33,7 @@ echo "</pre>";
                     <?=$option->valor ?>
 				</div>
                 <?php } ?>
-                <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones"></textarea>
+                <textarea placeholder="Observaciones.." class="comments" id="observaciones" name="observaciones" onclick="getKeys(this.id,'observaciones')"></textarea>
                     <p id="explain-error" style="display: none;">Porfavor agrega una explicacion ↑</p>
                
                 </div>

@@ -80,14 +80,14 @@ class Tiro extends Controller{
             
             if ($restart) {
                 $_SESSION['teamSession'][$_POST['user']]['memberProcessID']=$_POST['option'];
-                $sessions_model->putMemberOnTiro($sessionId);
+                $sessions_model->putMemberOnTiro($sessionId,$_POST['user']);
                require 'application/views/tiro/userInterface.php';
             }else{
               echo "<p style='padding:30px;color:red;'>No se pudo guardar la informacion por favor hablale a los de sistemas</p>";  }
              
             
         }else{
-          $initMember=$sessions_model->newMemberSession($_POST['user'],$_POST['option']);
+          $initMember=$sessions_model->newMemberSession($_POST['user'],$_POST['option'],'tiro');
           if ($initMember){
             $memberSessionID=$_SESSION['teamSession'][$_POST['user']]['memberSessionID'];
             $memberProcessID=$_SESSION['teamSession'][$_POST['user']]['memberProcessID'];
@@ -106,6 +106,26 @@ class Tiro extends Controller{
         
         
     }
+
+    public function startTeamAlert(){
+        session_start();
+        $sessions_model = $this->loadModel('SessionsModel');
+        $process_model=$this->loadModel('ProcessModel');
+        
+        $alert_starded=$sessions_model->putTeamMembersOnAlert('tiro');
+        $result=array();
+
+        
+        if ($alert_starded) {
+           $result['response']='success';
+        }else{
+             $result['response']='error';
+        }
+        echo json_encode($result);
+        
+    }
+
+
     public function startAlert(){
         session_start();
         $sessions_model = $this->loadModel('SessionsModel');
@@ -329,14 +349,14 @@ class Tiro extends Controller{
             
             if ($restart) {
                 $_SESSION['teamSession'][$_POST['user']]['memberProcessID']=$processID;
-                $sessions_model->putMemberOnTiro($sessionId);
+                $sessions_model->putMemberOnTiro($sessionId,$worker);
                require 'application/views/tiro/userInterface.php';
             }else{
               echo "<p style='padding:30px;color:red;'>No se pudo guardar la informacion por favor hablale a los de sistemas</p>";  }
              
             
         }else{
-          $initMember=$sessions_model->newMemberSession($userID,$processID);
+          $initMember=$sessions_model->newMemberSession($userID,$processID,'tiro');
           if ($initMember){
             $memberSessionID=$_SESSION['teamSession'][$userID]['memberSessionID'];
             $memberProcessID=$_SESSION['teamSession'][$userID]['memberProcessID'];

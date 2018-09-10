@@ -1067,7 +1067,7 @@ width:100%;
     margin: 5px;
     border: solid 1px #A08000;
 }
-#savekey{
+#savekey,#savealert{
     cursor: pointer;
 }
 
@@ -1151,4 +1151,22 @@ width:100%;
 -o-box-shadow: 0 0 7px #C8E0EF;
 -ms-box-shadow: 0 0 7px #C8E0EF;
 box-shadow: 0 0 7px #C8E0EF;
+}
+.save_alert{
+  min-width: 27.1em!important;
+}
+
+.loader{
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-image: url(../img/whloader.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+        z-index: 99;
+        display: none;
 }

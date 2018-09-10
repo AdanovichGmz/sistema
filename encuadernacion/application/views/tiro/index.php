@@ -113,7 +113,7 @@
     <script>
     var jQuery214=$.noConflict(true);
   </script>
-  <script src="<?php echo URL; ?>public/js/softkeys-0.0.1.js?"></script>
+  <script src="<?php echo URL; ?>public/js/softkeys-0.0.1.js?v=2"></script>
 <link rel="stylesheet" href="<?php echo URL; ?>public/js/css/softkeys-0.0.1.css?v=3">
 <body>
 <ul class="topbar">
@@ -222,6 +222,7 @@ elseif ($currentActivity=='comida') {
   
 
 </div>
+
 </body>
 <div class="big-lightbox">
   
@@ -230,6 +231,23 @@ elseif ($currentActivity=='comida') {
   
 </div>
 <div class="backdrop"></div>
+<div id="key-operarios" class="keyboard">
+<ul class="topbar">
+  
+  <li style="float:right"><div  class="close-bottom-key"></div></li>
+</ul>
+    
+    <div class="keycontainer">
+      <div id="softk" class="softkeys" data-target="input[name='getodt']"></div>
+    </div>
+    
+      <div id="close-down-key" class="square-button-micro red " style="display: none;">
+                          <img src="images/ex.png">
+                        </div>
+    
+    
+</div>
+<div class="loader"></div>
  <script>  
  /*  
 $( ".member-content" ).click(function() {
@@ -243,6 +261,7 @@ jQuery214(document).on("click", ".member-content", function () {
   var user= $(this).data('id');
   $('.backdrop').animate({'opacity':'.50'}, 300, 'linear');
 $('.backdrop').css('display', 'block');
+$('.loader').show();
 console.log('usuario picado: '+user);
   $.ajax({  
                       
@@ -250,9 +269,8 @@ console.log('usuario picado: '+user);
           url:"<?php echo URL; ?>tiro/userInterface/",   
           data:{user:user}, 
           success:function(data){
-
-          $('.box').html(data);
-          
+            $('.loader').hide();
+          $('.box').html(data);          
           $('.box').animate({'opacity':'1.00'}, 300, 'linear');
           $('.box').css('display', 'block');           
           }
@@ -265,7 +283,10 @@ function closeModal(){
  r =false;
    $('.backdrop, .box').animate({'opacity':'0'}, 300, 'linear', function(){
           $('.backdrop, .box').css('display', 'none');
-        });
+        });  
+    if (kb==true) {
+      closeKeyboard();
+    }
 }
 
 jQuery214(document).on("click", ".formradio", function () {
@@ -299,7 +320,8 @@ jQuery214(document).on("click", ".normal", function () {
                                              
     });
 r = false;
-function getKeys(id,name) {
+var kb = false;
+function getNumKeys(id,name) {
       $('#'+id).focus();
       jQuery214('.input-active').removeClass('input-active');
       jQuery214('#'+id).addClass('input-active');
@@ -344,6 +366,61 @@ function getKeys(id,name) {
 jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
     }
+
+function getKeys(id,name) {
+      $('#'+id).select();      
+      jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
+        if (kb == false) {
+          $("body").animate({ bottom: '+=20%' }, 200);
+            $("#key-operarios").animate({ bottom: '+=60%' }, 200);
+            kb = true;
+            
+        }
+        var bguardar;
+        
+        $('#softk').empty();     
+         $('.softkeys').softkeys({
+                    target :  $('#'+id),
+                    layout : [
+                        [
+                            
+                            ['1','!'],
+                            ['2','@'],
+                            ['3','#'],
+                            ['4','$'],
+                            ['5','%'],
+                            ['6','^'],
+                            ['7','&amp;'],
+                            ['8','*'],
+                            ['9','('],
+                            ['0',')']
+                        ],
+                    [
+                            'q','w','e','r','t','y','u','i','o','p'
+                            
+                        ],
+                        [
+                            
+                            'a','s','d','f','g','h','j','k','l','ñ'
+                            
+                            
+                            
+                        ],[
+                            
+                            'z','x','c','v','b','n','m','←'],
+                            ['__','ALERT']
+                            ],
+
+                    id:'softkeys'
+                });
+              
+                jQuery214('#hidekey').parent('.softkeys__btn').addClass('hidder'); 
+    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver').attr('id', 'saver');;            
+jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
+            jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
+            
+    }
+
 jQuery214(document).on("click", "#alert", function () {
     var user=jQuery214(this).data('user');
     var member_session=jQuery214(this).data('msession');
@@ -370,10 +447,8 @@ jQuery214(document).on("click", "#alert", function () {
 });
 
 jQuery214(document).on("click", "#return", function () {
-  closeBigBox();
+  location.reload();
 });
-
-
 
 jQuery214(document).on("click", ".close-modal", function () {
   
@@ -387,9 +462,15 @@ jQuery214(document).on("click", ".op-close-modal", function () {
 jQuery214(document).on("click", ".closer-alert", function () {
 timerAlert.stop();
 closeModal();
+
+
 });
 jQuery214(document).on("click", "#save-alerta", function () {
   var user=jQuery214('#usuario').val();
+
+  if (kb==true) {
+      closeKeyboard();
+    }
 
 timerAlert.pause();
 $('#timealerta').val(timerAlert.getTimeValues().toString());
@@ -634,4 +715,42 @@ function menu(){
 });
 
 });
+
+    function closeKeyboard(){
+    if (kb==true) {
+      $("#key-operarios").animate({ bottom: '-=60%' }, 200);
+       $("body").animate({ bottom: '-=20%' }, 200);
+     kb=false;
+    }
+     
+  }
+
+  jQuery214(document).on("click", ".close-bottom-key", function () {
+    closeKeyboard();
+});
+
+  jQuery214(document).on("click", "#savealert", function () {
+    $('#save-alerta').click();
+});
+
+jQuery214(document).on("click", "#team-alert", function () {
+console.log('una alerta para dominarlos a todos');
+  $.ajax({            
+          type:"POST",
+          url:"<?php echo URL; ?>tiro/startTeamAlert/",   
+          data:{actividad:'actividad'},
+          dataType:"json", 
+          success:function(data){
+            console.log(data);
+            if (data.response=='success'){
+              location.reload();
+            }else
+            alert('algo salio mal, por favor hablale a los de sistemas');
+          }
+});
+    
+});
+
+
+
  </script>

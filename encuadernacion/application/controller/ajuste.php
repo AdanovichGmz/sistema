@@ -192,14 +192,14 @@ if ($seccion['actividad_actual']=='ajuste') {
             
             if ($restart) {
                 $_SESSION['teamSession'][$_POST['user']]['memberProcessID']=$processID;
-                $sessions_model->putMemberOnTiro($sessionId);
+                $sessions_model->putMemberOnTiro($sessionId,$_POST['user']);
                require 'application/views/tiro/userInterface.php';
             }else{
               echo "<p style='padding:30px;color:red;'>No se pudo guardar la informacion por favor hablale a los de sistemas</p>";  }
              
             
         }else{
-          $initMember=$sessions_model->newMemberSession($userID,$processID);
+          $initMember=$sessions_model->newMemberSession($userID,$processID,'ajuste');
           if ($initMember){
             $memberSessionID=$_SESSION['teamSession'][$userID]['memberSessionID'];
             $memberProcessID=$_SESSION['teamSession'][$userID]['memberProcessID'];

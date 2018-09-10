@@ -76,6 +76,11 @@
                             styleClass = 'savebutton';
                             type = 'save';
                             break;
+                            case 'ALERT' :
+                            character = '<span id="savealert">GUARDAR</span>';
+                            styleClass = 'save_alert';
+                            type = 'save_alert';
+                            break;
                              case 'OCULTAR' :
                             character = '<span id="hidekey">OCULTAR</span>';
                             type = 'hide';
@@ -125,8 +130,13 @@
                         case 'hide' :
                             jQuery('#close-down-key').click();
                             break;
-                             case 'save' :
+                        case 'save' :
                             jQuery('#saving').click();
+                            
+                            
+                            break;
+                        case 'save_alert' :
+                            //jQuery('#saving').click();
                             
                             
                             break;

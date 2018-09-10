@@ -31,4 +31,16 @@ class Controller
         
         return new $model_name($this->db);
     }
+    public function loadClass($controller_name)
+    {
+        require 'application/classes/' . strtolower($controller_name) . '.php';
+        
+        return new $controller_name();
+    }
+    public function loadController($controller_name)
+    {
+        require 'application/controller/' . strtolower($controller_name) . '.php';
+        
+        return new $controller_name();
+    }
 }
