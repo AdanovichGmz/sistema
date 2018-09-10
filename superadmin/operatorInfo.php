@@ -309,11 +309,11 @@ background:#E51C23;
          
          ?>
 
-        <tr>
+        <tr style="display: none;">
           <td class="title-field">Cambios minimos:</td>
           <td class="input-field" colspan="3"><input type="text" class="changed" name="cambios_minimos" value="<?=$userData['cambios_minimos'] ?>"></td>
         </tr>
-         <tr>
+         <tr style="display: none;">
           <td class="title-field">Costo por cambio: $</td>
           <td class="input-field" colspan="3"><input type="text" class="changed" name="precio_cambio" value="<?=$userData['precio_cambio'] ?>"></td>
         </tr>
