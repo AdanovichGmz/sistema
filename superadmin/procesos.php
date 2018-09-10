@@ -154,6 +154,7 @@ if(@$_SESSION['logged_in'] != true){
     <th style="text-align: left;">NOMBRE DEL PROCESO</th>
     <th>PRECIO POR TIROS</th>
     <th>PRECIO POR CAMBIOS</th>
+    <th>CAMBIOS MINIMOS</th>
     <th style="width:180px"></th>
     <th style="width:100px"></th>
     
@@ -165,8 +166,9 @@ if(@$_SESSION['logged_in'] != true){
     
    <tr class="options-<?=$pr['id_proceso'] ?>">
     <td  style="text-align: left;"><?=$pr['nombre_proceso'] ?></td>
-    <td>$<?=(!empty($pr['precio']))? $pr['precio']:'0.0' ?></td>
-    <td>$<?=(!empty($pr['precio_cambio']))? $pr['precio_cambio']:'0.0' ?></td>
+    <td><?=(!empty($pr['precio']))? '$'.$pr['precio']:'--' ?></td>
+    <td><?=(!empty($pr['precio_cambio']))? '$'.$pr['precio_cambio']:'--' ?></td>
+    <td><?=(!empty($pr['cambios_minimos']))? $pr['cambios_minimos']:'--' ?></td>
     <td><a href="modify_process.php?process=<?=$pr['id_proceso'] ?>"  class="edit-option">Editar Propiedades</a></td>  
     <td><a href="#" class="quit-option">Eliminar</a></td>
     
