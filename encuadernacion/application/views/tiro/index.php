@@ -457,6 +457,10 @@ function getDefectos(){
                               $('#defectos').val(defect);
                   } else if(ajuste==0){
                     $('#defectos').val(0);
+                  }else if(ajuste==''){
+                    $('#defectos').val(0);
+                  }else{
+                   $('#defectos').val(0); 
                   }
 
 }
@@ -550,7 +554,16 @@ jQuery214(document).on("click", "#save-tiro", function () {
     var  recibidos=jQuery214('#recibidos').val();
     var  pedido=jQuery214('#pedido').val();
 
-        if (buenos!=''&&ajuste!=''&&recibidos!=''&&pedido!='') {
+        if (buenos!=''&&ajuste!=''&&recibidos!=''&&pedido!=''){
+          var subtotal=parseInt(buenos)+parseInt(ajuste);
+          if (subtotal!=parseInt(recibidos)) {
+            if (subtotal>parseInt(recibidos)) {
+              alert('ERROR: la cantidad recibida no puede ser menor que los buenos )'+buenos+') mas las piezas de ajuste ('+ajuste+')');
+            }if (subtotal<parseInt(recibidos)) {
+              alert('ERROR: no pueden haber '+buenos+' buenos y '+ajuste+' de ajuste si se recibieron '+recibidos+' piezas');
+            }
+            
+          }else{
           var user= jQuery214('#user').val();
           timer.pause();
           $('#tiempo-tiraje').val(timer.getTimeValues().toString());
@@ -571,6 +584,7 @@ jQuery214(document).on("click", "#save-tiro", function () {
                     }
 
           });
+        }
         }else{
                 if (buenos==''){
                     $('#buenos').addClass("not_pass").attr("placeholder", "?").effect( "shake" );

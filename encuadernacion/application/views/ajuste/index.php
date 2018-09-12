@@ -6,8 +6,8 @@ $actividad=$sessions_model->getSessionStatus();
 <script src="<?php echo URL; ?>public/js/softkeys-0.0.1.js"></script>
 <body>
 <ul class="topbar">
-<li style="" class=" burger drop-menu"><a  href="#">Opciones</a></li>
-<li style="float:right"><a href="#about">Orden actual: <span><?=$_SESSION['odt']; ?></span> </a></li>
+<li style="" class=" burger drop-menu"><a  href="javascript:void(0)">Opciones</a></li>
+<li style="float:right"><a href="javascript:void(0)">Orden actual: <span><?=$_SESSION['odt']; ?></span> </a></li>
 </ul>
 <br><br><br>
 <h1 style="text-align: center;">AJUSTE</h1>
@@ -53,7 +53,7 @@ $actividad=$sessions_model->getSessionStatus();
 <div class="mega-menu">
   <div class="mega-menu-cover"></div>
   <ul class="topbar">
-  <li ><a href="">Elige una opción:</a></li>
+  <li ><a href="javascript:void(0)">Elige una opción:</a></li>
   
   
   <li style="float:right"><div  class="close-mega-menu"></div></li>

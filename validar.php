@@ -54,7 +54,7 @@ if($f=mysqli_fetch_assoc($sql2)){
         }
         else{
         if ($getStations->num_rows>1) {
-
+            $_SESSION['environment']='taller';
         header("Location: options.php");
 
         }else{
@@ -64,6 +64,7 @@ if($f=mysqli_fetch_assoc($sql2)){
         $myProcess = mysqli_fetch_assoc($getMyProcess); 
 
         if ($getMyProcess->num_rows>1) {
+            $_SESSION['environment']='taller';
               header("Location: options.php");
            }else{
 
@@ -88,7 +89,7 @@ if($f=mysqli_fetch_assoc($sql2)){
                     $_SESSION['is_virtual']= $virtual['is_virtual'];
                     $mysqli->query("UPDATE sesiones SET active=1 WHERE id_sesion=".$datas['id_sesion']);
                            if ($datas['actividad_actual']=='ajuste'){
-                            
+                                $_SESSION['environment']='taller';
                                 header("Location: index2.php");
                             
                         }
@@ -96,13 +97,14 @@ if($f=mysqli_fetch_assoc($sql2)){
                         elseif ($datas['actividad_actual']=='tiro'){
                             
                             $isVirtual=mysqli_fetch_assoc( $mysqli->query("SELECT elemento_virtual FROM personal_process WHERE status='actual' AND estacion=".$station['id_estacion']." "));
-                            
+                                $_SESSION['environment']='taller';
+
                                 header("Location: index3.php");
                             
                         }
                             
                         else{
-
+                                $_SESSION['environment']='taller';
                                 header("Location: index2.php");
                                                      
                             } 
@@ -138,7 +140,7 @@ if($f=mysqli_fetch_assoc($sql2)){
                                 $log->lclose();
                                 }
 
-
+                                $_SESSION['environment']='taller';
                                 header("Location: index2.php");
                                 }else{
                                     printf($mysqli->error);
@@ -181,7 +183,7 @@ if($f=mysqli_fetch_assoc($sql2)){
                                 $log->lclose();
                                 }
                             }
-
+                            $_SESSION['environment']='taller';
                                header("Location: asaichii.php");
                                 }else{
                                     printf($mysqli->error);
@@ -229,12 +231,13 @@ if($f=mysqli_fetch_assoc($sql2)){
                                 $log->lclose();
                                 }
                             }
-
+                            $_SESSION['environment']='taller';
                                 header("Location: index2.php");
                                 }else{
                                     printf($mysqli->error);
                                     echo "No se inserto el tiraje";
                                 }
+                                $_SESSION['environment']='taller';
                               header("Location: index2.php");
 
                             }else{

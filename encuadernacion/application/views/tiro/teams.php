@@ -10,7 +10,7 @@
 	}
 </style>
 <ul class="topbar">
-<li style="font-weight: bold;"><a class="active" href="#"><?=$_POST['user']; ?></a></li>
+<li style="font-weight: bold;"><a class="active" href="javascript:void(0)"><?=$_POST['user']; ?></a></li>
 
   
  

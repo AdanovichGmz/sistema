@@ -11,7 +11,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 	}
 </style>
 <ul class="topbar">
-<li style="font-weight: bold;"><a class="active" href="#"><?=$userInfo['logged_in']; ?></a></li>
+<li style="font-weight: bold;"><a class="active" href="javascript:void(0)"><?=$userInfo['logged_in']; ?></a></li>
 <li><div id="change-team" data-msession="<?=$_SESSION['teamSession'][$_POST['user']]['memberSessionID'] ?>" data-user="<?=$_POST['user'] ?>" class="icon-button i-change violet"><div class="b-icon"></div><div class="b-text"><span>Cambiar de Equipo</span></div>
   
 </div></li>

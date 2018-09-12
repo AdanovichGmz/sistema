@@ -21,7 +21,8 @@ echo "</pre>"; */
 <script src="<?php echo URL; ?>public/js/softkeys-0.0.1.js"></script>
   <form id="team">
 <ul class="topbar">
-  <li><a class="active" href="#home">Por favor ingresa una ODT:</a></li>
+<li style="" class=" burger drop-menu"><a  href="javascript:void(0)">Opciones</a></li>
+  <li><a class="active" href="javascript:void(0)">Por favor ingresa una ODT:</a></li>
   <li><input class="odt-input" type="text" name="odt" id="odt" placeholder="ODT" onclick="getKeys(this.id,'odt')"></li>
   <li style="float:right"><div id="save-team">GUARDAR</<div> </li>
 </ul>
@@ -80,6 +81,28 @@ echo "</pre>"; */
                         </div>
     
     
+</div>
+<div class="mega-menu">
+  <div class="mega-menu-cover"></div>
+  <ul class="topbar">
+  <li ><a href="javascript:void(0)">Elige una opción:</a></li>
+  
+  
+  <li style="float:right"><div  class="close-mega-menu"></div></li>
+
+</ul>
+<div class="mega-menu-content">
+  <div class="mega-menu-button" id="add-members">
+    <span >DAR DE ALTA UN USUARIO</span>
+  </div>
+ 
+  <a href="<?=BASE_URL ?>/logout.php">
+  <div class="mega-menu-button">
+    <span>CERRAR SESION</span>
+  </div></a>
+</div>
+  
+
 </div>
 <script>
 kb=false;
@@ -290,5 +313,24 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
   jQuery214(document).on("click", ".close-bottom-key", function () {
     closeKeyboard();
 });
+drop=false;
+function menu(){
+      if (drop == false) {
 
+            $(".mega-menu-cover").animate({ bottom: '+=60%' }, 200);
+            $(".mega-menu").animate({ top: '+=40%' }, 200);
+            drop = true;
+        }
+        else {
+            $(".mega-menu-cover").animate({ bottom: '-=60%' }, 200);
+            $(".mega-menu").animate({ top: '-=40%' }, 200);
+            drop = false;
+        }  
+    }
+jQuery214(document).on("click", ".drop-menu", function () {
+  menu();
+});
+jQuery214(document).on("click", ".close-mega-menu", function () {
+  menu();
+});
 </script>

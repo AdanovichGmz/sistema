@@ -22,7 +22,7 @@ if(isset($_SESSION['logged_in'])){
           if ($sessions_model->newSession()) {
              $insertedCambio = $cambio_model->newCambio();
              if ($insertedCambio) {
-
+              $_SESSION['environment']='encuadernacion';
                 $cambio_model->setCurrentCambio();
                 require 'application/views/templates/head.php';
                 require 'application/views/inicio/operarios.php';
@@ -35,6 +35,7 @@ if(isset($_SESSION['logged_in'])){
 
         }else{
 
+        $_SESSION['environment']='encuadernacion';
         $_SESSION['tiroActual']=$cambio_model->getCurrentCambio();
         $seccion=$sessions_model->getSessionStatus();
         $_SESSION['teamSession']=$sessions_model->recoverTeam();

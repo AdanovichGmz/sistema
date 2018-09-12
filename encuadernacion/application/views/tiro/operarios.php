@@ -21,7 +21,7 @@ echo "</pre>"; */
 <script src="<?php echo URL; ?>public/js/softkeys-0.0.1.js"></script>
   <form id="team">
 <ul class="topbar">
-  <li><a class="active" href="#home">Elige los operarios:</a></li>
+  <li><a class="active" href="javascript:void(0)">Elige los operarios:</a></li>
   
   <li style="float:right"><div id="save-team">GUARDAR<div> </li>
   <li style="float:right"><div id="return">VOLVER<div> </li>
