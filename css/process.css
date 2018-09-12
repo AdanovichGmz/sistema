@@ -723,6 +723,19 @@ iframe{
     padding: 6px!important;
     font-size: 14px;
 }
+#process-table{
+  width: 100%;
+}
+#process-table .quit-option{
+  padding:4px; 
+}
+#process-table .edit-option{
+  padding:4px; 
+}
+#process-table td {
+    padding: 6px!important;
+    font-size: 15px;
+}
 .mini-table{
   width: 520px;
   margin:0 auto;
