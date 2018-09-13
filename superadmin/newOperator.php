@@ -185,7 +185,7 @@ require('../saves/conexion.php');
       <tbody id="b-procesos">
        <?php while ($row=mysqli_fetch_assoc($process)) { ?>
   <tr>
-    <td><input type="checkbox" name="procesos[]" value="<?=$row['id_proceso'] ?>"></td>
+    <td><input class="disponible" type="checkbox" name="procesos[]" value="<?=$row['id_proceso'] ?>"></td>
     <td><?=$row['nombre_proceso'] ?></td>
     <td><?=ucfirst($row['area']) ?></td>
   </tr>

@@ -1227,7 +1227,7 @@ var fin_tiro=$('#fin-tiro').val();
 
 jQuery214(document).on("change", "#check-all", function (){
   console.log('perro');
-     jQuery214('#b-procesos :checkbox').prop('checked', this.checked);
+     jQuery214('.disponible :checkbox').prop('checked', this.checked);
    });
 
 
@@ -1235,7 +1235,14 @@ jQuery214(document).on("keyup", "#p-filter", function (){
   
     var value = $(this).val().toLowerCase();
     $("#b-procesos tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      var flag=$(this).text().toLowerCase().indexOf(value) > -1;
+      $(this).toggle(flag);
+      if (!flag) {
+        $(this).removeClass('disponible');
+      }else{
+        $(this).addClass('disponible');
+      }
+      
     });
   });
     </script>
