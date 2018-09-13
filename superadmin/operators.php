@@ -90,7 +90,7 @@ if(@$_SESSION['logged_in'] != true){
 
     <link href="../css/estilosadmin.css" rel="stylesheet" />
 
-   
+<link href="../css/process.css" rel="stylesheet" />   
       <link rel="stylesheet" href="../fonts/style.css">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="../js/main.js"></script>
@@ -572,6 +572,21 @@ border-top: solid 5px transparent;
     -webkit-box-shadow: 0px 0px 5px #444444;
     box-shadow: 0px 0px 5px #444444;
 }
+.newuser-modal{
+ z-index: 9999;
+  display: none;
+  position: absolute;
+  width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    background:#EFEFEF;
+    border-radius: 4px;
+    moz-box-shadow: 0px 0px 5px #444444;
+    -webkit-box-shadow: 0px 0px 5px #444444;
+    box-shadow: 0px 0px 5px #444444;
+}
 .form-stuff input[type=text],.form-stuff input[type=time],.form-stuff input[type=number]{
   padding: 4px;
   width: 100%;
@@ -731,6 +746,52 @@ p{
   position: relative;
 }
 
+.n-u-left{
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  margin:0 -2px;
+}
+.n-u-right{
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  margin:0 -2px;
+}
+.process-container{
+  width: 95%;
+  margin:0 auto;
+}
+.n-u-left table{
+  width: 95%;
+  margin: 10px auto;
+
+}
+.n-u-left table input{
+  width: 100%;
+  padding: 5px;
+  border-radius: 3px;
+  border:solid 1px #ccc;
+
+}
+.n-u-left td{
+  padding: 8px;
+}
+.title{
+    width: 95%;
+    text-align: left;
+    text-indent: 10px;
+    font-size: 20px;
+    color: #4D4D4D;
+    border-bottom: solid 1px #ccc;
+    padding: 10px 0;
+    margin: 0 auto;
+}
+.process-container{
+  max-height: 400px;
+  overflow-y: auto;
+}
+
 
 @media screen and (max-width:1024px) {
   th{
@@ -753,34 +814,18 @@ p{
 
   <div class="left-form2">
  
-   <p style="margin-bottom: 2px!important;">Elige operario y fecha</p>
-   <input type="hidden" name="activef" value="ok">
-   <div class=""><select id="filterElem" name="dateFilter">
-   <option disabled="true" selected="true">Operarios</option>
- <option value="11">Alfonso</option>
- <option value="16">Armando</option>
-  <option value="17">Christian Acevedo</option>
-  <option value="13">Christian</option>
-  <option value="8">Eduardo</option>
-  <option value="2" style="display: none;">Adan</option>
-  
-<option value="15">Ramon</option>
-  
-
-   </select>
-<p id="usererror" style="display: none;">Por favor elige un usuario</p>
- <input id="datepicker" class="" placeholder="Fecha.." required="true" value="" name="id" />
-  <p id="fechaerror" style="display: none;">Por favor elige una fecha</p>
-   </div>
+   
    
  
- </div><div  class="left-form2"><button style="margin-top: 25px;" type="button" id="newstandar"  class="btn btn-primary">TRAER INFORMACION</button></div><div class="left-form2"><div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtrar"></div></div><div class="left-form2">
+ </div><div  class="left-form2"></div><div class="left-form2"></div><div class="left-form2">
  
-   <button style="margin-top: 25px;" type="button" id="addtiro"  class="btn btn-info new-modal disabled">AGREGAR TIRO</button>
+   <div><input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtrar"></div>
    
-  
+  <form style="display: none;" action="../pdfrepajustemaquina/createPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form>
  
- </div><div  class="left-form2"><form action="../pdfrepajustemaquina/createPdf.php" method="post" target="_blank"><input type="hidden" required id="date" name="id"><input type="hidden" id="user" required name="iduser"><button style="margin-top: 25px;" type="submit" id="getPdf"  class="btn btn-success disabled">GENERAR PDF</button></form></div>
+ </div><div  class="left-form2">
+   <button style="margin-top: 25px;" type="button" id="add-oper"  class="btn btn-info">+ AGREGAR OPERARIO</button>
+ </div>
 
 </div>
    
@@ -791,95 +836,12 @@ p{
 <div class="close" id="closer"></div>
   <div class="form-stuff">
 
-<form id="newTiro" method="POST" >
-<p>Nombre:</p>
-  <input type="text" required id="odt" name="odt">
-  <div style="">
-  
-   <input type="hidden" id="operario" readonly name="odt">
 
-  <p>Areas:</p>
-  
-  <select class="chosen" required id="producto" name="producto">
-  <option disabled selected>Elije un producto</option>
-    <?php while ($row4=mysqli_fetch_assoc($prods)) { ?>
-<option value="<?=$row4['id_elemento'] ?>"><?=$row4['nombre_elemento'] ?></option>
-    <?php } ?>
-  </select>
-  </div>
-<table class="stations">
-<tr>
-  <th colspan="2">Nombre estacion</th>
-</tr>
-  <tr>
-    <th>Procesos</th>
-    
-    <th></th>
-  </tr>
-  <tr>
-    <td>LetterPress</td>
-    
-    <td><a href="#">Quitar</a></td>
-  </tr>
-  <tr>
-    <td>Suaje</td>
-    
-    <td><a href="#">Quitar</a></td>
-  </tr>
-</table>
-<p>Fecha:</p>
-  <input readonly type="text" id="fecha" name="fecha">
-<div class="in-line entorno">
-     <label for="mesa">Mesa:</label>
-  <input type="radio" id="mesa" value="mesa"  class="entorno" name="entorno">
-  </div><div class="in-line rig entorno">
-     
-  <input type="radio" id="maqui" checked value="maquina" class="entorno" name="entorno">
-  <label for="maqui">Maquina:</label>
-  </div>
-
-  <div class="in-line">
-     <p>Inicio ajuste:</p>
-  <input type="time" required step="2" id="in-ajuste" name="in-ajuste">
-  </div><div class="in-line rig">
-     <p>Fin ajuste:</p>
-  <input type="time" required step="2" id="fin-ajuste" name="fin-ajuste">
-  </div>
-
-  <div class="in-line">
-     <p>Pedido:</p>
-  <input type="number" required id="pedido" name="pedido">
-  </div><div class="in-line rig">
-     <p>Recibidos:</p>
-  <input type="number" required id="recibido" name="recibido">
-  </div>
-  
-<div class="in-line">
-     <p>Buenos:</p>
-  <input type="number" required id="buenos" name="buenos">
-  </div><div class="in-line rig">
-     <p>Piezas de ajuste:</p>
-  <input type="number" required id="piezas" name="piezas">
-  </div>
-
-
-
-  
-
-  <div class="in-line">
-     <p>Inicio tiraje:</p>
-  <input type="time" step="2" required id="in-tiro" name="in-tiro">
-  </div><div class="in-line rig">
-     <p>Fin tiraje:</p>
-  <input type="time" step="2" required id="fin-tiro" name="fin-tiro">
-  </div>
- 
-  
-  <input type="submit" name="" value="GUARDAR">
-  </form>
 </div>
 </div>
+<div class="newuser-modal" id="operator-form">
 
+</div>
 <div class="backdrop"></div>
 <div class="box"><div class="close"></div>
 
@@ -932,7 +894,18 @@ p{
 
 
   </div>
-  <div class="popup"></div>
+  <div class="popup">
+    
+  </div>
+  <?php if (isset($_SESSION['messages'])): ?>
+  <div class="popup" style="display: block;">
+    <?=$_SESSION['messages']; ?>
+  </div>
+    <?php
+
+    unset($_SESSION['messages']);
+
+    endif ?>
 </body>
 </html>
 
@@ -957,10 +930,30 @@ $('.backdrop, ').css('display', 'block');
 jQuery214(document).on("click", "#closer", function () {
   console.log('picado');
     $('.newtiro-modal').hide();
+    $('.newuser-modal').hide();
        $('.backdrop').css('display', 'none');
 });
+
+
+jQuery214(document).on("click", "#new-user-submit", function () {
+  /*event.preventDefault();
+  $.ajax({
+        url: "saveOperator.php",
+        type: "POST",
+        data:$('#new-user-form').serialize(),
+        success: function(data){
+          console.log(data);
+        //$('#operator-info').html(data);
+        }        
+       }); */
+    
+});
+
+
+
 $('.backdrop').click(function(){
   $('.newtiro-modal').hide();
+  $('.newuser-modal').hide();
        $('.backdrop').css('display', 'none');
 });
 $(document).ready(function(){
@@ -986,7 +979,26 @@ $(document).ready(function(){
         $('#operator-info').html(data);
         }        
        });
-});  
+}); 
+
+ 
+
+$("#add-oper").click(function () {
+    
+
+    $.ajax({
+        url: "newOperator.php",
+        type: "POST",
+        data:{id_user:'hola'},
+        success: function(data){
+        $('#operator-form').html(data);
+        $('.backdrop').animate({'opacity':'.50'}, 300, 'linear');
+    $('.backdrop, ').css('display', 'block');
+    $('.newuser-modal').show();
+    $('.newuser-modal').css('opacity','1');
+        }        
+       });
+}); 
 
  
  

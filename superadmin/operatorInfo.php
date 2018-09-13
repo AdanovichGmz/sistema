@@ -77,7 +77,7 @@ $procesos=$mysqli->query("SELECT * FROM procesos_catalogo");
   margin:0 auto;
   display: none;
 }
-.selected{
+.selected2{
   background:#FFF8C4;
   color:#6A6867;
 }
@@ -258,7 +258,7 @@ background:#E51C23;
     
   </div>
 
-  <div class="left-menu selected" data-target="perfil">Perfil</div>
+  <div class="left-menu selected2" data-target="perfil">Perfil</div>
   <div class="left-menu" data-target="estaciones">Estaciones y Procesos</div>
   <div class="left-menu" data-target="estadisticas">Estadisticas</div>
 </div>
@@ -411,9 +411,9 @@ background:#E51C23;
    $(".left-menu").click(function () {
     var target=$(this).attr('data-target');
     $('.show').removeClass('show');
-    $('.selected').removeClass('selected');
+    $('.selected2').removeClass('selected2');
     $('#'+target).addClass('show');
-    $(this).addClass('selected');
+    $(this).addClass('selected2');
 
 
 });
