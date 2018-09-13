@@ -187,7 +187,7 @@ require('../saves/conexion.php');
   <tr>
     <td><input type="checkbox" name="procesos[]" value="<?=$row['id_proceso'] ?>"></td>
     <td><?=$row['nombre_proceso'] ?></td>
-    <td>Encuaderna</td>
+    <td><?=ucfirst($row['area']) ?></td>
   </tr>
 <?php  } ?>
        
