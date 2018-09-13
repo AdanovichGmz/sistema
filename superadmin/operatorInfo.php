@@ -8,7 +8,7 @@ $userData=mysqli_fetch_assoc($mysqli->query($query));
 
 $getStations=$mysqli->query("SELECT * FROM usuarios_estaciones WHERE id_usuario=".$userData['id']);
 
-$procesos=$mysqli->query("SELECT * FROM procesos_catalogo");
+$procesos=$mysqli->query("SELECT * FROM procesos_catalogo ORDER BY nombre_proceso ASC");
 
 ?>
 <style>
