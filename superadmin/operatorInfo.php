@@ -340,7 +340,7 @@ background:#E51C23;
     </div>
                <?php while ($row=mysqli_fetch_assoc($getStations)) { 
             $estation=mysqli_fetch_assoc($mysqli->query("SELECT * FROM estaciones WHERE id_estacion=".$row['id_estacion']));
-            $getProcess=$mysqli->query("SELECT * FROM estaciones_procesos ep INNER JOIN procesos_catalogo pc ON ep.id_proceso=pc.id_proceso WHERE id_estacion=".$row['id_estacion']);
+            $getProcess=$mysqli->query("SELECT * FROM estaciones_procesos ep INNER JOIN procesos_catalogo pc ON ep.id_proceso=pc.id_proceso WHERE id_estacion=".$row['id_estacion']." ORDER BY nombre_proceso ASC");
 
             ?>
             <div id="stations-cont">
