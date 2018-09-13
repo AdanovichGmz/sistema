@@ -9,8 +9,8 @@ session_start();
     $sueldo=(isset($_POST['sueldo']))? "'".$_POST['sueldo']."'":'NULL'; 
     $remuneracion=(isset($_POST['remuneracion']))? "'".$_POST['remuneracion']."'":'NULL';
     $miembro=(isset($_POST['miembro']))? "'".$_POST['miembro']."'":'NULL';
-    $procesos=$_POST['procesos'];
-    $file=$_FILES["foto"]["name"];
+    $procesos=isset($_POST['procesos'])?$_POST['procesos']:array();
+    
     $target_dir = "images/";
 
     echo "<pre>";
@@ -23,12 +23,14 @@ session_start();
     header("Location: operators.php");
 } else{ */
 
-    
+$file=$_FILES["foto"]["name"];    
 $upfile=(isset($file))? "'".str_replace(" ","_",$file)."'":null;
 $target_file = "../".$target_dir . basename(str_replace(" ","_",$file));
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-if($imageFileType != "jpg"&&$imageFileType != "png"&&$imageFileType != "jpeg"&&$imageFileType != "pdf") {
+
+if (!empty($file)) {
+  if($imageFileType != "jpg"&&$imageFileType != "png"&&$imageFileType != "jpeg"&&$imageFileType != "pdf") {
    
     $_SESSION['messages'].="<div class='fail'><div></div><span>Error: </span> El archivo ".$file." no es valido</div>";
 
@@ -36,7 +38,7 @@ if($imageFileType != "jpg"&&$imageFileType != "png"&&$imageFileType != "jpeg"&&$
  
     $uploadOk = 0;
 }
-if (file_exists($target_file)) {
+ if (file_exists($target_file)) {
    
        $uploadOk = 0; 
        $_SESSION['messages'].="<div class='fail'><div></div><span>Error: </span> El archivo ".$file." ya existe</div>";   
@@ -112,6 +114,61 @@ if ($uploadOk == 0) {
         echo "Ocurrio un error a la hora de subir la foto.";
     }
 }
+}else{
+
+
+        $query="INSERT INTO `usuarios` (`id`, `logged_in`, `password`, `usuario`, `rol`, `foto`, `app_active`, `sueldo`, `apellido`, `team_member`, `remuneracion`) VALUES (NULL, $nombre, $password, $usuario, '2', NULL, 'true', $sueldo, $apellido, $miembro, $remuneracion)";
+
+
+        //$query="INSERT INTO usuarios (odt, cliente, archivo,Tienda,user) VALUES ('$odt','$comments','$filename','$store','$user')";
+        $inserted=$mysqli->query($query);
+        
+        if ($inserted){
+         
+          $new_user=$mysqli->insert_id;
+
+          $query2="INSERT INTO estaciones(id_estacion,nombre_estacion)VALUES(NULL,$usuario)";
+
+          $insert_station=$mysqli->query($query2);
+          if ($insert_station) {
+          $new_station=$mysqli->insert_id;
+          $query3="INSERT INTO usuarios_estaciones(id, id_usuario,id_estacion)VALUES(NULL,$new_user,$new_station)";
+          $u_e_inserted=$mysqli->query($query3);
+
+          if ($u_e_inserted) {
+
+            foreach ($procesos as $proceso) {
+              $query_process="INSERT INTO estaciones_procesos(id,id_estacion,id_proceso) VALUES(NULL,$new_station,$proceso)";
+              $mysqli->query($query_process);
+            }
+           
+          $_SESSION['messages'].="<div class='successs'><div></div><span>Listo: </span> Datos guardados correctamente</div>";
+
+          $_SESSION['notification']='success';
+          $_SESSION['result']='LISTO:';
+          header("Location: operators.php");
+          }else{
+
+          $_SESSION['messages'].="<div class='fail'><div></div><span>Error: </span> Los datos no se guardaron</div>";
+
+          $_SESSION['notification']='success';
+          $_SESSION['result']='LISTO:';
+          header("Location: operators.php");
+          }
+
+          }else{
+            echo $query2;
+            printf($mysqli->error);
+          }
+
+
+        }else{
+          printf($mysqli->error);
+        }
+}
+
+
+
 
 
 //}

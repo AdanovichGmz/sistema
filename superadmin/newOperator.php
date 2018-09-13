@@ -50,7 +50,7 @@ require('../saves/conexion.php');
       Sueldo:
     </td>
     <td>
-      <input type="text" name="sueldo">
+      <input type="number" name="sueldo">
     </td>
   </tr>
   <tr>
