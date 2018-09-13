@@ -142,6 +142,8 @@ if(@$_SESSION['logged_in'] != true){
   });
 
 })(document);
+
+
 </script>
 
 
@@ -1222,4 +1224,18 @@ var fin_tiro=$('#fin-tiro').val();
         }        
        });
 });
+
+jQuery214(document).on("change", "#check-all", function (){
+  console.log('perro');
+     jQuery214('#b-procesos :checkbox').prop('checked', this.checked);
+   });
+
+
+jQuery214(document).on("keyup", "#p-filter", function (){
+  
+    var value = $(this).val().toLowerCase();
+    $("#b-procesos tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
     </script>
