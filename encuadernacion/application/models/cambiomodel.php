@@ -1,6 +1,6 @@
 <?php
 
-class CambioModel
+class CambioModel extends Controller
 {
     
     function __construct($db)
@@ -120,7 +120,7 @@ public function newMemberCambio($userID,$memberSessionID,$memberProcessID){
         $time=date("H:i:s", time());
         $odt=(isset($_SESSION['odt']))? "'".$_SESSION['odt']."'" : "NULL" ;
 
-        $sql="INSERT INTO tiraje(id_estacion,id_proceso, fechadeldia_ajuste, id_user, is_virtual,odt_virtual,id_sesion) VALUES ($station_id,$memberProcessID, '$today',$userID,'true',$odt,$sessionID)";
+        $sql="INSERT INTO tiraje(id_estacion,id_proceso,horadeldia_ajuste, horafin_ajuste,fechadeldia_ajuste,horadeldia_tiraje, id_user, is_virtual,odt_virtual,id_sesion) VALUES ($station_id,$memberProcessID,'$hora_ajuste','$hora_ajuste', '$today','$hora_ajuste',$userID,'true',$odt,$sessionID)";
         $query = $this->db->prepare($sql);
         $inserted=$query->execute();
 
@@ -158,7 +158,7 @@ public function newMemberCambio($userID,$memberSessionID,$memberProcessID){
         $standard=$model->getElementStandard($proceso,$producto);
         
         
-        
+        $log= $this->loadController('logs');
 
         $tiraje_estandar=($seconds*$standard['piezas_por_hora'])/3600;
         $prodEsperada=round($tiraje_estandar); 
@@ -173,12 +173,16 @@ public function newMemberCambio($userID,$memberSessionID,$memberProcessID){
 
         $sql="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$recibidos, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma, entregados=$buenos, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$today', horafin_tiraje='$time',id_user=$iduser,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$tiraje";
 
+        
+
         $query = $this->db->prepare($sql);
         $completed=$query->execute();
 
         if ($completed) {
           return true;
         }else{
+        $log->lwrite( $sql,$today.'_ERROR_'.$iduser);
+        $log->lclose();
           return false;
             }
   

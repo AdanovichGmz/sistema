@@ -312,7 +312,10 @@ jQuery214(document).on("click", ".normal", function () {
                                       
                                       $('#member-'+user).removeClass('disabled');
                                       $('#member-'+user+' .member-content').addClass('tiro');
-                                      $('.box').html(data);
+                                      $('.op-close-modal').click();
+                                      //$('.box').html(data);
+
+                                      
                                       var functionName='start'+user;
                                     eval(functionName + "()");
                                     
