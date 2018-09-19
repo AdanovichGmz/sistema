@@ -29,7 +29,7 @@ $actividad=$sessions_model->getSessionStatus();
 </form> 
 </div>
 <input type="hidden" id="actividad" value="<?=$actividad['actividad_actual'] ?>">
-<div id="timer" data-inicio="<?=$process_model->getAjusteElapsedTime($_SESSION['sessionID']) ?>" data-estandar="1200"><span class="values timer-display">00:00:00</span>
+<div id="timer" data-inicio="<?=$process_model->getAjusteElapsedTime($_SESSION['sessionID']) ?>" data-estandar="900"><span class="values timer-display">00:00:00</span>
 
 </div>
 <div class="big-lightbox">
