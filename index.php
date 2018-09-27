@@ -7,7 +7,12 @@ if(@$_SESSION['logged_in'] == true){
   if ($_SESSION['rol']==3) {
    header('Location:http:'.dirname($_SERVER['PHP_SELF']).'/superadmin');
   }else{
-    header('Location:http:'.dirname($_SERVER['PHP_SELF']).'/index2.php');
+    if ($_SESSION['environment']=='encuadernacion') {
+      header('Location:http:'.dirname($_SERVER['PHP_SELF']).'/encuadernacion/');
+    }else{
+      header('Location:http:'.dirname($_SERVER['PHP_SELF']).'/index2.php');
+    }
+    
   }
    
 }else{

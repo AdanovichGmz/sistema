@@ -65,7 +65,89 @@ if(@$_SESSION['logged_in'] != true){
 
 <script src="../js/choosen.js"></script>
 
+<style>
+  .box{
+ z-index: 9999;
+  opacity: 0;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+    background:#fff;
+    border-radius: 4px;
+    moz-box-shadow: 0px 0px 5px #444444;
+    -webkit-box-shadow: 0px 0px 5px #444444;
+    box-shadow: 0px 0px 5px #444444;
+}
+.form-stuff{
+  width: 480px;
+  background:#fff;
+  padding: 20px;
+  border-radius: 4px;
+}
+.form-stuff input[type=text],.form-stuff input[type=time],.form-stuff input[type=number]{
+  padding: 4px;
+  width: 100%;
+  border-radius: 3px;
+  background: #fff;
+  border: solid 1px #ccc;
+  
 
+}
+.close{
+  opacity: 1!important;
+  width: 25px;
+  height: 25px;
+  background-color:#000!important;
+  background-image: url(../images/ex2.png);
+  background-size: contain;
+  color: #fff!important;
+  border-radius: 60px;
+  right: -17px!important;
+  top: -12px!important;
+  line-height: 25px;
+  text-align: center;
+  position: absolute;
+  border:solid 2px #fff;
+  -moz-box-shadow:0px 0px 5px #444444;
+      -webkit-box-shadow:0px 0px 5px #444444;
+      box-shadow:0px 0px 5px #444444;
+}
+.form-stuff input[type=submit]{
+  width: 100%;
+  border: none;border-radius: 3px;
+  padding: 4px;
+  margin-top:18px;
+  background:#05BDE3;
+  color:#fff;
+  font-weight: bold;
+ 
+
+}
+.form-stuff p{
+  margin-bottom: 2px;
+}
+.form-stuff select{
+  padding: 4px!important;
+
+
+}
+.in-line{
+  width: 50%;
+  display: inline-block;
+}
+.in-line input[type=text],.in-line input[type=time],.in-line input[type=number]{
+  width: 95%!important;
+}
+.rig{
+  text-align: right;
+}
+.rig p{
+  padding-left: 10px;
+  text-align: left;
+}
+</style>
 
 <script type="text/javascript">
 
@@ -129,7 +211,7 @@ if(@$_SESSION['logged_in'] != true){
  
   </div>
     <div class="r-head-control">
-      <button id="main-submit" class="btn btn-info" style="display: none;">Agregar Proceso</button>
+      <button id="main-submit" class="btn btn-info" >Agregar Proceso</button>
     </div>
   </div>
   
@@ -170,7 +252,7 @@ if(@$_SESSION['logged_in'] != true){
     <td><?=(!empty($pr['precio_cambio']))? '$'.$pr['precio_cambio']:'--' ?></td>
     <td><?=(!empty($pr['cambios_minimos']))? $pr['cambios_minimos']:'--' ?></td>
     <td><a href="modify_process.php?process=<?=$pr['id_proceso'] ?>"  class="edit-option">Editar Propiedades</a></td>  
-    <td><a href="#" class="quit-option">Eliminar</a></td>
+    <td><a href="#" data-id="<?=$pr['id_proceso'] ?>" class="quit-option">Eliminar</a></td>
     
     <input type="hidden" name="options-<?=$pr['id_proceso'] ?>[]" value="<?=$pr['nombre_proceso'] ?>"> 
    </tr>
@@ -232,6 +314,48 @@ if ($procesos->num_rows==0){
    <div class="fail" id="message"><div></div><span>Exito: </span>Datos guardados!</div>
  </div>
 </body>
+<div class="backdrop"></div>
+<div class="box">
+  <div class="close" onclick="closeModal()"></div>
+  <div class="form-stuff">
+
+<form id="newTiro" method="POST" >
+<p>Nombre del Proceso:</p>
+  <input type="text" required  name="nombre">
+<p>Area:</p>
+  <select name="area">
+    <option>Encuadernacion</option>
+    <option>Taller</option>
+  </select>  
+
+
+  <div class="in-line">
+     <p>Costo por Tiros:</p>
+  <input type="number" required   name="costo_tiros">
+  </div><div class="in-line rig">
+     <p>Costo por Cambios:</p>
+  <input type="number" required   name="costo_cambios">
+  </div>
+
+  <div class="in-line">
+     <p>Cambios Minimos:</p>
+  <input type="number"   id="in-tiro" name="cambios_minimos">
+  </div><div class="in-line rig">
+     <p>Tiempo de ajuste (minutos):</p>
+  <input type="number"  required  name="tiempo_ajuste">
+  </div>
+
+  <div class="in-line">
+     <p>Piezas por Hora:</p>
+  <input type="number" required  name="piezas_hora">
+  </div>
+  
+ 
+  
+  <input type="submit" name="" value="GUARDAR">
+  </form>
+</div>
+</div>
 </html>
 
 <script>
@@ -289,8 +413,11 @@ jQuery214(document).on("keyup", "#fin-ajuste", function () {
   
 });
 jQuery214(document).on("click", "#main-submit", function () {
-  $("#main-form").submit();
-  console.log('se submiteo');
+   $('.backdrop').animate({'opacity':'.50'}, 300, 'linear');
+$('.backdrop, ').css('display', 'block');
+    $('.box').show();
+    $('.box').css('opacity','1');
+  
 });  
 $('#main-form').submit(function(e){
    e.preventDefault();
@@ -354,10 +481,56 @@ $('#main-form').show().fadeIn("slow");
         }        
        });
     } */
+  jQuery214(document).on("click", ".quit-option", function () {
+
     
+  var id=jQuery214(this).data('id');
+    $('<div></div>').appendTo('body')
+                    .html('<div><h6>Estas seguro de querer borrar este proceso?</h6></div>')
+                    .dialog({
+                        modal: true, title: 'Eliminar proceso', zIndex: 10000, autoOpen: true,
+                        width: 'auto', resizable: false,
+                        buttons: {
+                            Si: function () {
+                                // $(obj).removeAttr('onclick');                                
+                                // $(obj).parents('.Parent').remove();
+                                
+                                $.ajax({
+                                    url: "delete_process.php",
+                                    type: "POST",
+                                    data:{id:id},
+                                    success: function(data){
+                                     
+                                      console.log(data);
+
+
+                                    }        
+                                   }); 
+
+                                $(this).dialog("close");
+
+                                location.reload();
+                                
+                                
+                            },
+                            No: function () {                                                             
+                            
+                                $(this).dialog("close");
+                            }
+                        },
+                        close: function (event, ui) {
+                            $(this).remove();
+                        }
+                    });
+    });
+  
    
 
-   
+ function closeModal(){
+  $('.box').hide();
+    
+       $('.backdrop').css('display', 'none');
+ }  
 
 
  
@@ -366,55 +539,20 @@ $('#newTiro').submit(function(){
   event.preventDefault();
 
 
-
-var odt=$('#odt').val();
-var operario=$('#operario').val();
-var producto=$('#producto').val();
-var fecha=$('#fecha').val();
-var entorno=$('.entorno').val();
-var in_ajuste=$('#in-ajuste').val();
-var fin_ajuste=$('#fin-ajuste').val();
-var pedido=$('#pedido').val();
-var recibido=$('#recibido').val();
-var buenos=$('#buenos').val();
-var piezas=$('#piezas').val();
-var in_tiro=$('#in-tiro').val();
-var fin_tiro=$('#fin-tiro').val();
-var proceso=$('#newTiro input[name="proceso"]:checked').val();
-console.log('el proceso es: '+proceso);
-
- if (proceso == null){
-    $('.error-procesos-radio').show();
-}else{
+ 
   console.log('se trato de enviar');
    $.ajax({
-        url: "newTiro.php",
+        url: "newProcess.php",
         type: "POST",
 
-        data:{odt:odt,operario:operario,producto:producto,fecha:fecha,entorno:entorno,in_ajuste:in_ajuste,fin_ajuste:fin_ajuste,pedido:pedido,recibido:recibido,buenos:buenos,piezas:piezas,in_tiro:in_tiro,fin_tiro:fin_tiro,proceso:proceso},
+        data:jQuery214(this).serialize(),
         success: function(data){
           console.log(data);
-          $('.error-procesos-radio').hide();
-          $('.close').click();
-          $('#newTiro')[0].reset();
-           $('.popup').show().fadeIn( "slow" );
-          $('.popup').html('<div class="successs"><div></div><span>Exito: </span>El cambio se guardo correctamente!</div>');
-        setTimeout(function() {   
-                  $('.popup').fadeOut( "slow" );
-                }, 2000);
+          location.reload();
         
-          $.ajax({
-        url: "tableModify.php",
-        type: "POST",
-        data:{iduser:operario,fecha:fecha},
-        success: function(data){
-        $('.div-tabla').html(data);
-        $('#procesosradio').empty();
+          
         }        
        });
-        }        
-       });
-}
 
   
 });
@@ -432,10 +570,7 @@ console.log('el proceso es: '+proceso);
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
-$(".quit-option").click( function() {
 
-    $(this).closest("tr").remove();
-});
 
 jQuery214(document).on("click", "#selectAll", function (e){
 

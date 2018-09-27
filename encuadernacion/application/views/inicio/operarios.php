@@ -139,6 +139,10 @@ $('.backdrop').css('display', 'block');
   
 
 });
+
+
+
+
 jQuery214(document).on("click", "#save-team", function () {
 	if (jQuery214('#odt').val()=='') {
 		alert('por favor ingresa una ODT');
@@ -221,6 +225,8 @@ jQuery214(document).on("click", ".close-modal", function () {
 
 closeModal();
 });
+
+/*
 jQuery214(document).on("click", ".process", function () {
 	var $checkbox = $(this).find('input:checkbox');
 		$checkbox.prop('checked', !$checkbox.prop('checked'));
@@ -232,7 +238,38 @@ jQuery214(document).on("click", ".process", function () {
 		}
 
 
+});  */
+
+jQuery214(document).on("click", ".process", function () {
+ 
+   
+  $('.p-selected').removeClass('p-selected');       
+  $(this).addClass('p-selected');
+  var target=$(this).data('target');
+  $('.process').hide();
+  $('#'+target).show();
+      
+    
+
 });
+
+
+jQuery214(document).on("click", ".elem-process", function () {
+ 
+   
+  var $checkbox = $(this).find('input:checkbox');
+    $checkbox.prop('checked', !$checkbox.prop('checked'));
+
+        if ($checkbox.prop('checked')) {
+      $(this).addClass('pr-selected');
+    }else{
+      $(this).removeClass('pr-selected');
+    }
+      
+    
+
+});
+
 jQuery214(document).on("click", ".worker-info", function () {
 
 

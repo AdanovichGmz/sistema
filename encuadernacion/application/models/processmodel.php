@@ -178,6 +178,43 @@ public function odtExist(){
 
     }
 
+public function getEncuadernacionTasks(){
+        $tasks=array();
+       
+            $sql = "SELECT * FROM actividades_encuadernacion ORDER BY nombre_actividad ASC";
+
+            $query = $this->db->prepare($sql);
+            $query->execute();
+
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)){
+
+            $sql2 = "SELECT ap.*,(SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=ap.id_proceso)AS n_proceso FROM actividades_procesos ap WHERE id_actividad=".$row['id_actividad']." ORDER BY n_proceso ASC";
+            $query2 = $this->db->prepare($sql2);
+            $query2->execute();
+
+            $tasks[$row['id_actividad']]['name']=$row['nombre_actividad'];
+
+            if ($query2->rowCount()==0) {
+               $tasks[$row['id_actividad']]['has_child']='false';
+               $tasks[$row['id_actividad']]['childs']='';
+            }else{
+                $tasks[$row['id_actividad']]['has_child']='true';
+                
+                while ($row2 = $query2->fetch(PDO::FETCH_ASSOC)){
+                   $childs[]=$row2; 
+            }
+            $tasks[$row['id_actividad']]['childs']=$childs;
+
+            }
+            
+
+       
+    }
+
+    return $tasks;
+
+
+    }
 
     public function getStationByUser($userId){        
 

@@ -1175,3 +1175,36 @@ box-shadow: 0 0 7px #C8E0EF;
 .not_pass{
   background:yellow;
 }
+
+.process-container{
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+}
+.elem-process{
+  width: 200px;
+  height: 80px;
+  border:solid 1px #0d1319;
+  border-radius: 3px;
+  display: inline-block;
+  margin:5px;
+  position: relative;
+  background: #2A3F54;
+}
+.elem-process span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+.elem-process input{
+  display: none;
+}
+.pr-selected{
+  background: #FAA902;
+  border-color: #FAA902;  
+  -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+    -moz-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+    box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+}

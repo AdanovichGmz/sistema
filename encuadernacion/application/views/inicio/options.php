@@ -1,5 +1,7 @@
 <?php
-$stations= $process_model->getProcesByUser($_POST['user']);
+
+//$stations= $process_model->getProcesByUser($_POST['user']);
+$tasks= $process_model->getEncuadernacionTasks();
 $userInfo=$login_model->getUserInfo($_POST['user']);
 
 ?>
@@ -25,22 +27,38 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 <input type="hidden" id="task-user" name="user" value="<?=$_POST['user'] ?>">
 
 
-<?php foreach ($stations as $key1 => $station) {
-	$processes=$station;
-	$count=count($processes);
-	foreach ($processes as $key2 => $row) {
-		$pendings=$process_model->getPendingsByUser($_POST['user']);
+<?php 
+	
+	//$count=count($processes);
+	foreach ($tasks as $key2 => $task) {
+		//$pendings=$process_model->getPendingsByUser($_POST['user']);
+		$pendings=array();
+		$count=count($task['childs']);
 ?>  
-<div  data-option="<?=$row['id_proceso'] ?>" data-user="<?=$_POST['user'] ?>" data-sname="<?=$key1 ?>" data-pname="<?=$row['nombre_proceso'] ?>" data-station="<?=$row['id_estacion'] ?>" <?=(array_key_exists($row['id_proceso'], $pendings))?'data-cola="'.$pendings[$row['id_proceso']]['id_cola'].'"':'' ?> class="process <?=($count>21)? 'fit-process':'' ?>"><span><?=$row['nombre_proceso'] ?></span>
-  <?php if(array_key_exists($row['id_proceso'], $pendings)){ ?>
-  <div class="pending-indicator"><?=getPendingsByProcess($row['id_proceso']); ?> Cambio Pendiente</div>
-   <?php  }?>
-   <input type="checkbox" name="tasks[]" value="<?=$row['id_proceso'] ?>">
+<div  data-user="<?=$_POST['user'] ?>" data-target="process-task-<?=$key2 ?>"   class="process <?=($count>21)? 'fit-process':'' ?>"><span><?=$task['name'] ?></span>
+  
+   
+</div>
+<div class="process-container" id="process-task-<?=$key2 ?>">
+<?php 
+if ($task['has_child']=='true') {
+
+foreach ($task['childs'] as $child){ ?>
+<div class="elem-process">
+<span>
+	<?=$child['n_proceso'];?>
+
+</span>
+<input type="checkbox" name="tasks[]" value="<?=$child['id_proceso'] ?>">
+</div>
+<?php } }?>
+  	
 </div>
 
 <?php 
-	}
-} ?>
+	
+}
+ ?>
 </form>
 </div>
 </div>
