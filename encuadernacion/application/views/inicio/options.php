@@ -35,7 +35,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 		$pendings=array();
 		$count=count($task['childs']);
 ?>  
-<div  data-user="<?=$_POST['user'] ?>" data-target="process-task-<?=$key2 ?>"   class="process <?=($count>21)? 'fit-process':'' ?>"><span><?=$task['name'] ?></span>
+<div  data-user="<?=$_POST['user'] ?>" data-target="process-task-<?=$key2 ?>"   class="process "><span><?=$task['name'] ?></span>
   
    
 </div>
@@ -44,7 +44,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 if ($task['has_child']=='true') {
 
 foreach ($task['childs'] as $child){ ?>
-<div class="elem-process">
+<div class="elem-process <?=($count>30)? 'fit-process':'' ?>">
 <span>
 	<?=$child['n_proceso'];?>
 

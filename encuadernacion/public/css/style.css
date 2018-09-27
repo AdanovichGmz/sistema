@@ -985,11 +985,13 @@ width:100%;
     border-radius: 3px;
 }
 .fit-process{
-    width: 110px!important;
-    height: 110px!important;
+    width: 150px!important;
+   
     font-size: 15px!important;
 }
-
+.fit-process span{
+  font-size: 18px!important;
+}
 #team-lunch-time{
     background: #35BC9B;
     padding: 10px;
@@ -1192,6 +1194,7 @@ box-shadow: 0 0 7px #C8E0EF;
   background: #2A3F54;
 }
 .elem-process span {
+  width: 90%;
     position: absolute;
     top: 50%;
     left: 50%;
