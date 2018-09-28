@@ -197,6 +197,7 @@ public function getEncuadernacionTasks(){
             if ($query2->rowCount()==0) {
                $tasks[$row['id_actividad']]['has_child']='false';
                $tasks[$row['id_actividad']]['childs']='';
+               $tasks[$row['id_actividad']]['id_proceso']=$row['id_proceso'];
             }else{
                 $tasks[$row['id_actividad']]['has_child']='true';
                 

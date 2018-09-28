@@ -145,6 +145,21 @@ class SessionsModel
             }
   
   }
+  public function updateMemberSession($sessionID,$field,$value){
+        
+        
+        $sql = "UPDATE sesion_equipo SET $field='$value' WHERE id_sesion_equipo=".$sessionID;
+
+        $query = $this->db->prepare($sql);
+        $inserted=$query->execute();
+
+        if ($inserted) {         
+          return true;
+        }else{
+          return false;
+            }
+  
+  }
     public function getMemberActivity($userId){
 
         $sql = "SELECT actividad_actual FROM sesion_equipo WHERE miembro=$userId AND id_sesion=".$_SESSION['sessionID'];

@@ -247,19 +247,37 @@ jQuery214(document).on("click", ".process", function () {
   $(this).addClass('p-selected');
   var target=$(this).data('target');
   $('.process').hide();
+  $('.no-childs').hide();
   $('#'+target).show();
       
     
 
 });
 
+jQuery214(document).on("click", ".no-childs", function () {
+ 
+   
+  var $checkbox = $(this).find('input:checkbox');
+    $checkbox.prop('checked', !$checkbox.prop('checked'));
+    
+$('#assign-tasks').click();
+        if ($checkbox.prop('checked')) {
+      $(this).addClass('p-selected');
+    }else{
+      $(this).removeClass('p-selected');
+    }
+      
+    
+
+});
 
 jQuery214(document).on("click", ".elem-process", function () {
  
    
   var $checkbox = $(this).find('input:checkbox');
     $checkbox.prop('checked', !$checkbox.prop('checked'));
-
+    
+$('#assign-tasks').show();
         if ($checkbox.prop('checked')) {
       $(this).addClass('pr-selected');
     }else{

@@ -16,7 +16,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 <ul class="topbar">
 <li style="font-weight: bold;"><a class="active" href="#"><?=$userInfo['logged_in']; ?></a></li>
 
-  <li><div id="assign-tasks">ASIGNAR<!--<div--> </div></li>
+  <li><div id="assign-tasks">GUARDAR<!--<div--> </div></li>
  
   <li style="float:right" ><div class="close-modal"></div></li>
   
@@ -30,16 +30,23 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 <?php 
 	
 	//$count=count($processes);
-	foreach ($tasks as $key2 => $task) {
+	foreach ($tasks as $key1 => $task) {
 		//$pendings=$process_model->getPendingsByUser($_POST['user']);
 		$pendings=array();
 		$count=count($task['childs']);
 ?>  
-<div  data-user="<?=$_POST['user'] ?>" data-target="process-task-<?=$key2 ?>"   class="process "><span><?=$task['name'] ?></span>
+<?php if ($task['has_child']=='true') { ?>
+<div  data-user="<?=$_POST['user'] ?>" data-target="process-task-<?=$key1 ?>"   class="process ">
+<?php }else{ ?> 
+<div class=" normal no-childs" data-option="<?=$task['id_proceso'] ?>" data-user="<?=$_POST['user'] ?>" data-sname="<?=$key1 ?>" data-pname="<?=$task['name'] ?>" data-station="28">
+<input type="checkbox" name="tasks[]" value="<?=$task['id_proceso'] ?>">
+<?php } ?> 
+
+<span><?=$task['name'] ?></span>
   
    
 </div>
-<div class="process-container" id="process-task-<?=$key2 ?>">
+<div class="process-container" id="process-task-<?=$key1 ?>">
 <?php 
 if ($task['has_child']=='true') {
 

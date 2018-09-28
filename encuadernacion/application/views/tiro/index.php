@@ -130,6 +130,7 @@
 </ul>
 <div class="members-container">
 <?php 
+
 $members=$sessions_model->getTeamMembersBySession($_SESSION['sessionID']);
 foreach ($members as $key => $member){
   $currentActivity=$sessions_model->getMemberActivity($member['id']);
@@ -150,7 +151,7 @@ foreach ($members as $key => $member){
   </div>  
 </div>
 <div class="timer-band">
-  <?=(isset($_SESSION['teamSession'][$member['id']]))? preg_replace('/\s+/', '', $process_model->getProcessName($_SESSION['teamSession'][$member['id']]['memberProcessID'])) :'Sin asignar' ?>
+  <?=(isset($_SESSION['teamSession'][$member['id']]))?  $process_model->getProcessName($_SESSION['teamSession'][$member['id']]['memberProcessID']) :'Sin asignar' ?>
 </div>
 <div class="member-body">
  <div id="<?=$member['id']?>" style="top:5px;width: 98%;left: 1px; height: 120px; position:absolute;"></div>  
@@ -309,10 +310,12 @@ jQuery214(document).on("click", ".normal", function () {
                                     data:{option:option,choose:'process',station:station,station_name:station_name,pro_name:pro_name,user:user},
                                     
                                     success: function(data){
-                                      
+                                      console.log(data);
                                       $('#member-'+user).removeClass('disabled');
                                       $('#member-'+user+' .member-content').addClass('tiro');
                                       $('.op-close-modal').click();
+                                      $('#member-'+user+' .timer-band').html(pro_name);
+                                      
                                       //$('.box').html(data);
 
                                       
@@ -323,6 +326,24 @@ jQuery214(document).on("click", ".normal", function () {
     });                                      
                                              
     });
+
+jQuery214(document).on("click", ".process", function () {
+ 
+   
+  $('.p-selected').removeClass('p-selected');       
+  $(this).addClass('p-selected');
+  var target=$(this).data('target');
+  $('.process').hide();
+  $('.no-childs').hide();
+  
+  $('#'+target).show();
+      
+    
+
+});
+
+
+
 r = false;
 var kb = false;
 function getNumKeys(id,name) {

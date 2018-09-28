@@ -886,6 +886,7 @@ margin:0 -2px;
     font-size: 20px;
     margin: 8px;
     font-weight: bold;
+    display: none;
 }
 .timer-band{
     width: 100%;
@@ -1210,4 +1211,29 @@ box-shadow: 0 0 7px #C8E0EF;
   -webkit-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
     -moz-box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
     box-shadow: 2px 2px 3px 0px rgba(50, 50, 50, 0.31);
+}
+.no-childs{
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    border-radius: 4px;
+    margin: 5px;
+    display: inline-block;
+    font-size: 20px;
+    border: solid 1px #fff;
+    vertical-align: top;
+}
+.no-childs span {
+  width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
+.no-childs input{
+  display: none;
 }
