@@ -344,7 +344,7 @@ ob_start();
   </tr>
   <?php if(!empty($tiro['comida_ajuste'])||!empty($tiro['comida_tiro'])){ ?>
   <tr>
-    <td colspan="23">COMIDA <?=$tiro['ini_comida_ajuste'].'-'.$tiro['fin_comida_ajuste']
+    <td colspan="23">COMIDA <?=(!empty($tiro['comida_ajuste'])?  $tiro['ini_comida_ajuste'].'-'.$tiro['fin_comida_ajuste'] : ((!empty($tiro['comida_ajuste'])? $tiro['ini_comida_tiro'].'-'.$tiro['fin_comida_tiro'] :'');
  ?></td>
   </tr>
   <?php } ?>
