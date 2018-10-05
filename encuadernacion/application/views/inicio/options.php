@@ -38,7 +38,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 <?php if ($task['has_child']=='true') { ?>
 <div  data-user="<?=$_POST['user'] ?>" data-target="process-task-<?=$key1 ?>"   class="process ">
 <?php }else{ ?> 
-<div class=" normal no-childs" data-option="<?=$task['id_proceso'] ?>" data-user="<?=$_POST['user'] ?>" data-sname="<?=$key1 ?>" data-pname="<?=$task['name'] ?>" data-station="28">
+<div class=" normal no-childs picable" data-option="<?=$task['id_proceso'] ?>" data-user="<?=$_POST['user'] ?>" data-sname="<?=$key1 ?>" data-pname="<?=$task['name'] ?>" data-station="28">
 <input type="checkbox" name="tasks[]" value="<?=$task['id_proceso'] ?>">
 <?php } ?> 
 
@@ -51,7 +51,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 if ($task['has_child']=='true') {
 
 foreach ($task['childs'] as $child){ ?>
-<div class="elem-process <?=($count>30)? 'fit-process':'' ?>">
+<div class="elem-process picable <?=($count>30)? 'fit-process':'' ?>" data-pname="<?=$child['n_proceso'] ?>">
 <span>
 	<?=$child['n_proceso'];?>
 

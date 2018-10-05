@@ -179,13 +179,15 @@ $('.backdrop').css('display', 'block');
 });
 
 
-jQuery214(document).on("click", "#assign-tasks", function () {
+jQuery214(document).on("click", ".picable", function () {
 
                                 
-        
+        var name_p=jQuery214(this).data('pname'); 
          var user=$('#task-user').val();
 
-         
+         var $checkbox = $(this).find('input:checkbox');
+    $checkbox.prop('checked', !$checkbox.prop('checked'));
+
           $.ajax({  
                       
           type:"POST",
@@ -202,6 +204,7 @@ jQuery214(document).on("click", "#assign-tasks", function () {
 
           }else if(data.response=='success'){
           	jQuery214('#worker-'+user).addClass('choosen');
+            jQuery214('#worker-'+user+' .tasks').html(name_p);
           	jQuery214('#worker-'+user+' .worker-click').removeClass('off').addClass('on');
           	var $checkbox = jQuery214('#worker-'+user).find('input:checkbox');
 		$checkbox.prop('checked', !$checkbox.prop('checked'));
@@ -257,8 +260,9 @@ jQuery214(document).on("click", ".process", function () {
 jQuery214(document).on("click", ".no-childs", function () {
  
    
-  var $checkbox = $(this).find('input:checkbox');
-    $checkbox.prop('checked', !$checkbox.prop('checked'));
+  
+         var $checkbox = $(this).find('input:checkbox');
+  
     
 $('#assign-tasks').click();
         if ($checkbox.prop('checked')) {

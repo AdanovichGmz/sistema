@@ -152,13 +152,15 @@ jQuery214(document).on("click", "#save-team", function () {
 
 
 
-jQuery214(document).on("click", "#assign-tasks", function () {
+jQuery214(document).on("click", ".picable", function () {
 
                                 
-       
+        var name_p=jQuery214(this).data('pname'); 
          var user=$('#task-user').val();
 
-         
+         var $checkbox = $(this).find('input:checkbox');
+    $checkbox.prop('checked', !$checkbox.prop('checked'));
+
           $.ajax({  
                       
           type:"POST",
@@ -166,19 +168,20 @@ jQuery214(document).on("click", "#assign-tasks", function () {
           data:jQuery214('#task-form').serialize(), 
           dataType:"json",
           success:function(data){
-          	
-          	console.log('regreso'+data.response);
+            console.log(data); 
+            console.log('regreso'+data.response);
           if (data.response=='taken') {
-          	alert('a este usuario lo acaban de agarrar en el otro equipo');
-          	closeModal();
-          	jQuery214('#worker-'+user).remove();
+            alert('a este usuario lo acaban de agarrar en el otro equipo');
+            closeModal();
+            jQuery214('#worker-'+user).remove();
 
           }else if(data.response=='success'){
-          	jQuery214('#worker-'+user).addClass('choosen');
-          	jQuery214('#worker-'+user+' .worker-click').removeClass('off').addClass('on');
-          	var $checkbox = jQuery214('#worker-'+user).find('input:checkbox');
-		$checkbox.prop('checked', !$checkbox.prop('checked'));
-          	closeModal();
+            jQuery214('#worker-'+user).addClass('choosen');
+            jQuery214('#worker-'+user+' .tasks').html(name_p);
+            jQuery214('#worker-'+user+' .worker-click').removeClass('off').addClass('on');
+            var $checkbox = jQuery214('#worker-'+user).find('input:checkbox');
+    $checkbox.prop('checked', !$checkbox.prop('checked'));
+            closeModal();
           }
           //$('#task-'+user).append(task);
           }
@@ -219,7 +222,7 @@ jQuery214(document).on("click", ".elem-process", function () {
   var $checkbox = $(this).find('input:checkbox');
     $checkbox.prop('checked', !$checkbox.prop('checked'));
     
-$('#assign-tasks').show();
+
         if ($checkbox.prop('checked')) {
       $(this).addClass('pr-selected');
     }else{
