@@ -39,10 +39,11 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 <div  data-user="<?=$_POST['user'] ?>" data-target="process-task-<?=$key1 ?>"   class="process ">
 <?php }else{ ?> 
 <div class=" normal no-childs" data-option="<?=$task['id_proceso'] ?>" data-user="<?=$_POST['user'] ?>" data-sname="<?=$key1 ?>" data-pname="<?=$task['name'] ?>" data-station="28">
+<input type="checkbox" name="tasks[]" value="<?=$task['id_proceso'] ?>"> 
 <?php } ?> 
 
 <span><?=$task['name'] ?></span>
-  
+ 
    
 </div>
 <div class="process-container" id="process-task-<?=$key1 ?>">
@@ -55,7 +56,7 @@ foreach ($task['childs'] as $key2 =>$child){ ?>
 	<?=$child['n_proceso'];?>
 
 </span>
-
+<input type="checkbox" name="tasks[]" value="<?=$child['id_proceso'] ?>">
 </div>
 <?php } }?>
   	

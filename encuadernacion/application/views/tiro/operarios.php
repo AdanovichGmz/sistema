@@ -188,6 +188,8 @@ jQuery214(document).on("click", "#assign-tasks", function () {
                                              
     });
 
+
+
  function closeModal(){ 
    $('.backdrop, .box').animate({'opacity':'0'}, 300, 'linear', function(){
           $('.backdrop, .box').css('display', 'none');
@@ -208,6 +210,23 @@ jQuery214(document).on("click", ".process", function () {
 			$(this).removeClass('p-selected');
 		}
 
+
+});
+
+jQuery214(document).on("click", ".elem-process", function () {
+ 
+   
+  var $checkbox = $(this).find('input:checkbox');
+    $checkbox.prop('checked', !$checkbox.prop('checked'));
+    
+$('#assign-tasks').show();
+        if ($checkbox.prop('checked')) {
+      $(this).addClass('pr-selected');
+    }else{
+      $(this).removeClass('pr-selected');
+    }
+      
+    
 
 });
 jQuery214(document).on("click", ".worker-info", function () {
