@@ -446,6 +446,46 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             
     }
 
+    function getNumericKeys(id,name) {
+      $('#'+id).select();      
+      jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
+        if (kb == false) {
+          $("body").animate({ bottom: '+=20%' }, 200);
+            $("#key-operarios").animate({ bottom: '+=60%' }, 200);
+            kb = true;
+            
+        }
+        var bguardar;
+        
+        $('#softk').empty();     
+         $('.softkeys').softkeys({
+                    target :  $('#'+id),
+                    layout : [
+                        [
+                            
+                            ['1','!'],
+                            ['2','@'],
+                            ['3','#'],
+                            ['4','$'],
+                            ['5','%'],
+                            ['6','^'],
+                            ['7','&amp;'],
+                            ['8','*'],
+                            ['9','('],
+                            ['0',')']
+                        ],['__','ALERT']
+                            ],
+
+                    id:'softkeys'
+                });
+              
+                jQuery214('#hidekey').parent('.softkeys__btn').addClass('hidder'); 
+    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver').attr('id', 'saver');;            
+jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
+            jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
+            
+    }
+
 jQuery214(document).on("click", "#alert", function () {
     var user=jQuery214(this).data('user');
     var member_session=jQuery214(this).data('msession');
@@ -815,6 +855,25 @@ function menu(){
  $.ajax({            
           type:"POST",
           url:"<?php echo URL; ?>tiro/addMembers/",   
+          data:{actividad:actividad}, 
+          success:function(data){
+
+          $('.big-lightbox').html(data);          
+          $('.big-lightbox').animate({'opacity':'1.00'}, 300, 'linear');
+          $('.big-lightbox').css('display','block');
+          menu();           
+          }
+});
+
+});
+
+  jQuery214(document).on("click", "#admin_team", function () {
+  jQuery214('.close-modal').click();
+  var actividad='actividad';
+ 
+ $.ajax({            
+          type:"POST",
+          url:"<?php echo URL; ?>tiro/adminTeam/",   
           data:{actividad:actividad}, 
           success:function(data){
 

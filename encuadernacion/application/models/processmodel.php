@@ -188,7 +188,7 @@ public function getEncuadernacionTasks(){
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)){
 
-            $sql2 = "SELECT ap.*,(SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=ap.id_proceso)AS n_proceso FROM actividades_procesos ap WHERE id_actividad=".$row['id_actividad']." ORDER BY n_proceso ASC";
+            $sql2 = "SELECT ap.*,(SELECT nombre_proceso FROM procesos_catalogo WHERE id_proceso=ap.id_proceso)AS n_proceso FROM actividades_procesos ap WHERE id_actividad=".$row['id_actividad']." ORDER BY sorting ASC";
             $query2 = $this->db->prepare($sql2);
             $query2->execute();
 

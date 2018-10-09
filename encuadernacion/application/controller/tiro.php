@@ -328,6 +328,28 @@ class Tiro extends Controller{
        
     }
 
+    
+    public function adminTeam(){
+
+        session_start();
+        $sessions_model = $this->loadModel('SessionsModel');
+        $cambio_model = $this->loadModel('CambioModel');
+        $process_model = $this->loadModel('ProcessModel');
+        $login_model = $this->loadModel('LoginModel');
+
+        require 'application/views/templates/head.php';
+        require 'application/views/tiro/admin.php';
+        
+        
+       
+    }
+
+
+    public function adminPanel(){
+        
+
+    }
+
 
     public function pushMembers(){
         session_start();

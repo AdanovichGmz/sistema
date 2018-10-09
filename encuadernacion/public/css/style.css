@@ -1237,3 +1237,50 @@ box-shadow: 0 0 7px #C8E0EF;
 .no-childs input{
   display: none;
 }
+
+.team-control{
+  width: 100%;
+   border-collapse: collapse;
+}
+.team-control td, .team-control th{
+  padding: 10px;
+
+  
+}
+
+.team-control td{
+  border: 1px solid #e7e7e7;
+}
+
+.adm-worker-photo{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 -2px;
+    position: relative;
+
+}
+.adm-worker-photo img{
+  width: 100%;
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  border:1px solid #e7e7e7;
+   top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.team-control input {
+    width: 100%;
+    padding: 5px;
+    font-size: 30px;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.team-control tbody tr:nth-child(odd) {
+    background-color: #F9F9F9;
+}

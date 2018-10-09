@@ -52,7 +52,7 @@ $proceso=$_SESSION['teamSession'][$_POST['user']]['memberProcessID'];
 </div>
 <?php if ($userInfo['team_admin']=='true') { ?>
 
-<div id="" data-msession="<?=$_SESSION['teamSession'][$_POST['user']]['memberSessionID'] ?>" data-user="<?=$_POST['user'] ?>" class="m-button purple">
+<div id="admin_team" data-msession="<?=$_SESSION['teamSession'][$_POST['user']]['memberSessionID'] ?>" data-user="<?=$_POST['user'] ?>" class="m-button violet">
   <img src="<?php echo URL; ?>public/img/admin_opers.png">
 </div>
   
