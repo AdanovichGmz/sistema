@@ -447,18 +447,22 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
     }
 
     function getNumericKeys(id,name) {
-      $('#'+id).select();      
-      jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
-        if (kb == false) {
-          $("body").animate({ bottom: '+=20%' }, 200);
-            $("#key-operarios").animate({ bottom: '+=60%' }, 200);
-            kb = true;
+       $('#'+id).focus();
+      jQuery214('.input-active').removeClass('input-active');
+      jQuery214('#'+id).addClass('input-active');
+      jQuery214('#softk2').attr('data-target', 'input[name="'+name+'"]');
+        if (r == false) {
             
+            $("#teclado3").animate({ left: '+=40%' }, 200);
+            r = true;
         }
-        var bguardar;
-        
-        $('#softk').empty();     
-         $('.softkeys').softkeys({
+        else {
+            
+            
+            r = true;
+        } 
+        $('#softk2').empty();     
+         $('.softkeys2').softkeys({
                     target :  $('#'+id),
                     layout : [
                         [
@@ -472,18 +476,20 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
                             ['7','&amp;'],
                             ['8','*'],
                             ['9','('],
-                            ['0',')']
-                        ],['__','ALERT']
-                            ],
-
+                            ['0',')'],
+                           
+                            
+                            '←',
+                            'GUARDAR'
+                        ]
+                    ],
                     id:'softkeys'
                 });
-              
-                jQuery214('#hidekey').parent('.softkeys__btn').addClass('hidder'); 
-    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver').attr('id', 'saver');;            
+               
+    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver');            
 jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
-            
+           
     }
 
 jQuery214(document).on("click", "#alert", function () {
@@ -608,6 +614,11 @@ jQuery214(document).on("click", "#close-down", function () {
 $("#teclado").animate({ left: '-=60%' }, 200);     
   r=false;
 });
+jQuery214(document).on("click", "#close-down2", function () {
+$("#teclado3").animate({ left: '-=40%' }, 200);     
+  r=false;
+});
+
 
 
 

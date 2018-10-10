@@ -616,8 +616,23 @@ margin:0 -2px;
     position:fixed;
     z-index:700;
     top:0;
-    background:rgba(213, 217, 220, 0.95);
+    background: rgba(44,151,222, 0.90);
     
+}
+#teclado3{
+    width:40%;
+    height:100%;
+    left:-40%;
+    float:left; 
+    position:fixed;
+    z-index:700;
+    top:0;
+    background: rgba(44,151,222, 0.90);
+    
+}
+#teclado3 .softkeys__btn  {
+  border-color: #fff !important;
+  background: transparent!important;
 }
 .square-button-micro2 img {
     position: absolute;

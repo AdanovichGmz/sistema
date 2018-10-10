@@ -86,6 +86,16 @@ echo "</pre>"; */
     
     
 </div>
+<div id="teclado3">
+  <div class="cerrarkey">
+      <div id="close-down2" class="square-button-micro red  ">
+                          <img src="<?= URL; ?>public/img/ex.png">
+                        </div>
+    </div>
+    <div class="keycontainer">
+      <div id="softk2" style="width: 90%;margin: 0 auto; text-align: center;" class="softkeys2" data-target="input[name='buenos']"></div>
+    </div>
+</div>
 <script>
 kb=false;
 	jQuery214(document).on("click", ".off", function () {
