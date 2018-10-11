@@ -19,7 +19,7 @@ echo "</pre>"; */
   </script>
   <link rel="stylesheet" href="<?php echo URL; ?>public/js/css/softkeys-small.css">
 <script src="<?php echo URL; ?>public/js/softkeys-0.0.1.js"></script>
-  <form id="team">
+  <form id="t-tiros-form">
 <ul class="topbar">
   <li><a class="active" href="javascript:void(0)">Operarios activos en esta mesa</a></li>
   
@@ -42,15 +42,17 @@ echo "</pre>"; */
   <tbody>
     <?php foreach ($workers as $worker) { ?>
 <tr>
+<input type="hidden" name="members[]" value="<?=$worker['id'] ?>">
+
 <td style="position: relative;text-align: center;"><div class="adm-worker-photo">
   <img src="<?= URL; ?>public/<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>">
 </div></td>
 <td style="font-weight: bold;"><?= $worker['logged_in']; ?></td>
 <td><?=(isset($_SESSION['teamSession'][$worker['id']]))?  $process_model->getProcessName($_SESSION['teamSession'][$worker['id']]['memberProcessID']) :'Sin asignar' ?></td>
-<td><input type="number" id="<?=$worker['id'] ?>-pedidos" onclick="getNumericKeys(this.id,'adm-pedidos')" name="adm-pedidos[<?=$worker['id'] ?>]"></td>
-<td><input type="number" id="<?=$worker['id'] ?>-buenos" onclick="getNumericKeys(this.id,'adm-buenos')" name="adm-buenos[<?=$worker['id'] ?>]"></td>
-<td><input type="number" id="<?=$worker['id'] ?>-recibidos" onclick="getNumericKeys(this.id,'adm-recibidos')" name="adm-recibidos[<?=$worker['id'] ?>]"></td>
-<td><input type="number" id="<?=$worker['id'] ?>-defectos" onclick="getNumericKeys(this.id,'adm-defectos')" name="adm-defectos[<?=$worker['id'] ?>]"></td>
+<td><input type="number" id="<?=$worker['id'] ?>-pedidos" onclick="getNumericKeys(this.id,'adm-pedidos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>')" name="adm-pedidos[<?=$worker['id'] ?>]"></td>
+<td><input type="number" id="<?=$worker['id'] ?>-buenos" onclick="getNumericKeys(this.id,'adm-buenos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>')" name="adm-buenos[<?=$worker['id'] ?>]"></td>
+<td><input type="number" id="<?=$worker['id'] ?>-recibidos" onclick="getNumericKeys(this.id,'adm-recibidos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>')" name="adm-recibidos[<?=$worker['id'] ?>]"></td>
+<td><input type="number" id="<?=$worker['id'] ?>-defectos" onclick="getNumericKeys(this.id,'adm-defectos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>')" name="adm-defectos[<?=$worker['id'] ?>]"></td>
 
 </tr>
 
@@ -91,6 +93,20 @@ echo "</pre>"; */
       <div id="close-down2" class="square-button-micro red  ">
                           <img src="<?= URL; ?>public/img/ex.png">
                         </div>
+    </div>
+
+    <div class="user-selected">
+    <table>
+      <tr>
+        <td >
+          <div id="selected-photo" class="adm-worker-photo">
+  
+      </div>
+        </td>
+        <td id="selected-name"></td>
+      </tr>
+    </table>
+      
     </div>
     <div class="keycontainer">
       <div id="softk2" style="width: 90%;margin: 0 auto; text-align: center;" class="softkeys2" data-target="input[name='buenos']"></div>

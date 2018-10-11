@@ -1299,3 +1299,27 @@ box-shadow: 0 0 7px #C8E0EF;
 .team-control tbody tr:nth-child(odd) {
     background-color: #F9F9F9;
 }
+
+.user-selected{
+  width: 100%;
+  padding: 10px;
+  border-top: dashed 1px #fff;
+  border-bottom: dashed 1px #fff;
+  margin-bottom: 20px;
+}
+.user-selected table{
+  width: 100%;
+  text-align: center;
+}
+.user-selected td{
+  padding: 3px;
+}
+.user-selected td:last-child{
+  text-align: left;
+  color: #fff;
+}
+
+.user-selected .adm-worker-photo{
+  width: 60px!important;
+  height: 60px!important;
+}

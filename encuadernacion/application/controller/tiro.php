@@ -113,6 +113,56 @@ class Tiro extends Controller{
         
     }
 
+    public function saveTeamTiros(){
+        session_start();
+        $cambio_model = $this->loadModel('CambioModel');
+        $sessions_model = $this->loadModel('SessionsModel');
+        $process_model=$this->loadModel('ProcessModel');
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+
+        $pedido=$_POST['adm-pedidos'];
+            $buenos=$_POST['adm-buenos'];
+            $ajuste=0;
+            $recibidos=$_POST['adm-recibidos'];
+            $defectos=$_POST['adm-defectos'];
+
+        foreach ($_POST['members'] as $member) {
+            
+
+            $miniPost=array();
+            $miniPost['tiempo-tiraje']='07:22:33';
+            $miniPost['user']=$member;
+            $miniPost['tiro-actual']=$_SESSION['teamSession'][$member]['memberTiroActual'];
+            $miniPost['pedido']=$pedido[$member];
+            $miniPost['buenos']=$buenos[$member];
+            $miniPost['ajuste']=$ajuste;
+            $miniPost['recibidos']=$recibidos[$member];
+            $miniPost['merma']=$buenos[$member]-$pedido[$member];
+            $miniPost['defectos']=$defectos[$member];
+            $miniPost['proceso']=$_SESSION['teamSession'][$member]['memberProcessID'];
+
+            
+        $memberSessionID=$_SESSION['teamSession'][$member]['memberSessionID'];
+        $memberProcessID=$_SESSION['teamSession'][$member]['memberProcessID'];
+
+        $completed=$cambio_model->completingTiro($miniPost,$process_model);
+        if ($completed){
+            $sessions_model->putMemberOnAjuste($memberSessionID);
+          
+            echo "todo bien para el ".$member;
+             
+        }else{
+            echo "<p style='padding:30px;color:red;'>No se pudo guardar la informacion por favor hablale a los de sistemas</p>";
+        }
+           
+
+        }
+
+
+    }
+
     public function startTeamAlert(){
         session_start();
         $sessions_model = $this->loadModel('SessionsModel');

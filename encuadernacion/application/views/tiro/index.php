@@ -446,7 +446,7 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             
     }
 
-    function getNumericKeys(id,name) {
+    function getNumericKeys(id,name,photo,user) {
        $('#'+id).focus();
       jQuery214('.input-active').removeClass('input-active');
       jQuery214('#'+id).addClass('input-active');
@@ -456,17 +456,17 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             $("#teclado3").animate({ left: '+=40%' }, 200);
             r = true;
         }
-        else {
-            
+        else {            
             
             r = true;
         } 
-        $('#softk2').empty();     
+        $('#softk2').empty(); 
+         $('#selected-photo').html('<img src="<?=URL?>public/'+photo+'">');
+         $('#selected-name').html(user);     
          $('.softkeys2').softkeys({
                     target :  $('#'+id),
                     layout : [
-                        [
-                            
+                        [                            
                             ['1','!'],
                             ['2','@'],
                             ['3','#'],
@@ -476,11 +476,8 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
                             ['7','&amp;'],
                             ['8','*'],
                             ['9','('],
-                            ['0',')'],
-                           
-                            
-                            '←',
-                            'GUARDAR'
+                            ['0',')'],                                             
+                            '←'
                         ]
                     ],
                     id:'softkeys'
@@ -516,6 +513,29 @@ jQuery214(document).on("click", "#alert", function () {
 
           });
 });
+
+jQuery214(document).on("click", "#save-team", function () {
+    //var user=jQuery214(this).data('user');
+    //var member_session=jQuery214(this).data('msession');
+    //$('#member-'+user+' .member-content').removeClass('tiro');
+    //var stopFunction='stop'+user;
+    //var startFunction='start'+user;
+    //eval(stopFunction + "()");    
+
+      $.ajax({                       
+          type:"POST",
+          url:"<?php echo URL; ?>tiro/saveTeamTiros/",   
+          data:jQuery214('#t-tiros-form').serialize(), 
+          success:function(data){
+          console.log(data);          
+          location.reload();
+           
+          }
+
+          });
+});
+
+
 
 function getDefectos(){
   

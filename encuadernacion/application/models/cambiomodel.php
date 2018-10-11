@@ -158,7 +158,7 @@ public function newMemberCambio($userID,$memberSessionID,$memberProcessID){
         $standard=$model->getElementStandard($proceso,$producto);
         
         
-        $log= $this->loadController('logs');
+        //$log= $this->loadController('logs');
 
         $tiraje_estandar=($seconds*$standard['piezas_por_hora'])/3600;
         $prodEsperada=round($tiraje_estandar); 
