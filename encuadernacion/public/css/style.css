@@ -1305,7 +1305,7 @@ box-shadow: 0 0 7px #C8E0EF;
   padding: 10px;
   border-top: dashed 1px #fff;
   border-bottom: dashed 1px #fff;
-  margin-bottom: 20px;
+  
 }
 .user-selected table{
   width: 100%;
@@ -1317,9 +1317,19 @@ box-shadow: 0 0 7px #C8E0EF;
 .user-selected td:last-child{
   text-align: left;
   color: #fff;
+  font-size: 30px;
 }
 
 .user-selected .adm-worker-photo{
   width: 60px!important;
   height: 60px!important;
+}
+
+#selected-concept{
+  padding: 10px;
+  border-bottom: dashed 1px #fff;
+  margin-bottom: 20px;
+  color: #2A3F54;
+  font-size: 30px;
+  text-align: center;
 }

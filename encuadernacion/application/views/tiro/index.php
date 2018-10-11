@@ -398,8 +398,7 @@ function getKeys(id,name) {
         if (kb == false) {
           $("body").animate({ bottom: '+=20%' }, 200);
             $("#key-operarios").animate({ bottom: '+=60%' }, 200);
-            kb = true;
-            
+            kb = true;            
         }
         var bguardar;
         
@@ -446,7 +445,7 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             
     }
 
-    function getNumericKeys(id,name,photo,user) {
+    function getNumericKeys(id,name,photo,user,concept) {
        $('#'+id).focus();
       jQuery214('.input-active').removeClass('input-active');
       jQuery214('#'+id).addClass('input-active');
@@ -462,7 +461,8 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
         } 
         $('#softk2').empty(); 
          $('#selected-photo').html('<img src="<?=URL?>public/'+photo+'">');
-         $('#selected-name').html(user);     
+         $('#selected-name').html(user);
+         $('#selected-concept').html(concept);      
          $('.softkeys2').softkeys({
                     target :  $('#'+id),
                     layout : [

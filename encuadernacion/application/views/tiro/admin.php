@@ -33,9 +33,9 @@ echo "</pre>"; */
 
     <th colspan="2" width="20%">Operario</th>
     <th width="20%">Proceso</th>
-    <th width="15%">Pedidos</th>
+    <th width="15%">Cantidad de Pedido</th>
     <th width="15%">Buenos</th>
-    <th width="15%">Recibidos</th>
+    <th width="15%">Cantidad Recibida</th>
     <th width="15%">Defectos</th>
     
   </thead>
@@ -49,10 +49,10 @@ echo "</pre>"; */
 </div></td>
 <td style="font-weight: bold;"><?= $worker['logged_in']; ?></td>
 <td><?=(isset($_SESSION['teamSession'][$worker['id']]))?  $process_model->getProcessName($_SESSION['teamSession'][$worker['id']]['memberProcessID']) :'Sin asignar' ?></td>
-<td><input type="number" id="<?=$worker['id'] ?>-pedidos" onclick="getNumericKeys(this.id,'adm-pedidos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>')" name="adm-pedidos[<?=$worker['id'] ?>]"></td>
-<td><input type="number" id="<?=$worker['id'] ?>-buenos" onclick="getNumericKeys(this.id,'adm-buenos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>')" name="adm-buenos[<?=$worker['id'] ?>]"></td>
-<td><input type="number" id="<?=$worker['id'] ?>-recibidos" onclick="getNumericKeys(this.id,'adm-recibidos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>')" name="adm-recibidos[<?=$worker['id'] ?>]"></td>
-<td><input type="number" id="<?=$worker['id'] ?>-defectos" onclick="getNumericKeys(this.id,'adm-defectos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>')" name="adm-defectos[<?=$worker['id'] ?>]"></td>
+<td><input type="number" id="<?=$worker['id'] ?>-pedidos" onclick="getNumericKeys(this.id,'adm-pedidos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>','Cantidad de Pedido')" name="adm-pedidos[<?=$worker['id'] ?>]"></td>
+<td><input type="number" id="<?=$worker['id'] ?>-buenos" onclick="getNumericKeys(this.id,'adm-buenos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>','Buenos')" name="adm-buenos[<?=$worker['id'] ?>]"></td>
+<td><input type="number" id="<?=$worker['id'] ?>-recibidos" onclick="getNumericKeys(this.id,'adm-recibidos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>','Cantidad Recibida')" name="adm-recibidos[<?=$worker['id'] ?>]"></td>
+<td><input type="number" id="<?=$worker['id'] ?>-defectos" onclick="getNumericKeys(this.id,'adm-defectos','<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>','<?= $worker['logged_in']; ?>','Defectos')" name="adm-defectos[<?=$worker['id'] ?>]"></td>
 
 </tr>
 
@@ -106,6 +106,9 @@ echo "</pre>"; */
         <td id="selected-name"></td>
       </tr>
     </table>
+      
+    </div>
+    <div id="selected-concept">
       
     </div>
     <div class="keycontainer">
