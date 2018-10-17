@@ -23,7 +23,7 @@ echo "</pre>"; */
 <ul class="topbar">
   <li><a class="active" href="javascript:void(0)">Elige los operarios:</a></li>
   
-  <li style="float:right"><div id="save-team">GUARDAR<div> </li>
+  <li style="float:right"><div id="add-new-members">GUARDAR<div> </li>
   <li style="float:right"><div id="return">VOLVER<div> </li>
 </ul>
 
@@ -116,7 +116,7 @@ $('.backdrop').css('display', 'block');
   
 
 });
-jQuery214(document).on("click", "#save-team", function () {
+jQuery214(document).on("click", "#add-new-members", function () {
 	
 		var choosen=jQuery214('.choosen').length;
 		if (choosen==0) {
@@ -130,14 +130,14 @@ jQuery214(document).on("click", "#save-team", function () {
           url:"<?php echo URL; ?>tiro/pushMembers/",   
           data:jQuery214('#team').serialize(), 
           success:function(data){
-          
+          console.log(data);
           // $('.full-box').html(data);
           //$('.members-container').append(data);
           location.reload();
           //closeBigBox();
            //$('.full-box').animate({'opacity':'1.00'}, 300, 'linear');
            //$('.full-box').css('display', 'block');	
-         
+         //console.log(data);
 
            
           }

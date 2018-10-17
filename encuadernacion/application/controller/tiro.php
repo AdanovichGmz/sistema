@@ -84,7 +84,7 @@ class Tiro extends Controller{
               // require 'application/views/tiro/userInterface.php';
                 $sessions_model->updateMemberSession($sessionId,'proceso',$_POST['option']);
 
-                print_r($_SESSION);
+                //print_r($_SESSION);
             }else{
               echo "<p style='padding:30px;color:red;'>No se pudo guardar la informacion por favor hablale a los de sistemas</p>";  }
              
@@ -99,7 +99,7 @@ class Tiro extends Controller{
               //require 'application/views/tiro/userInterface.php';
                 
 
-                print_r($_SESSION);
+                //print_r($_SESSION);
             }else{
                echo "<p style='color:#fff;'>Ocurrio un error por favor hablale a los de sistemas</p>";
             }
@@ -156,6 +156,8 @@ class Tiro extends Controller{
         }else{
             echo "<p style='padding:30px;color:red;'>No se pudo guardar la informacion por favor hablale a los de sistemas</p>";
         }
+
+        
            
 
         }
@@ -409,7 +411,7 @@ class Tiro extends Controller{
         $login_model = $this->loadModel('LoginModel');
         $roles=$_POST['leader'];
 
-        
+        print_r($_POST);
         
         
         foreach ($_POST['workers'] as $worker) {
@@ -426,9 +428,9 @@ class Tiro extends Controller{
             $restart=$cambio_model->newMemberCambio($userID,$sessionId,$memberProcessID);
             
             if ($restart) {
-                $_SESSION['teamSession'][$_POST['user']]['memberProcessID']=$processID;
+                $_SESSION['teamSession'][$worker]['memberProcessID']=$processID;
                 $sessions_model->putMemberOnTiro($sessionId,$worker);
-               require 'application/views/tiro/userInterface.php';
+               //require 'application/views/tiro/userInterface.php';
             }else{
               echo "<p style='padding:30px;color:red;'>No se pudo guardar la informacion por favor hablale a los de sistemas</p>";  }
              

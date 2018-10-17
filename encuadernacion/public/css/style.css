@@ -616,7 +616,7 @@ margin:0 -2px;
     position:fixed;
     z-index:700;
     top:0;
-    background: rgba(44,151,222, 0.90);
+    background: rgba(213, 217, 220, 0.95);
     
 }
 #teclado3{
@@ -1332,4 +1332,17 @@ box-shadow: 0 0 7px #C8E0EF;
   color: #2A3F54;
   font-size: 30px;
   text-align: center;
+}
+
+#merma{
+  background: #ededed;
+}
+
+#add-new-members{
+    padding: 10px;
+    background: #1D89E4;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 20px;
+    margin: 8px;
 }

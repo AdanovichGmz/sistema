@@ -314,13 +314,10 @@ jQuery214(document).on("click", ".normal", function () {
                                       $('#member-'+user).removeClass('disabled');
                                       $('#member-'+user+' .member-content').addClass('tiro');
                                       $('.op-close-modal').click();
-                                      $('#member-'+user+' .timer-band').html(pro_name);
-                                      
-                                      //$('.box').html(data);
-
-                                      
-                                      var functionName='start'+user;
-                                    eval(functionName + "()");
+                                      $('#member-'+user+' .timer-band').html(pro_name);                                      
+                                      //$('.box').html(data);                                      
+                                     // var functionName='start'+user;
+                                    //eval(functionName + "()");
                                     
                                     }        
     });                                      

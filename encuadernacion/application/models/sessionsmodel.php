@@ -122,6 +122,32 @@ class SessionsModel
 
 
     }
+
+    public function getMemberSessionData($request,$idUser){
+        
+        $operador=$_SESSION['idUser'];
+        $sesion=$_SESSION['sessionID'];
+        
+        $today=TODAY;
+        $time=date("H:i:s", time());
+
+        $sql = "INSERT INTO `sesion_equipo` (`id_sesion_equipo`, `miembro`, `proceso`, `actividad_actual`, `active`, `inicio_tiro`, `tiempo_alert`, `tiempo_comida`, `id_sesion`,`fecha`) VALUES (NULL, $userId, $process, '$section', 'true', '$time', NULL, NULL, $sesion,'$today')";
+
+        $query = $this->db->prepare($sql);
+        $inserted=$query->execute();
+        
+
+        if ($inserted) {
+          $_SESSION['teamSession'][$userId]['memberSessionID']=$this->db->lastInsertId();
+          $_SESSION['teamSession'][$userId]['memberProcessID']=$process;
+
+          return true;
+        }else{
+          return false;
+            }
+  
+  }
+
     public function newMemberSession($userId,$process,$section){
         
         $operador=$_SESSION['idUser'];

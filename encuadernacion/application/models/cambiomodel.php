@@ -171,6 +171,20 @@ public function newMemberCambio($userID,$memberSessionID,$memberProcessID){
              
         } 
 
+        //$log->lwrite('proceso: '.$proceso,$today.'_ESTANDARES_'.$iduser);
+        //$log->lwrite('producto: '.$producto,$today.'_ESTANDARES_'.$iduser);
+
+        
+        if (is_array($standard)) {
+           // $log->lwrite('standard: '.implode(' | ', $standard),$today.'_ESTANDARES_'.$iduser);
+        }else{
+
+            //$log->lwrite('standard: '.$standard,$today.'_ESTANDARES_'.$iduser);
+        }
+
+
+        //$log->lclose();
+
         $sql="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$recibidos, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma, entregados=$buenos, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$today', horafin_tiraje='$time',id_user=$iduser,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$tiraje";
 
         
@@ -181,8 +195,8 @@ public function newMemberCambio($userID,$memberSessionID,$memberProcessID){
         if ($completed) {
           return true;
         }else{
-        $log->lwrite( $sql,$today.'_ERROR_'.$iduser);
-        $log->lclose();
+        //$log->lwrite( $sql,$today.'_ERROR_'.$iduser);
+        //$log->lclose();
           return false;
             }
   
