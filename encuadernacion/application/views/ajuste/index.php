@@ -35,6 +35,9 @@ $actividad=$sessions_model->getSessionStatus();
 <div class="big-lightbox">
   
 </div>
+<div class="box">
+  
+</div>
 <div class="backdrop"></div>
 <div class="backdrop-change"></div>
 
@@ -278,4 +281,20 @@ $.ajax({
           });
 
 });
+
+jQuery214(document).on("click", ".process", function () {
+ 
+   
+  $('.p-selected').removeClass('p-selected');       
+  $(this).addClass('p-selected');
+  var target=$(this).data('target');
+  $('.process').hide();
+  $('.no-childs').hide();
+  
+  $('#'+target).show();
+      
+    
+
+});
+
 </script>

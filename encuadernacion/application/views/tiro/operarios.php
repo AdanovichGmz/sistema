@@ -137,9 +137,7 @@ jQuery214(document).on("click", "#add-new-members", function () {
           //closeBigBox();
            //$('.full-box').animate({'opacity':'1.00'}, 300, 'linear');
            //$('.full-box').css('display', 'block');	
-         //console.log(data);
-
-           
+         //console.log(data);           
           }
 
           });

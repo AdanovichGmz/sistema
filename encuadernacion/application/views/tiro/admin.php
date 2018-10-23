@@ -43,7 +43,7 @@ echo "</pre>"; */
     <?php foreach ($workers as $worker) { ?>
 <tr>
 <input type="hidden" name="members[]" value="<?=$worker['id'] ?>">
-
+<input type="hidden" name="members[<?=$worker['id'] ?>]" value="<?=$worker['id'] ?>">
 <td style="position: relative;text-align: center;"><div class="adm-worker-photo">
   <img src="<?= URL; ?>public/<?=((!empty($worker['foto']))? $worker['foto'] :'images/default.jpg')?>">
 </div></td>

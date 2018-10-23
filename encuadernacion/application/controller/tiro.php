@@ -96,9 +96,7 @@ class Tiro extends Controller{
             $memberProcessID=$_SESSION['teamSession'][$_POST['user']]['memberProcessID'];
             $tiro_inserted=$cambio_model->newMemberCambio($_POST['user'],$memberSessionID,$memberProcessID);
             if ($tiro_inserted) {
-              //require 'application/views/tiro/userInterface.php';
-                
-
+              //require 'application/views/tiro/userInterface.php';  
                 //print_r($_SESSION);
             }else{
                echo "<p style='color:#fff;'>Ocurrio un error por favor hablale a los de sistemas</p>";
