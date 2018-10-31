@@ -69,6 +69,11 @@ class Tiro extends Controller{
          $login_model = $this->loadModel('LoginModel');
          $ete_model = $this->loadModel('EteModel');
         
+        if ($_POST['is_random']=='true') {
+              $_SESSION['randomTasks'][$_POST['user']]=$_POST['custom-task'];
+            }else{
+                unset($_SESSION['randomTasks'][$_POST['user']]);
+            }
 
 
         if ($sessions_model->checkSessionByUser($_POST['user'])) {

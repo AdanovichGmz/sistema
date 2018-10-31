@@ -181,11 +181,13 @@ public function newMemberCambio($userID,$memberSessionID,$memberProcessID){
 
             //$log->lwrite('standard: '.$standard,$today.'_ESTANDARES_'.$iduser);
         }
+$random=(isset($_SESSION['randomTasks'][$iduser]))? "elemento_virtual='".$_SESSION['randomTasks'][$iduser]."', ":'';
+        
 
 
         //$log->lclose();
 
-        $sql="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$recibidos, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma, entregados=$buenos, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$today', horafin_tiraje='$time',id_user=$iduser,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$tiraje";
+        $sql="UPDATE tiraje set producto='$producto', pedido='$pedido', cantidad=$recibidos, buenos=$buenos, defectos=$defectos, merma=$merma,piezas_ajuste=$ajuste, merma_entregada=$merma,$random entregados=$buenos, tiempoTiraje='$tiempoTiraje', fechadeldia_tiraje='$today', horafin_tiraje='$time',id_user=$iduser,produccion_esperada=$prodEsperada,desempenio=$tiraje_desemp WHERE idtiraje=$tiraje";
 
         
 

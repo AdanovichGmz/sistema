@@ -25,7 +25,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 <div class="options">
 <form id="task-form">
 <input type="hidden" id="task-user" name="user" value="<?=$_POST['user'] ?>">
-
+<input type="hidden" name="is-random" value="false">
 
 <?php 
 	
@@ -66,6 +66,16 @@ foreach ($task['childs'] as $key2 =>$child){ ?>
 	
 }
  ?>
+
+<div  data-user="<?=$_POST['user'] ?>" data-target=""   class=" other">
+ 	<span>Otro</span>
+ </div>
+</form>
+<form id="other-form" method="post">
+	<input type="hidden" name="is_random" value="true">
+	<input type="text" id="custom-task" name="custom-task" class="odt-input">
+	<input type="hidden"  name="option"  value="98">
+	<input type="hidden" id="custom-task-user" name="user" value="<?=$_POST['user'] ?>">
 </form>
 </div>
 </div>

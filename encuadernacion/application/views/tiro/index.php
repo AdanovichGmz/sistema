@@ -151,7 +151,7 @@ foreach ($members as $key => $member){
   </div>  
 </div>
 <div class="timer-band">
-  <?=(isset($_SESSION['teamSession'][$member['id']]))?  $process_model->getProcessName($_SESSION['teamSession'][$member['id']]['memberProcessID']) :'Sin asignar' ?>
+  <?=(isset($_SESSION['teamSession'][$member['id']]))?  ((isset($_SESSION['randomTasks'][$member['id']]))? ucwords($_SESSION['randomTasks'][$member['id']]) : $process_model->getProcessName($_SESSION['teamSession'][$member['id']]['memberProcessID'])) :'Sin asignar' ?>
 </div>
 <div class="member-body">
  <div id="<?=$member['id']?>" style="top:5px;width: 98%;left: 1px; height: 120px; position:absolute;"></div>  
@@ -307,14 +307,18 @@ jQuery214(document).on("click", ".normal", function () {
           $.ajax({
                                     url: "<?php echo URL; ?>tiro/setProcess/",
                                     type: "POST",
-                                    data:{option:option,choose:'process',station:station,station_name:station_name,pro_name:pro_name,user:user},
+                                    data:{option:option,is_random:'false',choose:'process',station:station,station_name:station_name,pro_name:pro_name,user:user},
                                     
                                     success: function(data){
                                       console.log(data);
+
+                                      location.reload();
+                                      /*
                                       $('#member-'+user).removeClass('disabled');
                                       $('#member-'+user+' .member-content').addClass('tiro');
                                       $('.op-close-modal').click();
-                                      $('#member-'+user+' .timer-band').html(pro_name);                                      
+                                      $('#member-'+user+' .timer-band').html(pro_name);
+                                      */                                      
                                       //$('.box').html(data);                                      
                                      // var functionName='start'+user;
                                     //eval(functionName + "()");
@@ -324,6 +328,30 @@ jQuery214(document).on("click", ".normal", function () {
                                              
     });
 
+jQuery214(document).on("click", "#saver", function (){
+  
+  var option=$(this).data('option');     
+         
+         var pro_name=$('#custom-task').val();
+         var user=$('#custom-task-user').val();
+                                                             
+          $.ajax({
+                                    url: "<?php echo URL; ?>tiro/setProcess/",
+                                    type: "POST",
+                                    data:jQuery214('#other-form').serialize(),
+                                    
+                                    success: function(data){
+                                      location.reload();                                      
+                                      //$('.box').html(data);                                      
+                                     // var functionName='start'+user;
+                                    //eval(functionName + "()");
+                                    
+                                    }        
+    }); 
+
+
+});
+
 jQuery214(document).on("click", ".process", function () {
  
    
@@ -332,12 +360,75 @@ jQuery214(document).on("click", ".process", function () {
   var target=$(this).data('target');
   $('.process').hide();
   $('.no-childs').hide();
+  $('.other').hide();
   
   $('#'+target).show();
       
     
 
 });
+
+jQuery214(document).on("click", ".other", function (){
+    
+    $('#task-form').hide();
+     $('#other-form').show();
+    getKeysCustom('custom-task','custom-task');
+
+
+});
+
+function getKeysCustom(id,name) {
+      $('#'+id).select();      
+      jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
+        if (kb == false) {
+            $("#key-operarios").animate({ bottom: '+=60%' }, 200);
+            kb = true;
+            
+        }
+        var bguardar;
+        
+        $('#softk').empty();     
+         $('.softkeys').softkeys({
+                    target :  $('#'+id),
+                    layout : [
+                        [
+                            
+                            ['1','!'],
+                            ['2','@'],
+                            ['3','#'],
+                            ['4','$'],
+                            ['5','%'],
+                            ['6','^'],
+                            ['7','&amp;'],
+                            ['8','*'],
+                            ['9','('],
+                            ['0',')']
+                        ],
+                    [
+                            'q','w','e','r','t','y','u','i','o','p'
+                            
+                        ],
+                        [
+                            
+                            'a','s','d','f','g','h','j','k','l','ñ'
+                            
+                            
+                            
+                        ],[
+                            
+                            'z','x','c','v','b','n','m','←'],
+                            ['__','GUARDAR']
+                            ],
+
+                    id:'softkeys'
+                });
+              
+                jQuery214('#hidekey').parent('.softkeys__btn').addClass('hidder'); 
+    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver').attr('id', 'saver');;            
+jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
+            jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
+            
+    }
 
 
 

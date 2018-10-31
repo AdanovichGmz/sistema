@@ -10,7 +10,7 @@ $proceso=$_SESSION['teamSession'][$_POST['user']]['memberProcessID'];
 <div class="tiro-panel">
 <ul class="topbar">
 <li style="font-weight: bold;"><a class="active" href="javascript:void(0)"><?=$userInfo['logged_in']; ?></a></li>
-<li ><a class="active" href="javascript:void(0)">Proceso: <span><?= $process_model->getProcessName($_SESSION['teamSession'][$_POST['user']]['memberProcessID']) ?></span></a></li>
+<li ><a class="active" href="javascript:void(0)">Proceso: <span><?=(isset($_SESSION['randomTasks'][$_POST['user']]))? $_SESSION['randomTasks'][$_POST['user']] : $process_model->getProcessName($_SESSION['teamSession'][$_POST['user']]['memberProcessID']) ?></span></a></li>
   <li><a  href="javascript:void(0)">Produccion: <span><?=$ete_model->getBuenos($_POST['user'],$_SESSION['sessionID']); ?></span></a></li>
   <li><a href="javascript:void(0)">Merma: <span><?=$ete_model->getMerma($_POST['user'],$_SESSION['sessionID']); ?></span> </a></li>
   <li style="float:right" ><div class="close-modal"></div></li>

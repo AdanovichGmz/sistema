@@ -1346,3 +1346,36 @@ box-shadow: 0 0 7px #C8E0EF;
     font-size: 20px;
     margin: 8px;
 }
+
+.other{
+
+  width: 150px;
+    height: 150px;
+    text-align: center;
+    
+    position: relative;
+    border-radius: 4px;
+    margin: 5px;
+    display: inline-block;
+    font-size: 20px;
+    border: solid 1px #fff;
+    vertical-align: top;
+ 
+  color: #fff;
+  
+  background:rgba(255,255,255, 0.20);
+  cursor: pointer;
+ 
+}
+
+.other span{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#other-form{
+  height: 400px;
+  display: none;
+}

@@ -4,8 +4,8 @@ $workers=$login_model->getAllowedMembers();
 /*
 echo "<pre>";
 print_r($_SESSION);
-echo "</pre>"; */
-
+echo "</pre>"; 
+*/
 ?>
 <style>
 	.active{
@@ -250,12 +250,59 @@ jQuery214(document).on("click", ".process", function () {
   $(this).addClass('p-selected');
   var target=$(this).data('target');
   $('.process').hide();
+  $('.other').hide();
   $('.no-childs').hide();
   $('#'+target).show();
       
     
 
 });
+jQuery214(document).on("click", ".other", function (){
+    
+    $('#task-form').hide();
+     $('#other-form').show();
+    getKeysCustom('custom-task','custom-task');
+
+
+});
+
+jQuery214(document).on("click", "#saver", function (){
+  console.log('hola perrote');
+
+  var name_p=jQuery214(this).val(); 
+  var user=$('#task-user').val();
+
+  
+
+          $.ajax({  
+                      
+          type:"POST",
+          url:"<?php echo URL; ?>inicio/prepareTasks/",   
+          data:jQuery214('#other-form').serialize(), 
+          dataType:"json",
+          success:function(data){
+            console.log(data); 
+            console.log('regreso'+data.response);
+          if (data.response=='taken') {
+            alert('a este usuario lo acaban de agarrar en el otro equipo');
+            closeModal();
+            jQuery214('#worker-'+user).remove();
+
+          }else if(data.response=='success'){
+            jQuery214('#worker-'+user).addClass('choosen');
+            jQuery214('#worker-'+user+' .tasks').html(name_p);
+            jQuery214('#worker-'+user+' .worker-click').removeClass('off').addClass('on');
+            var $checkbox = jQuery214('#worker-'+user).find('input:checkbox');
+    $checkbox.prop('checked', !$checkbox.prop('checked'));
+            closeModal();
+          }
+          //$('#task-'+user).append(task);
+          }
+          });
+
+});
+
+
 
 jQuery214(document).on("click", ".no-childs", function () {
  
@@ -359,6 +406,58 @@ jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
             
     }
 
+function getKeysCustom(id,name) {
+      $('#'+id).select();      
+      jQuery214('#softk').attr('data-target', 'input[name="'+name+'"]');
+        if (kb == false) {
+            $("#key-operarios").animate({ bottom: '+=60%' }, 200);
+            kb = true;
+            
+        }
+        var bguardar;
+        
+        $('#softk').empty();     
+         $('.softkeys').softkeys({
+                    target :  $('#'+id),
+                    layout : [
+                        [
+                            
+                            ['1','!'],
+                            ['2','@'],
+                            ['3','#'],
+                            ['4','$'],
+                            ['5','%'],
+                            ['6','^'],
+                            ['7','&amp;'],
+                            ['8','*'],
+                            ['9','('],
+                            ['0',')']
+                        ],
+                    [
+                            'q','w','e','r','t','y','u','i','o','p'
+                            
+                        ],
+                        [
+                            
+                            'a','s','d','f','g','h','j','k','l','ñ'
+                            
+                            
+                            
+                        ],[
+                            
+                            'z','x','c','v','b','n','m','←'],
+                            ['__','GUARDAR']
+                            ],
+
+                    id:'softkeys'
+                });
+              
+                jQuery214('#hidekey').parent('.softkeys__btn').addClass('hidder'); 
+    jQuery214('#savekey').parent('.softkeys__btn').addClass('saver').attr('id', 'saver');;            
+jQuery214('#borrar-letras').parent('.softkeys__btn').addClass('large');
+            jQuery214('#borrar-softkeys').parent('.softkeys__btn').addClass('large');
+            
+    }
 
 
   function closeKeyboard(){

@@ -25,7 +25,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 <div class="options">
 <form id="task-form">
 <input type="hidden" id="task-user" name="user" value="<?=$_POST['user'] ?>">
-
+<input type="hidden" name="is-random" value="false">
 
 <?php 
 	
@@ -38,7 +38,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 <?php if ($task['has_child']=='true') { ?>
 <div  data-user="<?=$_POST['user'] ?>" data-target="process-task-<?=$key1 ?>"   class="process ">
 <?php }else{ ?> 
-<div class=" normal no-childs picable" data-option="<?=$task['id_proceso'] ?>" data-user="<?=$_POST['user'] ?>" data-sname="<?=$key1 ?>" data-pname="<?=$task['name'] ?>" data-station="28">
+<div class="normal no-childs picable" data-option="<?=$task['id_proceso'] ?>" data-user="<?=$_POST['user'] ?>" data-sname="<?=$key1 ?>" data-pname="<?=$task['name'] ?>" data-station="28">
 <input type="checkbox" name="tasks[]" value="<?=$task['id_proceso'] ?>">
 <?php } ?> 
 
@@ -66,6 +66,15 @@ foreach ($task['childs'] as $child){ ?>
 	
 }
  ?>
+ <div  data-user="<?=$_POST['user'] ?>" data-target=""   class=" other">
+ 	<span>Otro</span>
+ </div>
+</form>
+<form id="other-form" method="post">
+	<input type="hidden" name="is-random" value="true">
+	<input type="text" id="custom-task" name="custom-task" class="odt-input">
+	<input type="hidden"  name="tasks[]" class="odt-input" value="98">
+	<input type="hidden" id="task-user" name="user" value="<?=$_POST['user'] ?>">
 </form>
 </div>
 </div>
