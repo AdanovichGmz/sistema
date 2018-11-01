@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= URL; ?>public/css/softkeys-small.css">
-    <link href="<?= URL; ?>public/css/style.css" rel="stylesheet">
+    <link href="<?= URL; ?>public/css/style.css?v=2" rel="stylesheet">
     
 <script src="<?php echo URL; ?>public/js/libs/jquery.min.js"></script>
 <script src="<?php echo URL; ?>public/js/libs/2.1.4.jquery.min.js"></script>
