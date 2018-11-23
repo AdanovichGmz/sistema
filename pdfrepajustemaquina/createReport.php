@@ -186,7 +186,7 @@ ob_start();
 
 <table id="head">
 <tr class="head-header">
-  <td rowspan="2" style="width: 120px;"><img src="../img/logoDerecha.png"></td>
+  <td rowspan="2" style="width: 120px;"><img src="../images/logoDerecha.png"></td>
   <td rowspan="2">REPORTE DIARIO ETE</td>
   <td>OPERADOR</td>
   <td>MAQUINA</td>
