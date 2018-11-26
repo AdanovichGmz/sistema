@@ -323,8 +323,6 @@ $('#assign-tasks').click();
 
 });
 
-/*
-
 jQuery214(document).on("click", ".elem-process", function () {
  
    
@@ -340,7 +338,7 @@ $('#assign-tasks').show();
       
     
 
-}); */
+});
 
 jQuery214(document).on("click", ".worker-info", function () {
 
