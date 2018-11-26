@@ -177,7 +177,7 @@ if(isset($_SESSION['logged_in'])){
     
     public function prepareTasks(){
         session_start();
-        error_reporting(0);
+        //error_reporting(0);
         $sessions_model = $this->loadModel('SessionsModel');
         $login_model = $this->loadModel('LoginModel');
         $process_model=$this->loadModel('ProcessModel');
@@ -186,7 +186,8 @@ if(isset($_SESSION['logged_in'])){
             
         $taken=$sessions_model->userIsTaken($_POST['user']);
         $result=array();
-        $assigned=array(); 
+        $assigned=array();
+        print_r($_POST);
         if (!$taken) {
 
             foreach ($_POST['tasks'] as $task) {

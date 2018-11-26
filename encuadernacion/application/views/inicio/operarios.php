@@ -193,7 +193,7 @@ jQuery214(document).on("click", ".picable", function () {
           type:"POST",
           url:"<?php echo URL; ?>inicio/prepareTasks/",   
           data:jQuery214('#task-form').serialize(), 
-          dataType:"json",
+          //dataType:"json",
           success:function(data){
           	console.log(data); 
           	console.log('regreso'+data.response);
