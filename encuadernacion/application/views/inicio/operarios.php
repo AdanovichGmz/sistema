@@ -279,7 +279,7 @@ jQuery214(document).on("click", "#saver", function (){
           type:"POST",
           url:"<?php echo URL; ?>inicio/prepareTasks/",   
           data:jQuery214('#other-form').serialize(), 
-          //dataType:"json",
+          
           success:function(data){
             console.log(data); 
             console.log('regreso'+data.response);
