@@ -98,7 +98,7 @@ $('.backdrop').css('display', 'block');
 		$.ajax({  
                       
           type:"POST",
-          url:"<?php echo URL; ?>inicio/assignTasks/",   
+          url:"<?php echo URL; ?>tiro/assignTasks/",   
           data:{user:user}, 
           success:function(data){
 

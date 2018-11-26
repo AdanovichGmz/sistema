@@ -33,7 +33,7 @@ $userInfo=$login_model->getUserInfo($_POST['user']);
 	foreach ($tasks as $key1 => $task) {
 		//$pendings=$process_model->getPendingsByUser($_POST['user']);
 		$pendings=array();
-		$count=count($task['childs']);
+		$count=(is_array($task['childs']))? count($task['childs']):0;
 ?>  
 <?php if ($task['has_child']=='true') { ?>
 <div  data-user="<?=$_POST['user'] ?>" data-target="process-task-<?=$key1 ?>"   class="process ">

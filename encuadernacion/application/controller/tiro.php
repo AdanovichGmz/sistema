@@ -168,6 +168,15 @@ class Tiro extends Controller{
 
     }
 
+    public function assignTasks(){
+        session_start();
+        $sessions_model = $this->loadModel('SessionsModel');
+        $login_model = $this->loadModel('LoginModel');
+        $process_model=$this->loadModel('ProcessModel');
+        $stations= $process_model->getProcesByUser($_POST['user']);
+        require 'application/views/tiro/options.php';
+    }
+
     public function startTeamAlert(){
         session_start();
         $sessions_model = $this->loadModel('SessionsModel');

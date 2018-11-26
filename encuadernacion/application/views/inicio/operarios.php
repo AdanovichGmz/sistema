@@ -267,9 +267,9 @@ jQuery214(document).on("click", ".other", function (){
 });
 
 jQuery214(document).on("click", "#saver", function (){
-  console.log('hola perrote');
+  
 
-  var name_p=jQuery214(this).val(); 
+  var name_p=jQuery214('#custom-task').val(); 
   var user=$('#task-user').val();
 
   
@@ -296,6 +296,7 @@ jQuery214(document).on("click", "#saver", function (){
     $checkbox.prop('checked', !$checkbox.prop('checked'));
             closeModal();
           }
+          jQuery214('.close-bottom-key').click();
           //$('#task-'+user).append(task);
           }
           });
