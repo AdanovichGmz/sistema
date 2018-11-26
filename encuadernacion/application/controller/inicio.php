@@ -177,7 +177,7 @@ if(isset($_SESSION['logged_in'])){
     
     public function prepareTasks(){
         session_start();
-        
+        error_reporting(0);
         $sessions_model = $this->loadModel('SessionsModel');
         $login_model = $this->loadModel('LoginModel');
         $process_model=$this->loadModel('ProcessModel');
@@ -193,8 +193,8 @@ if(isset($_SESSION['logged_in'])){
                
                $assigned[]=$task;
             }
-            array_push($_SESSION['preparingTasks'][$_POST['user']], array_values($assigned));
-            //$_SESSION['preparingTasks'][$_POST['user']]=$assigned;
+           
+            $_SESSION['preparingTasks'][$_POST['user']]=$assigned;
             if ($_POST['is-random']=='true') {
               $_SESSION['randomTasks'][$_POST['user']]=$_POST['custom-task'];
             }
