@@ -194,7 +194,9 @@ if(isset($_SESSION['logged_in'])){
                
                $assigned[]=$task;
             }
-           
+           echo 'user: '.$_POST['user'];
+           echo "assigned: ".$assigned;
+           print_r($assigned);
             $_SESSION['preparingTasks'][$_POST['user']]=$assigned;
             if ($_POST['is-random']=='true') {
               $_SESSION['randomTasks'][$_POST['user']]=$_POST['custom-task'];
