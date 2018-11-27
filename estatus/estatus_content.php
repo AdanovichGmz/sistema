@@ -70,7 +70,7 @@ $final=(($calidad_tope/100)*($desemp_tope/100)*($dispon_tope/100))*100;
         
         </tbody>
       </table>
-      <div id="'.$userID.'" style="position:absolute;bottom:0;width: 97%; height: 100%;"></div>
+      <div id="'.$userID.'" style="position:absolute;bottom:0;width: 97%; height: 75%;"></div>
     </div></div>'.$grafica.'';
   echo $credencial;
 }
