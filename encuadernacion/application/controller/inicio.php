@@ -188,7 +188,7 @@ if(isset($_SESSION['logged_in'])){
         $taken=$sessions_model->userIsTaken($_POST['user']);
         $result=array();
         $assigned=array();
-        print_r($_POST);
+        
         if (!$taken) {
 
             foreach ($_POST['tasks'] as $task) {
