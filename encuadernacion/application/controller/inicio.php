@@ -178,7 +178,7 @@ if(isset($_SESSION['logged_in'])){
     public function prepareTasks(){
         session_start();
         error_reporting(0);
-        
+        //error_reporting(E_ALL ^ E_NOTICE);
         $sessions_model = $this->loadModel('SessionsModel');
         $login_model = $this->loadModel('LoginModel');
         $process_model=$this->loadModel('ProcessModel');
