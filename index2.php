@@ -561,7 +561,7 @@ legend{
     var date = new Date();
     var cumplido='<?=$cumplido['lista_diaria'] ?>';
     console.log('date: '+cumplido);
-    if ((date.getHours() >= 13 && date.getMinutes() >= 26&&cumplido=='false') ) {
+    if ((date.getHours() >= 13 && date.getMinutes() >= 29&&cumplido=='false') ) {
       console.log('ya es tiempo');
       $('.quiz-container').show();
       clearInterval(intervalHandle);          
