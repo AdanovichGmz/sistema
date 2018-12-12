@@ -553,7 +553,7 @@ legend{
      
         if ($responsable['responsable_5s']=='true') {
           include '5s.php';
-          if ($_SESSION['idUser']=='16') {
+          if ($_SESSION['idUser']=='15') {
             
           ?>
           <script>
@@ -561,7 +561,7 @@ legend{
     var date = new Date();
     var cumplido='<?=$cumplido['lista_diaria'] ?>';
     console.log('date: '+cumplido);
-    if ((date.getHours() >= 17 && date.getMinutes() >= 00&&cumplido=='false') ) {
+    if ((date.getHours() >= 13 && date.getMinutes() >= 26&&cumplido=='false') ) {
       console.log('ya es tiempo');
       $('.quiz-container').show();
       clearInterval(intervalHandle);          

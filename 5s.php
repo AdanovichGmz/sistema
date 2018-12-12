@@ -9,6 +9,6 @@ $responsable=mysqli_fetch_assoc($mysqli->query("SELECT lista_diaria FROM sesione
 
 ?>
 
-<iframe <?=(time()>strtotime($ThatTime)&&$responsable['lista_diaria']=='false')? '' : 'style="display:none;"'?> src="http://10.51.28.52/5s/tablets.php?usuario=<?=$_SESSION['logged_in'] ?>" class="quiz-container">
+<iframe <?=(time()>strtotime($ThatTime)&&$responsable['lista_diaria']=='false')? '' : 'style="display:none;"'?> src="http://192.168.1.202/5s/tablets.php?usuario=<?=$_SESSION['logged_in'] ?>" class="quiz-container">
   
 </iframe>
