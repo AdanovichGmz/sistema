@@ -55,7 +55,7 @@ $final=(($calidad_tope/100)*($desemp_tope/100)*($dispon_tope/100))*100;
 
     </div>
     <div class="machinename">'.(($stationInfo['actividad_actual']=='comida')? "comida/wc" : $stationInfo['actividad_actual']).'</div>
-    <div class="ete-stat " style="position:relative;">
+    <div class="ete-stat " style="position:relative;overflow:visible;">
       <table>
       <thead>
       <tr class="trh">
@@ -70,7 +70,7 @@ $final=(($calidad_tope/100)*($desemp_tope/100)*($dispon_tope/100))*100;
         
         </tbody>
       </table>
-      <div id="'.$userID.'" style="position:absolute;bottom:0;width: 97%; height: 75%;"></div>
+      <div id="'.$userID.'" style="overflow: visible;position:absolute;bottom:0;width: 97%; height: 75%;"></div>
     </div></div>'.$grafica.'';
   echo $credencial;
 }
